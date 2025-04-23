@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CalamityMod.CalPlayer.DrawLayers;
+using Terraria.ModLoader.Config;
+
+namespace InfernalEclipseAPI
+{
+    internal class InfernalConfig : ModConfig
+    {
+        public static InfernalConfig Instance;
+
+        public override ConfigScope Mode => ConfigScope.ServerSide;
+
+        #region Balance Changess
+        [Header("BalanceChanges")]
+
+        [DefaultValue(true)]
+        public bool VanillaBalanceChanges { get; set; }
+
+        [DefaultValue(false)]
+        public bool BossKillCheckOnOres { get; set; }
+
+        [DefaultValue(true)]
+        public bool CalamityBalanceChanges { get; set; }
+
+        [DefaultValue(false)]
+        public bool CalamityRecipeTweaks { get; set; }
+
+        [DefaultValue(true)]
+        public bool InfernumRecipeTweaks { get; set; }
+
+        [DefaultValue(true)]
+        public bool ThoriumBalanceChangess { get; set; }
+
+        [DefaultValue(true)]
+        public bool SOTSBalanceChanges { get; set; }
+
+        #endregion
+
+        #region Boss Rush Changes
+        [Header("BossRushChanges")]
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool DreadnautillusInBossRush { get; set; }
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool BetsyInBossRush { get; set; }
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool TerraBladeBossInBossRush { get; set;}
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool WrathoftheGodsBossesInBossRush { get; set; }
+
+
+        #endregion
+
+        #region Miscellaneous
+        [Header ("Miscellaneous")]
+        [DefaultValue(true)]
+        public bool InfernumModeForced { get; set; }
+
+        #endregion
+    }
+}

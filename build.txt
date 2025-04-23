@@ -1,0 +1,8 @@
+displayName = Infernal Eclipse of Ragnarok
+author = Akira
+version = 0.6.4.1
+modReferences = CalamityMod, InfernumMode, YouBoss, PackBuilder
+weakReferences = NoxusBoss, SOTS, CalamityHunt, CatalystMod, CalamityAmmo, ThoriumMod, Clamity, CalamityModMusic
+sortAfter = NoxusBoss, CalamityHunt, ThoriumMod, ThoriumRework, YouBoss, FargowiltasSouls, FargowiltasCrossmod, Clamity, RagnarokMod, CatalystMod, InfernumMode, RevengeancePlus, CalamityMinus
+hideCode = true
+hideResources = true

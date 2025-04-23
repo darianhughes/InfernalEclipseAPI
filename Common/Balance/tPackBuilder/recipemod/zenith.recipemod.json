@@ -1,0 +1,20 @@
+{
+    "Conditions": {
+        "CreatesResult": {
+            "Item": "Terraria/Zenith"
+        }
+    },
+
+    "Changes": {
+        "ChangeIngredient": {
+            "Item": "Terraria/EnchantedSword",
+            "NewItem": "Terraria/Terragrim"
+        },
+        "ChangeIngredient": {
+            "Item": "CalamityMod/AuricBar",
+            "NewItem": "CalamityMod/CosmiliteBar"
+        }
+    },
+
+    "Criteria": "Any"
+}

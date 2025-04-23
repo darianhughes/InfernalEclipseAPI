@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!-- Import tModLoader mod properties -->
+	<Import Project="..\tModLoader.targets" />
+
+	<!-- General -->
+	<PropertyGroup>
+	  <Platforms>AnyCPU;x64</Platforms>
+	  <PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+	<ItemGroup>
+	  <AdditionalFiles Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
+	  <AdditionalFiles Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
+	  <Compile Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
+	  <Compile Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
+	  <EmbeddedResource Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
+	  <EmbeddedResource Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
+	  <None Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
+	  <None Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Common\Balance\Thorium\" />
+	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
+	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />
+	  <Folder Include="Common\GlobalNPCs\" />
+	  <Folder Include="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="CalamityMod">
+	    <HintPath>..\ModAssemblies\CalamityMod_v2.0.4.6.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Clamity">
+	    <HintPath>..\ModAssemblies\Clamity_v1.0.3.7.dll</HintPath>
+	  </Reference>
+	  <Reference Include="InfernumMode">
+	    <HintPath>..\ModAssemblies\InfernumMode_v2.0.1.18.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Luminance">
+	    <HintPath>..\ModAssemblies\Luminance_v1.0.9.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NoxusBoss">
+	    <HintPath>..\ModAssemblies\NoxusBoss_v1.2.19.dll</HintPath>
+	  </Reference>
+	  <Reference Include="PackBuilder">
+	    <HintPath>..\ModAssemblies\PackBuilder_v1.0.0.dll</HintPath>
+	  </Reference>
+	  <Reference Include="ThoriumMod">
+	    <HintPath>..\..\ModReader\Thorium\ThoriumMod.dll</HintPath>
+	  </Reference>
+	  <Reference Include="YouBoss">
+	    <HintPath>..\ModAssemblies\YouBoss_v1.0.14.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<!-- References -->
+
+</Project>

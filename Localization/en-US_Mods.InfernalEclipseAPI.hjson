@@ -1,0 +1,102 @@
+Items: {
+	ChromaticMassInABottle: {
+		Tooltip: ""
+		DisplayName: Chromatic Mass In A Bottle
+	}
+
+	Swordofthe14thGlitch: {
+		DisplayName: Sword of the 14th Glitch
+		Tooltip: - WIP: Currently just uses the First Fractal AI from YouBoss. - 'Harness the true power of the Glitch!'
+	}
+
+	BossRushTier6MusicBox: {
+		Tooltip: Plays 'Descent Of Divinities' by psykomatic
+		DisplayName: Music Box (Boss Rush - Tier 6)
+	}
+
+	Weapons: {
+		Rogue: {
+			NovaBomb: {
+				Tooltip: - WIP: Currently just uses the Supernova AI from CalamityMod. - 'Launches a blazing purple nova of destruction'
+				DisplayName: Nova Bomb
+			}
+		}
+	}
+}
+
+Projectiles: {
+	GlitchSwordHoldout.DisplayName: Glitch Sword Holdout
+	Rogue.NovaBombProj.DisplayName: Nova Bomb Proj
+}
+
+Configs: {
+	InfernalConfig: {
+		WrathoftheGodsBossesInBossRush: {
+			Tooltip: Adds XG-07 Mars, the Avatar of Emptinesss, and Nameless Deity to Boss Rush.
+			Label: Wrath of the God's Bosses In Boss Rush
+		}
+
+		BetsyInBossRush: {
+			Tooltip: Adds Betsy to Boss Rush - CURRENTLY BUGGED
+			Label: Betsy In Boss Rush
+		}
+
+		DreadnautillusInBossRush: {
+			Tooltip: Adds Dreadnautillus to Boss Rush
+			Label: Dreadnautillus In Boss Rush
+		}
+
+		Headers: {
+			BossRushChanges: Boss Rush Boss Toggles
+			BalanceChanges: Mod Balance Changes
+			Miscellaneous: Miscellaneous
+		}
+
+		ThoriumBalanceChangess: {
+			Tooltip: Modifies a bunch Thorium and mutliple Thorium addon items to be in tune with Calamity's items
+			Label: Thorium Balance Changes
+		}
+
+		CalamityRecipeTweaks: {
+			Tooltip: Adjusts a few of Calamity's recipes and removes most of the Vanilla QOL recipes
+			Label: Calamity Recipe Tweaks
+		}
+
+		CalamityBalanceChanges: {
+			Tooltip: Adjusts many of Calamity Vannilla changes back to thier Vanilla values.
+			Label: Calamity Balance Changes
+		}
+
+		BossKillCheckOnOres: {
+			Tooltip: Prevents certain ores from being obtained until you kill certain bosses.
+			Label: Boss Kill Check On Ores
+		}
+
+		VanillaBalanceChanges: {
+			Tooltip: Modifies a few Vanilla items to be in tune with Calamity's items
+			Label: Vanilla Balance Changes
+		}
+
+		DisplayName: Main Config
+
+		TerraBladeBossInBossRush: {
+			Tooltip: Adds the Terra Blade Boss to Boss Rush
+			Label: Terra Blade Boss In Boss Rush
+		}
+
+		InfernumModeForced: {
+			Tooltip: Forces Infernum Mode to be on. Helpful for servers.
+			Label: Force Infernum Mode
+		}
+
+		SOTSBalanceChanges: {
+			Tooltip: Modifies a few Secrets of the Shadows items to be in tune with Calamity's items.
+			Label: Secrets of the Shadows Balance Changes
+		}
+
+		InfernumRecipeTweaks: {
+			Tooltip: Adjusts a few of Infernum's recipes.
+			Label: Infernum Recipe Tweaks
+		}
+	}
+}

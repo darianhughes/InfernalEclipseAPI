@@ -1,0 +1,16 @@
+{
+    "Conditions": {
+        "CreatesResult": {
+            "Item": "InfernumMode/Kevin"
+        }
+    },
+
+    "Changes": {
+        "AddIngredient": {
+            "Item": "CalamityMod/Rock",
+            "Count": 1
+        }
+    },
+
+    "Criteria": "Any"
+}

@@ -1,0 +1,44 @@
+[h1]Infernal Eclipse of Ragnarok[/h1]
+[h3] An Ultramodded Infernum Modpack[/h3]
+[b]This is just the API for the modpack that is used with tPackBuilder. Check out the modpack here:[/b]
+https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
+
+This will be a content mod that has it's own story including each of the mods in the modpack in the future.
+
+Infernal Eclipse of Ragnarok is a ultramodded pack designed for Calamity's Infernum Mode which includes these content mods:
+[list]
+	[*] Calamity Mod (obviously)
+	[*] Thorium Mod
+	[*] Secrets of the Shadows
+	[*] Consolaria
+[/list]
+
+The modpack also has support for Spooky Mod, but isn't included in the modpack.
+
+The only mods required for this API to run are Calamity Mod, Infernum Mode, Clamity Addon, You, & tPackBuilder.
+
+This API currently adds the following:
+[list]
+	[*] Toggleable balance changes to many of the included mods to help the expirence flow together better.
+	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistant.
+	[*] Boss Rush support for all included bosses.
+	[*] Custom Boss Rush music for tiers 5 & 6
+	[*] Some fixes to help Infernum more multiplayer compatible.
+[/list]
+
+Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer, so if you plan to play multiplayer, you will unforutantly have to remove that pack from the modpack until they get it fixed. Otherwise, the modpack was designed with Multiplayer combatibilty in mind, but there are still no promises that this will work fully yet, as I am still testing and devloping it.
+
+Thank you to the tPackBuilder team, as well as each of the indivduals for each mod in the modpack for making this possible!
+
+Developer:
+[list]
+	[*] Akira
+[/list]
+
+Testers:
+[list]
+	[*] Akira
+	[*] TheRogueX
+	[*] Yob
+	[*] Tencvin
+[list]

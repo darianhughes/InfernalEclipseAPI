@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using CalamityMod.Items;
+
+namespace InfernalEclipseAPI.Common.Balance
+{
+    public class NoncosumableBossSummons : GlobalItem
+    {
+        public override void SetDefaults(Item item)
+        {
+            //Consolaria
+            if (ModLoader.TryGetMod("Consolaria", out Mod console))
+            {
+                //Suspicious Looking Egg
+                if (item.type == console.Find<ModItem>("SuspiciousLookingEgg").Type)
+                {
+                    item.consumable = false;
+                }
+
+                //Cursed Stuffing
+                if (item.type == console.Find<ModItem>("CursedStuffing").Type)
+                {
+                    item.consumable = false;
+                }
+
+                //Suspicious Looking Skull
+                if (item.type == console.Find<ModItem>("SuspiciousLookingSkull").Type)
+                {
+                    item.consumable = false;
+                }
+            }
+
+            //Secrets of the Shadows
+            if (ModLoader.TryGetMod("SOTS", out Mod sots))
+            {
+                //Suspicious Looking Candle
+                if (item.type == sots.Find<ModItem>("SuspiciousLookingCandle").Type)
+                {
+                    item.consumable = false;
+                }
+            }
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (ModLoader.TryGetMod("CalamityModMusic", out Mod musicMod))
+            {
+                int[] musicBox = new int[1]
+                {
+                    musicMod.Find<ModItem>("BossRushTier5MusicBox").Type
+                };
+
+                foreach (int num in musicBox)
+                {
+                    foreach (TooltipLine tooltip in tooltips)
+                        tooltip.Text = tooltip.Text.Replace("This music box is unfinished an does not work", "Plays 'Omiscience Of Gods' by TheTrester");
+                }
+            }
+
+            if (ModLoader.TryGetMod("Consolaria", out Mod console)) {
+                int[] consoleArray = new int[3]
+                {
+                    console.Find<ModItem>("SuspiciousLookingEgg").Type,
+                    console.Find<ModItem>("CursedStuffing").Type,
+                    console.Find<ModItem>("SuspiciousLookingSkull").Type
+                };
+
+                foreach (int num in consoleArray)
+                {
+                    foreach (TooltipLine tooltip in tooltips)
+                        tooltip.Text = tooltip.Text.Replace("Consumable", string.Empty);
+                }
+            }
+
+            if (ModLoader.TryGetMod("SOTS", out Mod sots))
+            {
+                int[] consoleArray = new int[1]
+                {
+                    sots.Find<ModItem>("SuspiciousLookingCandle").Type,
+                };
+
+                foreach (int num in consoleArray)
+                {
+                    foreach (TooltipLine tooltip in tooltips)
+                        tooltip.Text = tooltip.Text.Replace("Consumable", string.Empty);
+                }
+            }
+        }
+    }
+}
