@@ -45,7 +45,7 @@ namespace InfernalEclipseAPI.Common.Players
                 Main.NewText("The prodigy has returned to face the Infernal Eclipse...", 95, 06, 06);
                 //SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);
             }
-            else if (InfernalConfig.Instance.InfernumModeForced);
+            else if (InfernalConfig.Instance.InfernumModeForced)
             {
                 Main.NewText("Infernal energy has been infused into this world...", 95, 06, 06);
                 SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);

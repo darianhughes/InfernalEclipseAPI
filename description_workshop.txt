@@ -1,9 +1,9 @@
 [h1]Infernal Eclipse of Ragnarok[/h1]
 [h3] An Ultramodded Infernum Modpack[/h3]
-[b]This is just the API for the modpack that is used with tPackBuilder. Check out the modpack here:[/b]
+[b]This is just the API for the modpack. Check out the modpack here:[/b]
 https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
-This will be a content mod that has it's own story including each of the mods in the modpack in the future.
+This will be a content mod that has it's own story including each of the mods in the modpack in the future, with a functional Quest Book & Boss progression using tPackBuilder.
 
 Infernal Eclipse of Ragnarok is a ultramodded pack designed for Calamity's Infernum Mode which includes these content mods:
 [list]
@@ -34,7 +34,10 @@ Developer:
 [list]
 	[*] Akira
 [/list]
-
+Quest Book, Story, & Boss Progression:
+[list]
+	[*] Yob
+[/list]
 Testers:
 [list]
 	[*] Akira

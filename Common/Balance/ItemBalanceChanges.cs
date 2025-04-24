@@ -218,6 +218,37 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.useAnimation = 8;
                 }
 
+                //Opal Staff
+                if (item.type == thorium.Find<ModItem>("OpalStaff").Type)
+                {
+                    item.mana = 4;
+                    item.damage = 27;
+                    item.useTime = 36;
+                    item.useAnimation = 36;
+                }
+
+                //Aquamarine Staff
+                if (item.type == thorium.Find<ModItem>("AquamarineStaff").Type)
+                {
+                    item.mana = 4;
+                    item.damage = 20;
+                    item.useTime = 33;
+                    item.useAnimation = 33;
+                }
+
+                //Magick Staff
+                if (item.type == thorium.Find<ModItem>("MagickStaff").Type)
+                {
+                    //Add debufs
+                }
+
+                //Vessel Buster
+                if (item.type == thorium.Find<ModItem>("VesselBuster").Type)
+                {
+                    item.useTime = 10;
+                    item.useAmmo = 10;
+                }
+
                 //Magic Conch
                 if (item.type == thorium.Find<ModItem>("MagicConch").Type)
                 {
@@ -225,6 +256,32 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.useTime = 2;
                     item.useAnimation = 10;
                     item.damage = 16;
+                }
+
+                //Detached Blaster
+                if (item.type == thorium.Find<ModItem>("DetachedBlaster").Type)
+                {
+                    item.damage = 34;
+                }
+
+                //Shadoowflame Staff
+                if (item.type == thorium.Find<ModItem>("ShadowflameStaff").Type)
+                {
+                    item.damage *= 2;
+                }
+
+                //Blooming Staff
+                if (item.type == thorium.Find<ModItem>("BloomingStaff").Type)
+                {
+                    item.damage = 16;
+                    item.useTime = 2;
+                    item.useAnimation = 6;
+                }
+
+                //Thor's Hammer: Magic
+                if (item.type == thorium.Find<ModItem>("MagicThorHammer").Type)
+                {
+                    item.damage = 44;
                 }
 
                 //Dark Tome
@@ -251,6 +308,25 @@ namespace InfernalEclipseAPI.Common.Balance
                 if (item.type == thorium.Find<ModItem>("PhantomCamera").Type)
                 {
                     item.damage = 85;
+                }
+
+                //Eel-rod
+                if (item.type == thorium.Find<ModItem>("Eelrod").Type)
+                {
+                    item.damage = 24;
+                }
+
+                //Bloody Wand
+                if (item.type == thorium.Find<ModItem>("BloodyWand").Type)
+                {
+                    item.damage = 18;
+                }
+
+                //Energy Projector
+                if (item.type == thorium.Find<ModItem>("EnergyProjector").Type)
+                {
+                    item.damage = 30;
+                    item.knockBack = 10;
                 }
 
                 //Champion's Bomber Staff
@@ -454,7 +530,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 //The Windmill
                 if (item.type == calBardHeal.Find<ModItem>("TheWindmill").Type)
                 {
-                    item.damage = 6;
+                    item.damage = 5;
                 }
 
                 //Fire Hazard

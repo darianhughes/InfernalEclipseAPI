@@ -47,6 +47,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 {
                     entity.penetrate = 3;
                 }
+
+                if (entity.type == thorium.Find<ModProjectile>("GeyserPro2").Type)
+                {
+                    entity.scale *= 5;
+                }
+
+                if (entity.type == thorium.Find<ModProjectile>("GraniteBarrier").Type)
+                {
+                    entity.penetrate = 2;
+                }
             } 
         }
     }
