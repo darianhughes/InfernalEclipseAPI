@@ -98,5 +98,10 @@ Configs: {
 			Tooltip: Adjusts a few of Infernum's recipes.
 			Label: Infernum Recipe Tweaks
 		}
+
+		ForceFullXerocDialogue: {
+			Label: Force Full Xeroc Dialogue
+			Tooltip: Forces the game to display the full Xeroc Dialogue when starting Boss Rush & when you beat it. Helpful for servers.
+		}
 	}
 }

@@ -32,6 +32,7 @@ using CalamityMod.Enums;
 using CalamityMod.Systems;
 using InfernalEclipseAPI.Core;
 using CalamityMod.NPCs.ProfanedGuardians;
+using CalamityMod.CalPlayer;
 
 namespace InfernalEclipseAPI
 {
@@ -445,8 +446,26 @@ namespace InfernalEclipseAPI
 
             //Use Multiplayer friendly teleports
             //Wall of Flessh
-            BossDeathEffects.Remove(NPCID.WallofFlesh);
-            BossDeathEffects.Add(NPCID.WallofFlesh, npc => { BossRushTeleports.BringPlayersBackToSpawn(); });
+            //BossDeathEffects.Remove(NPCID.WallofFlesh);
+            //BossDeathEffects.Add(NPCID.WallofFlesh, npc => {
+            //    ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
+            //    while (enumerator.MoveNext())
+            //    {
+            //        Player current = enumerator.Current;
+            //        if (current.Calamity().BossRushReturnPosition.HasValue)
+            //        {
+            //            CalamityPlayer.ModTeleport(current, current.Calamity().BossRushReturnPosition.Value, playSound: false, 2);
+            //            current.Calamity().BossRushReturnPosition = null;
+            //        }
+
+            //        current.Calamity().BossRushReturnPosition = null;
+            //        SoundStyle style = TeleportSound with
+            //        {
+            //            Volume = 1.6f
+            //        };
+            //        SoundEngine.PlaySound(in style, current.Center);
+            //    }
+            //});
             
             //Ocram
             if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
@@ -455,22 +474,72 @@ namespace InfernalEclipseAPI
             }
 
             //Pharaoh's Curse
-            if (sotsEnabled)
-            {
-                BossDeathEffects.Remove(sots.Find<ModNPC>("PharaohsCurse").Type);
-                BossDeathEffects.Add(sots.Find<ModNPC>("PharaohsCurse").Type, npc => { BossRushTeleports.BringPlayersBackToSpawn(); });
+            //if (sotsEnabled)
+            //{
+            //    BossDeathEffects.Remove(sots.Find<ModNPC>("PharaohsCurse").Type);
+            //    BossDeathEffects.Add(sots.Find<ModNPC>("PharaohsCurse").Type, npc => {
+            //        ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
+            //        while (enumerator.MoveNext())
+            //        {
+            //            Player current = enumerator.Current;
+            //            if (current.Calamity().BossRushReturnPosition.HasValue)
+            //            {
+            //                CalamityPlayer.ModTeleport(current, current.Calamity().BossRushReturnPosition.Value, playSound: false, 2);
+            //                current.Calamity().BossRushReturnPosition = null;
+            //            }
 
-                BossDeathEffects.Remove(sots.Find<ModNPC>("SubspaceSerpentHead").Type);
-                BossDeathEffects.Add(sots.Find<ModNPC>("SubspaceSerpentHead").Type, npc => { BossRushTeleports.BringPlayersBackToSpawn(); });
-            }
+            //            current.Calamity().BossRushReturnPosition = null;
+            //            SoundStyle style = TeleportSound with
+            //            {
+            //                Volume = 1.6f
+            //            };
+            //            SoundEngine.PlaySound(in style, current.Center);
+            //        }
+            //    });
 
-            BossDeathEffects.Remove(ModContent.NPCType<ProfanedGuardianCommander>());
-            BossDeathEffects.Add(ModContent.NPCType<ProfanedGuardianCommander>(), npc =>
-            {
-                BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierOneComplete);
-                CreateTierAnimation(2);
-                BossRushTeleports.BringPlayersBackToSpawn();
-            });
+            //    BossDeathEffects.Remove(sots.Find<ModNPC>("SubspaceSerpentHead").Type);
+            //    BossDeathEffects.Add(sots.Find<ModNPC>("SubspaceSerpentHead").Type, npc => { ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
+            //    while (enumerator.MoveNext())
+            //    {
+            //        Player current = enumerator.Current;
+            //        if (current.Calamity().BossRushReturnPosition.HasValue)
+            //        {
+            //            CalamityPlayer.ModTeleport(current, current.Calamity().BossRushReturnPosition.Value, playSound: false, 2);
+            //            current.Calamity().BossRushReturnPosition = null;
+            //        }
+
+            //        current.Calamity().BossRushReturnPosition = null;
+            //        SoundStyle style = TeleportSound with
+            //        {
+            //            Volume = 1.6f
+            //        };
+            //        SoundEngine.PlaySound(in style, current.Center);
+            //    } });
+            //}
+
+            //BossDeathEffects.Remove(ModContent.NPCType<ProfanedGuardianCommander>());
+            //BossDeathEffects.Add(ModContent.NPCType<ProfanedGuardianCommander>(), npc =>
+            //{
+            //    BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierOneComplete);
+            //    CreateTierAnimation(2);
+            //    ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
+            //    while (enumerator.MoveNext())
+            //    {
+            //        Player current = enumerator.Current;
+            //        if (current.Calamity().BossRushReturnPosition.HasValue)
+            //        {
+            //            CalamityPlayer.ModTeleport(current, current.Calamity().BossRushReturnPosition.Value, playSound: false, 2);
+            //            current.Calamity().BossRushReturnPosition = null;
+            //        }
+
+            //        current.Calamity().BossRushReturnPosition = null;
+            //        SoundStyle style = TeleportSound with
+            //        {
+            //            Volume = 1.6f
+            //        };
+            //        SoundEngine.PlaySound(in style, current.Center);
+            //    }
+            //});
 
 
 
@@ -485,8 +554,15 @@ namespace InfernalEclipseAPI
 
             BossDeathEffects.Add(brEntries[^1].Item1, npc =>
             {
-                //Always play end dialgoue
-                BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.End);
+                if (InfernalConfig.Instance.ForceFullXerocDialogue)
+                {
+                    //Always play end dialgoue
+                    BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.End);
+                }
+                else
+                {
+                    BossRushDialogueSystem.StartDialogue(DownedBossSystem.downedBossRush ? BossRushDialoguePhase.EndRepeat : BossRushDialoguePhase.End);
+                }
                 CalamityUtils.KillAllHostileProjectiles();
                 HostileProjectileKillCounter = 3;
             });

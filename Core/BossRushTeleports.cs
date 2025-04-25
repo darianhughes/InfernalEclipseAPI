@@ -26,6 +26,7 @@ using CalamityMod.NPCs.OldDuke;
 using CalamityMod.NPCs.Perforator;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Polterghast;
+using CalamityMod.NPCs.PrimordialWyrm;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.Providence;
 using CalamityMod.NPCs.Ravager;
@@ -55,6 +56,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -74,7 +76,7 @@ namespace InfernalEclipseAPI.Core
             }
         }
 
-        public static void PyramidTeleport()
+        public static Vector2 PyramidTeleport()
         {
             foreach (var player in Main.ActivePlayers)
             {
@@ -85,12 +87,12 @@ namespace InfernalEclipseAPI.Core
                         Tile tile = ((Tilemap)Main.tile)[index1, index2];
                         if ((int)((Tile)tile).TileType == (int)((ModBlockType)Terraria.ModLoader.ModLoader.GetMod("SOTS").Find<ModTile>("SarcophagusTile")).Type)
                         {
-                            player.Teleport(new Vector2((index1 + 1) * 16f, index2 * 16f), 0, 0);
-                            return;
+                            return new Vector2((index1 + 1) * 16f, index2 * 16f);
                         }
                     }
                 }
             }
+            return new Vector2(0, 0);
         }
 
         public static void HandleTeleports()
@@ -102,19 +104,21 @@ namespace InfernalEclipseAPI.Core
             {
                 Vector2? teleportPosition = null;
 
-                // Teleport the player to the garden for the guardians fight in boss rush.
                 if (BossRushStage < Bosses.Count - 1 && !CalamityPlayer.areThereAnyDamnBosses)
                 {
                     if (ModLoader.TryGetMod("SOTS", out Mod sots) && ModLoader.TryGetMod("RevengeancePlus", out Mod revenge))
                     {
                         int subspaceID = sots.Find<ModNPC>("SubspaceSerpentHead").Type;
+                        int pharohID = sots.Find<ModNPC>("PharaohsCurse").Type;
 
                         if (CurrentlyFoughtBoss == subspaceID && !player.ZoneUnderworldHeight)
-                            teleportPosition = CalamityPlayer.GetUnderworldPosition(player);
+                            player.DemonConch();
+                        if (CurrentlyFoughtBoss == pharohID)
+                            teleportPosition = PyramidTeleport();
                     }
 
                     if (CurrentlyFoughtBoss == NPCID.WallofFlesh && !player.ZoneUnderworldHeight)
-                        teleportPosition = CalamityPlayer.GetUnderworldPosition(player);
+                        player.DemonConch();
                     if (CurrentlyFoughtBoss == ModContent.NPCType<ProfanedGuardianCommander>() && !player.Infernum_Biome().ZoneProfaned)
                         teleportPosition = WorldSaveSystem.ProvidenceArena.TopLeft() * 16f + new Vector2(WorldSaveSystem.ProvidenceArena.Width * 3.2f - 16f, 800f);
                     if (CurrentlyFoughtBoss == ModContent.NPCType<CeaselessVoid>() && !player.ZoneDungeon)
@@ -123,8 +127,35 @@ namespace InfernalEclipseAPI.Core
                         teleportPosition = WorldSaveSystem.ProvidenceArena.TopRight() * 16f + new Vector2(WorldSaveSystem.ProvidenceArena.Width * -3.2f - 16f, 800f);
                 }
 
-                if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == NPCID.SkeletronHead && player.ZoneUnderworldHeight)
+
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) || ModLoader.TryGetMod("ThoriumRework", out Mod rework)))
+                {
+                    if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == thorium.Find<ModNPC>("BoreanStrider").Type) 
+                    {
+                        player.Spawn(PlayerSpawnContext.RecallFromItem);
+                    }
+                }
+                else
+                {
+                    if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == ModContent.NPCType<PerforatorHive>())
+                    {
+                        player.Spawn(PlayerSpawnContext.RecallFromItem);
+                    }
+                }
+
+                if (ModLoader.TryGetMod("SOTS", out Mod sots2) && ModLoader.TryGetMod("RevengeancePlus", out Mod revenge2)) {
+                    if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == ModContent.NPCType<AquaticScourgeHead>())
+                        player.Spawn(PlayerSpawnContext.RecallFromItem);
+                }
+
+                if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == ModContent.NPCType<StormWeaverHead>())
                     player.Spawn(PlayerSpawnContext.RecallFromItem);
+
+                if (ModLoader.TryGetMod("Clamity", out Mod clam))
+                {
+                    if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == ModContent.NPCType<PrimordialWyrmHead>())
+                        player.Spawn(PlayerSpawnContext.RecallFromItem);
+                }
 
                 // Check to make sure the teleport position is valid.
                 bool fightingProfanedBoss = CurrentlyFoughtBoss == ModContent.NPCType<ProfanedGuardianCommander>() || CurrentlyFoughtBoss == ModContent.NPCType<Providence>();
@@ -145,7 +176,7 @@ namespace InfernalEclipseAPI.Core
                     if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss != NPCID.SkeletronHead && WorldUtils.Find(teleportPosition.Value.ToTileCoordinates(), Searches.Chain(new Searches.Down(100), new Conditions.IsSolid()), out Point p))
                         teleportPosition = p.ToWorldCoordinates(8f, -32f);
 
-                    CalamityPlayer.ModTeleport(player, teleportPosition.Value, playSound: false, 7);
+                    player.Teleport(teleportPosition.Value, 0, 0);
                     SoundEngine.PlaySound(TeleportSound with { Volume = 1.6f }, player.Center);
                 }
             }

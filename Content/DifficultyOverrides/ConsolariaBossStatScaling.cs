@@ -7,6 +7,9 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
+using Terraria.DataStructures;
+using Mono.Cecil;
+using Terraria.ID;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {

@@ -14,6 +14,28 @@ namespace InfernalEclipseAPI.Common.Players
 {
     public class InfernalPlayer : ModPlayer
     {
+        public override void PlayerConnect()
+        {
+            Main.NewText("Welcome to the Infernal Eclipse of Ragnarok Mod Pack!", 95, 06, 06);
+
+            if (InfernumActive.InfernumActive)
+            {
+                Main.NewText("A prodigy has returned to face the Infernal Eclipse...", 95, 06, 06);
+                //SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);
+            }
+            else if (InfernalConfig.Instance.InfernumModeForced)
+            {
+                Main.NewText("Infernal energy has been infused into this world...", 95, 06, 06);
+                SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);
+                WorldSaveSystem.InfernumModeEnabled = true;
+            }
+
+            if (InfernalConfig.Instance.ForceFullXerocDialogue)
+            {
+                DownedBossSystem.startedBossRushAtLeastOnce = false;
+            }
+        }
+
         public override void OnEnterWorld()
         {
             Main.NewText("Welcome to the Infernal Eclipse of Ragnarok Mod Pack!", 95, 06, 06);
@@ -81,7 +103,10 @@ namespace InfernalEclipseAPI.Common.Players
                 WorldSaveSystem.InfernumModeEnabled = true;
             }
 
-            DownedBossSystem.startedBossRushAtLeastOnce = false;
+            if (InfernalConfig.Instance.ForceFullXerocDialogue)
+            {
+                DownedBossSystem.startedBossRushAtLeastOnce = false;
+            }
         }
     }
 }

@@ -60,6 +60,9 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool WrathoftheGodsBossesInBossRush { get; set; }
 
+        [DefaultValue(false)]
+        public bool ForceFullXerocDialogue { get; set; }
+
 
         #endregion
 

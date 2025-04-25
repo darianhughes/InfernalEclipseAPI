@@ -32,6 +32,9 @@
 	  <Reference Include="Clamity">
 	    <HintPath>..\ModAssemblies\Clamity_v1.0.3.7.dll</HintPath>
 	  </Reference>
+	  <Reference Include="Consolaria">
+	    <HintPath>..\..\ModReader\Consolaria\Consolaria.dll</HintPath>
+	  </Reference>
 	  <Reference Include="InfernumMode">
 	    <HintPath>..\ModAssemblies\InfernumMode_v2.0.1.18.dll</HintPath>
 	  </Reference>
