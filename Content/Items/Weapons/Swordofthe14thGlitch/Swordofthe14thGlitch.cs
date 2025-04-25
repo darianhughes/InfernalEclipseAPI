@@ -74,6 +74,9 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch
 
         public override bool CanUseItem(Player player)
         {
+            if (player.mount.Active)
+                return false;
+
             if (Item.type != ItemID.FirstFractal)
                 return true;
 

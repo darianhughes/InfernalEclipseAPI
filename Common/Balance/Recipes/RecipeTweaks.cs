@@ -12,6 +12,12 @@ using InfernumMode.Content.Items.SummonItems;
 using CalamityMod.Items.Tools.ClimateChange;
 using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using static NoxusBoss.Assets.GennedAssets.Sounds;
+using CalamityMod.Items;
+using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
+using InfernalEclipseAPI.Content.Items.Weapons.NovaBomb;
+using InfernumMode.Content.Items.Weapons.Magic;
+using InfernalEclipseAPI.Content.Items.Weapons.ChromaticMassInABottle;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -48,6 +54,36 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient<CosmiliteBar>(1);
                         recipe.RemoveTile(16);
                         recipe.AddTile(ModContent.TileType<CosmicAnvil>());
+                    }
+                }
+
+                if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
+                {
+                    if (toilet.TryFind("ZenithToilet", out ModItem zToilet))
+                    {
+                        if (recipe.HasResult(zToilet))
+                        {
+                            recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
+                            recipe.RemoveTile(TileID.MythrilAnvil);
+                            recipe.AddIngredient<AshesofAnnihilation>(3);
+                            recipe.AddIngredient<MiracleMatter>(3);
+                            recipe.AddIngredient<ShadowspecBar>(3);
+                            recipe.AddTile(ModContent.TileType<DraedonsForge>());
+                        }
+                    }
+
+                    if (toilet.TryFind("TrueZenithToilet", out ModItem trueToilet))
+                    {
+                        if (recipe.HasResult(trueToilet))
+                        {
+                            recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
+                            recipe.RemoveTile(TileID.MythrilAnvil);
+                            recipe.AddTile(ModContent.TileType<DraedonsForge>());
+                            recipe.AddIngredient(ModContent.ItemType<Swordofthe14thGlitch>(), 1);
+                            recipe.AddIngredient(ModContent.ItemType<NovaBomb>(), 1);
+                            recipe.AddIngredient(ModContent.ItemType<ChromaticMassInABottle>(), 1);
+                            recipe.AddIngredient(ModContent.ItemType<Kevin>(), 1);
+                        }
                     }
                 }
 

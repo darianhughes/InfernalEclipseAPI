@@ -105,6 +105,14 @@ namespace InfernalEclipseAPI.Core
                 // Teleport the player to the garden for the guardians fight in boss rush.
                 if (BossRushStage < Bosses.Count - 1 && !CalamityPlayer.areThereAnyDamnBosses)
                 {
+                    if (ModLoader.TryGetMod("SOTS", out Mod sots) && ModLoader.TryGetMod("RevengeancePlus", out Mod revenge))
+                    {
+                        int subspaceID = sots.Find<ModNPC>("SubspaceSerpentHead").Type;
+
+                        if (CurrentlyFoughtBoss == subspaceID && !player.ZoneUnderworldHeight)
+                            teleportPosition = CalamityPlayer.GetUnderworldPosition(player);
+                    }
+
                     if (CurrentlyFoughtBoss == NPCID.WallofFlesh && !player.ZoneUnderworldHeight)
                         teleportPosition = CalamityPlayer.GetUnderworldPosition(player);
                     if (CurrentlyFoughtBoss == ModContent.NPCType<ProfanedGuardianCommander>() && !player.Infernum_Biome().ZoneProfaned)

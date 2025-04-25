@@ -62,7 +62,6 @@ namespace InfernalEclipseAPI
 
                 int subspaceID = sots.Find<ModNPC>("SubspaceSerpentHead").Type;
                 int subspaceBRIndex = 0;
-                bool subspaceInBR = false;
 
                 for (int i = 0; i < brEntries.Count; i++)
                 {
@@ -74,7 +73,6 @@ namespace InfernalEclipseAPI
                     else if (brEntries[i].Item1 == subspaceID)
                     {
                         subspaceBRIndex = i;
-                        subspaceInBR = true;
                     }
                 }
 
@@ -461,6 +459,9 @@ namespace InfernalEclipseAPI
             {
                 BossDeathEffects.Remove(sots.Find<ModNPC>("PharaohsCurse").Type);
                 BossDeathEffects.Add(sots.Find<ModNPC>("PharaohsCurse").Type, npc => { BossRushTeleports.BringPlayersBackToSpawn(); });
+
+                BossDeathEffects.Remove(sots.Find<ModNPC>("SubspaceSerpentHead").Type);
+                BossDeathEffects.Add(sots.Find<ModNPC>("SubspaceSerpentHead").Type, npc => { BossRushTeleports.BringPlayersBackToSpawn(); });
             }
 
             BossDeathEffects.Remove(ModContent.NPCType<ProfanedGuardianCommander>());

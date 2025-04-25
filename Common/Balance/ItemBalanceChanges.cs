@@ -62,6 +62,21 @@ namespace InfernalEclipseAPI.Common.Balance
                 }
             }
 
+            if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
+            {
+                if (item.type == toilet.Find<ModItem>("ZenithToilet").Type)
+                {
+                    item.damage = 30000;
+                    item.crit = 0;
+                }
+
+                if (item.type == toilet.Find<ModItem>("TrueZenithToilet").Type)
+                {
+                    item.damage = 100000;
+                    item.crit = 0;
+                }
+            }
+
             //Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
