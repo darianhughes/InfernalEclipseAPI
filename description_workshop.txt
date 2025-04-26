@@ -28,7 +28,7 @@ This API currently adds the following:
 
 Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer, so if you plan to play multiplayer, you will unforutantly have to remove that pack from the modpack until they get it fixed. Otherwise, the modpack was designed with Multiplayer combatibilty in mind, but there are still no promises that this will work fully yet, as I am still testing and devloping it.
 
-If you have any other issues please add @itzakira7 on discord and shoot me a message. 
+If you have any other issues please add @itzakira7 on discord and shoot me a message on discord. 
 
 Thank you to the tPackBuilder team, as well as each of the indivduals for each mod in the modpack for making this possible!
 

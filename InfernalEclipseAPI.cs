@@ -33,6 +33,7 @@ using CalamityMod.Systems;
 using InfernalEclipseAPI.Core;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.CalPlayer;
+using CalamityMod.Projectiles.Typeless;
 
 namespace InfernalEclipseAPI
 {
@@ -77,20 +78,20 @@ namespace InfernalEclipseAPI
                     }
                 }
 
-                if (pharaohInBR)
-                {
-                    Action<int> prPharaoh = delegate (int npc)
-                    {
-                        BossRushTeleports.PyramidTeleport();
-                        byte closest = Player.FindClosest(new Vector2(Main.maxTilesX * 8f, Main.maxTilesY * 8f), 0, 0);
-                        NPC.SpawnOnPlayer(closest, pharaohID);
+                //if (pharaohInBR)
+                //{
+                //    Action<int> prPharaoh = delegate (int npc)
+                //    {
+                //        BossRushTeleports.PyramidTeleport();
+                //        byte closest = Player.FindClosest(new Vector2(Main.maxTilesX * 8f, Main.maxTilesY * 8f), 0, 0);
+                //        NPC.SpawnOnPlayer(closest, pharaohID);
 
-                        int npcIndex = NPC.FindFirstNPC(pharaohID);
-                        if (npcIndex != -1)
-                            Main.npc[npcIndex].Center = Main.player[closest].Center;
-                    };
-                    brEntries[pharaohBRIndex] = (brEntries[pharaohBRIndex].Item1, brEntries[pharaohBRIndex].Item2, prPharaoh, brEntries[pharaohBRIndex].Item4, brEntries[pharaohBRIndex].Item5, brEntries[pharaohBRIndex].Item6, brEntries[pharaohBRIndex].Item7, brEntries[pharaohBRIndex].Item8);
-                }
+                //        int npcIndex = NPC.FindFirstNPC(pharaohID);
+                //        if (npcIndex != -1)
+                //            Main.npc[npcIndex].Center = Main.player[closest].Center;
+                //    };
+                //    brEntries[pharaohBRIndex] = (brEntries[pharaohBRIndex].Item1, brEntries[pharaohBRIndex].Item2, prPharaoh, brEntries[pharaohBRIndex].Item4, brEntries[pharaohBRIndex].Item5, brEntries[pharaohBRIndex].Item6, brEntries[pharaohBRIndex].Item7, brEntries[pharaohBRIndex].Item8);
+                //}
             }
 
             //Remove tier 3 completion from Skeletron spawn action to skeletron kill
@@ -118,7 +119,20 @@ namespace InfernalEclipseAPI
             BossRushEvent.BossDeathEffects[skeletronID] = npc =>
             {
                 BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierTwoComplete);
-                CreateTierAnimation(3);
+
+                ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
+                while (enumerator.MoveNext())
+                {
+                    Player current = enumerator.Current;
+                    if (!current.dead)
+                    {
+                        int num = Projectile.NewProjectile(new EntitySource_WorldEvent(), current.Center, Vector2.Zero, ModContent.ProjectileType<BossRushTierAnimation>(), 0, 0f, current.whoAmI);
+                        if (Main.projectile.IndexInRange(num))
+                        {
+                            Main.projectile[num].ai[0] = 3;
+                        }
+                    }
+                }
             };
 
             //Borean Strider (Thorium Mod) - Checks to see if Borean Strider is in Boss Rush. If not, adds it.
@@ -159,35 +173,33 @@ namespace InfernalEclipseAPI
             }
 
             //Dreadnautilus
-            if (InfernumActive.InfernumActive)
+            if (ModContent.GetInstance<InfernalConfig>().DreadnautillusInBossRush)
             {
-                if (ModContent.GetInstance<InfernalConfig>().DreadnautillusInBossRush)
+                int[] dreadID = { Terraria.ID.NPCID.BloodNautilus };
+                int[] dreadMinionsIDs = { Terraria.ID.NPCID.EyeballFlyingFish, Terraria.ID.NPCID.VampireBat };
+
+                Action<int> prDread = delegate (int npc)
                 {
-                    int[] dreadID = { Terraria.ID.NPCID.BloodNautilus };
-                    int[] dreadMinionsIDs = { Terraria.ID.NPCID.EyeballFlyingFish, Terraria.ID.NPCID.VampireBat };
+                    //SoundStyle roar;
+                    int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
+                    Player player = Main.player[whomst];
+                    //SoundEngine.PlaySound(roar, player.Center);
+                    NPC.SpawnOnPlayer(whomst, Terraria.ID.NPCID.BloodNautilus);
+                };
 
-                    Action<int> prDread = delegate (int npc)
+                int DreadInsertID = Terraria.ID.NPCID.QueenSlimeBoss;
+
+                for (int i = 0; i < brEntries.Count; i++)
+                {
+                    if (brEntries[i].Item1 == DreadInsertID)
                     {
-                        //SoundStyle roar;
-                        int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
-                        Player player = Main.player[whomst];
-                        //SoundEngine.PlaySound(roar, player.Center);
-                        NPC.SpawnOnPlayer(whomst, Terraria.ID.NPCID.BloodNautilus);
-                    };
-
-                    int DreadInsertID = Terraria.ID.NPCID.QueenSlimeBoss;
-
-                    for (int i = 0; i < brEntries.Count; i++)
-                    {
-                        if (brEntries[i].Item1 == DreadInsertID)
-                        {
-                            DreadInsertID = i;
-                            break;
-                        }
+                        DreadInsertID = i;
+                        break;
                     }
-                    brEntries.Insert(DreadInsertID - 1, (Terraria.ID.NPCID.BloodNautilus, -1, prDread, 180, false, 0f, dreadMinionsIDs, dreadID));
                 }
+                brEntries.Insert(DreadInsertID - 1, (Terraria.ID.NPCID.BloodNautilus, -1, prDread, 180, false, 0f, dreadMinionsIDs, dreadID));
             }
+
 
             //Betsy
             if (ModContent.GetInstance<InfernalConfig>().BetsyInBossRush)
@@ -517,29 +529,45 @@ namespace InfernalEclipseAPI
             //    } });
             //}
 
-            //BossDeathEffects.Remove(ModContent.NPCType<ProfanedGuardianCommander>());
-            //BossDeathEffects.Add(ModContent.NPCType<ProfanedGuardianCommander>(), npc =>
-            //{
-            //    BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierOneComplete);
-            //    CreateTierAnimation(2);
-            //    ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
-            //    while (enumerator.MoveNext())
-            //    {
-            //        Player current = enumerator.Current;
-            //        if (current.Calamity().BossRushReturnPosition.HasValue)
-            //        {
-            //            CalamityPlayer.ModTeleport(current, current.Calamity().BossRushReturnPosition.Value, playSound: false, 2);
-            //            current.Calamity().BossRushReturnPosition = null;
-            //        }
+            BossDeathEffects.Remove(ModContent.NPCType<ProfanedGuardianCommander>());
+            BossDeathEffects.Add(ModContent.NPCType<ProfanedGuardianCommander>(), npc =>
+            {
+                BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierOneComplete);
+                ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
+                while (enumerator.MoveNext())
+                {
+                    Player current = enumerator.Current;
+                    if (!current.dead)
+                    {
+                        current.Spawn(PlayerSpawnContext.RecallFromItem);
+                        int num = Projectile.NewProjectile(new EntitySource_WorldEvent(), current.Center, Vector2.Zero, ModContent.ProjectileType<BossRushTierAnimation>(), 0, 0f, current.whoAmI);
+                        if (Main.projectile.IndexInRange(num))
+                        {
+                            Main.projectile[num].ai[0] = 2;
+                        }
+                    }
+                }
+            });
 
-            //        current.Calamity().BossRushReturnPosition = null;
-            //        SoundStyle style = TeleportSound with
-            //        {
-            //            Volume = 1.6f
-            //        };
-            //        SoundEngine.PlaySound(in style, current.Center);
-            //    }
-            //});
+            BossDeathEffects.Remove(ModContent.NPCType<ProfanedGuardianCommander>());
+            BossDeathEffects.Add(ModContent.NPCType<ProfanedGuardianCommander>(), npc =>
+            {
+                BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierOneComplete);
+                ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
+                while (enumerator.MoveNext())
+                {
+                    Player current = enumerator.Current;
+                    if (!current.dead)
+                    {
+                        current.Spawn(PlayerSpawnContext.RecallFromItem);
+                        int num = Projectile.NewProjectile(new EntitySource_WorldEvent(), current.Center, Vector2.Zero, ModContent.ProjectileType<BossRushTierAnimation>(), 0, 0f, current.whoAmI);
+                        if (Main.projectile.IndexInRange(num))
+                        {
+                            Main.projectile[num].ai[0] = 2;
+                        }
+                    }
+                }
+            });
 
 
 

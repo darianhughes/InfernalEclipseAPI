@@ -67,7 +67,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 if (item.type == toilet.Find<ModItem>("ZenithToilet").Type)
                 {
                     item.damage = 30000;
-                    item.crit = 0;
+                    item.crit = 4;
                 }
 
                 if (item.type == toilet.Find<ModItem>("TrueZenithToilet").Type)

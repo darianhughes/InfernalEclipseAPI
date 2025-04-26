@@ -44,6 +44,11 @@ namespace InfernalEclipseAPI.Common.Balance
                 {
                     item.consumable = false;
                 }
+
+                if (item.type == sots.Find<ModItem>("JarOfPeanuts").Type)
+                {
+                    item.consumable = false;
+                }
             }
         }
 
@@ -51,7 +56,7 @@ namespace InfernalEclipseAPI.Common.Balance
         {
             if (ModLoader.TryGetMod("CalamityModMusic", out Mod musicMod))
             {
-                int[] musicBox = new int[1]
+                int[] musicBox =
                 {
                     musicMod.Find<ModItem>("BossRushTier5MusicBox").Type
                 };
@@ -64,7 +69,7 @@ namespace InfernalEclipseAPI.Common.Balance
             }
 
             if (ModLoader.TryGetMod("Consolaria", out Mod console)) {
-                int[] consoleArray = new int[3]
+                int[] consoleArray =
                 {
                     console.Find<ModItem>("SuspiciousLookingEgg").Type,
                     console.Find<ModItem>("CursedStuffing").Type,
@@ -74,23 +79,24 @@ namespace InfernalEclipseAPI.Common.Balance
                 foreach (int num in consoleArray)
                 {
                     foreach (TooltipLine tooltip in tooltips)
-                        tooltip.Text = tooltip.Text.Replace("Consumable", string.Empty);
+                        tooltip.Text = tooltip.Text.Replace("Consumable", "Not consumable");
                 }
             }
 
-            if (ModLoader.TryGetMod("SOTS", out Mod sots))
-            {
-                int[] consoleArray = new int[1]
-                {
-                    sots.Find<ModItem>("SuspiciousLookingCandle").Type,
-                };
+            //if (ModLoader.TryGetMod("SOTS", out Mod sots))
+            //{
+            //    int[] consoleArray =
+            //    {
+            //        sots.Find<ModItem>("SuspiciousLookingCandle").Type,
+            //        sots.Find<ModItem>("JarOfPeanuts").Type
+            //    };
 
-                foreach (int num in consoleArray)
-                {
-                    foreach (TooltipLine tooltip in tooltips)
-                        tooltip.Text = tooltip.Text.Replace("Consumable", string.Empty);
-                }
-            }
+            //    foreach (int num in consoleArray)
+            //    {
+            //        foreach (TooltipLine tooltip in tooltips)
+            //            tooltip.Text += ("\nNot consumable");
+            //    }
+            //}
         }
     }
 }

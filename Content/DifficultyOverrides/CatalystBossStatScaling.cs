@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 using CalamityMod;
 using Terraria.WorldBuilding;
+using Terraria.ID;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {

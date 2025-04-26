@@ -113,8 +113,8 @@ namespace InfernalEclipseAPI.Core
 
                         if (CurrentlyFoughtBoss == subspaceID && !player.ZoneUnderworldHeight)
                             player.DemonConch();
-                        if (CurrentlyFoughtBoss == pharohID)
-                            teleportPosition = PyramidTeleport();
+                        //if (CurrentlyFoughtBoss == pharohID)
+                        //    teleportPosition = PyramidTeleport();
                     }
 
                     if (CurrentlyFoughtBoss == NPCID.WallofFlesh && !player.ZoneUnderworldHeight)
@@ -130,7 +130,7 @@ namespace InfernalEclipseAPI.Core
 
                 if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) || ModLoader.TryGetMod("ThoriumRework", out Mod rework)))
                 {
-                    if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == thorium.Find<ModNPC>("BoreanStrider").Type) 
+                    if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == thorium.Find<ModNPC>("BoreanStriderPopped").Type) 
                     {
                         player.Spawn(PlayerSpawnContext.RecallFromItem);
                     }
@@ -147,10 +147,7 @@ namespace InfernalEclipseAPI.Core
                     if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == ModContent.NPCType<AquaticScourgeHead>())
                         player.Spawn(PlayerSpawnContext.RecallFromItem);
                 }
-
-                if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == ModContent.NPCType<StormWeaverHead>())
-                    player.Spawn(PlayerSpawnContext.RecallFromItem);
-
+                    
                 if (ModLoader.TryGetMod("Clamity", out Mod clam))
                 {
                     if (BossRushStage < Bosses.Count && CurrentlyFoughtBoss == ModContent.NPCType<PrimordialWyrmHead>())
