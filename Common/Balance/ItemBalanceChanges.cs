@@ -24,6 +24,7 @@ using CalamityMod.NPCs.SupremeCalamitas;
 using System.Xml.XPath;
 using CalamityMod.Tiles.PlayerTurrets;
 using ThoriumMod.Items.BossQueenJellyfish;
+using ThoriumMod.Items.Depths;
 
 namespace InfernalEclipseAPI.Common.Balance
 {
@@ -160,7 +161,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 //Sandstorm Scimitar
                 if (item.type == FindItem(thorium, "dSandStoneScimtar"))
                 {
-                   item.damage = 20;
+                    item.damage = 20;
                 }
 
                 //Sandstone Spear
@@ -201,12 +202,117 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.shootSpeed = 8;
                 }
 
+                //Whip
+                if (item.type == FindItem(thorium, "Whip"))
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.knockBack = (float)1.5;
+                }
+
+                //Steel Blade
+                if (item.type == FindItem(thorium, "SteelBlade"))
+                {
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                    item.damage = 30;
+                }
+
+                //Harpy Talon
+                if (item.type == FindItem(thorium, "HarpyTalon"))
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.shootSpeed = 12;
+                }
+
+                //Bellerose
+                if (item.type == FindItem(thorium, "Bellerose"))
+                {
+                    item.useTime = 13;
+                    item.useAnimation = 13;
+                }
+
+                //Blooming BLade
+                if (item.type == FindItem(thorium, "BloomingBlade"))
+                {
+                    item.damage = 45;
+                    item.useTime = 26;
+                    item.useAnimation = 26;
+                }
+
+                //Pearl Pike
+                if (item.type == FindItem(thorium, "PearlPike"))
+                {
+                    item.useTime = 22;
+                    item.useAnimation = 22;
+                    item.shootSpeed = 8;
+                }
+
+                //Drenched Dirk
+                if (item.type == FindItem(thorium, "DrenchedDirk"))
+                {
+                    item.useTime = 6;
+                    item.useAnimation = 6;
+                    item.damage = 14;
+                    item.shootSpeed = 18;
+                }
+
+                //Illustrious
+                if (item.type == FindItem(thorium, "Illustrious"))
+                {
+                    item.damage = 30;
+                }
+
                 //Thor's Hammer: Melee
                 if (item.type == FindItem(thorium, "MeleeThorHammer")) 
                 {
                     item.damage = 45;
                     item.useTime = 18;
                     item.useAnimation = 18;
+                }
+
+                //Giant Glowstick
+                if (item.type == FindItem(thorium, "GiantGlowstick"))
+                {
+                    item.shootSpeed = 14;
+                }
+
+                //Sparking Jelly Ball
+                if (item.type == FindItem(thorium, "SparkingJellyBall"))
+                {
+                    item.damage = 60;
+                }
+
+                //Pollen Pike
+                if (item.type == FindItem(thorium, "PollenPike"))
+                {
+                    item.useTime = 6;
+                    item.useAnimation = 6;
+                    item.shootSpeed = 22;
+                }
+
+                //Whirlpool Saber
+                if (item.type == FindItem(thorium, "WhirlpoolSaber"))
+                {
+                    item.shootSpeed = 10;
+                }
+
+                //Moonlight
+                if (item.type == FindItem(thorium, "Moonlight"))
+                {
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.shootSpeed = (float)7.5;
+                    item.damage = 47;
+                }
+
+                //Darksteel Broadsword
+                if (item.type == FindItem(thorium, "eDarksteelBroadSword"))
+                {
+                    item.useTime = 17;
+                    item.useAnimation = 17;
+                    item.damage = 40;
                 }
 
                 //Champion's Swift Blade
@@ -216,6 +322,33 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.damage = 50;
                 }
 
+                //Gorgon's Eye
+                if (item.type == thorium.Find<ModItem>("GorgonsEye").Type)
+                {
+                    item.damage = 35;
+                }
+
+                //Granite Reflector
+                if (item.type == FindItem(thorium, "GraniteReflector"))
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.shootSpeed = 14;
+                }
+
+                //Star Trail
+                if (item.type == thorium.Find<ModItem>("StarTrail").Type)
+                {
+                    item.damage = 35;
+                }
+                
+                //HARDMODE
+                //Durasteel Blade
+                if (item.type == FindItem(thorium, "DurasteelBlade"))
+                {
+                    item.useTime = 14;
+                    item.useAnimation = 14;
+                }
 
                 //Magic
                 //Ice Cube
@@ -362,6 +495,35 @@ namespace InfernalEclipseAPI.Common.Balance
                 if (item.type == thorium.Find<ModItem>("WoodenBaton").Type) 
                 {
                     item.damage = 7;
+                }
+                
+                //Pill
+                if (item.type == thorium.Find<ModItem>("Pill").Type)
+                {
+                    item.damage = 11;
+                    item.shootSpeed = 9;
+                }
+
+                //Bonesaw 
+                if (item.type == thorium.Find<ModItem>("Bonesaw").Type)
+                {
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                }
+
+                //Life Quartz Claymore
+                if (item.type == thorium.Find<ModItem>("LifeQuartzClaymore").Type)
+                {
+                    item.damage = 17;
+                    item.useAnimation = 26;
+                    item.shootSpeed = 26;
+                    item.healLife = 1;
+                }
+
+                //Palm Cross
+                if (item.type == thorium.Find<ModItem>("PalmCross").Type)
+                {
+                    item.damage = 11;
                 }
 
                 //The Digester
@@ -542,6 +704,13 @@ namespace InfernalEclipseAPI.Common.Balance
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && (ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess || ModContent.GetInstance<InfernalConfig>().CalamityBalanceChanges)) 
             {
                 //Healer Adjustments
+                //Wulfrum Weed Wacker
+                if (item.type == calBardHeal.Find<ModItem>("WulfrumWeedWacker").Type)
+                {
+                    item.useTime = 36;
+                    item.useAnimation = 36;
+                }
+
                 //The Windmill
                 if (item.type == calBardHeal.Find<ModItem>("TheWindmill").Type)
                 {
@@ -551,7 +720,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 //Fire Hazard
                 if (item.type == calBardHeal.Find<ModItem>("FireHazard").Type)
                 {
-                    item.damage = 51;
+                    item.damage = 36;
                     //projectile?
                 }
 

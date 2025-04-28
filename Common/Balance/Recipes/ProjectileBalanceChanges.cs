@@ -57,6 +57,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 {
                     entity.penetrate = 2;
                 }
+
+                if (entity.type == thorium.Find<ModProjectile>("PalmCrossPro").Type)
+                {
+                    entity.scale *= 5;
+                }
             } 
         }
     }

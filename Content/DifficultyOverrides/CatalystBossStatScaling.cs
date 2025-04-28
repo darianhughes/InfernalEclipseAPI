@@ -20,6 +20,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             return npc.boss && ((ModType)npc.ModNPC)?.Mod.Name == "CatalystMod";
         }
 
+
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
             Mod mod;
@@ -68,19 +69,6 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (InfernumActive.InfernumActive)
             {
                 modifiers.SourceDamage *= 1.35f;
-            }
-        }
-
-        public override void PostAI(NPC npc)
-        {
-            //if (NPC.downedMoonlord)
-            //{
-            //    npc.position += npc.velocity * 0.35f;
-            //}
-
-            if (InfernumActive.InfernumActive)
-            {
-                npc.position += npc.velocity * 0.35f;
             }
         }
     }

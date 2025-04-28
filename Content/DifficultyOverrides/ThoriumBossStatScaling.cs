@@ -163,9 +163,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public override void PostAI(NPC npc)
         {
-            if (InfernumActive.InfernumActive)
+            ModNPC modNPC14 = npc.ModNPC;
+            if (InfernumActive.InfernumActive && !(((ModType)modNPC14).Name.Contains("BoreanStrider")))
             {
-                npc.position += npc.velocity * 0.35f;
+                npc.position += npc.velocity * 0.25f;
             }
         }
     }

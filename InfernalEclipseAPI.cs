@@ -139,7 +139,7 @@ namespace InfernalEclipseAPI
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium)) {
                 int BoreanInsertID = Terraria.ID.NPCID.WallofFlesh;
                 bool boreanInBossRush = false;
-                int striderID = thorium.Find<ModNPC>("BoreanStriderPopped").Type;
+                int striderID = thorium.Find<ModNPC>("BoreanStrider").Type;
 
                 for (int i = 0; i < brEntries.Count; i++)
                 {
@@ -156,7 +156,7 @@ namespace InfernalEclipseAPI
 
                 if (!boreanInBossRush)
                 {
-                    int[] boreanID = { striderID };
+                    int[] boreanID = { thorium.Find<ModNPC>("BoreanStriderPopped").Type };
                     int[] boreanMinionIDs = { thorium.Find<ModNPC>("BoreanHopper").Type, thorium.Find<ModNPC>("BoreanMyte").Type };
 
                     Action<int> prBorean = delegate (int npc)

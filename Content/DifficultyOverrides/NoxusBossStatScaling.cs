@@ -74,7 +74,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public override void PostAI(NPC npc)
         {
-            if (InfernumActive.InfernumActive)
+            if (InfernumActive.InfernumActive)    
             {
                 npc.position += npc.velocity * 0.35f;
             }

@@ -51,16 +51,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
             if (InfernumActive.InfernumActive)
-            {
+            {   
                 modifiers.SourceDamage *= 1.35f;
-            }
-        }
-
-        public override void PostAI(NPC npc)
-        {
-            if (InfernumActive.InfernumActive)
-            {
-                npc.position += npc.velocity * 0.35f;
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
+using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
@@ -11,15 +12,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
     {
         public static bool InfernumActive
         {
-            get
-            {
-                if (ModLoader.TryGetMod("InfernumMod", out Mod hell))
-                {
-                    return (bool)hell.Call("GetInfernumActive");
-                }
-
-                return false;
-            }
+            get => InfernumSaveSystem.InfernumModeEnabled;
         }
     }
 }

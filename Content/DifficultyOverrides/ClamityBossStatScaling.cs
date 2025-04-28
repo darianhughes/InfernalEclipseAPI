@@ -43,15 +43,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         public override void PostAI(NPC npc)
         {
             ModNPC modNPC14 = npc.ModNPC;
-            if (!((modNPC14 != null ? (((ModType)modNPC14).Name.Contains("") ? 1 : 0) : 0) != 0))
+            if (!((modNPC14 != null ? (((ModType)modNPC14).Name.Contains("ClamitasBoss") ? 1 : 0) : 0) != 0))
             {
                 npc.position += npc.velocity * 0.1f;
+
+                if (InfernumActive.InfernumActive)
+                {
+                    npc.position += npc.velocity * 0.35f;
+                }
             }
 
-            if (InfernumActive.InfernumActive)
-            {
-                npc.position += npc.velocity * 0.35f;
-            }
+
         }
     }
 }
