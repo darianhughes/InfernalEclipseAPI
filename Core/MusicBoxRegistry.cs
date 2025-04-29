@@ -30,6 +30,11 @@ namespace InfernalEclipseAPI.Core
                 int t6BoxTileID = ModContent.TileType<BossRushTier6MusicBoxTile>();
                 int t6musicID = MusicLoader.GetMusicSlot(thisMod, "Assets/Music/tier6");
                 MusicLoader.AddMusicBox(thisMod, t6musicID, t6boxID, t6BoxTileID);
+
+                int t42boxID = ModContent.ItemType<BossRushTierNamelessMusicBox>();
+                int t42BoxTileID = ModContent.TileType<BossRushTierNamelessMusicBoxTile>();
+                int t42musicID = MusicLoader.GetMusicSlot(thisMod, "Assets/Music/TWISTEDGARDENRemix");
+                MusicLoader.AddMusicBox(thisMod, t42musicID, t42boxID, t42BoxTileID);
             }
         }
     }

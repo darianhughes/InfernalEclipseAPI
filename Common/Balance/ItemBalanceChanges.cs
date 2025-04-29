@@ -25,6 +25,7 @@ using System.Xml.XPath;
 using CalamityMod.Tiles.PlayerTurrets;
 using ThoriumMod.Items.BossQueenJellyfish;
 using ThoriumMod.Items.Depths;
+using ThoriumMod.Items.Thorium;
 
 namespace InfernalEclipseAPI.Common.Balance
 {
@@ -67,7 +68,7 @@ namespace InfernalEclipseAPI.Common.Balance
             {
                 if (item.type == toilet.Find<ModItem>("ZenithToilet").Type)
                 {
-                    item.damage = 30000;
+                    item.damage = 50000;
                     item.crit = 4;
                 }
 
@@ -526,11 +527,49 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.damage = 11;
                 }
 
+                //Ice Shaver
+                if (item.type == thorium.Find<ModItem>("IceShaver").Type)
+                {
+                    item.damage = 10;
+                }
+
+                //Poison Prickler
+                if (item.type == thorium.Find<ModItem>("PoisonPrickler").Type)
+                {
+                    item.shootSpeed = 10;
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.damage = 15;
+                }
+
                 //The Digester
                 if (item.type == thorium.Find<ModItem>("TheDigester").Type)
                 {
                     item.mana = 10;
                 }
+
+                //Rotten Cod
+                if (item.type == thorium.Find<ModItem>("RottenCod").Type)
+                {
+                    item.shootSpeed = 14;
+                    item.damage = 36;
+                }
+
+                //Deep Staff
+                if (item.type == thorium.Find<ModItem>("DeepStaff").Type)
+                {
+                    item.damage = 25;
+                }
+
+                //Heretic Breaker
+                if (item.type == thorium.Find<ModItem>("HereticBreaker").Type)
+                {
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                    item.healLife = 1;
+                    item.damage = 20;
+                }
+
                 //Renew
                 if (item.type == thorium.Find<ModItem>("Renew").Type)
                 {
@@ -538,10 +577,135 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.autoReuse = true;
                     item.useAnimation = 92;
                 }
+
+                //Leech Bolt
+                if (item.type == thorium.Find<ModItem>("LeechBolt").Type)
+                {
+                    item.damage = 18;
+                }
+
+                //Cleric's Cross
+                if (item.type == thorium.Find<ModItem>("ClericsCross").Type)
+                {
+                    item.damage = 19;
+                }
+
+                //Purified Water
+                if (item.type == thorium.Find<ModItem>("PurifiedWater").Type)
+                {
+                    item.damage = 22;
+                }
+
+                //Shadow Wand
+                if (item.type == thorium.Find<ModItem>("ShadowWand").Type)
+                {
+                    item.damage = 30;
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                }
+
+                //Aquaite Scythe
+                if (item.type == thorium.Find<ModItem>("AquaiteScythe").Type)
+                {
+                    item.healMana = 10;
+                }
+
+                //Samsara Lotus
+                if (item.type == thorium.Find<ModItem>("SamsaraLotus").Type)
+                {
+                    item.damage = 28;
+                }
+
+                //The Stalker
+                if (item.type == thorium.Find<ModItem>("TheStalker").Type)
+                {
+                    item.damage = 53;
+                    item.shootSpeed = 16;
+                }
+
+                //Molten Thresher
+                if (item.type == thorium.Find<ModItem>("MoltenThresher").Type)
+                {
+                    item.healLife = 1;
+                    item.damage = 20;
+                }
+
+                //Omen
+                if (item.type == thorium.Find<ModItem>("Omen").Type)
+                {
+                    item.damage = 30;
+                }
+
+                //Bat Scythe
+                if (item.type == thorium.Find<ModItem>("BatScythe").Type)
+                {
+                    item.damage = 20;
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                }
+
                 //Life Disperser
                 if (item.type == thorium.Find<ModItem>("LifeDisperser").Type)
                 {
                     item.mana = 5;
+                }
+
+                //Bone Reaper
+                if (item.type == thorium.Find<ModItem>("BoneReaper").Type)
+                {
+                    item.useTime = 7;
+                    item.useAnimation = 7;
+                    item.crit = 16;
+                    item.healMana = 5;
+                    item.damage = 21;
+                }
+
+                //Spirit Blast Wand
+                if (item.type == thorium.Find<ModItem>("SpiritBlastWand").Type)
+                {
+                    item.damage = 28;
+                }
+
+                //Templar's Judgement
+                if (item.type == thorium.Find<ModItem>("TemplarJudgment").Type)
+                {
+                    item.damage = 80;
+                    item.shootSpeed = 18;
+                }
+
+                //Light's Lament
+                if (item.type == thorium.Find<ModItem>("LightsLament").Type)
+                {
+                    item.mana = 20;
+                    item.useTime = 15;
+                    item.useAnimation = 15;
+                    item.damage = 40;
+                    item.shootSpeed = 20;
+                }
+
+                //Dark Contagion
+                if (item.type == thorium.Find<ModItem>("DarkContagion").Type)
+                {
+                    item.shootSpeed = 40;
+                    item.useTime = 28;
+                    item.useAnimation = 28;
+                    item.damage = 60;
+                }
+
+                //Falling Twilight
+                if (item.type == thorium.Find<ModItem>("FallingTwilight").Type)
+                {
+                    item.healMana = 20;
+                    item.healLife = 2;
+                    item.damage = 55;
+                }
+
+                //Blood Harvest
+                if (item.type == thorium.Find<ModItem>("BloodHarvest").Type)
+                {
+                    item.healLife = 4;
+                    item.healMana = 10;
+                    item.damage = 50;
                 }
 
                 //Bard
@@ -711,10 +875,24 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.useAnimation = 36;
                 }
 
+                //Dry Mouth
+                if (item.type == calBardHeal.Find<ModItem>("DryMouth").Type)
+                {
+                    item.useTime = 40;
+                    item.useAnimation = 40;
+                    item.damage = 18;
+                }
+
                 //The Windmill
                 if (item.type == calBardHeal.Find<ModItem>("TheWindmill").Type)
                 {
                     item.damage = 5;
+                }
+
+                //Duality
+                if (item.type == calBardHeal.Find<ModItem>("Duality").Type)
+                {
+                    item.damage = 45;
                 }
 
                 //Fire Hazard
@@ -743,6 +921,45 @@ namespace InfernalEclipseAPI.Common.Balance
                 if (item.type == rethorium.Find<ModItem>("PocketEnergyStorm").Type)
                 {
                     item.damage = 13;
+                }
+            }
+
+            //Ragnarook
+            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
+            {
+                //Healer
+                //Prisma
+                if (item.type == ragnarok.Find<ModItem>("Prisma").Type)
+                {
+                    item.damage = 8;
+                }
+
+                //Equivalent Exchange
+                if (item.type == ragnarok.Find<ModItem>("EquivalentExchange").Type)
+                {
+                    item.shootSpeed = 13;
+                    item.damage = 42;
+                }
+
+                //Wind Reaver
+                if (item.type == ragnarok.Find<ModItem>("WindReaver").Type)
+                {
+                    item.damage = 20;
+                    item.useTime = 5;
+                    item.useAnimation = 5;
+                }
+
+                //Marble Scythe
+                if (item.type == ragnarok.Find<ModItem>("MarbleScythe").Type)
+                {
+                    item.damage = 28;
+                    item.healLife = 3;
+                }
+
+                //Jelly Slicer
+                if (item.type == ragnarok.Find<ModItem>("JellySlicer").Type)
+                {
+                    item.damage = 20;
                 }
             }
         }

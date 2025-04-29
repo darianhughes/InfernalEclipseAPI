@@ -79,7 +79,7 @@ namespace InfernalEclipseAPI.Common.Players
 
         //    if (InfernumActive.InfernumActive)
         //    {
-                Main.NewText("A prodigy has returned to face the Infernal Eclipse...", 95, 06, 06);
+                Main.NewText("A prodigy has returned to help face the Infernal Eclipse...", 95, 06, 06);
         //        //SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);
         //    }
         //    else if (InfernalConfig.Instance.InfernumModeForced)

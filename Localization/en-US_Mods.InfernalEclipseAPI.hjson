@@ -6,7 +6,11 @@ Items: {
 
 	Swordofthe14thGlitch: {
 		DisplayName: Sword of the 14th Glitch
-		Tooltip: - WIP: Currently just uses the First Fractal AI from YouBoss. - 'Harness the true power of the Glitch!'
+		Tooltip:
+			'''
+			'Harness the true power of the Glitch!'
+			- WIP: Currently just uses the First Fractal AI from YouBoss. -
+			'''
 	}
 
 	BossRushTier6MusicBox: {
@@ -17,10 +21,19 @@ Items: {
 	Weapons: {
 		Rogue: {
 			NovaBomb: {
-				Tooltip: - WIP: Currently just uses the Supernova AI from CalamityMod. - 'Launches a blazing purple nova of destruction'
+				Tooltip:
+					'''
+					'Launches a blazing purple nova of destruction'
+					- WIP: Currently just uses the Supernova AI from CalamityMod. -
+					'''
 				DisplayName: Nova Bomb
 			}
 		}
+	}
+
+	BossRushTierNamelessMusicBox: {
+		Tooltip: Plays 'TWISTED GARDEN [Remix]' by Kuudray
+		DisplayName: Music Box (Boss Rush - Tier ???)
 	}
 }
 

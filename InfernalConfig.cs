@@ -18,26 +18,26 @@ namespace InfernalEclipseAPI
         #region Balance Changess
         [Header("BalanceChanges")]
 
-        [DefaultValue(true)]
-        public bool VanillaBalanceChanges { get; set; }
-
         [DefaultValue(false)]
         public bool BossKillCheckOnOres { get; set; }
 
         [DefaultValue(true)]
-        public bool CalamityBalanceChanges { get; set; }
-
-        [DefaultValue(false)]
-        public bool CalamityRecipeTweaks { get; set; }
+        public bool VanillaBalanceChanges { get; set; }
 
         [DefaultValue(true)]
-        public bool InfernumRecipeTweaks { get; set; }
+        public bool CalamityBalanceChanges { get; set; }
 
         [DefaultValue(true)]
         public bool ThoriumBalanceChangess { get; set; }
 
         [DefaultValue(true)]
         public bool SOTSBalanceChanges { get; set; }
+
+        [DefaultValue(false)]
+        public bool CalamityRecipeTweaks { get; set; }
+
+        [DefaultValue(true)]
+        public bool InfernumRecipeTweaks { get; set; }
 
         #endregion
 

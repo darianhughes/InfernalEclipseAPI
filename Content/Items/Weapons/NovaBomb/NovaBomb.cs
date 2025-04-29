@@ -25,7 +25,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.NovaBomb
         {
             Item.width = 53;
             Item.height = 56;
-            Item.damage = 42000;
+            Item.damage = 300000;
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.useAnimation = 70;

@@ -77,7 +77,7 @@ namespace InfernalEclipseAPI.Core
 
                 if (wotgOn && BossRushEvent.BossRushStage >= namelessId)
                 {
-                    tier = 10;
+                    tier = 42;
                 }
                 else if (BossRushEvent.BossRushStage > calamitasId)
                 {
@@ -102,9 +102,9 @@ namespace InfernalEclipseAPI.Core
 
                 if (tier >= 6)
                 {
-                    if (tier == 10)
+                    if (tier == 42)
                     {
-                        playOverEverything = false;
+                        return MusicLoader.GetMusicSlot(Mod, "Assets/Music/TWISTEDGARDENRemix");
                     }
 
                     return MusicLoader.GetMusicSlot(Mod, "Assets/Music/tier6");
