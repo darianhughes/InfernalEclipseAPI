@@ -351,6 +351,60 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.useAnimation = 14;
                 }
 
+                //Ranged
+                //Frost Fury
+                if (item.type == thorium.Find<ModItem>("FrostFury").Type)
+                {
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                }
+
+                //Coral Crossbow
+                if (item.type == thorium.Find<ModItem>("CoralCrossbow").Type)
+                {
+                    item.useTime = 26;
+                    item.useAnimation = 26;
+                    item.damage = 10;
+                }
+
+                //Thorium Revolver
+                if (item.type == thorium.Find<ModItem>("ThoriumRevolver").Type)
+                {
+                    item.damage = 17;
+                }
+
+                //Talon Burst
+                if (item.type == thorium.Find<ModItem>("TalonBurst").Type)
+                {
+                    item.damage = 9;
+                }
+
+                //Feather Foe
+                if (item.type == thorium.Find<ModItem>("FeatherFoe").Type)
+                {
+                    item.damage = 22;
+                }
+
+                //Blooming Bow
+                if (item.type == thorium.Find<ModItem>("BloomingBow").Type)
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                }
+
+                //Harpy Pelter
+                if (item.type == thorium.Find<ModItem>("HarpyPelter").Type)
+                {
+                    item.damage = 15;
+                }
+
+                //Spud Bomber
+                if (item.type == thorium.Find<ModItem>("SpudBomber").Type)
+                {
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                }
+
                 //Magic
                 //Ice Cube
                 if (item.type == thorium.Find<ModItem>("IceCube").Type)

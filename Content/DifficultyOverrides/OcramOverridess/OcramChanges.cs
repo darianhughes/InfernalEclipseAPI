@@ -7,18 +7,28 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
-using Consolaria.Content.NPCs.Bosses.Ocram;
-
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.OcramOverridess
 {
-    [JITWhenModsEnabled("Consolaria")]
     public class OcramBehavior : GlobalNPC
     {
+        public static Mod console;
+        public static bool ConsolariaActive
+        {
+            get
+            {
+                if (ModLoader.TryGetMod("Consolaria", out console))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
         public override void AI(NPC npc)
         {
-            if (!InfernumActive.InfernumActive)
+            if (!InfernumActive.InfernumActive || !ConsolariaActive)
                 { return; }
-            if (npc.type == ModContent.NPCType<Ocram>())
+
+            if (npc.type ==  console.Find<ModNPC>("Ocram").Type)
             {
                 if (!Main.bloodMoon)
                 {
@@ -31,17 +41,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.OcramOverridess
 
         public override void OnKill(NPC npc)
         {
-            if (!InfernumActive.InfernumActive)
+            if (!InfernumActive.InfernumActive || !ConsolariaActive)
             { return; }
-            if (npc.type == ModContent.NPCType<Ocram>())
+            if (npc.type == console.Find<ModNPC>("Ocram").Type)
                 DisableBloodMoon();
         }
 
         public override bool CheckDead(NPC npc)
         {
-            if (InfernumActive.InfernumActive) 
+            if (InfernumActive.InfernumActive && ConsolariaActive) 
             {
-                if (npc.type == ModContent.NPCType<Ocram>())
+                if (npc.type == console.Find<ModNPC>("Ocram").Type)
                     DisableBloodMoon();
             }
 

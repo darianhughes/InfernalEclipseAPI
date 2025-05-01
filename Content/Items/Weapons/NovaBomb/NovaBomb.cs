@@ -8,6 +8,7 @@ using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Projectiles.Rogue;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using InfernumMode;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -39,6 +40,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.NovaBomb
             Item.DamageType = DamageClass.Magic;
             Item.mana = 150;
             Item.rare = ModContent.RarityType<Violet>();
+
+            Item.Infernum_Tooltips().DeveloperItem = true;
         }
 
         public override float StealthDamageMultiplier => 0.7f;

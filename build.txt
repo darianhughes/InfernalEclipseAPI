@@ -1,8 +1,9 @@
 displayName = Infernal Eclipse of Ragnarok
 author = Akira
-version = 0.6.7
-modReferences = CalamityMod, InfernumMode, YouBoss, PackBuilder, NoxusPort
-weakReferences = NoxusBoss, SOTS, CalamityHunt, CatalystMod, CalamityAmmo, ThoriumMod, Clamity, CalamityModMusic, Consolaria
-sortAfter = NoxusBoss, CalamityHunt, ThoriumMod, ThoriumRework, YouBoss, FargowiltasSouls, FargowiltasCrossmod, Clamity, RagnarokMod, CatalystMod, InfernumMode, RevengeancePlus, CalamityMinus, ZenithToilet, Consolaria, SOTS, WHummusMultiModBalancing
+version = 0.6.9
+modReferences = CalamityMod, InfernumMode, YouBoss, PackBuilder
+weakReferences = NoxusBoss, SOTS, CalamityHunt, CatalystMod, CalamityAmmo, ThoriumMod, Clamity, CalamityModMusic, Consolaria, NoxusPort
+sortAfter = NoxusBoss, CalamityHunt, ThoriumMod, ThoriumRework, YouBoss, FargowiltasSouls, FargowiltasCrossmod, Clamity, RagnarokMod, CatalystMod, InfernumMode, RevengeancePlus, CalamityMinus, ZenithToilet, Consolaria, SOTS, WHummusMultiModBalancing, NoxusPort
 hideCode = true
 hideResources = true
+homepage = https://discord.gg/RXdTXbKY

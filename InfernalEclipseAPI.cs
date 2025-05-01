@@ -34,11 +34,21 @@ using InfernalEclipseAPI.Core;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.CalPlayer;
 using CalamityMod.Projectiles.Typeless;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI
 {
 	public class InfernalEclipseAPI : Mod
 	{
+        public static bool FargosDLCEnabled
+        {
+            get
+            {
+                if (ModLoader.TryGetMod("FargowiltasCrossMod", out Mod fargoDLC))
+                    return true;
+                return false;
+            }
+        }
         public static InfernalEclipseAPI Instance;
         public InfernalEclipseAPI() => Instance = this;
 
@@ -54,205 +64,209 @@ namespace InfernalEclipseAPI
         {
             List<(int, int, Action<int>, int, bool, float, int[], int[])> brEntries = (List<(int, int, Action<int>, int, bool, float, int[], int[])>)calamity.Call("GetBossRushEntries");
 
-            bool sotsEnabled = false;
-            if (ModLoader.TryGetMod("SOTS", out Mod sots))
+            if (!FargosDLCEnabled)
             {
-                sotsEnabled = true;
-                int pharaohID = sots.Find<ModNPC>("PharaohsCurse").Type;
-                int pharaohBRIndex = 0;
-                bool pharaohInBR = false;
-
-                int subspaceID = sots.Find<ModNPC>("SubspaceSerpentHead").Type;
-                int subspaceBRIndex = 0;
-
-                for (int i = 0; i < brEntries.Count; i++)
+                bool sotsEnabled = false;
+                if (ModLoader.TryGetMod("SOTS", out Mod sots))
                 {
-                    if (brEntries[i].Item1 == pharaohID)
+                    sotsEnabled = true;
+                    int pharaohID = sots.Find<ModNPC>("PharaohsCurse").Type;
+                    int pharaohBRIndex = 0;
+                    bool pharaohInBR = false;
+
+                    int subspaceID = sots.Find<ModNPC>("SubspaceSerpentHead").Type;
+                    int subspaceBRIndex = 0;
+
+                    for (int i = 0; i < brEntries.Count; i++)
                     {
-                        pharaohBRIndex = i;
-                        pharaohInBR = true;
-                    }
-                    else if (brEntries[i].Item1 == subspaceID)
-                    {
-                        subspaceBRIndex = i;
-                    }
-                }
-
-                //if (pharaohInBR)
-                //{
-                //    Action<int> prPharaoh = delegate (int npc)
-                //    {
-                //        BossRushTeleports.PyramidTeleport();
-                //        byte closest = Player.FindClosest(new Vector2(Main.maxTilesX * 8f, Main.maxTilesY * 8f), 0, 0);
-                //        NPC.SpawnOnPlayer(closest, pharaohID);
-
-                //        int npcIndex = NPC.FindFirstNPC(pharaohID);
-                //        if (npcIndex != -1)
-                //            Main.npc[npcIndex].Center = Main.player[closest].Center;
-                //    };
-                //    brEntries[pharaohBRIndex] = (brEntries[pharaohBRIndex].Item1, brEntries[pharaohBRIndex].Item2, prPharaoh, brEntries[pharaohBRIndex].Item4, brEntries[pharaohBRIndex].Item5, brEntries[pharaohBRIndex].Item6, brEntries[pharaohBRIndex].Item7, brEntries[pharaohBRIndex].Item8);
-                //}
-            }
-
-            //Remove tier 3 completion from Skeletron spawn action to skeletron kill
-            int skeletronID = NPCID.SkeletronHead;
-            int skeletronBRIndex = 0;
-
-            for (int i = 0; i < brEntries.Count; i++)
-            {
-                if (brEntries[i].Item1 == skeletronID)
-                {
-                    skeletronBRIndex = i;
-                    break;
-                }
-            }
-
-            Action<int> prSkeletron = delegate (int npc)
-            {
-                int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
-                Player player = Main.player[whomst];
-                NPC.SpawnOnPlayer(whomst, skeletronID);
-            };
-
-            brEntries[skeletronBRIndex] = (brEntries[skeletronBRIndex].Item1, brEntries[skeletronBRIndex].Item2, prSkeletron, brEntries[skeletronBRIndex].Item4, brEntries[skeletronBRIndex].Item5, brEntries[skeletronBRIndex].Item6, brEntries[skeletronBRIndex].Item7, brEntries[skeletronBRIndex].Item8);
-
-            BossRushEvent.BossDeathEffects[skeletronID] = npc =>
-            {
-                BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierTwoComplete);
-
-                ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
-                while (enumerator.MoveNext())
-                {
-                    Player current = enumerator.Current;
-                    if (!current.dead)
-                    {
-                        int num = Projectile.NewProjectile(new EntitySource_WorldEvent(), current.Center, Vector2.Zero, ModContent.ProjectileType<BossRushTierAnimation>(), 0, 0f, current.whoAmI);
-                        if (Main.projectile.IndexInRange(num))
+                        if (brEntries[i].Item1 == pharaohID)
                         {
-                            Main.projectile[num].ai[0] = 3;
+                            pharaohBRIndex = i;
+                            pharaohInBR = true;
+                        }
+                        else if (brEntries[i].Item1 == subspaceID)
+                        {
+                            subspaceBRIndex = i;
                         }
                     }
-                }
-            };
 
-            //Borean Strider (Thorium Mod) - Checks to see if Borean Strider is in Boss Rush. If not, adds it.
-            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium)) {
-                int BoreanInsertID = Terraria.ID.NPCID.WallofFlesh;
-                bool boreanInBossRush = false;
-                int striderID = thorium.Find<ModNPC>("BoreanStrider").Type;
+                    //if (pharaohInBR)
+                    //{
+                    //    Action<int> prPharaoh = delegate (int npc)
+                    //    {
+                    //        BossRushTeleports.PyramidTeleport();
+                    //        byte closest = Player.FindClosest(new Vector2(Main.maxTilesX * 8f, Main.maxTilesY * 8f), 0, 0);
+                    //        NPC.SpawnOnPlayer(closest, pharaohID);
+
+                    //        int npcIndex = NPC.FindFirstNPC(pharaohID);
+                    //        if (npcIndex != -1)
+                    //            Main.npc[npcIndex].Center = Main.player[closest].Center;
+                    //    };
+                    //    brEntries[pharaohBRIndex] = (brEntries[pharaohBRIndex].Item1, brEntries[pharaohBRIndex].Item2, prPharaoh, brEntries[pharaohBRIndex].Item4, brEntries[pharaohBRIndex].Item5, brEntries[pharaohBRIndex].Item6, brEntries[pharaohBRIndex].Item7, brEntries[pharaohBRIndex].Item8);
+                    //}
+                }
+
+                //Remove tier 3 completion from Skeletron spawn action to skeletron kill
+                int skeletronID = NPCID.SkeletronHead;
+                int skeletronBRIndex = 0;
 
                 for (int i = 0; i < brEntries.Count; i++)
                 {
-                    if (brEntries[i].Item1 == striderID)
+                    if (brEntries[i].Item1 == skeletronID)
                     {
-                        boreanInBossRush = true;
+                        skeletronBRIndex = i;
                         break;
-                    }
-                    if (brEntries[i].Item1 == BoreanInsertID)
-                    {
-                        BoreanInsertID = i;
                     }
                 }
 
-                if (!boreanInBossRush)
+                Action<int> prSkeletron = delegate (int npc)
                 {
-                    int[] boreanID = { thorium.Find<ModNPC>("BoreanStriderPopped").Type };
-                    int[] boreanMinionIDs = { thorium.Find<ModNPC>("BoreanHopper").Type, thorium.Find<ModNPC>("BoreanMyte").Type };
+                    int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
+                    Player player = Main.player[whomst];
+                    NPC.SpawnOnPlayer(whomst, skeletronID);
+                };
 
-                    Action<int> prBorean = delegate (int npc)
+                brEntries[skeletronBRIndex] = (brEntries[skeletronBRIndex].Item1, brEntries[skeletronBRIndex].Item2, prSkeletron, brEntries[skeletronBRIndex].Item4, brEntries[skeletronBRIndex].Item5, brEntries[skeletronBRIndex].Item6, brEntries[skeletronBRIndex].Item7, brEntries[skeletronBRIndex].Item8);
+
+                BossRushEvent.BossDeathEffects[skeletronID] = npc =>
+                {
+                    BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierTwoComplete);
+
+                    ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
+                    while (enumerator.MoveNext())
+                    {
+                        Player current = enumerator.Current;
+                        if (!current.dead)
+                        {
+                            int num = Projectile.NewProjectile(new EntitySource_WorldEvent(), current.Center, Vector2.Zero, ModContent.ProjectileType<BossRushTierAnimation>(), 0, 0f, current.whoAmI);
+                            if (Main.projectile.IndexInRange(num))
+                            {
+                                Main.projectile[num].ai[0] = 3;
+                            }
+                        }
+                    }
+                };
+
+                //Borean Strider (Thorium Mod) - Checks to see if Borean Strider is in Boss Rush. If not, adds it.
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+                {
+                    int BoreanInsertID = Terraria.ID.NPCID.WallofFlesh;
+                    bool boreanInBossRush = false;
+                    int striderID = thorium.Find<ModNPC>("BoreanStrider").Type;
+
+                    for (int i = 0; i < brEntries.Count; i++)
+                    {
+                        if (brEntries[i].Item1 == striderID)
+                        {
+                            boreanInBossRush = true;
+                            break;
+                        }
+                        if (brEntries[i].Item1 == BoreanInsertID)
+                        {
+                            BoreanInsertID = i;
+                        }
+                    }
+
+                    if (!boreanInBossRush)
+                    {
+                        int[] boreanID = { thorium.Find<ModNPC>("BoreanStriderPopped").Type };
+                        int[] boreanMinionIDs = { thorium.Find<ModNPC>("BoreanHopper").Type, thorium.Find<ModNPC>("BoreanMyte").Type };
+
+                        Action<int> prBorean = delegate (int npc)
+                        {
+                            //SoundStyle roar;
+                            int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
+                            Player player = Main.player[whomst];
+                            //SoundEngine.PlaySound(DefaultBossRoar, player.Center);
+                            NPC.SpawnOnPlayer(whomst, striderID);
+                        };
+
+                        brEntries.Insert(BoreanInsertID + 1, (striderID, -1, prBorean, 180, false, 0f, boreanMinionIDs, boreanID));
+                    }
+                }
+
+                //Dreadnautilus
+                if (ModContent.GetInstance<InfernalConfig>().DreadnautillusInBossRush)
+                {
+                    int[] dreadID = { Terraria.ID.NPCID.BloodNautilus };
+                    int[] dreadMinionsIDs = { Terraria.ID.NPCID.EyeballFlyingFish, Terraria.ID.NPCID.VampireBat };
+
+                    Action<int> prDread = delegate (int npc)
                     {
                         //SoundStyle roar;
                         int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
                         Player player = Main.player[whomst];
-                        //SoundEngine.PlaySound(DefaultBossRoar, player.Center);
-                        NPC.SpawnOnPlayer(whomst, striderID);
+                        //SoundEngine.PlaySound(roar, player.Center);
+                        NPC.SpawnOnPlayer(whomst, Terraria.ID.NPCID.BloodNautilus);
                     };
 
-                    brEntries.Insert(BoreanInsertID + 1, (striderID, -1, prBorean, 180, false, 0f, boreanMinionIDs, boreanID));
-                }
-            }
+                    int DreadInsertID = Terraria.ID.NPCID.QueenSlimeBoss;
 
-            //Dreadnautilus
-            if (ModContent.GetInstance<InfernalConfig>().DreadnautillusInBossRush)
-            {
-                int[] dreadID = { Terraria.ID.NPCID.BloodNautilus };
-                int[] dreadMinionsIDs = { Terraria.ID.NPCID.EyeballFlyingFish, Terraria.ID.NPCID.VampireBat };
-
-                Action<int> prDread = delegate (int npc)
-                {
-                    //SoundStyle roar;
-                    int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
-                    Player player = Main.player[whomst];
-                    //SoundEngine.PlaySound(roar, player.Center);
-                    NPC.SpawnOnPlayer(whomst, Terraria.ID.NPCID.BloodNautilus);
-                };
-
-                int DreadInsertID = Terraria.ID.NPCID.QueenSlimeBoss;
-
-                for (int i = 0; i < brEntries.Count; i++)
-                {
-                    if (brEntries[i].Item1 == DreadInsertID)
+                    for (int i = 0; i < brEntries.Count; i++)
                     {
-                        DreadInsertID = i;
-                        break;
+                        if (brEntries[i].Item1 == DreadInsertID)
+                        {
+                            DreadInsertID = i;
+                            break;
+                        }
                     }
+                    brEntries.Insert(DreadInsertID - 1, (Terraria.ID.NPCID.BloodNautilus, -1, prDread, 180, false, 0f, dreadMinionsIDs, dreadID));
                 }
-                brEntries.Insert(DreadInsertID - 1, (Terraria.ID.NPCID.BloodNautilus, -1, prDread, 180, false, 0f, dreadMinionsIDs, dreadID));
-            }
 
 
-            //Betsy
-            if (ModContent.GetInstance<InfernalConfig>().BetsyInBossRush)
-            {
-                int[] betsyID = { Terraria.ID.NPCID.DD2Betsy };
-                int[] betsyMinionsIDs = { };
-
-                Action<int> prBetsy = delegate (int npc)
+                //Betsy
+                if (ModContent.GetInstance<InfernalConfig>().BetsyInBossRush)
                 {
-                    SoundStyle roar = Terraria.ID.SoundID.DD2_BetsyScream;
+                    int[] betsyID = { Terraria.ID.NPCID.DD2Betsy };
+                    int[] betsyMinionsIDs = { };
+
+                    Action<int> prBetsy = delegate (int npc)
+                    {
+                        SoundStyle roar = Terraria.ID.SoundID.DD2_BetsyScream;
+                        int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
+                        Player player = Main.player[whomst];
+                        SoundEngine.PlaySound(roar, player.Center);
+                        NPC.SpawnOnPlayer(whomst, Terraria.ID.NPCID.DD2Betsy);
+                    };
+
+                    int BetsyInsertID = Terraria.ID.NPCID.HallowBoss;
+
+                    for (int i = 0; i < brEntries.Count; i++)
+                    {
+                        if (brEntries[i].Item1 == BetsyInsertID)
+                        {
+                            BetsyInsertID = i;
+                            break;
+                        }
+                    }
+                    brEntries.Insert(BetsyInsertID + 1, (Terraria.ID.NPCID.DD2Betsy, 0, prBetsy, 400, true, 0f, betsyMinionsIDs, betsyID));
+                }
+
+                //Bereft Vassal (InfernumMode)
+                int[] bereftID = { ModContent.NPCType<BereftVassal>() };
+                int[] bereftMinionIDs = { ModContent.NPCType<GreatSandSharkNPC>() };
+
+                Action<int> prBereft = delegate (int npc)
+                {
+                    SoundStyle roar = InfernumMode.Assets.Sounds.InfernumSoundRegistry.VassalHornSound;
                     int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
                     Player player = Main.player[whomst];
                     SoundEngine.PlaySound(roar, player.Center);
-                    NPC.SpawnOnPlayer(whomst, Terraria.ID.NPCID.DD2Betsy);
+                    NPC.SpawnOnPlayer(whomst, ModContent.NPCType<BereftVassal>());
                 };
 
-                int BetsyInsertID = Terraria.ID.NPCID.HallowBoss;
+                int BereftInsertID = Terraria.ID.NPCID.CultistBoss;
 
                 for (int i = 0; i < brEntries.Count; i++)
                 {
-                    if (brEntries[i].Item1 == BetsyInsertID)
+                    if (brEntries[i].Item1 == BereftInsertID)
                     {
-                        BetsyInsertID = i;
+                        BereftInsertID = i;
                         break;
                     }
                 }
-                brEntries.Insert(BetsyInsertID + 1, (Terraria.ID.NPCID.DD2Betsy, 0, prBetsy, 400, true, 0f, betsyMinionsIDs, betsyID));
+                brEntries.Insert(BereftInsertID + 1, (ModContent.NPCType<BereftVassal>(), 0, prBereft, 180, true, 0f, bereftMinionIDs, bereftID));
             }
-
-            //Bereft Vassal (InfernumMode)
-            int[] bereftID = { ModContent.NPCType<BereftVassal>() };
-            int[] bereftMinionIDs = { ModContent.NPCType<GreatSandSharkNPC>() };
-
-            Action<int> prBereft = delegate (int npc)
-            {
-                SoundStyle roar = InfernumMode.Assets.Sounds.InfernumSoundRegistry.VassalHornSound;
-                int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
-                Player player = Main.player[whomst];
-                SoundEngine.PlaySound(roar, player.Center);
-                NPC.SpawnOnPlayer(whomst, ModContent.NPCType<BereftVassal>());
-            };
-
-            int BereftInsertID = Terraria.ID.NPCID.CultistBoss;
-
-            for (int i = 0; i < brEntries.Count; i++)
-            {
-                if (brEntries[i].Item1 == BereftInsertID)
-                {
-                    BereftInsertID = i;
-                    break;
-                }
-            }
-            brEntries.Insert(BereftInsertID + 1, (ModContent.NPCType<BereftVassal>(), 0, prBereft, 180, true, 0f, bereftMinionIDs, bereftID));
 
             //Astrageldon (CatalystMod)
             if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
@@ -269,17 +283,27 @@ namespace InfernalEclipseAPI
                     NPC.SpawnOnPlayer(whomst, catalyst.Find<ModNPC>("Astrageldon").Type);
                 };
 
-                //int AstraInsertID = Terraria.ID.NPCID.MoonLordCore;
+                int AstraInsertID = Terraria.ID.NPCID.MoonLordCore;
 
-                //for (int i = 0; i < brEntries.Count; i++)
-                //{
-                //    if (brEntries[i].Item1 == AstraInsertID)
-                //    {
-                //        AstraInsertID = i;
-                //        break;
-                //    }
-                //}
-                brEntries.Insert(BereftInsertID + 2, (catalyst.Find<ModNPC>("Astrageldon").Type, -1, prAstra, 180, false, 0f, AstraMinionIDs, AstraID));
+                for (int i = 0; i < brEntries.Count; i++)
+                {
+                    if (brEntries[i].Item1 == AstraInsertID)
+                    {
+                        AstraInsertID = i;
+                        break;
+                    }
+                }
+
+                if (FargosDLCEnabled)
+                {
+                    AstraInsertID += 1;
+                }
+                else
+                {
+                    AstraInsertID -= 1;
+                }
+
+                    brEntries.Insert(AstraInsertID, (catalyst.Find<ModNPC>("Astrageldon").Type, -1, prAstra, 180, false, 0f, AstraMinionIDs, AstraID));
             }
 
 
@@ -569,12 +593,9 @@ namespace InfernalEclipseAPI
                 }
             });
 
-
-
-
             //Removes the end effect of boss rush and assigns it to the final boss.
             BossDeathEffects.Remove(ModContent.NPCType<SupremeCalamitas>());
-            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargos) && ModLoader.TryGetMod("FargowiltasCrossMod", out Mod fargoDLC))
+            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargos) && FargosDLCEnabled)
             {
                 BossDeathEffects.Remove(fargos.Find<ModNPC>("MutantBoss").Type);
             }

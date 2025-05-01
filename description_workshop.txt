@@ -15,7 +15,7 @@ Infernal Eclipse of Ragnarok is a ultra modded pack designed for Calamity's Infe
 
 The mod pack also has support for Spooky Mod, but isn't included in the mod pack.
 
-The only mods required for this API to run are Calamity Mod, Infernum Mode, You, NoxusPort, tPackBuilder, and any dependency included with those mods.
+The only mods required for this API to run are Calamity Mod, Infernum Mode, You, tPackBuilder, and any dependency included with those mods.
 
 This API currently adds the following:
 [list]
@@ -28,7 +28,7 @@ This API currently adds the following:
 
 Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer, so if you plan to play multiplayer, you will unfortunately have to remove that pack from the mod pack until they get it fixed. Otherwise, the mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
 
-If you have any other issues please add @itzakira7 on discord and shoot me a message on discord. 
+If you have any other issues please report them in the [url=https://discord.gg/RXdTXbKY] Discord server[/url]. 
 
 Thank you to the tPackBuilder team, as well as each of the individuals for each mod in the mod pack for making this possible!
 

@@ -47,13 +47,5 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 npc.lifeMax += (int)(((double).1) * (double)npc.lifeMax);
             }
         }
-
-        public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
-        {
-            if (InfernumActive.InfernumActive)
-            {   
-                modifiers.SourceDamage *= 1.1f;
-            }
-        }
     }
 }
