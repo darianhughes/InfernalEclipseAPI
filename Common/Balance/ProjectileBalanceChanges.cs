@@ -62,6 +62,12 @@ namespace InfernalEclipseAPI.Common.Balance
                 {
                     entity.scale *= 5;
                 }
+
+                if (entity.type == thorium.Find<ModProjectile>("TorpedoPro2").Type)
+                {
+                    entity.scale *= 2;
+                    entity.penetrate = 10;
+                }
             } 
 
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && InfernalConfig.Instance.ThoriumBalanceChangess)

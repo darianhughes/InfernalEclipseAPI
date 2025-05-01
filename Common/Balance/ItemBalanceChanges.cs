@@ -26,6 +26,7 @@ using CalamityMod.Tiles.PlayerTurrets;
 using ThoriumMod.Items.BossQueenJellyfish;
 using ThoriumMod.Items.Depths;
 using ThoriumMod.Items.Thorium;
+using CalamityMod.Items.Weapons.Summon;
 
 namespace InfernalEclipseAPI.Common.Balance
 {
@@ -76,6 +77,24 @@ namespace InfernalEclipseAPI.Common.Balance
                 {
                     item.damage = 100000;
                     item.crit = 0;
+                }
+            }
+
+            if (InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                ModLoader.TryGetMod("CalamityMod", out Mod cal);
+
+                //Summoner
+                //Deathstare Rod
+                if (item.type == cal.Find<ModItem>("DeathstareRod").Type)
+                {
+                    item.damage = 30;
+                }
+
+                //Herring Staff
+                if (item.type == cal.Find<ModItem>("HerringStaff").Type)
+                {
+                    item.damage = 20;
                 }
             }
 
@@ -266,7 +285,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 }
 
                 //Thor's Hammer: Melee
-                if (item.type == FindItem(thorium, "MeleeThorHammer")) 
+                if (item.type == FindItem(thorium, "MeleeThorHammer"))
                 {
                     item.damage = 45;
                     item.useTime = 18;
@@ -342,7 +361,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 {
                     item.damage = 35;
                 }
-                
+
                 //HARDMODE
                 //Durasteel Blade
                 if (item.type == FindItem(thorium, "DurasteelBlade"))
@@ -403,6 +422,81 @@ namespace InfernalEclipseAPI.Common.Balance
                 {
                     item.useTime = 24;
                     item.useAnimation = 24;
+                }
+
+                //Golbin Warpipe
+                if (item.type == thorium.Find<ModItem>("GoblinWarpipe").Type)
+                {
+                    item.useAnimation = 20;
+                    item.useTime = 20;
+                }
+
+                //Aqua Pelter
+                if (item.type == thorium.Find<ModItem>("AquaPelter").Type)
+                {
+                    item.useTime = 6;
+                    item.useAnimation = 6;
+                    item.damage = 12;
+                }
+
+                //Thor's Hammer: Ranged
+                if (item.type == thorium.Find<ModItem>("RangedThorHammer").Type)
+                {
+                    item.damage = 40;
+                }
+
+                //Guano Gunner
+                if (item.type == thorium.Find<ModItem>("GuanoGunner").Type)
+                {
+                    item.damage = 24;
+                }
+
+                //Stream Sting
+                if (item.type == thorium.Find<ModItem>("StreamSting").Type)
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.damage = 16;
+                }
+
+                //Darksteel Crossbow
+                if (item.type == thorium.Find<ModItem>("gDarkSteelCrossBow").Type)
+                {
+                    item.damage = 56;
+                }
+
+                //Elephant Gun
+                if (item.type == thorium.Find<ModItem>("ElephantGun").Type)
+                {
+                    item.damage = 45;
+                }
+
+                //Champion's Trifecta-Shot
+                if (item.type == thorium.Find<ModItem>("ChampionsTrifectaShot").Type)
+                {
+                    item.useTime = 14;
+                    item.useAnimation = 14;
+                }
+
+                //Granite Crossbow
+                if (item.type == thorium.Find<ModItem>("GraniteCrossbow").Type)
+                {
+                    item.useAnimation = 10;
+                    item.useTime = 10;
+                }
+
+                //Energy Storm Bolter
+                if (item.type == thorium.Find<ModItem>("EnergyStormBolter").Type)
+                {
+                    item.damage = 34;
+                }
+
+                //Hit Scanner
+                if (item.type == thorium.Find<ModItem>("HitScanner").Type)
+                {
+                    item.damage = 30;
+                    item.useAnimation = 16;
+                    item.useTime = 16;
                 }
 
                 //Magic
@@ -544,6 +638,66 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.damage = 38;
                 }
 
+                //Summoner
+                //Storm Hatchling Staff
+                if (item.type == thorium.Find<ModItem>("StormHatchlingStaff").Type)
+                {
+                    item.damage = 26;
+                }
+
+                //Meteor Head Staff
+                if (item.type == thorium.Find<ModItem>("MeteorHeadStaff").Type)
+                {
+                    item.damage = 21;
+                }
+
+                //Bleeding Heart Staff
+                if (item.type == thorium.Find<ModItem>("BleedingHeartStaff").Type)
+                {
+                    item.damage = 35;
+                }
+
+                //Taboo Wand
+                if (item.type == thorium.Find<ModItem>("TabooWand").Type)
+                {
+                    item.damage = 30;
+                }
+
+                //Weed Eater
+                if (item.type == thorium.Find<ModItem>("WeedEater").Type)
+                {
+                    item.damage = 26;
+                }
+
+                //Arsenal Staff
+                if (item.type == thorium.Find<ModItem>("ArsenalStaff").Type)
+                {
+                    item.damage = 30;
+                }
+
+                //Yarn Ball
+                if (item.type == thorium.Find<ModItem>("YarnBall").Type)
+                {
+                    item.damage = 21;
+                }
+
+                //Strongest Link
+                if (item.type == thorium.Find<ModItem>("StrongestLink").Type)
+                {
+                    item.damage = 65;
+                }
+
+                //Strange Skull
+                if (item.type == thorium.Find<ModItem>("StrangeSkull").Type)
+                {
+                    item.damage = 45;
+                }
+
+                //Boulder Probe Staff
+                if (item.type == thorium.Find<ModItem>("BoulderProbeStaff").Type)
+                {
+                    item.damage = 35;
+                }
 
                 //Healer
                 //Wooden Baton

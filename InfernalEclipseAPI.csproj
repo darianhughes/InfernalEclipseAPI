@@ -23,6 +23,7 @@
 	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
 	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />
 	  <Folder Include="Common\GlobalNPCs\" />
+	  <Folder Include="Common\InfernumScreens\" />
 	  <Folder Include="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\" />
 	</ItemGroup>
 	<ItemGroup>
