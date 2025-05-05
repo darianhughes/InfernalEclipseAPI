@@ -18,6 +18,8 @@ using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
 using InfernalEclipseAPI.Content.Items.Weapons.NovaBomb;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernalEclipseAPI.Content.Items.Weapons.ChromaticMassInABottle;
+using ThoriumMod.Contracts;
+using CalamityMod.Items.Mounts;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -55,6 +57,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.RemoveTile(16);
                         recipe.AddTile(ModContent.TileType<CosmicAnvil>());
                     }
+
+                    if (recipe.HasResult(ModContent.ItemType<OnyxExcavatorKey>()))
+                    {
+                        recipe.AddIngredient(ItemID.BeetleHusk, 3);
+                    }
                 }
 
                 if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
@@ -87,6 +94,29 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
 
+                //Thorium
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+                {
+                    if (thorium.TryFind("CobaltThrowingSpear", out ModItem cbthrowspear))
+                    {
+                        if (recipe.HasResult(cbthrowspear))
+                            recipe.DisableRecipe();
+                    }
+
+                    if (thorium.TryFind("PalladiumThrowingSpear", out ModItem palthrowspear))
+                    {
+                        if (recipe.HasResult(palthrowspear)) 
+                            recipe.DisableRecipe();
+                    }
+
+                    //idk why this is here but
+                    if (thorium.TryFind("AromaticBulb", out ModItem bulb))
+                    {
+                        if (recipe.HasResult(bulb))
+                            recipe.DisableRecipe();
+                    }
+                }
+
                 //Ragnarok
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragCal))
                 {
@@ -106,6 +136,17 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     //        recipe.RemoveIngredient(death.Type);
                     //    }
                     //}
+                }
+
+                if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && InfernalConfig.Instance.ThoriumBalanceChangess)
+                {
+                    if (thorRework.TryFind("Loudener", out ModItem loud))
+                    {
+                        if (recipe.HasResult(loud))
+                        {
+                            recipe.AddIngredient(thorium.Find<ModItem>("BronzeAlloyFragments"), 1);
+                        }
+                    }
                 }
 
                 if (InfernalConfig.Instance.SOTSBalanceChanges)

@@ -79,7 +79,8 @@ namespace InfernalEclipseAPI.Common.Balance
                 foreach (int num in consoleArray)
                 {
                     foreach (TooltipLine tooltip in tooltips)
-                        tooltip.Text = tooltip.Text.Replace("Consumable", "Not consumable");
+                        if (num == item.type)
+                            tooltip.Text = tooltip.Text.Replace("Consumable", "Not consumable");
                 }
             }
 

@@ -44,6 +44,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     }
                 }
             }
+
+            NPC npc1 = npc;
+            if (npc1.type == NPCID.CultistBoss)
+            {
+                npc.lifeMax *= 3;
+            }
         }
     }
 }

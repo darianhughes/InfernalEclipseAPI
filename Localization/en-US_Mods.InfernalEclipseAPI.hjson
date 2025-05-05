@@ -116,5 +116,22 @@ Configs: {
 			Label: Force Full Xeroc Dialogue
 			Tooltip: Forces the game to display the full Xeroc Dialogue when starting Boss Rush & when you beat it. Helpful for servers.
 		}
+
+		SOTSThrowerToRogue: {
+			Tooltip: Makes the void + thrower items from Unofficial SOTS Bard, Thrower, and Healer void + rogue items
+			Label: Merge Void + Thrower and Rogue class
+		}
+
+		DisableBloodOrbPotions: {
+			Tooltip: Disables the crafting recipes for potions that use blood orbs.
+			Label: Disable Blood Orb Potions
+		}
 	}
 }
+
+DamageClasses.VoidRogue.DisplayName: void + rogue damage
+BossRushIntroText1:
+	'''
+	Xeroc's Challenge
+	Ensemble of Fools
+	'''

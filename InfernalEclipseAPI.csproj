@@ -22,9 +22,10 @@
 	  <Folder Include="Common\Balance\Thorium\" />
 	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
 	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />
-	  <Folder Include="Common\GlobalNPCs\" />
-	  <Folder Include="Common\InfernumScreens\" />
 	  <Folder Include="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="MonoMod" Version="22.7.31.1" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Reference Include="CalamityMod">
@@ -48,12 +49,20 @@
 	  <Reference Include="PackBuilder">
 	    <HintPath>..\ModAssemblies\PackBuilder_v1.0.0.dll</HintPath>
 	  </Reference>
+	  <Reference Include="SOTSBardHealer">
+	    <HintPath>..\ModAssemblies\SOTSBardHealer_v0.2.1.dll</HintPath>
+	  </Reference>
+	  <Reference Include="SOTS">
+	    <HintPath>..\ModAssemblies\SOTS_v0.24.1.4.dll</HintPath>
+	  </Reference>
 	  <Reference Include="ThoriumMod">
 	    <HintPath>..\..\ModReader\Thorium\ThoriumMod.dll</HintPath>
 	  </Reference>
 	  <Reference Include="YouBoss">
 	    <HintPath>..\ModAssemblies\YouBoss_v1.0.14.dll</HintPath>
 	  </Reference>
+	  <Reference Include="MonoMod.RuntimeDetour" />
+  	  <Reference Include="MonoMod.Cil" />
 	</ItemGroup>
 
 	<!-- References -->

@@ -36,8 +36,14 @@ namespace InfernalEclipseAPI
         [DefaultValue(false)]
         public bool CalamityRecipeTweaks { get; set; }
 
+        [DefaultValue(false)]
+        public bool DisableBloodOrbPotions { get; set; }
+
         [DefaultValue(true)]
         public bool InfernumRecipeTweaks { get; set; }
+
+        [DefaultValue(true)]
+        public bool SOTSThrowerToRogue { get; set; }
 
         #endregion
 
@@ -69,6 +75,7 @@ namespace InfernalEclipseAPI
         #region Miscellaneous
         [Header ("Miscellaneous")]
         [DefaultValue(true)]
+        [ReloadRequired]
         public bool InfernumModeForced { get; set; }
 
         #endregion

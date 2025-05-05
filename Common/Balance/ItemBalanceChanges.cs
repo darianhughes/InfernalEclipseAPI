@@ -27,6 +27,8 @@ using ThoriumMod.Items.BossQueenJellyfish;
 using ThoriumMod.Items.Depths;
 using ThoriumMod.Items.Thorium;
 using CalamityMod.Items.Weapons.Summon;
+using CalamityMod;
+using YouBoss.Core.Graphics.Shaders.Screen;
 
 namespace InfernalEclipseAPI.Common.Balance
 {
@@ -699,6 +701,291 @@ namespace InfernalEclipseAPI.Common.Balance
                     item.damage = 35;
                 }
 
+                //Rouge & Thrower
+                //Pre-Hardmode
+                //Stone Throwing Spear
+                if (item.type == thorium.Find<ModItem>("StoneThrowingSpear").Type)
+                {
+                    item.damage = 16;
+                }
+
+                //Cactus Needle
+                if (item.type == thorium.Find<ModItem>("CactusNeedle").Type)
+                {
+                    item.shootSpeed = 15;
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.damage = 13;
+                }
+                
+                //Iron Tomahawk
+                if (item.type == thorium.Find<ModItem>("IronTomahawk").Type)
+                {
+                    item.useTime = 22;
+                    item.useAnimation = 22;
+                    item.damage = 11;
+                }
+
+                //Lead Tomahawk
+                if (item.type == thorium.Find<ModItem>("LeadTomahawk").Type)
+                {
+                    item.shootSpeed = 14;
+                    item.damage = 15;
+                }
+
+                //Demonite Tomahawk
+                if (item.type == thorium.Find<ModItem>("DemoniteTomahawk").Type)
+                {
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                }
+
+                //Crimtane Tomahawk
+                if (item.type == thorium.Find<ModItem>("CrimtaneTomahawk").Type)
+                {
+                    item.shootSpeed = 16;
+                }
+
+                //Lasting Pliers
+                if (item.type == thorium.Find<ModItem>("LastingPliers").Type)
+                {
+                    item.damage = 26;
+                    item.useAnimation = 26;
+                    item.useTime = 26;
+                }
+
+                //Crude Bat
+                if (item.type == thorium.Find<ModItem>("BaseballBat").Type)
+                {
+                    item.useTime = 6;
+                    item.useAnimation = 6;
+                    item.damage = 14;
+                }
+
+                //Coral Caltrop
+                if (item.type == thorium.Find<ModItem>("CoralCaltrop").Type)
+                {
+                    item.damage = 13;
+                }
+
+                //Severed Hand
+                if (item.type == thorium.Find<ModItem>("SeveredHand").Type)
+                {
+                    item.damage = 20;
+                    item.shootSpeed = 12;
+                }
+
+                //Thorium Dagger
+                if (item.type == thorium.Find<ModItem>("ThoriumDagger").Type)
+                {
+                    item.shootSpeed = 18;
+                    item.damage = 30;
+                }
+
+                //Bolas
+                if (item.type == thorium.Find<ModItem>("Bolas").Type)
+                {
+                    item.damage = 35;
+                }
+
+                //Obsidian Striker
+                if (item.type == thorium.Find<ModItem>("ObsidianStriker").Type)
+                {
+                    item.damage = 21;
+                }
+
+                //Sandstone Throwing Knife
+                if (item.type == thorium.Find<ModItem>("(gSandStoneThrowingKnife").Type)
+                {
+                    item.useTime = 14;
+                    item.useAnimation = 14;
+                    item.damage = 20;
+                }
+
+                //Shinobi Slicer
+                if (item.type == thorium.Find<ModItem>("ShinobiSlicer").Type)
+                {
+                    item.shootSpeed = 8;
+                    item.damage = 20;
+                }
+
+                //Gel Glove
+                if (item.type == thorium.Find<ModItem>("GelGlove").Type)
+                {
+                    item.damage = 30;
+                    item.shootSpeed = 15;
+                }
+
+                //Steel Throwing Axe
+                if (item.type == thorium.Find<ModItem>("SteelThrowingAxe").Type)
+                {
+                    item.shootSpeed = 10;
+                    item.damage = 30;
+                }
+
+                //Blooming Shuriken
+                if (item.type == thorium.Find<ModItem>("BloomingShuriken").Type)
+                {
+                    item.useTime = 30;
+                    item.useAnimation = 30;
+                    item.damage = 15;
+                }
+
+                //Harpy’s Barrage
+                if (item.type == thorium.Find<ModItem>("HarpiesBarrage").Type)
+                {
+                    item.damage = 36;
+                }
+
+                //Spike Bomb
+                if (item.type == thorium.Find<ModItem>("SpikeBomb").Type)
+                {
+                    item.shootSpeed = 5;
+                }
+
+                //Goblin War Spear
+                if (item.type == thorium.Find<ModItem>("GoblinWarSpear").Type)
+                {
+                    item.shootSpeed = 14;
+                    item.damage = 32;
+                }
+
+                //Meteorite Cluster Bomb
+                if (item.type == thorium.Find<ModItem>("MeteoriteClusterBomb").Type)
+                {
+                    item.damage = 20;
+                }
+
+                //Aquaite Knife
+                if (item.type == thorium.Find<ModItem>("AquaiteKnife").Type)
+                {
+                    item.useAnimation = 15;
+                    item.useTime = 15;
+                    item.damage = 21;
+                }
+
+                //Molten Knife
+                if (item.type == thorium.Find<ModItem>("MoltenKnife").Type)
+                {
+                    item.damage = 40;
+                    item.useAnimation = 24;
+                    item.useTime = 24;
+                }
+
+                //Arcane Anelace
+                if (item.type == thorium.Find<ModItem>("ArcaneAnelace").Type)
+                {
+                    item.damage = 30;
+                }
+
+                //Naiad's Shiv
+                if (item.type == thorium.Find<ModItem>("NaiadsShiv").Type)
+                {
+                    item.useTime = 8;
+                    item.useAnimation = 8;
+                    item.damage = 27;
+                }
+
+                //Spiky Caltrop
+                if (item.type == thorium.Find<ModItem>("SpikyCaltrop").Type)
+                {
+                    item.damage = 24;
+                }
+
+                //Phase Chopper
+                if (item.type == thorium.Find<ModItem>("PhaseChopper").Type)
+                {
+                    item.damage = 22;
+                }
+
+                //Wack Wrench
+                if (item.type == thorium.Find<ModItem>("WackWrench").Type)
+                {
+                    item.damage = 28;
+                }
+
+                //Champion's God Hand
+                if (item.type == thorium.Find<ModItem>("ChampionsGodHand").Type)
+                {
+                    item.damage = 55;
+                    item.shootSpeed = 20;
+                }
+
+                //Bronze Throwing Axe
+                if (item.type == thorium.Find<ModItem>("BronzeThrowingAxe").Type)
+                {
+                    item.shootSpeed = 10;
+                    item.damage = 39;
+                }
+
+                //Bronze Throwing Axe
+                if (item.type == thorium.Find<ModItem>("GraniteThrowingAxe").Type)
+                {
+                    item.shootSpeed = 10;
+                    item.damage = 37;
+                }
+
+                //Light's Anquish
+                if (item.type == thorium.Find<ModItem>("LightAnguish").Type)
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.shootSpeed = 16;
+                    item.damage = 42;
+                }
+
+                //Embowellment
+                if (item.type == thorium.Find<ModItem>("Embowelment").Type)
+                {
+                    item.useTime = 18;
+                    item.useAnimation = 18;
+                    item.shootSpeed = 16;
+                    item.damage = 56;
+                }
+
+                //Gauss Flinger
+                if (item.type == thorium.Find<ModItem>("GaussFlinger").Type)
+                {
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                }
+
+                //Hardmode
+                //Durasteel Throwing Spear
+                if (item.type == thorium.Find<ModItem>("DurasteelThrowingSpear").Type)
+                {
+                    item.damage = 70;
+                }
+
+                //Eviscerating Claw
+                if (item.type == thorium.Find<ModItem>("EvisceratingClaw").Type)
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.damage = 39;
+                }
+
+                //Kunai
+                if (item.type == thorium.Find<ModItem>("Kunai").Type)
+                {
+                    item.damage = 60;
+                }
+
+                //Venom Kunai
+                if (item.type == thorium.Find<ModItem>("VenomKunai").Type)
+                {
+                    item.damage = 66;
+                }
+
+                //Corrupter's Balloon, Crystal Balloon, Festering Balloon
+                if ((item.type == thorium.Find<ModItem>("CorrupterBalloon").Type) || (item.type == thorium.Find<ModItem>("CrystalBalloon").Type) || (item.type == thorium.Find<ModItem>("FesteringBalloon").Type))
+                {
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.shootSpeed = 13;
+                    item.damage = 50;
+                }
+
                 //Healer
                 //Wooden Baton
                 if (item.type == thorium.Find<ModItem>("WoodenBaton").Type) 
@@ -732,7 +1019,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 //Palm Cross
                 if (item.type == thorium.Find<ModItem>("PalmCross").Type)
                 {
-                    item.damage = 11;
+                    item.damage = 15;
                 }
 
                 //Ice Shaver

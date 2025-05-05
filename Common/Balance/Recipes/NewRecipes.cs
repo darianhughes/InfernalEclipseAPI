@@ -30,7 +30,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             .AddTile(TileID.Anvils)
             .Register();
 
-            if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework))
+            Recipe recipe12 = Recipe.Create(4672, 1);
+            recipe12.AddIngredient(ItemID.Leather, 10);
+            recipe12.AddTile(TileID.Loom);
+            recipe12.Register();
+
+            if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && !InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
 

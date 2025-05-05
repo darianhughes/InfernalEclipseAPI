@@ -10,6 +10,8 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using CalamityMod.Tiles.DraedonStructures;
+using NoxusBoss.Core.Graphics.UI.Bestiary;
 
 namespace InfernalEclipseAPI.Common.Balance
 {
@@ -41,6 +43,8 @@ namespace InfernalEclipseAPI.Common.Balance
                         return NPC.downedBoss2;
                     default:
                         if (tile == ModContent.TileType<ExodiumOre>()) { return NPC.downedMoonlord; }
+
+                        if (tile == ModContent.TileType<OnyxExcavatorTile>()) { return NPC.downedGolemBoss; }
 
                         //putting this here because i dont wanna make a new class
                         else if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))

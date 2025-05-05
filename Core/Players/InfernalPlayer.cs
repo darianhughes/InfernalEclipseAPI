@@ -11,7 +11,7 @@ using Terraria.Audio;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace InfernalEclipseAPI.Common.Players
+namespace InfernalEclipseAPI.Core.Players
 {
     public class InfernalPlayer : ModPlayer
     {
@@ -111,19 +111,19 @@ namespace InfernalEclipseAPI.Common.Players
                     Main.NewText("WARNING: It is detected that you do not have Thorium Bosses Reworked enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.", 255, 0, 0);
                 }
 
-                if (!(ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok)))
+                if (!ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
                 {
                     Main.NewText("WARNING: It is detected that you do not have Ragnarok enabled! Without this mod, Thorium & Calamity may not work well together. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 0, 0);
                 }
             }
 
             //These messages should not appear if they are plaing the mod pack.
-            if (!(ModLoader.TryGetMod("RevengeancePlus", out Mod revenge)))
+            if (!ModLoader.TryGetMod("RevengeancePlus", out Mod revenge))
             {
                 Main.NewText("WARNING: It is detected that you do not have Revengeance Plus enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, Infernum, or Thorium will not have Infernum mechanics or intros, and may not be included in Boss Rush. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 0, 0);
             }
 
-            if (!(ModLoader.TryGetMod("EventTrophies", out Mod eventTrophy)))
+            if (!ModLoader.TryGetMod("EventTrophies", out Mod eventTrophy))
             {
                 Main.NewText("NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 255, 0);
             }
@@ -153,12 +153,12 @@ namespace InfernalEclipseAPI.Common.Players
             if (InfernumActive.InfernumActive)
             {
                 Main.NewText("The prodigy has returned to face the Infernal Eclipse...", 95, 06, 06);
-                SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);
+                SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
             }
             else if (InfernalConfig.Instance.InfernumModeForced)
             {
                 Main.NewText("Infernal energy has been infused into this world...", 95, 06, 06);
-                SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);
+                SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
                 WorldSaveSystem.InfernumModeEnabled = true;
             }
 
