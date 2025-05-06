@@ -19,20 +19,20 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
-            Mod mod;
-            bool flag = false;
-            int num1 = 0, num2 = 0;
+            //Mod mod;
+            //bool flag = false;
+            //int num1 = 0, num2 = 0;
 
-            if (ModLoader.TryGetMod("CalamityMod", out mod))
-            {
-                object result = mod.Call("GetDifficultyActive", "BossRush");
-                if (result is bool b)
-                {
-                    flag = b;
-                    num1 = 1;
-                }
-            }
-            num2 = flag ? 1 : 0;
+            //if (ModLoader.TryGetMod("CalamityMod", out mod))
+            //{
+            //    object result = mod.Call("GetDifficultyActive", "BossRush");
+            //    if (result is bool b)
+            //    {
+            //        flag = b;
+            //        num1 = 1;
+            //    }
+            //}
+            //num2 = flag ? 1 : 0;
             //if ((num1 & num2) != 0)
             //{
             //    ModNPC modNPC14 = npc.ModNPC;

@@ -35,23 +35,34 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             recipe12.AddTile(TileID.Loom);
             recipe12.Register();
 
-            if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && !InfernalConfig.Instance.CalamityBalanceChanges)
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
-                ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
+                if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && !InfernalConfig.Instance.DisableBloodOrbPotions)
+                {
+                    Recipe.Create(thorRework.Find<ModItem>("DeathsingerPotion").Type)
+                        .AddIngredient(ItemID.BottledWater)
+                        .AddIngredient<BloodOrb>(10)
+                        .AddTile(TileID.AlchemyTable)
+                        .Register();
 
-                Recipe.Create(thorRework.Find<ModItem>("DeathsingerPotion").Type)
-                    .AddIngredient(ItemID.BottledWater)
-                    .AddIngredient<BloodOrb>(10)
-                    .AddTile(TileID.AlchemyTable)
-                    .Register();
+                    thorium.TryFind("ManaBerry", out ModItem manaberry);
+                    Recipe.Create(thorRework.Find<ModItem>("InspirationRegenerationPotion").Type)
+                        .AddIngredient(ItemID.BottledWater)
+                        .AddIngredient<BloodOrb>(10)
+                        .AddIngredient(manaberry.Type)
+                        .AddTile(TileID.AlchemyTable)
+                        .Register();
+                }
 
-                thorium.TryFind("ManaBerry", out ModItem manaberry);
-                Recipe.Create(thorRework.Find<ModItem>("InspirationRegenerationPotion").Type)
-                    .AddIngredient(ItemID.BottledWater)
-                    .AddIngredient<BloodOrb>(10)
-                    .AddIngredient(manaberry.Type)
-                    .AddTile(TileID.AlchemyTable)
-                    .Register();
+                if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
+                {
+                    Recipe.Create(thorium.Find<ModItem>("VoltHatchet").Type)
+                        .AddIngredient(thorium.Find<ModItem>("AbyssalChitin").Type, 10)
+                        .AddIngredient(ragnarok.Find<ModItem>("EmpoweredGranite").Type, 8)
+                        .AddIngredient(thorium.Find<ModItem>("AquaiteBar").Type, 12)
+                        .AddTile(TileID.Anvils)
+                        .Register();
+                }
             }
 
         }

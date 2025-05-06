@@ -31,12 +31,15 @@ namespace InfernalEclipseAPI
         public bool ThoriumBalanceChangess { get; set; }
 
         [DefaultValue(true)]
+        [ReloadRequired]
         public bool SOTSBalanceChanges { get; set; }
 
         [DefaultValue(false)]
+        [ReloadRequired]
         public bool CalamityRecipeTweaks { get; set; }
 
         [DefaultValue(false)]
+        [ReloadRequired]
         public bool DisableBloodOrbPotions { get; set; }
 
         [DefaultValue(true)]

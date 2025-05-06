@@ -10,19 +10,17 @@ using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
-    public class ClamityBossStatScaling : GlobalNPC
+    public class SpookyBossStatScaling : GlobalNPC
     {
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation)
         {
-            return ((ModType)npc.ModNPC)?.Mod.Name == "Clamity";
+            return ((ModType)npc.ModNPC)?.Mod.Name == "Spooky";
         }
 
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
             if (npc.boss)
             {
-                npc.lifeMax += npc.lifeMax;
-
                 if (InfernumActive.InfernumActive)
                 {
                     npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
@@ -32,21 +30,19 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
-            modifiers.SourceDamage *= 2.0f;
-
-            if (InfernumActive.InfernumActive)
+            if (npc.boss)
             {
-                modifiers.SourceDamage *= 1.35f;
+                if (InfernumActive.InfernumActive)
+                {
+                    modifiers.SourceDamage *= 1.35f;
+                }
             }
         }
 
         public override void PostAI(NPC npc)
         {
-            ModNPC modNPC14 = npc.ModNPC;
-            if (!((modNPC14 != null ? (((ModType)modNPC14).Name.Contains("ClamitasBoss") ? 1 : 0) : 0) != 0))
+            if (npc.boss)
             {
-                npc.position += npc.velocity * 0.1f;
-
                 if (InfernumActive.InfernumActive)
                 {
                     npc.position += npc.velocity * 0.35f;

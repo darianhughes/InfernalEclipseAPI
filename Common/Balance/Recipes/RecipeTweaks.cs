@@ -115,12 +115,32 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(bulb))
                             recipe.DisableRecipe();
                     }
+
+                    if (InfernalConfig.Instance.ThoriumBalanceChangess)
+                    {
+                        if (thorium.TryFind("DarkContagion", out ModItem darkCont))
+                        {
+                            if (recipe.HasResult(darkCont))
+                            {
+                                recipe.RemoveIngredient(ItemID.Ichor);
+                                recipe.RemoveIngredient(ItemID.SpellTome);
+                                recipe.AddIngredient(ModContent.ItemType<PurifiedGel>(), 5);
+                                recipe.AddIngredient(ItemID.Deathweed, 2);
+                            }
+                        }
+                    }
                 }
 
                 //Ragnarok
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragCal))
                 {
-                    //ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
+                    ragCal.TryFind("JellySlicer", out ModItem gelSlicer);
+
+                    if (recipe.HasResult(gelSlicer))
+                    {
+                        recipe.RemoveTile(TileID.Anvils);
+                        recipe.AddTile(ModContent.TileType<StaticRefiner>());
+                    }
 
                     ////Referts the Providence spawning changes, if enabled, due to Primordials being retiered to post-DoG, and then referts the recipe to the Calamity recipe.
                     //if (recipe.HasResult<RuneofKos>())
@@ -145,6 +165,15 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(loud))
                         {
                             recipe.AddIngredient(thorium.Find<ModItem>("BronzeAlloyFragments"), 1);
+                        }
+                    }
+
+                    if (thorRework.TryFind("ImpulseAmplifier", out ModItem impulse))
+                    {
+                        if (recipe.HasResult(impulse))
+                        {
+                            recipe.RemoveIngredient(ItemID.Wire);
+                            recipe.AddIngredient(ModContent.ItemType<StormlionMandible>(), 1);
                         }
                     }
                 }

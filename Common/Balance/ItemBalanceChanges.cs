@@ -67,6 +67,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 }
             }
 
+            //Zenith Toilet
             if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
             {
                 if (item.type == toilet.Find<ModItem>("ZenithToilet").Type)
@@ -82,6 +83,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 }
             }
 
+            //Calamity
             if (InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 ModLoader.TryGetMod("CalamityMod", out Mod cal);
@@ -97,6 +99,42 @@ namespace InfernalEclipseAPI.Common.Balance
                 if (item.type == cal.Find<ModItem>("HerringStaff").Type)
                 {
                     item.damage = 20;
+                }
+            }
+
+            //Catalyst
+            if (InfernalConfig.Instance.CalamityBalanceChanges && ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
+            {
+                //Ranged
+                //Desert Scorcher
+                if (item.type == catalyst.Find<ModItem>("DesertScorcher").Type)
+                {
+                    item.shootSpeed = 10;
+                    item.damage = 8;
+                    item.useTime = 40;
+                    item.useAnimation = 40;
+                }
+
+                //Ichorthrower
+                if (item.type == catalyst.Find<ModItem>("Ichorthrower").Type)
+                {
+                    item.shootSpeed = (int)3.5;
+                    item.damage = 21;
+                }
+
+                //Summoner
+                //Coral Crusher
+                if (item.type == catalyst.Find<ModItem>("CoralCrusher").Type)
+                {
+                    item.useTime = 32;
+                    item.useAnimation = 32;
+                }
+
+                //Congealed Duo-Whip
+                if (item.type == catalyst.Find<ModItem>("CongeledDuoWhip").Type)
+                {
+                    item.useTime = 36;
+                    item.useAnimation = 36;
                 }
             }
 
@@ -795,7 +833,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 }
 
                 //Sandstone Throwing Knife
-                if (item.type == thorium.Find<ModItem>("(gSandStoneThrowingKnife").Type)
+                if (item.type == thorium.Find<ModItem>("gSandStoneThrowingKnife").Type)
                 {
                     item.useTime = 14;
                     item.useAnimation = 14;
@@ -879,7 +917,7 @@ namespace InfernalEclipseAPI.Common.Balance
                 }
 
                 //Naiad's Shiv
-                if (item.type == thorium.Find<ModItem>("NaiadsShiv").Type)
+                if (item.type == thorium.Find<ModItem>("NaiadShiv").Type)
                 {
                     item.useTime = 8;
                     item.useAnimation = 8;
@@ -1357,8 +1395,14 @@ namespace InfernalEclipseAPI.Common.Balance
                 {
                     item.damage = 45;
                 }
+
+                //Accessories
+                if (item.type == thorium.Find<ModItem>("ChampionWing").Type)
+                {
+                    item.defense = 7;
+                }
             }
-            
+
             //Unofficial Calamity Bard & Healler
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && (ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess || ModContent.GetInstance<InfernalConfig>().CalamityBalanceChanges)) 
             {
@@ -1407,6 +1451,7 @@ namespace InfernalEclipseAPI.Common.Balance
 
                 //Song of the Ancients
             }
+            
 
             //Thorium Bosses Reworked
             if (ModLoader.TryGetMod("ThoriumRework", out Mod rethorium) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)

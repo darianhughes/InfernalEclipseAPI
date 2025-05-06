@@ -29,6 +29,14 @@ namespace InfernalEclipseAPI.Common.Balance
 
         public override bool CanKillTile(int i, int j, int tile, ref bool blockDamaged)
         {
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            {
+                if (thorium.TryFind<ModTile>("BloodAlter", out ModTile bloodAlter))
+                {
+                    return false;
+                }
+            }
+
             if (InfernalConfig.Instance.BossKillCheckOnOres)
             {
                 switch (tile)
@@ -46,14 +54,7 @@ namespace InfernalEclipseAPI.Common.Balance
 
                         if (tile == ModContent.TileType<OnyxExcavatorTile>()) { return NPC.downedGolemBoss; }
 
-                        //putting this here because i dont wanna make a new class
-                        else if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
-                        {
-                            if (thorium.TryFind<ModTile>("", out ModTile bloodAlter))
-                            {
-                                return false;
-                            }
-                        }
+                        if (tile == TileID.AlchemyTable) { return NPC.downedBoss3; }
 
                         return true; // Default fallback if no match
                 }

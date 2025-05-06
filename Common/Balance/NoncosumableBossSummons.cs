@@ -49,6 +49,11 @@ namespace InfernalEclipseAPI.Common.Balance
                 {
                     item.consumable = false;
                 }
+
+                if (item.type == sots.Find<ModItem>("CatalystBomb").Type)
+                {
+                    item.consumable = false;
+                }
             }
         }
 
@@ -79,25 +84,37 @@ namespace InfernalEclipseAPI.Common.Balance
                 foreach (int num in consoleArray)
                 {
                     foreach (TooltipLine tooltip in tooltips)
-                        if (num == item.type)
-                            tooltip.Text = tooltip.Text.Replace("Consumable", "Not consumable");
+                        if (num == item.type) 
+                        {
+                            //tooltip.Text = tooltip.Text.Replace("Consumable", "Not consumable");
+                            if (!tooltips[^1].Text.Contains("Not consumable"))
+                            {
+                                tooltips[^1].Text += "\nNot consumable";
+                            }
+                        }
+
                 }
             }
 
-            //if (ModLoader.TryGetMod("SOTS", out Mod sots))
-            //{
-            //    int[] consoleArray =
-            //    {
-            //        sots.Find<ModItem>("SuspiciousLookingCandle").Type,
-            //        sots.Find<ModItem>("JarOfPeanuts").Type
-            //    };
+            if (ModLoader.TryGetMod("SOTS", out Mod sots))
+            {
+                int[] sotsArray =
+                {
+                    sots.Find<ModItem>("SuspiciousLookingCandle").Type,
+                    sots.Find<ModItem>("JarOfPeanuts").Type,
+                    sots.Find<ModItem>("CatalystBomb").Type
+                };
 
-            //    foreach (int num in consoleArray)
-            //    {
-            //        foreach (TooltipLine tooltip in tooltips)
-            //            tooltip.Text += ("\nNot consumable");
-            //    }
-            //}
+                foreach (int num in sotsArray)
+                {
+                    foreach (TooltipLine tooltip in tooltips)
+                        if (num == item.type)
+                            if (!tooltips[^1].Text.Contains("Not consumable"))
+                            {
+                                tooltips[^1].Text += "\nNot consumable";
+                            }
+                }
+            }
         }
     }
 }

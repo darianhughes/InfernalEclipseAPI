@@ -7,6 +7,9 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
+using Terraria.ID;
+using CalamityMod.Events;
+using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
@@ -60,6 +63,69 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (InfernumActive.InfernumActive)
             {
                 npc.position += npc.velocity * 0.35f;
+            }
+        }
+
+        public class AdvisorDefenseReset : GlobalNPC
+        {
+            public override void PostAI(NPC npc)
+            {
+                // 1) Only target SOTS's TheAdvisorHead
+                if (npc.ModNPC is not ModNPC modNpc
+                    || modNpc.Mod.Name != "SOTS"
+                    || modNpc.Name != "TheAdvisorHead")
+                {
+                    return;
+                }
+
+                
+
+                // 2) If Calamity Boss Rush is active, do nothing
+                if (BossRushEvent.BossRushActive)
+                {
+                    npc.lifeMax += (int)(((double).25) * (double)npc.lifeMax);
+                    return;
+                }
+
+                // 3) Default to base SOTS defense
+                int targetDefense = 24;
+
+                // 4) If Calamity is loaded, ask it which alternate difficulty is active
+                if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
+                {
+                    // These calls must match Calamity's internal names exactly:
+                    object isDeath = calamity.Call("GetDifficultyActive", "Death");
+                    object isRevenge = calamity.Call("GetDifficultyActive", "Revengeance");
+
+                    if (isDeath is bool bDeath && bDeath)
+                    {
+                        // Death Mode
+                        npc.position += npc.velocity * 0.35f;
+                        targetDefense = 39;
+                    }
+                    else if (isRevenge is bool bRev && bRev)
+                    {
+                        // Revengeance Mode
+                        npc.position += npc.velocity * 0.25f;
+                        targetDefense = 32;
+                    }
+                }
+
+                // 5) Clamp it on the NPC
+                npc.defense = targetDefense;
+            }
+
+            public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
+            {
+                if (npc.ModNPC is not ModNPC modNpc
+                                   || modNpc.Mod.Name != "SOTS"
+                                   || modNpc.Name != "TheAdvisorHead")
+                {
+                    return;
+                }
+
+                if (InfernumSaveSystem.InfernumModeEnabled)
+                    modifiers.SourceDamage *= 1.35f;
             }
         }
     }

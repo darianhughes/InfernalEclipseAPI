@@ -93,6 +93,11 @@ namespace InfernalEclipseAPI.Common.Balance
                     entity.scale *= 2;
                 }
             }
+
+            //if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && InfernalConfig.Instance.ThoriumBalanceChangess)
+            //{
+            //    if (entity.type == )
+            //}
         }
     }
 }
