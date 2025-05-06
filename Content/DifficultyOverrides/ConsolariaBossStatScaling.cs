@@ -61,7 +61,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         public override void PostAI(NPC npc)
         {
             ModNPC modNPC14 = npc.ModNPC;
-            if (InfernumActive.InfernumActive && !(((ModType)modNPC14).Name.Contains("Lepus") || ((ModType)modNPC14).Name.Contains("Lepus")))
+            if (InfernumActive.InfernumActive && (((ModType)modNPC14).Name.Contains("Lepus") || ((ModType)modNPC14).Name.Contains("Turkor")))
             {
                 npc.position += npc.velocity * 0.35f;
             }

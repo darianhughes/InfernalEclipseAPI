@@ -19,6 +19,7 @@
 	  <None Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Folder Include="Assets\Textures\BossChecklist\" />
 	  <Folder Include="Common\Balance\Thorium\" />
 	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
 	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />
@@ -30,6 +31,9 @@
 	<ItemGroup>
 	  <Reference Include="CalamityMod">
 	    <HintPath>..\ModAssemblies\CalamityMod_v2.0.4.6.dll</HintPath>
+	  </Reference>
+	  <Reference Include="CatalystMod">
+	    <HintPath>..\ModAssemblies\CatalystMod_v1.1.2.3.dll</HintPath>
 	  </Reference>
 	  <Reference Include="Clamity">
 	    <HintPath>..\ModAssemblies\Clamity_v1.0.3.7.dll</HintPath>

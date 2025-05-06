@@ -10,6 +10,10 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Content.Buffs;
+using Terraria.ID;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -167,6 +171,48 @@ namespace InfernalEclipseAPI.Core.Players
                 DownedBossSystem.startedBossRushAtLeastOnce = false;
             }
 
+        }
+
+        private Vector2 previousPos;
+        private bool wasUsingItem;
+        private int horrifiedTimer = 0;
+
+        public override void ResetEffects()
+        {
+            if (!Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
+                horrifiedTimer = 0;
+        }
+
+        public override void PostUpdate()
+        {
+            if (Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
+            {
+                horrifiedTimer++;
+
+                // Give a 3 second grace period after first applying the buff
+                if (horrifiedTimer < 60)
+                {
+                    previousPos = Player.position;
+                    wasUsingItem = Player.itemAnimation > 0;
+                    return;
+                }
+
+                float distanceMoved = Vector2.Distance(Player.position, previousPos);
+                bool usedTeleportItem = !wasUsingItem && Player.itemAnimation > 0 &&
+                    (Player.HeldItem.type == ItemID.MagicMirror ||
+                     Player.HeldItem.type == ItemID.IceMirror ||
+                     Player.HeldItem.type == ItemID.RecallPotion ||
+                     Player.HeldItem.type == ItemID.WormholePotion);
+
+                if (distanceMoved > 1000f || usedTeleportItem)
+                {
+                    SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
+                    Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} tried to escape the multiversal terror."), 9999.0, 0);
+                }
+
+                previousPos = Player.position;
+                wasUsingItem = Player.itemAnimation > 0;
+            }
         }
     }
 }

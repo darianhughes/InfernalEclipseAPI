@@ -135,3 +135,12 @@ BossRushIntroText1:
 	Xeroc's Challenge
 	Ensemble of Fools
 	'''
+
+Buffs: {
+	StarboundHorrification: {
+		Description: You cannot escape Astrageldon...
+		DisplayName: Starbound Horrification
+	}
+}
+
+SpawnInfo.Dreadnautilus: Has a chance to spawn while fishing in the ocean on a blood moon.
