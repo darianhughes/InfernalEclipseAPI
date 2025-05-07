@@ -68,8 +68,8 @@ namespace InfernalEclipseAPI.Common.Balance
                 }
             }
 
-            //Zenith Toilet
-            if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
+                //Zenith Toilet
+                if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
             {
                 if (item.type == toilet.Find<ModItem>("ZenithToilet").Type)
                 {

@@ -41,6 +41,25 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
             foreach (var recipe in Main.recipe)
             {
+
+                if (!ModLoader.TryGetMod("PackBuilder", out Mod tPack))
+                {
+                    if (recipe.HasResult(ModContent.ItemType<Kevin>()))
+                    {
+                        recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
+                    }
+
+                    if (InfernalConfig.Instance.VanillaBalanceChanges) {
+                        if (recipe.HasResult(ItemID.Zenith))
+                        {
+                            recipe.RemoveIngredient(ModContent.ItemType<AuricBar>());
+                            recipe.RemoveIngredient(ItemID.EnchantedSword);
+                            recipe.AddIngredient(ItemID.Terragrim, 1);
+                            recipe.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 5);
+                        }
+                    }
+                }
+
                 //Calamity
                 //If any mods allow the terminus to be crafted, make it post-Primordial Wyrm.
                 if (recipe.HasResult(ModContent.ItemType<Terminus>()))
