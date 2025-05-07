@@ -8,6 +8,7 @@ using CalamityMod.Items.Placeables;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Tiles.DraedonSummoner;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using InfernumMode.Content.Items.SummonItems;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,6 +29,12 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
 
             foreach (var recipe in Main.recipe)
             {
+                //Skeletron
+                if (recipe.HasResult(ModContent.ItemType<DungeonsCurse>()) && InfernalConfig.Instance.CalamityRecipeTweaks)
+                {
+                    recipe.AddIngredient(ItemID.Bone, 5);
+                }
+
                 //DoG is only post sentinals
                 if (recipe.HasIngredient(3467) && recipe.HasIngredient(ModContent.ItemType<GalacticaSingularity>()) && recipe.HasIngredient(ModContent.ItemType<Necroplasm>()) && recipe.HasResult(ModContent.ItemType<CosmicWorm>()))
                     recipe.DisableRecipe();
@@ -45,7 +52,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                     recipe.AddIngredient(ModContent.ItemType<PlantyMush>(), 20);
 
                 //Plaguebring is only post golem
-                if (recipe.HasResult(ModContent.ItemType<Abombination>()))
+                if (recipe.HasIngredient(ModContent.ItemType<PlagueCellCanister>()) && recipe.HasRecipeGroup(RecipeGroupID.IronBar) && recipe.HasIngredient(ItemID.Obsidian) && recipe.HasResult(ModContent.ItemType<Abombination>()))
                     recipe.DisableRecipe();
 
                 //Hive Mind should be post EoW
@@ -106,6 +113,12 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
         }
         public override void AddRecipes()
         {
+            //Skeletron
+            Recipe recipe1 = Recipe.Create(ModContent.ItemType<DungeonsCurse>(), 1);
+            recipe1.AddIngredient(ItemID.ClothierVoodooDoll, 1);
+            recipe1.AddTile(TileID.Anvils);
+            recipe1.Register();
+
             //Supreme Calamitas
             Recipe recipe5 = Recipe.Create(ModContent.ItemType<CeremonialUrn>(), 1);
             recipe5.AddIngredient(ItemID.ClayBlock, 30);
@@ -130,7 +143,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
             recipe7.AddIngredient(ItemID.MartianConduitPlating, 30);
             recipe7.AddIngredient(ModContent.ItemType<DubiousPlating>(), 5);
             recipe7.AddIngredient(ModContent.ItemType<MysteriousCircuitry>(), 5);
-            recipe7.AddIngredient(ModContent.ItemType<OldPowerCell>(), 20);
+            recipe7.AddIngredient(ModContent.ItemType<OldPowerCell>(), 1);
             recipe7.AddTile(ModContent.TileType<CodebreakerTile>());
             recipe7.Register();
 

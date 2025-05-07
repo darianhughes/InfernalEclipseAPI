@@ -109,7 +109,22 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.DisableRecipe();
                     }
 
-                    //idk why this is here but
+                    if (thorium.TryFind("IronTomahawk", out ModItem ironToma))
+                    {
+                        if (recipe.HasResult(ironToma))
+                        {
+                            recipe.DisableRecipe();
+                        }
+                    }
+
+                    if (thorium.TryFind("LeadTomahawk", out ModItem leadToma))
+                    {
+                        if (recipe.HasResult(leadToma))
+                        {
+                            recipe.DisableRecipe();
+                        }
+                    }
+
                     if (thorium.TryFind("AromaticBulb", out ModItem bulb))
                     {
                         if (recipe.HasResult(bulb))

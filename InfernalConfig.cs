@@ -25,6 +25,7 @@ namespace InfernalEclipseAPI
         public bool VanillaBalanceChanges { get; set; }
 
         [DefaultValue(true)]
+        [ReloadRequired]
         public bool CalamityBalanceChanges { get; set; }
 
         [DefaultValue(true)]

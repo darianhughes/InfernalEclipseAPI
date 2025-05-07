@@ -14,6 +14,11 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Content.Buffs;
 using Terraria.ID;
 using Terraria.DataStructures;
+using CalamityMod.NPCs.AquaticScourge;
+using CalamityMod.NPCs.BrimstoneElemental;
+using InfernalEclipseAPI.Core.World;
+using Terraria.Chat;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -176,11 +181,104 @@ namespace InfernalEclipseAPI.Core.Players
         private Vector2 previousPos;
         private bool wasUsingItem;
         private int horrifiedTimer = 0;
+        public static bool BlockSlagsplitterEffects = false;
 
         public override void ResetEffects()
         {
             if (!Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
                 horrifiedTimer = 0;
+
+            BlockSlagsplitterEffects = false;
+
+            //if (!ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) || !(InfernalConfig.Instance.CalamityBalanceChanges))
+            //    return;
+
+            //int slagsplitterType = calamityMod.Find<ModItem>("SlagsplitterPauldron").Type;
+
+            //// Check if equipped
+            //for (int i = 3; i < 8 + Player.extraAccessorySlots; i++)
+            //{
+            //    if (i >= Player.armor.Length)
+            //        break;
+
+            //    if (Player.armor[i].type == slagsplitterType)
+            //    {
+            //        // Check for boss presence
+            //        for (int j = 0; j < Main.maxNPCs; j++)
+            //        {
+            //            if (Main.npc[j].active && Main.npc[j].boss)
+            //            {
+            //                if (NPC.AnyNPCs(NPCID.Plantera))
+            //                {
+            //                    Item result = Player.GetItem(Player.whoAmI, Player.armor[i], GetItemSettings.InventoryUIToInventorySettings);
+            //                    if (result.IsAir)
+            //                    {
+            //                        Player.armor[i].TurnToAir(); // item was moved successfully
+            //                    }
+            //                    else
+            //                    {
+            //                        // Inventory was full: drop it
+            //                        Item.NewItem(Player.GetSource_Misc("SlagsplitterAutoDrop"), Player.Center, Player.armor[i].type);
+            //                        Player.armor[i].TurnToAir();
+            //                    }
+
+            //                    Color jungle = new Color(255, 240, 20);
+            //                    if (InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer == false)
+            //                    {
+            //                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Ancient forces prevent you from using this item right now..."), jungle);
+            //                        InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = true;
+            //                        SoundEngine.PlaySound(SoundID.Mummy);
+            //                    }
+            //                }
+            //                if (NPC.AnyNPCs(ModContent.NPCType<BrimstoneElemental>()))
+            //                {
+            //                    Item result = Player.GetItem(Player.whoAmI, Player.armor[i], GetItemSettings.InventoryUIToInventorySettings);
+            //                    if (result.IsAir)
+            //                    {
+            //                        Player.armor[i].TurnToAir(); // item was moved successfully
+            //                    }
+            //                    else
+            //                    {
+            //                        // Inventory was full: drop it
+            //                        Item.NewItem(Player.GetSource_Misc("SlagsplitterAutoDrop"), Player.Center, Player.armor[i].type);
+            //                        Player.armor[i].TurnToAir();
+            //                    }
+
+            //                    Color supCal = new Color(255, 165, 0);
+            //                    if (InfernalWorld.brimstoneDialoguePlayed == false)
+            //                    {
+            //                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Strong Brimstone magic prevent you from using this item right now..."), supCal);
+            //                        InfernalWorld.brimstoneDialoguePlayed = true;
+            //                        SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/SupremeCalamitasSpawn"));
+            //                    }
+            //                }
+            //                if (NPC.AnyNPCs(ModContent.NPCType<AquaticScourgeHead>()))
+            //                {
+            //                    Item result = Player.GetItem(Player.whoAmI, Player.armor[i], GetItemSettings.InventoryUIToInventorySettings);
+            //                    if (result.IsAir)
+            //                    {
+            //                        Player.armor[i].TurnToAir(); // item was moved successfully
+            //                    }
+            //                    else
+            //                    {
+            //                        // Inventory was full: drop it
+            //                        Item.NewItem(Player.GetSource_Misc("SlagsplitterAutoDrop"), Player.Center, Player.armor[i].type);
+            //                        Player.armor[i].TurnToAir();
+            //                    }
+
+            //                    Color draedon = new Color(155, 255, 255);
+            //                    if (InfernalWorld.sulfurScourgeDialoguePlayed == false)
+            //                    {
+            //                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The Slagsplitter Pauldron is dried out by the Suphurou Sea!"), draedon);
+            //                        InfernalWorld.sulfurScourgeDialoguePlayed = true;
+            //                    }
+            //                }
+            //                break;
+            //            }
+            //        }
+            //        break;
+            //    }
+            //}
         }
 
         public override void PostUpdate()
@@ -214,5 +312,7 @@ namespace InfernalEclipseAPI.Core.Players
                 wasUsingItem = Player.itemAnimation > 0;
             }
         }
+
+
     }
 }

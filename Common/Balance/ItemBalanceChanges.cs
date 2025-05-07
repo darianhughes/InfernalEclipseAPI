@@ -29,6 +29,7 @@ using ThoriumMod.Items.Thorium;
 using CalamityMod.Items.Weapons.Summon;
 using CalamityMod;
 using YouBoss.Core.Graphics.Shaders.Screen;
+using InfernalEclipseAPI.Core.Players;
 
 namespace InfernalEclipseAPI.Common.Balance
 {

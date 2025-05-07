@@ -105,22 +105,22 @@ namespace InfernalEclipseAPI.Core.Systems
                             );
                             sb.Draw(texture2D, vector2, color);
                         });
-                        dictionary.Add("customPortrait", (object)action);
-                        dictionary.Add("displayName", (object)Language.GetText("NPCName.BloodNautilus"));
-                        dictionary.Add("overrideHeadTextures", (object)"InfernalEclipseAPI/Assets/Textures/BossChecklist/Dreadnautilus");       
+                        dictionary.Add("customPortrait", action);
+                        dictionary.Add("displayName", Language.GetText("NPCName.BloodNautilus"));
+                        dictionary.Add("overrideHeadTextures", "InfernalEclipseAPI/Assets/Textures/BossChecklist/DreadnautilusIcon");       
                     }
                 }
             }
             if (intList2.Count > 0)
             {
                 if (intList2.Count == 1)
-                    dictionary.Add("spawnItems", (object)intList2[0]);
+                    dictionary.Add("spawnItems", intList2[0]);
                 else
-                    dictionary.Add("spawnItems", (object)intList2);
+                    dictionary.Add("spawnItems", intList2);
             }
-            dictionary.Add("collectibles", (object)intList1);
+            dictionary.Add("collectibles", intList1);
             if (!flag)
-                dictionary.Add("spawnInfo", (object)Language.GetText("Mods.InfernalEclipseAPI.SpawnInfo." + InternalName));
+                dictionary.Add("spawnInfo", Language.GetText("Mods.InfernalEclipseAPI.SpawnInfo." + InternalName));
             return dictionary;
         }
     }

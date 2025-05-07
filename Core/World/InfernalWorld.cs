@@ -12,10 +12,18 @@ namespace InfernalEclipseAPI.Core.World
     public class InfernalWorld : ModSystem
     {
         public static bool dreadonDestroyerDialoguePlayed = false;
+        public static bool jungleSubshockPlanteraDialoguePlayed = false;
+        public static bool jungleSlagspitterPlateraDiaglougePlayer = false;
+        public static bool sulfurScourgeDialoguePlayed = false;
+        public static bool brimstoneDialoguePlayed = false;
 
         public static void ResetFlags()
         {
             dreadonDestroyerDialoguePlayed = false;
+            jungleSubshockPlanteraDialoguePlayed = false;
+            jungleSlagspitterPlateraDiaglougePlayer=false;
+            sulfurScourgeDialoguePlayed =false;
+            brimstoneDialoguePlayed =false;
         }
 
         public override void OnWorldLoad()
@@ -31,11 +39,19 @@ namespace InfernalEclipseAPI.Core.World
         public override void SaveWorldData(TagCompound tag)
         {
             tag["dreadonDestroyerDialoguePlayed"] = dreadonDestroyerDialoguePlayed;
+            tag["jungleSubshockPlanteraDialoguePlayed"] = jungleSubshockPlanteraDialoguePlayed;
+            tag["jungleSlagspitterPlateraDiaglougePlayer"] = jungleSlagspitterPlateraDiaglougePlayer;
+            tag["sulfurScourgeDialoguePlayed"] = sulfurScourgeDialoguePlayed;
+            tag["brimstoneDialoguePlayed"] = brimstoneDialoguePlayed;
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
             GetData(ref dreadonDestroyerDialoguePlayed, "dreadonDestroyerDialoguePlayed", tag);
+            GetData(ref jungleSubshockPlanteraDialoguePlayed, "junglePlanteraDialoguePlayed", tag);
+            GetData(ref jungleSlagspitterPlateraDiaglougePlayer, "jungleSlagspitterPlateraDiaglougePlayer", tag);
+            GetData(ref sulfurScourgeDialoguePlayed, "sulfurScourgeDialoguePlayed", tag);
+            GetData(ref brimstoneDialoguePlayed, "brimstoneDialoguePlayed", tag);
         }
 
         public static void GetData(ref bool baseVar, string path, TagCompound tag)
@@ -46,11 +62,19 @@ namespace InfernalEclipseAPI.Core.World
         public override void NetSend(BinaryWriter writer)
         {
             writer.Write(dreadonDestroyerDialoguePlayed);
+            writer.Write(jungleSubshockPlanteraDialoguePlayed);
+            writer.Write(jungleSlagspitterPlateraDiaglougePlayer);
+            writer.Write(sulfurScourgeDialoguePlayed);
+            writer.Write(brimstoneDialoguePlayed);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
             dreadonDestroyerDialoguePlayed = reader.ReadBoolean();
+            jungleSubshockPlanteraDialoguePlayed =reader.ReadBoolean();
+            jungleSlagspitterPlateraDiaglougePlayer = reader.ReadBoolean();
+            sulfurScourgeDialoguePlayed = reader.ReadBoolean();
+            brimstoneDialoguePlayed = reader.ReadBoolean();
         }
     }
 }

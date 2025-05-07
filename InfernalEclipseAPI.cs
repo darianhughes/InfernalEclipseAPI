@@ -35,10 +35,16 @@ using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.CalPlayer;
 using CalamityMod.Projectiles.Typeless;
 using System.Security.Policy;
+using InfernalEclipseAPI.Core.Systems;
+using System.IO;
 
 namespace InfernalEclipseAPI
 {
-	public class InfernalEclipseAPI : Mod
+    public enum InfernalEclipseMessageType : byte
+    {
+        SyncDownedBosses
+    }
+    public class InfernalEclipseAPI : Mod
 	{
         public static bool FargosDLCEnabled
         {
@@ -49,6 +55,7 @@ namespace InfernalEclipseAPI
                 return false;
             }
         }
+
         public static InfernalEclipseAPI Instance;
         public InfernalEclipseAPI() => Instance = this;
 
@@ -57,6 +64,26 @@ namespace InfernalEclipseAPI
             if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
             {
                 BossRushInjection(calamity);
+            }
+        }
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        {
+            InfernalEclipseMessageType msgType = (InfernalEclipseMessageType)reader.ReadByte();
+
+            switch (msgType)
+            {
+                case InfernalEclipseMessageType.SyncDownedBosses:
+                    bool downed = reader.ReadBoolean();
+                    InfernalDownedBossSystem.downedDreadNautilus = downed;
+
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        ModPacket packet = GetPacket();
+                        packet.Write((byte)InfernalEclipseMessageType.SyncDownedBosses);
+                        packet.Write(downed);
+                        packet.Send(-1, whoAmI); // sync to all clients except sender
+                    }
+                    break;
             }
         }
 

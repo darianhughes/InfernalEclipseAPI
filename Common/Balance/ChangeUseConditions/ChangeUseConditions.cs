@@ -12,11 +12,28 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using InfernalEclipseAPI.Core.World;
 using Terraria.Audio;
+using Terraria.Chat;
+using CalamityMod.NPCs.BrimstoneElemental;
+using CalamityMod.NPCs.AquaticScourge;
 
 namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 {
     public class ChangeUseConditions : GlobalItem
     {
+        //public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        //{
+        //    if (!ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) || !(InfernalConfig.Instance.CalamityBalanceChanges))
+        //        return;
+
+        //    int slagsplitterType = calamityMod.Find<ModItem>("SlagsplitterPauldron").Type;
+
+        //    if (item.type == slagsplitterType && InfernalPlayer.BlockSlagsplitterEffects)
+        //    {
+        //        // Prevent effects: do nothing
+        //        return;
+        //    }
+        //}
+
         private static int CurseID;
         private static int ShockerID;
 
@@ -46,12 +63,17 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             {
                 CurseID = curse.Type;
             }
-            ModLoader.TryGetMod("CalamityMod", out Mod cal);
-            if (cal.TryFind("SubmarineShocker", out ModItem shocker))
-                ShockerID = shocker.Type;
 
             CanUseItemEvent += ModifyDungeonCurseUseConditions;
-            CanUseItemEvent += ModifySubmarineShockerUseConditions;
+
+            if (InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                ModLoader.TryGetMod("CalamityMod", out Mod cal);
+                if (cal.TryFind("SubmarineShocker", out ModItem shocker))
+                    ShockerID = shocker.Type;
+
+                CanUseItemEvent += ModifySubmarineShockerUseConditions;
+            }
 
             return base.IsLoadingEnabled(mod);
         }
@@ -60,7 +82,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
         {
             if (item.type == CurseID)
             {
-                if (Main.dayTime && !NPC.downedBoss3)
+                if (Main.dayTime)
                 {
                     return false;
                 }
@@ -79,8 +101,19 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                     Color draedon = new Color(155, 255, 255);
                     if (InfernalWorld.dreadonDestroyerDialoguePlayed == false)
                     {
-                        Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("I shall not let you destroy my machine so easily."), draedon);
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("I shall not let you destroy my machine so easily."), draedon);
                         InfernalWorld.dreadonDestroyerDialoguePlayed = true;
+                        SoundEngine.PlaySound(CalamityMod.Sounds.CommonCalamitySounds.ExoPlasmaShootSound);
+                    }
+                    return false;
+                }
+                if (NPC.AnyNPCs(NPCID.Plantera))
+                {
+                    Color jungle = new Color(255, 240, 20);
+                    if (InfernalWorld.jungleSubshockPlanteraDialoguePlayed == false)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Ancient forces prevent you from using this item right now..."), jungle);
+                        InfernalWorld.jungleSubshockPlanteraDialoguePlayed = true;
                         SoundEngine.PlaySound(CalamityMod.Sounds.CommonCalamitySounds.ExoPlasmaShootSound);
                     }
                     return false;

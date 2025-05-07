@@ -35,6 +35,7 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             BitsByte bitsByte1 = new BitsByte();
             bitsByte1[0] = downedDreadNautilus;
+            writer.Write(bitsByte1);
         }
 
         public override void NetReceive(BinaryReader reader)

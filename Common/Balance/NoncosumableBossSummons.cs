@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using CalamityMod.Items;
+using InfernumMode.Content.Items.SummonItems;
 
 namespace InfernalEclipseAPI.Common.Balance
 {
@@ -59,17 +60,17 @@ namespace InfernalEclipseAPI.Common.Balance
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (ModLoader.TryGetMod("CalamityModMusic", out Mod musicMod))
-            {
-                int[] musicBox =
-                {
-                    musicMod.Find<ModItem>("BossRushTier5MusicBox").Type
-                };
 
-                foreach (int num in musicBox)
+            foreach (TooltipLine tooltip in tooltips)
+            {
+                if (tooltip.Text.Contains("This music box is unfinished and does not work"))
                 {
-                    foreach (TooltipLine tooltip in tooltips)
-                        tooltip.Text = tooltip.Text.Replace("This music box is unfinished an does not work", "Plays 'Omiscience Of Gods' by TheTrester");
+                    tooltip.Text = "Plays 'Omniscience Of Gods' by TheTrester";
+                }
+
+                if (tooltip.Text.Contains("It becomes nighttime if this item is used during daytime") && item.type == ModContent.ItemType<DungeonsCurse>())
+                {
+                    tooltip.Text = "Can only be used at night";
                 }
             }
 
