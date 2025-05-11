@@ -22,9 +22,23 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
             {
                 Recipe recipe = Main.recipe[index];
                 if (recipe.HasIngredient(126) && recipe.HasIngredient(ModContent.ItemType<BloodOrb>()))
+                {
+                    if (InfernalConfig.Instance.VanillaBalanceChanges)
+                    {
+                        recipe.DisableDecraft();
+                    }
+
                     recipe.DisableRecipe();
+                }
                 if (recipe.HasIngredient(353) && recipe.HasIngredient(ModContent.ItemType<BloodOrb>()))
+                {
+                    if (InfernalConfig.Instance.VanillaBalanceChanges)
+                    {
+                        recipe.DisableDecraft();
+                    }
+
                     recipe.DisableRecipe();
+                }
             }
         }
     }

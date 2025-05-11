@@ -35,6 +35,11 @@ Items: {
 		Tooltip: Plays 'TWISTED GARDEN [Remix]' by Kuudray
 		DisplayName: Music Box (Boss Rush - Tier ???)
 	}
+
+	BossRushEncoreMusicBox: {
+		Tooltip: Plays 'Ensemble of Fools (Encore Mix)' by CDMusic
+		DisplayName: Music Box (Boss Rush - Encore)
+	}
 }
 
 Projectiles: {
@@ -126,6 +131,21 @@ Configs: {
 			Tooltip: Disables the crafting recipes for potions that use blood orbs.
 			Label: Disable Blood Orb Potions
 		}
+
+		PreventBossCheese: {
+			Tooltip: Prevents certain items from working during certain bosses to prevent easy kills.
+			Label: Prevent Boss Cheese
+		}
+
+		DisableUnfinisedContent: {
+			Label: Disable Unfinised Content
+			Tooltip: Disables any unfinished content from other mods to keep the player experience consistent.
+		}
+
+		DisableDuplicateContent: {
+			Label: Disable Duplicate Content
+			Tooltip: Disables any duplicate content two mods may add.
+		}
 	}
 }
 
@@ -140,6 +160,11 @@ Buffs: {
 	StarboundHorrification: {
 		Description: You cannot escape Astrageldon...
 		DisplayName: Starbound Horrification
+	}
+
+	WarpJammed: {
+		Description: Draedon is monitoring your teleports...
+		DisplayName: Warp Jammed
 	}
 }
 

@@ -12,6 +12,7 @@ using CalamityMod.Projectiles.Boss;
 using CalamityMod.NPCs.BrimstoneElemental;
 using CalamityMod.NPCs.AquaticScourge;
 using InfernalEclipseAPI.Core.Systems;
+using CalamityMod.NPCs.Yharon;
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
     public class NPCCheck : GlobalNPC
@@ -29,6 +30,11 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 InfernalWorld.sulfurScourgeDialoguePlayed = false;
                 InfernalWorld.brimstoneDialoguePlayed = false;
+            }
+            if (npc.type == ModContent.NPCType<Yharon>())
+            {
+                InfernalWorld.yharonDischarge = false;
+                InfernalWorld.yharonSmasher = false;
             }
 
             if (npc.type == NPCID.BloodNautilus)

@@ -49,12 +49,30 @@ namespace InfernalEclipseAPI.Core
                 int calCloneId = ModContent.NPCType<CalamitasClone>();
                 int calamitasId = ModContent.NPCType<SupremeCalamitas>();
                 int namelessId = 0;
+                int noxusID = 0;
+                int goozmaID = 0;
+                int mutantID = 0;
 
                 ModLoader.TryGetMod("CalamityMod", out Mod calamity);
                 bool wotgOn = ModLoader.TryGetMod("NoxusBoss", out Mod wotg);
                 if (wotgOn)
                 {
                     namelessId = wotg.Find<ModNPC>("NamelessDeityBoss").Type;
+                }
+                bool noxusOn = ModLoader.TryGetMod("NoxusPort", out Mod noxusPort);
+                if (noxusOn)
+                {
+                    noxusID = noxusPort.Find<ModNPC>("NoxusEgg").Type;
+                }
+                bool huntOn = ModLoader.TryGetMod("CalamityHunt", out Mod calHunt);
+                if (huntOn)
+                {
+                    goozmaID = calHunt.Find<ModNPC>("Goozma").Type;
+                }
+                bool fargoDLCOn = (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls) && ModLoader.TryGetMod("FargowiltasCrossMod", out Mod soulsDLC));
+                if (fargoDLCOn)
+                {
+                    mutantID = fargoSouls.Find<ModNPC>("MutantBoss").Type;
                 }
 
                 List<(int, int, Action<int>, int, bool, float, int[], int[])> brEntries = (List<(int, int, Action<int>, int, bool, float, int[], int[])>)calamity.Call("GetBossRushEntries");
@@ -77,11 +95,21 @@ namespace InfernalEclipseAPI.Core
 
                 if (wotgOn && BossRushEvent.BossRushStage >= namelessId)
                 {
-                    tier = 42;
+                    if (BossRushEvent.BossRushStage > namelessId)
+                        tier = 100;
+                    else 
+                        tier = 42;
                 }
                 else if (BossRushEvent.BossRushStage > calamitasId)
                 {
-                    tier = 6;
+                    if (fargoDLCOn && BossRushEvent.BossRushStage > mutantID)
+                        tier = 100;
+                    else if (noxusOn && BossRushEvent.BossRushStage > noxusID)
+                        tier = 100;
+                    else if (huntOn && BossRushEvent.BossRushStage > goozmaID)
+                        tier = 100;
+                    else
+                        tier = 6;
                 }
                 else if (BossRushEvent.BossRushStage > calCloneId)
                 {
@@ -102,7 +130,11 @@ namespace InfernalEclipseAPI.Core
 
                 if (tier >= 6)
                 {
-                    if (tier == 42)
+                    if (tier == 100)
+                    {
+                        return MusicLoader.GetMusicSlot(Mod, "Assets/Music/EnsembleofFools(EncoreMix)");
+                    }
+                    else if (tier == 42)
                     {
                         return MusicLoader.GetMusicSlot(Mod, "Assets/Music/TWISTEDGARDENRemix");
                     }

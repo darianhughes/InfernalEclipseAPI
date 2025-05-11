@@ -15,6 +15,7 @@ using Terraria.Audio;
 using Terraria.Chat;
 using CalamityMod.NPCs.BrimstoneElemental;
 using CalamityMod.NPCs.AquaticScourge;
+using CalamityMod.NPCs.Yharon;
 
 namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 {
@@ -36,6 +37,8 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 
         private static int CurseID;
         private static int ShockerID;
+        private static int DischargeID;
+        private static int SmasherID;
 
         public delegate bool CanItemDoActionWithPlayerDelegate(Item item, Player player);
         public static event CanItemDoActionWithPlayerDelegate? CanUseItemEvent;
@@ -66,13 +69,23 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 
             CanUseItemEvent += ModifyDungeonCurseUseConditions;
 
-            if (InfernalConfig.Instance.CalamityBalanceChanges)
+            if (InfernalConfig.Instance.PreventBossCheese)
             {
                 ModLoader.TryGetMod("CalamityMod", out Mod cal);
                 if (cal.TryFind("SubmarineShocker", out ModItem shocker))
                     ShockerID = shocker.Type;
 
                 CanUseItemEvent += ModifySubmarineShockerUseConditions;
+
+                if (cal.TryFind("CosmicDischarge", out ModItem discharge))
+                    DischargeID = discharge.Type;
+
+                CanUseItemEvent += ModifyCosmicDischargeUseConditions;
+
+                if (cal.TryFind("GalaxySmasher", out ModItem smahser))
+                    SmasherID = smahser.Type;
+
+                CanUseItemEvent += ModifyGalaxySmasherUseConditions;
             }
 
             return base.IsLoadingEnabled(mod);
@@ -119,6 +132,46 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                     return false;
                 }
 
+                return true;
+            }
+            return true;
+        }
+
+        private bool ModifyCosmicDischargeUseConditions(Item item, Player player)
+        {
+            if (item.type == DischargeID)
+            {
+                if (NPC.AnyNPCs(ModContent.NPCType<Yharon>()))
+                {
+                    Color jungle = new Color(255, 240, 20);
+                    if (InfernalWorld.yharonDischarge == false)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Ancient forces prevent you from using this item right now..."), jungle);
+                        InfernalWorld.yharonDischarge = true;
+                        SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh);
+                    }
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+
+        private bool ModifyGalaxySmasherUseConditions(Item item, Player player)
+        {
+            if (item.type == SmasherID)
+            {
+                if (NPC.AnyNPCs(ModContent.NPCType<Yharon>()))
+                {
+                    Color jungle = new Color(255, 240, 20);
+                    if (InfernalWorld.yharonSmasher == false)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Ancient forces prevent you from using this item right now..."), jungle);
+                        InfernalWorld.yharonSmasher = true;
+                        SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh);
+                    }
+                    return false;
+                }
                 return true;
             }
             return true;

@@ -21,6 +21,10 @@ namespace InfernalEclipseAPI
         [DefaultValue(false)]
         public bool BossKillCheckOnOres { get; set; }
 
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool PreventBossCheese { get; set; }
+
         [DefaultValue(true)]
         public bool VanillaBalanceChanges { get; set; }
 
@@ -44,6 +48,7 @@ namespace InfernalEclipseAPI
         public bool DisableBloodOrbPotions { get; set; }
 
         [DefaultValue(true)]
+        [ReloadRequired]
         public bool InfernumRecipeTweaks { get; set; }
 
         [DefaultValue(true)]
@@ -81,6 +86,14 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         [ReloadRequired]
         public bool InfernumModeForced { get; set; }
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool DisableUnfinisedContent { get; set; }
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool DisableDuplicateContent { get; set; }
 
         #endregion
     }

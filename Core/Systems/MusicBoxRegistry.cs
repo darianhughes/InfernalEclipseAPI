@@ -35,6 +35,11 @@ namespace InfernalEclipseAPI.Core.Systems
                 int t42BoxTileID = ModContent.TileType<BossRushTierNamelessMusicBoxTile>();
                 int t42musicID = MusicLoader.GetMusicSlot(thisMod, "Assets/Music/TWISTEDGARDENRemix");
                 MusicLoader.AddMusicBox(thisMod, t42musicID, t42boxID, t42BoxTileID);
+
+                int encoreBoxID = ModContent.ItemType<BossRushEncoreMusicBox>();
+                int encoreBoxTileID = ModContent.TileType<BossRushEncoreMusicBoxTile>();
+                int encoreMusicID = MusicLoader.GetMusicSlot(thisMod, "Assets/Music/EnsembleofFools(EncoreMix)");
+                MusicLoader.AddMusicBox(thisMod, encoreMusicID, encoreBoxID, encoreBoxTileID);
             }
         }
     }

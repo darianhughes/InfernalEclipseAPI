@@ -97,7 +97,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 Mod mod1;
 
                 //We have infernum, right?
-                if (Terraria.ModLoader.ModLoader.TryGetMod("InfernumMode", out mod1))
+                if (ModLoader.TryGetMod("InfernumMode", out mod1))
                 {
                     if (recipe.HasResult(mod1.Find<ModItem>("RedBait")))
                         recipe.AddIngredient(ItemID.ChumBucket, 10);
@@ -108,6 +108,12 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                     }
                     if (recipe.HasResult(mod1.Find<ModItem>("SparklingTunaCan")) && recipe.HasIngredient(2339))
                         recipe.DisableRecipe();
+                }
+
+                //Yharon
+                if (recipe.HasIngredient(ModContent.ItemType<LifeAlloy>()) && recipe.HasIngredient(ModContent.ItemType<YharonEgg>()))
+                {
+                    recipe.DisableRecipe();
                 }
             }
         }
@@ -128,12 +134,27 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
             recipe5.AddTile(ModContent.TileType<DraedonsForge>());
             recipe5.Register();
 
-            //Yharon Post-DoG
+            //Yharon Post-Providence, DoG & Primordials
             Recipe recipe6 = Recipe.Create(ModContent.ItemType<YharonEgg>(), 1);
             recipe6.AddIngredient(ModContent.ItemType<EffulgentFeather>(), 15);
             recipe6.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 10);
             recipe6.AddIngredient(ModContent.ItemType<UnholyEssence>(), 50);
             recipe6.AddIngredient(ModContent.ItemType<AscendantSpiritEssence>(), 5);
+
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            {
+                thorium.TryFind("DeathEssence", out ModItem death);
+                thorium.TryFind("OceanEssence", out ModItem ocean);
+                thorium.TryFind("InfernoEssence", out ModItem inferno);
+
+                if (death != null && ocean != null && inferno != null)
+                {
+                    recipe6.AddIngredient(death.Type);
+                    recipe6.AddIngredient(ocean.Type);
+                    recipe6.AddIngredient(inferno.Type);
+                }
+            }
+
             recipe6.AddTile(ModContent.TileType<CosmicAnvil>());
             recipe6.Register();
 

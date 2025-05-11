@@ -37,12 +37,14 @@ using CalamityMod.Projectiles.Typeless;
 using System.Security.Policy;
 using InfernalEclipseAPI.Core.Systems;
 using System.IO;
+using InfernalEclipseAPI.Core.Players;
 
 namespace InfernalEclipseAPI
 {
     public enum InfernalEclipseMessageType : byte
     {
-        SyncDownedBosses
+        SyncDownedBosses,
+        TriggerScytheCharge
     }
     public class InfernalEclipseAPI : Mod
 	{
@@ -82,6 +84,14 @@ namespace InfernalEclipseAPI
                         packet.Write((byte)InfernalEclipseMessageType.SyncDownedBosses);
                         packet.Write(downed);
                         packet.Send(-1, whoAmI); // sync to all clients except sender
+                    }
+                    break;
+
+                case InfernalEclipseMessageType.TriggerScytheCharge:
+                    byte index = reader.ReadByte();
+                    if (index < byte.MaxValue)
+                    {
+                        Main.player[index].GetModPlayer<HealerPlayer>().TriggerScytheCharge(true);
                     }
                     break;
             }
@@ -447,26 +457,26 @@ namespace InfernalEclipseAPI
                     };
 
 
-                    int AvatarInstertID;
-                    if (ModLoader.TryGetMod("CalamityHunt", out Mod CalHunt))
-                    {
-                        AvatarInstertID = CalHunt.Find<ModNPC>("Goozma").Type;
-                    }
-                    else
-                    {
-                        AvatarInstertID = ModContent.NPCType<SupremeCalamitas>();
-                    }
+                    //int AvatarInstertID;
+                    //if (ModLoader.TryGetMod("CalamityHunt", out Mod CalHunt))
+                    //{
+                    //    AvatarInstertID = CalHunt.Find<ModNPC>("Goozma").Type;
+                    //}
+                    //else
+                    //{
+                    //    AvatarInstertID = ModContent.NPCType<SupremeCalamitas>();
+                    //}
 
-                    for (int i = 0; i < brEntries.Count; i++)
-                    {
-                        if (brEntries[i].Item1 == AvatarInstertID)
-                        {
-                            AvatarInstertID = i;
-                            break;
-                        }
-                    }
+                    //for (int i = 0; i < brEntries.Count; i++)
+                    //{
+                    //    if (brEntries[i].Item1 == AvatarInstertID)
+                    //    {
+                    //        AvatarInstertID = i;
+                    //        break;
+                    //    }
+                    //}
 
-                    brEntries.Insert(AvatarInstertID + 1, (wotg.Find<ModNPC>("AvatarRift").Type, -1, prAvatar, 180, false, 0f, AvatarMinionIDs, AvatarIDs));
+                    brEntries.Insert(brEntries.Count, (wotg.Find<ModNPC>("AvatarRift").Type, -1, prAvatar, 180, false, 0f, AvatarMinionIDs, AvatarIDs));
 
                     //Nameless Deity
                     int[] NamelessMinionIDs = { };
@@ -490,17 +500,17 @@ namespace InfernalEclipseAPI
                         {
                             if (brEntries[i].Item1 == NamelessInsertID)
                             {
-                                NamelessInsertID = i;
+                                NamelessInsertID = i + 1;
                                 break;
                             }
                         }
                     }
                     else
                     {
-                        NamelessInsertID = AvatarInstertID + 1;
+                        NamelessInsertID = brEntries.Count;
                     }
 
-                    brEntries.Insert(NamelessInsertID + 1, (wotg.Find<ModNPC>("NamelessDeityBoss").Type, -1, prNameless, 270, false, 0f, NamelessMinionIDs, NamelessID));
+                    brEntries.Insert(NamelessInsertID, (wotg.Find<ModNPC>("NamelessDeityBoss").Type, -1, prNameless, 270, false, 0f, NamelessMinionIDs, NamelessID));
                 }
             }
 

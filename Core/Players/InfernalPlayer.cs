@@ -181,12 +181,16 @@ namespace InfernalEclipseAPI.Core.Players
         private Vector2 previousPos;
         private bool wasUsingItem;
         private int horrifiedTimer = 0;
+        private int jamTimer = 0;
         public static bool BlockSlagsplitterEffects = false;
 
         public override void ResetEffects()
         {
             if (!Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
                 horrifiedTimer = 0;
+
+            if (!Player.HasBuff(ModContent.BuffType<WarpJammed>()))
+                jamTimer = 0;
 
             BlockSlagsplitterEffects = false;
 
@@ -287,7 +291,7 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 horrifiedTimer++;
 
-                // Give a 3 second grace period after first applying the buff
+                // Give a 1 second grace period after first applying the buff
                 if (horrifiedTimer < 60)
                 {
                     previousPos = Player.position;
@@ -300,7 +304,16 @@ namespace InfernalEclipseAPI.Core.Players
                     (Player.HeldItem.type == ItemID.MagicMirror ||
                      Player.HeldItem.type == ItemID.IceMirror ||
                      Player.HeldItem.type == ItemID.RecallPotion ||
-                     Player.HeldItem.type == ItemID.WormholePotion);
+                     Player.HeldItem.type == ItemID.WormholePotion ||
+                     Player.HeldItem.type == ItemID.PotionOfReturn ||
+                     Player.HeldItem.type == ItemID.CellPhone ||
+                     Player.HeldItem.type == ItemID.Shellphone ||
+                     Player.HeldItem.type == ItemID.ShellphoneHell ||
+                     Player.HeldItem.type == ItemID.ShellphoneOcean ||
+                     Player.HeldItem.type == ItemID.ShellphoneSpawn ||
+                     Player.HeldItem.type == ItemID.DemonConch ||
+                     Player.HeldItem.type == ItemID.MagicConch ||
+                     Player.HeldItem.type == ItemID.TeleportationPotion);
 
                 if (distanceMoved > 1000f || usedTeleportItem)
                 {
@@ -311,8 +324,44 @@ namespace InfernalEclipseAPI.Core.Players
                 previousPos = Player.position;
                 wasUsingItem = Player.itemAnimation > 0;
             }
+
+            if (Player.HasBuff(ModContent.BuffType<WarpJammed>()))
+            {
+                jamTimer++;
+
+                // Give a 3 second grace period after first applying the buff
+                if (jamTimer < 180)
+                {
+                    previousPos = Player.position;
+                    wasUsingItem = Player.itemAnimation > 0;
+                    return;
+                }
+
+                float distanceMoved = Vector2.Distance(Player.position, previousPos);
+                bool usedTeleportItem = !wasUsingItem && Player.itemAnimation > 0 &&
+                    (Player.HeldItem.type == ItemID.MagicMirror ||
+                     Player.HeldItem.type == ItemID.IceMirror ||
+                     Player.HeldItem.type == ItemID.RecallPotion ||
+                     Player.HeldItem.type == ItemID.WormholePotion ||
+                     Player.HeldItem.type == ItemID.PotionOfReturn ||
+                     Player.HeldItem.type == ItemID.CellPhone ||
+                     Player.HeldItem.type == ItemID.Shellphone ||
+                     Player.HeldItem.type == ItemID.ShellphoneHell ||
+                     Player.HeldItem.type == ItemID.ShellphoneOcean ||
+                     Player.HeldItem.type == ItemID.ShellphoneSpawn ||
+                     Player.HeldItem.type == ItemID.DemonConch ||
+                     Player.HeldItem.type == ItemID.MagicConch ||
+                     Player.HeldItem.type == ItemID.TeleportationPotion);
+
+                if (distanceMoved > 1000f || usedTeleportItem)
+                {
+                    SoundEngine.PlaySound(CalamityMod.Sounds.CommonCalamitySounds.ExoPlasmaShootSound, Player.Center);
+                    Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} tried to escape draedon's creations."), 9999.0, 0);
+                }
+
+                previousPos = Player.position;
+                wasUsingItem = Player.itemAnimation > 0;
+            }
         }
-
-
     }
 }

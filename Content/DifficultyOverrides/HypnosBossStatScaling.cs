@@ -44,7 +44,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
             if (InfernumActive.InfernumActive)
             {
-                npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                npc.lifeMax += (int)(((double).10) * (double)npc.lifeMax);
             }
         }
 
@@ -52,15 +52,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (InfernumActive.InfernumActive)
             {
-                modifiers.SourceDamage *= 1.35f;
-            }
-        }
-
-        public override void PostAI(NPC npc)
-        {
-            if (InfernumActive.InfernumActive)
-            {
-                npc.position += npc.velocity * 0.35f;
+                modifiers.SourceDamage *= 0.80f;
             }
         }
     }

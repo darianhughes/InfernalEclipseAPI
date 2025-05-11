@@ -16,6 +16,8 @@ namespace InfernalEclipseAPI.Core.World
         public static bool jungleSlagspitterPlateraDiaglougePlayer = false;
         public static bool sulfurScourgeDialoguePlayed = false;
         public static bool brimstoneDialoguePlayed = false;
+        public static bool yharonDischarge = false;
+        public static bool yharonSmasher = false;
 
         public static void ResetFlags()
         {
@@ -24,6 +26,8 @@ namespace InfernalEclipseAPI.Core.World
             jungleSlagspitterPlateraDiaglougePlayer=false;
             sulfurScourgeDialoguePlayed =false;
             brimstoneDialoguePlayed =false;
+            yharonDischarge =false;
+            yharonSmasher=false;
         }
 
         public override void OnWorldLoad()
@@ -43,6 +47,8 @@ namespace InfernalEclipseAPI.Core.World
             tag["jungleSlagspitterPlateraDiaglougePlayer"] = jungleSlagspitterPlateraDiaglougePlayer;
             tag["sulfurScourgeDialoguePlayed"] = sulfurScourgeDialoguePlayed;
             tag["brimstoneDialoguePlayed"] = brimstoneDialoguePlayed;
+            tag["yharonDischarge"] = yharonDischarge;
+            tag["yharonSmasher"] = yharonSmasher;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -52,6 +58,8 @@ namespace InfernalEclipseAPI.Core.World
             GetData(ref jungleSlagspitterPlateraDiaglougePlayer, "jungleSlagspitterPlateraDiaglougePlayer", tag);
             GetData(ref sulfurScourgeDialoguePlayed, "sulfurScourgeDialoguePlayed", tag);
             GetData(ref brimstoneDialoguePlayed, "brimstoneDialoguePlayed", tag);
+            GetData(ref yharonDischarge, "yharonDischarge", tag);
+            GetData(ref yharonSmasher, "yharonSmasher", tag);
         }
 
         public static void GetData(ref bool baseVar, string path, TagCompound tag)
@@ -66,6 +74,8 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(jungleSlagspitterPlateraDiaglougePlayer);
             writer.Write(sulfurScourgeDialoguePlayed);
             writer.Write(brimstoneDialoguePlayed);
+            writer.Write(yharonDischarge);
+            writer.Write(yharonSmasher);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -75,6 +85,8 @@ namespace InfernalEclipseAPI.Core.World
             jungleSlagspitterPlateraDiaglougePlayer = reader.ReadBoolean();
             sulfurScourgeDialoguePlayed = reader.ReadBoolean();
             brimstoneDialoguePlayed = reader.ReadBoolean();
+            yharonSmasher = reader.ReadBoolean();
+            yharonDischarge = reader.ReadBoolean();
         }
     }
 }

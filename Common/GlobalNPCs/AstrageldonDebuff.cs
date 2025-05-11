@@ -17,7 +17,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
     {
         public override void PostAI(NPC npc)
         {
-            if (!npc.active || npc.type != ModContent.NPCType<Astrageldon>())
+            if (!npc.active || npc.type != ModContent.NPCType<Astrageldon>() || !InfernalConfig.Instance.PreventBossCheese)
                 return;
 
             for (int i = 0; i < Main.maxPlayers; i++)
