@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
+using ThoriumMod.Projectiles.Scythe;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -78,6 +79,34 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 {
                     entity.penetrate = 5;
                 }
+
+                if (entity.type == thorium.Find<ModProjectile>("AquaiteScythePro").Type || entity.type == thorium.Find<ModProjectile>("BloodHarvestPro").Type || entity.type == thorium.Find<ModProjectile>("FallingTwilightPro").Type || entity.type == thorium.Find<ModProjectile>("TrueHallowedScythePro").Type || entity.type == thorium.Find<ModProjectile>("HallowedScythePro").Type)
+                {
+                    if (entity.usesLocalNPCImmunity)
+                    {
+                        entity.localNPCHitCooldown = 6;
+                    }
+
+                    if (entity.usesIDStaticNPCImmunity)
+                    {
+                        entity.idStaticNPCHitCooldown = 6;
+                    }
+                }
+
+                if (entity.type == thorium.Find<ModProjectile>("BoneReaperPro").Type)
+                {
+                    if (entity.usesLocalNPCImmunity)
+                    {
+                        entity.localNPCHitCooldown = 3;
+                    }
+
+                    if (entity.usesIDStaticNPCImmunity)
+                    {
+                        entity.idStaticNPCHitCooldown = 3;
+                    }
+                }
+
+
             } 
 
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -88,10 +117,10 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.scale = 2;
                 }
 
-                if (entity.type == ragnarok.Find<ModProjectile>("WindSlashPro").Type)
-                {
-                    entity.scale *= 2;
-                }
+                //if (entity.type == ragnarok.Find<ModProjectile>("WindSlashPro").Type)
+                //{
+                //    entity.scale *= 2;
+                //}
 
                 if (entity.type == ragnarok.Find<ModProjectile>("ProfanedBellBlast").Type)
                 {
@@ -109,6 +138,32 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 {
                     entity.scale = (float)1.5;
                 }
+
+                if (entity.type == ragnarok.Find<ModProjectile>("MarbleScythePro").Type || entity.type == ragnarok.Find<ModProjectile>("ProfanedScythePro").Type)
+                {
+                    if (entity.usesLocalNPCImmunity)
+                    {
+                        entity.localNPCHitCooldown = 6;
+                    }
+
+                    if (entity.usesIDStaticNPCImmunity)
+                    {
+                        entity.idStaticNPCHitCooldown = 6;
+                    }
+                }
+
+                if (entity.type == ragnarok.Find<ModProjectile>("ScoriaDualscythePro").Type)
+                {
+                    if (entity.usesLocalNPCImmunity)
+                    {
+                        entity.localNPCHitCooldown = 3;
+                    }
+
+                    if (entity.usesIDStaticNPCImmunity)
+                    {
+                        entity.idStaticNPCHitCooldown = 3;
+                    }
+                }
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -122,15 +177,57 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                     if (entity.usesIDStaticNPCImmunity)
                     {
-                        entity.idStaticNPCHitCooldown -= 1;
+                        entity.idStaticNPCHitCooldown = 1;
                     }
                 }
             }
 
-            //if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && InfernalConfig.Instance.ThoriumBalanceChangess)
-            //{
-            //    if (entity.type == )
-            //}
+            if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && InfernalConfig.Instance.ThoriumBalanceChangess)
+            {
+                if (GetProj(entity, thorRework, "DemonBloodSword") ||
+                    GetProj(entity, thorRework, "DragonTooth") ||
+                    GetProj(entity, thorRework, "DreadRazor") || 
+                    GetProj(entity, thorRework, "IllumiteBlade") ||
+                    GetProj(entity, thorRework, "LodeStoneClaymore") ||
+                    GetProj(entity, thorRework, "SoulRender") || 
+                    GetProj(entity, thorRework, "TerrariumSaber") ||
+                    GetProj(entity, thorRework, "TitanSword") ||
+                    GetProj(entity, thorRework, "ToothOfTheConsumer") ||
+                    GetProj(entity, thorRework, "BeholderBlade"))
+                {
+                    if (entity.usesLocalNPCImmunity)
+                    {
+                        entity.localNPCHitCooldown = 60;
+                    }
+
+                    if (entity.usesIDStaticNPCImmunity)
+                    {
+                        entity.idStaticNPCHitCooldown = 60;
+                    }
+                }
+
+                if (GetProj(entity, thorRework, "GrandThunder"))
+                {
+                    if (entity.usesLocalNPCImmunity)
+                    {
+                        entity.localNPCHitCooldown = -1;
+                    }
+
+                    if (entity.usesIDStaticNPCImmunity)
+                    {
+                        entity.idStaticNPCHitCooldown = -1;
+                    }
+                }
+            }
+        }
+
+        private bool GetProj(Projectile entity, Mod mod, string item)
+        {
+            if (entity.type == mod.Find<ModProjectile>(item).Type)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

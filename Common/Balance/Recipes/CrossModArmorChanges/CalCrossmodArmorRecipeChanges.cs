@@ -38,7 +38,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes.CrossModArmorChanges
                 }
             }
 
-                if (ragnarok != null && calBardHealer != null && InfernalConfig.Instance.DisableDuplicateContent)
+                if (ragnarok != null && calBardHealer != null)
             {
                 int[] ragnarokArmor =
                 {
@@ -78,23 +78,46 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes.CrossModArmorChanges
                     GetItemID("VictideAmmoniteHat", calBardHealer)
                 };
 
-                foreach (var recipe in Main.recipe)
+                for (int i = 0; i < ragnarokArmor.Length; i++)
                 {
-                    foreach (int itemID in ragnarokArmor)
+                    int ragID = ragnarokArmor[i];
+                    int calID = calBardHealerArmor[i];
+
+                    if (ragID == 0 || calID == 0)
                     {
-                        if (recipe.HasResult(itemID))
+                        continue;
+                    }
+
+                    Recipe originalRecipe = null;
+
+                    // Disable ragnarok item recipe
+                    foreach (var recipe in Main.recipe)
+                    {
+                        if (recipe.createItem.type == ragID)
                         {
+                            originalRecipe = recipe;
                             recipe.DisableRecipe();
+                            break;
                         }
                     }
 
-                    //for (int i = 0; i < calBardHealerArmor.Length; i++)
-                    //{
-                    //    if (recipe.HasResult(calBardHealerArmor[i]))
-                    //    {
-                    //        recipe.AddCustomShimmerResult(ragnarokArmor[i]);
-                    //    }
-                    //}
+                    int originalTile = originalRecipe?.requiredTile.Count > 0 ? originalRecipe.requiredTile[0] : TileID.Anvils; // fallback to something valid
+
+                    // Forward: Ragnarok -> CalamityBH
+                    Recipe forward = Recipe.Create(calID);
+                    forward.AddIngredient(ragID);
+                    forward.AddCondition(Condition.InGraveyard);
+                    if (originalTile != TileID.Anvils)
+                        forward.AddTile(originalTile);
+                    forward.Register();
+
+                    // Reverse: CalamityBH -> Ragnarok
+                    Recipe reverse = Recipe.Create(ragID);
+                    reverse.AddIngredient(calID);
+                    reverse.AddCondition(Condition.InGraveyard);
+                    if (originalTile != TileID.Anvils)
+                        reverse.AddTile(originalTile);
+                    reverse.Register();
                 }
             }
         }

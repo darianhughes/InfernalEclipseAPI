@@ -20,7 +20,10 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
         public override void OnKill(NPC npc)
         {
             if (npc.type == NPCID.TheDestroyer)
+            {
                 InfernalWorld.dreadonDestroyerDialoguePlayed = false;
+                InfernalWorld.dreadonDestroyer2DialoguePlayed = false;
+            }
             if (npc.type == NPCID.Plantera)
             {
                 InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
@@ -54,7 +57,10 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
         public override bool CheckDead(NPC npc)
         {
             if (npc.type == NPCID.TheDestroyer)
+            {
                 InfernalWorld.dreadonDestroyerDialoguePlayed = false;
+                InfernalWorld.dreadonDestroyer2DialoguePlayed = false;
+            }
             if (npc.type == NPCID.Plantera)
             {
                 InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;

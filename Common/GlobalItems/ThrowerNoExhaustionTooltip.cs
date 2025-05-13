@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
+    //Provided by Wardrobe Hummus
     public class ThrowerNoExhaustionTooltip : GlobalItem
     {
         private static int[] supportedTypes;
@@ -41,7 +42,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             EnsureInitialized();
-            if (supportedTypes == null || !supportedTypes.Contains(item.type) || !InfernalConfig.Instance.ThoriumBalanceChangess)
+            if (supportedTypes == null || !supportedTypes.Contains(item.type) || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
             tooltips.Add(new TooltipLine(Mod, "NoExhaustion", "Removes all Exhaustion when equipped")
             {

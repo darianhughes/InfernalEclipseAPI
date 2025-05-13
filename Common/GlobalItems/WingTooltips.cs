@@ -9,11 +9,12 @@ using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
+    //Provided by Wardrobe Hummus
     public class WingTooltips : GlobalItem
     {
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (!ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod) || !InfernalConfig.Instance.ThoriumBalanceChangess)
+            if (!ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod) || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
 
             if (!thoriumMod.TryFind("SubspaceWings", out ModItem subspaceWings) ||

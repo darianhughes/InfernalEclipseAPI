@@ -19,6 +19,8 @@ using CalamityMod.NPCs.BrimstoneElemental;
 using InfernalEclipseAPI.Core.World;
 using Terraria.Chat;
 using Terraria.Localization;
+using InfernalEclipseAPI.Common.GlobalItems;
+using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -113,7 +115,7 @@ namespace InfernalEclipseAPI.Core.Players
                 //This message should always popup upon entering a world if they are playing the mod pack.
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod rework))
                 {
-                    Main.NewText("NOTICE: It is detected that you have Thorium Bosses Reworked enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatability config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses when the Infernum difficulty is active.", 255, 255, 0);
+                    Main.NewText("NOTICE: It is detected that you have Thorium Bosses Reworked enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatability config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses depending on the current difficulty.", 255, 255, 0);
                 }
                 else
                 {

@@ -30,6 +30,7 @@ using CalamityMod.Items.Weapons.Summon;
 using CalamityMod;
 using YouBoss.Core.Graphics.Shaders.Screen;
 using InfernalEclipseAPI.Core.Players;
+using CalamityMod.Items;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -37,15 +38,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems
     {
         public override void SetDefaults(Item item)
         {
-            //Vanilla
-            if (item.type == ItemID.ReaverShark)
-            {
-                item.pick = 59;
-                item.useTime = 11;
-            }
-
+            #region Vanilla
             if (ModContent.GetInstance<InfernalConfig>().VanillaBalanceChanges)
             {
+                if (item.type == ItemID.ReaverShark)
+                {
+                    item.pick = 59;
+                    item.useTime = 11;
+                }
+
                 if (item.type == ItemID.FieryGreatsword)
                 {
                     item.damage = 50;
@@ -73,9 +74,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 22;
                     item.damage = 30;
                 }
-            }
 
-            //Zenith Toilet
+                if (item.type == ItemID.ThornWhip)
+                {
+                    item.useTime = 30;
+                    item.useAnimation = 30;
+                }
+            }
+            #endregion
+
+            #region Zenith Toilet
             if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
             {
                 if (item.type == toilet.Find<ModItem>("ZenithToilet").Type)
@@ -90,8 +98,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.crit = 0;
                 }
             }
+            #endregion
 
-            //Calamity
+            #region Calamity
             if (InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 ModLoader.TryGetMod("CalamityMod", out Mod cal);
@@ -109,11 +118,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 20;
                 }
             }
+            #endregion
 
-            //Catalyst
+            #region Catalyst
             if (InfernalConfig.Instance.CalamityBalanceChanges && ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
             {
-                //Ranged
+                #region Ranger
                 //Desert Scorcher
                 if (item.type == catalyst.Find<ModItem>("DesertScorcher").Type)
                 {
@@ -129,13 +139,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.shootSpeed = (int)3.5;
                     item.damage = 21;
                 }
+                #endregion
 
-                //Summoner
+                #region Summoner
                 //Coral Crusher
                 if (item.type == catalyst.Find<ModItem>("CoralCrusher").Type)
                 {
                     item.useTime = 32;
                     item.useAnimation = 32;
+                    item.damage = 21;
                 }
 
                 //Congealed Duo-Whip
@@ -144,8 +156,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useTime = 36;
                     item.useAnimation = 36;
                 }
+                #endregion
 
-                //Armor
+                #region Armor
                 if (GetItem(catalyst, "IntergelacticBreastplate", item))
                 {
                     item.defense = 20;
@@ -180,12 +193,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.defense = 6;
                 }
+                #endregion
             }
+            #endregion
 
-            //Thorium
+            #region Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
-                //Melee
+                #region Melee
+                #region Pre-Hardmode
                 //The Snowball
                 if (item.type == thorium.Find<ModItem>("TheSnowball").Type)
                 {
@@ -445,16 +461,20 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 35;
                 }
+                #endregion
 
-                //HARDMODE
+                #region Hardmode
                 //Durasteel Blade
                 if (item.type == FindItem(thorium, "DurasteelBlade"))
                 {
                     item.useTime = 14;
                     item.useAnimation = 14;
                 }
+                #endregion
+                #endregion
 
-                //Ranged
+                #region Ranged
+                #region Pre-Hardmode
                 //Frost Fury
                 if (item.type == thorium.Find<ModItem>("FrostFury").Type)
                 {
@@ -582,8 +602,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 16;
                     item.useTime = 16;
                 }
+                #endregion
+                #endregion
 
-                //Magic
+                #region Magic
+                #region Pre-Hardmode
                 //Ice Cube
                 if (item.type == thorium.Find<ModItem>("IceCube").Type)
                 {
@@ -615,12 +638,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 20;
                     item.useTime = 33;
                     item.useAnimation = 33;
-                }
-
-                //Magick Staff
-                if (item.type == thorium.Find<ModItem>("MagickStaff").Type)
-                {
-                    //Add debufs
                 }
 
                 //Vessel Buster
@@ -721,8 +738,21 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 38;
                 }
+                #endregion
 
-                //Summoner
+                #region Hardmode
+
+
+                //Lodestone Staff
+                if (GetItem(thorium, "LodeStoneStaff", item))
+                {
+                    item.damage = 38;
+                }
+                #endregion
+                #endregion
+
+                #region Summoner
+                #region Pre-Hardmode
                 //Storm Hatchling Staff
                 if (item.type == thorium.Find<ModItem>("StormHatchlingStaff").Type)
                 {
@@ -782,9 +812,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 35;
                 }
+                #endregion
+                #endregion
 
-                //Rouge & Thrower
-                //Pre-Hardmode
+                #region Rogue & Thrower
+                #region Pre-Hardmode
                 //Stone Throwing Spear
                 if (item.type == thorium.Find<ModItem>("StoneThrowingSpear").Type)
                 {
@@ -1031,8 +1063,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useTime = 10;
                     item.useAnimation = 10;
                 }
+                #endregion
 
-                //Hardmode
+                #region Hardmode
                 //Durasteel Throwing Spear
                 if (item.type == thorium.Find<ModItem>("DurasteelThrowingSpear").Type)
                 {
@@ -1067,8 +1100,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.shootSpeed = 13;
                     item.damage = 50;
                 }
+                #endregion
+                #endregion
 
-                //Healer
+                #region Healer
+                #region Pre-Hardmode
                 //Wooden Baton
                 if (item.type == thorium.Find<ModItem>("WoodenBaton").Type)
                 {
@@ -1184,7 +1220,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Aquaite Scythe
                 if (item.type == thorium.Find<ModItem>("AquaiteScythe").Type)
                 {
-                    item.healMana = 10;
                     item.useTime = 23;
                     item.useAnimation = 23;
                     item.damage = 9;
@@ -1206,7 +1241,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Molten Thresher
                 if (item.type == thorium.Find<ModItem>("MoltenThresher").Type)
                 {
-                    item.healLife = 1;
                     item.damage = 20;
                 }
 
@@ -1234,7 +1268,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (item.type == thorium.Find<ModItem>("BoneReaper").Type)
                 {
                     item.crit = 16;
-                    item.healMana = 5;
                     item.damage = 11;
                 }
 
@@ -1273,21 +1306,60 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Falling Twilight
                 if (item.type == thorium.Find<ModItem>("FallingTwilight").Type)
                 {
-                    item.healMana = 20;
-                    item.healLife = 2;
                     item.damage = 30;
                 }
 
                 //Blood Harvest
                 if (item.type == thorium.Find<ModItem>("BloodHarvest").Type)
                 {
-                    item.healLife = 4;
-                    item.healMana = 10;
                     item.damage = 27;
                 }
+                #endregion
+                #endregion
 
-                //Bard
-                //Pre-Hardmode
+                #region Hardmode
+                //Bone Baton
+                if (GetItem(thorium, "BoneBaton", item))
+                {
+                    item.damage = 45;
+                }
+
+                //Sacred Bludgeon
+                if (GetItem(thorium, "SacredBludgeon", item))
+                {
+                    item.shootSpeed = 22;
+                    item.damage = 95;
+                }
+
+                //Tranquil Lyre
+                if (GetItem(thorium, "TranquilLyre", item))
+                {
+                    item.shootSpeed = 16;
+                    item.damage = 55;
+                }
+
+                //Blood Transfusion
+                if (GetItem(thorium, "BloodTransfusion", item))
+                {
+                    item.shootSpeed = 14;
+                }
+
+                //Wild Umbra
+                if (GetItem(thorium, "WildUmbra", item))
+                {
+                    item.damage = 36;
+                }
+
+                //Iridescent Staff
+                if (GetItem(thorium, "IridescentStaff", item))
+                {
+                    item.useTime = 19;
+                    item.useAnimation = 19;
+                }
+                #endregion
+
+                #region Bard
+                #region Pre-Hardmode
                 //Wooden Whistle
                 if (item.type == thorium.Find<ModItem>("WoodenWhistle").Type)
                 {
@@ -1441,8 +1513,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 45;
                 }
+                #endregion
 
-                //Hardmode
+                #region Hardmode
                 //Dragon's Wail
                 if (GetItem(thorium, "DragonsWail", item))
                 {
@@ -1507,14 +1580,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 14;
                     item.damage = 140;
                 }
+                #endregion
+                #endregion
 
-                //True
+                #region True
                 if (GetItem(thorium, "Mjolnir", item))
                 {
                     item.damage = 600;
                 }
+                #endregion
 
-                //Armor
+                #region Armor
                 if (GetItem(thorium, "DurasteelChestplate", item))
                 {
                     item.defense = 12;
@@ -1544,8 +1620,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.defense = 6;
                 }
+                #endregion
 
-                //Accessories
+                #region Accessories
                 //Champion's Wings
                 if (item.type == thorium.Find<ModItem>("ChampionWing").Type)
                 {
@@ -1571,12 +1648,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.defense = 10;
                     item.lifeRegen = 10;
                 }
+                #endregion
             }
+            #endregion
 
-            //Unofficial Calamity Bard & Healler
+            #region Unofficial Calamity Bard & Healler
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && (ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess || ModContent.GetInstance<InfernalConfig>().CalamityBalanceChanges))
             {
-                //Healer Adjustments
+                #region Healer
+                #region Pre-Hardmode
                 //Wulfrum Weed Wacker
                 if (item.type == calBardHeal.Find<ModItem>("WulfrumWeedWacker").Type)
                 {
@@ -1610,8 +1690,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useTime = 256;
                     item.useAnimation = 256;
                 }
+                #endregion
 
-                //Hardmore
+                #region Hardmode
                 //Fire Hazard
                 if (item.type == calBardHeal.Find<ModItem>("FireHazard").Type)
                 {
@@ -1619,16 +1700,100 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //projectile?
                 }
 
-                //Bard Adjustments
-                //Pre-Hardmode
+                //Syzygy
+                if (GetItem(calBardHeal, "Syzygy", item))
+                {
+                    item.damage = 80;
+                }
+
+                //Singularity
+                if (GetItem(calBardHeal, "Singularity", item))
+                {
+                    item.damage = 110;
+                }
+
+                //Blooming Saintess' Devotion
+                if (GetItem(calBardHeal, "BloomingSaintessDevotion", item))
+                {
+                    item.damage = 69;
+                }
+
+                //Death Adder
+                if (GetItem(calBardHeal, "DeathAdder", item))
+                {
+                    item.damage = 200;
+                }
+
+                //Purgatorium Pandemonium
+                if (GetItem(calBardHeal, "PurgatoriumPandemonium", item))
+                {
+                    item.useTime = 30;
+                    item.useAnimation = 30;
+                    item.damage = 175;
+                }
+
+                //Exorectionist
+                if (GetItem(calBardHeal, "Exorectionist", item))
+                {
+                    item.Calamity().ChargePerUse = (float)0.5;
+                }
+
+                //Milky Way
+                if (GetItem(calBardHeal, "MilkyWay", item))
+                {
+                    item.damage = 200;
+                    item.crit = 21;
+                }
+
+                //Saving Grace
+                if (GetItem(calBardHeal, "SavingGrace", item))
+                {
+                    item.useTime = 80;
+                    item.useAnimation = 80;
+                    item.autoReuse = true;
+                }
+
+                //Will of the Ragnarok
+                if (GetItem(calBardHeal, "WilloftheRagnarok", item))
+                {
+                    item.damage = 77;
+                }
+
+                //Cherubim Omega
+                if (GetItem(calBardHeal, "CherubimOmega", item))
+                {
+                    item.damage = 500;
+                }
+
+                //Disaster
+                if (GetItem(calBardHeal, "Disaster", item))
+                {
+                    item.damage = 400;
+                }
+
+                //Times Old Roman
+                if (GetItem(calBardHeal, "TimesOldRoman", item))
+                {
+                    item.crit = 0;
+                    item.damage = 400;
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                }
+
+                #endregion
+                #endregion
+
+                #region Bard
+                #region Pre-Hardmode
                 //Return to Sludge
                 if (item.type == calBardHeal.Find<ModItem>("ReturntoSludge").Type)
                 {
                     item.damage = 22;
                     item.shootSpeed = 8;
                 }
+            #endregion
 
-                //Hardmode
+                #region Hardmode
                 //Song of the Elements
                 if (GetItem(calBardHeal, "SongoftheElements", item))
                 {
@@ -1685,8 +1850,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.crit = 16;
                 }
-                
-                //Armor
+                #endregion
+                #endregion
+
+                #region Armor
                 if (GetItem(calBardHeal, "IntergelacticCloche", item))
                 {
                     item.defense = 44;
@@ -1696,37 +1863,43 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.defense = 48;
                 }
+                #endregion
             }
+            #endregion
 
 
-            //Thorium Bosses Reworked
+            #region Thorium Bosses Reworked
             if (ModLoader.TryGetMod("ThoriumRework", out Mod rethorium) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
-                //Thrower Item Adjustments
+                #region Thrower
                 //Pocket Energy Storm
                 if (item.type == rethorium.Find<ModItem>("PocketEnergyStorm").Type)
                 {
-                    item.damage = 13;
+                    //item.damage = 13;
                 }
+                #endregion
 
-                //Healer
+                #region Healer
                 if (item.type == rethorium.Find<ModItem>("RedCresent").Type)
                 {
                     item.useTime = 12;
                     item.useAnimation = 12;
                 }
+                #endregion
 
-                //True
+                #region True
                 if (GetItem(rethorium, "Oneirophobia", item))
                 {
                     item.damage = 1000;
                 }
+                #endregion
             }
+            #endregion
 
-            //Ragnarook
+            #region Ragnarok
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
-                //Healer
+                #region Healer
                 //Prisma
                 if (item.type == ragnarok.Find<ModItem>("Prisma").Type)
                 {
@@ -1743,9 +1916,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Wind Reaver
                 if (item.type == ragnarok.Find<ModItem>("WindReaver").Type)
                 {
-                    item.damage = 20;
-                    item.useTime = 5;
-                    item.useAnimation = 5;
+                    item.damage = 26;
+                    item.useTime = 8;
+                    item.useAnimation = 8;
                 }
 
                 //Marble Scythe
@@ -1761,7 +1934,65 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 20;
                 }
 
-                //Bard
+                //Scoria Dualscythe
+                if (GetItem(ragnarok, "ScoriaDualscythe", item))
+                {
+                    item.damage = 105;
+                }
+
+                //Astral Ripper
+                if (GetItem(ragnarok, "AstralRipper", item))
+                {
+                    item.useTime = 8;
+                    item.useAnimation = 8;
+                    item.damage = 200;
+                }
+
+                //Profaned Scythe
+                if (GetItem(ragnarok, "ProfanedScythe", item))
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.damage = 120;
+                }
+
+                //Verdurant Bloom
+                if (GetItem(ragnarok, "VerdurantBloom", item))
+                {
+                    item.damage = 150;
+                }
+
+                //Splattercannon
+                if (GetItem(ragnarok, "Splattercannon", item))
+                {
+                    item.useTime = 6;
+                    item.useAnimation = 6;
+                    item.damage = 200;
+                }
+
+                //Fractal
+                if (GetItem(ragnarok, "Fractal", item))
+                {
+                    item.shootSpeed = 2;
+                }
+
+                //Nightmare Freezer
+                if (GetItem(ragnarok, "NightmareFreezer", item))
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.damage = 220;
+                }
+
+                //Cosmic Injector
+                if (GetItem(ragnarok, "CosmicInjector", item))
+                {
+                    item.damage = 150;
+                }
+
+                #endregion
+
+                #region Bard
                 //Drum Stick
                 if (GetItem(ragnarok, "DrumStick", item))
                 {
@@ -1800,9 +2031,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 250;
                 }
-
-
+                #endregion
             }
+            #endregion
         }
 
         public static int FindItem(Mod mod, string name)

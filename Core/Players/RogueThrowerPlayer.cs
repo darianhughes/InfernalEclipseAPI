@@ -9,6 +9,7 @@ using Terraria;
 
 namespace InfernalEclipseAPI.Core.Players
 {
+    //Provided by Wardrobe Hummus
     public class RogueThrowerPlayer : ModPlayer
     {
         private int volume2Type = -1;
@@ -86,7 +87,7 @@ namespace InfernalEclipseAPI.Core.Players
         private void ApplyExhaustionDisabling()
         {
             Item heldItem = Player.HeldItem;
-            if (heldItem.IsAir)
+            if (heldItem.IsAir || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
 
             ModItem modItem = heldItem.ModItem;
@@ -103,7 +104,7 @@ namespace InfernalEclipseAPI.Core.Players
 
         private void RestoreExhaustion(Item item)
         {
-            if (item == null || item.IsAir || previousHeldItemOriginalExhaustion != true)
+            if (item == null || item.IsAir || previousHeldItemOriginalExhaustion != true || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
 
             ModItem modItem = item.ModItem;

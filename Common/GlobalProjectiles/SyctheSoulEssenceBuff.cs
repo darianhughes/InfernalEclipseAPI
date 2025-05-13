@@ -9,13 +9,14 @@ using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
+    //Provided by Wardrobe Hummus
     public class SyctheSoulEssenceBuff : GlobalProjectile
     {
         public override bool InstancePerEntity => false;
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (projectile.owner < 0 || projectile.owner >= byte.MaxValue || !InfernalConfig.Instance.ThoriumBalanceChangess) return;
+            if (projectile.owner < 0 || projectile.owner >= byte.MaxValue || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance)) return;
 
             HealerPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<HealerPlayer>();
             if (!modPlayer.fifthScytheTypes.Contains(projectile.type) || !modPlayer.CanTriggerChargeEffect())

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Core.Players
 {
+    //Provided by Wardrobe Hummus
     public class OneirophobiaRightClickControl : ModPlayer
     {
         private int spawnedProjID = -1;
@@ -17,7 +18,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             Mod mod;
             ModItem modItem;
-            if (!ModLoader.TryGetMod("ThoriumRework", out mod) || !mod.TryFind<ModItem>("Oneirophobia", out modItem) || this.Player.HeldItem.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess)
+            if (!ModLoader.TryGetMod("ThoriumRework", out mod) || !mod.TryFind<ModItem>("Oneirophobia", out modItem) || this.Player.HeldItem.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
             if ((!Main.mouseRight ? 0 : (!Main.mouseLeft ? 1 : 0)) != 0)
             {

@@ -16,6 +16,8 @@ using Terraria.Chat;
 using CalamityMod.NPCs.BrimstoneElemental;
 using CalamityMod.NPCs.AquaticScourge;
 using CalamityMod.NPCs.Yharon;
+using ThoriumMod.Items.Lodestone;
+using YouBoss.Content.Items.ItemReworks;
 
 namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 {
@@ -39,6 +41,8 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
         private static int ShockerID;
         private static int DischargeID;
         private static int SmasherID;
+        private static int lsStaffID;
+        private static int fractalID;
 
         public delegate bool CanItemDoActionWithPlayerDelegate(Item item, Player player);
         public static event CanItemDoActionWithPlayerDelegate? CanUseItemEvent;
@@ -69,6 +73,14 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 
             CanUseItemEvent += ModifyDungeonCurseUseConditions;
 
+            ModLoader.TryGetMod("YouBoss", out Mod you);
+            if (you.TryFind("FirstFractal", out ModItem firstFractal))
+            {
+                fractalID = firstFractal.Type;
+            }
+
+            CanUseItemEvent += ModifyFirstFractalUseConditions;
+
             if (InfernalConfig.Instance.PreventBossCheese)
             {
                 ModLoader.TryGetMod("CalamityMod", out Mod cal);
@@ -86,6 +98,14 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                     SmasherID = smahser.Type;
 
                 CanUseItemEvent += ModifyGalaxySmasherUseConditions;
+
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thor))
+                {
+                    if (thor.TryFind("LodeStoneStaff", out ModItem lsStaff))
+                        lsStaffID = lsStaff.Type;
+
+                    CanUseItemEvent += ModifyLodeStoneStaffUseConditions;
+                }
             }
 
             return base.IsLoadingEnabled(mod);
@@ -137,6 +157,26 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             return true;
         }
 
+        private bool ModifyLodeStoneStaffUseConditions(Item item, Player player)
+        {
+            if (item.type == lsStaffID)
+            {
+                if (NPC.AnyNPCs(NPCID.TheDestroyer))
+                {
+                    Color draedon = new Color(155, 255, 255);
+                    if (InfernalWorld.dreadonDestroyer2DialoguePlayed == false)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("I shall not let you destroy my machine so easily."), draedon);
+                        InfernalWorld.dreadonDestroyer2DialoguePlayed = true;
+                        SoundEngine.PlaySound(CalamityMod.Sounds.CommonCalamitySounds.ExoPlasmaShootSound);
+                    }
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+
         private bool ModifyCosmicDischargeUseConditions(Item item, Player player)
         {
             if (item.type == DischargeID)
@@ -170,6 +210,19 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                         InfernalWorld.yharonSmasher = true;
                         SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh);
                     }
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+
+        private bool ModifyFirstFractalUseConditions(Item item, Player player)
+        {
+            if (item.type == fractalID)
+            {
+                if (player.mount.Active)
+                {
                     return false;
                 }
                 return true;

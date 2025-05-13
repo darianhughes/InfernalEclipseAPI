@@ -10,6 +10,7 @@ using System.Reflection;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
+    //Provided by Wardrobe Hummus
     public class OneirophobiaChange : GlobalItem
     {
         private const int OneirophobiaBaseDamage = 1000;
@@ -18,7 +19,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             Mod mod;
             ModItem modItem;
-            if (!ModLoader.TryGetMod("ThoriumRework", out mod) || !mod.TryFind("Oneirophobia", out modItem) || item.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess)
+            if (!ModLoader.TryGetMod("ThoriumRework", out mod) || !mod.TryFind("Oneirophobia", out modItem) || item.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
             item.damage = player.slotsMinions > 0.0 ? 333 : 1000;
 
@@ -77,7 +78,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             Mod mod;
             ModItem modItem;
-            if (!ModLoader.TryGetMod("ThoriumRework", out mod) || !mod.TryFind("Oneirophobia", out modItem) || item.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess)
+            if (!ModLoader.TryGetMod("ThoriumRework", out mod) || !mod.TryFind("Oneirophobia", out modItem) || item.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
             string str = Main.LocalPlayer.slotsMinions > 0.0 ? "Damage reduced while summons are active" : "Has reduced damage if any summons are active";
             Color color = Color.Lerp(Color.White, new Color(30, 144 /*0x90*/, byte.MaxValue), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));

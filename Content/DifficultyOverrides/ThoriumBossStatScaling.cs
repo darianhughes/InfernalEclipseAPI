@@ -1,172 +1,177 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 using Terraria;
-using Microsoft.Xna.Framework;
-using CalamityMod.Items.Weapons.Ranged;
-using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
+using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
     public class ThoriumBossStatScaling : GlobalNPC
     {
-        public override bool AppliesToEntity(NPC npc, bool lateInstatiation)
+        private bool GetCalDifficulty(string diff)
         {
-            return npc.boss && ((ModType)npc.ModNPC)?.Mod.Name == "ThoriumMod";
+            return ModLoader.TryGetMod("CalamityMod", out Mod calamity) &&
+                   calamity.Call("GetDifficultyActive", diff) is bool b && b;
+        }
+
+        private bool IsInfernumActive()
+        {
+            return InfernumSaveSystem.InfernumModeEnabled;
+        }
+
+        private bool GetFargoDifficullty(string diff)
+        {
+            if (!ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls))
+            {
+                return false;
+            }
+
+            return fargoSouls.Call(diff) is bool active && active;
+        }
+
+        public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
+        {
+            return npc.boss && npc.ModNPC?.Mod?.Name == "ThoriumMod";
         }
 
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
-            Mod mod;
-            bool flag = false;
-            int num1 = 0, num2 = 0;
+            //Crossmod intagration for WHummus code (remove the comments)
+            //only load if InfernalEclipseAPI isn't active for no overlaps
+            //if (ModLoader.TryGetMod("InfernalEclipseAPI", out _)
+            //return;
 
-            if (ModLoader.TryGetMod("CalamityMod", out mod))
+            //Boss Rush, 
+            if (GetCalDifficulty("bossrush"))
             {
-                object result = mod.Call("GetDifficultyActive", "BossRush");
-                if (result is bool b)
-                {
-                    flag = b;
-                    num1 = 1;
-                }
-            }
-            num2 = flag ? 1 : 0;
-            if ((num1 & num2) != 0)
-            {
-                if (!ModLoader.TryGetMod("ThoriumRework", out Mod rework))
-                {
-                    ModNPC modNpc1 = npc.ModNPC;
-                    if ((modNpc1 != null ? (((ModType)modNpc1).Name.Contains("TheGrandThunderBird") ? 1 : 0) : 0) != 0)
-                    {
-                        npc.lifeMax *= 125;
-                    }
-                    else
-                    {
-                        ModNPC modNpc2 = npc.ModNPC;
-                        if ((modNpc2 != null ? (((ModType)modNpc2).Name.Contains("QueenJellyfish") ? 1 : 0) : 0) != 0)
-                        {
-                            npc.lifeMax *= 115;
-                        }
-                        else
-                        {
-                            ModNPC modNpc3 = npc.ModNPC;
-                            if ((modNpc3 != null ? (((ModType)modNpc3).Name.Contains("Viscount") ? 1 : 0) : 0) != 0)
-                            {
-                                npc.lifeMax *= 110;
-                            }
-                            else
-                            {
-                                ModNPC modNpc4 = npc.ModNPC;
-                                if ((modNpc4 != null ? (((ModType)modNpc4).Name.Contains("StarScouter") ? 1 : 0) : 0) != 0)
-                                {
-                                    npc.lifeMax *= 105;
-                                }
-                                else
-                                {
-                                    ModNPC modNpc5 = npc.ModNPC;
-                                    if ((modNpc5 != null ? (((ModType)modNpc5).Name.Contains("BuriedChampion") ? 1 : 0) : 0) != 0)
-                                    {
-                                        npc.lifeMax *= 75;
-                                    }
-                                    else
-                                    {
-                                        ModNPC modNpc6 = npc.ModNPC;
-                                        if ((modNpc6 != null ? (((ModType)modNpc6).Name.Contains("GraniteEnergyStorm") ? 1 : 0) : 0) != 0)
-                                        {
-                                            npc.lifeMax *= 75;
-                                        }
-                                        else
-                                        {
-                                            ModNPC modNpc7 = npc.ModNPC;
-                                            if ((modNpc7 != null ? (((ModType)modNpc7).Name.Contains("FallenBeholder") ? 1 : 0) : 0) != 0)
-                                            {
-                                                npc.lifeMax *= 65;
-                                            }
-                                            else
-                                            {
-                                                ModNPC modNpc8 = npc.ModNPC;
-                                                if ((modNpc8 != null ? (((ModType)modNpc8).Name.Contains("Lich") ? 1 : 0) : 0) != 0)
-                                                {
-                                                    npc.lifeMax *= 30;
-                                                }
-                                                else
-                                                {
-                                                    ModNPC modNpc9 = npc.ModNPC;
-                                                    if ((modNpc9 != null ? (((ModType)modNpc9).Name.Contains("ForgottenOne") ? 1 : 0) : 0) != 0)
-                                                    {
-                                                        npc.lifeMax *= 15;
-                                                    }
-                                                    else
-                                                    {
-                                                        ModNPC modNpc10 = npc.ModNPC;
-                                                        if ((modNpc10 != null ? (((ModType)modNpc10).Name.Contains("SlagFury") ? 1 : 0) : 0) != 0)
-                                                        {
-                                                            npc.lifeMax *= 2;
-                                                        }
-                                                        else
-                                                        {
-                                                            ModNPC modNpc11 = npc.ModNPC;
-                                                            if ((modNpc11 != null ? (((ModType)modNpc11).Name.Contains("Aquaius") ? 1 : 0) : 0) != 0)
-                                                            {
-                                                                npc.lifeMax *= 2;
-                                                            }
-                                                            else
-                                                            {
-                                                                ModNPC modNpc12 = npc.ModNPC;
-                                                                if ((modNpc12 != null ? (((ModType)modNpc12).Name.Contains("Omnicide") ? 1 : 0) : 0) != 0)
-                                                                {
-                                                                    npc.lifeMax *= 2;
-                                                                }
-                                                                else
-                                                                {
-                                                                    ModNPC modNpc13 = npc.ModNPC;
-                                                                    if ((modNpc13 != null ? (((ModType)modNpc13).Name.Contains("DreamEater") ? 1 : 0) : 0) != 0)
-                                                                    {
-                                                                        npc.lifeMax *= 2;
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                ModNPC modNPC14 = npc.ModNPC;
-                if ((modNPC14 != null ? (((ModType)modNPC14).Name.Contains("BoreanStrider") ? 1 : 0) : 0) != 0)
-                {
+                string name = npc.ModNPC?.Name ?? "";
+
+                //do this 
+                if (name.Contains("BoreanStrider"))
                     npc.lifeMax *= 65;
+
+                //ignore the rest if Thorium Bosses Reworked is active as this is already done in that mod.
+                if (!ModLoader.TryGetMod("ThoriumRework", out _))
+                {
+                    if (name.Contains("TheGrandThunderBird"))
+                        npc.lifeMax *= 125;
+                    else if (name.Contains("QueenJellyfish"))
+                        npc.lifeMax *= 115;
+                    else if (name.Contains("Viscount"))
+                        npc.lifeMax *= 110;
+                    else if (name.Contains("StarScouter"))
+                        npc.lifeMax *= 105;
+                    else if (name.Contains("BuriedChampion") || name.Contains("GraniteEnergyStorm"))
+                        npc.lifeMax *= 75;
+                    else if (name.Contains("FallenBeholder"))
+                        npc.lifeMax *= 65;
+                    else if (name.Contains("Lich"))
+                        npc.lifeMax *= 30;
+                    else if (name.Contains("ForgottenOne"))
+                        npc.lifeMax *= 15;
+                    else if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
+                        npc.lifeMax *= 2;
                 }
             }
 
-            if (InfernumActive.InfernumActive)
+            if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true)
+                {
+                    npc.lifeMax += (int)npc.lifeMax;
+                }
+
+                npc.lifeMax += (int)(0.35 * npc.lifeMax);
+            }
+            else
+            {
+                if (GetFargoDifficullty("EternityMode"))
+                {
+                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true)
+                    {
+                        npc.lifeMax += (int)(0.75 * npc.lifeMax);
+                    }
+
+                    npc.lifeMax += (int)(0.25 * npc.lifeMax);
+                }
+                else if (GetCalDifficulty("death"))
+                {
+                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true)
+                    {
+                        npc.lifeMax += (int)(0.5 * npc.lifeMax);
+                    }
+
+                    npc.lifeMax += (int)(0.2 * npc.lifeMax);
+                }
+                else if (GetCalDifficulty("revengeance"))
+                {
+                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true)
+                    {
+                        npc.lifeMax += (int)(0.25 * npc.lifeMax);
+                    }
+
+                    npc.lifeMax += (int)(0.1 * npc.lifeMax);
+                }
             }
         }
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
-            if (InfernumActive.InfernumActive)
+            //Crossmod intagration for WHummus code (remove the comments)
+            //only load if InfernalEclipseAPI isn't active for no overlaps
+            //if (ModLoader.TryGetMod("InfernalEclipseAPI", out _)
+            //return;
+
+            if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
                 modifiers.SourceDamage *= 1.35f;
+            }
+            else
+            {
+                if (GetFargoDifficullty("EternityMode"))
+                {
+                    modifiers.SourceDamage *= 1.25f;
+                }
+                else if (GetCalDifficulty("death"))
+                {
+                    modifiers.SourceDamage *= 1.2f;
+                }
+                else if (GetCalDifficulty("revengeance"))
+                {
+                    modifiers.SourceDamage *= 1.1f;
+                }
             }
         }
 
         public override void PostAI(NPC npc)
         {
-            ModNPC modNPC14 = npc.ModNPC;
-            if (InfernumActive.InfernumActive && !(((ModType)modNPC14).Name.Contains("BoreanStrider")))
+            //Crossmod intagration for WHummus code (remove the comments)
+            //only load if InfernalEclipseAPI isn't active for no overlaps
+            //if (ModLoader.TryGetMod("InfernalEclipseAPI", out _)
+            //return;
+
+            //messing with the borean striders speed causes it to phase through the ground.
+            if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
             {
-                npc.position += npc.velocity * 0.25f;
+                return;
+            }
+
+            if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
+            {
+                npc.position += npc.velocity * 0.35f;
+            }
+            else
+            {
+                if (GetFargoDifficullty("EternityMode"))
+                {
+                    npc.position += npc.velocity * 0.25f;
+                }
+                else if (GetCalDifficulty("death"))
+                {
+                    npc.position += npc.velocity * 0.2f;
+                }
+                else if (GetCalDifficulty("revengeance"))
+                {
+                    npc.position += npc.velocity * 0.1f;
+                }
             }
         }
     }

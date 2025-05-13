@@ -169,6 +169,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             }
                         }
 
+                        if (thorium.TryFind("LodestoneJavelin", out ModItem lodeJav))
+                            if (recipe.HasResult(lodeJav))
+                                recipe.DisableRecipe();
+
+                        if (thorium.TryFind("ValadiumThrowingAxe", out ModItem valdiumAxe))
+                            if (recipe.HasResult(valdiumAxe))
+                                recipe.DisableRecipe();
+
                         if (thorium.TryFind("AromaticBulb", out ModItem bulb))
                         {
                             if (recipe.HasResult(bulb))

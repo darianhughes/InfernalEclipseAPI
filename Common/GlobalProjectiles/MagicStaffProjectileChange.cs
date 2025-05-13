@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod.Projectiles;
 using ThoriumMod.Buffs;
+using CalamityMod;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -18,7 +19,6 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            // Replace with the actual projectile type of the Magick Staff
             int magickStaffProjID = ModContent.ProjectileType<MagickStaffPro>();
 
             if (projectile.type == magickStaffProjID)

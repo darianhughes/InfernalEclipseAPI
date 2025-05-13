@@ -31,7 +31,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             .Register();
 
             Recipe recipe12 = Recipe.Create(4672, 1);
-            recipe12.AddIngredient(ItemID.Leather, 10);
+            recipe12.AddIngredient(ItemID.Leather, 8);
             recipe12.AddTile(TileID.Loom);
             recipe12.Register();
 

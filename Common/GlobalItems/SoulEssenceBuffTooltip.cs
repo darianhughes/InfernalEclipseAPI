@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
+    //Provided by Wardrobe Hummus
     public class SoulEssenceBuffTooltip : GlobalItem
     {
         private static List<int> scytheTypes;
@@ -67,7 +68,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (scytheTypes == null || !scytheTypes.Contains(item.type) || !InfernalConfig.Instance.ThoriumBalanceChangess)
+            if (scytheTypes == null || !scytheTypes.Contains(item.type) || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
             tooltips.Add(new TooltipLine(Mod, "ExtraInfo", "Gains soul essence rapidly")
             {
