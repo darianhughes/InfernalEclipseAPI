@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 
-namespace InfernalEclipseAPI.Common.GlobalItems
+namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 {
     //Provided by Wardrobe Hummus
     public class MjolnirChange : GlobalItem

@@ -26,6 +26,9 @@ namespace InfernalEclipseAPI
         public bool PreventBossCheese { get; set; }
 
         [DefaultValue(true)]
+        public bool AdditonalVanillaBossAdjustments { get; set; }
+
+        [DefaultValue(true)]
         public bool VanillaBalanceChanges { get; set; }
 
         [DefaultValue(true)]
@@ -33,6 +36,7 @@ namespace InfernalEclipseAPI
         public bool CalamityBalanceChanges { get; set; }
 
         [DefaultValue(true)]
+        [ReloadRequired]
         public bool ThoriumBalanceChangess { get; set; }
 
         [DefaultValue(true)]

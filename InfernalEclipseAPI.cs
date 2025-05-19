@@ -38,6 +38,10 @@ using System.Security.Policy;
 using InfernalEclipseAPI.Core.Systems;
 using System.IO;
 using InfernalEclipseAPI.Core.Players;
+using System.Reflection;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
+using MonoMod.RuntimeDetour;
 
 namespace InfernalEclipseAPI
 {
@@ -60,6 +64,23 @@ namespace InfernalEclipseAPI
 
         public static InfernalEclipseAPI Instance;
         public InfernalEclipseAPI() => Instance = this;
+
+        public static int WhiteFlareType = 0;
+
+        public override void Load()
+        {
+            // Cache the WhiteFlare projectile type from Thorium
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            {
+                if (thorium.TryFind<ModProjectile>("WhiteFlare", out var whiteFlare))
+                    WhiteFlareType = whiteFlare.Type;
+            }
+        }
+
+        public override void Unload()
+        {
+            WhiteFlareType = 0; // Clean up on unload
+        }
 
         public override void PostSetupContent()
         {
@@ -589,26 +610,6 @@ namespace InfernalEclipseAPI
             //        SoundEngine.PlaySound(in style, current.Center);
             //    } });
             //}
-
-            BossDeathEffects.Remove(ModContent.NPCType<ProfanedGuardianCommander>());
-            BossDeathEffects.Add(ModContent.NPCType<ProfanedGuardianCommander>(), npc =>
-            {
-                BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.TierOneComplete);
-                ActiveEntityIterator<Player>.Enumerator enumerator = Main.ActivePlayers.GetEnumerator();
-                while (enumerator.MoveNext())
-                {
-                    Player current = enumerator.Current;
-                    if (!current.dead)
-                    {
-                        current.Spawn(PlayerSpawnContext.RecallFromItem);
-                        int num = Projectile.NewProjectile(new EntitySource_WorldEvent(), current.Center, Vector2.Zero, ModContent.ProjectileType<BossRushTierAnimation>(), 0, 0f, current.whoAmI);
-                        if (Main.projectile.IndexInRange(num))
-                        {
-                            Main.projectile[num].ai[0] = 2;
-                        }
-                    }
-                }
-            });
 
             BossDeathEffects.Remove(ModContent.NPCType<ProfanedGuardianCommander>());
             BossDeathEffects.Add(ModContent.NPCType<ProfanedGuardianCommander>(), npc =>

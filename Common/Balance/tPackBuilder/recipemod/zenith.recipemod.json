@@ -9,10 +9,6 @@
         "ChangeIngredient": {
             "Item": "Terraria/EnchantedSword",
             "NewItem": "Terraria/Terragrim"
-        },
-        "ChangeIngredient": {
-            "Item": "CalamityMod/AuricBar",
-            "NewItem": "CalamityMod/CosmiliteBar"
         }
     },
 

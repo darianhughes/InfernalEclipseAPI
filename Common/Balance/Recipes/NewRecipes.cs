@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using InfernalEclipseAPI.Common.GlobalItems;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -39,11 +40,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             {
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && !InfernalConfig.Instance.DisableBloodOrbPotions)
                 {
-                    Recipe.Create(thorRework.Find<ModItem>("DeathsingerPotion").Type)
-                        .AddIngredient(ItemID.BottledWater)
-                        .AddIngredient<BloodOrb>(10)
-                        .AddTile(TileID.AlchemyTable)
-                        .Register();
+                    if (!InfernalConfig.Instance.ThoriumBalanceChangess)
+                    {
+                        Recipe.Create(thorRework.Find<ModItem>("DeathsingerPotion").Type)
+                            .AddIngredient(ItemID.BottledWater)
+                            .AddIngredient<BloodOrb>(10)
+                            .AddTile(TileID.AlchemyTable)
+                            .Register();
+                    }
 
                     thorium.TryFind("ManaBerry", out ModItem manaberry);
                     Recipe.Create(thorRework.Find<ModItem>("InspirationRegenerationPotion").Type)
@@ -63,8 +67,48 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         .AddTile(TileID.Anvils)
                         .Register();
                 }
-            }
 
+                if (ModLoader.TryGetMod("SOTS", out Mod sots))
+                {
+                    int[] sotsPotions =
+                    {
+                        GetModItem(sots, "AssassinationPotion"),
+                        GetModItem(sots, "BluefirePotion"),
+                        GetModItem(sots, "BrittlePotion"),
+                        GetModItem(sots, "DoubleVisionPotion"),
+                        GetModItem(sots, "HarmonyPotion"),
+                        GetModItem(sots, "NightmarePotion"),
+                        GetModItem(sots, "RipplePotion"),
+                        GetModItem(sots, "RoughskinPotion"),
+                        GetModItem(sots, "SoulAccessPotion"),
+                        GetModItem(sots, "VibePotion")
+                    };
+
+                    foreach (int potion in sotsPotions)
+                    {
+                        Recipe newRecipe = Recipe.Create(potion, 2);
+
+                        newRecipe.AddIngredient(potion);
+                        newRecipe.AddIngredient<BloodOrb>(10);
+
+                        if (potion == GetModItem(sots, "HarmonyPotion"))
+                        {
+                            newRecipe.AddIngredient(ItemID.SoulofLight);
+                        }
+                        else if (potion == GetModItem(sots, "NightmarePotion"))
+                        {
+                            newRecipe.AddIngredient(ItemID.SoulofNight);
+                        }
+                        newRecipe.AddTile(TileID.AlchemyTable);
+                        newRecipe.Register();
+                    }
+                }
+            }
+        }
+
+        private int GetModItem (Mod mod, string item)
+        {
+            return mod.Find<ModItem>(item).Type;
         }
     }
 }

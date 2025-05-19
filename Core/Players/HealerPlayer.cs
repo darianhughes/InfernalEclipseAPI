@@ -1,4 +1,5 @@
-﻿using Microsoft.CSharp.RuntimeBinder;
+﻿using InfernalEclipseAPI.Common.GlobalProjectiles;
+using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,17 @@ namespace InfernalEclipseAPI.Core.Players
         private int executionersContract = -1;
         private int sealedContract = -1;
         private bool ContractInitialized = false;
+
+        public int renewCooldown;
+        public int starBirthCooldown;
+
+        public override void ResetEffects()
+        {
+            if (renewCooldown > 0)
+                renewCooldown--;
+            if (starBirthCooldown > 0)
+                starBirthCooldown--;
+        }
 
         // Dynamic callsite storage
         private static class DynamicSetters
@@ -122,7 +134,7 @@ namespace InfernalEclipseAPI.Core.Players
                 if (contractNow && contractCooldownTimer == 0)
                 {
                     SetContract(true);
-                    contractCooldownTimer = 12; //EASY CHANGE COOLDOWN NUMBER
+                    contractCooldownTimer = 60; //EASY CHANGE COOLDOWN NUMBER
                     restoreContractAfterCooldown = true;
                 }
                 else if (contractCooldownTimer > 0)

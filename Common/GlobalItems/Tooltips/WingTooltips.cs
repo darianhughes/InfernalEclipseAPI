@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 
-namespace InfernalEclipseAPI.Common.GlobalItems
+namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 {
     //Provided by Wardrobe Hummus
     public class WingTooltips : GlobalItem
@@ -36,6 +36,5 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 });
             }
         }
-
     }
 }

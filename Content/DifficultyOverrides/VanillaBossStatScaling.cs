@@ -46,7 +46,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             }
 
             NPC npc1 = npc;
-            if (npc1.type == NPCID.CultistBoss)
+            if (npc1.type == NPCID.CultistBoss && InfernalConfig.Instance.AdditonalVanillaBossAdjustments)
             {
                 npc.lifeMax *= 3;
             }

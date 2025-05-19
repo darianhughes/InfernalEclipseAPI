@@ -30,7 +30,7 @@ Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer,
 
 If you have any other issues please report them in the [url=https://discord.gg/tc5nZdRvaU] Discord server[/url]. 
 
-Also check out [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url] mod, as most of the item balance changes in this mod came from this mod and were created by him!
+Also check out [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url] mod, as most of the item balance changes in this mod came from that mod and were created by him!
 
 Thank you to the tPackBuilder team, as well as each of the individuals for each mod in the mod pack for making this possible!
 
@@ -38,7 +38,7 @@ Created by the Infernal Eclipse of Ragnarok Team:
 [list]
 	[*] Akira - Creator and Lead Developer
 	[*] PROV1D3NCE - Lead Story Writer
-	[*] TheRogueX - Playtester & Test Server Host
+	[*] trembler - Playtester & Weapon Design
 	[*] Wardrobe Hummus - Weapon and Item Rebalance Developer
 	[*] Yob - Boss Progression Designer 
 	[*] ZaKami - Project Coordinator

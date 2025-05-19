@@ -18,6 +18,8 @@ using CalamityMod.NPCs.AquaticScourge;
 using CalamityMod.NPCs.Yharon;
 using ThoriumMod.Items.Lodestone;
 using YouBoss.Content.Items.ItemReworks;
+using ThoriumMod;
+using InfernalEclipseAPI.Core.Players;
 
 namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 {
@@ -43,6 +45,8 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
         private static int SmasherID;
         private static int lsStaffID;
         private static int fractalID;
+        private static int renewID;
+        private static int starBirthID;
 
         public delegate bool CanItemDoActionWithPlayerDelegate(Item item, Player player);
         public static event CanItemDoActionWithPlayerDelegate? CanUseItemEvent;
@@ -105,6 +109,22 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                         lsStaffID = lsStaff.Type;
 
                     CanUseItemEvent += ModifyLodeStoneStaffUseConditions;
+                }
+            }
+
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && InfernalConfig.Instance.ThoriumBalanceChangess)
+            {
+                if (thorium.TryFind("Renew", out ModItem renew))
+                    renewID = renew.Type;
+
+                CanUseItemEvent += ModifyRenewUseConditions;
+
+                if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
+                {
+                    if (calBardHeal.TryFind("StarBirth", out ModItem starBirth))
+                        starBirthID = starBirth.Type;
+
+                    CanUseItemEvent += ModifyStarBirthUseConditions;
                 }
             }
 
@@ -226,6 +246,44 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                     return false;
                 }
                 return true;
+            }
+            return true;
+        }
+
+        private bool ModifyRenewUseConditions(Item item, Player player)
+        {
+            if (item.type == renewID)
+            {
+                var cdPlayer = player.GetModPlayer<HealerPlayer>();
+
+                if (cdPlayer.renewCooldown > 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    cdPlayer.renewCooldown = 92;
+                    return true;
+                }
+            }
+            return true;
+        }
+
+        private bool ModifyStarBirthUseConditions(Item item, Player player)
+        {
+            if (item.type == starBirthID)
+            {
+                var cdPlayer = player.GetModPlayer<HealerPlayer>();
+
+                if (cdPlayer.starBirthCooldown > 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    cdPlayer.starBirthCooldown = 300;
+                    return true;
+                }
             }
             return true;
         }

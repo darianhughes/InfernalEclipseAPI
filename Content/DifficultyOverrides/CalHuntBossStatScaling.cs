@@ -38,7 +38,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 ModNPC modNPC14 = npc.ModNPC;
                 if ((modNPC14 != null ? (((ModType)modNPC14).Name.Contains("Goozma") ? 1 : 0) : 0) != 0)
                 {
-                    npc.lifeMax *= 5;
+                    npc.lifeMax *= 10;
                 }
             }
 

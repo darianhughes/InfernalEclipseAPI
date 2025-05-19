@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace InfernalEclipseAPI.Common.GlobalItems
+namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 {
     //Provided by Wardrobe Hummus
     public class SoulEssenceBuffTooltip : GlobalItem

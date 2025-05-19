@@ -63,7 +63,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes.CrossModArmorChanges
                 {
                     GetItemID("AerospecHeadphones", calBardHealer),
                     GetItemID("AerospecBiretta", calBardHealer),
-                    GetItemID("AuricTeslaFeatheredHeadware", calBardHealer),
+                    GetItemID("AuricTeslaFeatheredHeadwear", calBardHealer),
                     GetItemID("AuricTeslaValkyrieVisage", calBardHealer),
                     GetItemID("BloodflareSirenSkull", calBardHealer),
                     GetItemID("BloodflareRitualistMask", calBardHealer),

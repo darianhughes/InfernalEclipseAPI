@@ -1,6 +1,6 @@
 Items: {
 	ChromaticMassInABottle: {
-		Tooltip: ""
+		Tooltip: "'Even though KrogNar was up to something, Aaron simply couldn't ignore the presence of this energy.'"
 		DisplayName: Chromatic Mass In A Bottle
 	}
 
@@ -23,7 +23,8 @@ Items: {
 			NovaBomb: {
 				Tooltip:
 					'''
-					'Launches a blazing purple nova of destruction'
+					Launches a blazing purple nova of destruction
+					'Don't worry Willow, I can solo it.'
 					- WIP: Currently just uses the Supernova AI from CalamityMod. -
 					'''
 				DisplayName: Nova Bomb
@@ -40,11 +41,17 @@ Items: {
 		Tooltip: Plays 'Ensemble of Fools (Encore Mix)' by CDMusic
 		DisplayName: Music Box (Boss Rush - Encore)
 	}
+
+	StellarSabre: {
+		DisplayName: Stellar Sabre
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
 	GlitchSwordHoldout.DisplayName: Glitch Sword Holdout
 	Rogue.NovaBombProj.DisplayName: Nova Bomb Proj
+	StellarStar.DisplayName: Stellar Star
 }
 
 Configs: {
@@ -128,7 +135,7 @@ Configs: {
 		}
 
 		DisableBloodOrbPotions: {
-			Tooltip: Disables the crafting recipes for potions that use blood orbs.
+			Tooltip: Disables the crafting recipes for potions that use blood orbs. (TEMPORARY - Will be removed in future Blood Orb rework update.)
 			Label: Disable Blood Orb Potions
 		}
 
@@ -145,6 +152,11 @@ Configs: {
 		DisableDuplicateContent: {
 			Label: Disable Duplicate Content
 			Tooltip: Disables any duplicate content two mods may add.
+		}
+
+		AdditonalVanillaBossAdjustments: {
+			Label: Additonal Vanilla Boss Adjustments
+			Tooltip: ""
 		}
 	}
 }
@@ -165,6 +177,11 @@ Buffs: {
 	WarpJammed: {
 		Description: Draedon is monitoring your teleports...
 		DisplayName: Warp Jammed
+	}
+
+	AnchoredSoul: {
+		DisplayName: Anchored Soul
+		Description: Your soul is currently anchored to another position
 	}
 }
 

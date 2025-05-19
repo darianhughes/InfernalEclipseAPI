@@ -70,7 +70,7 @@ namespace InfernalEclipseAPI.Core.Systems
                         bool bossRush = BossRushEvent.BossRushActive is bool b2 && b2;
 
                         if (bossRush)
-                            multiplier = 10.35f;
+                            multiplier = 10.75f;
                         else
                         {
                             if (infernum)

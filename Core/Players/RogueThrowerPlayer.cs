@@ -9,7 +9,8 @@ using Terraria;
 
 namespace InfernalEclipseAPI.Core.Players
 {
-    //Provided by Wardrobe Hummus
+    //Exhaustion removal code by Wardrobe Hummus
+    //White Dwarf set cooldown by Akira
     public class RogueThrowerPlayer : ModPlayer
     {
         private int volume2Type = -1;
@@ -23,6 +24,13 @@ namespace InfernalEclipseAPI.Core.Players
         private bool initialized;
         private Item previousHeldItem;
         private bool? previousHeldItemOriginalExhaustion;
+
+        public int whiteDwarfCooldown;
+        public override void ResetEffects()
+        {
+            if (whiteDwarfCooldown > 0)
+                whiteDwarfCooldown--;
+        }
 
         private void EnsureInitialized()
         {

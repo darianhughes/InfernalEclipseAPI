@@ -44,7 +44,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                     recipe.DisableRecipe();
 
                 //Fight providence, idc
-                if (recipe.HasResult(ModContent.ItemType<RuneofKos>()))
+                if (recipe.HasResult(ModContent.ItemType<RuneofKos>()) && recipe.HasIngredient(ModContent.ItemType<UnholyEssence>()))
                     recipe.DisableRecipe();
 
                 //Plantera
@@ -86,7 +86,26 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                     {
                         if (recipe.HasResult(ragnarokCoin))
                         {
-                            recipe.AddIngredient<CosmiliteBar>(3);
+                            thorium.TryFind("ShootingStarFragment", out ModItem bardFragment);
+                            thorium.TryFind("CelestialFragment", out ModItem healerFragment);
+                            thorium.TryFind("WhiteDwarfFragment", out ModItem throwerFragment);
+                            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && ragnarok.TryFind("EldritchShellFragment", out ModItem eShellFrag))
+                            {
+                                recipe.RemoveIngredient(eShellFrag.Type);
+                            }
+                            recipe.RemoveIngredient(ItemID.FragmentSolar);
+                            recipe.RemoveIngredient(ItemID.FragmentVortex);
+                            recipe.RemoveIngredient(ItemID.FragmentNebula);
+                            recipe.RemoveIngredient(ItemID.FragmentStardust);
+                            recipe.RemoveIngredient(bardFragment.Type);
+                            recipe.RemoveIngredient(healerFragment.Type);
+                            recipe.RemoveIngredient(throwerFragment.Type);
+                            recipe.RemoveIngredient(ModContent.ItemType<MeldBlob>());
+                            recipe.RemoveIngredient(ModContent.ItemType<AshesofCalamity>());
+                            recipe.AddIngredient<GalacticaSingularity>(4);
+                            recipe.AddIngredient<AscendantSpiritEssence>(3);
+                            recipe.AddIngredient<AshesofCalamity>(10);
+                            
                         }
                     }
                 }
@@ -133,6 +152,14 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
             recipe5.AddIngredient(ModContent.ItemType<DemonicBoneAsh>(), 20);
             recipe5.AddTile(ModContent.TileType<DraedonsForge>());
             recipe5.Register();
+
+            //Sentinals
+            Recipe recipe2 = Recipe.Create(ModContent.ItemType<RuneofKos>(), 1);
+            recipe2.AddIngredient(ItemID.LunarBar, 3);
+            recipe2.AddIngredient(ModContent.ItemType<DivineGeode>(), 10);
+            recipe2.AddIngredient(ItemID.FragmentSolar, 5);
+            recipe2.AddTile(TileID.LunarCraftingStation);
+            recipe2.Register();
 
             //Yharon Post-Providence, DoG & Primordials
             Recipe recipe6 = Recipe.Create(ModContent.ItemType<YharonEgg>(), 1);

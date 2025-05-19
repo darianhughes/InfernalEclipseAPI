@@ -24,6 +24,7 @@ using CalamityMod.Items.Accessories;
 using CalamityMod;
 using ThoriumMod.Items.Misc;
 using CalamityMod.Items.Weapons.Rogue;
+using InfernalEclipseAPI.Content.Items.Weapons.StellarSabre;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -59,10 +60,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         if (recipe.HasResult(ItemID.Zenith))
                         {
-                            recipe.RemoveIngredient(ModContent.ItemType<AuricBar>());
                             recipe.RemoveIngredient(ItemID.EnchantedSword);
                             recipe.AddIngredient(ItemID.Terragrim, 1);
-                            recipe.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 5);
                         }
                     }
                 }
@@ -118,13 +117,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         if (recipe.HasResult(trueToilet))
                         {
-                            recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
                             recipe.RemoveTile(TileID.MythrilAnvil);
                             recipe.AddTile(ModContent.TileType<DraedonsForge>());
+                            recipe.AddIngredient(ModContent.ItemType<StellarSabre>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<Swordofthe14thGlitch>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<NovaBomb>(), 1);
-                            recipe.AddIngredient(ModContent.ItemType<ChromaticMassInABottle>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<Kevin>(), 1);
+                            recipe.AddIngredient(ModContent.ItemType<ChromaticMassInABottle>(), 1);
+                            recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
                         }
                     }
                 }
@@ -182,6 +182,28 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             if (recipe.HasResult(bulb))
                                 recipe.DisableRecipe();
                         }
+
+                        string[] coatings =
+                        {
+                            "DeepFreezeCoatingItem",
+                            "ExplosiveCoatingItem",
+                            "GorgonCoatingItem",
+                            "SporeCoatingItem",
+                            "ToxicCoatingItem",
+                        };
+
+                        foreach (string coating in coatings)
+                            if (thorium.TryFind(coating, out ModItem coatingItem))
+                                if (recipe.HasResult(coatingItem))
+                                    recipe.DisableRecipe();
+
+                        if (thorium.TryFind("AdamantiteGlaive", out ModItem adamGlaive))
+                            if (recipe.HasResult(adamGlaive))
+                                recipe.DisableRecipe();
+
+                        if (thorium.TryFind("TitaniumGlaive", out ModItem titanGlaive))
+                            if (recipe.HasResult(titanGlaive))
+                                recipe.DisableRecipe();
                     }
 
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -404,7 +426,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                     ragCal.TryFind("UniversalHeadset", out ModItem uniHeadset);
 
-                    if (recipe.HasResult(uniHeadset))
+                    if (recipe.HasResult(uniHeadset) && InfernalConfig.Instance.ThoriumBalanceChangess)
                     {
                         recipe.RemoveIngredient(ItemID.LunarBar);
                         recipe.AddIngredient(ModContent.ItemType<AuricBar>(), 8);
@@ -467,6 +489,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.RemoveTile(TileID.WorkBenches);
                             recipe.AddTile(TileID.LunarCraftingStation);
                         }
+                    }
+
+                    if (thorRework.TryFind("DeathsingerPotion", out ModItem deathSingerPotion) && recipe.HasResult(deathSingerPotion))
+                    {
+                        recipe.DisableRecipe();
                     }
                 }
 

@@ -106,7 +106,18 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     }
                 }
 
+                if (entity.type == thorium.Find<ModProjectile>("BatScythePro2").Type)
+                {
+                    if (entity.usesLocalNPCImmunity)
+                    {
+                        entity.localNPCHitCooldown = 1;
+                    }
 
+                    if (entity.usesIDStaticNPCImmunity)
+                    {
+                        entity.idStaticNPCHitCooldown = 1;
+                    }
+                }
             } 
 
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -179,6 +190,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     {
                         entity.idStaticNPCHitCooldown = 1;
                     }
+                }
+
+                if (entity.type == calBardHeal.Find<ModProjectile>("StarBirth").Type)
+                {
+                    //entity.scale *= 0.3f;
                 }
             }
 

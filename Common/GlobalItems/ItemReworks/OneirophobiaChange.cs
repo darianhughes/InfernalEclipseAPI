@@ -8,12 +8,12 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 
-namespace InfernalEclipseAPI.Common.GlobalItems
+namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 {
     //Provided by Wardrobe Hummus
     public class OneirophobiaChange : GlobalItem
     {
-        private const int OneirophobiaBaseDamage = 1000;
+        private const int OneirophobiaBaseDamage = 3000;
 
         public override void UpdateInventory(Item item, Player player)
         {
@@ -21,7 +21,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             ModItem modItem;
             if (!ModLoader.TryGetMod("ThoriumRework", out mod) || !mod.TryFind("Oneirophobia", out modItem) || item.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
-            item.damage = player.slotsMinions > 0.0 ? 333 : 1000;
+            item.damage = player.slotsMinions > 0.0 ? 1000 : 3000;
 
             if (item.ModItem == null || item.ModItem.Mod?.Name != "ThoriumRework" || item.ModItem.Name != "Oneirophobia")
                 return;

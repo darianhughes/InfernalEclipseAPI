@@ -25,3 +25,5 @@ Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer,
 If you have any other issues please report them in the discord (https://discord.gg/RXdTXbKY). 
 
 Thank you to the tPackBuilder team, as well as each of the individuals for each mod in the mod pack for making this possible!
+
+Created by the Infernal Ecllipse of Raganork Team
