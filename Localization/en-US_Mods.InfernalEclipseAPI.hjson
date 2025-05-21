@@ -183,6 +183,11 @@ Buffs: {
 		DisplayName: Anchored Soul
 		Description: Your soul is currently anchored to another position
 	}
+
+	BrokenOath: {
+		DisplayName: Broken Oath
+		Description: Do no harm - Hippocrates
+	}
 }
 
 SpawnInfo.Dreadnautilus: Has a chance to spawn while fishing in the ocean on a blood moon.

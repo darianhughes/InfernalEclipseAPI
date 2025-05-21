@@ -38,6 +38,7 @@ Created by the Infernal Eclipse of Ragnarok Team:
 [list]
 	[*] Akira - Creator and Lead Developer
 	[*] PROV1D3NCE - Lead Story Writer
+	[*] TheRogueX - Playtester & Test Server Host
 	[*] trembler - Playtester & Weapon Design
 	[*] Wardrobe Hummus - Weapon and Item Rebalance Developer
 	[*] Yob - Boss Progression Designer 

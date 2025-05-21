@@ -250,7 +250,19 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 if (recipe.HasResult(3571))
                     recipe.DisableRecipe();
                 if (recipe.HasResult(29))
-                    recipe.DisableRecipe();
+                {
+                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thor))
+                    {
+                        if (!recipe.HasIngredient(thor.Find<ModItem>("LifeQuartz")))
+                        {
+                            recipe.DisableRecipe();
+                        }
+                    }
+                    else
+                    {
+                        recipe.DisableRecipe();
+                    }
+                }
                 if (recipe.HasResult(1291))
                     recipe.DisableRecipe();
                 Mod mod2;

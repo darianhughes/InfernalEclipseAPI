@@ -2970,7 +2970,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (field != null)
                 {
                     field.SetValue(item.ModItem, newCost);
-                    Main.NewText($"[Field] Set healAmount of {item.Name} to {newCost}");
+                    //Main.NewText($"[Field] Set healAmount of {item.Name} to {newCost}");
                     return;
                 }
 
@@ -2982,11 +2982,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     return;
                 }
 
-                Main.NewText("healAmount not found on ModItem.");
+                //Main.NewText("healAmount not found on ModItem.");
             }
             catch (Exception ex)
             {
-                Main.NewText($"Error setting healAmount: {ex.Message}");
+                //Main.NewText($"Error setting healAmount: {ex.Message}");
             }
         }
     }

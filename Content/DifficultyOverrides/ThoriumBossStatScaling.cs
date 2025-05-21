@@ -74,7 +74,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true)
+                if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true)
                 {
                     npc.lifeMax += (int)npc.lifeMax;
                 }
@@ -85,7 +85,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true)
+                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true)
                     {
                         npc.lifeMax += (int)(0.75 * npc.lifeMax);
                     }
@@ -94,7 +94,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
                 else if (GetCalDifficulty("death"))
                 {
-                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true)
+                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true)
                     {
                         npc.lifeMax += (int)(0.5 * npc.lifeMax);
                     }
@@ -103,7 +103,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
                 else if (GetCalDifficulty("revengeance"))
                 {
-                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true)
+                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true)
                     {
                         npc.lifeMax += (int)(0.25 * npc.lifeMax);
                     }

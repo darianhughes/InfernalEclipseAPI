@@ -20,8 +20,6 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                     Item obj;
                     if (recipe.TryGetResult(158, out obj))
                         recipe.AddIngredient(824, 5);
-                    if (recipe.TryGetResult(29, out obj))
-                        recipe.DisableRecipe();
                     if (recipe.TryGetResult(4276, out obj))
                     {
                         recipe.RemoveIngredient(178);

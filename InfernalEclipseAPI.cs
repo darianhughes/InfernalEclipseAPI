@@ -66,6 +66,7 @@ namespace InfernalEclipseAPI
         public InfernalEclipseAPI() => Instance = this;
 
         public static int WhiteFlareType = 0;
+        private Type thoriumThrowerClass;
 
         public override void Load()
         {
@@ -74,6 +75,8 @@ namespace InfernalEclipseAPI
             {
                 if (thorium.TryFind<ModProjectile>("WhiteFlare", out var whiteFlare))
                     WhiteFlareType = whiteFlare.Type;
+
+                thoriumThrowerClass = thorium.Code.GetType("ThoriumMod.ThrowerDamageClass");
             }
         }
 
