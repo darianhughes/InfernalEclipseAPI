@@ -16,6 +16,7 @@ using CalamityMod.Tiles.Furniture.CraftingStations;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using CalamityMod.Items;
 
 namespace InfernalEclipseAPI.Common.Balance.Calamity
 {
@@ -23,16 +24,27 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
     {
         public override void PostAddRecipes()
         {
-            if (!InfernalConfig.Instance.CalamityRecipeTweaks)
-            {
-                return;
-            }
-
             for (int index = 0; index < Recipe.numRecipes; ++index)
             {
                 Recipe recipe = Main.recipe[index];
-                if (recipe.HasIngredient(3997) && recipe.HasIngredient(ModContent.ItemType<DeificAmulet>()) && recipe.HasIngredient(ModContent.ItemType<AuricBar>()) && recipe.HasIngredient(ModContent.ItemType<AscendantSpiritEssence>()) && !recipe.HasIngredient<AsgardianAegis>() && recipe.HasTile(ModContent.TileType<CosmicAnvil>()) && recipe.HasResult(ModContent.ItemType<RampartofDeities>()))
+
+                bool hasThor = false;
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod mod4))
+                    hasThor = true;
+                if (hasThor && recipe.HasResult(ItemID.LivingMahoganyLeafWand) && !recipe.HasIngredient(mod4.Find<ModItem>("LivingLeaf")))
                     recipe.DisableRecipe();
+                if (hasThor && recipe.HasResult(ItemID.LeafWand) && !recipe.HasIngredient(mod4.Find<ModItem>("LivingLeaf")))
+                    recipe.DisableRecipe();
+                if (hasThor && recipe.HasResult(ItemID.LivingWoodWand) && !recipe.HasIngredient(mod4.Find<ModItem>("LivingLeaf")))
+                    recipe.DisableRecipe();
+                if (hasThor && recipe.HasResult(ItemID.LivingMahoganyWand) && !recipe.HasIngredient(mod4.Find<ModItem>("LivingLeaf")))
+                    recipe.DisableRecipe();
+
+                if (!InfernalConfig.Instance.CalamityRecipeTweaks)
+                {
+                    return;
+                }
+
                 if (recipe.HasResult(65))
                     recipe.DisableRecipe();
                 if (recipe.HasResult(989))
@@ -251,9 +263,9 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                     recipe.DisableRecipe();
                 if (recipe.HasResult(29))
                 {
-                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thor))
+                    if (hasThor)
                     {
-                        if (!recipe.HasIngredient(thor.Find<ModItem>("LifeQuartz")))
+                        if (!recipe.HasIngredient(mod4.Find<ModItem>("LifeQuartz")))
                         {
                             recipe.DisableRecipe();
                         }
@@ -266,7 +278,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 if (recipe.HasResult(1291))
                     recipe.DisableRecipe();
                 Mod mod2;
-                if (Terraria.ModLoader.ModLoader.TryGetMod("CatalystMod", out mod2))
+                if (ModLoader.TryGetMod("CatalystMod", out mod2))
                 {
                     if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasIngredient(ModContent.ItemType<MysteriousCircuitry>()))
                         recipe.DisableRecipe();
@@ -282,15 +294,6 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
 
         public override void AddRecipes()
         {
-            if (!InfernalConfig.Instance.CalamityRecipeTweaks) return;
-            Recipe recipe1 = Recipe.Create(ModContent.ItemType<RampartofDeities>(), 1);
-            recipe1.AddIngredient(ItemID.FrozenShield, 1);
-            recipe1.AddIngredient(ModContent.ItemType<DeificAmulet>(), 1);
-            recipe1.AddIngredient(ModContent.ItemType<AsgardianAegis>(), 1);
-            recipe1.AddIngredient(ModContent.ItemType<ShadowspecBar>(), 5);
-            recipe1.AddIngredient(ModContent.ItemType<AscendantSpiritEssence>(), 5);
-            recipe1.AddTile(ModContent.TileType<CosmicAnvil>());
-            recipe1.Register();
         }
     }
 }

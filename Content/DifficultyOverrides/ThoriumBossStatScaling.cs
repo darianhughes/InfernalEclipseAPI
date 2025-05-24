@@ -78,6 +78,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 {
                     npc.lifeMax += (int)npc.lifeMax;
                 }
+                if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
+                {
+                    npc.lifeMax += (int)(0.5 * npc.lifeMax);
+                }
 
                 npc.lifeMax += (int)(0.35 * npc.lifeMax);
             }
@@ -89,6 +93,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     {
                         npc.lifeMax += (int)(0.75 * npc.lifeMax);
                     }
+                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
+                    {
+                        npc.lifeMax += (int)(0.375 * npc.lifeMax);
+                    }
 
                     npc.lifeMax += (int)(0.25 * npc.lifeMax);
                 }
@@ -98,6 +106,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     {
                         npc.lifeMax += (int)(0.5 * npc.lifeMax);
                     }
+                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
+                    {
+                        npc.lifeMax += (int)(0.25 * npc.lifeMax);
+                    }
 
                     npc.lifeMax += (int)(0.2 * npc.lifeMax);
                 }
@@ -106,6 +118,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true)
                     {
                         npc.lifeMax += (int)(0.25 * npc.lifeMax);
+                    }
+                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
+                    {
+                        npc.lifeMax += (int)(0.175 * npc.lifeMax);
                     }
 
                     npc.lifeMax += (int)(0.1 * npc.lifeMax);

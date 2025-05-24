@@ -21,7 +21,6 @@ namespace InfernalEclipseAPI.Common.Balance
         {
             if (InfernalConfig.Instance.BossKillCheckOnOres)
             {
-
                 TileID.Sets.CanBeClearedDuringOreRunner[37] = true;
                 TileID.Sets.CanBeClearedDuringOreRunner[ModContent.TileType<ExodiumOre>()] = true;
             }
@@ -52,7 +51,7 @@ namespace InfernalEclipseAPI.Common.Balance
                     default:
                         if (tile == ModContent.TileType<ExodiumOre>()) { return NPC.downedMoonlord; }
 
-                        if (tile == ModContent.TileType<OnyxExcavatorTile>()) { return NPC.downedGolemBoss; }
+                        if (tile == ModContent.TileType<OnyxExcavatorTile>()) { return DownedBossSystem.downedLeviathan; }
 
                         if (tile == TileID.AlchemyTable) { return NPC.downedBoss3; }
 

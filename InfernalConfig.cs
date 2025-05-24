@@ -58,6 +58,10 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         public bool SOTSThrowerToRogue { get; set; }
 
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool MergeCraftingTrees { get; set; }
+
         #endregion
 
         #region Boss Rush Changes

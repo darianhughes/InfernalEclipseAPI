@@ -88,7 +88,7 @@ Configs: {
 		}
 
 		CalamityBalanceChanges: {
-			Tooltip: Adjusts many of Calamity Vannilla changes back to thier Vanilla values.
+			Tooltip: Adjusts many of Calamity Vanilla changes back to thier Vanilla values.
 			Label: Calamity Balance Changes
 		}
 
@@ -156,7 +156,12 @@ Configs: {
 
 		AdditonalVanillaBossAdjustments: {
 			Label: Additonal Vanilla Boss Adjustments
-			Tooltip: ""
+			Tooltip: Slighty adjusts the stats of some vanilla bosses to be more of a challenge.
+		}
+
+		MergeCraftingTrees: {
+			Label: Merge Crafting Trees
+			Tooltip: Merges the large crafting trees for similar items from multiple mods.
 		}
 	}
 }

@@ -70,7 +70,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 //If any mods allow the terminus to be crafted, make it post-Primordial Wyrm.
                 if (recipe.HasResult(ModContent.ItemType<Terminus>()))
                 {
-                    recipe.AddIngredient(ModContent.ItemType<EvokingSearune>(), 1);
+                    //recipe.AddIngredient(ModContent.ItemType<EvokingSearune>(), 1);
+                    recipe.DisableRecipe();
+                }
+
+                if (recipe.HasResult(ModContent.ItemType<OnyxExcavatorKey>()))
+                {
+                    recipe.AddIngredient(ModContent.ItemType<DepthCells>(), 3);
                 }
 
                 if (InfernalConfig.Instance.CalamityRecipeTweaks)
@@ -84,9 +90,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
 
                     if (recipe.HasResult(ModContent.ItemType<OnyxExcavatorKey>()))
-                    {
-                        recipe.AddIngredient(ItemID.BeetleHusk, 3);
-                    }
+                        recipe.DisableRecipe();
                 }
 
                 if (InfernalConfig.Instance.ThoriumBalanceChangess)

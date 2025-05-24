@@ -27,12 +27,35 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 hasThorium = true;
             }
 
+            bool hasSOTS = false;
+            if (ModLoader.TryGetMod("SOTS", out Mod sots))
+                hasSOTS = true;
+
             foreach (var recipe in Main.recipe)
             {
                 //Skeletron
                 if (recipe.HasResult(ModContent.ItemType<DungeonsCurse>()) && InfernalConfig.Instance.CalamityRecipeTweaks)
                 {
                     recipe.AddIngredient(ItemID.Bone, 5);
+                }
+
+                //Star Scouter post-Advisor if SOTS enabled, otherwise, still lock it after Evil Boss 2
+                if (hasThorium && hasSOTS)
+                {
+                    if (recipe.HasResult(thorium.Find<ModItem>("StarCaller")))
+                    {
+                        if (ModLoader.TryGetMod("RagnarokMod", out _))
+                        {
+                            if (recipe.HasIngredient(ModContent.ItemType<BloodSample>()))
+                                recipe.DisableRecipe(); //we only need one recipe enabled
+                            if (recipe.HasIngredient(ModContent.ItemType<RottenMatter>()))
+                                recipe.RemoveIngredient(ModContent.ItemType<RottenMatter>());
+                        }
+
+                        recipe.AddIngredient(sots.Find<ModItem>("OtherworldlyAlloy"), 3);
+                        recipe.AddIngredient(sots.Find<ModItem>("StarlightAlloy"), 3);
+                        recipe.AddIngredient(sots.Find<ModItem>("HardlightAlloy"), 3);
+                    }
                 }
 
                 //DoG is only post sentinals

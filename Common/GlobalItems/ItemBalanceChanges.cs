@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using CalamityMod;
 using System.Reflection;
+using InfernumMode.Core.Balancing;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -85,6 +86,26 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(youBoss, "FirstFractal", item))
                 {
                     item.damage = 315;
+                }
+            }
+            #endregion
+
+            #region Shields of Cthulhu
+            if (ModLoader.TryGetMod("ShieldsOfCthulhu", out Mod SoC))
+            {
+                if (GetItem(SoC, "CobaltShieldOfCthulhu", item))
+                {
+                    item.defense = 3;
+                }
+
+                if (GetItem(SoC, "ObsidianShieldOfCthulhu", item))
+                {
+                    item.defense = 4;
+                }
+
+                if (GetItem(SoC, "AnkhShieldOfCthulhu", item))
+                {
+                    item.defense = 6;
                 }
             }
             #endregion

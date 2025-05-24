@@ -46,6 +46,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     npc.lifeMax += (int)(((double).25 * (double)npc.lifeMax));
                 }
 
+                if (npc.ModNPC?.Name?.Contains("TheAdvisorHead") == true)
+                {
+                    npc.lifeMax += (int)(0.25 * npc.lifeMax);
+                }
+
                 npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
             }
         }
