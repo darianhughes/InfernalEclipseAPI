@@ -48,7 +48,21 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             NPC npc1 = npc;
             if (npc1.type == NPCID.CultistBoss && InfernalConfig.Instance.AdditonalVanillaBossAdjustments)
             {
-                npc.lifeMax *= 3;
+                if (NPC.downedGolemBoss)
+                    npc.lifeMax *= 3;
+                else if (NPC.downedPlantBoss)
+                    npc.lifeMax += (int)(1.5 * npc.lifeMax);
+                else if (NPC.downedMechBossAny)
+                {
+                    if (NPC.downedMechBoss1)
+                        npc.lifeMax += (int)(1.84 * npc.lifeMax);
+                    if (NPC.downedMechBoss2)
+                        npc.lifeMax += (int)(1.83 * npc.lifeMax);
+                    if (NPC.downedMechBoss3)
+                        npc.lifeMax += (int)(1.83 * npc.lifeMax);
+                }
+                else
+                    npc.lifeMax *= 2;
             }
         }
     }

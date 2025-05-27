@@ -8,7 +8,6 @@ using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
 using CalamityMod.CalPlayer;
-using CalamityMod.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using InfernalEclipseAPI.Content.Buffs;

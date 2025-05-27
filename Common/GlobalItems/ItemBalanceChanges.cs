@@ -153,9 +153,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
+            bool hasCatalyst = false;
             #region Catalyst
             if (InfernalConfig.Instance.CalamityBalanceChanges && ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
             {
+                hasCatalyst = true;
                 #region Ranger
                 //Desert Scorcher
                 if (item.type == catalyst.Find<ModItem>("DesertScorcher").Type)
@@ -264,9 +266,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
+            bool hasCalHunt = false;
             #region Calamity: Hunt of the Old God
             if (ModLoader.TryGetMod("CalamityHunt", out Mod calHunt) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
+                hasCalHunt = true;
                 #region Melee
                 if (GetItem(calHunt, "Parasanguine", item))
                 {
@@ -2526,10 +2530,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Birthplace of Stars
-                if (item.type == calBardHeal.Find<ModItem>("StarBirth").Type)
+                if (calBardHeal.TryFind("StarBirth", out ModItem starBirth))
                 {
-                    TrySetHealAmmount(item, 2);
-                    item.autoReuse = true;
+                    if (item.type == starBirth.Type && hasCatalyst)
+                    {
+                        TrySetHealAmmount(item, 2);
+                        item.autoReuse = true;
+                    }
                 }
                 #endregion
 
@@ -2558,9 +2565,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Singularity
-                if (GetItem(calBardHeal, "Singularity", item))
+                if (hasCatalyst)
                 {
-                    item.damage = 110;
+                    if (GetItem(calBardHeal, "Singularity", item))
+                    {
+                        item.damage = 110;
+                    }
                 }
 
                 //Blooming Saintess' Devotion
@@ -2623,12 +2633,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Times Old Roman
-                if (GetItem(calBardHeal, "TimesOldRoman", item))
+                if (hasCalHunt)
                 {
-                    item.crit = 0;
-                    item.damage = 400;
-                    item.useTime = 24;
-                    item.useAnimation = 24;
+                    if (GetItem(calBardHeal, "TimesOldRoman", item))
+                    {
+                        item.crit = 0;
+                        item.damage = 400;
+                        item.useTime = 24;
+                        item.useAnimation = 24;
+                    }
                 }
 
                 #endregion
@@ -2663,9 +2676,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Supercluster
-                if (GetItem(calBardHeal, "Supercluster", item))
+                if (hasCatalyst)
                 {
-                    item.damage = 60;
+                    if (GetItem(calBardHeal, "Supercluster", item))
+                    {
+                        item.damage = 60;
+                    }
                 }
 
                 if (GetItem(calBardHeal, "TreeWhisperersHarp", item))
@@ -2708,22 +2724,28 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 444;
                 }
 
-                if (GetItem(calBardHeal, "HarmonyoftheOldGod", item))
+                if (hasCalHunt)
                 {
-                    item.crit = 16;
+                    if (GetItem(calBardHeal, "HarmonyoftheOldGod", item))
+                    {
+                        item.crit = 16;
+                    }
                 }
                 #endregion
                 #endregion
 
                 #region Armor
-                if (GetItem(calBardHeal, "IntergelacticCloche", item))
+                if (hasCatalyst)
                 {
-                    item.defense = 44;
-                }
+                    if (GetItem(calBardHeal, "IntergelacticCloche", item))
+                    {
+                        item.defense = 44;
+                    }
 
-                if (GetItem(calBardHeal, "IntergelacticProtectorHelm", item))
-                {
-                    item.defense = 48;
+                    if (GetItem(calBardHeal, "IntergelacticProtectorHelm", item))
+                    {
+                        item.defense = 48;
+                    }
                 }
                 #endregion
             }
@@ -2746,14 +2768,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 #region Thrower
                 //Pocket Energy Storm
-                if (item.type == rethorium.Find<ModItem>("PocketEnergyStorm").Type)
+                if (GetItem(rethorium, "PocketEnergyStorm", item))
                 {
                     //item.damage = 13;
                 }
                 #endregion
 
                 #region Healer
-                if (item.type == rethorium.Find<ModItem>("RedCresent").Type)
+                if (GetItem(rethorium, "RedCresent", item))
                 {
                     item.useTime = 12;
                     item.useAnimation = 12;
@@ -2930,7 +2952,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public static bool GetItem(Mod mod, string name, Item item)
         {
-            if (item.type == mod.Find<ModItem>(name).Type)
+            if (!mod.TryFind(name, out ModItem foundItem))
+                return false;
+
+            if (item.type == foundItem.Type)
             {
                 return true;
             }

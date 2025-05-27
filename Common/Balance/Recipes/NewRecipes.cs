@@ -88,7 +88,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         Recipe newRecipe = Recipe.Create(potion, 2);
 
-                        newRecipe.AddIngredient(potion);
+                        if (InfernalConfig.Instance.BloodOrbPotionDuplication)
+                        {
+                            newRecipe.AddIngredient(potion);
+                        }
+                        else
+                        {
+                            newRecipe.AddIngredient(ItemID.BottledWater);
+                        }
                         newRecipe.AddIngredient<BloodOrb>(10);
 
                         if (potion == GetModItem(sots, "HarmonyPotion"))

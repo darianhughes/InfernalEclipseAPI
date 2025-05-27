@@ -46,6 +46,8 @@ Items: {
 		DisplayName: Stellar Sabre
 		Tooltip: ""
 	}
+
+	Lore.MysteriousDiary.DisplayName: Mysterious Diary
 }
 
 Projectiles: {
@@ -53,6 +55,12 @@ Projectiles: {
 	Rogue.NovaBombProj.DisplayName: Nova Bomb Proj
 	StellarStar.DisplayName: Stellar Star
 }
+
+DiaryTooltip:
+	'''
+	[c/E3AF40:A mysterious diary signed "Provi"...]
+	[c/BEBEBE:Press "Left Shift" to open the diary]
+	'''
 
 Configs: {
 	InfernalConfig: {
@@ -135,7 +143,7 @@ Configs: {
 		}
 
 		DisableBloodOrbPotions: {
-			Tooltip: Disables the crafting recipes for potions that use blood orbs. (TEMPORARY - Will be removed in future Blood Orb rework update.)
+			Tooltip: Disables the crafting recipes for potions that use blood orbs.
 			Label: Disable Blood Orb Potions
 		}
 
@@ -162,6 +170,11 @@ Configs: {
 		MergeCraftingTrees: {
 			Label: Merge Crafting Trees
 			Tooltip: Merges the large crafting trees for similar items from multiple mods.
+		}
+
+		BloodOrbPotionDuplication: {
+			Label: Blood Orb Potion Duplication
+			Tooltip: Replaces the Blood Orb potion recipes with duplication recipes instead.
 		}
 	}
 }

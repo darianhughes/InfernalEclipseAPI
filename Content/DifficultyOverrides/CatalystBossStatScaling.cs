@@ -53,7 +53,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
             }
 
-            if (InfernumActive.InfernumActive)
+            if (InfernumActive.InfernumActive && !ModLoader.TryGetMod("Cnl", out _))
             {
                 npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
             }
@@ -66,7 +66,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 modifiers.SourceDamage *= 1.35f;
             }
             
-            if (InfernumActive.InfernumActive)
+            if (InfernumActive.InfernumActive && !ModLoader.TryGetMod("Cnl", out _))
             {
                 modifiers.SourceDamage *= 1.35f;
             }

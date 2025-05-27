@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.ModLoader;
 using CalamityMod.Items.Accessories;
 using Terraria.ID;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {
@@ -31,6 +32,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 return thor;
             }
         }
+        private Mod sots
+        {
+            get
+            {
+                ModLoader.TryGetMod("SOTS", out Mod sots);
+                return sots;
+            }
+        }
+
         public override void PostAddRecipes()
         { 
             for (int index = 0; index < Recipe.numRecipes; ++index)
@@ -59,6 +69,61 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.RemoveIngredient(ItemID.StarVeil);
                         recipe.AddIngredient(ItemID.FragmentStardust, 5);
                         recipe.AddIngredient(thorium.Find<ModItem>("SweetVengeance"), 1);
+                    }
+
+                    if (recipe.HasResult(thorium.Find<ModItem>("MantleoftheProtector")))
+                    {
+                        recipe.RemoveIngredient(ItemID.Silk);
+                        recipe.RemoveIngredient(ItemID.CrossNecklace);
+                        recipe.AddIngredient(thorium.Find<ModItem>("CapeoftheSurvivor"));
+                        recipe.AddIngredient<DeificAmulet>(1);
+                        recipe.AddIngredient<EffulgentFeather>(1);
+                        recipe.RemoveTile(TileID.TinkerersWorkbench);
+                        recipe.AddTile(TileID.LunarCraftingStation);
+                    }
+
+                    if (sots != null)
+                    {
+                        if (recipe.HasResult(thorium.Find<ModItem>("TerrariumDefender")))
+                        {
+                            recipe.RemoveIngredient(ItemID.AnkhShield);
+                            recipe.RemoveIngredient(thorium.Find<ModItem>("HolyAegis").Type);
+                            recipe.RemoveIngredient(ItemID.FrozenTurtleShell);
+                            recipe.AddIngredient(sots.Find<ModItem>("ChiseledBarrier").Type, 1);
+                            recipe.AddIngredient(sots.Find<ModItem>("OlympianAegis").Type, 1);
+                            recipe.AddIngredient(ItemID.FrozenShield, 1);
+                            recipe.AddIngredient(sots.Find<ModItem>("TerminalCluster").Type, 1);
+                        }
+                    }
+                    else
+                    {
+                        if (recipe.HasResult(thorium.Find<ModItem>("TerrariumDefender")))
+                        {
+                            recipe.RemoveIngredient(ItemID.AnkhShield);
+                            recipe.RemoveIngredient(thorium.Find<ModItem>("HolyAegis").Type);
+                            recipe.RemoveIngredient(ItemID.FrozenTurtleShell);
+                            recipe.AddIngredient(ItemID.FrozenShield, 1);
+                            recipe.AddIngredient(thorium.Find<ModItem>("LifeQuartzShield").Type, 1);
+                        }
+                    }
+                }
+
+                if (recipe.HasResult(ModContent.ItemType<RampartofDeities>()))
+                {
+                    if (thorium != null)
+                    {
+                        recipe.RemoveIngredient(ItemID.FrozenShield);
+                        recipe.RemoveIngredient(ModContent.ItemType<DeificAmulet>());
+                        recipe.AddIngredient(ModContent.ItemType<ExoPrism>(), 5);
+                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumDefender"), 1);
+                        recipe.AddIngredient(thorium.Find<ModItem>("MantleoftheProtector"), 1);
+                    }
+                    else if (sots != null)
+                    {
+                        recipe.AddIngredient(ModContent.ItemType<ExoPrism>(), 5);
+                        recipe.AddIngredient(sots.Find<ModItem>("ChiseledBarrier").Type, 1);
+                        recipe.AddIngredient(sots.Find<ModItem>("OlympianAegis").Type, 1);
+                        recipe.AddIngredient(sots.Find<ModItem>("TerminalCluster").Type, 1);
                     }
                 }
             }

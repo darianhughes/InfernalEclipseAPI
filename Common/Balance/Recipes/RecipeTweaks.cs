@@ -208,6 +208,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (thorium.TryFind("TitaniumGlaive", out ModItem titanGlaive))
                             if (recipe.HasResult(titanGlaive))
                                 recipe.DisableRecipe();
+
+                        string[] disabledItems =
+                        {
+                            "KineticPotion"
+                        };
+
+                        foreach (string item in disabledItems)
+                            if (thorium.TryFind(item, out ModItem tempItem))
+                                if (recipe.HasResult(tempItem))
+                                    recipe.DisableRecipe();
                     }
 
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)

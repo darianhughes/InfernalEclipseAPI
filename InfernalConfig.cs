@@ -47,6 +47,10 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool CalamityRecipeTweaks { get; set; }
 
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool BloodOrbPotionDuplication { get; set; }
+
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DisableBloodOrbPotions { get; set; }

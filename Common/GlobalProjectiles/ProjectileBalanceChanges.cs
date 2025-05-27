@@ -192,9 +192,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     }
                 }
 
-                if (entity.type == calBardHeal.Find<ModProjectile>("StarBirth").Type)
+                if (ModLoader.TryGetMod("CatalystMod", out _))
                 {
-                    //entity.scale *= 0.3f;
+                    if (entity.type == calBardHeal.Find<ModProjectile>("StarBirth").Type)
+                    {
+                        //entity.scale *= 0.3f;
+                    }
                 }
             }
 
