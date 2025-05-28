@@ -54,7 +54,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (item.type == sots.Find<ModItem>("CatalystBomb").Type)
                 {
-                    item.consumable = false;
+                    //item.consumable = false;
                 }
             }
         }
@@ -101,7 +101,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     sots.Find<ModItem>("SuspiciousLookingCandle").Type,
                     sots.Find<ModItem>("JarOfPeanuts").Type,
-                    sots.Find<ModItem>("CatalystBomb").Type
+                    //sots.Find<ModItem>("CatalystBomb").Type
                 };
 
                 foreach (int num in sotsArray)

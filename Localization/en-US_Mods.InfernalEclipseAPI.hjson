@@ -176,6 +176,16 @@ Configs: {
 			Label: Blood Orb Potion Duplication
 			Tooltip: Replaces the Blood Orb potion recipes with duplication recipes instead.
 		}
+
+		AutomaticallyReforgeThoriumRogueItems: {
+			Label: Automatically Reforge Thorium Rogue Items
+			Tooltip:
+				'''
+				Automatically adds the stat bonuses of the "Flawless" prefix onto all non-consumable Thorium Rogue Items. 
+				Can help Thorium items catch up to Calamity items with prefixes as Throium Rogue items can't be reforged.
+				Only works when Ragnarok or Unofficial Calamity Bard & Healer are enabled.
+				'''
+		}
 	}
 }
 

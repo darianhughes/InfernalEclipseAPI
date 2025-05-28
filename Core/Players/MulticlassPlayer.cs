@@ -11,6 +11,7 @@ using CalamityMod.CalPlayer;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using InfernalEclipseAPI.Content.Buffs;
+using ThoriumMod.Items;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -125,6 +126,25 @@ namespace InfernalEclipseAPI.Core.Players
                     ThorPlayer.healBonus -= 10;
                 }
                 radiantDamageCooldown = 900;
+            }
+        }
+
+        public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
+        {
+            if (!InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+                return;
+
+            if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _))
+            {
+                // Only for non-consumable Thorium thrower weapons
+                if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable)
+                {
+                    Player player = Main.LocalPlayer;
+                    var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+                    bool canStealthStike = CalPlayer.StealthStrikeAvailable();
+                    if (canStealthStike)
+                        damage *= 1.15f; // This number centers on 1f, so 1.15f = 1.15x damage.
+                }
             }
         }
     }

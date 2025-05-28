@@ -107,6 +107,10 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool DisableDuplicateContent { get; set; }
 
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool AutomaticallyReforgeThoriumRogueItems { get; set; }
+
         #endregion
     }
 }

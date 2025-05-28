@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
+using CalamityMod.Buffs.DamageOverTime;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
 {
@@ -19,7 +20,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
             Projectile.height = 22;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 1;
             Projectile.tileCollide = true;
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 300;
@@ -58,7 +59,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
         {
             // DAYBROKEN (Mechs+)
             if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                target.AddBuff(BuffID.Daybreak, 120); // 2 seconds
+                target.AddBuff(ModContent.BuffType<AstralInfectionDebuff>(), 120); // 2 seconds
 
             // SPLIT ON HIT (Plantera+)
             if (NPC.downedPlantBoss && Projectile.owner == Main.myPlayer && Projectile.penetrate > 1)
