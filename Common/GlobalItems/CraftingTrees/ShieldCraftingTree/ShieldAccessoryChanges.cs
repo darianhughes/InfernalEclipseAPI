@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework;
 using CalamityMod.Items.Accessories;
 using Terraria.ID;
 using ThoriumMod.Items.Donate;
+using CalamityMod.CalPlayer;
+using CalamityMod.NPCs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {
@@ -80,6 +82,28 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 item.ModItem.Mod.Name == "ThoriumMod" &&
                 item.ModItem.Name == "TerrariumDefender")
             {
+                var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+
+                CalPlayer.DashID = null;
+                player.dashType = 0;
+
+                player.noKnockback = false;
+                player.longInvince = false;
+                player.fireWalk = false;
+                player.statLifeMax2 -= 20;
+                player.buffImmune[20] = false;
+                player.buffImmune[22] = false;
+                player.buffImmune[23] = false;
+                player.buffImmune[30] = false;
+                player.buffImmune[31] = false;
+                player.buffImmune[32] = false;
+                player.buffImmune[33] = false;
+                player.buffImmune[35] = false;
+                player.buffImmune[36] = false;
+                player.buffImmune[46] = false;
+                player.buffImmune[47] = false;
+                player.buffImmune[156] = false;
+
                 if (sots != null)
                 {
                     ModItem olympianAegis = sots.Find<ModItem>("OlympianAegis");

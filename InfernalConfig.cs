@@ -95,7 +95,7 @@ namespace InfernalEclipseAPI
 
         #region Miscellaneous
         [Header ("Miscellaneous")]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         [ReloadRequired]
         public bool InfernumModeForced { get; set; }
 

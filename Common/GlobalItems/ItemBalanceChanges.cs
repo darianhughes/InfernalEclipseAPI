@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using CalamityMod;
 using System.Reflection;
 using InfernumMode.Core.Balancing;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -120,6 +121,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 ModLoader.TryGetMod("CalamityMod", out Mod cal);
 
+                #region Melee
+                if (GetItem(cal, "SubmarineShocker", item))
+                {
+                    item.damage = 55;
+                }
+                #endregion
+
                 #region Ranged
                 if (GetItem(cal, "CrackshotColt", item))
                 {
@@ -132,6 +140,65 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.useTime = 26;
                     item.useAnimation = 26;
+                }
+
+                if (GetItem(cal, "Barinade", item))
+                {
+                    item.useTime = 15;
+                    item.useAnimation = 15;
+                }
+
+                if (GetItem(cal, "Galeforce", item))
+                {
+                    item.damage = 25;
+                }
+
+                if (GetItem(cal, "FlurrystormCannon", item))
+                {
+                    item.damage = 14;
+                }
+
+                if (GetItem(cal, "Archerfish", item))
+                {
+                    item.damage = 25;
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                }
+
+                if (GetItem(cal, "Goobow", item))
+                {
+                    item.damage = 47;
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                }
+
+                if (GetItem(cal, "OverloadedBlaster", item))
+                {
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                }
+
+                if (GetItem(cal, "LunarianBow", item))
+                {
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.damage = 34;
+                }
+
+                if (GetItem(cal, "ThermoclineBlaster", item))
+                {
+                    item.damage = 62;
+                }
+
+                if (GetItem(cal, "VernalBolter", item))
+                {
+                    item.useTime = 19;
+                    item.useAnimation = 19;
+                }
+
+                if (GetItem(cal, "Arietes41", item))
+                {
+                    item.damage = 70;
                 }
                 #endregion
 
@@ -2573,6 +2640,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 55;
                     }
 
+                    if (GetItem(thorium, "GuiltyPleasure", item))
+                    {
+                        item.damage = 42;
+                    }
+
                     if (GetItem(thorium, "SteamFlute", item))
                     {
                         item.damage = 64;
@@ -2616,6 +2688,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "TheGreenTambourine", item))
                     {
                         item.damage = 108;
+                        item.shootSpeed = 18;
                     }
 
                     if (GetItem(thorium, "HallowedMegaphone", item))
@@ -2635,7 +2708,36 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 102;
                         TrySetInspirationCost(item, 1);
                     }
+
+                    if (GetItem(thorium, "VuvuzelaBlue", item) || GetItem(thorium, "VuvuzelaYellow", item) || GetItem(thorium, "VuvuzelaRed", item) || GetItem(thorium, "VuvuzelaGreen", item))
+                    {
+                        item.damage = 100;
+                    }
+
+                    if (GetItem(thorium, "TheMaw", item))
+                    {
+                        item.damage = 85;
+                        item.shootSpeed = 30;
+                    }
+
+                    if (GetItem(thorium, "Buisine", item))
+                    {
+                        TrySetInspirationCost(item, 1);
+                        item.damage = 75;
+                    }
+
+                    if (GetItem(thorium, "Pungi", item))
+                    {
+                        item.damage = 85;
+                        item.useTime = 12;
+                        item.useAnimation = 12;
+                    }
  
+                    if (GetItem(thorium, "BetsysBellow", item))
+                    {
+                        item.damage = 94;
+                    }
+
                     if (GetItem(thorium, "SonicAmplifier", item))
                     {
                         item.useTime = 3;
@@ -2644,7 +2746,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Edge of Imagination
                     if (GetItem(thorium, "EdgeofImagination", item))
                     {
-                        item.damage = 444;
+                        item.damage = 700;
                     }
 
                     //Holophonor
@@ -2664,7 +2766,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Sousaphone
                     if (GetItem(thorium, "Sousaphone", item))
                     {
-                        item.damage = 700;
+                        item.damage = 750;
                     }
 
                     if (GetItem(thorium, "BlackMIDI", item))
@@ -2985,6 +3087,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 150;
                 }
 
+                if (GetItem(calBardHeal, "SpookyMonth", item))
+                {
+                    item.damage = 165;
+                }
+
                 if (GetItem(calBardHeal, "DoomsdayCatharsis", item))
                 {
                     item.damage = 90;
@@ -2997,7 +3104,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(calBardHeal, "SymphonicFabrications", item))
                 {
-                    item.damage = 100;
+                    item.damage = 130;
                 }
 
                 if (GetItem(calBardHeal, "Gashadokuro", item))
@@ -3045,6 +3152,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 #region Ranged
 
+                #endregion
+
+                #region Summoner
+                if (GetItem(rethorium, "LichWhip", item))
+                {
+                    item.damage = 21;
+                }
                 #endregion
 
                 #region Thrower
@@ -3183,6 +3297,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     TrySetInspirationCost(item, 1);
                 }
 
+                if (GetItem(ragnarok, "Steampipes", item))
+                {
+                    item.shootSpeed = 20;
+                }
+
                 //Drum Stick
                 if (GetItem(ragnarok, "DrumStick", item))
                 {
@@ -3194,9 +3313,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Profaned Bell
                 if (GetItem(ragnarok, "ProfanedBell", item))
                 {
-                    item.damage = 500;
+                    item.damage = 600;
                     item.useTime = 21;
                     item.useAnimation = 21;
+                    TrySetInspirationCost(item, 2);
                 }
 
                 //Elysian Song
@@ -3212,9 +3332,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 300;
                 }
 
+                if (GetItem(ragnarok, "UnbreakableCombatUkulele", item))
+                {
+                    item.damage = 1400;
+                }
+
                 if (GetItem(ragnarok, "Arpeggiator", item))
                 {
-                    item.damage = 175;
+                    item.damage = 450;
+                    item.useAnimation = 5;
                 }
 
                 if (GetItem(ragnarok, "Korobeiniki", item))
