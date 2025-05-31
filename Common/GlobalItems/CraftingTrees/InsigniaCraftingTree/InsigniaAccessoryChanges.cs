@@ -123,7 +123,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                 {
                     OverrideColor = new Color?(InfernalRed)
                 });
-                tooltips.Add(new TooltipLine(Mod, "CalamityNerf", "Calamity: No longer allows infinite flight")
+                tooltips.Add(new TooltipLine(Mod, "CalamityNerf", "[Calamity]: No longer allows infinite flight")
                 {
                     OverrideColor = Color.Red
                 });

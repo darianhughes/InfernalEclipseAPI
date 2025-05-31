@@ -82,9 +82,23 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.AddTile(TileID.LunarCraftingStation);
                     }
 
-                    if (sots != null)
+                    if (recipe.HasResult(ModContent.ItemType<AsgardianAegis>()))
                     {
-                        if (recipe.HasResult(thorium.Find<ModItem>("TerrariumDefender")))
+                        if (ModLoader.TryGetMod("ssm", out _))
+                        {
+                            recipe.RemoveIngredient(thorium.Find<ModItem>("TerrariumDefender").Type);
+                            recipe.AddIngredient(ModContent.ItemType<AsgardsValor>());
+                        }
+                    }
+
+                    if (recipe.HasResult(thorium.Find<ModItem>("TerrariumDefender")))
+                    {
+                        if (ModLoader.TryGetMod("ssm", out _))
+                        {
+                            recipe.RemoveIngredient(ModContent.ItemType<AsgardsValor>());
+                        }
+
+                        if (sots != null)
                         {
                             recipe.RemoveIngredient(ItemID.AnkhShield);
                             recipe.RemoveIngredient(thorium.Find<ModItem>("HolyAegis").Type);
@@ -93,11 +107,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             recipe.AddIngredient(sots.Find<ModItem>("OlympianAegis").Type, 1);
                             recipe.AddIngredient(ItemID.FrozenShield, 1);
                             recipe.AddIngredient(sots.Find<ModItem>("TerminalCluster").Type, 1);
+
                         }
-                    }
-                    else
-                    {
-                        if (recipe.HasResult(thorium.Find<ModItem>("TerrariumDefender")))
+                        else
                         {
                             recipe.RemoveIngredient(ItemID.AnkhShield);
                             recipe.RemoveIngredient(thorium.Find<ModItem>("HolyAegis").Type);

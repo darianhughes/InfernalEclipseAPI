@@ -16,7 +16,7 @@ using ThoriumMod.Items;
 namespace InfernalEclipseAPI.Core.Players
 {
     [ExtendsFromMod("ThoriumMod")]
-    public class MulticlassPlayer : ModPlayer
+    public class ThoriumPlayerEdits : ModPlayer
     {
         public int radiantDamageCooldown;
         public int currentHealBonus;
@@ -134,16 +134,23 @@ namespace InfernalEclipseAPI.Core.Players
             if (!InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
                 return;
 
+            Player player = Main.LocalPlayer;
+            var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+            bool canStealthStike = CalPlayer.StealthStrikeAvailable();
+
             if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _))
             {
                 // Only for non-consumable Thorium thrower weapons
                 if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable)
                 {
-                    Player player = Main.LocalPlayer;
-                    var CalPlayer = player.GetModPlayer<CalamityPlayer>();
-                    bool canStealthStike = CalPlayer.StealthStrikeAvailable();
                     if (canStealthStike)
                         damage *= 1.15f; // This number centers on 1f, so 1.15f = 1.15x damage.
+                }
+                else if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.consumable)
+                {
+                    bool canStealthStrike = CalPlayer.StealthStrikeAvailable();
+                    if (canStealthStrike)
+                        damage *= 1.75f;
                 }
             }
         }

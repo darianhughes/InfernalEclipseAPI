@@ -11,6 +11,7 @@ using CalamityMod;
 using CalamityMod.Items;
 using Microsoft.Xna.Framework;
 using CalamityMod.Projectiles.Summon;
+using CalamityMod.CalPlayer;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -59,7 +60,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable)
                 {
-                    string info = "[IEoR] Automatic Flawless Buff:";
+                    string info = "[IEoR]: Automatic Flawless Buff:";
                     string damagemult = "+15% damage";
                     string speedmult = "+9% speed";
                     string critmult = "+5 critical strike chance";
@@ -91,8 +92,37 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         OverrideColor = new Color?(InfernalRedStat)
                     });
                 }
+                else if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable)
+                {
+                    string stealthDamageMultCons = "+75% stealth strike damage";
+                    string stealthsppedMullt = "+75% stealth strike velocity";
+
+                    tooltips.Add(new TooltipLine(Mod, "stealthBuffDamage", stealthDamageMultCons)
+                    {
+                        OverrideColor = new Color?(InfernalRedStat)
+                    });
+                    tooltips.Add(new TooltipLine(Mod, "stealthBuffSpeed", stealthsppedMullt)
+                    {
+                        OverrideColor = new Color?(InfernalRedStat)
+                    });
+                }
+            }
+        }
+
+        //Provided by Wardrobe Hummus
+        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            if (ModLoader.TryGetMod("WHummusMultiModBalancing", out _)) return;
+
+            if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable)
+            {
+                var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+                if (CalPlayer.StealthStrikeAvailable())
+                {
+                    velocity *= 1.75f;
+                }
             }
         }
     }
-    
+
 }
