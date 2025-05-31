@@ -111,6 +111,8 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool AutomaticallyReforgeThoriumRogueItems { get; set; }
 
+        //[DefaultValue(true)]
+        //public bool PlayInfernumExoMechThemeWithWoTM {  get; set; }
         #endregion
     }
 }

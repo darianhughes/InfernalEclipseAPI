@@ -1,7 +1,7 @@
-﻿using InfernumMode.Content.Items.SummonItems;
+﻿using InfernalEclipseAPI.Content.Items.Placeables;
+using InfernumMode.Content.Items.SummonItems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NoxusBoss.Core.CrossCompatibility.Inbound.BossChecklist;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
@@ -32,6 +32,7 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier5"), "Omiscience Of Gods", "TheTrester", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TWISTEDGARDENRemix"), "TWISTED GARDEN [Remix]", "Kuudray", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "CDMusic", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
         }
 
         private void BossChecklistSetup()
@@ -61,6 +62,16 @@ namespace InfernalEclipseAPI.Core.Systems
             if (!ModLoader.TryGetMod("BossChecklist", out mod1) || mod1.Version < new Version(1, 6))
                 return;
             this.ChecklistAddPseudoMiniboss(((ModType)this).Mod, "Dreadnautilus", 7.9f, (Func<bool>)(() => InfernalDownedBossSystem.downedDreadNautilus), 618);
+
+            mod1.Call(new object[3]
+            {
+            (object) "AddToBossCollection",
+            (object) "CalamityMod Exo Mechs",
+            (object) new List<int>()
+                {
+                    ModContent.ItemType<CatastrophicFabricationsMusicBox>()
+                }
+            });
         }
 
         public void ChecklistAddPseudoMiniboss(Mod mod, string internalName, float weight, Func<bool> downed, int bossType)

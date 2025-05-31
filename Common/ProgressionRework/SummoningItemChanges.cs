@@ -33,12 +33,6 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
 
             foreach (var recipe in Main.recipe)
             {
-                //Skeletron
-                if (recipe.HasResult(ModContent.ItemType<DungeonsCurse>()) && InfernalConfig.Instance.CalamityRecipeTweaks)
-                {
-                    recipe.AddIngredient(ItemID.Bone, 5);
-                }
-
                 //Star Scouter post-Advisor if SOTS enabled, otherwise, still lock it after Evil Boss 2
                 if (hasThorium && hasSOTS)
                 {

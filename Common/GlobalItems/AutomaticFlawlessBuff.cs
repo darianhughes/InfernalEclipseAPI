@@ -92,7 +92,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         OverrideColor = new Color?(InfernalRedStat)
                     });
                 }
-                else if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable)
+                else if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable && item.DamageType == ModContent.GetInstance<RogueDamageClass>())
                 {
                     string stealthDamageMultCons = "+75% stealth strike damage";
                     string stealthsppedMullt = "+75% stealth strike velocity";

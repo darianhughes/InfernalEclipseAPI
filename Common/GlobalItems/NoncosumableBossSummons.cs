@@ -75,6 +75,25 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
 
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            {
+                int[] thoriumArray =
+                {
+                    thorium.Find<ModItem>("StormFlare").Type
+                };
+
+                foreach (int num in thoriumArray)
+                {
+                    if (num == item.type)
+                    {
+                        tooltips.Add(new TooltipLine(Mod, "NotConsumable", "Not consumable")
+                        {
+                            OverrideColor = Color.White
+                        });
+                    }
+                }
+            }
+
             if (ModLoader.TryGetMod("Consolaria", out Mod console)) {
                 int[] consoleArray =
                 {
