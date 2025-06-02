@@ -30,7 +30,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Reference Include="CalamityMod">
-	    <HintPath>..\ModAssemblies\CalamityMod_v2.0.4.6.dll</HintPath>
+	    <HintPath>..\ModAssemblies\CalamityMod_v2.0.5.dll</HintPath>
 	  </Reference>
 	  <Reference Include="CatalystMod">
 	    <HintPath>..\ModAssemblies\CatalystMod_v1.1.2.3.dll</HintPath>
