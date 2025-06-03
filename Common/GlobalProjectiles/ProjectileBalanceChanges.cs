@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CalamityMod.Projectiles.Typeless;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod.Projectiles.Scythe;
@@ -13,6 +14,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
     {
         public override void SetDefaults(Projectile entity)
         {
+            if (entity.type == ModContent.ProjectileType<PauldronDash>() && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                //entity.idStaticNPCHitCooldown = 480;
+            }
+
             if (ModLoader.TryGetMod("Clamity", out Mod clam))
             {
                 if (entity.type == clam.Find<ModProjectile>("FireBarrage").Type)

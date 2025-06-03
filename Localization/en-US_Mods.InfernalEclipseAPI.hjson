@@ -201,6 +201,19 @@ BossRushIntroText1:
 	Ensemble of Fools
 	'''
 
+InfernumIntegration: {
+	Polaris:
+		'''
+		Frozen War Machine
+		Polaris
+		'''
+	NewPolaris:
+		'''
+		Frozen War Machine
+		Polaris
+		'''
+}
+
 Buffs: {
 	StarboundHorrification: {
 		Description: You cannot escape Astrageldon...

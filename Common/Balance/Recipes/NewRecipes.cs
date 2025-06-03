@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using InfernalEclipseAPI.Common.GlobalItems;
+using SOTS;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -35,6 +36,84 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             recipe12.AddIngredient(ItemID.Leather, 8);
             recipe12.AddTile(TileID.Loom);
             recipe12.Register();
+
+            if (ModLoader.TryGetMod("AlchemistNPCLite", out Mod AlchNPC))
+            {
+                int[] alchCombos =
+                {
+                    GetModItem(AlchNPC, "BattleCombination"),
+                    GetModItem(AlchNPC, "BewitchingPotion"),
+                    GetModItem(AlchNPC, "BuilderCombination"),
+                    GetModItem(AlchNPC, "CalamityCombination"),
+                    GetModItem(AlchNPC, "ExplorerCombination"),
+                    GetModItem(AlchNPC, "FishingCombination"),
+                    GetModItem(AlchNPC, "MageCombination"),
+                    GetModItem(AlchNPC, "RangerCombination"),
+                    GetModItem(AlchNPC, "SummonerCombination"),
+                    GetModItem(AlchNPC, "VanTankCombination")
+                };
+
+                foreach (int potion in  alchCombos)
+                {
+                    Recipe newRecipe = Recipe.Create(potion, 2);
+
+                    if (InfernalConfig.Instance.BloodOrbPotionDuplication)
+                    {
+                        newRecipe.AddIngredient(potion);
+                    }
+                    else
+                    {
+                        newRecipe.AddIngredient(ItemID.BottledWater);
+                    }
+                    
+                    if (potion == GetModItem(AlchNPC, "BattleCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(60);
+                    if (potion == GetModItem(AlchNPC, "BewitchingPotion"))
+                        newRecipe.AddIngredient<BloodOrb>(10);
+                    if (potion == GetModItem(AlchNPC, "BuilderCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(30);
+                    if (potion == GetModItem(AlchNPC, "CalamityCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(40);
+                    if (potion == GetModItem(AlchNPC, "ExplorerCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(90);
+                    if (potion == GetModItem(AlchNPC, "MageCombination"))
+                    {
+                        newRecipe.AddIngredient<BloodOrb>(40);
+                        newRecipe.AddIngredient(ItemID.FallenStar, 1);
+                    }
+                    if (potion == GetModItem(AlchNPC, "FishingCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(80);
+                    if (potion == GetModItem(AlchNPC, "RangerCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(40);
+                    if (potion == GetModItem(AlchNPC, "SummonerCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(30);
+                    if (potion == GetModItem(AlchNPC, "FishingCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(80);
+                    if (potion == GetModItem(AlchNPC, "VanTankCombination"))
+                        newRecipe.AddIngredient<BloodOrb>(60);
+
+                    newRecipe.AddTile(TileID.AlchemyTable);
+                    newRecipe.Register();
+                }
+
+                if (ModLoader.TryGetMod("ThoriumMod", out _))
+                {
+                    int thorComboId = GetModItem(AlchNPC, "ThoriumCombination");
+                    Recipe thorComboBloodOrb = Recipe.Create(thorComboId, 2);
+                    if (InfernalConfig.Instance.BloodOrbPotionDuplication)
+                    {
+                        thorComboBloodOrb.AddIngredient(thorComboId);
+                    }
+                    else
+                    {
+                        thorComboBloodOrb.AddIngredient(ItemID.BottledWater);
+                    }
+                    thorComboBloodOrb.AddIngredient<BloodOrb>(90);
+
+                    thorComboBloodOrb.AddTile(TileID.AlchemyTable);
+                    thorComboBloodOrb.Register();
+                }
+            }
 
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {

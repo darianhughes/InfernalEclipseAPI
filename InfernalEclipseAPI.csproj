@@ -53,6 +53,9 @@
 	  <Reference Include="PackBuilder">
 	    <HintPath>..\ModAssemblies\PackBuilder_v1.0.0.dll</HintPath>
 	  </Reference>
+	  <Reference Include="RevengeancePlus">
+	    <HintPath>..\ModAssemblies\RevengeancePlus_v0.3.dll</HintPath>
+	  </Reference>
 	  <Reference Include="SOTSBardHealer">
 	    <HintPath>..\ModAssemblies\SOTSBardHealer_v0.2.1.dll</HintPath>
 	  </Reference>

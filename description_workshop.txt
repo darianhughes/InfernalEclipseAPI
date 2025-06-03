@@ -20,7 +20,8 @@ The only mods required for this API to run are Calamity Mod, Infernum Mode, You,
 This API currently adds the following:
 [list]
 	[*] Toggleable balance changes to many of the included mods to help the experience flow together better.
-	[*] Merged crafting trees for many accessories.
+	[*] Merged crafting trees for many accessories
+	[*] Custom Stealth Strikes for Thorium Thrower weapons.
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
 	[*] Boss Rush support for all included bosses.
 	[*] Custom Boss Rush music for tiers 5 & 6

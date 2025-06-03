@@ -1,5 +1,8 @@
-﻿using InfernalEclipseAPI.Content.Items.Placeables;
+﻿using CalamityMod.Items.Placeables.FurnitureAuric;
+using CalamityMod.NPCs.CalClone;
+using InfernalEclipseAPI.Content.Items.Placeables;
 using InfernumMode.Content.Items.SummonItems;
+using Microsoft.Build.Exceptions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -15,10 +18,23 @@ namespace InfernalEclipseAPI.Core.Systems
 {
     public class ModIntegrationsSystem : ModSystem
     {
+        internal static Mod Infernum;
+        internal static Mod SOTS;
+        public override void Load()
+        {
+            ModLoader.TryGetMod("InfernumMode", out Infernum);
+            ModLoader.TryGetMod("SOTS", out SOTS);
+        }
+        public override void Unload()
+        {
+            Infernum = null;
+        }
+
         public override void PostSetupContent()
         {
             MusicDisplaySetup();
             BossChecklistSetup();
+            AddInfernumCards();
         }
         private void MusicDisplaySetup()
         {
@@ -89,6 +105,45 @@ namespace InfernalEclipseAPI.Core.Systems
                 bossType,
                 SpawnDictionaryBuilderSystem.GetDictionary(internalName, mod)
             });
+        }
+
+        internal void AddInfernumCards()
+        {
+            if (Infernum is null) return;
+
+            if (SOTS is null) return;
+            MakeCard(SOTS.Find<ModNPC>("Polaris").Type, (horz, anim) => Color.Lerp(Color.Aquamarine, Color.Red, anim), "Polaris", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"));
+            MakeCard(SOTS.Find<ModNPC>("NewPolaris").Type, (horz, anim) => Color.Lerp(Color.Aquamarine, Color.Red, anim), "NewPolaris", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"));
+        }
+        internal void MakeCard(int type, Func<float, float, Color> color, string title, SoundStyle tickSound, SoundStyle endSound, int time = 300, float size = 1f)
+        {
+            MakeCard(() => NPC.AnyNPCs(type), color, title, tickSound, endSound, time, size);
+        }
+        internal void MakeCard(Func<bool> condition, Func<float, float, Color> color, string title, SoundStyle tickSound, SoundStyle endSound, int time = 300, float size = 1f)
+        {
+            // Initialize the base instance for the intro card. Alternative effects may be added separately.
+            Func<float, float, Color> textColorSelectionDelegate = color;
+            object instance = Infernum.Call("InitializeIntroScreen", Mod.GetLocalization("InfernumIntegration." + title), time, true, condition, textColorSelectionDelegate);
+            Infernum.Call("IntroScreenSetupLetterDisplayCompletionRatio", instance, new Func<int, float>(animationTimer => MathHelper.Clamp(animationTimer / (float)time * 1.36f, 0f, 1f)));
+
+            // dnc but needed or else it errors
+            Action onCompletionDelegate = () => { };
+            Infernum.Call("IntroScreenSetupCompletionEffects", instance, onCompletionDelegate);
+
+            // Letter addition sound.
+            Func<SoundStyle> chooseLetterSoundDelegate = () => tickSound;
+            Infernum.Call("IntroScreenSetupLetterAdditionSound", instance, chooseLetterSoundDelegate);
+
+            // Main sound.
+            Func<SoundStyle> chooseMainSoundDelegate = () => endSound;
+            Func<int, int, float, float, bool> why = (_, _2, _3, _4) => true;
+            Infernum.Call("IntroScreenSetupMainSound", instance, why, chooseMainSoundDelegate);
+
+            // Text scale.
+            Infernum.Call("IntroScreenSetupTextScale", instance, size);
+
+            // Register the intro card.
+            Infernum.Call("RegisterIntroScreen", instance);
         }
     }
 

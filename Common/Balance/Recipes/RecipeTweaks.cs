@@ -212,7 +212,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         string[] disabledItems =
                         {
                             "KineticPotion",
-                            "ChlorophyteTomahawk"
+                            "ChlorophyteTomahawk",
+                            "DemonBloodBow",
+                            "MyceliumGatlingGun"
                         };
 
                         foreach (string item in disabledItems)
