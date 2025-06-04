@@ -129,7 +129,7 @@ namespace InfernalEclipseAPI.Core.Players
             }
 
             //These messages should not appear if they are plaing the mod pack.
-            if (!ModLoader.TryGetMod("RevengeancePlus", out Mod revenge))
+            if (!ModLoader.TryGetMod("RevengeancePlus", out Mod revenge)) //this message should never appear now with it being a dependency
             {
                 Main.NewText("WARNING: It is detected that you do not have Revengeance Plus enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, Infernum, or Thorium will not have Infernum mechanics or intros, and may not be included in Boss Rush. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 0, 0);
             }
@@ -153,12 +153,12 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (ModLoader.TryGetMod("CalamityMinus", out Mod calMinus))
             {
-                Main.NewText("NOTICE: It is detected that you have the Calamity Minus Mod enabled! This mod already includes all of the mods features while you have Calamaity Balance Changes on in the config.", 255, 255, 06);
+                Main.NewText("NOTICE: It is detected that you have the Calamity Minus Mod enabled! This mod already includes all of the mods features while you have Calamaity Balance Changes on in the Infernal Eclipse of Raganrok config.", 255, 255, 06);
             }
 
             if (ModLoader.TryGetMod("CalBalChange", out Mod calBal))
             {
-                Main.NewText("NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled! This mod already includes most of the mods features that are listed on their Steam Workshop page, while you have Calamaity Balance Changes on in the config. Calamity Balance Changes also adds a bunch of unlisted changes which might make your playthough worse than intended.", 255, 255, 06);
+                Main.NewText("NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled! This mod already includes most of the mods features that are listed on their Steam Workshop page, while you have Calamaity Balance Changes on in the Infernal Eclipse of Ragnarok config. Calamity Balance Changes also adds a bunch of unlisted changes which might make your playthough worse than intended.", 255, 255, 06);
             }
 
             if (InfernumActive.InfernumActive)

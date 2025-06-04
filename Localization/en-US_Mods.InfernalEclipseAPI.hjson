@@ -47,7 +47,10 @@ Items: {
 		Tooltip: ""
 	}
 
-	Lore.MysteriousDiary.DisplayName: Mysterious Diary
+	Lore: {
+		MysteriousDiary.DisplayName: Mysterious Diary
+		LorePolaris.DisplayName: Polaris
+	}
 
 	CatastrophicFabricationsMusicBox: {
 		DisplayName: Music Box (Exo Mechs - Infernum Mode)

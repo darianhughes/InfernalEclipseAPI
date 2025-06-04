@@ -412,11 +412,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             {
                                 OverrideColor = new Color?(InfernalRed)
                             });
-
-                            tooltips.Add(new TooltipLine(Mod, "MoltenScaleInfo", moltenScaleInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
                         }
                     }
                     if (item.type == ModContent.ItemType<RampartofDeities>())

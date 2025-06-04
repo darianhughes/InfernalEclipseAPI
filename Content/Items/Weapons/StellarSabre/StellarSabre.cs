@@ -13,7 +13,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
     {
         public override void SetDefaults()
         {
-            Item.damage = 38; // will scale in ModifyWeaponDamage
+            Item.damage = 30; // will scale in ModifyWeaponDamage
             Item.DamageType = DamageClass.Melee;
             Item.width = 40;
             Item.height = 40;
@@ -34,17 +34,15 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             if (NPC.downedMoonlord)
-                damage += 3.75f;
+                damage += 2.00f;
             else if (NPC.downedAncientCultist)
-                damage += 3.50f;
+                damage += 1.25f;
             else if (NPC.downedGolemBoss)
-                damage += 1.75f;
+                damage += 1.15f;
             else if (NPC.downedPlantBoss)
-                damage += 1.50f;
+                damage += 0.75f;
             else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                damage += 1.00f;
-            else if (Main.hardMode)
-                damage += .75f;
+                damage += 0.25f;
         }
 
         public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)

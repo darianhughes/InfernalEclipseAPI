@@ -100,7 +100,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         tooltip.Text = "You gain 5% damage reduction while dashing";
                     }
                 }
-                tooltips.Add(new TooltipLine(Mod, "CooldownInfo", "This effect has a 90 second cooldown")
+                tooltips.Add(new TooltipLine(Mod, "CooldownInfo", "This effect has a 1.5 second cooldown")
                 {
                     OverrideColor = new Color?(InfernalRed)
                 });

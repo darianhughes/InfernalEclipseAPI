@@ -7,6 +7,8 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
+using Terraria.GameContent.NetModules;
+using CalamityMod.NPCs.GreatSandShark;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
@@ -38,7 +40,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 else
                 {
                     ModNPC modNPC15 = npc.ModNPC;
-                    if ((modNPC15 != null ? (((ModType)modNPC15).Name.Contains("GreatSandSharkNPC") ? 1 : 0) :0)  != 0)
+                    if (npc.type == ModContent.NPCType<GreatSandShark>())
                     {
                         npc.lifeMax *= 75;
                     }

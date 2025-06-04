@@ -12,8 +12,34 @@ namespace InfernalEclipseAPI.Core.Systems
 {
     public class InfernalDownedBossSystem : ModSystem
     {
-        public static bool downedDreadNautilus;
+        private static bool _downedDreadNautilus;
 
+        public static bool downedDreadNautilus
+        {
+            get => _downedDreadNautilus;
+            set
+            {
+                if (!value)
+                    _downedDreadNautilus = false;
+                else
+                    NPC.SetEventFlagCleared(ref _downedDreadNautilus, -1);
+            }
+        }
+
+        private static void ReseetAllFlags()
+        {
+            downedDreadNautilus = false;
+        }
+
+        public override void OnWorldLoad()
+        {
+            ReseetAllFlags();
+        }
+
+        public override void OnWorldUnload()
+        {
+            ReseetAllFlags();
+        }
 
         public override void ClearWorld()
         {
