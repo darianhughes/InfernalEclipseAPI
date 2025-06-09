@@ -10,20 +10,16 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <AdditionalFiles Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
-	  <AdditionalFiles Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
 	  <Compile Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
-	  <Compile Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
 	  <EmbeddedResource Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
-	  <EmbeddedResource Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
 	  <None Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
-	  <None Remove="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Assets\Textures\BossChecklist\" />
 	  <Folder Include="Common\Balance\Thorium\" />
 	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
 	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />
-	  <Folder Include="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\" />
+	  <Folder Include="Content\InfernumBehaviorOverrides\BossAIs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="MonoMod" Version="22.7.31.1" />

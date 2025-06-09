@@ -159,7 +159,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                     recipe.DisableRecipe();
                 if (recipe.HasResult(2430))
                     recipe.DisableRecipe();
-                if (recipe.HasResult(256 /*0x0100*/))
+                if (recipe.HasResult(256))
                     recipe.DisableRecipe();
                 if (recipe.HasResult(258))
                     recipe.DisableRecipe();

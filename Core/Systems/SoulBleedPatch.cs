@@ -19,7 +19,6 @@ public class SoulBleedPatch : ModSystem
         if (!ModLoader.TryGetMod("ThoriumRework", out Mod thoriumRework))
             return;
 
-        // Adjust this type string if your namespace is different!
         var type = thoriumRework.Code.GetType("ThoriumRework.Projectiles.SoulBleed");
         if (type == null)
             return;

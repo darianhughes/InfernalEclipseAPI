@@ -15,6 +15,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
 {
     public class ItemAdjustments : GlobalItem
     {
+        //idk honestly i was on something when i wrote this code
         public override void ModifyItemLoot(Item item, ItemLoot loot)
         {
             if (!InfernalConfig.Instance.BossKillCheckOnOres) { return; }

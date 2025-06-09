@@ -53,27 +53,6 @@ namespace InfernalEclipseAPI.Core.Systems
 
         private void BossChecklistSetup()
         {
-            //if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
-            //    return;
-
-            //// Create the defeat condition delegate
-            //Func<bool> downedDreadnautilus = () => InfernalDownedBossSystem.downedDreadNautilus;
-
-            //bossChecklist.Call(
-            //    "AddBoss",
-            //    Mod, // your mod instance
-            //    "InfernalDreadnautilus", // unique internal name
-            //    new List<int> { NPCID.BloodNautilus }, // NPCs representing the boss
-            //    ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Textures/BossChecklist/DreadnautilusIcon").Value, // icon path
-            //    7.9f, // progression position
-            //    downedDreadnautilus, // defeat condition
-            //    //null, 1
-            //    ModContent.ItemType<RedBait>(), // summon item (null for vanilla spawn methods)
-            //    "Fish in the Ocean at night during a Blood Moon", // spawn description
-            //    "The Dreadnautilus flees beneath the crimson tides...", // despawn text
-            //    null // optional loot list
-            //);
-
             Mod mod1;
             if (!ModLoader.TryGetMod("BossChecklist", out mod1) || mod1.Version < new Version(1, 6))
                 return;

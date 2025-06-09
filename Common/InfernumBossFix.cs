@@ -147,9 +147,9 @@ namespace InfernalEclipseAPI.Common
             yield return new NPCHPBalancingChange(129, AccountForExpertHP1Point4((int)(17600.0 * Boost)), (BalancePriority)10, InfernumFirstMechCondition);
             yield return new NPCHPBalancingChange(129, AccountForExpertHP1Point4((int)(19800.0 * Boost)), (BalancePriority)10, InfernumSecondMechCondition);
             yield return new NPCHPBalancingChange(129, AccountForExpertHP1Point4(22000), (BalancePriority)10, InfernumFinalMechCondition);
-            yield return new NPCHPBalancingChange(128 /*0x80*/, AccountForExpertHP1Point4((int)(17600.0 * Boost)), (BalancePriority)10, InfernumFirstMechCondition);
-            yield return new NPCHPBalancingChange(128 /*0x80*/, AccountForExpertHP1Point4((int)(19800.0 * Boost)), (BalancePriority)10, InfernumSecondMechCondition);
-            yield return new NPCHPBalancingChange(128 /*0x80*/, AccountForExpertHP1Point4(22000), (BalancePriority)10, InfernumFinalMechCondition);
+            yield return new NPCHPBalancingChange(128, AccountForExpertHP1Point4((int)(17600.0 * Boost)), (BalancePriority)10, InfernumFirstMechCondition);
+            yield return new NPCHPBalancingChange(128, AccountForExpertHP1Point4((int)(19800.0 * Boost)), (BalancePriority)10, InfernumSecondMechCondition);
+            yield return new NPCHPBalancingChange(128, AccountForExpertHP1Point4(22000), (BalancePriority)10, InfernumFinalMechCondition);
             yield return new NPCHPBalancingChange(131, AccountForExpertHP1Point4((int)(17600.0 * Boost)), (BalancePriority)10, InfernumFirstMechCondition);
             yield return new NPCHPBalancingChange(131, AccountForExpertHP1Point4((int)(19800.0 * Boost)), (BalancePriority)10, InfernumSecondMechCondition);
             yield return new NPCHPBalancingChange(131, AccountForExpertHP1Point4(22000), (BalancePriority)10, InfernumFinalMechCondition);

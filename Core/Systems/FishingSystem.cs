@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 
 namespace InfernalEclipseAPI.Core.Systems;
-
+//another drunk class i can't tell you
 public class FishingSystem : ModSystem
 {
     private static int[] furnitures = new int[19]
@@ -98,7 +98,7 @@ public class FishingSystem : ModSystem
                     obj2.SetDefaults(Main.rand.NextBool() ? 2002 : 4363);
                     obj2.stack = Main.rand.Next(2, 6);
                     break;
-                case 16 /*0x10*/:
+                case 16:
                 case 17:
                 case 18:
                 case 19:

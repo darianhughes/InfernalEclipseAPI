@@ -26,7 +26,7 @@ namespace InfernalEclipseAPI.Core
                     Main.GameUpdateCount - modPlayer.anchorSetTime <= 60 * 20)
                 {
                     Texture2D texture = thorium.Assets.Request<Texture2D>(
-                                "Textures/SoulAnchorLocation", // Adjust if needed
+                                "Textures/SoulAnchorLocation",
                                 ReLogic.Content.AssetRequestMode.ImmediateLoad
                     ).Value;
 
