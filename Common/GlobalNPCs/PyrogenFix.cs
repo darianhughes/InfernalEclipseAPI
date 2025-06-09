@@ -27,8 +27,6 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (npc.type == pyrogenType || npc.type == shieldType)
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.35f);
-                // Optionally sync current life with new max
-                npc.life = npc.lifeMax;
             }
         }
 
@@ -40,7 +38,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             int pyrogenType = clam.Find<ModNPC>("PyrogenBoss")?.Type ?? -1;
             int shieldType = clam.Find<ModNPC>("PyrogenShield")?.Type ?? -1;
 
-            if (npc.type != pyrogenType && npc.type != shieldType)
+            if (npc.type != pyrogenType 
+                //&& npc.type != shieldType
+                )
                 return;
 
             // Only on server or singleplayer

@@ -42,6 +42,7 @@ using System.Reflection;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using MonoMod.RuntimeDetour;
+using InfernalEclipseAPI.Content.Projectiles;
 
 namespace InfernalEclipseAPI
 {
@@ -67,6 +68,7 @@ namespace InfernalEclipseAPI
 
         public static int WhiteFlareType = 0;
         private Type thoriumThrowerClass;
+        private bool _hijackInteraction;
 
         public override void Load()
         {
@@ -77,12 +79,52 @@ namespace InfernalEclipseAPI
                     WhiteFlareType = whiteFlare.Type;
 
                 thoriumThrowerClass = thorium.Code.GetType("ThoriumMod.ThrowerDamageClass");
+
+                if (ModLoader.TryGetMod("CellphonePylon", out _))
+                {
+                    On_Player.IsTileTypeInInteractionRange += On_Player_IsTileTypeInInteractionRange;
+                    On_Player.InInteractionRange += On_Player_InInteractionRange;
+                }
             }
         }
 
         public override void Unload()
         {
             WhiteFlareType = 0; // Clean up on unload
+            On_Player.IsTileTypeInInteractionRange -= On_Player_IsTileTypeInInteractionRange;
+            On_Player.InInteractionRange -= On_Player_InInteractionRange;
+        }
+
+        private bool On_Player_IsTileTypeInInteractionRange(
+            On_Player.orig_IsTileTypeInInteractionRange orig,
+            Player self,
+            int targetTileType,
+            TileReachCheckSettings settings)
+        {
+            ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
+            // Only hijack for tile type 597
+            if (targetTileType != 597)
+                return orig(self, targetTileType, settings);
+
+            _hijackInteraction = true;
+            return orig(self, targetTileType, settings)
+                || self.HasItemInInventoryOrOpenVoidBag(thorium.Find<ModItem>("WishingGlass").Type);
+        }
+
+        private bool On_Player_InInteractionRange(
+            On_Player.orig_InInteractionRange orig,
+            Player self,
+            int interactX,
+            int interactY,
+            TileReachCheckSettings settings)
+        {
+            // If not hijacking, proceed as normal
+            if (!_hijackInteraction)
+                return orig(self, interactX, interactY, settings);
+
+            // Reset hijack flag and allow interaction
+            _hijackInteraction = false;
+            return true;
         }
 
         public override void PostSetupContent()
@@ -567,6 +609,7 @@ namespace InfernalEclipseAPI
             //Ocram
             if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
             {
+                BossDeathEffects.Remove(consolaria.Find<ModNPC>("Ocram").Type);
                 BossDeathEffects.Add(consolaria.Find<ModNPC>("Ocram").Type, npc => { Main.bloodMoon = false; });
             }
 
@@ -641,6 +684,24 @@ namespace InfernalEclipseAPI
                 BossDeathEffects.Remove(fargos.Find<ModNPC>("MutantBoss").Type);
             }
             BossDeathEffects.Remove(brEntries[^1].Item1);
+
+            //Adds the tier 6 animation to Calamitas if she isn't the last boss of Boss Rush
+            if (!(brEntries[^1].Item1 == ModContent.NPCType<SupremeCalamitas>()))
+            {
+                BossDeathEffects.Add(ModContent.NPCType<SupremeCalamitas>(), npc =>
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        foreach (Player p in Main.ActivePlayers)
+                        {
+                            if (p.dead)
+                                continue;
+
+                            int animation = Projectile.NewProjectile(new EntitySource_WorldEvent(), p.Center, Vector2.Zero, ModContent.ProjectileType<BossRushTier6Animation>(), 0, 0f, p.whoAmI);
+                        }
+                    }
+                });
+            }
 
             BossDeathEffects.Add(brEntries[^1].Item1, npc =>
             {

@@ -1,45 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria;
 using ThoriumMod.Items;
 using CalamityMod;
-using CalamityMod.Items;
 using Microsoft.Xna.Framework;
-using CalamityMod.Projectiles.Summon;
 using CalamityMod.CalPlayer;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
     [ExtendsFromMod("ThoriumMod")]
     public class AutomaticFlawlessBuff : GlobalItem
     {
-        public override bool InstancePerEntity => true;
-        public override void SetDefaults(Item item)
+        public override bool IsLoadingEnabled(Mod mod)
         {
-            if (!InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
-                return;
-
-            if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _)) 
+            if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _))
             {
-                // Only for non-consumable Thorium thrower weapons
-                if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
-                {
-                    if (!item.GetGlobalItem<AutomaticFlawlessBuff>().statBonusesApplied)
-                    {
-                        item.damage = (int)(item.damage * 1.15f);
-                        item.useTime = (int)(item.useTime * 0.9f);
-                        item.useAnimation = (int)(item.useAnimation * 0.9f); // keep synced with useTime
-                        item.crit += 5;
-                        item.shootSpeed *= 1.1f;
-                        item.GetGlobalItem<AutomaticFlawlessBuff>().statBonusesApplied = true;
-                    }
-                }
+                return true;
             }
+            return false;
+        }
+        public override bool InstancePerEntity => true;
+
+        //public override void SetDefaults(Item item)
+        //{
+        //    if (!InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+        //        return;
+
+        //    if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _)) 
+        //    {
+        //        // Only for non-consumable Thorium thrower weapons
+        //        if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+        //        {
+        //            if (!item.GetGlobalItem<AutomaticFlawlessBuff>().statBonusesApplied)
+        //            {
+        //                item.damage = (int)(item.damage * 1.15f);
+        //                item.useTime = (int)(item.useTime * 0.9f);
+        //                item.useAnimation = (int)(item.useAnimation * 0.9f); // keep synced with useTime
+        //                item.crit += 5;
+        //                item.shootSpeed *= 1.1f;
+        //                item.GetGlobalItem<AutomaticFlawlessBuff>().statBonusesApplied = true;
+        //            }
+        //        }
+        //    }
+        //}
+
+        public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
+        {
+            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            {
+                damage *= 1.15f;
+            }
+        }
+
+        public override float UseTimeMultiplier(Item item, Player player)
+        {
+            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            {
+                return 0.9f;
+            }
+            return base.UseTimeMultiplier(item, player);
+        }
+
+        public override float UseAnimationMultiplier(Item item, Player player)
+        {
+            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            {
+                return 0.9f;
+            }
+            return base.UseAnimationMultiplier(item, player);
+        }
+
+        public override void ModifyWeaponCrit(Item item, Player player, ref float crit)
+        {
+            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            {
+                crit += 5;
+            }
+        }
+
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            {
+                return base.Shoot(item, player, source, position, velocity * 1.1f, type, damage, knockback);
+            }
+            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
 
         private bool statBonusesApplied = false;
@@ -63,7 +110,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     string info = "[IEoR]: Automatic Flawless Buff:";
                     string damagemult = "+15% damage";
                     string speedmult = "+9% speed";
-                    string critmult = "+5 critical strike chance";
+                    string critmult = "+5% critical strike chance";
                     string shootspeedMult = "+10% velocity";
                     string stealthDamageMutl = "+15% steath strike damage";
 

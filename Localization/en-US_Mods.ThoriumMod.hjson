@@ -1,0 +1,11 @@
+Items: {
+	NuclearFury: {
+		DisplayName: Gamma Fury
+		Tooltip: Unleashes a nova of homing cosmic energy balls
+	}
+
+	ScryingGlass: {
+		DisplayName: Scrying Glass
+		Tooltip: Pressing the '{$Keybinds.AccessoryAbility.DisplayName}' key will toggle an increased range of view
+	}
+}

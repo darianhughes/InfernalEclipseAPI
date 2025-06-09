@@ -23,7 +23,6 @@
 	  <Folder Include="Common\Balance\Thorium\" />
 	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
 	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />
-	  <Folder Include="Common\GlobalItems\CraftingTrees\NewFolder\" />
 	  <Folder Include="Content\InfernumBehaviorOverrides\BossAIs\Pyrogen\" />
 	</ItemGroup>
 	<ItemGroup>

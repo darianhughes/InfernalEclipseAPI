@@ -47,14 +47,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             {
                 Recipe recipe = Main.recipe[index];
 
-                //if (ModLoader.TryGetMod("Clamity", out Mod clam) && !InfernalConfig.Instance.CalamityRecipeTweaks)
-                //{
-                //    if (recipe.HasResult(clam.Find<ModItem>("SupremeBarrier").Type))
-                //    {
-                //        recipe.RemoveIngredient(ModContent.ItemType<ShadowspecBar>());
-                //        recipe.AddIngredient(ModContent.ItemType<Rock>());
-                //    }
-                //}
+                if (ModLoader.TryGetMod("Clamity", out Mod clam) && (ModLoader.TryGetMod("FargowiltasCrossmod", out _) || ModLoader.TryGetMod("ssm", out _)))
+                {
+                    if (recipe.HasResult(clam.Find<ModItem>("SupremeBarrier").Type))
+                    {
+                        recipe.DisableRecipe();
+                    }
+                }
 
                 if (!InfernalConfig.Instance.MergeCraftingTrees)
                     return;
@@ -136,6 +135,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.AddIngredient(sots.Find<ModItem>("ChiseledBarrier").Type, 1);
                         recipe.AddIngredient(sots.Find<ModItem>("OlympianAegis").Type, 1);
                         recipe.AddIngredient(sots.Find<ModItem>("TerminalCluster").Type, 1);
+                    }
+                    
+                    if (ModLoader.TryGetMod("FargowiltasCrossmod", out _))
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<ExoPrism>());
                     }
                 }
             }

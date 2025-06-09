@@ -50,6 +50,12 @@ Items: {
 	Lore: {
 		MysteriousDiary.DisplayName: Mysterious Diary
 		LorePolaris.DisplayName: Polaris
+		LoreAdvisor.DisplayName: The Advisor
+		LoreGlowmoth.DisplayName: Glowmoth
+		LoreLux.DisplayName: Lux
+		LorePharaoh.DisplayName: Pharaoh's Curse
+		LorePutrid.DisplayName: Putrid Pinky
+		LoreSerpent.DisplayName: Subspace Serpent
 	}
 
 	CatastrophicFabricationsMusicBox: {
@@ -62,6 +68,7 @@ Projectiles: {
 	GlitchSwordHoldout.DisplayName: Glitch Sword Holdout
 	Rogue.NovaBombProj.DisplayName: Nova Bomb Proj
 	StellarStar.DisplayName: Stellar Star
+	BossRushTier6Animation.DisplayName: Boss Rush Tier6 Animation
 }
 
 DiaryTooltip:
@@ -88,13 +95,13 @@ Configs: {
 		}
 
 		Headers: {
-			BossRushChanges: Boss Rush Boss Toggles
+			BossRushChanges: Boss Rush Toggles
 			BalanceChanges: Mod Balance Changes
 			Miscellaneous: Miscellaneous
 		}
 
 		ThoriumBalanceChangess: {
-			Tooltip: Modifies a bunch Thorium and mutliple Thorium addon items to be in tune with Calamity's items
+			Tooltip: Modifies a bunch Thorium and mutliple Thorium addon items to be in tune with Calamity's balance.
 			Label: Thorium Balance Changes
 		}
 
@@ -109,12 +116,12 @@ Configs: {
 		}
 
 		BossKillCheckOnOres: {
-			Tooltip: Prevents certain ores from being obtained until you kill certain bosses.
+			Tooltip: Prevents certain ores & tiles from being mined until you kill certain bosses.
 			Label: Boss Kill Check On Ores
 		}
 
 		VanillaBalanceChanges: {
-			Tooltip: Modifies a few Vanilla items to be in tune with Calamity's items
+			Tooltip: Modifies a few Vanilla items to be in tune with Calamity's balance.
 			Label: Vanilla Balance Changes
 		}
 
@@ -131,7 +138,7 @@ Configs: {
 		}
 
 		SOTSBalanceChanges: {
-			Tooltip: Modifies a few Secrets of the Shadows items to be in tune with Calamity's items.
+			Tooltip: Modifies a few Secrets of the Shadows items to be in tune with Calamity's balance.
 			Label: Secrets of the Shadows Balance Changes
 		}
 
@@ -156,7 +163,7 @@ Configs: {
 		}
 
 		PreventBossCheese: {
-			Tooltip: Prevents certain items from working during certain bosses to prevent easy kills.
+			Tooltip: Adds some mechanics to the game that prevent certain ways to easily kill certain bosses.
 			Label: Prevent Boss Cheese
 		}
 
@@ -177,7 +184,7 @@ Configs: {
 
 		MergeCraftingTrees: {
 			Label: Merge Crafting Trees
-			Tooltip: Merges the large crafting trees for similar items from multiple mods.
+			Tooltip: Merges the crafting trees for similar items from multiple mods.
 		}
 
 		BloodOrbPotionDuplication: {
@@ -193,6 +200,11 @@ Configs: {
 				Can help Thorium items catch up to Calamity items with prefixes as Throium Rogue items can't be reforged.
 				Only works when Ragnarok or Unofficial Calamity Bard & Healer are enabled.
 				'''
+		}
+
+		ChanageWeaponClasses: {
+			Label: Chanage Weapon Classes
+			Tooltip: Changes the class of some weapons to give more varity or to make more sense with the weapon.
 		}
 	}
 }

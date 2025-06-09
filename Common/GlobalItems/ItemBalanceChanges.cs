@@ -126,6 +126,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 55;
                 }
+
+                if (GetItem(cal, "EmpyreanKnives", item))
+                {
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                    item.damage = 90;
+                }
                 #endregion
 
                 #region Ranged
@@ -760,6 +767,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 16;
                         item.useAnimation = 16;
+                        item.damage = 90;
                     }
 
                     if (GetItem(thorium, "Blitzzard", item))
@@ -922,14 +930,76 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.shootSpeed = 20;
                     }
 
-                    if (GetItem(thorium, "SevenSeasDevastator", item))
+                    if (GetItem(thorium, "WyvernSlayer", item))
+                    {
+                        item.damage = 254;
+                    }
+
+                    if (GetItem(thorium, "GolemsGaze", item))
+                    {
+                        item.damage = 192;
+                    }
+
+                    if (GetItem(thorium, "LivewireCrasher", item))
+                    {
+                        item.damage = 87;
+                    }
+
+                    if (GetItem(thorium, "TheWhirlpool", item))
+                    {
+                        item.damage = 184;
+                    }
+
+                    if (GetItem(thorium, "MantisShrimpPunch", item))
+                    {
+                        item.damage = 264;
+                    }
+
+                    if (GetItem(thorium, "EclipseFang", item))
                     {
                         item.damage = 250;
                     }
 
+                    if (GetItem(thorium, "TerrariumSaber", item))
+                    {
+                        item.damage = 230;
+                        item.crit = 0;
+                    }
+
+                    if (GetItem(thorium, "Skadoosh", item))
+                    {
+                        item.damage = 53;
+                    }
+
+                    if (GetItem(thorium, "TerrariumHyperDisc", item))
+                    {
+                        item.shootSpeed = 14;
+                        item.useTime = 12;
+                        item.useAnimation = 12;
+                    }
+
+                    if (GetItem(thorium, "BloodGlory", item))
+                    {
+                        item.damage = 400;
+                    }
+
+                    if (GetItem(thorium, "QuakeGauntlet", item))
+                    {
+                        item.useTime = 3;
+                        item.useAnimation = 3;
+                        item.shootSpeed = 20;
+                        item.damage = 147;
+                    }
+
+                    if (GetItem(thorium, "SevenSeasDevastator", item))
+                    {
+                        item.damage = 300;
+                    }
+
                     if (GetItem(thorium, "OceansJudgement", item))
                     {
-                        item.damage = 650;
+                        item.damage = 600;
+                        item.shootSpeed = 25;
                     }
 
                     if (GetItem(thorium, "TerrariansLastKnife", item))
@@ -1154,6 +1224,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 47;
                     }
 
+                    if (GetItem(thorium, "TommyGun", item))
+                    {
+                        item.damage = 26;
+                    }
+
                     if (GetItem(thorium, "FreezeRay", item))
                     {
                         item.damage = 65;
@@ -1322,31 +1397,47 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.crit = 4;
                     }
 
+                    if (GetItem(thorium, "TrenchSpitter", item))
+                    {
+                        item.damage = 57;
+                    }
+
+                    if (GetItem(thorium, "TerrariumLongbow", item))
+                    {
+                        item.useTime = 14;
+                        item.useAnimation = 14;
+                    }
+
+                    if (GetItem(thorium, "TerrariumPulseRifle", item))
+                    {
+                        item.damage = 104;
+                    }
+
                     if (GetItem(thorium, "WyrmDecimator", item))
                     {
-                        item.damage = 550;
+                        item.damage = 600;
                     }
 
                     if (GetItem(thorium, "OmniBow", item))
                     {
-                        item.damage = 180;
+                        item.damage = 220;
                     }
 
                     if (GetItem(thorium, "OmniCannon", item))
                     {
-                        item.damage = 490;
+                        item.damage = 590;
                     }
 
                     if (GetItem(thorium, "TheJavelin", item))
                     {
-                        item.damage = 1200;
+                        item.damage = 1350;
                     }
 
                     if (GetItem(thorium, "QuasarsFlare", item))
                     {
                         item.useTime = 11;
                         item.useAnimation = 11;
-                        item.damage = 600;
+                        item.damage = 1000;
                     }
                     #endregion
                     #endregion
@@ -1711,19 +1802,54 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 110;
                     }
 
+                    if (GetItem(thorium, "SuperPlasmaCannon", item))
+                    {
+                        item.damage = 75;
+                    }
+
+                    if (GetItem(thorium, "OldGodsVision", item))
+                    {
+                        item.damage = 45;
+                    }
+
+                    if (GetItem(thorium, "AncientLight", item))
+                    {
+                        item.damage = 110;
+                    }
+
+                    if (GetItem(thorium, "AncientSpark", item))
+                    {
+                        item.damage = 120;
+                    }
+
+                    if (GetItem(thorium, "TerrariumSageStaff", item))
+                    {
+                        item.damage = 120;
+                    }
+
+                    if (GetItem(thorium, "CatsEyeGreatStaff", item))
+                    {
+                        item.damage = 210;
+                    }
+
+                    if (GetItem(thorium, "TeleologicImposition", item))
+                    {
+                        item.damage = 70;
+                    }
+
                     if (GetItem(thorium, "AlmanacofAgony", item))
                     {
-                        item.damage = 750;
+                        item.damage = 850;
                     }
 
                     if (GetItem(thorium, "DevilsClaw", item))
                     {
-                        item.damage = 500;
+                        item.damage = 600;
                     }
 
                     if (GetItem(thorium, "NorthernLight", item))
                     {
-                        item.damage = 250;
+                        item.damage = 300;
                     }
                     #endregion
                     #endregion
@@ -1842,6 +1968,26 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 75;
                     }
 
+                    if (GetItem(thorium, "VoltModule", item))
+                    {
+                        item.damage = 170;
+                    }
+
+                    if (GetItem(thorium, "TheIncubator", item))
+                    {
+                        item.damage = 88;
+                    }
+
+                    if (GetItem(thorium, "NebulaReflection", item))
+                    {
+                        item.damage = 133;
+                    }
+
+                    if (GetItem(thorium, "TerrariumEnigmaStaff", item))
+                    {
+                        item.damage = 55;
+                    }
+
                     if (GetItem(thorium, "EmberStaff", item))
                     {
                         item.damage = 260;
@@ -1849,7 +1995,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "PrometheanStaff", item))
                     {
-                        item.damage = 500;
+                        item.damage = 900;
                     }
                     #endregion
                     #endregion
@@ -2179,6 +2325,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useAnimation = 14;
                     }
 
+                    if (GetItem(thorium, "LegionOrnament", item))
+                    {
+                        item.damage = 51;
+                    }
+
                     if (GetItem(thorium, "TheCryoFang", item))
                     {
                         item.shootSpeed = 22;
@@ -2189,13 +2340,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 15;
                         item.useAnimation = 15;
+                        item.damage = 41;
                     }
 
                     if (GetItem(thorium, "HellRoller", item))
                     {
                         item.useTime = 14;
                         item.useAnimation = 14;
-                        item.damage = 46;
+                        item.damage = 66;
                     }
 
                     if (GetItem(thorium, "ClockWorkBomb", item))
@@ -2204,7 +2356,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.shootSpeed = 14;
                     }
 
-                    if (GetItem(thorium, "PlayingCard", item))
+                    if (GetItem(thorium, "MagicCard", item))
                     {
                         item.crit = 21;
                         item.shootSpeed = 14;
@@ -2250,12 +2402,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "StalkersSnippers", item))
                     {
-                        item.useTime = 11;
-                        item.useAnimation = 11;
+                        item.useTime = 12;
+                        item.useAnimation = 12;
                         item.damage = 124;
                     }
 
-                    if (GetItem(thorium, "TrueLightAnquish", item))
+                    if (GetItem(thorium, "TrueLightAnguish", item))
                     {
                         item.shootSpeed = 26;
                         item.useTime = 12;
@@ -2270,7 +2422,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 90;
                     }
 
-                    if (GetItem(thorium, "BubBomb", item))
+                    if (GetItem(thorium, "BudBomb", item))
                     {
                         item.damage = 38;
                     }
@@ -2307,35 +2459,85 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "FireAxe", item))
                     {
-                        item.damage = 300;
+                        item.damage = 350;
                     }
 
-                    if (GetItem(thorium, "ShadeKusarigama)", item))
+                    if (GetItem(thorium, "ShadeKusarigama", item))
                     {
                         item.shootSpeed = 22;
+                        item.useTime = 16;
+                        item.useAnimation = 16;
                         item.damage = 430;
                     }
 
                     if (GetItem(thorium, "PharaohsSlab", item))
                     {
-                        item.damage = 133;
+                        item.damage = 160;
                     }
 
                     if (GetItem(thorium, "TheBlackDagger", item))
                     {
-                        item.damage = 45;
+                        item.damage = 55;
                         item.useTime = 6;
                         item.useAnimation = 6;
                     }
 
+                    if (GetItem(thorium, "SoftServeSunderer", item))
+                    {
+                        item.damage = 120;
+                    }
+
+                    if (GetItem(thorium, "Witchblade", item))
+                    {
+                        item.useTime = 12;
+                        item.useAnimation = 12;
+                        item.damage = 180;
+                    }
+
+                    if (GetItem(thorium, "CosmicDagger", item))
+                    {
+                        item.damage = 224;
+                    }
+
+                    if (GetItem(thorium, "ElectroRebounder", item))
+                    {
+                        item.damage = 177;
+                        item.shootSpeed = 20;
+                    }
+
+                    if (GetItem(thorium, "Brinefang", item))
+                    {
+                        item.damage = 150;
+                    }
+
+                    if (GetItem(thorium, "DragonFang", item))
+                    {
+                        item.damage = 125;
+                    }
+
+                    if (GetItem(thorium, "TerrariumRippleKnife", item))
+                    {
+                        item.damage = 66;
+                    }
+
+                    if (GetItem(thorium, "StarEater", item))
+                    {
+                        item.damage = 80;
+                    }
+
+                    if (GetItem(thorium, "AngelsEnd", item))
+                    {
+                        item.damage = 525;
+                    }
+
                     if (GetItem(thorium, "DeitysTrefork", item))
                     {
-                        item.damage = 390;
+                        item.damage = 500;
                     }
 
                     if (GetItem(thorium, "TidalWave", item))
                     {
-                        item.damage = 130;
+                        item.damage = 160;
                     }
                     #endregion
                     #endregion
@@ -2689,6 +2891,31 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "TheBlackScythe", item))
                     {
                         item.damage = 90;
+                    }
+
+                    if (GetItem(thorium, "ChristmasCheer", item))
+                    {
+                        item.damage = 240;
+                    }
+
+                    if (GetItem(thorium, "Kinetoscythe", item))
+                    {
+                        item.damage = 160;
+                    }
+
+                    if (GetItem(thorium, "PaganGrasp", item))
+                    {
+                        item.damage = 276;
+                    }
+
+                    if (GetItem(thorium, "CosmicFluxStaff", item))
+                    {
+                        item.damage = 140;
+                    }
+
+                    if (GetItem(thorium, "TerrariumHolyScythe", item))
+                    {
+                        item.damage = 25;
                     }
 
                     //Lucidty
@@ -3087,10 +3314,37 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useTime = 12;
                         item.useAnimation = 12;
                     }
+
+                    if (GetItem(thorium, "HauntingBassDrum", item))
+                    {
+                        item.damage = 404;
+                    }
+
+                    if (GetItem(thorium, "JingleBells", item))
+                    {
+                        item.damage = 165;
+                        item.shootSpeed = 15;
+                    }
+
+                    if (GetItem(thorium, "Turntable", item))
+                    {
+                        item.damage = 190;
+                    }
+
+                    if (GetItem(thorium, "SirensLyre", item))
+                    {
+                        item.damage = 154;
+                        item.crit = 21;
+                    }
  
                     if (GetItem(thorium, "BetsysBellow", item))
                     {
                         item.damage = 94;
+                    }
+
+                    if (GetItem(thorium, "TerrariumAutoharp", item))
+                    {
+                        item.damage = 62;
                     }
 
                     if (GetItem(thorium, "SonicAmplifier", item))
@@ -3101,13 +3355,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Edge of Imagination
                     if (GetItem(thorium, "EdgeofImagination", item))
                     {
-                        item.damage = 700;
+                        item.damage = 650;
                     }
 
                     //Holophonor
                     if (GetItem(thorium, "Holophonor", item))
                     {
-                        item.damage = 240;
+                        item.damage = 340;
                     }
 
                     //The Set
@@ -3121,7 +3375,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Sousaphone
                     if (GetItem(thorium, "Sousaphone", item))
                     {
-                        item.damage = 750;
+                        item.damage = 950;
                     }
 
                     if (GetItem(thorium, "BlackMIDI", item))
@@ -3301,6 +3555,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 231;
                 }
 
+                if (GetItem(calBardHeal, "SARS", item))
+                {
+                    item.damage = 100;
+                    item.crit = 0;
+                }
+
+                if (GetItem(calBardHeal, "OmnicidesLaw", item))
+                {
+                    item.damage = 90;
+                }
+
                 //Syzygy
                 if (GetItem(calBardHeal, "Syzygy", item))
                 {
@@ -3421,6 +3686,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(calBardHeal, "AnahitasArpeggio", item))
                 {
                     item.damage = 144;
+                }
+
+                if (GetItem(calBardHeal, "TectonicPlates", item))
+                {
+                    item.damage = 80;
                 }
 
                 if (GetItem(calBardHeal, "SongoftheElements", item))
@@ -3552,6 +3822,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 36;
                 }
+
+                if (GetItem(rethorium, "StellarTune", item))
+                {
+                    item.damage = 140;
+                }
                 #endregion
 
                 #region True
@@ -3604,7 +3879,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Scoria Dualscythe
                 if (GetItem(ragnarok, "ScoriaDualscythe", item))
                 {
-                    item.damage = 105;
+                    item.damage = 65;
                 }
 
                 //Astral Ripper
@@ -3665,6 +3940,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 190;
                     item.shootSpeed = 20;
                     TrySetInspirationCost(item, 1);
+                }
+
+                if (GetItem(ragnarok, "DrumStick", item))
+                {
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                    item.damage = 220;
                 }
 
                 if (GetItem(ragnarok, "Steampipes", item))
@@ -3729,13 +4011,22 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public static bool GetItem(Mod mod, string name, Item item)
         {
-            if (!mod.TryFind(name, out ModItem foundItem))
-                return false;
+            ModItem foundItem;
+            ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHealer);
+            if (mod == calBardHealer)
+            {
+                if (!mod.TryFind(name, out foundItem))
+                    return false;
+            }
+            else
+            {
+                foundItem = mod.Find<ModItem>(name);
+            }
 
             if (item.type == foundItem.Type)
-            {
-                return true;
-            }
+                {
+                    return true;
+                }
             return false;
         }
         //method by Wardrobe Hummus

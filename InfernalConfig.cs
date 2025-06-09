@@ -66,6 +66,9 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool MergeCraftingTrees { get; set; }
 
+        [DefaultValue(true)]
+        public bool ChanageWeaponClasses { get; set; }
+
         #endregion
 
         #region Boss Rush Changes

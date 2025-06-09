@@ -63,7 +63,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 item.ModItem.Name == "AsgardsValor" &&
                 thorium != null)
             {
-                ModItem moltenScale = thorium.Find<ModItem>("MoltenScale");
+                ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
                 moltenScale.UpdateAccessory(player, hideVisual);
                 base.UpdateAccessory(item, player, hideVisual);
             }
@@ -73,7 +73,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 item.ModItem.Name == "AsgardianAegis" &&
                 thorium != null)
             {
-                ModItem moltenScale = thorium.Find<ModItem>("MoltenScale");
+                ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
                 moltenScale.UpdateAccessory(player, hideVisual);
                 base.UpdateAccessory(item, player, hideVisual);
             }
@@ -223,7 +223,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             {
                 if (thorium != null)
                 {
-                    ModItem moltenScale = thorium.Find<ModItem>("MoltenScale");
+                    ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
                     moltenScale.UpdateAccessory(player, hideVisual);
                     if (sots != null)
                     {
@@ -289,7 +289,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 new Color(251, 198, 207),
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
-            string moltenScaleInfo = "Nearby enemies will be set on fire";
+            string moltenScaleInfo = "Nearby enemies will melt away";
             string chiseledBarrierInfo = "Surrounds you with 4 orbital projectiles\nLaunches attackers away from you with javelins";
             string chiseledHiddenInfo = "Projectiles disabled when hidden";
             string olympianAegisInfo = "Increases void gain by 2 and life regeneration by 1\nReduces damage taken by 7% and increases critical strike chance by 4%";

@@ -20,6 +20,9 @@ namespace InfernalEclipseAPI.Core.Systems
 
             public override void Load()
             {
+                if (ModLoader.TryGetMod("Cnl", out _))
+                    return;
+
                 try
                 {
                     MethodInfo method = typeof(Astrageldon).GetMethod(

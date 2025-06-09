@@ -138,7 +138,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
             if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
                 return "With the defeat of Draedon's machines, it now inflicts Daybroken.";
             if (Main.hardMode)
-                return "With the deafeat of the Wall of Flesh, this sword now fires extra stars.";
+                return "With the defeat of the Wall of Flesh, this sword now fires extra stars.";
             return "No extra power has been gained...";
         }
 

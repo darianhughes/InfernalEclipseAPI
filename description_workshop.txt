@@ -26,6 +26,7 @@ This API currently adds the following:
 	[*] Boss Rush support for all included bosses.
 	[*] Custom Boss Rush music for tiers 5 & 6
 	[*] Some fixes to help Infernum more multiplayer compatible.
+	[*] Some minor cross-mod improvements for other mods outside main mod pack.
 [/list]
 
 Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer, so if you plan to play multiplayer, you will unfortunately have to remove that pack from the mod pack until they get it fixed. Otherwise, the mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.

@@ -129,7 +129,16 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
             {
                 Recipe recipe = Recipe.Create(num, 2);
                 recipe.AddIngredient(num, 1);
-                recipe.AddIngredient(ModContent.ItemType<BloodOrb>(), 10);
+                if (num == ModContent.ItemType<PhotosynthesisPotion>())
+                {
+                    recipe.AddIngredient(ModContent.ItemType<BloodOrb>(), 40);
+                    recipe.AddIngredient(ModContent.ItemType<EssenceofSunlight>(), 1);
+                }
+                else
+                {
+                    recipe.AddIngredient(ModContent.ItemType<BloodOrb>(), 10);
+                }
+
                 recipe.AddTile(TileID.AlchemyTable);
                 recipe.Register();
             }

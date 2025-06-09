@@ -3,47 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalamityMod;
-using CalamityMod.Items.LoreItems;
-using CalamityMod.Rarities;
-using InfernumMode.Content.Items.Placeables;
 using Microsoft.Xna.Framework.Input;
-using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria;
+using CalamityMod.Items.LoreItems;
+using ThoriumMod.NPCs;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
-    public class MysteriousDiary : LoreItem
+    public class LorePutrid : LoreItem
     {
-
-        public override LocalizedText Tooltip => Language.GetOrRegister("Mods.InfernalEclipseAPI.DiaryTooltip");
-
-        public override void SetStaticDefaults()
-        {
-            ItemID.Sets.ItemNoGravity[Item.type] = false;
-        }
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("SOTS", out _);
 
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 32;
-            Item.rare = ModContent.RarityType<HotPink>();
+            Item.width = 38;
+            Item.height = 26;
+            Item.rare = ItemRarityID.LightRed;
             Item.consumable = false;
         }
 
         public override void AddRecipes()
         {
+            ModLoader.TryGetMod("SOTS", out Mod sots);
+
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<DemonicChaliceOfInfernum>())
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(sots.Find<ModItem>("PutridPinkyTrophy").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "DiaryLore", "Turning to page one, you see nothing except a few words.\n\n\"Who the hell am I, that I still get to live a life?\"\n\nThe rest of the pages are blank...\n[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]\n-Stay tunned for the future of Infernal Eclipse of Ragnarok!-");
+            TooltipLine fullLore = new(Mod, "PutridLore", "A failed experiment, it would seem.\nIt has a certain hunger for Peanuts that grow on the surface, though the reasoning is unknown.\nIt is nowhere near the strength of some of the other gelatinous threats of this world,\nbut it was still formidable irregardless.");
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

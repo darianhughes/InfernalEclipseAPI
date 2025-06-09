@@ -33,6 +33,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             }
         }
 
+        private Mod souls
+        {
+            get
+            {
+                ModLoader.TryGetMod("FargowiltasSouls", out Mod souls);
+                return souls;
+            }
+        }
+
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
             if (IsOmniShield(equippedItem) && IsBarrier(incomingItem)) return false;
@@ -60,6 +69,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             if (sots != null)
                 bulwarkType = sots?.Find<ModItem>("BulwarkOfTheAncients")?.Type ?? 0;
 
+            int colossusType = 0;
+            if (souls != null)
+                colossusType = souls.Find<ModItem>("ColossusSoul").Type;
+
             int rampartType = ModContent.ItemType<RampartofDeities>();
 
             if (InfernalConfig.Instance.CalamityBalanceChanges || InfernalConfig.Instance.MergeCraftingTrees)
@@ -70,12 +83,23 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             {
                 return item.type == bulwarkType;
             }
-            return false;
-            
+            return item.type == colossusType;
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (souls != null)
+            {
+                if (item.type == souls.Find<ModItem>("ColossusSoul").Type)
+                {
+                    int index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
+                    if (index != -1)
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "AccessoryWarning", "-Omni Shield-")
+                        {
+                            OverrideColor = new Color?(new Color(102, byte.MaxValue, byte.MaxValue))
+                        });
+                }
+            }
             if (clamity != null && (InfernalConfig.Instance.CalamityBalanceChanges || InfernalConfig.Instance.MergeCraftingTrees))
             {
                 if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)

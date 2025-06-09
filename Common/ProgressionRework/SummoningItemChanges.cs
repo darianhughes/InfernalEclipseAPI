@@ -147,7 +147,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 }
 
                 //Yharon
-                if (recipe.HasIngredient(ModContent.ItemType<LifeAlloy>()) && recipe.HasIngredient(ModContent.ItemType<YharonEgg>()))
+                if (recipe.HasIngredient(ModContent.ItemType<LifeAlloy>()) && recipe.HasResult(ModContent.ItemType<YharonEgg>()))
                 {
                     recipe.DisableRecipe();
                 }
@@ -185,7 +185,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
             recipe6.AddIngredient(ModContent.ItemType<UnholyEssence>(), 50);
             recipe6.AddIngredient(ModContent.ItemType<AscendantSpiritEssence>(), 5);
 
-            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && !ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
             {
                 thorium.TryFind("DeathEssence", out ModItem death);
                 thorium.TryFind("OceanEssence", out ModItem ocean);
