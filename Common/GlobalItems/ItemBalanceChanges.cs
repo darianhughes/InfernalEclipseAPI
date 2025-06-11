@@ -4040,7 +4040,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             ModItem foundItem;
             ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHealer);
-            if (mod == calBardHealer)
+            ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
+            if (mod == calBardHealer || mod == thorium)
             {
                 if (!mod.TryFind(name, out foundItem))
                     return false;
@@ -4051,11 +4052,25 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
 
             if (item.type == foundItem.Type)
-                {
-                    return true;
-                }
+            {
+                return true;
+            }
             return false;
         }
+
+        //used for testing
+        public static bool UnsafeGetItem(Mod mod, string name, Item item)
+        {
+            ModItem foundItem;
+            foundItem = mod.Find<ModItem>(name);
+
+            if (item.type == foundItem.Type)
+            {
+                return true;
+            }
+            return false;
+        }
+
         //method by Wardrobe Hummus
         private void TrySetInspirationCost(Item item, int newCost)
         {

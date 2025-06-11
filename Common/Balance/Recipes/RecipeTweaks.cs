@@ -536,14 +536,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddTile(ModContent.TileType<StaticRefiner>());
                     }
 
-                    ragCal.TryFind("UniversalHeadset", out ModItem uniHeadset);
-
-                    if (recipe.HasResult(uniHeadset) && InfernalConfig.Instance.ThoriumBalanceChangess)
-                    {
-                        recipe.RemoveIngredient(ItemID.LunarBar);
-                        recipe.AddIngredient(ModContent.ItemType<AuricBar>(), 8);
-                    }
-
                     ragCal.TryFind("ExecutionerMark05", out ModItem exMark5);
                     ragCal.TryFind("ElementalReaper", out ModItem elementalReaper);
 
@@ -621,18 +613,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         {
                             thorium.TryFind("BrokenHeroFragment", out ModItem heroFragment);
                             recipe.ChangeIngredientStack(heroFragment.Type, 3);
-                        }
-                    }
-
-                    if (ragCal != null)
-                    {
-                        if (calBardHeal.TryFind("OmniSpeaker", out ModItem omniSpeak))
-                        {
-                            if (recipe.HasResult(omniSpeak))
-                            {
-                                ragCal.TryFind("SigilOfACruelWorld", out ModItem sigil);
-                                recipe.AddIngredient(sigil.Type);
-                            }
                         }
                     }
 
