@@ -459,6 +459,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 16;
                         item.useAnimation = 16;
+
+                        item.scale *= 1.5f;
                     }
 
                     //Coral Polearm
@@ -528,6 +530,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (item.type == FindItem(thorium, "Spoon"))
                     {
                         item.damage = 48;
+
+                        item.scale *= 2;
                     }
 
                     //Kitchen Knife
@@ -583,6 +587,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 45;
                         item.useTime = 26;
                         item.useAnimation = 26;
+
+                        item.scale *= 1.5f;
                     }
 
                     //Pearl Pike
@@ -705,6 +711,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 13;
                         item.useAnimation = 13;
+
+                        item.scale *= 1.25f;
                     }
 
                     if (GetItem(thorium, "Saba", item))
@@ -782,6 +790,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useTime = 14;
                         item.useAnimation = 14;
                         item.damage = 80;
+
+                        item.scale *= 1.5f;
+                    }
+
+                    if (GetItem(thorium, "Executioner", item))
+                    {
+                        item.scale *= 1.25f;
+                    }
+                    if (GetItem(thorium, "Executioner", item))
+                    {
+                        item.scale *= 1.25f;
                     }
 
                     if (GetItem(thorium, "ShipsHelm", item))
@@ -884,6 +903,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "SolScorchedSlab", item))
                     {
                         item.damage = 158;
+
+                        item.scale *= 1.5f;
                     }
 
                     if (GetItem(thorium, "TheBlackBlade", item))
@@ -958,6 +979,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "EclipseFang", item))
                     {
                         item.damage = 250;
+
+                        item.scale *= 1.5f;
                     }
 
                     if (GetItem(thorium, "TerrariumSaber", item))
@@ -2571,6 +2594,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useAnimation = 26;
                         item.shootSpeed = 26;
                         item.healLife = 1;
+
+                        item.scale *= 1.5f;
                     }
 
                     //Palm Cross
@@ -2620,6 +2645,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useAnimation = 16;
                         item.healLife = 1;
                         item.damage = 20;
+
+                        item.scale *= 1.25f;
                     }
 
                     //Renew
