@@ -24,37 +24,37 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
         {
             if (npc.type == ModContent.NPCType<TheAdvisorHead>())
             {
-                bool firstAdvisorKill() => SOTS.SOTSWorld.downedAdvisor;
+                bool firstAdvisorKill() => !SOTS.SOTSWorld.downedAdvisor;
                 npcLoot.AddConditionalPerPlayer(firstAdvisorKill, ModContent.ItemType<LoreAdvisor>(), desc: DropHelper.FirstKillText);
             }
             if (npc.type == ModContent.NPCType<Glowmoth>())
             {
-                bool firstGlowmothKill() => SOTS.SOTSWorld.downedGlowmoth;
+                bool firstGlowmothKill() => !SOTS.SOTSWorld.downedGlowmoth;
                 npcLoot.AddConditionalPerPlayer(firstGlowmothKill, ModContent.ItemType<LoreGlowmoth>(), desc: DropHelper.FirstKillText);
             }
             if (npc.type == ModContent.NPCType<Lux>())
             {
-                bool firstLuxKill() => SOTS.SOTSWorld.downedLux;
+                bool firstLuxKill() => !SOTS.SOTSWorld.downedLux;
                 npcLoot.AddConditionalPerPlayer(firstLuxKill, ModContent.ItemType<LoreLux>(), desc: DropHelper.FirstKillText);
             }
             if (npc.type == ModContent.NPCType<PharaohsCurse>())
             {
-                bool firstCurseKill() => SOTS.SOTSWorld.downedCurse;
+                bool firstCurseKill() => !SOTS.SOTSWorld.downedCurse;
                 npcLoot.AddConditionalPerPlayer(firstCurseKill, ModContent.ItemType<LorePharaoh>(), desc: DropHelper.FirstKillText);
             }
             if (npc.type == ModContent.NPCType<Polaris>() || npc.type == ModContent.NPCType<NewPolaris>())
             {
-                bool firstPolarisKill() => SOTS.SOTSWorld.downedAmalgamation;
+                bool firstPolarisKill() => !SOTS.SOTSWorld.downedAmalgamation;
                 npcLoot.AddConditionalPerPlayer(firstPolarisKill, ModContent.ItemType<LorePolaris>(), desc: DropHelper.FirstKillText);
             }
             if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
             {
-                bool firstPutridKill() => SOTS.SOTSWorld.downedPinky;
+                bool firstPutridKill() => !SOTS.SOTSWorld.downedPinky;
                 npcLoot.AddConditionalPerPlayer(firstPutridKill, ModContent.ItemType<LorePutrid>(), desc: DropHelper.FirstKillText);
             }
             if (npc.type == ModContent.NPCType<SubspaceSerpentHead>())
             {
-                bool firstSupspaceKill() => SOTS.SOTSWorld.downedSubspace;
+                bool firstSupspaceKill() => !SOTS.SOTSWorld.downedSubspace;
                 npcLoot.AddConditionalPerPlayer(firstSupspaceKill, ModContent.ItemType<LoreSerpent>(), desc: DropHelper.FirstKillText);
             }
         }

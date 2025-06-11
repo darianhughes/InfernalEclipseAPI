@@ -20,14 +20,21 @@ namespace InfernalEclipseAPI.Core.Systems
     {
         internal static Mod Infernum;
         internal static Mod SOTS;
+        internal static Mod Fargos;
+        internal static Mod Starlight;
         public override void Load()
         {
             ModLoader.TryGetMod("InfernumMode", out Infernum);
             ModLoader.TryGetMod("SOTS", out SOTS);
+            ModLoader.TryGetMod("FargowiltasSouls", out Fargos);
+            ModLoader.TryGetMod("ssm", out Starlight);
         }
         public override void Unload()
         {
             Infernum = null;
+            SOTS = null;
+            Fargos = null;
+            Starlight = null;
         }
 
         public override void PostSetupContent()
@@ -49,6 +56,7 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TWISTEDGARDENRemix"), "TWISTED GARDEN [Remix]", "Kuudray", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "CDMusic", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophey", "TheForge", "Infernal Eclipse of Ragnarok");
         }
 
         private void BossChecklistSetup()
@@ -90,9 +98,35 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (Infernum is null) return;
 
-            if (SOTS is null) return;
-            MakeCard(SOTS.Find<ModNPC>("Polaris").Type, (horz, anim) => Color.Lerp(Color.Aquamarine, Color.Red, anim), "Polaris", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"));
-            MakeCard(SOTS.Find<ModNPC>("NewPolaris").Type, (horz, anim) => Color.Lerp(Color.Aquamarine, Color.Red, anim), "NewPolaris", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"));
+            if (SOTS != null)
+            {
+                MakeCard(SOTS.Find<ModNPC>("Polaris").Type, (horz, anim) => Color.Lerp(Color.Aquamarine, Color.Red, anim), "Polaris", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"));
+                MakeCard(SOTS.Find<ModNPC>("NewPolaris").Type, (horz, anim) => Color.Lerp(Color.Aquamarine, Color.Red, anim), "NewPolaris", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"));
+            }
+            if (Fargos != null)
+            {
+                MakeCard(Fargos.Find<ModNPC>("TrojanSquirrel").Type, (horz, anim) => Color.Lerp(Color.Brown, Color.SaddleBrown, anim), "TrojanSquirrel", SoundID.NPCHit4, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("CursedCoffin").Type, (horz, anim) => Color.Lerp(Color.SandyBrown, Color.Yellow, anim), "CursedCoffin", SoundID.MenuTick, SoundID.Roar);
+                MakeCard(Fargos.Find<ModNPC>("DeviBoss").Type, (horz, anim) => Color.Lerp(Color.IndianRed, Color.Pink, anim), "DeviBoss", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("BanishedBaron").Type, (horz, anim) => Color.Lerp(Color.SandyBrown, Color.Aqua, anim), "BanishedBaron", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"));
+                MakeCard(Fargos.Find<ModNPC>("LifeChallenger").Type, (horz, anim) => Color.Lerp(Color.LightYellow, Color.LightGoldenrodYellow, anim), "LifeChallenger", SoundID.Pixie, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("TimberChampion").Type, (horz, anim) => Color.Lerp(Color.ForestGreen, Color.DarkSlateGray, anim), "TimberChampion", SoundID.NPCHit4, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("TerraChampion").Type, (horz, anim) => Color.Lerp(Color.OliveDrab, Color.Brown, anim), "TerraChampion", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("EarthChampion").Type, (horz, anim) => Color.Lerp(Color.DarkGreen, Color.DarkSlateGray, anim), "EarthChampion", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("NatureChampion").Type, (horz, anim) => Color.Lerp(Color.ForestGreen, Color.DarkOliveGreen, anim), "NatureChampion", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("LifeChampion").Type, (horz, anim) => Color.Lerp(Color.DeepPink, Color.LightGoldenrodYellow, anim), "LifeChampion", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("ShadowChampion").Type, (horz, anim) => Color.Lerp(Color.DarkGray, Color.Black, anim), "DeathChampion", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("SpiritChampion").Type, (horz, anim) => Color.Lerp(Color.MediumPurple, Color.Gold, anim), "SpiritChampion", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("WillChampion").Type, (horz, anim) => Color.Lerp(Color.Gold, Color.Goldenrod, anim), "WillChampion", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("CosmosChampion").Type, (horz, anim) => Color.Lerp(Color.DeepPink, Color.LightGoldenrodYellow, anim), "Eridanus", SoundID.MenuTick, SoundID.Item14);
+                MakeCard(Fargos.Find<ModNPC>("AbomBoss").Type, (horz, anim) => Color.Lerp(Color.Purple, Color.Orange, anim), "AbomBoss", SoundID.MenuTick, InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh);
+                if (InfernalConfig.Instance.UseAprilFoolsMutant)
+                    MakeCard(Fargos.Find<ModNPC>("MutantBoss").Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "YharimMutant", SoundID.DD2_BetsyFireballShot, new SoundStyle("CalamityMod/Sounds/Custom/Scare"));
+                else
+                    MakeCard(Fargos.Find<ModNPC>("MutantBoss").Type, (horz, anim) => Color.Lerp(Color.LightBlue, Color.Cyan, anim), "Mutant", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
+            }
+            if (Starlight != null)
+                MakeCard(Starlight.Find<ModNPC>("MutantEX").Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
         }
         internal void MakeCard(int type, Func<float, float, Color> color, string title, SoundStyle tickSound, SoundStyle endSound, int time = 300, float size = 1f)
         {

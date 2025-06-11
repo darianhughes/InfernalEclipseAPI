@@ -37,6 +37,9 @@
 	  <Reference Include="Consolaria">
 	    <HintPath>..\..\ModReader\Consolaria\Consolaria.dll</HintPath>
 	  </Reference>
+	  <Reference Include="FargowiltasSouls">
+	    <HintPath>..\ModAssemblies\FargowiltasSouls_v1.7.2.14.dll</HintPath>
+	  </Reference>
 	  <Reference Include="InfernumMode">
 	    <HintPath>..\ModAssemblies\InfernumMode_v2.0.1.18.dll</HintPath>
 	  </Reference>

@@ -1,32 +1,37 @@
 Infernal Eclipse of Ragnarok
-An Ultramodded Infernum Modpack
-This is just the API for the mod pack. Check out the mod pack here:
+An Ultramodded Infernum Add-on
+
+Check out the associated mod pack here:
 https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
-This will be a content mod that has it's own story including each of the mods in the mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder.
-
-Infernal Eclipse of Ragnarok is a ultra modded pack designed for Calamity's Infernum Mode which includes these content mods:
+Infernal Eclipse of Ragnarok is a ultra modded Infernum Mode addon which currently includes major support for these content mods included in the associated mod pack:
 	- Calamity Mod (obviously)
 	- Thorium Mod
 	- Secrets of the Shadows
 	- Consolaria
 
-The mod pack also has support for Spooky Mod, but isn't included in the mod pack.
+As well minor support for these content mods:
+	- Spooky Mod
+	- Fargo's Souls
 
 This API currently adds the following:
 	- Toggleable balance changes to many of the included mods to help the experience flow together better.
 	- Merged crafting trees for many accessories
 	- Custom Stealth Strikes for Thorium Thrower weapons.
+	- Some cross-mod Infernum intros.
 	- Boss stat adjustments for Infernum mode to keep the difficulty consistent.
-	- Boss Rush support for all included bosses.
+	- Boss Rush support for all included bosses, as well as a custom "tier 6."
 	- Custom Boss Rush music for tiers 5 & 6
 	- Some fixes to help Infernum more multiplayer compatible.
-	- Some minor cross-mod improvements for other mods outside main mod pack.
+	- Some minor cross-mod improvements for other mods associated main mod pack.
 
-Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer, so if you plan to play multiplayer, you will unfortunately have to remove that pack from the mod pack until they get it fixed. Otherwise, the mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
+In the future, this will be a content mod that has it's own story including each of the mods in the associated mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder & the tools provided by the Bereft Souls team.
+
+Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer, so if you plan to play multiplayer, you will unfortunately have to remove that mod from the mod pack until they get it fixed. 
+Otherwise, the mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as we am still testing and developing it.
 
 If you have any other issues please report them in the discord (https://discord.gg/RXdTXbKY). 
 
-Thank you to the tPackBuilder team, as well as each of the individuals for each mod in the mod pack for making this possible!
+Thank you to the Bereft Souls team, as well as each of the individuals for each mod in the associated mod pack for making this possible!
 
 Created by the Infernal Ecllipse of Raganork Team

@@ -99,7 +99,6 @@ namespace InfernalEclipseAPI
         #region Miscellaneous
         [Header ("Miscellaneous")]
         [DefaultValue(false)]
-        [ReloadRequired]
         public bool InfernumModeForced { get; set; }
 
         [DefaultValue(true)]
@@ -116,6 +115,13 @@ namespace InfernalEclipseAPI
 
         //[DefaultValue(true)]
         //public bool PlayInfernumExoMechThemeWithWoTM {  get; set; }
+
+        [DefaultValue(true)]
+        public bool DisplayWorldEntryMessages { get; set; }
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool UseAprilFoolsMutant { get; set; }
         #endregion
     }
 }

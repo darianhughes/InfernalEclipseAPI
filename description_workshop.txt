@@ -1,11 +1,10 @@
 [h1]Infernal Eclipse of Ragnarok[/h1]
-[h3] An Ultramodded Infernum Modpack[/h3]
-[b]This is just the API for the mod pack. Check out the mod pack here:[/b]
+[h3] An Ultramodded Infernum Add-on[/h3]
+
+[b]Check out the associated mod pack here:[/b]
 https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
-This will be a content mod that has it's own story including each of the mods in the mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder.
-
-Infernal Eclipse of Ragnarok is a ultra modded pack designed for Calamity's Infernum Mode which includes these content mods:
+Infernal Eclipse of Ragnarok is a ultra modded Infernum Mode addon which currently includes major support for these content mods included in the associated mod pack:
 [list]
 	[*] Calamity Mod (obviously)
 	[*] Thorium Mod
@@ -13,23 +12,31 @@ Infernal Eclipse of Ragnarok is a ultra modded pack designed for Calamity's Infe
 	[*] Consolaria
 [/list]
 
-The mod pack also has support for Spooky Mod, but isn't included in the mod pack.
+As well minor support for these content mods:
+[list]
+	[*] Spooky Mod
+	[*] Fargo's Souls
+[/list]
 
-The only mods required for this API to run are Calamity Mod, Infernum Mode, You, tPackBuilder, and any dependency included with those mods.
+The only mods required for this API to run are Calamity Mod, Infernum Mode, Revengence+, You, tPackBuilder, and any dependency included with those mods.
 
 This API currently adds the following:
 [list]
 	[*] Toggleable balance changes to many of the included mods to help the experience flow together better.
 	[*] Merged crafting trees for many accessories
 	[*] Custom Stealth Strikes for Thorium Thrower weapons.
+	[*]	Some cross-mod Infernum intros.
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
-	[*] Boss Rush support for all included bosses.
+	[*] Boss Rush support for all included bosses, as well as a custom "tier 6."
 	[*] Custom Boss Rush music for tiers 5 & 6
 	[*] Some fixes to help Infernum more multiplayer compatible.
 	[*] Some minor cross-mod improvements for other mods outside main mod pack.
 [/list]
 
-Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer, so if you plan to play multiplayer, you will unfortunately have to remove that pack from the mod pack until they get it fixed. Otherwise, the mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
+In the future, this will be a content mod that has it's own story including each of the mods in the mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder.
+
+Currently, Calamity: Wrath of the Gods doesn't function properly in Multiplayer, so if you plan to play multiplayer, you will unfortunately have to remove that pack from the mod pack until they get it fixed. 
+Otherwise, the mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
 
 If you have any other issues please report them in the [url=https://discord.gg/tc5nZdRvaU] Discord server[/url]. 
 
@@ -40,10 +47,11 @@ Thank you to the tPackBuilder team, as well as each of the individuals for each 
 Created by the Infernal Eclipse of Ragnarok Team:
 [list]
 	[*] Akira - Creator and Lead Developer
-	[*] PROV1D3NCE - Lead Story Writer
-	[*] TheRogueX - Playtester & Test Server Host
-	[*] trembler - Playtester & Weapon Design
-	[*] Wardrobe Hummus - Weapon and Item Rebalance Developer
-	[*] Yob - Boss Progression Designer 
+	[*] Wardrobe Hummus - Item Rebalance Designer & Developer
+	[*] Advantaje - Developer
+	[*] Yob - Boss Progression Redesigner & Spriter
+	[*] trembler - Weapons Designer & Connections Manager
+	[*] PROV1D3NCE - Lead Story Designer
 	[*] ZaKami - Project Coordinator
+	[*] TheRogueX - Lead Playtester & Testing Server Host
 [/list]

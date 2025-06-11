@@ -206,6 +206,16 @@ Configs: {
 			Label: Chanage Weapon Classes
 			Tooltip: Changes the class of some weapons to give more varity or to make more sense with the weapon.
 		}
+
+		DisplayWorldEntryMessages: {
+			Label: Display World Entry Messages
+			Tooltip: ""
+		}
+
+		UseAprilFoolsMutant: {
+			Label: Use April Fools Mutant
+			Tooltip: ""
+		}
 	}
 }
 
@@ -226,6 +236,96 @@ InfernumIntegration: {
 		'''
 		Frozen War Machine
 		Polaris
+		'''
+	TrojanSquirrel:
+		'''
+		Maniacal Wooded Count
+		Trojan Squirrel
+		'''
+	CursedCoffin:
+		'''
+		Haunted Paraonic Tomb
+		Cursed Coffin
+		'''
+	DeviBoss:
+		'''
+		Watching Enchantress
+		Deviantt
+		'''
+	BanishedBaron:
+		'''
+		Disobedient Machine
+		Banished Baron
+		'''
+	LifeChallenger:
+		'''
+		Master of Pixies
+		Lifelight
+		'''
+	TimberChampion:
+		'''
+		Forest's Emperor
+		Champion of Timber
+		'''
+	TerraChampion:
+		'''
+		Tectonic Burrower
+		Champion of Terra
+		'''
+	EarthChampion:
+		'''
+		Magmatic Erupter
+		Champion of Earth
+		'''
+	NatureChampion:
+		'''
+		The Elementral Hydra
+		Champion of Nature
+		'''
+	LifeChampion:
+		'''
+		Angelic Vivificantem
+		Champion of Life
+		'''
+	DeathChampion:
+		'''
+		Draconic Mortifer
+		Champion of Death
+		'''
+	SpiritChampion:
+		'''
+		Shade of Pneumea
+		Champion of Spirit
+		'''
+	WillChampion:
+		'''
+		The Victorious Fishron King
+		Champion of Will
+		'''
+	Eridanus:
+		'''
+		Champion of Cosmos
+		Constellator Eridanus
+		'''
+	AbomBoss:
+		'''
+		Holistical Amalgam
+		Abominationn
+		'''
+	YharimMutant:
+		'''
+		The God Seeker
+		Yharim
+		'''
+	Mutant:
+		'''
+		The Ultimate Transmogrification
+		Mutant
+		'''
+	MutantEX:
+		'''
+		The Starlight Cat
+		Monstrosity
 		'''
 }
 

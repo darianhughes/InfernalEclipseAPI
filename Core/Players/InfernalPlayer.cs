@@ -28,6 +28,7 @@ namespace InfernalEclipseAPI.Core.Players
     {
         public override void PlayerConnect()
         {
+            if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
         //    Main.NewText("Welcome to the Infernal Eclipse of Ragnarok Mod Pack!", 95, 06, 06);
 
         //    if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
@@ -108,6 +109,8 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void OnEnterWorld()
         {
+            if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
+
             Main.NewText("Welcome to the Infernal Eclipse of Ragnarok Mod Pack!", 95, 06, 06);
 
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))

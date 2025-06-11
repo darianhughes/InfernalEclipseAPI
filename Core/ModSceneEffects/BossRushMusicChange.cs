@@ -35,7 +35,7 @@ namespace InfernalEclipseAPI.Core.ModSceneEffects
         {
             return 1f;
         }
-        public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh + 3;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh + 4;
 
         public override int Music
         {
