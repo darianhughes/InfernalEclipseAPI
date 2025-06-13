@@ -16,10 +16,13 @@ namespace InfernalEclipseAPI.Core.Systems.YharimMutantChange
     {
         public override void ModifyTypeName(NPC npc, ref string typeName)
         {
-            if (npc.type == ModContent.NPCType<FargowiltasSouls.Content.Bosses.MutantBoss.MutantBoss>())
-                typeName = "Godkiller Yharim";
-            if (npc.type == ModContent.NPCType<AbomBoss>())
-                typeName = "Abominationn";
+            if (InfernalConfig.Instance.UseAprilFoolsMutant)
+            {
+                if (npc.type == ModContent.NPCType<FargowiltasSouls.Content.Bosses.MutantBoss.MutantBoss>())
+                    typeName = "Godkiller Yharim";
+                if (npc.type == ModContent.NPCType<AbomBoss>())
+                    typeName = "Abominationn";
+            }
         }
 
         public override void SetDefaults(NPC entity)

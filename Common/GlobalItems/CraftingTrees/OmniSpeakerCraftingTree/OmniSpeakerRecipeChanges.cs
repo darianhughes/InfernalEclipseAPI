@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NewFolder
+namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftingTree
 {
     public class OmniSpeakerRecipeChanges : ModSystem
     {
@@ -48,7 +48,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NewFolder
                     if (recipe.HasResult(CalBardHealer.Find<ModItem>("OmniSpeaker")))
                     {
                         recipe.RemoveIngredient(ItemID.LunarBar);
-                        recipe.AddIngredient<AuricBar>(8);
+                        recipe.AddIngredient<CosmiliteBar>(8);
                         recipe.AddIngredient(Ragnarok.Find<ModItem>("UniversalHeadset"));
                     }
                 }

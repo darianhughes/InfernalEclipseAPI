@@ -15,15 +15,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {
     internal class ShieldRecipeChanges : ModSystem
     {
-        private Mod calamity
-        {
-            get
-            {
-                ModLoader.TryGetMod("CalamityMod", out Mod cal);
-                return cal;
-            }
-        }
-
         private Mod thorium
         {
             get

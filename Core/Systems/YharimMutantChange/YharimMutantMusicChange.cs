@@ -15,6 +15,14 @@ namespace InfernalEclipseAPI.Core.Systems.YharimMutantChange
 {
     public class YharimMutantMusicChange : ModSceneEffect
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            if (!InfernalConfig.Instance.UseAprilFoolsMutant)
+            {
+                return false;
+            }
+            return base.IsLoadingEnabled(mod);
+        }
         public override bool IsSceneEffectActive(Player player)
         {
             // Check if FargowiltasSouls mod is loaded

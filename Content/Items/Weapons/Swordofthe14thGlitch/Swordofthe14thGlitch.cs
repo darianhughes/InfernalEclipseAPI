@@ -83,6 +83,15 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch
             return player.ownedProjectileCounts[Item.shoot] <= 0;
         }
 
+        public override bool? UseItem(Player player)
+        {
+            if (player.mount.Active)
+            {
+                player.mount.Dismount(player);
+            }
+            return base.UseItem(player);
+        }
+
         public override void AddRecipes()
         {
             if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt) && calamityHunt.TryFind("ChromaticMass", out ModItem ChormaticMass))

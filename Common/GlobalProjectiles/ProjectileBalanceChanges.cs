@@ -142,18 +142,18 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 if (entity.type == ragnarok.Find<ModProjectile>("ProfanedBellBlast").Type)
                 {
                     entity.penetrate = 3;
-                    entity.scale = (float)0.75;
+                    entity.scale = 0.75f;
                 }
 
                 if (entity.type == ragnarok.Find<ModProjectile>("ElysianSongPro").Type)
                 {
                     entity.penetrate = 50;
-                    entity.scale = (float)1.5;
+                    entity.scale = 1.5f;
                 }
 
                 if (entity.type == ragnarok.Find<ModProjectile>("TendrilStrike").Type)
                 {
-                    entity.scale = (float)1.5;
+                    entity.scale = 1.5f;
                 }
 
                 if (entity.type == ragnarok.Find<ModProjectile>("MarbleScythePro").Type || entity.type == ragnarok.Find<ModProjectile>("ProfanedScythePro").Type)
@@ -180,6 +180,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     {
                         entity.idStaticNPCHitCooldown = 3;
                     }
+                }
+
+                if (entity.type == ragnarok.Find<ModProjectile>("AuricDamruShock").Type)
+                {
+                    entity.scale = 2;
                 }
             }
 

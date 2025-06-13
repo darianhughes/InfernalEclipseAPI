@@ -243,7 +243,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             {
                 if (player.mount.Active)
                 {
-                    return false;
+                    player.mount.Dismount(player);
                 }
                 return true;
             }

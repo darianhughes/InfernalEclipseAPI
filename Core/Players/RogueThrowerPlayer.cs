@@ -71,7 +71,9 @@ namespace InfernalEclipseAPI.Core.Players
                 Item item = Player.armor[i];
                 if (!item.IsAir &&
                     (item.type == volume2Type || item.type == volume3Type || item.type == volume4Type ||
-                     item.type == soul1Type || item.type == soul2Type || item.type == soul3Type || item.type == wing1Type) &&
+                     item.type == soul1Type || item.type == soul2Type || item.type == soul3Type 
+                     //|| item.type == wing1Type
+                     ) &&
                     !Player.hideVisibleAccessory[i])
                 {
                     shouldBypass = true;

@@ -56,11 +56,17 @@ Items: {
 		LorePharaoh.DisplayName: Pharaoh's Curse
 		LorePutrid.DisplayName: Putrid Pinky
 		LoreSerpent.DisplayName: Subspace Serpent
+		LoreProvi.DisplayName: Provi
 	}
 
 	CatastrophicFabricationsMusicBox: {
 		DisplayName: Music Box (Exo Mechs - Infernum Mode)
 		Tooltip: Plays 'Catastrophic Fabrications' by PinpinNeon
+	}
+
+	EyeMusicBox: {
+		DisplayName: Music Box (Eye of Cthulhu - Infernum Mode)
+		Tooltip: Plays 'Seer of the Night' by PinpinNeon
 	}
 }
 
@@ -352,4 +358,8 @@ Buffs: {
 }
 
 SpawnInfo.Dreadnautilus: Has a chance to spawn while fishing in the ocean on a blood moon.
-Tiles.CatastrophicFabricationsMusicBoxTile.MapEntry: Catastrophic Fabrications Music Box Tile
+
+Tiles: {
+	CatastrophicFabricationsMusicBoxTile.MapEntry: Catastrophic Fabrications Music Box Tile
+	EyeMusicBoxTile.MapEntry: Eye Music Box Tile
+}

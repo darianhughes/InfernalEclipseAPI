@@ -27,6 +27,8 @@ using CalamityMod.Items.Weapons.Rogue;
 using InfernalEclipseAPI.Content.Items.Weapons.StellarSabre;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Magic;
+using CalamityMod.Items.Accessories.Wings;
+using CalamityMod.Items.PermanentBoosters;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -244,7 +246,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             "KineticPotion",
                             "ChlorophyteTomahawk",
                             "DemonBloodBow",
-                            "MyceliumGatlingGun"
+                            "MyceliumGatlingGun",
+                            "TimeWarp"
                         };
 
                         foreach (string item in disabledItems)
@@ -506,7 +509,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                             foreach (ModItem item in preMechIngredients)
                             {
-                                if (recipe.HasIngredient(item) && recipe.HasTile(TileID.MythrilAnvil))
+                                if (recipe.HasIngredient(item) && recipe.HasTile(TileID.MythrilAnvil) && !recipe.HasResult(GetItem(thorium, "DragonTalonNecklace")))
                                 {
                                     recipe.RemoveTile(TileID.MythrilAnvil);
                                     recipe.AddTile(TileID.Anvils);
@@ -657,11 +660,110 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 {
                                     recipe.AddIngredient(phaseBar, 6);
                                 }
-                                else
-                                {
-                                    recipe.AddIngredient(ItemID.Ectoplasm, 6);
-                                }
                             }
+                        }
+
+                        if (recipe.HasResult(ItemID.TrueNightsEdge))
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
+
+                        if (ModLoader.TryGetMod("Consolaria", out Mod console))
+                        {
+                            if (recipe.HasResult(console.Find<ModItem>("SuspiciousLookingSkull")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+                        }
+
+                        if (recipe.HasResult(ModContent.ItemType<AngelTreads>()))
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
+
+                        if (recipe.HasResult(ModContent.ItemType<HallowedRune>()))
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+
+                        if (recipe.HasResult(ModContent.ItemType<MOAB>()))
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
+
+                        if (recipe.HasResult<BloodOrange>())
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+
+                        if (recipe.HasResult<ValkyrieRay>())
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
+
+                        if (recipe.HasResult<CatastropheClaymore>())
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
+
+                        if (recipe.HasResult<Pwnagehammer>())
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
+
+                        if (recipe.HasResult<TrueBiomeBlade>())
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
+
+                        if (recipe.HasResult<Exorcism>())
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 6);
+
+                        if (recipe.HasResult<SpearofDestiny>())
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+
+                        if (recipe.HasResult<SpearofDestiny>())
+                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
+
+                        if (thorium != null)
+                        {
+                            if (recipe.HasResult(thorium.Find<ModItem>("SubspaceWings")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("ValkyrieBlade")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 6);
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("ArchangelHeart")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("ArchDemonCurse")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("TrueBloodHarvest")) || 
+                                recipe.HasResult(thorium.Find<ModItem>("TrueFallingTwilight")) || 
+                                recipe.HasResult(thorium.Find<ModItem>("TrueEmbowelment")) || 
+                                recipe.HasResult(thorium.Find<ModItem>("TrueLightAnguish"))
+                                )
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 20);
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("BlackholeCannon")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("TimeWarp")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 4);
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("SoulForge")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
+                        }
+
+                        if (ModLoader.TryGetMod("AlchemistNPCLite", out Mod alchNPC))
+                        {
+                            if (recipe.HasResult(alchNPC.Find<ModItem>("LuckCharmT2")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 10);
+                        }
+
+                        if (ModLoader.TryGetMod("CalamityHunt", out Mod calHunt))
+                        {
+                            if (recipe.HasResult(calHunt.Find<ModItem>("GelatinousCatalyst")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
+                        }
+
+                        if (ModLoader.TryGetMod("MagicStorage", out Mod magicStorage))
+                        {
+                            if (recipe.HasResult(magicStorage.Find<ModItem>("UpgradeHallowed")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
+                        }
+
+                        if (ModLoader.TryGetMod("Clamity", out Mod clam))
+                        {
+                            if(recipe.HasResult(clam.Find<ModItem>("SoulBaguette")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
+                        }
+
+                        if (ModLoader.TryGetMod("FishGunsPlus", out Mod fishGun))
+                        {
+                            if(recipe.HasResult(fishGun.Find<ModItem>("TrueMutantNightfish")))
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 20);
                         }
                     }
                 }

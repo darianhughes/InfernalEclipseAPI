@@ -42,7 +42,7 @@ If you have any other issues please report them in the [url=https://discord.gg/t
 
 Also check out [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url] mod, as most of the item balance changes in this mod came from that mod and were created by him!
 
-Thank you to the tPackBuilder team, as well as each of the individuals for each mod in the mod pack for making this possible!
+Thank you to the Bereft Souls team, as well as each of the individuals for each mod in the mod pack for making this possible.
 
 Created by the Infernal Eclipse of Ragnarok Team:
 [list]
@@ -55,3 +55,9 @@ Created by the Infernal Eclipse of Ragnarok Team:
 	[*] ZaKami - Project Coordinator
 	[*] TheRogueX - Lead Playtester & Testing Server Host
 [/list]
+
+With some support from the following contributors:
+[list]
+	[*] Soltan - Playtester and Crafting Tree Design Helper
+	[*] Pil - Spriter
+[list]

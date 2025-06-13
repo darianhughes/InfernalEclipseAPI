@@ -3,50 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalamityMod;
+using Microsoft.Xna.Framework.Input;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria;
 using CalamityMod.Items.LoreItems;
 using CalamityMod.Rarities;
-using InfernumMode.Content.Items.Placeables;
-using Microsoft.Xna.Framework.Input;
-using Terraria;
-using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
+using CalamityMod.Items.Materials;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
-    public class MysteriousDiary : LoreItem
+    public class LoreMegalomaniac : LoreItem
     {
-
-        public override LocalizedText Tooltip => Language.GetOrRegister("Mods.InfernalEclipseAPI.DiaryTooltip");
-
-        public override void SetStaticDefaults()
+        public override bool IsLoadingEnabled(Mod mod)
         {
-            ItemID.Sets.ItemNoGravity[Item.type] = false;
+            return false;
         }
-
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 32;
+            Item.width = 38;
+            Item.height = 26;
             Item.rare = ModContent.RarityType<HotPink>();
             Item.consumable = false;
-            Item.Calamity().devItem = true;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<DemonicChaliceOfInfernum>())
+                .AddIngredient(ModContent.ItemType<LoreCynosure>())
+                .AddIngredient(ModContent.ItemType<ShadowspecBar>())
                 .AddTile(TileID.Bookcases)
-                .AddCustomShimmerResult(ModContent.ItemType<LoreProvi>())
                 .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "DiaryLore", "Turning to page one, you see nothing except a few words.\n\n\"Who the hell am I, that I still get to live a life?\"\n\nThe rest of the pages are blank...\n[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]\n-Stay tunned for the future of Infernal Eclipse of Ragnarok!-");
+            TooltipLine fullLore = new(Mod, "YharimLore", "The Devourer, the Dragon, and the Witch.\nAll fell to your ambition. Your motive. Your drive.\nI had an ambition similar.\nBut never was I deemed hero.\nI freed this world of tyranny, and yet I stand known as a tyrant.\nNow one with a determination like mine arrives hell-bent on my destruction.\nI will meet the same fate the oppressor I felled had.\nDestined to be dispatched of by one with similar aspirations as themself.\nI should have known, realized it sooner.\nIt was always meant to be this way.");
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

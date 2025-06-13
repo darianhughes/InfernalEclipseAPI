@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;
 using System.Security.Policy;
 
 
-namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NewFolder
+namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftingTree
 {
     [ExtendsFromMod("ThoriumMod")]
     public class OmniSpeakerAccessoryChanges : GlobalItem
@@ -52,7 +52,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NewFolder
                 Ragnarok != null)
             {
                 ThoriumPlayer thoriumPlayer = player.GetThoriumPlayer();
-                thoriumPlayer.inspirationRegenBonus += 0.1f;
+                ref StatModifier local = ref player.GetDamage(ThoriumDamageBase<BardDamage>.Instance);
+                local -= 0.07f;
+                player.GetCritChance(ThoriumDamageBase<BardDamage>.Instance) -= 7f;
+                player.GetAttackSpeed(ThoriumDamageBase<BardDamage>.Instance) -= 0.7f;
+                thoriumPlayer.inspirationRegenBonus += 0.08f;
                 thoriumPlayer.bardResourceMax2 += 5;
                 thoriumPlayer.accHeadset = true;
             }
@@ -78,7 +82,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NewFolder
                         }
                         if (tooltip.Text.Contains("Increases symphonic playing speed by 10%"))
                         {
-                            tooltip.Text = "Increases symphonic playing speed by 8%%";
+                            tooltip.Text = "Increases symphonic playing speed by 8%";
                         }
                         if (tooltip.Text.Contains("Increases inspiration regeneration rate by 10%"))
                         {
@@ -89,10 +93,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NewFolder
 
                 if (item.type == CalBardHealer.Find<ModItem>("OmniSpeaker").Type)
                 {
-                    tooltips.Add(new TooltipLine(Mod, "InspRegen", "Increases inspiration regeneration rate by 10%")
+                    foreach (TooltipLine tooltip in tooltips)
                     {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
+                        if (tooltip.Text.Contains("15% increased symphonic damage, playing speed, and critical strike chance"))
+                        {
+                            tooltip.Text = "15% increased symphonic damage\n8% increased playing speed, critical strike chance, and inspiration regeneration rate";
+                            tooltip.OverrideColor = new Color?(InfernalRed);
+                        }
+                    }
 
                     tooltips.Add(new TooltipLine(Mod, "MaxInsp", "Increases maximum inspiration by 5")
                     {
