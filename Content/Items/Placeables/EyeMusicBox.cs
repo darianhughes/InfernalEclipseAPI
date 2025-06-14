@@ -13,6 +13,10 @@ namespace InfernalEclipseAPI.Content.Items.Placeables
 {
     public class EyeMusicBox : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.TryGetMod("InfernumModeMusic", out _);
+        }
         public override void SetStaticDefaults()
         {
             if (Main.dedServ)
