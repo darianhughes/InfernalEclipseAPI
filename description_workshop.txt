@@ -51,7 +51,7 @@ Created by the Infernal Eclipse of Ragnarok Team:
 	[*] Advantaje - Developer
 	[*] Yob - Boss Progression Redesigner & Spriter
 	[*] trembler - Weapons Designer & Connections Manager
-	[*] PROV1D3NCE - Lead Story Designer
+	[*] Suu - Lead Story Designer
 	[*] ZaKami - Project Coordinator
 	[*] TheRogueX - Lead Playtester & Testing Server Host
 [/list]

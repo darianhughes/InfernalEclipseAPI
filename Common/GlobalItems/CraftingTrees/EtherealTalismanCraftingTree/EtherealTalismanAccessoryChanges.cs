@@ -16,6 +16,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
 {
     public class EtherealTalismanAccessoryChanges : GlobalItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         private Mod calamity
         {
             get

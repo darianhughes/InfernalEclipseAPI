@@ -24,12 +24,14 @@ namespace InfernalEclipseAPI.Content.Items.Lore
             Item.consumable = false;
             Item.Calamity().devItem = true;
         }
+        
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddCustomShimmerResult(ModContent.ItemType<MysteriousDiary>())
-                .Register();
+            ModLoader.TryGetMod("CalamityMod", out Mod cal);
+
+            cal.Call("MakeItemExhumable", ModContent.ItemType<MysteriousDiary>(), ModContent.ItemType<LoreProvi>());
+            cal.Call("MakeItemExhumable", ModContent.ItemType<LoreProvi>(), ModContent.ItemType<MysteriousDiary>());
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

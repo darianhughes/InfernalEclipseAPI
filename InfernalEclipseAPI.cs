@@ -507,7 +507,7 @@ namespace InfernalEclipseAPI
                         NPC.SpawnOnPlayer(whomst, wotg.Find<ModNPC>("MarsBody").Type);
                     };
 
-                    brEntries.Insert(WyrmInsertID - 1, (wotg.Find<ModNPC>("MarsBody").Type, -1, prMars, 180, false, 0f, MarsMinionIDs, MarsID));
+                    brEntries.Insert(WyrmInsertID + 1, (wotg.Find<ModNPC>("MarsBody").Type, -1, prMars, 180, false, 0f, MarsMinionIDs, MarsID));
 
                     //Avatar of Emptiness
                     int[] AvatarMinionIDs = { wotg.Find<ModNPC>("BattleSolyn").Type, wotg.Find<ModNPC>("NamelessDeityBoss").Type };
@@ -554,29 +554,9 @@ namespace InfernalEclipseAPI
                         Player player = Main.player[whomst];
                         NPC.SpawnOnPlayer(whomst, wotg.Find<ModNPC>("NamelessDeityBoss").Type);
                     };
-
-                    int NamelessInsertID;
-
-                    //Checks to see if Mutant is in Boss Rush, then puts nameless after him.
-                    if (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls) && ModLoader.TryGetMod("FargowiltasCrossMod", out Mod soulsDLC))
-                    {
-                        NamelessInsertID = fargoSouls.Find<ModNPC>("MutantBoss").Type;
-
-                        for (int i = 0; i < brEntries.Count; i++)
-                        {
-                            if (brEntries[i].Item1 == NamelessInsertID)
-                            {
-                                NamelessInsertID = i + 1;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        NamelessInsertID = brEntries.Count;
-                    }
-
-                    brEntries.Insert(NamelessInsertID, (wotg.Find<ModNPC>("NamelessDeityBoss").Type, -1, prNameless, 270, false, 0f, NamelessMinionIDs, NamelessID));
+                   
+                    //last boss always
+                    brEntries.Insert(brEntries.Count, (wotg.Find<ModNPC>("NamelessDeityBoss").Type, -1, prNameless, 270, false, 0f, NamelessMinionIDs, NamelessID));
                 }
             }
 

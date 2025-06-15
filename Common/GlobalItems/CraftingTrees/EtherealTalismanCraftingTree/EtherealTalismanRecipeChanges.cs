@@ -17,6 +17,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
 {
     public class EtherealTalismanRecipeChanges : ModSystem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         private Mod calamity
         {
             get

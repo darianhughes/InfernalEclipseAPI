@@ -40,7 +40,6 @@ namespace InfernalEclipseAPI.Content.Items.Lore
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<DemonicChaliceOfInfernum>())
                 .AddTile(TileID.Bookcases)
-                .AddCustomShimmerResult(ModContent.ItemType<LoreProvi>())
                 .Register();
         }
 
