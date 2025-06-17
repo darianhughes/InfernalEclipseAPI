@@ -48,7 +48,7 @@ namespace InfernalEclipseAPI.Content.Tiles
             if (tile.TileFrameX != 36 || tile.TileFrameY % 36 != 0)
                 return;
 
-            if (Main.timeForVisualEffects % 7.0 != 0.0 || Main.rand.Next(3) != 0)
+            if (Main.timeForVisualEffects % 7.0 != 0.0 || !Main.rand.NextBool(3))
                 return;
 
             int goreType = Main.rand.Next(570, 573);

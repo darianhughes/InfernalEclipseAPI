@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.CalPlayer;
 using InfernalEclipseAPI.Common.GlobalProjectiles;
-using InfernalEclipseAPI.Core.Enums;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -13,6 +12,19 @@ using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
+    public enum StealthStrikeType
+    {
+        None,
+        CactusNeedle,
+        IcyTomahawk,
+        ZephyrsRuin,
+        ClockworkBomb,
+        SoulBomb,
+        PlayingCard,
+        WhiteDwarfCutter,
+        Soulslasher,
+        CaptainsPoignard
+    }
     public class ThoriumStealthStrikes : GlobalItem
     {
         public override bool InstancePerEntity => true;
@@ -65,7 +77,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     for (int i = -1; i <= 1; i++) // 3 projectiles: left, center, right
                     {
                         float rotation = spread * i;
-                        Vector2 newVelocity = velocity.RotatedBy(rotation) * 1.75f;
+                        Vector2 newVelocity = velocity.RotatedBy(rotation);
 
                         int projID = Projectile.NewProjectile(
                             source,
@@ -114,6 +126,199 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
 
+            // ===================== CAPTAIN'S POIGNARD =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Captain's Poignard")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) &&
+                        Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.CaptainsPoignard);
+                    }
+
+                    return false; // prevent original spawn, we spawned manually
+                }
+            }
+
+
+
+
+            // ===================== CLOCKWORK BOMB =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Clockwork Bomb")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.ClockworkBomb);
+                    }
+
+                    return false;
+                }
+            }
+
+            // ===================== SOUL BOMB =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soul Bomb")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.SoulBomb);
+                    }
+
+                    return false;
+                }
+            }
+
+            // ===================== PLAYING CARD =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Playing Card")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int count = 5;
+                    float spread = MathHelper.ToRadians(10f);
+                    float baseAngle = velocity.ToRotation();
+                    float startAngle = baseAngle - spread / 2f;
+
+                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod) &&
+                        thoriumMod.TryFind("MagicCardPro", out ModProjectile modProj))
+                    {
+                        int projType = modProj.Type;
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            float rotation = MathHelper.ToRadians(15f) * (i - 1.5f);
+                            Vector2 rotatedVelocity = velocity.RotatedBy(rotation);
+
+                            int adjustedDamage = (int)Math.Round(damage * 1.15);
+
+                            int projID = Projectile.NewProjectile(
+                                source,
+                                position,
+                                rotatedVelocity,
+                                projType,
+                                adjustedDamage,
+                                knockback,
+                                player.whoAmI,
+                                4,
+                                1f // force explosive version
+                            );
+
+                            if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                            {
+                                stealthGlobal.SetupAsStealthStrike(StealthStrikeType.PlayingCard);
+                            }
+                        }
+
+                        return false;
+                    }
+                }
+            }
+
+
+
+            // ===================== SOULSLASHER =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soulslasher")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod) &&
+                        thoriumMod.TryFind("SoulslasherPro", out ModProjectile modProj))
+                    {
+                        int projType = modProj.Type;
+
+                        int projID = Projectile.NewProjectile(
+                            source,
+                            position,
+                            velocity,
+                            projType,
+                            damage,
+                            knockback,
+                            player.whoAmI
+                        );
+
+                        if (Main.projectile.IndexInRange(projID) &&
+                            Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                        {
+                            stealthGlobal.SetupAsStealthStrike(StealthStrikeType.Soulslasher);
+                        }
+
+                        return false; // Prevent default projectile
+                    }
+                }
+            }
+
+
+            // ===================== WHITE DWARF CUTTER =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "White Dwarf Cutter")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    // Fire the main kunai
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) &&
+                        Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.WhiteDwarfCutter);
+                    }
+
+                    // Spawn the two angled kunai
+                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
+                        thorium.TryFind("WhiteDwarfKunaiPro2", out ModProjectile sideProjMod))
+                    {
+                        int sideProjType = sideProjMod.Type;
+
+                        Vector2 velocityUp = velocity.RotatedBy(MathHelper.ToRadians(5f));
+                        Vector2 velocityDown = velocity.RotatedBy(MathHelper.ToRadians(-5f));
+
+                        int upProjID = Projectile.NewProjectile(source, position, velocityUp, sideProjType, damage, knockback, player.whoAmI);
+                        int downProjID = Projectile.NewProjectile(source, position, velocityDown, sideProjType, damage, knockback, player.whoAmI);
+                    }
+
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -139,6 +344,54 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumRework" && item.Name == "Zephyr's Ruin")
             {
                 tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw a stronger spear that always crits")
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Clockwork Bomb")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes create a larger field that lasts longer")
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soul Bomb")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes release a burst of homing souls on detonation")
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Playing Card")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw 5 homing cards that are always explosive")
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soulslasher")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes will also aggressively home after hitting an enemy")
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "White Dwarf Cutter")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "During a stealth strike each hit from the main knife creates Ivory flares that damage for 0.1% of the target's max HP")
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Captain's Poignard")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw a burst of 6 daggers and gives the player increased attack speed for 10 seconds")
                 {
                     OverrideColor = Color.White
                 });

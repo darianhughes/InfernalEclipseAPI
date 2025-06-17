@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.Items.Accessories;
+using CalamityMod.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -51,6 +52,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                     {
                         recipe.RemoveIngredient(sots.Find<ModItem>("SpiritInsignia").Type);
                         recipe.AddIngredient<AscendantInsignia>(1);
+                        recipe.AddIngredient<AscendantSpiritEssence>(3);
                     }
                 }
             }

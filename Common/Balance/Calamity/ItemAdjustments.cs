@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 using CalamityMod.Items.Weapons.Summon;
 using Terraria.GameContent.ItemDropRules;
 using InfernumMode.Content.Items.SummonItems;
+using Terraria.ID;
 
 namespace InfernalEclipseAPI.Common.Balance.Calamity
 {
@@ -20,7 +21,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
         {
             if (!InfernalConfig.Instance.BossKillCheckOnOres) { return; }
 
-            if (item.type == 3982 || item.type == 3983 || item.type == 3984 || item.type == 3985 || item.type == 4406 || item.type == 3981 || item.type == 3986 || item.type == 3980 || item.type == 3987 || item.type == 4878 || item.type == 4408 || item.type == 5003 || item.type == 3979)
+            if (item.type == ItemID.CorruptFishingCrate || item.type == ItemID.CorruptFishingCrateHard || item.type == ItemID.DungeonFishingCrateHard || item.type == ItemID.FloatingIslandFishingCrateHard || item.type == ItemID.FrozenCrateHard || item.type == ItemID.GoldenCrateHard || item.type == ItemID.HallowedFishingCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.JungleFishingCrateHard || item.type == ItemID.LavaCrateHard || item.type == ItemID.OasisCrateHard || item.type == ItemID.OceanCrateHard || item.type == ItemID.WoodenCrateHard)
             {
                 ((ItemLoot)loot).RemoveWhere((Predicate<IItemDropRule>)(cobalto => cobalto is CommonDrop commonDrop1 && commonDrop1.itemId == 364), true);
                 ((ItemLoot)loot).RemoveWhere((Predicate<IItemDropRule>)(cobaltb => cobaltb is CommonDrop commonDrop2 && commonDrop2.itemId == 381), true);
@@ -35,14 +36,14 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 ((ItemLoot)loot).RemoveWhere((Predicate<IItemDropRule>)(tito => tito is CommonDrop commonDrop11 && commonDrop11.itemId == 1106), true);
                 ((ItemLoot)loot).RemoveWhere((Predicate<IItemDropRule>)(titb => titb is CommonDrop commonDrop12 && commonDrop12.itemId == 1198), true);
             }
-            if (item.type == 3979 && item.type == 2334)
+            if (item.type == ItemID.WoodenCrateHard && item.type == ItemID.WoodenCrate)
             {
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 381, 5, 2, 3);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 1184, 5, 2, 3);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 364, 7, 4, 15);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 1104, 7, 4, 15);
             }
-            if (item.type == 3980 && item.type == 2335)
+            if (item.type == ItemID.IronCrateHard && item.type == ItemID.IronCrate)
             {
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 381, 14, 3, 7);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 1184, 14, 3, 7);
@@ -53,7 +54,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode && NPC.downedMechBossAny), 364, 8, 12, 21);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode && NPC.downedMechBossAny), 1104, 8, 12, 21);
             }
-            if (item.type == 3980 && item.type == 2335)
+            if (item.type == ItemID.IronCrateHard && item.type == ItemID.IronCrate)
             {
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() =>
                 {
@@ -84,7 +85,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode && NPC.downedMechBossAny), 382, 18, 12, 21);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode && NPC.downedMechBossAny), 1191, 18, 12, 21);
             }
-            if (item.type != 3982 && item.type != 3983 && item.type != 3984 && item.type != 3985 && item.type != 4406 && item.type != 3986 && item.type != 3987 && item.type != 4878 && item.type != 4408 && item.type != 5003)
+            if (item.type != ItemID.CorruptFishingCrateHard && item.type != ItemID.CrimsonFishingCrateHard && item.type != ItemID.DungeonFishingCrateHard && item.type != ItemID.FloatingIslandFishingCrateHard && item.type != ItemID.FrozenCrateHard && item.type != ItemID.HallowedFishingCrateHard && item.type != ItemID.JungleFishingCrateHard && item.type != ItemID.LavaCrateHard && item.type != ItemID.OasisCrateHard && item.type != ItemID.OceanCrateHard)
                 return;
             ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 364, 7, 35, 45);
             ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 1104, 7, 35, 45);

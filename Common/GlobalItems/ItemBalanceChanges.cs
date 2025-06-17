@@ -3382,7 +3382,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Edge of Imagination
                     if (GetItem(thorium, "EdgeofImagination", item))
                     {
-                        item.damage = 650;
+                        item.damage = 400;
                     }
 
                     //Holophonor
@@ -4029,6 +4029,60 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 #endregion
             }
             #endregion
+
+            #region Consolaria
+            if (ModLoader.TryGetMod("Consolaria", out Mod console) && ModContent.GetInstance<InfernalConfig>().ConsolariaBalanceChanges)
+            {
+                if (UnsafeGetItem(console, "AlbinoMandible", item))
+                {
+                    item.damage = 20;
+                }
+
+                if (UnsafeGetItem(console, "EggCannon", item))
+                {
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                    item.damage = 24;
+                }
+
+                if (UnsafeGetItem(console, "GreatDrumstick", item))
+                {
+                    item.scale *= 1.5f;
+                    item.useTime = 26;
+                    item.useAnimation = 26;
+                    item.damage = 62;
+                }
+
+                if (UnsafeGetItem(console, "FeatherStorm", item))
+                {
+                    item.damage = 35;
+                }
+
+                if (UnsafeGetItem(console, "DragonBreath", item))
+                {
+                    item.damage = 44;
+                }
+
+                if (UnsafeGetItem(console, "VolcanicRepeater", item))
+                {
+                    item.damage = 30;
+                }
+
+                if (UnsafeGetItem(console, "Tizona", item))
+                {
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.damage = 93;
+                }
+
+                if (UnsafeGetItem(console, "Tonbogiri", item))
+                {
+                    item.useTime = 28;
+                    item.useAnimation = 28;
+                    item.damage = 112;
+                }
+            }
+            #endregion
         }
 
         public static int FindItem(Mod mod, string name)
@@ -4140,7 +4194,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 //Main.NewText("healAmount not found on ModItem.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Main.NewText($"Error setting healAmount: {ex.Message}");
             }

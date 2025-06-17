@@ -43,6 +43,10 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool SOTSBalanceChanges { get; set; }
 
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool ConsolariaBalanceChanges { get; set; }
+
         [DefaultValue(false)]
         [ReloadRequired]
         public bool CalamityRecipeTweaks { get; set; }

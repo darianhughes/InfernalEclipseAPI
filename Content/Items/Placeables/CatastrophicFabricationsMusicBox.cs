@@ -25,7 +25,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables
 
         public override void SetDefaults()
         {
-            this.Item.useStyle = 1;
+            this.Item.useStyle = ItemUseStyleID.Swing;
             this.Item.useTurn = true;
             this.Item.useAnimation = 15;
             this.Item.useTime = 10;
@@ -34,7 +34,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables
             this.Item.createTile = ModContent.TileType<CatastrophicFabricationsMusicBoxTile>();
             ((Entity)this.Item).width = 30;
             ((Entity)this.Item).height = 20;
-            this.Item.rare = 4;
+            this.Item.rare = ItemRarityID.LightRed;
             this.Item.value = 100000;
             this.Item.accessory = true;
         }

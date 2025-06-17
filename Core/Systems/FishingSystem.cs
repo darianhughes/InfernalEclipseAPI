@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader;
-
+using Terraria.ID;
 
 namespace InfernalEclipseAPI.Core.Systems;
 //another drunk class i can't tell you
@@ -554,8 +554,8 @@ public class FishingSystem : ModSystem
                 if (obj76.stack > 0)
                 {
                     int num3 = Item.NewItem(entitySourceGift, (int)self.position.X, (int)self.position.Y, self.width, self.height, obj76.type, obj76.stack, false, 0, true, false);
-                    if (Main.netMode == 1)
-                        NetMessage.SendData(21, -1, -1, null, num3, 1f, 0.0f, 0.0f, 0, 0, 0);
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, num3, 1f, 0.0f, 0.0f, 0, 0, 0);
                 }
             }
         }

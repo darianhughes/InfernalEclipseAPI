@@ -148,6 +148,11 @@ Configs: {
 			Label: Secrets of the Shadows Balance Changes
 		}
 
+		ConsolariaBalanceChanges: {
+			Tooltip: Modifies a few Consolaria items to be in tune with Calamity's balance.
+			Label: Consolaria Balance Changes
+		}
+
 		InfernumRecipeTweaks: {
 			Tooltip: Adjusts a few of Infernum's recipes.
 			Label: Infernum Recipe Tweaks
@@ -190,7 +195,7 @@ Configs: {
 
 		MergeCraftingTrees: {
 			Label: Merge Crafting Trees
-			Tooltip: Merges the crafting trees for similar items from multiple mods.
+			Tooltip: Merges the crafting trees for similar items from multiple mods & adds cross-mod crafting materials to certain items.
 		}
 
 		BloodOrbPotionDuplication: {

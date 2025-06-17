@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.Projectiles.Typeless;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ModLoader;
-using ThoriumMod.Projectiles.Scythe;
+using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -123,6 +125,36 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     {
                         entity.idStaticNPCHitCooldown = 1;
                     }
+                }
+
+                if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                {
+                    if (thorium.TryFind("MoltenThresherPro", out ModProjectile moltenThresherProj))
+                        moltenThresherType = moltenThresherProj.Type;
+
+                    if (thorium.TryFind("BatScythePro", out ModProjectile batScytheProj))
+                        batScytheType = batScytheProj.Type;
+
+                    if (thorium.TryFind("BatScythePro2", out ModProjectile batScytheProj2))
+                        batScytheType2 = batScytheProj2.Type;
+
+                    if (thorium.TryFind("FallingTwilightPro", out ModProjectile fallingTwilightProj))
+                        fallingTwilightType = fallingTwilightProj.Type;
+
+                    if (thorium.TryFind("BloodHarvestPro", out ModProjectile bloodHarvestProj))
+                        bloodHarvestType = bloodHarvestProj.Type;
+
+                    if (thorium.TryFind("TrueFallingTwilightPro", out ModProjectile trueFallingTwilightProj))
+                        trueFallingTwilightType = trueFallingTwilightProj.Type;
+
+                    if (thorium.TryFind("TrueBloodHarvestPro", out ModProjectile trueBloodHarvestProj))
+                        trueBloodHarvestType = trueBloodHarvestProj.Type;
+
+                    if (thorium.TryFind("TheBlackScythePro", out ModProjectile theBlackScytheProj))
+                        theBlackScytheType = theBlackScytheProj.Type;
+
+                    if (thorium.TryFind("TitanScythePro", out ModProjectile titanScytheProj))
+                        titanScytheType = titanScytheProj.Type;
                 }
             } 
 
@@ -258,6 +290,91 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 return true;
             }
             return false;
+        }
+
+        private static int moltenThresherType = -1;
+        private static int fallingTwilightType = -1;
+        private static int bloodHarvestType = -1;
+        private static int trueFallingTwilightType = -1;
+        private static int trueBloodHarvestType = -1;
+        private static int titanScytheType = -1;
+        private static int theBlackScytheType = -1;
+        private static int batScytheType = -1;
+        private static int batScytheType2 = -1;
+
+        private float GetScaleForProjectile(int type)
+        {
+            if (type == moltenThresherType) return 1.5f;
+            if (type == batScytheType) return 1.5f;
+            if (type == batScytheType2) return 3f;
+            if (type == fallingTwilightType) return 1.5f;
+            if (type == bloodHarvestType) return 1.5f;
+            if (type == trueFallingTwilightType) return 1.5f;
+            if (type == trueBloodHarvestType) return 1.5f;
+            if (type == theBlackScytheType) return 1.5f;
+            if (type == titanScytheType) return 2f;
+            return 1f;
+        }
+
+        public override bool PreDraw(Projectile projectile, ref Color lightColor)
+        {
+            if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+            {
+
+                if (projectile.type != moltenThresherType
+                && projectile.type != titanScytheType
+                && projectile.type != batScytheType
+                && projectile.type != batScytheType2
+                && projectile.type != bloodHarvestType
+                && projectile.type != fallingTwilightType
+                && projectile.type != trueFallingTwilightType
+                && projectile.type != trueBloodHarvestType
+                && projectile.type != theBlackScytheType)
+                {
+                    return true; // Default drawing for others
+                }
+
+                Texture2D texture = TextureAssets.Projectile[projectile.type].Value;
+                int frameCount = Main.projFrames[projectile.type];
+                int frameHeight = texture.Height / frameCount;
+                Rectangle sourceRectangle = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight);
+                Vector2 origin = sourceRectangle.Size() / 2f;
+
+                float scale = projectile.scale * GetScaleForProjectile(projectile.type);
+                Vector2 drawPos = projectile.Center - Main.screenPosition;
+                Color drawColor = lightColor * ((255 - projectile.alpha) / 255f);
+
+                Main.EntitySpriteDraw(
+                    texture,
+                    drawPos,
+                    sourceRectangle,
+                    drawColor,
+                    projectile.rotation,
+                    origin,
+                    scale,
+                    SpriteEffects.None,
+                    0
+                );
+
+                return false; // skip default drawing
+            }
+            return true;
+        }
+
+        public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)
+        {
+            if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+            {
+                float scale = GetScaleForProjectile(projectile.type);
+                if (scale != 1f)
+                {
+                    Vector2 center = hitbox.Center.ToVector2();
+                    hitbox.Width = (int)(hitbox.Width * scale);
+                    hitbox.Height = (int)(hitbox.Height * scale);
+                    hitbox.X = (int)(center.X - hitbox.Width / 2);
+                    hitbox.Y = (int)(center.Y - hitbox.Height / 2);
+                }
+            }
         }
     }
 }

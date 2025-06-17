@@ -30,7 +30,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables
 
         public override void SetDefaults()
         {
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.useAnimation = 15;
             Item.useTime = 10;
@@ -39,7 +39,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables
             Item.createTile = ModContent.TileType<EyeMusicBoxTile>();
             Item.width = 32;
             Item.height = 32;
-            Item.rare = 4;
+            Item.rare = ItemRarityID.Blue;
             Item.value = 100000;
             Item.accessory = true;
         }

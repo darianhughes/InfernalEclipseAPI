@@ -36,12 +36,23 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
         {
             if (item.ModItem != null &&
                 item.ModItem.Mod.Name == "RagnarokMod" &&
+                item.ModItem.Name == "SigilOfACruelWorld" &&
+                CalBardHealer != null)
+            {
+                ThoriumPlayer thoriumPlayer = player.GetThoriumPlayer();
+                ref StatModifier local = ref player.GetDamage(ThoriumDamageBase<BardDamage>.Instance);
+                local -= 0.03f;
+            }
+
+            if (item.ModItem != null &&
+                item.ModItem.Mod.Name == "RagnarokMod" &&
                 item.ModItem.Name == "UniversalHeadset" &&
                 CalBardHealer != null)
             {
                 ThoriumPlayer thoriumPlayer = player.GetThoriumPlayer();
                 ref StatModifier local = ref player.GetDamage(ThoriumDamageBase<BardDamage>.Instance);
-                local -= 0.05f;
+                local -= 0.06f;
+                player.GetCritChance(ThoriumDamageBase<BardDamage>.Instance) -= 2f;
                 player.GetAttackSpeed(ThoriumDamageBase<BardDamage>.Instance) -= 0.02f;
                 thoriumPlayer.inspirationRegenBonus -= 0.02f;
             }
@@ -72,13 +83,28 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
 
             if (Ragnarok != null & CalBardHealer != null)
             {
+                if (item.type == Ragnarok.Find<ModItem>("SigilOfACruelWorld").Type)
+                {
+                    foreach (TooltipLine tooltip in tooltips)
+                    {
+                        if (tooltip.Text.Contains("Increases symphonic damage by 15%"))
+                        {
+                            tooltip.Text = "Increases symphonic damage by 12%";
+                        }
+                    }
+                }
+
                 if (item.type == Ragnarok.Find<ModItem>("UniversalHeadset").Type)
                 {
                     foreach (TooltipLine tooltip in tooltips)
                     {
                         if (tooltip.Text.Contains("Increases symphonic damage by 20%"))
                         {
-                            tooltip.Text = "Increases symphonic damage by 15%";
+                            tooltip.Text = "Increases symphonic damage by 14%";
+                        }
+                        if (tooltip.Text.Contains("Increases symphonic critical strike chance by 7%"))
+                        {
+                            tooltip.Text = "Increases symphonic critical strike chance by 5%";
                         }
                         if (tooltip.Text.Contains("Increases symphonic playing speed by 10%"))
                         {

@@ -82,8 +82,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     necroticSkull.UpdateAccessory(player, hideVisual);
                     --player.maxMinions;
                     --player.maxTurrets;
-                    ref StatModifier local = ref player.GetDamage(DamageClass.Summon);
-                    local -= 0.1f;
+
+                    player.lifeRegen -= 2;
+                    ref StatModifier local2 = ref player.GetDamage(DamageClass.Generic);
+                    local2 -= 0.1f;
+
                 }
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
@@ -94,6 +97,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     --player.maxMinions;
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     fortressGenerator.UpdateAccessory(player, hideVisual);
+                    player.lifeRegen -= 2;
                     --player.maxMinions;
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     local -= 0.1f;
@@ -110,6 +114,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     --player.maxMinions;
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     fortressGenerator.UpdateAccessory(player, hideVisual);
+                    player.lifeRegen -= 2;
                     --player.maxMinions;
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     local -= 0.1f;
@@ -132,6 +137,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     --player.maxMinions;
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     fortressGenerator.UpdateAccessory(player, hideVisual);
+                    player.lifeRegen -= 2;
                     --player.maxMinions;
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     local -= 0.1f;
@@ -224,11 +230,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 new Color(251, 198, 207),
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
+            Color NoThorYellow = Color.Lerp(
+                Color.White,
+                new Color(255, 255, 197),
+                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+            );
 
             string scryInfo = "Pressing the 'Accessory Ability' key will toggle an increased range of view";
             string skullInfo = "Minion and sentry attacks briefly deal 2 more damage after killing an enemy";
             string scorpionInfo = "Minion attacks have a 15% chance to produce a crystal scorpion\nMinion attacks deal 3 more damage while a crystal scorpion is active";
-            string fortressInfo = "Increases life regeneration by 2\nGenerates 4 platforms to the left and right of you\nYou can right click to drag the platforms, but they will always remain symmetrical\nSentries can be summoned on top of the platforms\nAbsorbs 25% of damage done to players on your team when above 25% life and grants immunity to knockback";
+            string fortressInfoNoThor = "Increases life regeneration by 2\nGenerates 4 platforms to the left and right of you\nYou can right click to drag the platforms, but they will always remain symmetrical\nSentries can be summoned on top of the platforms\nAbsorbs 25% of damage done to players on your team when above 25% life and grants immunity to knockback";
+            string fortressInfo = "Generates 4 platforms to the left and right of you\nYou can right click to drag the platforms, but they will always remain symmetrical\nSentries can be summoned on top of the platforms\nAbsorbs 25% of damage done to players on your team when above 25% life and grants immunity to knockback";
             string watchInfo = "Your sentries last forever and gain up to 15% damage over the course of 2 minutes";
             string yumasInfo = "Taking damage releases a ghostly protector";
 
@@ -247,6 +259,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == sots.Find<ModItem>("FortressGenerator").Type)
                 {
+                    foreach (TooltipLine tooltip in tooltips)
+                    {
+                        if (tooltip.Text.Contains("Increases damage by 10% and life regeneration by 2"))
+                        {
+                            tooltip.Text = "Increases summon damage by 10%";
+                        }
+                    }
+
                     tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     {
                         OverrideColor = new Color?(InfernalRed)
@@ -379,9 +399,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     {
                         OverrideColor = new Color?(InfernalRed)
                     });
-                    tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfo)
+                    tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfoNoThor)
                     {
-                        OverrideColor = new Color?(InfernalRed)
+                        OverrideColor = new Color?(NoThorYellow)
                     });
                 }
 
@@ -391,9 +411,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     {
                         OverrideColor = new Color?(InfernalRed)
                     });
-                    tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfo)
+                    tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfoNoThor)
                     {
-                        OverrideColor = new Color?(InfernalRed)
+                        OverrideColor = new Color?(NoThorYellow)
                     });
                 }
             }

@@ -174,6 +174,15 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     thorium.TryFind("BloomWeave", out ModItem bloomWeave);
                     thorium.TryFind("MermaidCanteen", out ModItem mermaidCanteen);
                     thorium.TryFind("TerrariumHolyScythe", out holySycthe);
+                    thorium.TryFind("TitanicBar", out ModItem titanBar);
+
+                    if (InfernalConfig.Instance.MergeCraftingTrees)
+                    {
+                        if(recipe.HasResult(ModContent.ItemType<LifeAlloy>()))
+                        {
+                            recipe.AddIngredient(titanBar, 1);
+                        }
+                    }
 
                     if (InfernalConfig.Instance.DisableDuplicateContent)
                     {
@@ -258,6 +267,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)
                     {
+
                         if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                         {
                             if (thorium.TryFind("ThrowingGuideVolume2", out ModItem rogue101v2))

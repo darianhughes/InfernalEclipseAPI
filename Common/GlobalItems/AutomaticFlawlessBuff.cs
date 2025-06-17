@@ -23,28 +23,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         }
         public override bool InstancePerEntity => true;
 
-        //public override void SetDefaults(Item item)
-        //{
-        //    if (!InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
-        //        return;
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+        {
+            ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
 
-        //    if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _)) 
-        //    {
-        //        // Only for non-consumable Thorium thrower weapons
-        //        if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
-        //        {
-        //            if (!item.GetGlobalItem<AutomaticFlawlessBuff>().statBonusesApplied)
-        //            {
-        //                item.damage = (int)(item.damage * 1.15f);
-        //                item.useTime = (int)(item.useTime * 0.9f);
-        //                item.useAnimation = (int)(item.useAnimation * 0.9f); // keep synced with useTime
-        //                item.crit += 5;
-        //                item.shootSpeed *= 1.1f;
-        //                item.GetGlobalItem<AutomaticFlawlessBuff>().statBonusesApplied = true;
-        //            }
-        //        }
-        //    }
-        //}
+            string[] ignoreStealthBonusItemNames =
+            {
+                "ClockWorkBomb",
+                "SoulBomb",
+                "CaptainsPoniard"
+            };
+            
+            foreach (string itemName in ignoreStealthBonusItemNames)
+            {
+                if (entity.type == thorium.Find<ModItem>(itemName).Type) return false;
+            }
+
+            return base.AppliesToEntity(entity, lateInstantiation);
+        }
 
         public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
         {

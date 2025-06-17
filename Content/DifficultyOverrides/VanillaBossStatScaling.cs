@@ -55,11 +55,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 else if (NPC.downedMechBossAny)
                 {
                     if (NPC.downedMechBoss1)
-                        npc.lifeMax += (int)(1.84 * npc.lifeMax);
+                        npc.lifeMax += (int)(0.42 * npc.lifeMax);
                     if (NPC.downedMechBoss2)
-                        npc.lifeMax += (int)(1.83 * npc.lifeMax);
+                        npc.lifeMax += (int)(0.42 * npc.lifeMax);
                     if (NPC.downedMechBoss3)
-                        npc.lifeMax += (int)(1.83 * npc.lifeMax);
+                        npc.lifeMax += (int)(0.41 * npc.lifeMax);
                 }
                 else
                     npc.lifeMax *= 2;
