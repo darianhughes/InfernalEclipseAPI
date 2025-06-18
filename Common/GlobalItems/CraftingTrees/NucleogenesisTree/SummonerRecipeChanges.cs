@@ -109,6 +109,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     recipe.RemoveIngredient(ItemID.LunarBar);
                     recipe.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 5);
                 }
+                else if (sots != null)
+                {
+
+                    if (recipe.HasResult(sots.Find<ModItem>("FortressGenerator")) && recipe.HasIngredient(ItemID.PygmyNecklace))
+                    {
+                        recipe.RemoveIngredient(ItemID.PaladinsShield);
+                        //Add something later?
+                    }
+                }
             }
         }
 
@@ -118,9 +127,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             {
                 Recipe.Create(sots.Find<ModItem>("FortressGenerator").Type)
                     .AddIngredient(sots.Find<ModItem>("PlatformGenerator"))
-                    .AddIngredient(ItemID.PaladinsShield)
                     .AddIngredient(thorium.Find<ModItem>("NecroticSkull"))
-                    .AddIngredient(ItemID.SpectreBar, 10)
+                    .AddIngredient(ItemID.SpectreBar, 10) ///might be changed
                     .AddIngredient(sots.Find<ModItem>("DissolvingDeluge"))
                     .AddTile(TileID.TinkerersWorkbench)
                     .Register();

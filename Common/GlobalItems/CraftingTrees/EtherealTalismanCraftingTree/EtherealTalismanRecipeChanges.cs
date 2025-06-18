@@ -11,16 +11,15 @@ using CalamityMod.Items.Accessories;
 using ThoriumMod;
 using CalamityMod;
 using Steamworks;
+using Terraria.Localization;
+using CalamityMod.Items.Materials;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCraftingTree
 {
     public class EtherealTalismanRecipeChanges : ModSystem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         private Mod calamity
         {
             get
@@ -38,6 +37,31 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
             }
         }
 
+        public override void AddRecipes()
+        {
+            if (!InfernalConfig.Instance.MergeCraftingTrees || calamity == null || thorium == null)
+                return;
+
+            RecipeGroup group = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Lang.GetItemNameValue(ItemID.ManaFlower)}", new int[]
+            {
+                ItemID.ManaFlower,
+                ItemID.ArcaneFlower,
+                ItemID.MagnetFlower,
+                ItemID.ManaCloak,
+                thorium.Find<ModItem>("HungeringBlossom").Type
+            });
+            int AnyManaFlower = RecipeGroup.RegisterGroup("AnyManaFlower", group);
+
+            Recipe.Create(ModContent.ItemType<EtherealTalisman>())
+               .AddIngredient<SigilofCalamitas>().
+                AddRecipeGroup("AnyManaFlower"). //Any mana flower accessory, includiing Hungering Blossom
+                AddIngredient<CosmiliteBar>(8).
+                AddIngredient<GalacticaSingularity>(4).
+                AddIngredient<AscendantSpiritEssence>(4).
+                AddTile<CosmicAnvil>().
+                Register();
+        }
+
         public override void PostAddRecipes()
         {
             if (!InfernalConfig.Instance.MergeCraftingTrees || calamity == null || thorium == null)
@@ -52,9 +76,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                     recipe.AddIngredient(thorium.Find<ModItem>("MurkyCatalyst"), 1);
                 }
 
-                if (recipe.HasResult(ModContent.ItemType<EtherealTalisman>()))
+                if (recipe.HasResult(ModContent.ItemType<EtherealTalisman>()) && recipe.HasIngredient(ItemID.LunarBar))
                 {
-                    recipe.AddIngredient(thorium.Find<ModItem>("HungeringBlossom"), 1);
+                    recipe.DisableRecipe();
                 }
             }
         }

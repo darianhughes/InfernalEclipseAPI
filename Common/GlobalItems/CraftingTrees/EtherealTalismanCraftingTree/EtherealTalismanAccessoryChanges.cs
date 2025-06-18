@@ -16,10 +16,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
 {
     public class EtherealTalismanAccessoryChanges : GlobalItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         private Mod calamity
         {
             get
@@ -58,6 +54,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                 item.ModItem.Name == "EtherealTalisman")
             {
                 murkyCatalyst.UpdateAccessory(player, hideVisual);
+                player.statManaMax2 -= 20;
 
                 if (hideVisual)
                 {
@@ -77,8 +74,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
 
-            string murkyInfo = "Every sixth magic cast is free and grants you the mana cost.";
-            string hungeringInfo = "Grants the effects of Hungering Blossom when visibility is off";
+            string murkyInfo = "Every sixth magic cast is free and grants you the mana cost";
+            string hungeringInfo = "Instead grants the effects of the Hungering Blossom visibility is off";
 
             if (item.type == calamity.Find<ModItem>("SigilofCalamitas").Type)
             {

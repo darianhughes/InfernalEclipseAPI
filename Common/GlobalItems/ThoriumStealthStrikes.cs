@@ -23,7 +23,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         PlayingCard,
         WhiteDwarfCutter,
         Soulslasher,
-        CaptainsPoignard
+        CaptainsPoignard,
+        SoftServeSunderer
     }
     public class ThoriumStealthStrikes : GlobalItem
     {
@@ -280,6 +281,30 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
 
+            // ===================== SOFT SERVE SUNDERER =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soft Serve Sunderer")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) &&
+                        Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.SoftServeSunderer);
+                    }
+
+                    return false;
+                }
+            }
 
             // ===================== WHITE DWARF CUTTER =====================
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "White Dwarf Cutter")
@@ -314,11 +339,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                         int upProjID = Projectile.NewProjectile(source, position, velocityUp, sideProjType, damage, knockback, player.whoAmI);
                         int downProjID = Projectile.NewProjectile(source, position, velocityDown, sideProjType, damage, knockback, player.whoAmI);
+
+                        if (Main.projectile.IndexInRange(upProjID) &&
+                            Main.projectile[upProjID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile upStealthGlobal))
+                        {
+                            upStealthGlobal.SetupAsStealthStrike(StealthStrikeType.WhiteDwarfCutter);
+                        }
+
+                        if (Main.projectile.IndexInRange(downProjID) &&
+                            Main.projectile[downProjID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile downStealthGlobal))
+                        {
+                            downStealthGlobal.SetupAsStealthStrike(StealthStrikeType.WhiteDwarfCutter);
+                        }
                     }
 
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -383,7 +421,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "White Dwarf Cutter")
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "During a stealth strike each hit from the main knife creates Ivory flares that damage for 0.1% of the target's max HP")
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "During a stealth strike each hit creates Ivory flares that damage for 0.1% of the target's max HP")
                 {
                     OverrideColor = Color.White
                 });
@@ -392,6 +430,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Captain's Poignard")
             {
                 tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw a burst of 6 daggers and gives the player increased attack speed for 10 seconds")
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soft Serve Sunderer")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes summon a rain of cones from above the hit enemy")
                 {
                     OverrideColor = Color.White
                 });

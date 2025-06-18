@@ -31,7 +31,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 "ClockWorkBomb",
                 "SoulBomb",
-                "CaptainsPoniard"
+                "CaptainsPoniard",
+                "SoftServeSunderer"
             };
             
             foreach (string itemName in ignoreStealthBonusItemNames)

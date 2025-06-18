@@ -169,6 +169,45 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
             {
                 soulslasherAggressiveHoming = true;
             }
+
+            if (stealthType == StealthStrikeType.SoftServeSunderer)
+            {
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
+                    thorium.TryFind("SoftServeSundererPro", out ModProjectile sssProj))
+                {
+                    int projType = sssProj.Type;
+
+                    // Store target position
+                    Vector2 targetCenter = target.Center;
+
+                    // Delay spawns using a loop with different spawn delays
+                    for (int i = 0; i < 30; i++)
+                    {
+                        Vector2 spawnPos = new Vector2(
+                            Main.rand.Next((int)targetCenter.X - 800, (int)targetCenter.X + 800),
+                            Main.rand.Next((int)targetCenter.Y - Main.screenHeight + 200, (int)targetCenter.Y - Main.screenHeight + 800)
+                        );
+
+                        Vector2 direction = Vector2.Normalize(targetCenter - spawnPos) * 14f;
+
+                        int projID = Projectile.NewProjectile(
+                            new EntitySource_Misc("SoftServeStealthStrike"),
+                            spawnPos,
+                            direction,
+                            projType,
+                            projectile.damage,
+                            0f,
+                            projectile.owner,
+                            ai0: 0f,
+                            ai1: i * 2f // Delay using AI slot
+                        );
+
+                        Main.projectile[projID].localAI[0] = 1f; // Set homing flag here
+                    }
+
+                    SoundEngine.PlaySound(SoundID.Item74, targetCenter);
+                }
+            }
         }
 
 
@@ -301,8 +340,8 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
             //SOULSLASHER
             if (isStealthStrike && stealthType == StealthStrikeType.Soulslasher && soulslasherAggressiveHoming)
             {
-                float homingRange = 600f;
-                float homingTurnSpeed = MathHelper.ToRadians(15f);
+                float homingRange = 700f;
+                float homingTurnSpeed = MathHelper.ToRadians(20f);
                 float currentSpeed = projectile.velocity.Length();
 
                 NPC target = null;
@@ -433,6 +472,53 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
             if (stealthType == StealthStrikeType.ZephyrsRuin)
             {
                 modifiers.SetCrit();
+            }
+        }
+    }
+
+    public class SoftServeSundererGlobal : GlobalProjectile
+    {
+        private static int thoriumSoftServeType = -1;
+
+        public override void AI(Projectile projectile)
+        {
+            // Lazy-load the Thorium projectile type
+            if (thoriumSoftServeType == -1)
+            {
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
+                    thorium.TryFind("SoftServeSundererPro", out ModProjectile sssProj))
+                {
+                    thoriumSoftServeType = sssProj.Type;
+                }
+            }
+
+            // Only proceed if projectile is the Thorium SoftServeSundererPro
+            if (projectile.type == thoriumSoftServeType && projectile.localAI[0] == 1f)
+            {
+                NPC target = null;
+                float homingRange = 400f;
+                float homingStrength = 0.1f;
+                float speed = projectile.velocity.Length();
+
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.CanBeChasedBy(projectile))
+                    {
+                        float distance = Vector2.Distance(projectile.Center, npc.Center);
+                        if (distance < homingRange)
+                        {
+                            target = npc;
+                            break;
+                        }
+                    }
+                }
+
+                if (target != null)
+                {
+                    Vector2 desiredVelocity = Vector2.Normalize(target.Center - projectile.Center) * speed;
+                    projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, homingStrength);
+                }
             }
         }
     }

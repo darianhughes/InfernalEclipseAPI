@@ -84,9 +84,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     --player.maxTurrets;
 
                     player.lifeRegen -= 2;
+                    player.hasPaladinShield = false;
                     ref StatModifier local2 = ref player.GetDamage(DamageClass.Generic);
                     local2 -= 0.1f;
-
                 }
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
@@ -98,6 +98,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     fortressGenerator.UpdateAccessory(player, hideVisual);
                     player.lifeRegen -= 2;
+                    player.hasPaladinShield = false;
                     --player.maxMinions;
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     local -= 0.1f;
@@ -115,6 +116,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     fortressGenerator.UpdateAccessory(player, hideVisual);
                     player.lifeRegen -= 2;
+                    player.hasPaladinShield = false;
                     --player.maxMinions;
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     local -= 0.1f;
@@ -138,6 +140,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     fortressGenerator.UpdateAccessory(player, hideVisual);
                     player.lifeRegen -= 2;
+                    player.hasPaladinShield = false;
                     --player.maxMinions;
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     local -= 0.1f;
@@ -191,11 +194,19 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             }
             else if (sots != null)
             {
+                if (item.ModItem != null &&
+                    item.ModItem.Mod.Name == "SOTS" &&
+                    item.ModItem.Name == "FortressGenerator")
+                {
+                    player.hasPaladinShield = false;
+                }
+
                 ModItem fortressGenerator = sots.Find<ModItem>("FortressGenerator");
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {
                     fortressGenerator.UpdateAccessory(player, hideVisual);
+                    player.hasPaladinShield = false;
                     --player.maxMinions;
                     ++player.maxTurrets;
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
@@ -205,6 +216,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 if (item.type == ModContent.ItemType<StatisCurse>() || item.type == ModContent.ItemType<Nucleogenesis>())
                 {
                     fortressGenerator.UpdateAccessory(player, hideVisual);
+                    player.hasPaladinShield = false;
                     --player.maxMinions;
                     ++player.maxTurrets;
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
