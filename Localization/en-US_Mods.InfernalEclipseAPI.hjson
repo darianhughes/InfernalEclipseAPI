@@ -68,6 +68,26 @@ Items: {
 		DisplayName: Music Box (Eye of Cthulhu - Infernum Mode)
 		Tooltip: Plays 'Seer of the Night' by PinpinNeon
 	}
+
+	InfectedMothwingSpore: {
+		DisplayName: Infected Mothwing Spore
+		Tooltip: ""
+	}
+
+	BeeMusicBox: {
+		DisplayName: Music Box (Queen Bee - Infernum Mode)
+		Tooltip: Plays 'Royal Retaliation' by PinpinNeon
+	}
+
+	CultistMusicBox: {
+		DisplayName: Music Box (Lunatic Cultist - Infernum Mode)
+		Tooltip: Plays 'Eidolic Ancestry ~ Ancient Doomsayer' by PinpinNeon
+	}
+
+	GolemMusicBox: {
+		DisplayName: Music Box (Golem - Infernum Mode)
+		Tooltip: Plays 'Icon of the Sun' by PinpinNeon
+	}
 }
 
 Projectiles: {
@@ -367,4 +387,7 @@ SpawnInfo.Dreadnautilus: Has a chance to spawn while fishing in the ocean on a b
 Tiles: {
 	CatastrophicFabricationsMusicBoxTile.MapEntry: Catastrophic Fabrications Music Box Tile
 	EyeMusicBoxTile.MapEntry: Eye Music Box Tile
+	BeeMusicBoxTile.MapEntry: Bee Music Box Tile
+	CultistMusicBoxTile.MapEntry: Cultist Music Box Tile
+	GolemMusicBoxTile.MapEntry: Golem Music Box Tile
 }

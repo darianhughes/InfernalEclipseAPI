@@ -252,7 +252,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             string skullInfo = "Minion and sentry attacks briefly deal 2 more damage after killing an enemy";
             string scorpionInfo = "Minion attacks have a 15% chance to produce a crystal scorpion\nMinion attacks deal 3 more damage while a crystal scorpion is active";
             string fortressInfoNoThor = "Increases life regeneration by 2\nGenerates 4 platforms to the left and right of you\nYou can right click to drag the platforms, but they will always remain symmetrical\nSentries can be summoned on top of the platforms\nAbsorbs 25% of damage done to players on your team when above 25% life and grants immunity to knockback";
-            string fortressInfo = "Generates 4 platforms to the left and right of you\nYou can right click to drag the platforms, but they will always remain symmetrical\nSentries can be summoned on top of the platforms\nAbsorbs 25% of damage done to players on your team when above 25% life and grants immunity to knockback";
+            string fortressInfo = "Generates 4 platforms to the left and right of you\nYou can right click to drag the platforms, but they will always remain symmetrical\nSentries can be summoned on top of the platforms";
             string watchInfo = "Your sentries last forever and gain up to 15% damage over the course of 2 minutes";
             string yumasInfo = "Taking damage releases a ghostly protector";
 

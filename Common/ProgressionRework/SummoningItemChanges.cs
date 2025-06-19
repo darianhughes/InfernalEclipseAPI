@@ -8,6 +8,7 @@ using CalamityMod.Items.Placeables;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Tiles.DraedonSummoner;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using InfernalEclipseAPI.Content.Items.Materials;
 using InfernumMode.Content.Items.SummonItems;
 using Terraria;
 using Terraria.ID;
@@ -31,14 +32,29 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
             if (ModLoader.TryGetMod("SOTS", out Mod sots))
                 hasSOTS = true;
 
+            bool hasRagnarok = false;
+            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
+                hasRagnarok = true;
+
             foreach (var recipe in Main.recipe)
             {
+                //Crabulon is locked behind Glowmoth if SOTS is enabled but remove the Grand Thunder Bird requirment regardless if Raganrok is enabled.
+
+                if (recipe.HasResult(ModContent.ItemType<DecapoditaSprout>()))
+                {
+                    if (hasRagnarok)
+                        recipe.RemoveIngredient(ragnarok.Find<ModItem>("StormFeather").Type);
+
+                    if (hasSOTS)
+                        recipe.AddIngredient<InfectedMothwingSpore>();
+                }
+
                 //Star Scouter post-Advisor if SOTS enabled, otherwise, still lock it after Evil Boss 2
                 if (hasThorium && hasSOTS)
                 {
                     if (recipe.HasResult(thorium.Find<ModItem>("StarCaller")))
                     {
-                        if (ModLoader.TryGetMod("RagnarokMod", out _))
+                        if (hasRagnarok)
                         {
                             if (recipe.HasIngredient(ModContent.ItemType<BloodSample>()))
                                 recipe.DisableRecipe(); //we only need one recipe enabled
@@ -106,7 +122,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                             thorium.TryFind("ShootingStarFragment", out ModItem bardFragment);
                             thorium.TryFind("CelestialFragment", out ModItem healerFragment);
                             thorium.TryFind("WhiteDwarfFragment", out ModItem throwerFragment);
-                            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && ragnarok.TryFind("EldritchShellFragment", out ModItem eShellFrag))
+                            if (hasRagnarok && ragnarok.TryFind("EldritchShellFragment", out ModItem eShellFrag))
                             {
                                 recipe.RemoveIngredient(eShellFrag.Type);
                             }
@@ -155,6 +171,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
         }
         public override void AddRecipes()
         {
+
             //Skeletron
             Recipe recipe1 = Recipe.Create(ModContent.ItemType<DungeonsCurse>(), 1);
             recipe1.AddIngredient(ItemID.ClothierVoodooDoll, 1);
