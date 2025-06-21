@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 using CalamityMod.NPCs.ExoMechs.Ares;
 using CalamityMod.NPCs.ExoMechs.Artemis;
 using InfernalEclipseAPI.Content.Buffs;
+using NoxusBoss.Content.NPCs.Bosses.Draedon;
 using Terraria;
 using Terraria.ModLoader;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 
-namespace InfernalEclipseAPI.Common.GlobalNPCs.ExoMechs
+namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs.ExoMechs
 {
-    public class ExoArtemisDebuff : GlobalNPC
+    [ExtendsFromMod("NoxusBoss")]
+    public class ExoMarsDebuff : GlobalNPC
     {
         public override void PostAI(NPC npc)
         {
-            if (!npc.active || npc.type != ModContent.NPCType<Artemis>() || !InfernalConfig.Instance.PreventBossCheese)
+            if (!npc.active || npc.type != ModContent.NPCType<MarsBody>() || !InfernalConfig.Instance.PreventBossCheese)
                 return;
 
             for (int i = 0; i < Main.maxPlayers; i++)

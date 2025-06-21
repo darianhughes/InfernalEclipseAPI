@@ -1,6 +1,8 @@
 ﻿using CalamityMod.Items.Placeables.FurnitureAuric;
 using CalamityMod.NPCs.CalClone;
 using InfernalEclipseAPI.Content.Items.Placeables;
+using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
+using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.Items.SummonItems;
 using Microsoft.Build.Exceptions;
 using Microsoft.Xna.Framework;
@@ -42,6 +44,7 @@ namespace InfernalEclipseAPI.Core.Systems
             MusicDisplaySetup();
             BossChecklistSetup();
             AddInfernumCards();
+            ColoredDamageTypesSupport();
         }
         private void MusicDisplaySetup()
         {
@@ -157,6 +160,20 @@ namespace InfernalEclipseAPI.Core.Systems
 
             // Register the intro card.
             Infernum.Call("RegisterIntroScreen", instance);
+        }
+
+        public static void ColoredDamageTypesSupport()
+        {
+            if (ModLoader.TryGetMod("ColoredDamageTypes", out Mod coloredDamageTypes))
+            {
+                Color mergedThrowerColor = new Color(255, 100, 100);
+
+                Vector3 hslVector = Main.rgbToHsl(mergedThrowerColor);
+                hslVector.Y = MathHelper.Lerp(hslVector.Y, 1f, 0.6f);
+                Color mergedThrowerCritColor = Main.hslToRgb(hslVector);
+
+                coloredDamageTypes.Call("AddDamageType", MergedThrowerRogue.Instance, mergedThrowerColor, mergedThrowerColor, mergedThrowerCritColor);
+            }
         }
     }
 

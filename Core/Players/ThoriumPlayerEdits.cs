@@ -12,6 +12,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using InfernalEclipseAPI.Content.Buffs;
 using ThoriumMod.Items;
+using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -131,9 +132,6 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
         {
-            if (!InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
-                return;
-
             Player player = Main.LocalPlayer;
             var CalPlayer = player.GetModPlayer<CalamityPlayer>();
             bool canStealthStike = CalPlayer.StealthStrikeAvailable();
@@ -141,12 +139,12 @@ namespace InfernalEclipseAPI.Core.Players
             if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _))
             {
                 // Only for non-consumable Thorium thrower weapons
-                if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable)
+                if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable)
                 {
                     if (canStealthStike)
                         damage *= 1.15f; // This number centers on 1f, so 1.15f = 1.15x damage.
                 }
-                else if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.consumable)
+                else if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.consumable && (item.DamageType == ModContent.GetInstance<RogueDamageClass>() || item.DamageType == ModContent.GetInstance<MergedThrowerRogue>()))
                 {
                     bool canStealthStrike = CalPlayer.StealthStrikeAvailable();
                     if (canStealthStrike)

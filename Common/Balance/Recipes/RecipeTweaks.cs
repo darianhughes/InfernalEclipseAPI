@@ -29,6 +29,7 @@ using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Accessories.Wings;
 using CalamityMod.Items.PermanentBoosters;
+using CalamityMod.Items.Weapons.Summon;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -175,6 +176,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     thorium.TryFind("MermaidCanteen", out ModItem mermaidCanteen);
                     thorium.TryFind("TerrariumHolyScythe", out holySycthe);
                     thorium.TryFind("TitanicBar", out ModItem titanBar);
+
+                    if (recipe.HasResult(thorium.Find<ModItem>("TerraScythe")) || recipe.HasResult(thorium.Find<ModItem>("TerraKnife")))
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<LivingShard>());
+                        recipe.AddIngredient<LivingShard>(12);
+                    }
 
                     if (InfernalConfig.Instance.MergeCraftingTrees)
                     {
@@ -682,9 +689,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
                         }
 
-                        if (recipe.HasResult(ModContent.ItemType<AngelTreads>()))
-                            recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
-
                         if (recipe.HasResult(ModContent.ItemType<HallowedRune>()))
                             recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
 
@@ -711,8 +715,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         if (recipe.HasResult<SpearofDestiny>())
                             recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
-
-                        if (recipe.HasResult<SpearofDestiny>())
+                            
+                        if (recipe.HasResult<VengefulSunStaff>())
                             recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
 
                         if (thorium != null)
@@ -729,12 +733,17 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             if (recipe.HasResult(thorium.Find<ModItem>("ArchDemonCurse")))
                                 recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
 
-                            if (recipe.HasResult(thorium.Find<ModItem>("TrueBloodHarvest")) || 
-                                recipe.HasResult(thorium.Find<ModItem>("TrueFallingTwilight")) || 
-                                recipe.HasResult(thorium.Find<ModItem>("TrueEmbowelment")) || 
+                            if (recipe.HasResult(thorium.Find<ModItem>("TrueBloodHarvest")) ||
+                                recipe.HasResult(thorium.Find<ModItem>("TrueFallingTwilight")) ||
+                                recipe.HasResult(thorium.Find<ModItem>("TrueEmbowelment")) ||
                                 recipe.HasResult(thorium.Find<ModItem>("TrueLightAnguish"))
                                 )
-                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 20);
+                            {
+                                recipe.ChangeIngredientStack(ItemID.SoulofFright, 3);
+                                recipe.ChangeIngredientStack(ItemID.SoulofMight, 3);
+                                recipe.ChangeIngredientStack(ItemID.SoulofSight, 3);
+                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
+                            }
 
                             if (recipe.HasResult(thorium.Find<ModItem>("BlackholeCannon")))
                                 recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);

@@ -13,4 +13,14 @@ Items: {
 		DisplayName: Soul of Spite
 		Tooltip: "'The essence of damned creatures'"
 	}
+
+	TerraKnife: {
+		DisplayName: Terra Knife
+		Tooltip:
+			'''
+			Left click to quickly throw terra daggers
+			Right click to throw an impaling terra knife, which constantly damages your chosen target
+			Both the daggers and the knife are thrown on a stealth strike, with the knife summoning a barrage of slashes on hit
+			'''
+	}
 }

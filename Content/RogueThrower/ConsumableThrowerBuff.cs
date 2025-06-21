@@ -7,11 +7,13 @@ using CalamityMod;
 using Microsoft.Xna.Framework;
 using CalamityMod.CalPlayer;
 using Terraria.DataStructures;
+using Terraria.ID;
+using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
 
-namespace InfernalEclipseAPI.Common.GlobalItems
+namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
 {
     [ExtendsFromMod("ThoriumMod")]
-    public class AutomaticFlawlessBuff : GlobalItem
+    public class ConsumableThrowerBuff : GlobalItem
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -21,6 +23,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             return false;
         }
+
         public override bool InstancePerEntity => true;
 
         public override bool AppliesToEntity(Item entity, bool lateInstantiation)
@@ -45,7 +48,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
         {
-            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
             {
                 damage *= 1.15f;
             }
@@ -53,7 +56,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public override float UseTimeMultiplier(Item item, Player player)
         {
-            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
             {
                 return 0.9f;
             }
@@ -62,7 +65,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public override float UseAnimationMultiplier(Item item, Player player)
         {
-            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
             {
                 return 0.9f;
             }
@@ -71,7 +74,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public override void ModifyWeaponCrit(Item item, Player player, ref float crit)
         {
-            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
             {
                 crit += 5;
             }
@@ -79,14 +82,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
             {
                 return base.Shoot(item, player, source, position, velocity * 1.1f, type, damage, knockback);
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
-
-        private bool statBonusesApplied = false;
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
@@ -102,7 +103,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             );
             if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _))
             {
-                if (item.ModItem is ThoriumItem thoriumItem && thoriumItem.isThrowerNon && !item.consumable)
+                if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable)
                 {
                     string info = "[IEoR]: Automatic Flawless Buff:";
                     string damagemult = "+15% damage";
@@ -136,7 +137,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         OverrideColor = new Color?(InfernalRedStat)
                     });
                 }
-                else if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable && item.DamageType == ModContent.GetInstance<RogueDamageClass>())
+                else if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable && (item.DamageType == ModContent.GetInstance<RogueDamageClass>() || item.DamageType == ModContent.GetInstance<MergedThrowerRogue>()))
                 {
                     string stealthDamageMultCons = "+75% stealth strike damage";
                     string stealthsppedMullt = "+75% stealth strike velocity";
@@ -156,9 +157,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         //Provided by Wardrobe Hummus
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
+            if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+            {
+                velocity *= 1.1f;
+            }
+
             if (ModLoader.TryGetMod("WHummusMultiModBalancing", out _)) return;
 
-            if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable)
+            if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable && (item.DamageType == ModContent.GetInstance<RogueDamageClass>() || item.DamageType == ModContent.GetInstance<MergedThrowerRogue>()))
             {
                 var CalPlayer = player.GetModPlayer<CalamityPlayer>();
                 if (CalPlayer.StealthStrikeAvailable())

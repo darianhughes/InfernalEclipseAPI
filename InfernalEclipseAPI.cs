@@ -35,7 +35,6 @@ using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.CalPlayer;
 using CalamityMod.Projectiles.Typeless;
 using System.Security.Policy;
-using InfernalEclipseAPI.Core.Systems;
 using System.IO;
 using InfernalEclipseAPI.Core.Players;
 using System.Reflection;
@@ -43,6 +42,7 @@ using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using MonoMod.RuntimeDetour;
 using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.Core.World;
 
 namespace InfernalEclipseAPI
 {

@@ -21,6 +21,8 @@ using Terraria.Chat;
 using Terraria.Localization;
 using InfernalEclipseAPI.Common.GlobalItems;
 using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
+using CalamityMod.CalPlayer;
+using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -274,6 +276,14 @@ namespace InfernalEclipseAPI.Core.Players
                 previousPos = Player.position;
                 wasUsingItem = Player.itemAnimation > 0;
             }
+        }
+
+        public override void PostUpdateMiscEffects()
+        {
+            Player player = Main.LocalPlayer;
+            var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+
+            Player.GetDamage<MergedThrowerRogue>() += CalPlayer.stealthDamage;
         }
     }
 }

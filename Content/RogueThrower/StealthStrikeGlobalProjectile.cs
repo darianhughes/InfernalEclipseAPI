@@ -7,13 +7,18 @@ using Terraria.DataStructures;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using InfernalEclipseAPI.Common.GlobalItems;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework;
+using CalamityMod.Items.Weapons.Melee;
+using CalamityMod.Projectiles.Melee;
+using Steamworks;
+using CalamityMod.Enums;
+using CalamityMod.Sounds;
+using CalamityMod;
 
-namespace InfernalEclipseAPI.Common.GlobalProjectiles
+namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
 {
     public class StealthStrikeGlobalProjectile : GlobalProjectile
     {
@@ -208,14 +213,60 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                     SoundEngine.PlaySound(SoundID.Item74, targetCenter);
                 }
             }
+
+            if (stealthType == StealthStrikeType.TerraKnife)
+            {
+                int projType = ModContent.ProjectileType<TerratomereSlashCreator>();
+
+                Projectile.NewProjectile(new EntitySource_Misc("TerraKnifeStealthStrike"), target.Center, Vector2.Zero, projType, projectile.damage / 3, 0f, projectile.owner, target.whoAmI, Main.rand.NextFloat(MathHelper.TwoPi), 1);
+            }
         }
 
-
-
+        //SETDEFAULTS OVERIDES
+        public override void SetDefaults(Projectile entity)
+        {
+            //DAMAGE OVERRIDE FOR TERRATOMERE SLASHES
+            if (entity.type == ModContent.ProjectileType<TerratomereSlash>())
+            {
+                if (entity.ai[0] == 1)
+                    entity.DamageType = ModContent.GetInstance<RogueDamageClass>();
+            }
+        }
 
         //AI
         public override void AI(Projectile projectile)
         {
+            //AI OVERIDE FOR TERRATOMERE SLASHES
+            if (projectile.type == ModContent.ProjectileType<TerratomereSlashCreator>())
+            {
+                float slashDirection;
+                if (projectile.ai[1] > MathHelper.Pi)
+                    slashDirection = Main.rand.NextFloatDirection();
+                else
+                 slashDirection = projectile.ai[1] + Main.rand.NextFloatDirection() * 0.2f;
+                NPC target = Main.npc[(int)projectile.ai[0]];
+
+                if (projectile.ai[2] == 1)
+                {
+                    if (projectile.timeLeft % Terratomere.SmallSlashCreationRate == 0)
+                    {
+                        SoundEngine.PlaySound(CommonCalamitySounds.SwiftSliceSound, projectile.Center);
+                        if (Main.myPlayer == projectile.owner)
+                        {
+                            float maxOffset = target.width * 0.4f;
+                            if (maxOffset > 300f)
+                                maxOffset = 300f;
+
+                            Vector2 spawnOffset = slashDirection.ToRotationVector2() * Main.rand.NextFloatDirection() * maxOffset;
+                            Vector2 sliceVelocity = spawnOffset.SafeNormalize(Vector2.UnitY) * 0.1f;
+
+                            Projectile.NewProjectile(projectile.GetSource_FromThis(), target.Center + spawnOffset, sliceVelocity, ModContent.ProjectileType<TerratomereSlash>(), (int)(projectile.damage * Terratomere.SmallSlashDamageFactor), 0f, projectile.owner, 1);
+                        }
+                    }
+                }
+            }
+
+
             if (!isStealthStrike) return;
 
             if (!appliedChanges)
@@ -373,8 +424,8 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
 
 
 
-            //PLAYING CARD HOMING
-            if (stealthType == StealthStrikeType.PlayingCard)
+            //HOMING
+            if (stealthType == StealthStrikeType.PlayingCard || stealthType == StealthStrikeType.TerraKnife2)
             {
                 float homingRange = 500f;
                 float homingSpeed = 12f;

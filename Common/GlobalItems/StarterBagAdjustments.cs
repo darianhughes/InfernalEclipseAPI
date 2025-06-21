@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using Terraria;
+using CalamityMod.Items.LoreItems;
+using InfernalEclipseAPI.Content.Items.Lore;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -13,6 +15,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
     {
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
+            itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<LoreProvi>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<MysteriousDiary>()));
+
             // Only run if both mods are loaded
             if (!ModLoader.TryGetMod("CalamityMod", out var calamityMod) ||
                 !ModLoader.TryGetMod("ThoriumMod", out var thoriumMod) ||
@@ -36,5 +41,23 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
         }
+    }
+
+    public class ProviPlayerCondition : IItemDropRuleCondition
+    {
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            // Loop through all players in the world
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.active && player.name == "Galactica")
+                    return true;
+            }
+            return false;
+        }
+
+        public bool CanShowItemDropInUI() => false;
+        public string GetConditionDescription() => "A certain person must be present...";
     }
 }

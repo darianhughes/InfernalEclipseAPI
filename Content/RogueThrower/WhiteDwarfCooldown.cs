@@ -1,9 +1,8 @@
-﻿using InfernalEclipseAPI.Core.Players;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
 
-namespace InfernalEclipseAPI.Common.GlobalProjectiles
+namespace InfernalEclipseAPI.Content.RogueThrower
 {
     [ExtendsFromMod("ThoriumMod")]
     public class WhiteDwarfCooldown : GlobalProjectile

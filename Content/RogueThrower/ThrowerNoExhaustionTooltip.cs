@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
+namespace InfernalEclipseAPI.Content.RogueThrower
 {
     //Provided by Wardrobe Hummus
     public class ThrowerNoExhaustionTooltip : GlobalItem

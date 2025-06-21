@@ -11,7 +11,6 @@ using InfernalEclipseAPI.Core.World;
 using CalamityMod.Projectiles.Boss;
 using CalamityMod.NPCs.BrimstoneElemental;
 using CalamityMod.NPCs.AquaticScourge;
-using InfernalEclipseAPI.Core.Systems;
 using CalamityMod.NPCs.Yharon;
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {

@@ -29,7 +29,7 @@ using Terraria.ModLoader;
 using tModPorter;
 
 
-namespace InfernalEclipseAPI.Common
+namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
     public class InfernumBossFix : BalancingManager
     {

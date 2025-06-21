@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.CalPlayer;
-using InfernalEclipseAPI.Common.GlobalProjectiles;
 using Microsoft.Xna.Framework;
+using SOTS.Void;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace InfernalEclipseAPI.Common.GlobalItems
+namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
 {
     public enum StealthStrikeType
     {
@@ -24,7 +25,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         WhiteDwarfCutter,
         Soulslasher,
         CaptainsPoignard,
-        SoftServeSunderer
+        SoftServeSunderer,
+        TerraKnife,
+        TerraKnife2
     }
     public class ThoriumStealthStrikes : GlobalItem
     {
@@ -357,7 +360,105 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
 
+            // ===================== TERRA KNIFE =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Terra Knife")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
+                    thorium.TryFind("TerraKnifePro", out ModProjectile mainPro);
+                    thorium.TryFind("TerraKnifePro2", out ModProjectile sidePro);
+
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        sidePro.Type,
+                        (int)(damage * 0.8),
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) &&
+                        Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.TerraKnife);
+                    }
+
+                    int sideProjType = mainPro.Type;
+
+                    Vector2 velocityUp = velocity.RotatedBy(MathHelper.ToRadians(5f));
+                    Vector2 velocityDown = velocity.RotatedBy(MathHelper.ToRadians(-5f));
+
+                    int upProjID = Projectile.NewProjectile(source, position, velocityUp, sideProjType, damage / 3, knockback, player.whoAmI);
+                    int downProjID = Projectile.NewProjectile(source, position, velocityDown, sideProjType, damage / 3, knockback, player.whoAmI);
+
+                    if (Main.projectile.IndexInRange(upProjID) &&
+                        Main.projectile[upProjID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile upStealthGlobal))
+                    {
+                        upStealthGlobal.SetupAsStealthStrike(StealthStrikeType.TerraKnife2);
+                    }
+
+                    if (Main.projectile.IndexInRange(downProjID) &&
+                        Main.projectile[downProjID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile downStealthGlobal))
+                    {
+                        downStealthGlobal.SetupAsStealthStrike(StealthStrikeType.TerraKnife2);
+                    }
+
+                    return false;
+                }
+            }
+
             return true;
+        }
+
+        public override void SetDefaults(Item item)
+        {
+            if (!ModLoader.TryGetMod("ThoriumMod", out Mod thorium)) return;
+            //EXHAUSTION REMOVAL
+
+            //TERRA KNIFE
+            if (item.type == thorium.Find<ModItem>("TerraKnife").Type)
+            {
+                TrySetIsThrowerNon(item, false);
+            }
+        }
+
+        private void TrySetIsThrowerNon(Item item, bool active)
+        {
+            try
+            {
+                if (item.ModItem == null)
+                {
+                    Main.NewText("No ModItem attached");
+                    return;
+                }
+
+                Type modItemType = item.ModItem.GetType();
+
+                // Try field first
+                FieldInfo field = modItemType.GetField("isThrowerNon", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (field != null)
+                {
+                    field.SetValue(item.ModItem, active);
+                    //Main.NewText($"[Field] Set healAmount of {item.Name} to {newCost}");
+                    return;
+                }
+
+                // Then try property
+                PropertyInfo prop = modItemType.GetProperty("isThrowerNon", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (prop != null && prop.CanWrite)
+                {
+                    prop.SetValue(item.ModItem, active);
+                    return;
+                }
+
+                //Main.NewText("healAmount not found on ModItem.");
+            }
+            catch (Exception)
+            {
+                //Main.NewText($"Error setting healAmount: {ex.Message}");
+            }
         }
 
         //TOOLTIPS

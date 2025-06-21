@@ -56,7 +56,8 @@ Items: {
 		LorePharaoh.DisplayName: Pharaoh's Curse
 		LorePutrid.DisplayName: Putrid Pinky
 		LoreSerpent.DisplayName: Subspace Serpent
-		LoreProvi.DisplayName: Provi
+		LoreProvi.DisplayName: Galactica
+		LoreMirror.DisplayName: The Mirror
 	}
 
 	CatastrophicFabricationsMusicBox: {
@@ -99,7 +100,7 @@ Projectiles: {
 
 DiaryTooltip:
 	'''
-	[c/E3AF40:A mysterious diary signed "Provi"...]
+	[c/E3AF40:A mysterious diary signed "Galactica"...]
 	[c/BEBEBE:Press "Left Shift" to open the diary]
 	'''
 
@@ -230,6 +231,7 @@ Configs: {
 				Automatically adds the stat bonuses of the "Flawless" prefix onto all non-consumable Thorium Rogue Items. 
 				Can help Thorium items catch up to Calamity items with prefixes as Throium Rogue items can't be reforged.
 				Only works when Ragnarok or Unofficial Calamity Bard & Healer are enabled.
+				This setting does nothing if Merge Thrower Into Rogue is enabled.
 				'''
 		}
 
@@ -240,17 +242,35 @@ Configs: {
 
 		DisplayWorldEntryMessages: {
 			Label: Display World Entry Messages
-			Tooltip: ""
+			Tooltip: Enables/Disables the messages upon entering a world.
 		}
 
 		UseAprilFoolsMutant: {
 			Label: Use April Fools Mutant
-			Tooltip: ""
+			Tooltip:
+				'''
+				Converts the Mutant from Fargo's Souls to Yharim.
+				This setting doesn't do anything if Fargo's Souls isn't enabled.
+				'''
+		}
+
+		MergeThrowerIntoRogue: {
+			Label: Merge Thrower Into Rogue
+			Tooltip:
+				'''
+				Merges the Thrower & Rogue class into one refined class. 
+				Allows converted thrower weapons to still recieve thier orginal reforges.
+				Also keeps the stealth bar damage scaling intact.
+				'''
 		}
 	}
 }
 
-DamageClasses.VoidRogue.DisplayName: void + rogue damage
+DamageClasses: {
+	VoidRogue.DisplayName: void + rogue damage
+	MergedThrowerRogue.DisplayName: rogue damage
+}
+
 BossRushIntroText1:
 	'''
 	Xeroc's Challenge

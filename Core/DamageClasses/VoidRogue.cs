@@ -8,7 +8,7 @@ using SOTS.Void;
 using CalamityMod;
 using System.Security.Policy;
 
-namespace InfernalEclipseAPI.Core
+namespace InfernalEclipseAPI.Core.DamageClasses
 {
     [ExtendsFromMod("SOTS")]
     public class VoidRogue : DamageClass

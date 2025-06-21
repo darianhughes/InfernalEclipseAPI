@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace InfernalEclipseAPI.Common.GlobalItems
+namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
 {
     public class GraniteEnergyStormFix : GlobalItem
     {

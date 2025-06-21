@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalamityMod.NPCs.ExoMechs.Apollo;
 using CalamityMod.NPCs.ExoMechs.Ares;
 using CalamityMod.NPCs.ExoMechs.Artemis;
 using InfernalEclipseAPI.Content.Buffs;
@@ -12,13 +11,13 @@ using Terraria.ModLoader;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 
-namespace InfernalEclipseAPI.Common.GlobalNPCs.ExoMechs
+namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs.ExoMechs
 {
-    public class ExoApolloDebuff : GlobalNPC
+    public class ExoAresDebuff : GlobalNPC
     {
         public override void PostAI(NPC npc)
         {
-            if (!npc.active || npc.type != ModContent.NPCType<Apollo>() || !InfernalConfig.Instance.PreventBossCheese)
+            if (!npc.active || npc.type != ModContent.NPCType<AresBody>() || !InfernalConfig.Instance.PreventBossCheese)
                 return;
 
             for (int i = 0; i < Main.maxPlayers; i++)

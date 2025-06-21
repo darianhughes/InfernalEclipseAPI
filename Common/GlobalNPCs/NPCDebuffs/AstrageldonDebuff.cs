@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalamityMod.NPCs.ExoMechs.Ares;
-using CalamityMod.NPCs.ExoMechs.Artemis;
+using CatalystMod.NPCs.Boss.Astrageldon;
 using InfernalEclipseAPI.Content.Buffs;
 using Terraria;
 using Terraria.ModLoader;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 
-namespace InfernalEclipseAPI.Common.GlobalNPCs.ExoMechs
+namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
 {
-    public class ExoAresDebuff : GlobalNPC
+    [ExtendsFromMod("CatalystMod")]
+    public class AstrageldonDebuff : GlobalNPC
     {
         public override void PostAI(NPC npc)
         {
-            if (!npc.active || npc.type != ModContent.NPCType<AresBody>() || !InfernalConfig.Instance.PreventBossCheese)
+            if (!npc.active || npc.type != ModContent.NPCType<Astrageldon>() || !InfernalConfig.Instance.PreventBossCheese)
                 return;
 
             for (int i = 0; i < Main.maxPlayers; i++)
@@ -25,7 +25,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.ExoMechs
                 Player player = Main.player[i];
                 if (player.active && !player.dead && npc.Distance(player.Center) < 8000f)
                 {
-                    player.AddBuff(ModContent.BuffType<WarpJammed>(), 60);
+                    player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 60);
                 }
             }
         }

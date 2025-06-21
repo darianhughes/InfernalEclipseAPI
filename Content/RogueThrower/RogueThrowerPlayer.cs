@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria;
 
-namespace InfernalEclipseAPI.Core.Players
+namespace InfernalEclipseAPI.Content.RogueThrower
 {
     //Exhaustion removal code by Wardrobe Hummus
     //White Dwarf set cooldown by Akira

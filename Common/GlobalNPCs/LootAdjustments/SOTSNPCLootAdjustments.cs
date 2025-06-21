@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod;
+using CalamityMod.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Lore;
 using SOTS.NPCs.Boss;
 using SOTS.NPCs.Boss.Advisor;
@@ -12,16 +13,19 @@ using SOTS.NPCs.Boss.Glowmoth;
 using SOTS.NPCs.Boss.Lux;
 using SOTS.NPCs.Boss.Polaris;
 using SOTS.NPCs.Boss.Polaris.NewPolaris;
+using SOTS.NPCs.TreasureSlimes;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
-namespace InfernalEclipseAPI.Common.GlobalNPCs
+namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
     [ExtendsFromMod("SOTS")]
-    public class SOTSLoreDrops : GlobalNPC
+    public class SOTSNPCLootAdjustments : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
+            //Lore Items
             if (npc.type == ModContent.NPCType<TheAdvisorHead>())
             {
                 bool firstAdvisorKill() => !SOTS.SOTSWorld.downedAdvisor;
@@ -56,6 +60,12 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 bool firstSupspaceKill() => !SOTS.SOTSWorld.downedSubspace;
                 npcLoot.AddConditionalPerPlayer(firstSupspaceKill, ModContent.ItemType<LoreSerpent>(), desc: DropHelper.FirstKillText);
+            }
+
+            //Other
+            if (npc.type == ModContent.NPCType<CrimsonTreasureSlime>() || npc.type == ModContent.NPCType<CorruptionTreasureSlime>())
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlightedGel>(), 1, 7, 13));
             }
         }
     }

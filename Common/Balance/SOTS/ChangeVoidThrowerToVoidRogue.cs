@@ -2,8 +2,8 @@
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using ThoriumMod.Items;
-using InfernalEclipseAPI.Core;
 using CalamityMod;
+using InfernalEclipseAPI.Core.DamageClasses;
 
 namespace InfernalEclipseAPI.Common.Balance.SOTS
 {

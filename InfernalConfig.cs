@@ -117,6 +117,10 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool AutomaticallyReforgeThoriumRogueItems { get; set; }
 
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool MergeThrowerIntoRogue { get; set; }
+
         //[DefaultValue(true)]
         //public bool PlayInfernumExoMechThemeWithWoTM {  get; set; }
 
@@ -126,6 +130,7 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         [ReloadRequired]
         public bool UseAprilFoolsMutant { get; set; }
+
         #endregion
     }
 }

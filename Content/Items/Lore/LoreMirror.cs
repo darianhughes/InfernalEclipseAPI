@@ -3,39 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalamityMod.Items.LoreItems;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using CalamityMod.Rarities;
-using CalamityMod.Items;
-using CalamityMod;
+using CalamityMod.Items.LoreItems;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
-    public class LoreProvi : LoreItem
+    public class LoreMirror : LoreItem
     {
         public override void SetDefaults()
         {
-            Item.width = 26;
+            Item.width = 38;
             Item.height = 26;
-            Item.rare = ModContent.RarityType<HotPink>();
+            Item.rare = ItemRarityID.Purple;
             Item.consumable = false;
-            Item.Calamity().devItem = true;
         }
-        
+
         public override void AddRecipes()
         {
-            ModLoader.TryGetMod("CalamityMod", out Mod cal);
+            ModLoader.TryGetMod("YouBoss", out Mod you);
 
-            cal.Call("MakeItemExhumable", ModContent.ItemType<MysteriousDiary>(), ModContent.ItemType<LoreProvi>());
-            cal.Call("MakeItemExhumable", ModContent.ItemType<LoreProvi>(), ModContent.ItemType<MysteriousDiary>());
+            CreateRecipe()
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(you.Find<ModItem>("FirstFractal").Type)
+                .AddTile(TileID.Bookcases)
+                .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "ProviLore", "I dreamt of peace once. I don't know why I did.\nEver since I recieved word that there was something beyond this world,\nI've seen that odd woman appearing in my peripheral vision every now and again.\nWhenever I notice her, she disappears again, with a single word ringing in my skull.\nPromise.\nAnd nothing else.\nWhat would Thorne want with them? Who knows.\nBut I'm sure you will make the right call, Terrarian.");
+            TooltipLine fullLore = new(Mod, "MirrorLore", "I stared into it for a long while, but like any other mirror, I only saw myself.\nBut even then, something felt... different. It felt wrong, almost... twisted.\nI disregarded it. But even now, I can feel the piercing gaze my reflection had... shooting directly through my skull.\nOnce you come so far, the hardest part of your journey is facing yourself.");
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);
