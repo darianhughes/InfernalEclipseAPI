@@ -49,10 +49,23 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 if (!InfernalConfig.Instance.MergeCraftingTrees)
                     return;
 
+                if (sots != null)
+                {
+                    if (recipe.HasResult<OrnateShield>())
+                    {
+                        recipe.AddIngredient(sots.Find<ModItem>("ShatterHeartShield"));
+                    }
+
+                    if (recipe.HasResult(sots.Find<ModItem>("BulwarkOfTheAncients")))
+                    {
+                        recipe.DisableRecipe();
+                    }
+                }
+
                 if (thorium != null) 
                 { 
-                    if (recipe.HasResult(ModContent.ItemType<AsgardsValor>()))
-                        recipe.AddIngredient(thorium.Find<ModItem>("MoltenScale"), 1);
+                    //if (recipe.HasResult(ModContent.ItemType<AsgardsValor>()))
+                        //recipe.AddIngredient(thorium.Find<ModItem>("MoltenScale"), 1);
 
                     if (recipe.HasResult(ModContent.ItemType<DeificAmulet>()) && recipe.HasIngredient(ItemID.StarVeil))
                     {
@@ -72,12 +85,27 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.AddTile(TileID.LunarCraftingStation);
                     }
 
+                    ModItem plasmaGen = null;
+                    if (thorium.TryFind("PlasmaGenerator", out plasmaGen))
+                    {
+                        if (recipe.HasResult(plasmaGen))
+                            recipe.AddIngredient(thorium.Find<ModItem>("MoltenScale"));
+                    }
+
                     if (recipe.HasResult(ModContent.ItemType<AsgardianAegis>()))
                     {
                         if (ModLoader.TryGetMod("ssm", out _))
                         {
                             recipe.RemoveIngredient(thorium.Find<ModItem>("TerrariumDefender").Type);
                             recipe.AddIngredient(ModContent.ItemType<AsgardsValor>());
+                        }
+                        if (plasmaGen != null)
+                        {
+                            recipe.AddIngredient(plasmaGen);
+                        }
+                        else
+                        {
+                            recipe.AddIngredient(thorium.Find<ModItem>("MoltenScale"));
                         }
                     }
 

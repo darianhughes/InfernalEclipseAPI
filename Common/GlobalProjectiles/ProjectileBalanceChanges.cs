@@ -316,22 +316,28 @@ namespace InfernalEclipseAPI.Common.Projectiles
             return 1f;
         }
 
+        private bool IsEligibleForChildScaling(int type)
+        {
+            // Add only child projectiles that should inherit scale
+            // Example: return type == someKnownChildProjectileType;
+            return false; // default: no other projectiles should scale
+        }
+
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
             if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
             {
-
                 if (projectile.type != moltenThresherType
-                && projectile.type != titanScytheType
-                && projectile.type != batScytheType
-                && projectile.type != batScytheType2
-                && projectile.type != bloodHarvestType
-                && projectile.type != fallingTwilightType
-                && projectile.type != trueFallingTwilightType
-                && projectile.type != trueBloodHarvestType
-                && projectile.type != theBlackScytheType)
+                    && projectile.type != titanScytheType
+                    && projectile.type != batScytheType
+                    && projectile.type != batScytheType2
+                    && projectile.type != bloodHarvestType
+                    && projectile.type != fallingTwilightType
+                    && projectile.type != trueFallingTwilightType
+                    && projectile.type != trueBloodHarvestType
+                    && projectile.type != theBlackScytheType)
                 {
-                    return true; // Default drawing for others
+                    return true;
                 }
 
                 Texture2D texture = TextureAssets.Projectile[projectile.type].Value;
@@ -340,9 +346,13 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 Rectangle sourceRectangle = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight);
                 Vector2 origin = sourceRectangle.Size() / 2f;
 
-                float scale = projectile.scale * GetScaleForProjectile(projectile.type);
+                float baseScale = GetScaleForProjectile(projectile.type);
+                float scale = projectile.scale * baseScale;
                 Vector2 drawPos = projectile.Center - Main.screenPosition;
                 Color drawColor = lightColor * ((255 - projectile.alpha) / 255f);
+
+                Player owner = Main.player[projectile.owner];
+                SpriteEffects effect = (owner.direction == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
                 Main.EntitySpriteDraw(
                     texture,
@@ -352,13 +362,33 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     projectile.rotation,
                     origin,
                     scale,
-                    SpriteEffects.None,
+                    effect,
                     0
                 );
-
-                return false; // skip default drawing
+                return false;
             }
             return true;
+        }
+
+        public override void AI(Projectile projectile)
+        {
+            if (projectile.localAI[1] == 1f)
+                return;
+
+            if (!IsEligibleForChildScaling(projectile.type))
+                return;
+
+            Projectile ownerProj = Main.projectile[projectile.owner];
+
+            if (ownerProj != null && ownerProj.active)
+            {
+                float parentScale = GetScaleForProjectile(ownerProj.type);
+                if (parentScale > 1f)
+                {
+                    projectile.scale *= parentScale;
+                    projectile.localAI[1] = 1f;
+                }
+            }
         }
 
         public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)

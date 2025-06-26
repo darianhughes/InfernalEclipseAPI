@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.Items.Materials;
+using CalamityMod.Items.TreasureBags;
+using CalamityMod.NPCs.Cryogen;
 using InfernalEclipseAPI.Content.Items.Lore;
+using SOTS.Items.Fragments;
 using SOTS.NPCs.Boss;
 using SOTS.NPCs.Boss.Advisor;
 using SOTS.NPCs.Boss.Curse;
@@ -66,6 +64,23 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
             if (npc.type == ModContent.NPCType<CrimsonTreasureSlime>() || npc.type == ModContent.NPCType<CorruptionTreasureSlime>())
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlightedGel>(), 1, 7, 13));
+            }
+
+            if (npc.type == ModContent.NPCType<Cryogen>())
+            {
+                npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<FragmentOfPermafrost>(), 1, 12, 18));
+            }
+        }
+    }
+
+    [ExtendsFromMod("SOTS")]
+    public class SOTSBossBagChanges : GlobalItem
+    {
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            if (item.type == ModContent.ItemType<CryogenBag>())
+            {
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FragmentOfPermafrost>(), 1, 15, 21));
             }
         }
     }

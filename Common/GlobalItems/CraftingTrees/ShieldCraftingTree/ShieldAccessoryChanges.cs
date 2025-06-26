@@ -60,12 +60,36 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 
             if (item.ModItem != null &&
                 item.ModItem.Mod.Name == "CalamityMod" &&
+                item.ModItem.Name == "OrnateShield" &&
+                sots != null)
+            {
+                ModItem shatterShield = sots.Find<ModItem>("ShatterHeartShield");
+                shatterShield.UpdateAccessory(player, hideVisual);
+            }
+
+            if (item.ModItem != null &&
+                item.ModItem.Mod.Name == "CalamityMod" &&
                 item.ModItem.Name == "AsgardsValor" &&
                 thorium != null)
             {
-                ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
-                moltenScale.UpdateAccessory(player, hideVisual);
-                base.UpdateAccessory(item, player, hideVisual);
+                //ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
+                //moltenScale.UpdateAccessory(player, hideVisual);
+                //base.UpdateAccessory(item, player, hideVisual);
+                ModItem shatterShield = sots.Find<ModItem>("ShatterHeartShield");
+                shatterShield.UpdateAccessory(player, hideVisual);
+            }
+
+            ModItem plasmaGen = null;
+            if (thorium != null)
+            {
+                if (thorium.TryFind<ModItem>("PlasmaGenerator", out plasmaGen))
+                {
+                    if (item.type == plasmaGen.Type)
+                    {
+                        ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
+                        moltenScale.UpdateAccessory(player, hideVisual);
+                    }
+                }
             }
 
             if (item.ModItem != null &&
@@ -75,7 +99,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             {
                 ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
                 moltenScale.UpdateAccessory(player, hideVisual);
-                base.UpdateAccessory(item, player, hideVisual);
+                if (plasmaGen != null)
+                {
+                    plasmaGen.UpdateAccessory(player, hideVisual);
+                }
+                if (sots != null)
+                {
+                    ModItem shatterShield = sots.Find<ModItem>("ShatterHeartShield");
+                    shatterShield.UpdateAccessory(player, hideVisual);
+                }
             }
 
             if (item.ModItem != null &&
@@ -148,7 +180,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 base.UpdateAccessory(item, player, hideVisual);
             }
 
-                if (item.ModItem != null &&
+            if (item.ModItem != null &&
                 item.ModItem.Mod.Name == "ThoriumMod" &&
                 item.ModItem.Name == "MantleoftheProtector")
             {
@@ -221,6 +253,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 item.ModItem.Mod.Name == "Clamity" &&
                 item.ModItem.Name == "SupremeBarrier")
             {
+                if (plasmaGen != null)
+                {
+                    plasmaGen.UpdateAccessory(player, hideVisual);
+                }
+                if (sots != null)
+                {
+                    ModItem shatterShield = sots.Find<ModItem>("ShatterHeartShield");
+                    shatterShield.UpdateAccessory(player, hideVisual);
+                }
+
                 if (thorium != null)
                 {
                     ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
@@ -303,13 +345,45 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             string sweetAltInfo = "Causes bees to appear and douses the user in honey when damaged";
             string tdInfo = "When below 25% life, you will rapidly regenerate life and gain increased defense";
             string daInfo = "Grants bonus invincibility frames based on your missing health\nThis effect scales from 10 frames at full HP to 40 frames at 25% or less HP";
+            string shsInfo = "Getting hit surrounds you with ice shards\nIncreases max life by 20";
+            string pgInfo = "Generates a fiery barrier that burns incoming hostile projectile\nAfter burning a projectile, the shield must regenerate for 10 seconds\nWhile below 25% life, the shield generates twice as fast";
 
-            if (item.type == ModContent.ItemType<AsgardsValor>() || item.type == ModContent.ItemType<AsgardianAegis>() & thorium != null)
+            if (sots != null && (item.type == ModContent.ItemType<AsgardsValor>() || item.type == ModContent.ItemType<AsgardianAegis>() || item.type == ModContent.ItemType<OrnateShield>()))
+            {
+                tooltips.Add(new TooltipLine(Mod, "shsInfo", shsInfo)
+                {
+                    OverrideColor = new Color?(InfernalRed)
+                });
+            }
+
+            ModItem plasmaGen = null;
+            if (thorium != null)
+            {
+                if (thorium.TryFind("PlasmaGenerator", out plasmaGen))
+                {
+                    if (item.type == plasmaGen.Type)
+                    {
+                        tooltips.Add(new TooltipLine(Mod, "MoltenScaleInfo", moltenScaleInfo)
+                        {
+                            OverrideColor = new Color?(InfernalRed)
+                        });
+                    }
+                }
+            }
+
+            if (item.type == ModContent.ItemType<AsgardianAegis>() & thorium != null)
             {
                 tooltips.Add(new TooltipLine(Mod, "MoltenScaleInfo", moltenScaleInfo)
                 {
                     OverrideColor = new Color?(InfernalRed)
                 });
+                if (plasmaGen != null)
+                {
+                    tooltips.Add(new TooltipLine(Mod, "pgInfo", pgInfo)
+                    {
+                        OverrideColor = new Color?(InfernalRed)
+                    });
+                }
             }
 
             if (thorium != null)
@@ -373,6 +447,18 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     {
                         if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
                         {
+                            tooltips.Add(new TooltipLine(Mod, "shsInfo", shsInfo)
+                            {
+                                OverrideColor = new Color?(InfernalRed)
+                            });
+                            if (plasmaGen != null)
+                            {
+                                tooltips.Add(new TooltipLine(Mod, "pgInfo", pgInfo)
+                                {
+                                    OverrideColor = new Color?(InfernalRed)
+                                });
+                            }
+
                             tooltips.Add(new TooltipLine(Mod, "MoltenScaleInfo", moltenScaleInfo)
                             {
                                 OverrideColor = new Color?(InfernalRed)
@@ -479,6 +565,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     {
                         if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
                         {
+                            if (plasmaGen != null)
+                            {
+                                tooltips.Add(new TooltipLine(Mod, "pgInfo", pgInfo)
+                                {
+                                    OverrideColor = new Color?(InfernalRed)
+                                });
+                            }
                             tooltips.Add(new TooltipLine(Mod, "tdInfo", tdInfo)
                             {
                                 OverrideColor = new Color?(InfernalRed)
@@ -557,6 +650,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 {
                     if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
                     {
+                        tooltips.Add(new TooltipLine(Mod, "shsInfo", shsInfo)
+                        {
+                            OverrideColor = new Color?(InfernalRed)
+                        });
                         tooltips.Add(new TooltipLine(Mod, "cbI1", chiseledBarrierInfo)
                         {
                             OverrideColor = new Color?(InfernalRed)

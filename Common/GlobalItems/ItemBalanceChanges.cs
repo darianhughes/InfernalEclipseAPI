@@ -1735,6 +1735,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "HallowedStaff", item))
                     {
                         item.damage = 90;
+                        item.useAnimation = 30;
+                        item.useTime = 30;
                     }
 
                     if (GetItem(thorium, "StaticProd", item))
@@ -2356,7 +2358,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "TheCryoFang", item))
                     {
                         item.shootSpeed = 22;
-                        item.damage = 62;
+                        item.damage = 82;
+                        item.useTime = 22;
+                        item.useAnimation = 22;
                     }
 
                     if (GetItem(thorium, "CaptainsPoniard", item))
@@ -2477,7 +2481,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TerraKnife", item))
                     {
-                        item.damage = 60;
+                        item.damage = 40;
                     }
 
                     if (GetItem(thorium, "FireAxe", item))
@@ -3037,20 +3041,21 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Didgeridoo
                     if (item.type == thorium.Find<ModItem>("Didgeridoo").Type)
                     {
-                        item.useTime = 26;
-                        item.useAnimation = 26;
+                        item.useTime = 24;
+                        item.useAnimation = 24;
                     }
 
                     //Sinister Honk
                     if (item.type == thorium.Find<ModItem>("SinisterHonk").Type)
                     {
                         item.shootSpeed = 13;
+                        item.damage = 25;
                     }
 
                     //Yew Wood Lute
                     if (item.type == thorium.Find<ModItem>("YewWoodLute").Type)
                     {
-                        item.damage = 22;
+                        item.damage = 26;
                     }
 
                     //Dynasty Guzheng
@@ -3077,6 +3082,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (item.type == thorium.Find<ModItem>("JarOMayo").Type)
                     {
                         item.damage = 30;
+                    }
+
+                    if (UnsafeGetItem(thorium, "MeteoriteOboe", item))
+                    {
+                        TrySetInspirationCost(item, 2);
                     }
 
                     //Sonar Cannon
@@ -3573,7 +3583,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Fire Hazard
                 if (item.type == calBardHeal.Find<ModItem>("FireHazard").Type)
                 {
-                    item.damage = 14;
+                    item.damage = 30;
                     //projectile?
                 }
 
@@ -3684,10 +3694,26 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 #region Bard
                 #region Pre-Hardmode
+                //Crystal Hydraulophone
+                if (UnsafeGetItem(calBardHeal, "CrystalHydraulophone", item))
+                {
+                    item.damage = 30;
+                }
+
                 //Violince
                 if (GetItem(calBardHeal, "Violince", item))
                 {
                     item.damage = 9;
+                }
+
+                if (UnsafeGetItem(calBardHeal, "FilthyFlute", item))
+                {
+                    item.damage = 32;
+                }
+
+                if (UnsafeGetItem(calBardHeal, "ScrapGuitar", item))
+                {
+                    item.damage = 43;
                 }
 
                 //Return to Sludge

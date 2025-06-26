@@ -53,6 +53,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
             foreach (var recipe in Main.recipe)
             {
+                if (InfernalConfig.Instance.CalamityBalanceChanges)
+                {
+                    if (recipe.HasResult<VampiricTalisman>() & !recipe.HasIngredient(ItemID.AvengerEmblem) & !InfernalConfig.Instance.MergeCraftingTrees)
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<RogueEmblem>());
+                        recipe.AddIngredient(ItemID.AvengerEmblem);
+                    }
+                }
 
                 if (!ModLoader.TryGetMod("PackBuilder", out Mod tPack))
                 {
@@ -119,19 +127,32 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
 
-                if (InfernalConfig.Instance.ThoriumBalanceChangess && thorium != null && !ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                if (InfernalConfig.Instance.ThoriumBalanceChangess && thorium != null)
                 {
-                    if (recipe.HasResult(ModContent.ItemType<ElementalDisk>()))
+                    if (recipe.HasResult<UnholyCore>())
                     {
-                        thorium.TryFind("TerraKnife", out ModItem terraKnife);
-                        recipe.AddIngredient(terraKnife.Type);
+                        recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 3);
                     }
 
-                    if (recipe.HasResult(thorium.Find<ModItem>("NuclearFury").Type))
+                    if (recipe.HasResult<MiracleMatter>())
                     {
-                        recipe.AddIngredient(thorium.Find<ModItem>("WhiteDwarfFragment").Type, 6);
-                        recipe.RemoveTile(TileID.Bookcases);
-                        recipe.AddTile(TileID.LunarCraftingStation);
+                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
+                    }
+
+                    if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                    {
+                        if (recipe.HasResult(ModContent.ItemType<ElementalDisk>()))
+                        {
+                            thorium.TryFind("TerraKnife", out ModItem terraKnife);
+                            recipe.AddIngredient(terraKnife.Type);
+                        }
+
+                        if (recipe.HasResult(thorium.Find<ModItem>("NuclearFury").Type))
+                        {
+                            recipe.AddIngredient(thorium.Find<ModItem>("WhiteDwarfFragment").Type, 6);
+                            recipe.RemoveTile(TileID.Bookcases);
+                            recipe.AddTile(TileID.LunarCraftingStation);
+                        }
                     }
                 }
 
@@ -614,6 +635,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             {
                                 recipe.RemoveTile(TileID.WorkBenches);
                                 recipe.AddTile(TileID.LunarCraftingStation);
+                                recipe.RemoveTile(TileID.TinkerersWorkbench);
+                                recipe.RemoveIngredient(thorium.Find<ModItem>("BloomWeave").Type);
+                                recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 5);
                             }
                         }
                     }

@@ -30,6 +30,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
                 return calbh;
             }
         }
+        private Mod thorium
+        {
+            get
+            {
+                ModLoader.TryGetMod("ThoriumMod", out Mod thor);
+                return thor;
+            }
+        }
         public override void PostAddRecipes()
         {
             for (int index = 0; index < Recipe.numRecipes; ++index)
@@ -50,6 +58,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
                         recipe.RemoveIngredient(ItemID.LunarBar);
                         recipe.AddIngredient<CosmiliteBar>(8);
                         recipe.AddIngredient(Ragnarok.Find<ModItem>("UniversalHeadset"));
+                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 6);
                     }
                 }
             }

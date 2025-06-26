@@ -26,7 +26,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 target.AddBuff(BuffID.OnFire, 300);      // 5 seconds
                 target.AddBuff(BuffID.Frostburn, 300);
                 target.AddBuff(BuffID.Poisoned, 300);
-                target.AddBuff(ModContent.BuffType<Stunned>(), 60); // 1 second
+                target.AddBuff(ModContent.BuffType<Stunned>(), 30); // 1/2 second
             }
         }
     }

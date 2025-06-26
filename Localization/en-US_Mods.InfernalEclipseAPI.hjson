@@ -96,6 +96,8 @@ Projectiles: {
 	Rogue.NovaBombProj.DisplayName: Nova Bomb Proj
 	StellarStar.DisplayName: Stellar Star
 	BossRushTier6Animation.DisplayName: Boss Rush Tier6 Animation
+	RogueSpectreBlast.DisplayName: Rogue Spectre Blast
+	BountifulHarvestStinger.DisplayName: Bountiful Harvest Stinger
 }
 
 DiaryTooltip:

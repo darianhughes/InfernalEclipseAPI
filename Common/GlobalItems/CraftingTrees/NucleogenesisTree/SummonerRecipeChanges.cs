@@ -43,17 +43,29 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (thorium != null)
                 {
-                    if (recipe.HasResult(thorium.Find<ModItem>("SteamkeeperWatch")))
-                    {
-                        recipe.AddIngredient(ItemID.SummonerEmblem);
-                    }
+                    //if (recipe.HasResult(thorium.Find<ModItem>("SteamkeeperWatch")))
+                    //{
+                    //    recipe.AddIngredient(ItemID.SummonerEmblem);
+                    //}
 
                     if (recipe.HasResult(ModContent.ItemType<StatisCurse>()))
                     {
-                        recipe.RemoveIngredient(ItemID.FragmentStardust);
-                        recipe.AddIngredient(thorium.Find<ModItem>("YumasPendant"));
-                        recipe.AddIngredient(ItemID.LunarBar, 8);
+                        //recipe.RemoveIngredient(ItemID.FragmentStardust);
+                        //recipe.AddIngredient(thorium.Find<ModItem>("YumasPendant"));
+                        //recipe.AddIngredient(ItemID.LunarBar, 8);
                     }
+
+                    if (recipe.HasResult(ModContent.ItemType<Nucleogenesis>()))
+                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 6);
+
+                    if (recipe.HasResult<StarTaintedGenerator>())
+                        recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
+                }
+
+                if (sots != null)
+                {
+                    if (recipe.HasResult(ModContent.ItemType<StatisCurse>()))
+                        recipe.AddIngredient(ModContent.ItemType<Necroplasm>(), 4);
                 }
 
                 if (sots != null & thorium != null)
@@ -71,12 +83,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     if (recipe.HasResult(ModContent.ItemType<StatisBlessing>()))
                     {
                         recipe.RemoveIngredient(ItemID.PygmyNecklace);
-                        recipe.RemoveIngredient(ItemID.SummonerEmblem);
-                        recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
-                        recipe.AddIngredient(ItemID.BeetleHusk, 3);
+                        //recipe.RemoveIngredient(ItemID.SummonerEmblem);
+                        //recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
+                        //recipe.AddIngredient(ItemID.BeetleHusk, 3);
                         recipe.AddIngredient(sots.Find<ModItem>("FortressGenerator"));
                         recipe.AddIngredient(thorium.Find<ModItem>("CrystalScorpion"));
-                        recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
+                        //recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
                     }
                 }
                 else if (thorium != null)
@@ -84,12 +96,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     if (recipe.HasResult(ModContent.ItemType<StatisBlessing>()))
                     {
                         recipe.RemoveIngredient(ItemID.PygmyNecklace);
-                        recipe.RemoveIngredient(ItemID.SummonerEmblem);
-                        recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
-                        recipe.AddIngredient(ItemID.BeetleHusk, 3);
+                        //recipe.RemoveIngredient(ItemID.SummonerEmblem);
+                        //recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
+                        //recipe.AddIngredient(ItemID.BeetleHusk, 3);
                         recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
                         recipe.AddIngredient(thorium.Find<ModItem>("CrystalScorpion"));
-                        recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
+                        //recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
                         recipe.AddIngredient(thorium.Find<ModItem>("ScryingGlass"));
                     }
                 }
@@ -98,17 +110,18 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     if (recipe.HasResult(ModContent.ItemType<StatisBlessing>()))
                     {
                         recipe.RemoveIngredient(ItemID.PygmyNecklace);
-                        recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
+                        //recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
                         recipe.AddIngredient(sots.Find<ModItem>("FortressGenerator"));
-                        recipe.AddIngredient(ItemID.BeetleHusk, 3);
+                        //recipe.AddIngredient(ItemID.BeetleHusk, 3);
                     }
                 }
 
                 if (recipe.HasResult(ModContent.ItemType<Nucleogenesis>()))
                 {
                     recipe.RemoveIngredient(ItemID.LunarBar);
-                    recipe.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 5);
+                    recipe.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 8);
                 }
+
                 else if (sots != null)
                 {
 
@@ -128,7 +141,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 Recipe.Create(sots.Find<ModItem>("FortressGenerator").Type)
                     .AddIngredient(sots.Find<ModItem>("PlatformGenerator"))
                     .AddIngredient(thorium.Find<ModItem>("NecroticSkull"))
-                    .AddIngredient(ItemID.SpectreBar, 10) ///might be changed
+                    .AddIngredient<CryonicBar>(10) ///might be changed
                     .AddIngredient(sots.Find<ModItem>("DissolvingDeluge"))
                     .AddTile(TileID.TinkerersWorkbench)
                     .Register();

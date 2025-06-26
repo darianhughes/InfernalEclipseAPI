@@ -17,6 +17,7 @@ using Steamworks;
 using CalamityMod.Enums;
 using CalamityMod.Sounds;
 using CalamityMod;
+using InfernalEclipseAPI.Content.Projectiles;
 
 namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
 {
@@ -485,7 +486,7 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                     projectile.GetSource_Death(),
                     spawnPos,
                     velocity,
-                    ProjectileID.LostSoulFriendly,
+                    ModContent.ProjectileType<RogueSpectreBlast>(),
                     projectile.damage / 5,
                     projectile.knockBack,
                     projectile.owner

@@ -47,6 +47,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
         private static int fractalID;
         private static int renewID;
         private static int starBirthID;
+        private static int lostOasisID;
 
         public delegate bool CanItemDoActionWithPlayerDelegate(Item item, Player player);
         public static event CanItemDoActionWithPlayerDelegate? CanUseItemEvent;
@@ -123,7 +124,8 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                 {
                     if (calBardHeal.TryFind("StarBirth", out ModItem starBirth))
                         starBirthID = starBirth.Type;
-
+                    if (calBardHeal.TryFind("LostOasis", out ModItem lostOasis))
+                        lostOasisID = lostOasis.Type;
                     CanUseItemEvent += ModifyStarBirthUseConditions;
                 }
             }
@@ -271,7 +273,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 
         private bool ModifyStarBirthUseConditions(Item item, Player player)
         {
-            if (item.type == starBirthID)
+            if (item.type == starBirthID || item.type == lostOasisID)
             {
                 var cdPlayer = player.GetModPlayer<HealerPlayer>();
 

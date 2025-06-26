@@ -48,16 +48,26 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                 ItemID.ArcaneFlower,
                 ItemID.MagnetFlower,
                 ItemID.ManaCloak,
-                thorium.Find<ModItem>("HungeringBlossom").Type
             });
-            int AnyManaFlower = RecipeGroup.RegisterGroup("AnyManaFlower", group);
+            int AnyManaFlower = RecipeGroup.RegisterGroup("AnyManaFlowerAccessory", group);
 
             Recipe.Create(ModContent.ItemType<EtherealTalisman>())
                .AddIngredient<SigilofCalamitas>().
-                AddRecipeGroup("AnyManaFlower"). //Any mana flower accessory, includiing Hungering Blossom
+                AddRecipeGroup("AnyManaFlowerAccessory"). //Any mana flower accessory
                 AddIngredient<CosmiliteBar>(8).
                 AddIngredient<GalacticaSingularity>(4).
                 AddIngredient<AscendantSpiritEssence>(4).
+                AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 6).
+                AddTile<CosmicAnvil>().
+                Register();
+
+            Recipe.Create(ModContent.ItemType<EtherealTalisman>())
+               .AddIngredient<SigilofCalamitas>().
+                AddIngredient(thorium.Find<ModItem>("HungeringBlossom")).
+                AddIngredient<CosmiliteBar>(8).
+                AddIngredient<GalacticaSingularity>(4).
+                AddIngredient<AscendantSpiritEssence>(4).
+                AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 6).
                 AddTile<CosmicAnvil>().
                 Register();
         }
