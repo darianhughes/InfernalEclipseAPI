@@ -66,6 +66,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 165;
                 }
             }
+
+            if (InfernalConfig.Instance.ChanageWeaponClasses)
+            {
+                if (item.type == ItemID.Shuriken)
+                {
+                    item.DamageType = ModContent.GetInstance<RogueDamageClass>();
+                }
+            }
             #endregion
 
             #region Zenith Toilet
@@ -2456,7 +2464,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "LihzahrdKukri", item))
                     {
-                        item.damage = 76;
+                        item.damage = 99;
                     }
 
                     if (GetItem(thorium, "ProximityMine", item))
@@ -2476,7 +2484,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "ShadeKunai", item))
                     {
-                        item.damage = 54;
+                        item.useTime = 8;
+                        item.useAnimation = 8;
                     }
 
                     if (GetItem(thorium, "TerraKnife", item))
@@ -2958,7 +2967,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Reality Slasher
                     if (GetItem(thorium, "RealitySlasher", item))
                     {
-                        item.damage = 150;
+                        item.damage = 75;
                     }
                     #endregion
                     #endregion
@@ -3513,6 +3522,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.defense = 10;
                         item.lifeRegen = 4;
+                    }
+
+                    //Shinobi Sigil
+                    if (UnsafeGetItem(thorium, "ShinobiSigil", item))
+                    {
+                        TrySetAccessoryDamage(item, "25% basic damage");
                     }
                     #endregion
                 }
@@ -4215,6 +4230,43 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (prop != null && prop.CanWrite)
                 {
                     prop.SetValue(item.ModItem, newCost);
+                    return;
+                }
+
+                //Main.NewText("healAmount not found on ModItem.");
+            }
+            catch (Exception)
+            {
+                //Main.NewText($"Error setting healAmount: {ex.Message}");
+            }
+        }
+
+        private void TrySetAccessoryDamage(Item item, string newDamage)
+        {
+            try
+            {
+                if (item.ModItem == null)
+                {
+                    Main.NewText("No ModItem attached");
+                    return;
+                }
+
+                Type modItemType = item.ModItem.GetType();
+
+                // Try field first
+                FieldInfo field = modItemType.GetField("accDamage", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (field != null)
+                {
+                    field.SetValue(item.ModItem, newDamage);
+                    //Main.NewText($"[Field] Set healAmount of {item.Name} to {newCost}");
+                    return;
+                }
+
+                // Then try property
+                PropertyInfo prop = modItemType.GetProperty("accDamage", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (prop != null && prop.CanWrite)
+                {
+                    prop.SetValue(item.ModItem, newDamage);
                     return;
                 }
 

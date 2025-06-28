@@ -53,15 +53,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
             foreach (var recipe in Main.recipe)
             {
-                if (InfernalConfig.Instance.CalamityBalanceChanges)
-                {
-                    if (recipe.HasResult<VampiricTalisman>() & !recipe.HasIngredient(ItemID.AvengerEmblem) & !InfernalConfig.Instance.MergeCraftingTrees)
-                    {
-                        recipe.RemoveIngredient(ModContent.ItemType<RogueEmblem>());
-                        recipe.AddIngredient(ItemID.AvengerEmblem);
-                    }
-                }
-
                 if (!ModLoader.TryGetMod("PackBuilder", out Mod tPack))
                 {
                     if (recipe.HasResult(ModContent.ItemType<Kevin>()))
@@ -113,6 +104,17 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                     if (recipe.HasResult(ModContent.ItemType<OnyxExcavatorKey>()))
                         recipe.DisableRecipe();
+
+                    if (recipe.HasResult<VampiricTalisman>() & !recipe.HasIngredient(ItemID.AvengerEmblem) & !InfernalConfig.Instance.MergeCraftingTrees)
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<RogueEmblem>());
+                        recipe.AddIngredient(ItemID.AvengerEmblem);
+                    }
+
+                    if (recipe.HasResult<TheAmalgam>() && thorium != null)
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 5);
+                    }
 
                     if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                     {
@@ -657,6 +659,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         {
                             thorium.TryFind("BrokenHeroFragment", out ModItem heroFragment);
                             recipe.ChangeIngredientStack(heroFragment.Type, 3);
+                            recipe.AddIngredient<LivingShard>(12);
                         }
                     }
 

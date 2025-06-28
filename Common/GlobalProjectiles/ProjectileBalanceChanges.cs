@@ -160,6 +160,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
+                if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                {
+                    if (ragnarok.TryFind("WindSlashPro", out ModProjectile windSlashProj))
+                        windSlashType = windSlashProj.Type;
+                }
+                
                 if (entity.type == ragnarok.Find<ModProjectile>("GelScythePro2").Type)
                 {
                     entity.penetrate = 5;
@@ -301,6 +307,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int theBlackScytheType = -1;
         private static int batScytheType = -1;
         private static int batScytheType2 = -1;
+        private static int windSlashType = -1;
 
         private float GetScaleForProjectile(int type)
         {
@@ -313,6 +320,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             if (type == trueBloodHarvestType) return 1.5f;
             if (type == theBlackScytheType) return 1.5f;
             if (type == titanScytheType) return 2f;
+            if (type == windSlashType) return 2f;
             return 1f;
         }
 
@@ -335,7 +343,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     && projectile.type != fallingTwilightType
                     && projectile.type != trueFallingTwilightType
                     && projectile.type != trueBloodHarvestType
-                    && projectile.type != theBlackScytheType)
+                    && projectile.type != theBlackScytheType
+                    && projectile.type != windSlashType
+                    )
                 {
                     return true;
                 }

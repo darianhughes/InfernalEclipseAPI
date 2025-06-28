@@ -155,6 +155,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.AddIngredient(sots.Find<ModItem>("OlympianAegis").Type, 1);
                         recipe.AddIngredient(sots.Find<ModItem>("TerminalCluster").Type, 1);
                     }
+
+                    if (clam != null)
+                    {
+                        recipe.AddIngredient(clam.Find<ModItem>("EnchantedMetal"), 5);
+                    }
                     
                     if (ModLoader.TryGetMod("FargowiltasCrossmod", out _))
                     {

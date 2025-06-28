@@ -134,7 +134,7 @@ namespace InfernalEclipseAPI.Core.Players
                 if (contractNow && contractCooldownTimer == 0)
                 {
                     SetContract(true);
-                    contractCooldownTimer = 60; //EASY CHANGE COOLDOWN NUMBER
+                    contractCooldownTimer = 120; //EASY CHANGE COOLDOWN NUMBER
                     restoreContractAfterCooldown = true;
                 }
                 else if (contractCooldownTimer > 0)

@@ -26,10 +26,13 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         private bool? previousHeldItemOriginalExhaustion;
 
         public int whiteDwarfCooldown;
+        public int ShinobiSigilCooldown;
         public override void ResetEffects()
         {
             if (whiteDwarfCooldown > 0)
                 whiteDwarfCooldown--;
+            if (whiteDwarfCooldown > 0)
+                ShinobiSigilCooldown--;
         }
 
         private void EnsureInitialized()

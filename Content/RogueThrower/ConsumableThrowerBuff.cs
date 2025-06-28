@@ -35,7 +35,8 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 "ClockWorkBomb",
                 "SoulBomb",
                 "CaptainsPoniard",
-                "SoftServeSunderer"
+                "SoftServeSunderer",
+                "BugenkaiShuriken"
             };
             
             foreach (string itemName in ignoreStealthBonusItemNames)

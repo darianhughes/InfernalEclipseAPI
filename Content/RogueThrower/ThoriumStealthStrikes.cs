@@ -27,7 +27,8 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         CaptainsPoignard,
         SoftServeSunderer,
         TerraKnife,
-        TerraKnife2
+        TerraKnife2,
+        ShadeShuriken,
     }
     public class ThoriumStealthStrikes : GlobalItem
     {
@@ -109,7 +110,7 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 if (calPlayer.StealthStrikeAvailable())
                 {
                     velocity *= 1.75f;
-                    damage = (int)(damage * 3.5f);
+                    damage = (int)(damage * 2f);
 
                     int projID = Projectile.NewProjectile(
                         source,
@@ -251,7 +252,36 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 }
             }
 
+            // ===================== SHADE SHURIKEN =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Shade Shuriken")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
+                        thorium.TryFind("ShadeShuriken", out ModProjectile modProj))
+                    {
+                        int projType = modProj.Type;
 
+                        int projID = Projectile.NewProjectile(
+                            source,
+                            position,
+                            velocity * 1.0f, // Faster
+                            projType,
+                            (int)(damage * 1.0f), // Stronger
+                            knockback,
+                            player.whoAmI
+                        );
+
+                        if (Main.projectile.IndexInRange(projID) &&
+                            Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                        {
+                            stealthGlobal.SetupAsStealthStrike(StealthStrikeType.ShadeShuriken);
+                        }
+                    }
+
+                    return false;
+                }
+            }
 
             // ===================== SOULSLASHER =====================
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soulslasher")
@@ -390,8 +420,8 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                     Vector2 velocityUp = velocity.RotatedBy(MathHelper.ToRadians(5f));
                     Vector2 velocityDown = velocity.RotatedBy(MathHelper.ToRadians(-5f));
 
-                    int upProjID = Projectile.NewProjectile(source, position, velocityUp, sideProjType, damage / 3, knockback, player.whoAmI);
-                    int downProjID = Projectile.NewProjectile(source, position, velocityDown, sideProjType, damage / 3, knockback, player.whoAmI);
+                    int upProjID = Projectile.NewProjectile(source, position, velocityUp, sideProjType, damage, knockback, player.whoAmI);
+                    int downProjID = Projectile.NewProjectile(source, position, velocityDown, sideProjType, damage, knockback, player.whoAmI);
 
                     if (Main.projectile.IndexInRange(upProjID) &&
                         Main.projectile[upProjID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile upStealthGlobal))
@@ -539,6 +569,14 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soft Serve Sunderer")
             {
                 tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes summon a rain of cones from above the hit enemy")
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Shade Shuriken")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw a larger, faster shuriken that has increased pierce")
                 {
                     OverrideColor = Color.White
                 });

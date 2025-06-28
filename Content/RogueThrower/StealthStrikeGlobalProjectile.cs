@@ -219,7 +219,7 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
             {
                 int projType = ModContent.ProjectileType<TerratomereSlashCreator>();
 
-                Projectile.NewProjectile(new EntitySource_Misc("TerraKnifeStealthStrike"), target.Center, Vector2.Zero, projType, projectile.damage / 3, 0f, projectile.owner, target.whoAmI, Main.rand.NextFloat(MathHelper.TwoPi), 1);
+                Projectile.NewProjectile(new EntitySource_Misc("TerraKnifeStealthStrike"), target.Center, Vector2.Zero, projType, projectile.damage * 2, 0f, projectile.owner, target.whoAmI, Main.rand.NextFloat(MathHelper.TwoPi), 1);
             }
         }
 
@@ -339,6 +339,49 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                     {
                         projectile.scale = 0.5f;
                     }
+                }
+            }
+
+            // ShadeShuriken AI
+            if (stealthType == StealthStrikeType.ShadeShuriken)
+            {
+                projectile.scale = 3f;
+                projectile.penetrate = 9;  // Set EVERY tick here to override resets
+
+                if (!appliedChanges)
+                {
+                    appliedChanges = true;
+
+                    float scaleFactor = 3f;
+                    Vector2 center = projectile.Center;
+
+                    projectile.width = (int)(projectile.width * scaleFactor);
+                    projectile.height = (int)(projectile.height * scaleFactor);
+                    projectile.Center = center;
+
+                    projectile.timeLeft = Math.Max(projectile.timeLeft, 180);
+                }
+
+                float homingRange = 600f;
+                float homingSpeed = 20f;
+                float lerpStrength = 0.15f;
+
+                NPC target = null;
+
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.CanBeChasedBy(projectile) && Vector2.Distance(projectile.Center, npc.Center) < homingRange)
+                    {
+                        target = npc;
+                        break;
+                    }
+                }
+
+                if (target != null)
+                {
+                    Vector2 desiredVelocity = projectile.DirectionTo(target.Center) * homingSpeed;
+                    projectile.velocity = Vector2.Lerp(projectile.velocity, desiredVelocity, lerpStrength);
                 }
             }
 
@@ -487,7 +530,7 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                     spawnPos,
                     velocity,
                     ModContent.ProjectileType<RogueSpectreBlast>(),
-                    projectile.damage / 5,
+                    projectile.damage / 10,
                     projectile.knockBack,
                     projectile.owner
                 );
@@ -524,6 +567,10 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
             if (stealthType == StealthStrikeType.ZephyrsRuin)
             {
                 modifiers.SetCrit();
+            }
+            if (stealthType == StealthStrikeType.ShadeShuriken)
+            {
+                modifiers.SourceDamage *= 0.6f;
             }
         }
     }
