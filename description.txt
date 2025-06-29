@@ -10,9 +10,12 @@ Infernal Eclipse of Ragnarok is a ultra modded Infernum Mode addon which current
 	- Secrets of the Shadows
 	- Consolaria
 
-As well minor support for these content mods:
+As well minor support for these content mods & addons:
 	- Spooky Mod
+	- Spooky Bard, Healer, & Thrower
 	- Fargo's Souls
+	- Calamity - Fargo's Souls DLC
+	- Community Souls Expansion
 
 This API currently adds the following:
 	- Toggleable balance changes to many of the included mods to help the experience flow together better.

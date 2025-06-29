@@ -31,7 +31,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         {
             if (whiteDwarfCooldown > 0)
                 whiteDwarfCooldown--;
-            if (whiteDwarfCooldown > 0)
+            if (ShinobiSigilCooldown > 0)
                 ShinobiSigilCooldown--;
         }
 

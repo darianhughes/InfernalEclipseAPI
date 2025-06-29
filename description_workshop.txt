@@ -12,10 +12,13 @@ Infernal Eclipse of Ragnarok is a ultra modded Infernum Mode addon which current
 	[*] Consolaria
 [/list]
 
-As well minor support for these content mods:
+As well minor support for these content mods & add-ons:
 [list]
 	[*] Spooky Mod
+	[*] Spooky Bard, Healer, & Thrower
 	[*] Fargo's Souls
+	[*] Calamity - Fargo's Souls DLC
+	[*] Community Souls Expansion
 [/list]
 
 The only mods required for this API to run are Calamity Mod, Infernum Mode, Revengence+, You, tPackBuilder, and any dependency included with those mods.

@@ -20,6 +20,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
             }
         }
 
+        private Mod SSM
+        {
+            get
+            {
+                ModLoader.TryGetMod("ssm", out Mod ssm);
+                return ssm;
+            }
+        }
+
         private Mod sots
         {
             get
@@ -46,6 +55,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                 return clam;
             }
         }
+        private Mod fargo
+        {
+            get
+            {
+                ModLoader.TryGetMod("FargowiltasSouls", out Mod farg);
+                return farg;
+            }
+        }
+
+        private Mod fargocross
+        {
+            get
+            {
+                ModLoader.TryGetMod("FargowiltasCrossmod", out Mod fargc);
+                return fargc;
+            }
+        }
+
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -99,6 +126,37 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
                     magnetoGrip.UpdateAccessory(player, hideVisual);
                 }
+
+                if (SSM != null)
+                {
+                    if (item.type == SSM.Find<ModItem>("GtTETFinal").Type)
+                    {
+                        scutterGem.UpdateAccessory(player, hideVisual);
+                        ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
+                        magnetoGrip.UpdateAccessory(player, hideVisual);
+                    }
+
+                    if (item.type == fargocross.Find<ModItem>("VagabondsSoul").Type)
+                    {
+                        scutterGem.UpdateAccessory(player, hideVisual);
+                        ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
+                        magnetoGrip.UpdateAccessory(player, hideVisual);
+                    }
+
+                    if (item.type == fargo.Find<ModItem>("UniverseSoul").Type)
+                    {
+                        scutterGem.UpdateAccessory(player, hideVisual);
+                        ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
+                        magnetoGrip.UpdateAccessory(player, hideVisual);
+                    }
+
+                    if (item.type == fargo.Find<ModItem>("EternitySoul").Type)
+                    {
+                        scutterGem.UpdateAccessory(player, hideVisual);
+                        ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
+                        magnetoGrip.UpdateAccessory(player, hideVisual);
+                    }
+                }
             }
         }
 
@@ -113,6 +171,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
 
+            string scuttlerInfo = "Stealth strike projectiles spawn a jewel spike when destroyed";
             string boneInfo = "Picking up a rogue item has a 33% chance to duplicate it and increase your rogue attack speed\nThis effect can only trigger once every half-second while out of combat";
             string bloodyfilthyInfo = "Stealth strikes have +8 armor penetration, deal 8% more damage, and heal for 2 HP";
             string magnetoInfo = "Increases pickup range of rogue items on the ground";
@@ -148,11 +207,23 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     }
                 }
 
+                if (item.type == thorium.Find<ModItem>("BoneGrip").Type)
+                {
+                    tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
+                    {
+                        OverrideColor = InfernalRed
+                    });
+                }
+
                 if (item.type == ModContent.ItemType<FilthyGlove>() || item.type == ModContent.ItemType<BloodstainedGlove>())
                 {
                     tooltips.Add(new TooltipLine(Mod, "boneInfo", boneInfo)
                     {
                         OverrideColor = new Color?(InfernalRed)
+                    });
+                    tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
+                    {
+                        OverrideColor = InfernalRed
                     });
                 }
 
@@ -161,6 +232,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     tooltips.Add(new TooltipLine(Mod, "bloodyfilthyInfo", bloodyfilthyInfo)
                     {
                         OverrideColor = new Color?(InfernalRed)
+                    });
+                    tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
+                    {
+                        OverrideColor = InfernalRed
                     });
                 }
 
@@ -174,6 +249,29 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     {
                         OverrideColor = new Color?(InfernalRed)
                     });
+                    tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
+                    {
+                        OverrideColor = InfernalRed
+                    });
+                }
+
+                if (SSM != null)
+                {
+                    if (item.type == SSM.Find<ModItem>("GtTETFinal").Type)
+                    {
+                        tooltips.Add(new TooltipLine(((ModType)this).Mod, "magnetoInfo", magnetoInfo)
+                        {
+                            OverrideColor = InfernalRed
+                        });
+                        tooltips.Add(new TooltipLine(((ModType)this).Mod, "boneInfo", boneInfo)
+                        {
+                            OverrideColor = InfernalRed
+                        });
+                        tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
+                        {
+                            OverrideColor = InfernalRed
+                        });
+                    }
                 }
             }
         }
