@@ -1,6 +1,8 @@
 ﻿using Terraria.ModLoader;
 using Terraria;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
+using System.Reflection;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
@@ -25,6 +27,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             }
 
             return fargoSouls.Call(diff) is bool active && active;
+        }
+        private bool IsWorldLegendary()
+        {
+            FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
+            GameModeData data = (GameModeData)findInfo.GetValue(null);
+            return (Main.getGoodWorld && data.IsMasterMode);
         }
 
         public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
@@ -72,6 +80,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
             }
 
+            if (IsWorldLegendary())
+            {
+                npc.lifeMax += (int)(0.1 * npc.lifeMax);
+            }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
                 if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true)
@@ -135,7 +147,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             //only load if InfernalEclipseAPI isn't active for no overlaps
             //if (ModLoader.TryGetMod("InfernalEclipseAPI", out _)
             //return;
-
+            if (IsWorldLegendary())
+            {
+                modifiers.SourceDamage *= 1.1f;
+            }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
                 modifiers.SourceDamage *= 1.35f;
@@ -170,6 +185,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 return;
             }
 
+            if (IsWorldLegendary())
+            {
+                npc.position += npc.velocity * 0.1f;
+            }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
                 npc.position += npc.velocity * 0.35f;

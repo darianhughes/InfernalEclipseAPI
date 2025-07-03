@@ -127,22 +127,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     magnetoGrip.UpdateAccessory(player, hideVisual);
                 }
 
-                if (SSM != null)
+                if (fargo != null)
                 {
-                    if (item.type == SSM.Find<ModItem>("GtTETFinal").Type)
-                    {
-                        scutterGem.UpdateAccessory(player, hideVisual);
-                        ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
-                        magnetoGrip.UpdateAccessory(player, hideVisual);
-                    }
-
-                    if (item.type == fargocross.Find<ModItem>("VagabondsSoul").Type)
-                    {
-                        scutterGem.UpdateAccessory(player, hideVisual);
-                        ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
-                        magnetoGrip.UpdateAccessory(player, hideVisual);
-                    }
-
                     if (item.type == fargo.Find<ModItem>("UniverseSoul").Type)
                     {
                         scutterGem.UpdateAccessory(player, hideVisual);
@@ -155,6 +141,26 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                         scutterGem.UpdateAccessory(player, hideVisual);
                         ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
                         magnetoGrip.UpdateAccessory(player, hideVisual);
+                    }
+
+                    if (fargocross != null)
+                    {
+                        if (item.type == fargocross.Find<ModItem>("VagabondsSoul").Type)
+                        {
+                            scutterGem.UpdateAccessory(player, hideVisual);
+                            ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
+                            magnetoGrip.UpdateAccessory(player, hideVisual);
+                        }
+                    }
+
+                    if (SSM != null)
+                    {
+                        if (item.type == SSM.Find<ModItem>("GtTETFinal").Type)
+                        {
+                            scutterGem.UpdateAccessory(player, hideVisual);
+                            ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
+                            magnetoGrip.UpdateAccessory(player, hideVisual);
+                        }
                     }
                 }
             }
