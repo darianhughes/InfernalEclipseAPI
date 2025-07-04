@@ -98,6 +98,8 @@ Projectiles: {
 	BossRushTier6Animation.DisplayName: Boss Rush Tier6 Animation
 	RogueSpectreBlast.DisplayName: Rogue Spectre Blast
 	BountifulHarvestStinger.DisplayName: Bountiful Harvest Stinger
+	FriendlyBrimstoneBarrage.DisplayName: Friendly Brimstone Barrage
+	FriendlyBrimstoneFireblast.DisplayName: Friendly Brimstone Fireblast
 }
 
 DiaryTooltip:

@@ -64,7 +64,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                 if (entity.type == thorium.Find<ModProjectile>("GraniteBarrier").Type)
                 {
-                    entity.penetrate = 2;
+                    entity.penetrate = 5;
                 }
 
                 if (entity.type == thorium.Find<ModProjectile>("PalmCrossPro").Type)

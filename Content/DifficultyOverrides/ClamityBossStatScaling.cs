@@ -6,12 +6,41 @@ using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
-using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
+using System.Reflection;
+using Terraria.DataStructures;
+using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
+using Terraria.WorldBuilding;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
     public class ClamityBossStatScaling : GlobalNPC
     {
+        private bool GetCalDifficulty(string diff)
+        {
+            return ModLoader.TryGetMod("CalamityMod", out Mod calamity) &&
+                   calamity.Call("GetDifficultyActive", diff) is bool b && b;
+        }
+
+        private bool IsInfernumActive()
+        {
+            return InfernumSaveSystem.InfernumModeEnabled;
+        }
+
+        private bool GetFargoDifficullty(string diff)
+        {
+            if (!ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls))
+            {
+                return false;
+            }
+
+            return fargoSouls.Call(diff) is bool active && active;
+        }
+        private bool IsWorldLegendary()
+        {
+            FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
+            GameModeData data = (GameModeData)findInfo.GetValue(null);
+            return (Main.getGoodWorld && data.IsMasterMode);
+        }
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation)
         {
             return ((ModType)npc.ModNPC)?.Mod.Name == "Clamity";
@@ -23,9 +52,20 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             {
                 npc.lifeMax += npc.lifeMax;
 
-                if (InfernumActive.InfernumActive)
+                if (IsWorldLegendary())
+                {
+                    npc.lifeMax += (int)(0.1 * npc.lifeMax);
+                }
+                if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
                 {
                     npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                }
+                else
+                {
+                    if (GetFargoDifficullty("EternityMode"))
+                    {
+                        npc.lifeMax += (int)(0.25 * npc.lifeMax);
+                    }
                 }
             }
         }
@@ -34,9 +74,20 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             modifiers.SourceDamage *= 2.0f;
 
-            if (InfernumActive.InfernumActive)
+            if (IsWorldLegendary())
+            {
+                npc.lifeMax += (int)(0.1 * npc.lifeMax);
+            }
+            if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
                 modifiers.SourceDamage *= 1.35f;
+            }
+            else
+            {
+                if (GetFargoDifficullty("EternityMode"))
+                {
+                    modifiers.SourceDamage *= 1.25f;
+                }
             }
         }
 
@@ -47,9 +98,20 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             {
                 npc.position += npc.velocity * 0.1f;
 
-                if (InfernumActive.InfernumActive)
+                if (IsWorldLegendary())
+                {
+                    npc.lifeMax += (int)(0.1 * npc.lifeMax);
+                }
+                if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
                 {
                     npc.position += npc.velocity * 0.35f;
+                }
+                else
+                {
+                    if (GetFargoDifficullty("EternityMode"))
+                    {
+                        npc.position += npc.velocity * 0.25f;
+                    }
                 }
             }
         }

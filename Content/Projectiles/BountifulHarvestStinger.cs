@@ -10,6 +10,7 @@ using ThoriumMod;
 
 namespace InfernalEclipseAPI.Content.Projectiles
 {
+    [ExtendsFromMod("ThoriumMod")]
     public class BountifulHarvestStinger : ModProjectile
     {
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.Stinger;

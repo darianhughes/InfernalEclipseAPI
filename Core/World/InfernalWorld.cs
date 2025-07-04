@@ -19,6 +19,7 @@ namespace InfernalEclipseAPI.Core.World
         public static bool brimstoneDialoguePlayed = false;
         public static bool yharonDischarge = false;
         public static bool yharonSmasher = false;
+        public static bool namelessDeveloperDiagloguePlayed = false;
 
         public static void ResetFlags()
         {
@@ -30,6 +31,7 @@ namespace InfernalEclipseAPI.Core.World
             brimstoneDialoguePlayed =false;
             yharonDischarge =false;
             yharonSmasher=false;
+            namelessDeveloperDiagloguePlayed = false;
         }
 
         public override void OnWorldLoad()
@@ -52,6 +54,7 @@ namespace InfernalEclipseAPI.Core.World
             tag["brimstoneDialoguePlayed"] = brimstoneDialoguePlayed;
             tag["yharonDischarge"] = yharonDischarge;
             tag["yharonSmasher"] = yharonSmasher;
+            tag["namelessDeveloperDiagloguePlayed"] = namelessDeveloperDiagloguePlayed;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -64,6 +67,7 @@ namespace InfernalEclipseAPI.Core.World
             GetData(ref brimstoneDialoguePlayed, "brimstoneDialoguePlayed", tag);
             GetData(ref yharonDischarge, "yharonDischarge", tag);
             GetData(ref yharonSmasher, "yharonSmasher", tag);
+            GetData(ref namelessDeveloperDiagloguePlayed, "namelessDeveloperDiagloguePlayed", tag);
         }
 
         public static void GetData(ref bool baseVar, string path, TagCompound tag)
@@ -81,6 +85,7 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(brimstoneDialoguePlayed);
             writer.Write(yharonDischarge);
             writer.Write(yharonSmasher);
+            writer.Write(namelessDeveloperDiagloguePlayed);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -93,6 +98,7 @@ namespace InfernalEclipseAPI.Core.World
             brimstoneDialoguePlayed = reader.ReadBoolean();
             yharonSmasher = reader.ReadBoolean();
             yharonDischarge = reader.ReadBoolean();
+            namelessDeveloperDiagloguePlayed = reader.ReadBoolean();
         }
     }
 }

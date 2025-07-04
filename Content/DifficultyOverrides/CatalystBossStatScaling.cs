@@ -20,7 +20,6 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             return npc.boss && ((ModType)npc.ModNPC)?.Mod.Name == "CatalystMod";
         }
 
-
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
             Mod mod;

@@ -189,7 +189,7 @@ namespace InfernalEclipseAPI.Core.Players
         private bool wasUsingItem;
         private int horrifiedTimer = 0;
         private int jamTimer = 0;
-
+        public int namelessDialogueCooldown;
         public override void ResetEffects()
         {
             if (!Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
@@ -197,6 +197,12 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (!Player.HasBuff(ModContent.BuffType<WarpJammed>()))
                 jamTimer = 0;
+
+            if (namelessDialogueCooldown > 0)
+                namelessDialogueCooldown--;
+
+            if (namelessDialogueCooldown <= 0)
+                InfernalWorld.namelessDeveloperDiagloguePlayed = false;
         }
 
         public override void PostUpdate()

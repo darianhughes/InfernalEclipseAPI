@@ -222,7 +222,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
                 #endregion
 
-
                 #region Summoner
                 //Deathstare Rod
                 if (item.type == cal.Find<ModItem>("DeathstareRod").Type)
@@ -414,6 +413,137 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 1000;
                 }
                 #endregion
+            }
+            #endregion
+
+            #region Draedon's Expansion
+            if (ModLoader.TryGetMod("DraedonExpansion", out Mod draedonExpansion) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (UnsafeGetItem(draedonExpansion, "StunGun", item))
+                {
+                    item.damage = 19;
+                }
+
+                if (UnsafeGetItem(draedonExpansion, "EnergyPistol", item))
+                {
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                    item.damage = 16;
+                }
+            }
+            #endregion
+
+            #region Calamity Ranger Expansion
+            if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (UnsafeGetItem(calAmmo, "SandWorm", item))
+                {
+                    item.damage = 16;
+                    item.useTime = 22;
+                    item.useAnimation = 22;
+                }
+
+                if (UnsafeGetItem(calAmmo, "SpectreRifle", item))
+                {
+                    item.damage = 117;
+                }
+
+                if (UnsafeGetItem(calAmmo, "PlaguenadeLauncher", item))
+                {
+                    item.damage = 30;
+                }
+            }
+            #endregion
+
+            #region Clamity
+            if (ModLoader.TryGetMod("Clamity", out Mod clam) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (UnsafeGetItem(clam, "MoonstoneKnives", item))
+                {
+                    item.damage = 8;
+                }
+
+                if (UnsafeGetItem(clam, "Obsidigun", item))
+                {
+                    item.useTime = 18;
+                    item.useAnimation = 18;
+                }
+
+                if (UnsafeGetItem(clam, "TheGenerator", item))
+                {
+                    item.damage = 77;
+                }
+
+                if (UnsafeGetItem(clam, "MoltenPiercer", item))
+                {
+                    item.damage = 144;
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                }
+
+                if (UnsafeGetItem(clam, "ClamitasCrusher", item))
+                {
+                    item.damage = 130;
+                }
+
+                if (UnsafeGetItem(clam, "DepthsEchoRifle", item))
+                {
+                    item.damage = 40;
+                }
+
+                if (UnsafeGetItem(clam, "HellstoneShellfishStaff", item))
+                {
+                    item.damage = 200;
+                }
+
+                if (UnsafeGetItem(clam, "Disease", item))
+                {
+                    item.damage = 194;
+                }
+
+                if (UnsafeGetItem(clam, "PlanterrorStaff", item))
+                {
+                    item.damage = 100;
+                }
+
+                if (UnsafeGetItem(clam, "RoseBow", item))
+                {
+                    item.damage = 400;
+                }
+
+                if (UnsafeGetItem(clam, "AuricKunai", item))
+                {
+                    item.damage = 140;
+                }
+
+                if (UnsafeGetItem(clam, "Omega", item))
+                {
+                    item.damage = 80;
+                }
+
+                if (UnsafeGetItem(clam, "Everest", item))
+                {
+                    item.damage = 1300;
+                }
+
+                if (UnsafeGetItem(clam, "FrozenVolcano", item))
+                {
+                    item.damage = 2500;
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                }
+
+                if (UnsafeGetItem(clam, "FrozenStarShuriken", item))
+                {
+                    item.useAnimation = 8;
+                    item.useTime = 8;
+                    item.damage = 900;
+                }
+
+                if (UnsafeGetItem(clam, "WitheredBoneBow", item))
+                {
+                    item.damage = 70;
+                }
             }
             #endregion
 
@@ -2503,7 +2633,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.shootSpeed = 22;
                         item.useTime = 16;
                         item.useAnimation = 16;
-                        item.damage = 430;
+                        item.damage = 275;
                     }
 
                     if (GetItem(thorium, "PharaohsSlab", item))
@@ -2931,6 +3061,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "TheBlackScythe", item))
                     {
                         item.damage = 90;
+                    }
+
+                    if (GetItem(thorium, "TerraScythe", item))
+                    {
+                        item.damage = 63;
                     }
 
                     if (GetItem(thorium, "ChristmasCheer", item))
@@ -4005,9 +4140,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 #region Bard
                 if (GetItem(ragnarok, "CalamityBell", item))
                 {
-                    item.damage = 190;
                     item.shootSpeed = 20;
-                    TrySetInspirationCost(item, 1);
+                    TrySetInspirationCost(item, 2);
+                    item.useTime = 40;
+                    item.useAnimation = 40;
                 }
 
                 if (GetItem(ragnarok, "DrumStick", item))
