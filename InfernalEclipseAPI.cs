@@ -250,6 +250,23 @@ namespace InfernalEclipseAPI
                     }
                 };
 
+                //The Excavator
+                //if (sotsEnabled)
+                //{
+
+                //    int[] excavatorID = { sots.Find<ModNPC>("Excavator").Type };
+                //    int[] excatorMinionIDs = { sots.Find<ModNPC>("ExcavatorBody").Type, sots.Find<ModNPC>("ExcavatorBody2").Type, sots.Find<ModNPC>("ExcavatorTail").Type, sots.Find<ModNPC>("ExcavatorDrillTail").Type };
+
+                //    Action<int> prExcavator = delegate (int npc)
+                //    {
+                //        int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
+                //        Player player = Main.player[whomst];
+                //        NPC.SpawnOnPlayer(whomst, sots.Find<ModNPC>("Excavator").Type);
+                //    };
+
+                //    brEntries.Insert(skeletronBRIndex - 1, (sots.Find<ModNPC>("Excavator").Type, -1, prExcavator, 180, false, 0f, excatorMinionIDs, excavatorID));
+                //}
+
                 //Borean Strider (Thorium Mod) - Checks to see if Borean Strider is in Boss Rush. If not, adds it.
                 if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
                 {

@@ -43,6 +43,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 //Boss Rush Boost
                 if ((num1 & num2) != 0)
                 {
+                    string name = npc.ModNPC?.Name ?? "";
+                    if (name.Contains("Excavator"))
+                        npc.lifeMax *= 105;
+
                     npc.lifeMax += (int)(((double).25 * (double)npc.lifeMax));
                 }
 

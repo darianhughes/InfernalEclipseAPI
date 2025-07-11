@@ -129,7 +129,12 @@ namespace InfernalEclipseAPI.Core.Systems
                     MakeCard(Fargos.Find<ModNPC>("MutantBoss").Type, (horz, anim) => Color.Lerp(Color.LightBlue, Color.Cyan, anim), "Mutant", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
             }
             if (Starlight != null)
-                MakeCard(Starlight.Find<ModNPC>("MutantEX").Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
+            {
+                if (Starlight.TryFind("MutantEX", out ModNPC monster))
+                {
+                    MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
+                }
+            }
         }
         internal void MakeCard(int type, Func<float, float, Color> color, string title, SoundStyle tickSound, SoundStyle endSound, int time = 300, float size = 1f)
         {

@@ -1180,6 +1180,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useAnimation = 24;
                     }
 
+                    //Frost Pelter
+                    if (UnsafeGetItem(thorium, "FrostPelter", item))
+                    {
+                        item.shootSpeed = 20;
+                    }
+
                     //Coral Crossbow
                     if (item.type == thorium.Find<ModItem>("CoralCrossbow").Type)
                     {
@@ -1290,7 +1296,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Energy Storm Bolter
                     if (item.type == thorium.Find<ModItem>("EnergyStormBolter").Type)
                     {
-                        item.damage = 34;
+                        item.damage = 26;
                     }
 
                     //Hit Scanner
@@ -1680,6 +1686,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 44;
                     }
 
+                    if (UnsafeGetItem(thorium, "InfernoStaff", item))
+                    {
+                        item.damage = 45;
+                    }
+
                     //Dark Tome
                     if (item.type == thorium.Find<ModItem>("DarkTome").Type)
                     {
@@ -1722,7 +1733,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (item.type == thorium.Find<ModItem>("EnergyProjector").Type)
                     {
                         item.damage = 30;
-                        item.knockBack = 10;
                     }
 
                     //Champion's Bomber Staff
@@ -1748,9 +1758,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "CobaltStaff", item))
                     {
                         item.shootSpeed = 13;
-                        item.useTime = 3;
-                        item.useAnimation = 6;
-                        item.damage = 80;
+                        item.useTime = 8;
+                        item.useAnimation = 8;
+                        item.damage = 40;
                     }
 
                     if (GetItem(thorium, "PalladiumStaff", item))
@@ -1792,7 +1802,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "DragonsBreath", item))
                     {
                         item.shootSpeed = 18;
-                        item.damage = 50;
+                        item.damage = 25;
                     }
 
                     if (GetItem(thorium, "Cyclone", item))
@@ -1850,7 +1860,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "MythrilStaff", item))
                     {
-                        item.damage = 86;
+                        item.damage = 56;
                     }
 
                     if (GetItem(thorium, "OrichalcumStaff", item))
@@ -1872,9 +1882,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "HallowedStaff", item))
                     {
-                        item.damage = 90;
-                        item.useAnimation = 30;
-                        item.useTime = 30;
                     }
 
                     if (GetItem(thorium, "StaticProd", item))
@@ -1985,6 +1992,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 120;
                     }
 
+                    if (UnsafeGetItem(thorium, "ChromaticFury", item))
+                    {
+                        item.damage = 30;
+                    }
+
                     if (GetItem(thorium, "TerrariumSageStaff", item))
                     {
                         item.damage = 120;
@@ -2081,6 +2093,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #endregion
 
                     #region Hardmode
+                    if (UnsafeGetItem(thorium, "Thrombosis", item))
+                    {
+                        item.damage = 40;
+                    }
+
                     if (GetItem(thorium, "DraconicMagmaStaff", item))
                     {
                         item.damage = 35;
@@ -2771,7 +2788,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Rotten Cod
                     if (item.type == thorium.Find<ModItem>("RottenCod").Type)
                     {
-                        item.shootSpeed = 14;
                         item.damage = 36;
                     }
 
@@ -2844,7 +2860,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (item.type == thorium.Find<ModItem>("TheStalker").Type)
                     {
                         item.damage = 53;
-                        item.shootSpeed = 16;
                     }
 
                     //Molten Thresher
@@ -2890,7 +2905,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (item.type == thorium.Find<ModItem>("TemplarJudgment").Type)
                     {
                         item.damage = 80;
-                        item.shootSpeed = 18;
                     }
 
                     //Light's Lament

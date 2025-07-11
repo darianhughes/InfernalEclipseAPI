@@ -10,6 +10,10 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
 {
     public class GraniteBarrierLifetime : GlobalProjectile
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public override bool InstancePerEntity => true;
 
         public override void AI(Projectile projectile)

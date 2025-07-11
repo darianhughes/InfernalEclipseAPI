@@ -83,15 +83,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     recipe.AddIngredient(ModContent.ItemType<DepthCells>(), 3);
                 }
 
-                if (thorium != null && !ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
-                {
-                    if (recipe.HasResult(ModContent.ItemType<NuclearFury>()))
-                    {
-                        recipe.RemoveIngredient(ItemID.RazorbladeTyphoon);
-                        recipe.AddIngredient(thorium.Find<ModItem>("NuclearFury").Type);
-                    }
-                }
-
                 if (InfernalConfig.Instance.CalamityRecipeTweaks)
                 {
                     //Cosmilite post-DoG - Maybe add its own config?
@@ -133,7 +124,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 {
                     if (recipe.HasResult<UnholyCore>())
                     {
-                        recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 3);
+                        recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 1);
                     }
 
                     if (recipe.HasResult<MiracleMatter>())
@@ -147,13 +138,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         {
                             thorium.TryFind("TerraKnife", out ModItem terraKnife);
                             recipe.AddIngredient(terraKnife.Type);
-                        }
-
-                        if (recipe.HasResult(thorium.Find<ModItem>("NuclearFury").Type))
-                        {
-                            recipe.AddIngredient(thorium.Find<ModItem>("WhiteDwarfFragment").Type, 6);
-                            recipe.RemoveTile(TileID.Bookcases);
-                            recipe.AddTile(TileID.LunarCraftingStation);
                         }
                     }
                 }
@@ -517,7 +501,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 GetItem(thorium, "SoulofPlight"),
                                 GetItem(thorium, "ValadiumIngot"),
                                 GetItem(thorium, "PotionChaser"),
-                                GetItem(thorium, "BronzeAlloyFragments")
+                                GetItem(thorium, "BronzeAlloyFragments"),
+                                GetItem(thorium, "BloodCell")
                             };
 
                             ModItem[] preMechItems = 

@@ -40,12 +40,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
 
                 if (sots != null && thorium != null)
                 {
-                    if (recipe.HasResult(thorium.Find<ModItem>("DragonTalonNecklace").Type))
-                    {
-                        recipe.RemoveIngredient(ItemID.SharkToothNecklace);
-                        recipe.AddIngredient(sots.Find<ModItem>("PrismarineNecklace").Type);
-                    }
-
                     if (recipe.HasResult(sots.Find<ModItem>("WitchHeart").Type))
                     {
                         if (ModLoader.TryGetMod("Consolaria", out Mod console))
@@ -56,7 +50,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
 
                     if (recipe.HasResult(sots.Find<ModItem>("MidnightPrism").Type))
                     {
-                        recipe.RemoveIngredient(sots.Find<ModItem>("PrismarineNecklace").Type);
                         recipe.AddIngredient(thorium.Find<ModItem>("DragonTalonNecklace").Type);
                     }
 

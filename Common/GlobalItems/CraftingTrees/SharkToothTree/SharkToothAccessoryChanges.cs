@@ -42,17 +42,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
                     item.ModItem.Name == "PrismarineNecklace" &&
                     thorium != null)
                 {
-                    player.GetArmorPenetration(DamageClass.Generic) -= 2;
-                }
-
-                if (item.ModItem != null &&
-                    item.ModItem.Mod.Name == "ThoriumMod" &&
-                    item.ModItem.Name == "DragonTalonNecklace" &&
-                    thorium != null)
-                {
-                    ModItem prismariineNecklace = sots.Find<ModItem>("PrismarineNecklace");
-                    prismariineNecklace.UpdateAccessory(player, hideVisual);
-                    player.GetArmorPenetration(DamageClass.Generic) -= 8;
+                    player.GetArmorPenetration(DamageClass.Generic) -= 3;
                 }
 
                 if (item.type == ModContent.ItemType<SandSharkToothNecklace>())
@@ -77,7 +67,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
                     item.ModItem.Name == "DragonTalonNecklace" &&
                     thorium != null)
                 {
-                    player.GetArmorPenetration(DamageClass.Generic) -= 7;
+                    player.GetArmorPenetration(DamageClass.Generic) -= 4;
                 }
             }
         }
@@ -110,29 +100,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
                             tooltip.Text = "Increases armor penetration by 5 and max life by 20";
                         }
                     }
-                }
-
-                if (item.type == thorium.Find<ModItem>("DragonTalonNecklace").Type)
-                {
-                    foreach (TooltipLine tooltip in tooltips)
-                    {
-                        if (tooltip.Text.Contains("Increases armor penetration by 15"))
-                        {
-                            tooltip.Text = "Increases armor penetration by 8 and max life by 20";
-                        }
-                    }
-                    tooltips.Add(new TooltipLine(Mod, "prisma1", prisma1)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "prisma2", prisma2)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "prisma3", prisma3)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
                 }
 
                 if (item.type == ModContent.ItemType<SandSharkToothNecklace>())
@@ -197,13 +164,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
                     });
                 }
             }
-            else if (thorium != null)
+
+            if (thorium != null)
             {
                 if (item.type == thorium.Find<ModItem>("DragonTalonNecklace").Type)
                 {
                     foreach (TooltipLine tooltip in tooltips)
                     {
-                        if (tooltip.Text.Contains("Increases armor penetration by 15"))
+                        if (tooltip.Text.Contains("Increases armor penetration by 12"))
                         {
                             tooltip.Text = "Increases armor penetration by 8";
                         }

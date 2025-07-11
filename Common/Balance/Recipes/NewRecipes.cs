@@ -5,6 +5,9 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using InfernalEclipseAPI.Common.GlobalItems;
 using SOTS;
+using CalamityMod.Items.Weapons.Summon;
+using CalamityMod.Items.Placeables;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -149,6 +152,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                 if (ModLoader.TryGetMod("SOTS", out Mod sots))
                 {
+                    Recipe.Create(ModContent.ItemType<LiliesOfFinality>())
+                        .AddIngredient(ItemID.ClayPot)
+                        .AddIngredient<PlantyMush>()
+                        .AddIngredient<AscendantSpiritEssence>(3)
+                        .AddIngredient<YharonSoulFragment>(4)
+                        .AddIngredient(ItemID.DarkShard)
+                        .AddIngredient(ItemID.LightShard)
+                        .AddTile<CosmicAnvil>()
+                        .Register();
+
                     int[] sotsPotions =
                     {
                         GetModItem(sots, "AssassinationPotion"),
