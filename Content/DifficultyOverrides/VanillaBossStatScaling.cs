@@ -12,6 +12,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
     public class VanillaBossStatScaling : GlobalNPC
     {
+        private bool GetFargoDifficullty(string diff)
+        {
+            if (!ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls))
+            {
+                return false;
+            }
+
+            return fargoSouls.Call(diff) is bool active && active;
+        }
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
             Mod mod;
@@ -46,7 +55,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             }
 
             NPC npc1 = npc;
-            if (npc1.type == NPCID.CultistBoss && InfernalConfig.Instance.AdditonalVanillaBossAdjustments)
+            if (npc1.type == NPCID.CultistBoss && InfernalConfig.Instance.AdditonalVanillaBossAdjustments && !(GetFargoDifficullty("MasochistMode") || GetFargoDifficullty("EternityMode")))
             {
                 if (NPC.downedGolemBoss)
                     npc.lifeMax *= 3;

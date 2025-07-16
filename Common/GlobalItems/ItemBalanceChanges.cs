@@ -6,6 +6,7 @@ using CalamityMod;
 using System.Reflection;
 using InfernumMode.Core.Balancing;
 using System.Security.Policy;
+using CalamityMod.Items.Tools;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -64,6 +65,28 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (item.type == ItemID.TrueNightsEdge)
                 {
                     item.damage = 165;
+                }
+
+                if (item.type == ItemID.LucyTheAxe)
+                {
+                    item.damage = 37;
+                }
+
+                if (item.type == ItemID.PewMaticHorn)
+                {
+                    item.damage = 35;
+                }
+
+                if (item.type == ItemID.WeatherPain)
+                {
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                    item.damage = 30;
+                }
+
+                if (item.type == ItemID.HoundiusShootius)
+                {
+                    item.damage = 60;
                 }
             }
 
@@ -133,6 +156,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(cal, "SubmarineShocker", item))
                 {
                     item.damage = 55;
+                }
+
+                if (item.type == ModContent.ItemType<InfernaCutter>())
+                {
+                    item.DamageType = DamageClass.Melee;
                 }
 
                 if (GetItem(cal, "EmpyreanKnives", item))
@@ -3832,13 +3860,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Cherubim Omega
                 if (GetItem(calBardHeal, "CherubimOmega", item))
                 {
-                    item.damage = 500;
+                    item.damage = 600;
                 }
 
                 //Disaster
                 if (GetItem(calBardHeal, "Disaster", item))
                 {
-                    item.damage = 400;
+                    item.damage = 550;
                 }
 
                 //Times Old Roman
@@ -3858,6 +3886,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 #region Bard
                 #region Pre-Hardmode
+                //Wullfrum Megaphone
+                if (UnsafeGetItem(calBardHeal, "WulfrumMegaphone", item))
+                {
+                    item.damage = 13;
+                }
+
                 //Crystal Hydraulophone
                 if (UnsafeGetItem(calBardHeal, "CrystalHydraulophone", item))
                 {
@@ -3961,7 +3995,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(calBardHeal, "SymphonicFabrications", item))
                 {
-                    item.damage = 130;
+                    item.damage = 140;
                 }
 
                 if (GetItem(calBardHeal, "Gashadokuro", item))
@@ -4199,7 +4233,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(ragnarok, "RadioMic", item))
                 {
-                    item.damage = 300;
+                    item.damage = 435;
+                    TrySetInspirationCost(item, 2);
+                    item.useTime = 24;
+                    item.useAnimation = 24;
                 }
 
                 if (GetItem(ragnarok, "UnbreakableCombatUkulele", item))

@@ -14,6 +14,11 @@ namespace InfernalEclipseAPI.Core.Systems.AdvisorSpawnChanges
     [ExtendsFromMod("SOTS")]
     public class AdvisorBiomeController : ModPlayer
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return InfernalConfig.Instance.AdjustAdvisorSpawnConditions;
+        }
+
         private bool wasInPlanetarium = false;
         private MethodInfo spawnAdvisorMethod;
         private int gatewayTileType;

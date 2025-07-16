@@ -31,9 +31,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 ModContent.ItemType<NovaBomb>(),
                 ModContent.ItemType<Kevin>(),
             };
+
+            if (ModLoader.TryGetMod("ZenithToilet", out Mod toilet))
+            {
+                blockedWeapons.Append(toilet.Find<ModItem>("ZenithToilet").Type);
+                blockedWeapons.Append(toilet.Find<ModItem>("TrueZenithToilet").Type);
+            }
+
             var cdPlayer = player.GetModPlayer<InfernalPlayer>();
 
-            if (NPC.AnyNPCs(ModContent.NPCType<NamelessDeityBoss>()))
+            if (NPC.AnyNPCs(ModContent.NPCType<NamelessDeityBoss>()) && player.name != "Infernal Tester")
             {
                 foreach (int weapon in blockedWeapons)
                 {
@@ -42,7 +49,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         Color test = new Color(255, 70, 61);
                         if (InfernalWorld.namelessDeveloperDiagloguePlayed == false)
                         {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("That item is now allowed during the test."), test);
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("That item is not allowed during the test."), test);
                             InfernalWorld.namelessDeveloperDiagloguePlayed = true;
                             SoundEngine.PlaySound(new SoundStyle("NoxusBoss/Assets/Sounds/Custom/NamelessDeity/DoNotVocals1"));
                         }

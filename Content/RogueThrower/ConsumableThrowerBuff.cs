@@ -30,6 +30,7 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         {
             ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
 
+
             string[] ignoreStealthBonusItemNames =
             {
                 "ClockWorkBomb",
@@ -165,7 +166,10 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
 
             if (ModLoader.TryGetMod("WHummusMultiModBalancing", out _)) return;
 
-            if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable && (item.DamageType == ModContent.GetInstance<RogueDamageClass>() || item.DamageType == ModContent.GetInstance<MergedThrowerRogue>()))
+            if (item.Name == "Captain's Poignard")
+                return;
+
+            if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable && (item.DamageType == ModContent.GetInstance<RogueDamageClass>() || item.DamageType == ModContent.GetInstance<MergedThrowerRogue>()) || item.type == ItemID.Shuriken)
             {
                 var CalPlayer = player.GetModPlayer<CalamityPlayer>();
                 if (CalPlayer.StealthStrikeAvailable())

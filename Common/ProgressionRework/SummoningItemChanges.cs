@@ -102,7 +102,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 if (recipe.HasIngredient(319) && recipe.HasIngredient(2626) && recipe.HasIngredient(ModContent.ItemType<SulphurousSand>()) && recipe.HasResult(ModContent.ItemType<Seafood>()))
                     recipe.DisableRecipe();
 
-                //Calamitas Clone - Shadow of Calamitas
+                //Shadow of Calamitas
                 if (recipe.HasResult(ModContent.ItemType<EyeofDesolation>()))
                     recipe.AddIngredient(ModContent.ItemType<UnholyCore>(), 10);
 
@@ -184,7 +184,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
             recipe5.AddIngredient(ModContent.ItemType<UnholyCore>(), 5);
             recipe5.AddIngredient(ModContent.ItemType<AshesofCalamity>(), 30);
             recipe5.AddIngredient(ModContent.ItemType<DemonicBoneAsh>(), 20);
-            recipe5.AddTile(ModContent.TileType<DraedonsForge>());
+            recipe5.AddTile(ModContent.TileType<SCalAltar>());
             recipe5.Register();
 
             //Sentinals

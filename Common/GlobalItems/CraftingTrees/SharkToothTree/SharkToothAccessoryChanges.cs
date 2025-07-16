@@ -44,14 +44,19 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
                 {
                     player.GetArmorPenetration(DamageClass.Generic) -= 3;
                 }
-
+            }
+            else if (sots != null)
+            {
                 if (item.type == ModContent.ItemType<SandSharkToothNecklace>())
                 {
                     ModItem midnightPrism = sots.Find<ModItem>("MidnightPrism");
                     midnightPrism.UpdateAccessory(player, hideVisual);
                     player.GetArmorPenetration(DamageClass.Generic) -= 8;
                 }
+            }
 
+            if (sots != null)
+            {
                 if (item.type == ModContent.ItemType<ReaperToothNecklace>())
                 {
                     ModItem midnightPrism = sots.Find<ModItem>("MidnightPrism");
@@ -62,6 +67,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
 
             if (thorium != null)
             {
+                if (item.type == ModContent.ItemType<SandSharkToothNecklace>())
+                {
+                    player.GetArmorPenetration(DamageClass.Generic) += 2;
+                }
+
                 if (item.ModItem != null &&
                     item.ModItem.Mod.Name == "ThoriumMod" &&
                     item.ModItem.Name == "DragonTalonNecklace" &&
@@ -82,6 +92,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
                 new Color(255, 80, 0), // Infernal red/orange
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
+            Color NoSOTSPink = Color.Lerp(
+                Color.White,
+                new Color(251, 198, 207),
+                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+            );
+            Color NoThorYellow = Color.Lerp(
+                Color.White,
+                new Color(255, 255, 197),
+                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+            );
+
             string prisma1 = "Release waves of damage periodically that ignore up to 16 defense total";
             string prisma2 = "Release more waves at lower health";
             string prisma3 = "Waves disabled when hidden";
@@ -108,31 +129,60 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
                     {
                         if (tooltip.Text.Contains("Increases armor penetration by 10"))
                         {
-                            tooltip.Text = "Increases armor penetration by 10, critical strike chance by 5%, and max life by 40";
+                            tooltip.Text = "Increases armor penetration by 12";
+                        }
+                    }
+                }
+            }
+            else if (sots != null)
+            {
+                if (item.type == ModContent.ItemType<SandSharkToothNecklace>())
+                {
+                    foreach (TooltipLine tooltip in tooltips)
+                    {
+                        if (tooltip.Text.Contains("Increases armor penetration by 10"))
+                        {
+                            tooltip.Text = "Increases armor penetration by 12, critical strike chance by 5%, and max life by 40";
                         }
                     }
                     tooltips.Add(new TooltipLine(Mod, "prisma1", prisma1)
                     {
-                        OverrideColor = new Color?(InfernalRed)
+                        OverrideColor = new Color?(NoThorYellow)
                     });
                     tooltips.Add(new TooltipLine(Mod, "prisma2", prisma2)
                     {
-                        OverrideColor = new Color?(InfernalRed)
+                        OverrideColor = new Color?(NoThorYellow)
                     });
                     tooltips.Add(new TooltipLine(Mod, "midnight1", midnight1)
                     {
-                        OverrideColor = new Color?(InfernalRed)
+                        OverrideColor = new Color?(NoThorYellow)
                     });
                     tooltips.Add(new TooltipLine(Mod, "midnight2", midnight2)
                     {
-                        OverrideColor = new Color?(InfernalRed)
+                        OverrideColor = new Color?(NoThorYellow)
                     });
                     tooltips.Add(new TooltipLine(Mod, "prisma3", prisma3)
                     {
-                        OverrideColor = new Color?(InfernalRed)
+                        OverrideColor = new Color?(NoThorYellow)
                     });
                 }
+            }
+            else if (thorium != null)
+            {
+                if (item.type == ModContent.ItemType<SandSharkToothNecklace>())
+                {
+                    foreach (TooltipLine tooltip in tooltips)
+                    {
+                        if (tooltip.Text.Contains("Increases armor penetration by 10"))
+                        {
+                            tooltip.Text = "Increases armor penetration by 12";
+                        }
+                    }
+                }
+            }
 
+            if (sots != null)
+            {
                 if (item.type == ModContent.ItemType<ReaperToothNecklace>())
                 {
                     foreach (TooltipLine tooltip in tooltips)

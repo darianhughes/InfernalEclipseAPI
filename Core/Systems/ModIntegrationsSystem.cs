@@ -1,6 +1,8 @@
-﻿using CalamityMod.Items.Placeables.FurnitureAuric;
+﻿using CalamityMod;
+using CalamityMod.Items.Placeables.FurnitureAuric;
 using CalamityMod.NPCs.CalClone;
-using InfernalEclipseAPI.Content.Items.Placeables;
+using CalamityMod.NPCs.PrimordialWyrm;
+using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.Items.SummonItems;
@@ -59,15 +61,18 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TWISTEDGARDENRemix"), "TWISTED GARDEN [Remix]", "Kuudray", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "CDMusic", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophey", "TheForge", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok");
         }
 
         private void BossChecklistSetup()
         {
             Mod mod1;
+            Mod CalamityMod;
+            ModLoader.TryGetMod("CalamityMod", out CalamityMod);
             if (!ModLoader.TryGetMod("BossChecklist", out mod1) || mod1.Version < new Version(1, 6))
                 return;
             this.ChecklistAddPseudoMiniboss(((ModType)this).Mod, "Dreadnautilus", 7.9f, (Func<bool>)(() => InfernalDownedBossSystem.downedDreadNautilus), 618);
+            //ChecklistAddPseudoMiniboss(CalamityMod, "???", 22.75f, () => DownedBossSystem.downedPrimordialWyrm, ModContent.NPCType<PrimordialWyrmHead>());
 
             mod1.Call(new object[3]
             {
@@ -190,6 +195,7 @@ namespace InfernalEclipseAPI.Core.Systems
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             List<int> intList2 = new List<int>();
             bool flag = false;
+
             if (mod.Name == "InfernalEclipseAPI")
             {
                 if (InternalName != null)
@@ -213,6 +219,29 @@ namespace InfernalEclipseAPI.Core.Systems
                     }
                 }
             }
+            if (mod.Name == "CalamityMod")
+            {
+                if (InternalName != null)
+                {
+                    if (InternalName == "PrimordialWyrmHead")
+                    {
+                        Action<SpriteBatch, Rectangle, Color> action = (Action<SpriteBatch, Rectangle, Color>)((sb, rect, color) =>
+                        {
+                            Texture2D texture2D = ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Textures/BossChecklist/AbyssBottom", (AssetRequestMode)2).Value;
+                            Vector2 vector2;
+                            // ISSUE: explicit constructor call
+                            vector2 = new Vector2(
+                                rect.X + rect.Width / 2f - texture2D.Width / 2f,
+                                rect.Y + rect.Height / 2f - texture2D.Height / 2f
+                            );
+                            sb.Draw(texture2D, vector2, color);
+                        });
+                        dictionary.Add("customPortrait", action);
+                        dictionary.Add("displayName", "???");
+                    }
+                }
+            }
+
             if (intList2.Count > 0)
             {
                 if (intList2.Count == 1)
@@ -223,6 +252,7 @@ namespace InfernalEclipseAPI.Core.Systems
             dictionary.Add("collectibles", intList1);
             if (!flag)
                 dictionary.Add("spawnInfo", Language.GetText("Mods.InfernalEclipseAPI.SpawnInfo." + InternalName));
+
             return dictionary;
         }
     }

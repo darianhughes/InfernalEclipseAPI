@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.CalPlayer.DrawLayers;
+using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader.Config;
 
 namespace InfernalEclipseAPI
@@ -129,7 +131,14 @@ namespace InfernalEclipseAPI
 
         [DefaultValue(true)]
         [ReloadRequired]
+        public bool AdjustAdvisorSpawnConditions { get; set; }
+
+        [DefaultValue(true)]
+        [ReloadRequired]
         public bool UseAprilFoolsMutant { get; set; }
+
+        [DefaultValue(true)]
+        public bool EnableInterlude4 { get; set; }
 
         #endregion
     }

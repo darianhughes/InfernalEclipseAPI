@@ -57,7 +57,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                 AddIngredient<CosmiliteBar>(8).
                 AddIngredient<GalacticaSingularity>(4).
                 AddIngredient<AscendantSpiritEssence>(4).
-                AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 6).
+                AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2).
                 AddTile<CosmicAnvil>().
                 Register();
 
@@ -67,7 +67,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                 AddIngredient<CosmiliteBar>(8).
                 AddIngredient<GalacticaSingularity>(4).
                 AddIngredient<AscendantSpiritEssence>(4).
-                AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 6).
+                AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2).
                 AddTile<CosmicAnvil>().
                 Register();
         }

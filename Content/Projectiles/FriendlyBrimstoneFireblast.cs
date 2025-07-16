@@ -10,20 +10,23 @@ using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria;
 using ThoriumMod;
+using ThoriumMod.Projectiles.Bard;
 
 namespace InfernalEclipseAPI.Content.Projectiles
 {
     [ExtendsFromMod("ThoriumMod")]
-    public class FriendlyBrimstoneFireblast : ModProjectile
+    public class FriendlyBrimstoneFireblast : BardProjectile
     {
         public override string Texture => "CalamityMod/Projectiles/Boss/SCalBrimstoneFireblast";
+
+        public override BardInstrumentType InstrumentType => BardInstrumentType.Percussion;
 
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 5; // 5-frame animation like SCal's
         }
 
-        public override void SetDefaults()
+        public override void SetBardDefaults()
         {
             Projectile.width = 100;
             Projectile.height = 100;
@@ -189,9 +192,9 @@ namespace InfernalEclipseAPI.Content.Projectiles
             target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120);
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void BardOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120);
+            target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120, false);
         }
     }
 }

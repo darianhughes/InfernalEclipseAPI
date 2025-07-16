@@ -9,6 +9,8 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
+using CalamityMod;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -16,6 +18,16 @@ namespace InfernalEclipseAPI.Common.Projectiles
     {
         public override void SetDefaults(Projectile entity)
         {
+            if (entity.type == ProjectileID.Shuriken && InfernalConfig.Instance.ChanageWeaponClasses)
+            {
+                entity.DamageType = ModContent.GetInstance<RogueDamageClass>();
+            }
+
+            if (entity.type == ProjectileID.PewMaticHornShot && InfernalConfig.Instance.VanillaBalanceChanges)
+            {
+                entity.penetrate = 2;
+            }
+
             if (entity.type == ModContent.ProjectileType<PauldronDash>() && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 //entity.idStaticNPCHitCooldown = 480;
@@ -68,7 +80,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                 if (entity.type == thorium.Find<ModProjectile>("PalmCrossPro").Type)
                 {
-                    entity.scale *= 5;
+                    entity.scale *= 2;
                 }
 
                 if (entity.type == thorium.Find<ModProjectile>("TorpedoPro2").Type)
@@ -154,6 +166,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                     if (thorium.TryFind("TitanScythePro", out ModProjectile titanScytheProj))
                         titanScytheType = titanScytheProj.Type;
+
+                    if (thorium.TryFind("BoneBatonPro", out ModProjectile boneBatonProj))
+                        boneBatonType = boneBatonProj.Type;
                 }
             } 
 
@@ -184,7 +199,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                 if (entity.type == ragnarok.Find<ModProjectile>("ElysianSongPro").Type)
                 {
-                    entity.penetrate = 50;
+                    entity.penetrate = 20;
                     entity.scale = 1.5f;
                 }
 
@@ -306,6 +321,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int theBlackScytheType = -1;
         private static int batScytheType = -1;
         private static int batScytheType2 = -1;
+        private static int boneBatonType = -1;
         private static int windSlashType = -1;
 
         private float GetScaleForProjectile(int type)
@@ -320,6 +336,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             if (type == theBlackScytheType) return 1.5f;
             if (type == titanScytheType) return 2f;
             if (type == windSlashType) return 2f;
+            if (type == boneBatonType) return 2f;
             return 1f;
         }
 
@@ -344,6 +361,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     && projectile.type != trueBloodHarvestType
                     && projectile.type != theBlackScytheType
                     && projectile.type != windSlashType
+                    && projectile.type != boneBatonType
                     )
                 {
                     return true;

@@ -12,6 +12,11 @@ namespace InfernalEclipseAPI.Core.Systems.AdvisorSpawnChanges
     [ExtendsFromMod("SOTS")]
     public class AdvisorDespawnSystem : ModSystem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return InfernalConfig.Instance.AdjustAdvisorSpawnConditions;
+        }
+
         private int despawnTimer = 0;
         private const int despawnDelay = 300; // 5 seconds
 

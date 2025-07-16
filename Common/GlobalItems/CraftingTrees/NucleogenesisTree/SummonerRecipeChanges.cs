@@ -32,6 +32,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             }
         }
 
+        private Mod clamity
+        {
+            get
+            {
+                ModLoader.TryGetMod("Clamity", out Mod clam);
+                return clam;
+            }
+        }
+
         public override void PostAddRecipes()
         {
             for (int index = 0; index < Recipe.numRecipes; ++index)
@@ -56,39 +65,60 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     }
 
                     if (recipe.HasResult(ModContent.ItemType<Nucleogenesis>()))
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 6);
+                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
 
                     if (recipe.HasResult<StarTaintedGenerator>())
+                    {
                         recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
+                        recipe.AddIngredient<InfectedArmorPlating>(4);
+                    }
                 }
 
                 if (sots != null)
                 {
                     if (recipe.HasResult(ModContent.ItemType<StatisCurse>()))
                         recipe.AddIngredient(ModContent.ItemType<Necroplasm>(), 4);
+
+                    if (recipe.HasResult(ModContent.ItemType<Nucleogenesis>()))
+                        recipe.AddIngredient(sots.Find<ModItem>("FortressGenerator"));
+
+                    if (recipe.HasResult(sots.Find<ModItem>("FortressGenerator")))
+                    {
+                        recipe.RemoveIngredient(ItemID.PaladinsShield);
+                        recipe.RemoveIngredient(ItemID.SpectreBar);
+
+                        if (clamity != null)
+                        {
+                            recipe.AddIngredient(clamity.Find<ModItem>("CyanPearl"));
+                        }
+
+                        recipe.AddIngredient<LifeAlloy>(2);
+                    }
                 }
 
                 if (sots != null & thorium != null)
                 {
-                    if (recipe.HasResult(sots.Find<ModItem>("PlatformGenerator")))
-                    {
-                        recipe.AddIngredient(thorium.Find<ModItem>("ScryingGlass"));
-                    }
+                    //if (recipe.HasResult(sots.Find<ModItem>("PlatformGenerator")))
+                    //{
+                    //    recipe.AddIngredient(thorium.Find<ModItem>("ScryingGlass"));
+                    //}
 
                     if (recipe.HasResult(sots.Find<ModItem>("FortressGenerator")) && recipe.HasIngredient(ItemID.PygmyNecklace))
                     {
-                        recipe.DisableRecipe();
+                        recipe.RemoveIngredient(ItemID.PygmyNecklace);
+                        recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
                     }
 
                     if (recipe.HasResult(ModContent.ItemType<StatisBlessing>()))
                     {
-                        recipe.RemoveIngredient(ItemID.PygmyNecklace);
+                        //recipe.RemoveIngredient(ItemID.PygmyNecklace);
                         //recipe.RemoveIngredient(ItemID.SummonerEmblem);
                         //recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
-                        //recipe.AddIngredient(ItemID.BeetleHusk, 3);
-                        recipe.AddIngredient(sots.Find<ModItem>("FortressGenerator"));
+                        recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
+                        //recipe.AddIngredient(sots.Find<ModItem>("FortressGenerator"));
                         recipe.AddIngredient(thorium.Find<ModItem>("CrystalScorpion"));
                         //recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
+                        recipe.AddIngredient<CoreofCalamity>();
                     }
                 }
                 else if (thorium != null)
@@ -102,17 +132,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                         recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
                         recipe.AddIngredient(thorium.Find<ModItem>("CrystalScorpion"));
                         //recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
-                        recipe.AddIngredient(thorium.Find<ModItem>("ScryingGlass"));
+                        //recipe.AddIngredient(thorium.Find<ModItem>("ScryingGlass"));
                     }
-                }
-                else if (sots != null)
-                {
-                    if (recipe.HasResult(ModContent.ItemType<StatisBlessing>()))
+
+                    if (recipe.HasResult(ModContent.ItemType<Nucleogenesis>()))
                     {
-                        recipe.RemoveIngredient(ItemID.PygmyNecklace);
-                        //recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
-                        recipe.AddIngredient(sots.Find<ModItem>("FortressGenerator"));
-                        //recipe.AddIngredient(ItemID.BeetleHusk, 3);
+                        if (clamity != null)
+                        {
+                            recipe.AddIngredient(clamity.Find<ModItem>("CyanPearl"));
+                        }
                     }
                 }
 
@@ -121,30 +149,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     recipe.RemoveIngredient(ItemID.LunarBar);
                     recipe.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 8);
                 }
-
-                else if (sots != null)
-                {
-
-                    if (recipe.HasResult(sots.Find<ModItem>("FortressGenerator")) && recipe.HasIngredient(ItemID.PygmyNecklace))
-                    {
-                        recipe.RemoveIngredient(ItemID.PaladinsShield);
-                        //Add something later?
-                    }
-                }
-            }
-        }
-
-        public override void AddRecipes()
-        {
-            if (sots != null & thorium != null)
-            {
-                Recipe.Create(sots.Find<ModItem>("FortressGenerator").Type)
-                    .AddIngredient(sots.Find<ModItem>("PlatformGenerator"))
-                    .AddIngredient(thorium.Find<ModItem>("NecroticSkull"))
-                    .AddIngredient<CryonicBar>(10) ///might be changed
-                    .AddIngredient(sots.Find<ModItem>("DissolvingDeluge"))
-                    .AddTile(TileID.TinkerersWorkbench)
-                    .Register();
             }
         }
     }

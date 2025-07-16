@@ -66,7 +66,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
                 ref StatModifier local = ref player.GetDamage(ThoriumDamageBase<BardDamage>.Instance);
                 local -= 0.07f;
                 player.GetCritChance(ThoriumDamageBase<BardDamage>.Instance) -= 7f;
-                player.GetAttackSpeed(ThoriumDamageBase<BardDamage>.Instance) -= 0.7f;
+                player.GetAttackSpeed(ThoriumDamageBase<BardDamage>.Instance) -= 0.07f;
                 thoriumPlayer.inspirationRegenBonus += 0.08f;
                 thoriumPlayer.bardResourceMax2 += 5;
                 thoriumPlayer.accHeadset = true;

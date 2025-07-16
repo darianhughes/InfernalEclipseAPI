@@ -89,6 +89,31 @@ Items: {
 		DisplayName: Music Box (Golem - Infernum Mode)
 		Tooltip: Plays 'Icon of the Sun' by PinpinNeon
 	}
+
+	GrandThunderBirdRelic: {
+		DisplayName: Infernal Grand Thunder Bird Relic
+		Tooltip: ""
+	}
+
+	BurriedChampionRelic: {
+		DisplayName: Infernal Buried Champion Relic
+		Tooltip: ""
+	}
+
+	CorpseBloomRelic: {
+		DisplayName: Infernal Corpse Bloom Relic
+		Tooltip: ""
+	}
+
+	QueenJellyfishRelic: {
+		DisplayName: Infernal Queen Jellyfish Relic
+		Tooltip: ""
+	}
+
+	ProphecyMusicBox: {
+		DisplayName: Music Box (Prophecy)
+		Tooltip: Plays 'Reality of the Prophecy' by theforge129
+	}
 }
 
 Projectiles: {
@@ -100,6 +125,9 @@ Projectiles: {
 	BountifulHarvestStinger.DisplayName: Bountiful Harvest Stinger
 	FriendlyBrimstoneBarrage.DisplayName: Friendly Brimstone Barrage
 	FriendlyBrimstoneFireblast.DisplayName: Friendly Brimstone Fireblast
+	RadioMicPro.DisplayName: Radio Mic Pro
+	RadioMicShadowBurst.DisplayName: Radio Mic Shadow Burst
+	TidalWaveWhirlpool.DisplayName: Tidal Wave Whirlpool
 }
 
 DiaryTooltip:
@@ -215,7 +243,11 @@ Configs: {
 
 		AdditonalVanillaBossAdjustments: {
 			Label: Additonal Vanilla Boss Adjustments
-			Tooltip: Slighty adjusts the stats of some vanilla bosses to be more of a challenge.
+			Tooltip:
+				'''
+				Slighty adjusts the stats of some vanilla bosses to be more of a challenge.
+				Some adjustments are always disabled when Fargo's Souls Eternity Mode or Masochist Mode is enabled.
+				'''
 		}
 
 		MergeCraftingTrees: {
@@ -265,6 +297,21 @@ Configs: {
 				Merges the Thrower & Rogue class into one refined class. 
 				Allows converted thrower weapons to still recieve thier orginal reforges.
 				Also keeps the stealth bar damage scaling intact.
+				'''
+		}
+
+		EnableInterlude4: {
+			Label: Enable Interlude 4
+			Tooltip: Enables/Disables the 4th Interlude theme will play after the defeat of Supreme Calamitas.
+		}
+
+		AdjustAdvisorSpawnConditions: {
+			Label: Adjust Advisor Spawn Conditions
+			Tooltip:
+				'''
+				Adjusts the spawn conditions for the Advisor so it's not always active in the world.
+				Useful if you use the Infernum boss bar and don't want it always being active due to the Advisor being alive all the time.
+				This is known to cause problems in multiplayer, so disable this if your planning to play multiplayer.
 				'''
 		}
 	}
@@ -406,7 +453,10 @@ Buffs: {
 	}
 }
 
-SpawnInfo.Dreadnautilus: Has a chance to spawn while fishing in the ocean on a blood moon.
+SpawnInfo: {
+	Dreadnautilus: Has a chance to spawn while fishing during a blood moon.
+	PrimordialWyrmHead: An ancient relic lies at the bottom of the Abyss...
+}
 
 Tiles: {
 	CatastrophicFabricationsMusicBoxTile.MapEntry: Catastrophic Fabrications Music Box Tile
@@ -414,4 +464,5 @@ Tiles: {
 	BeeMusicBoxTile.MapEntry: Bee Music Box Tile
 	CultistMusicBoxTile.MapEntry: Cultist Music Box Tile
 	GolemMusicBoxTile.MapEntry: Golem Music Box Tile
+	ProphecyMusicBoxTile.MapEntry: Prophecy Music Box Tile
 }

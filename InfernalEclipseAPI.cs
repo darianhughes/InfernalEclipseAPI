@@ -43,6 +43,7 @@ using Mono.Cecil.Cil;
 using MonoMod.RuntimeDetour;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Core.World;
+using CalamityMod.NPCs.Polterghast;
 
 namespace InfernalEclipseAPI
 {
@@ -428,8 +429,6 @@ namespace InfernalEclipseAPI
 
 
             //Terra Blade (YouBoss)
-
-            //Used later
             int TerraInsertID = calamity.Find<ModNPC>("Polterghast").Type;
 
             for (int i = 0; i < brEntries.Count; i++)
@@ -461,12 +460,25 @@ namespace InfernalEclipseAPI
             //Old Duke (CalamityMod) - Reinserts Old Duke into Boss Rush if he has been removed by other mod (i.e. CalamityHunt)
             bool oDukeInBossRush = false;
             int OldDukeID = calamity.Find<ModNPC>("OldDuke").Type;
+            int OldDukeInsertID = -1;
+            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargos))
+            {
+                OldDukeInsertID = ModContent.NPCType<Polterghast>();
+            }
+            else
+            {
+                OldDukeInsertID = NPCID.SkeletronPrime;
+            }
 
             for (int i = 0; (i < brEntries.Count); i++)
             {
                 if (brEntries[i].Item1 == OldDukeID)
                 {
                     oDukeInBossRush = true; break;
+                }
+                if (brEntries[i].Item1 == OldDukeInsertID)
+                {
+                    OldDukeInsertID = i;
                 }
             }
 
@@ -482,7 +494,7 @@ namespace InfernalEclipseAPI
                     NPC.SpawnOnPlayer(whomst, calamity.Find<ModNPC>("OldDuke").Type);
                 };
 
-                brEntries.Insert(TerraInsertID + 1, (calamity.Find<ModNPC>("OldDuke").Type, 0, prODuke, 180, false, 0f, ODukeMinionsIDs, ODukeID));
+                brEntries.Insert(OldDukeInsertID + 1, (calamity.Find<ModNPC>("OldDuke").Type, 0, prODuke, 180, false, 0f, ODukeMinionsIDs, ODukeID));
             }
 
             //Primordial Wyrm
@@ -676,9 +688,9 @@ namespace InfernalEclipseAPI
 
             //Removes the end effect of boss rush and assigns it to the final boss.
             BossDeathEffects.Remove(ModContent.NPCType<SupremeCalamitas>());
-            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargos) && FargosDLCEnabled)
+            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargos1) && FargosDLCEnabled)
             {
-                BossDeathEffects.Remove(fargos.Find<ModNPC>("MutantBoss").Type);
+                BossDeathEffects.Remove(fargos1.Find<ModNPC>("MutantBoss").Type);
             }
             BossDeathEffects.Remove(brEntries[^1].Item1);
 

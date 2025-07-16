@@ -134,7 +134,7 @@ namespace InfernalEclipseAPI.Core.Players
                 if (contractNow && contractCooldownTimer == 0)
                 {
                     SetContract(true);
-                    contractCooldownTimer = 120; //EASY CHANGE COOLDOWN NUMBER
+                    contractCooldownTimer = 90; //EASY CHANGE COOLDOWN NUMBER
                     restoreContractAfterCooldown = true;
                 }
                 else if (contractCooldownTimer > 0)
@@ -219,7 +219,7 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                 "AquaiteScythePro", "BoneReaperPro", "BloodHarvestPro", "FallingTwilightPro",
                 "HallowedScythePro", "TrueHallowedScythePro", "TitanScythePro", "MorningDewPro",
-                "DreadTearerPro", "TheBlackScythePro"
+                "DreadTearerPro", "TheBlackScythePro", "LustrousBatonPro"
             };
 
                 foreach (var name in names)
@@ -239,7 +239,7 @@ namespace InfernalEclipseAPI.Core.Players
 
         public void TriggerScytheCharge(bool fromServer = false)
         {
-            scytheChargeCooldown = 6;
+            scytheChargeCooldown = 2;
 
             if (Main.netMode == NetmodeID.MultiplayerClient && !fromServer)
             {

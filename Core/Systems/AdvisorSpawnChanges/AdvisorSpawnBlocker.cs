@@ -14,6 +14,11 @@ namespace InfernalEclipseAPI.Core.Systems.AdvisorSpawnChanges
 {
     public class AdvisorSpawnBlocker : ModSystem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return InfernalConfig.Instance.AdjustAdvisorSpawnConditions;
+        }
+
         private Hook randomUpdateHook;
 
         public override void Load()

@@ -12,20 +12,23 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
+using ThoriumMod.Projectiles.Bard;
 
 namespace InfernalEclipseAPI.Content.Projectiles
 {
     [ExtendsFromMod("ThoriumMod")]
-    public class FriendlyBrimstoneBarrage : ModProjectile
+    public class FriendlyBrimstoneBarrage : BardProjectile
     {
         public override string Texture => "CalamityMod/Projectiles/Boss/BrimstoneBarrage";
+
+        public override BardInstrumentType InstrumentType => BardInstrumentType.Percussion;
 
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
         }
 
-        public override void SetDefaults()
+        public override void SetBardDefaults()
         {
             Projectile.width = 14;
             Projectile.height = 14;
@@ -110,9 +113,9 @@ namespace InfernalEclipseAPI.Content.Projectiles
             target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120);
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        public override void BardOnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120);
+            target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120, false);
         }
     }
 }

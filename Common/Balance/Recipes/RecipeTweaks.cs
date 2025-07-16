@@ -71,7 +71,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 }
 
                 //Calamity
-                //If any mods allow the terminus to be crafted, make it post-Primordial Wyrm.
+                //If any mods allow the terminus to be crafted, disable it.
                 if (recipe.HasResult(ModContent.ItemType<Terminus>()))
                 {
                     //recipe.AddIngredient(ModContent.ItemType<EvokingSearune>(), 1);
@@ -281,6 +281,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)
                     {
+                        if (recipe.HasResult(ItemID.JungleHat))
+                            recipe.AddIngredient<SulphuricScale>(3);
+
+                        if (recipe.HasResult(ItemID.JungleShirt))
+                            recipe.AddIngredient<SulphuricScale>(5);
+
+                        if (recipe.HasResult(ItemID.JunglePants))
+                            recipe.AddIngredient<SulphuricScale>(4);
 
                         if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                         {

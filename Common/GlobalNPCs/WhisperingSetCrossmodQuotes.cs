@@ -19,7 +19,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return false;
+            return true;
         }
 
         private static int TypeRunning;

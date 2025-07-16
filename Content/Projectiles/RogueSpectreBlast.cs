@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using CalamityMod;
 
 namespace InfernalEclipseAPI.Content.Projectiles
 {
@@ -25,7 +26,7 @@ namespace InfernalEclipseAPI.Content.Projectiles
             Projectile.height = 16;
             Projectile.friendly = true;
             Projectile.minion = true;
-            Projectile.DamageType = ModContent.GetInstance<MergedThrowerRogue>();
+            Projectile.DamageType = ModContent.GetInstance<StealthDamageClass>();
             Projectile.penetrate = 3;
             Projectile.tileCollide = false;
             Projectile.timeLeft = 360;

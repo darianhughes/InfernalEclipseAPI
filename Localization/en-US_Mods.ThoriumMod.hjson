@@ -18,4 +18,26 @@ Items: {
 			Both the daggers and the knife are thrown on a stealth strike, with the knife summoning a barrage of slashes on hit
 			'''
 	}
+
+	GelGlove: {
+		DisplayName: Gel Glove
+		Tooltip:
+			'''
+			Throws out a ball of gel that bounces against surfaces
+			Can be charged to increase in damage, bounce amount, and size
+			Stealth strikes shoot out shurikens at nearby enemies as they travel
+			'''
+	}
+
+	TidalWave: {
+		DisplayName: Tidal Wave
+		Tooltip:
+			'''
+			'Sweep away your foes with the fury of the tide...'
+			Throws out a massive aquatic shuriken that releases miniature waves
+			Stealth strikes spawn a damaging tidal wave that follows the shuriken and pulls enemies in
+			'''
+	}
+
+	NinjaEmblem.DisplayName: Hero Emblem
 }

@@ -43,7 +43,7 @@ namespace InfernalEclipseAPI.Common.Balance
                     case 37:
                         return NPC.downedBoss2;
                     case 58:
-                        return NPC.downedBoss3;
+                        return NPC.downedBoss2;
                     case 408:
                         return NPC.downedMoonlord;
                     case 659:

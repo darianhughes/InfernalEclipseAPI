@@ -31,7 +31,7 @@ This API currently adds the following:
 	[*]	Some cross-mod Infernum intros.
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
 	[*] Boss Rush support for all included bosses, as well as a custom "tier 6."
-	[*] Custom Boss Rush music for tiers 5 & 6
+	[*] New music for certain points of the game.
 	[*] Some fixes to help Infernum more multiplayer compatible.
 	[*] Some minor cross-mod improvements for other mods outside main mod pack.
 [/list]
@@ -55,12 +55,23 @@ Created by the Infernal Eclipse of Ragnarok Team:
 	[*] Yob - Boss Progression Redesigner & Spriter
 	[*] trembler - Weapons Designer & Connections Manager
 	[*] Suu - Lead Story Designer
+	[*] Prime - Lead Texture Pack Spriter
 	[*] ZaKami - Project Coordinator
 	[*] TheRogueX - Lead Playtester & Testing Server Host
 [/list]
 
 With some support from the following contributors:
 [list]
-	[*] Soltan - Playtester and Crafting Tree Design Helper
-	[*] Pil - Spriter
+	[*] Soltan - Playtester, Item Rebalance Designer, & Crafting Tree Designer
+	[*] cheesenuggets - Crafting Tree Designer
+	[*]	Pixus, Yelmut, & Pil - Spriters
+[/list]
+
+And special thanks to the following creators for the music in this mod:
 [list]
+	[*] CDMusic: "youEnsemble of Fools (Encore Mix)"
+	[*] Kuudray: "TWISTED GARDEN [Remix]"
+	[*] psykomatic: "Descent Of Divinities"
+	[*] TheForge: "Calamity Before the Cynosure" & an unnamed song
+	[*] TheTrester: "Omiscience Of Gods"
+[/list]

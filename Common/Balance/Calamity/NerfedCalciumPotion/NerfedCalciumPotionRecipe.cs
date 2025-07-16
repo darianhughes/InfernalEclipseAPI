@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Potions;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 #nullable disable
@@ -17,10 +18,8 @@ public class NerfedCalciumPotionRecipe : ModSystem
             Item obj;
             if (recipe.TryGetResult(ModContent.ItemType<CalciumPotion>(), out obj))
             {
-                recipe.ReplaceResult(ModContent.ItemType<CalciumPotion>(), 1);
-                recipe.ReplaceResult(ModContent.ItemType<CalciumPotion>(), 1);
                 recipe.RemoveIngredient(126);
-                recipe.AddIngredient(126, 1);
+                recipe.AddIngredient(ItemID.BottledWater, 1);
             }
         }
     }

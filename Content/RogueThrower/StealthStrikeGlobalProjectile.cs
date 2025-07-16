@@ -37,6 +37,9 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         private bool buffApplied = false;
         private float initialSpeed = 0f;
 
+        // GEL GLOVE specific variables
+        private int gelGloveShurikenTimer = 0;
+
         public void SetupAsStealthStrike(StealthStrikeType type)
         {
             isStealthStrike = true;
@@ -232,6 +235,13 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 if (entity.ai[0] == 1)
                     entity.DamageType = ModContent.GetInstance<RogueDamageClass>();
             }
+
+            //DAMAGE OVERRIDE FOR SHURIKEN DURING STEALTH STRIKE
+            //if (entity.type == ProjectileID.Shuriken)
+            //{
+            //    if (entity.ai[0] == 7)
+            //        entity.DamageType = DamageClass.Throwing; //scales with rouge damage bonuses but not stealth
+            //}
         }
 
         //AI
@@ -339,6 +349,48 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                     {
                         projectile.scale = 0.5f;
                     }
+                }
+            }
+
+            // GELGLOVE
+            if (stealthType == StealthStrikeType.GelGlove)
+            {
+                // Only allow shuriken firing while actually flying (not during charging)
+                if (projectile.velocity.LengthSquared() > 1.25f) // adjust threshold as needed
+                {
+                    projectile.localAI[1]++;
+
+                    if (projectile.localAI[1] >= 30)
+                    {
+                        projectile.localAI[1] = 0;
+
+                        Player player = Main.player[projectile.owner];
+                        var calPlayer = player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>();
+
+                        NPC target = FindNearestEnemy(projectile.Center, 600f);
+                        Vector2 shootVelocity = projectile.velocity.SafeNormalize(Vector2.UnitX) * 10f;
+
+                        if (target != null)
+                            shootVelocity = (target.Center - projectile.Center).SafeNormalize(Vector2.UnitX) * 15f;
+
+                        int shurikenType = ProjectileID.Shuriken;
+
+                        Projectile.NewProjectile(
+                            projectile.GetSource_FromThis(),
+                            projectile.Center,
+                            shootVelocity,
+                            shurikenType,
+                            projectile.damage - (projectile.damage / 4),
+                            projectile.knockBack,
+                            projectile.owner,
+                            7 //uses an ai slot to tell the game to switch the damage type (see above)
+                        );
+                    }
+                }
+                else
+                {
+                    // Reset timer while stationary to avoid leftover charge
+                    projectile.localAI[1] = 0;
                 }
             }
 
@@ -466,8 +518,6 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 }
             }
 
-
-
             //HOMING
             if (stealthType == StealthStrikeType.PlayingCard || stealthType == StealthStrikeType.TerraKnife2)
             {
@@ -512,6 +562,28 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0.5f;
             }
+        }
+
+        // Helper method to find nearest enemy NPC for Gel Glove
+        private NPC FindNearestEnemy(Vector2 position, float maxDistance)
+        {
+            NPC nearest = null;
+            float minDist = maxDistance;
+
+            foreach (NPC npc in Main.npc)
+            {
+                if (npc.CanBeChasedBy())
+                {
+                    float dist = Vector2.Distance(position, npc.Center);
+                    if (dist < minDist)
+                    {
+                        minDist = dist;
+                        nearest = npc;
+                    }
+                }
+            }
+
+            return nearest;
         }
 
         //ON DEATH EFFECT

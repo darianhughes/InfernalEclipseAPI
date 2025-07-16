@@ -148,7 +148,11 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     bool canStealthStrike = CalPlayer.StealthStrikeAvailable();
                     if (canStealthStrike)
+                    {
+                        if (item.Name == "Clockwork Bomb" || item.Name == "Soul Bomb" || item.Name == "Soulslasher" || item.Name == "Soft Serve Sunderer" || item.Name == "Shade Shuriken")
+                            return;
                         damage *= 1.75f;
+                    }
                 }
             }
         }

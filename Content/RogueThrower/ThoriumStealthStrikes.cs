@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.CalPlayer;
+using InfernalEclipseAPI.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using SOTS.Void;
 using Terraria;
@@ -29,6 +31,8 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         TerraKnife,
         TerraKnife2,
         ShadeShuriken,
+        GelGlove,
+        TidalWave,
     }
     public class ThoriumStealthStrikes : GlobalItem
     {
@@ -101,6 +105,30 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                     }
 
                     return false;
+                }
+            }
+
+            // ===================== GEL GLOVE =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Gel Glove")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.GelGlove);
+                    }
+
+                    return false; // Prevent default projectile since we spawned our own
                 }
             }
 
@@ -439,16 +467,54 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 }
             }
 
+            // ===================== TIDAL WAVE =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Tidal Wave")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<TidalWaveWhirlpool>(), (int)(damage/2), knockback, player.whoAmI);
+
+                    if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.TidalWave);
+                    }
+
+                    return false;
+                }
+            }
+
             return true;
         }
 
         public override void SetDefaults(Item item)
         {
             if (!ModLoader.TryGetMod("ThoriumMod", out Mod thorium)) return;
-            //EXHAUSTION REMOVAL
 
+            //EXHAUSTION REMOVAL
             //TERRA KNIFE
             if (item.type == thorium.Find<ModItem>("TerraKnife").Type)
+            {
+                TrySetIsThrowerNon(item, false);
+            }
+
+            //GEL GLOVE 
+            if (item.type == thorium.Find<ModItem>("GelGlove").Type)
+            {
+                TrySetIsThrowerNon(item, false);
+            }
+
+            //TIDAL WAVE
+            if (item.type == thorium.Find<ModItem>("TidalWave").Type)
             {
                 TrySetIsThrowerNon(item, false);
             }
