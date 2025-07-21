@@ -44,6 +44,8 @@ using MonoMod.RuntimeDetour;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Core.World;
 using CalamityMod.NPCs.Polterghast;
+using InfernumMode.Core.GlobalInstances.Players;
+using InfernumMode.Content.Achievements;
 
 namespace InfernalEclipseAPI
 {
@@ -87,6 +89,8 @@ namespace InfernalEclipseAPI
                     On_Player.InInteractionRange += On_Player_InInteractionRange;
                 }
             }
+
+            AchievementUpdateHandler = typeof(InfernumMode.Core.GlobalInstances.Players.AchievementPlayer).GetMethod("ExtraUpdateHandler", BindingFlags.Static | BindingFlags.NonPublic);
         }
 
         public override void Unload()
@@ -135,6 +139,9 @@ namespace InfernalEclipseAPI
                 BossRushInjection(calamity);
             }
         }
+
+        MethodInfo AchievementUpdateHandler;
+
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             InfernalEclipseMessageType msgType = (InfernalEclipseMessageType)reader.ReadByte();
@@ -162,6 +169,16 @@ namespace InfernalEclipseAPI
                     }
                     break;
             }
+
+            //int npcIndex = reader.ReadInt32();
+            //if (AchievementUpdateHandler != null && Main.netMode == NetmodeID.MultiplayerClient)
+            //{
+            //    AchievementUpdateHandler.Invoke(null, new object[] { Main.LocalPlayer, InfernumMode.Content.Achievements.AchievementUpdateCheck.NPCKill, npcIndex });
+            //}
+            //else
+            //{
+            //    Logger.Debug("Didnt find methodinfo for achievement update handler!");
+            //}
         }
 
         public static void BossRushInjection(Mod calamity)
@@ -269,7 +286,7 @@ namespace InfernalEclipseAPI
                 //}
 
                 //Borean Strider (Thorium Mod) - Checks to see if Borean Strider is in Boss Rush. If not, adds it.
-                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && !ModLoader.TryGetMod("ThoriumRework", out _))
                 {
                     int BoreanInsertID = Terraria.ID.NPCID.WallofFlesh;
                     bool boreanInBossRush = false;
@@ -291,7 +308,7 @@ namespace InfernalEclipseAPI
                     if (!boreanInBossRush)
                     {
                         int[] boreanID = { thorium.Find<ModNPC>("BoreanStriderPopped").Type };
-                        int[] boreanMinionIDs = { thorium.Find<ModNPC>("BoreanHopper").Type, thorium.Find<ModNPC>("BoreanMyte").Type };
+                        int[] boreanMinionIDs = { thorium.Find<ModNPC>("BoreanStrider").Type, thorium.Find<ModNPC>("BoreanStriderPopped").Type, thorium.Find<ModNPC>("BoreanHopper").Type, thorium.Find<ModNPC>("BoreanMyte").Type };
 
                         Action<int> prBorean = delegate (int npc)
                         {

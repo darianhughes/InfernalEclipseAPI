@@ -123,6 +123,10 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
+            else
+            {
+                SetContract(false);
+            }
         }
 
         public void OnProjectileHit()
@@ -141,10 +145,6 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     SetContract(false);
                 }
-                else
-                {
-                    SetContract(true);
-                }
             }
         }
         public override void UpdateEquips()
@@ -153,14 +153,19 @@ namespace InfernalEclipseAPI.Core.Players
 
             accessoryEquipped = false;
 
-            for (int i = 3; i < Player.armor.Length; i++)
+            // We only want to check up to the smaller of these two lengths
+            int maxSlot = Math.Min(Player.armor.Length, Player.hideVisibleAccessory.Length);
+
+            for (int i = 3; i < maxSlot; i++) // starts at 3 to skip armor slots
             {
                 Item accessory = Player.armor[i];
 
-                if (!accessory.IsAir &&
-                    (accessory.type == executionersContract || accessory.type == sealedContract) &&
-                    (i < Player.hideVisibleAccessory.Length && !Player.hideVisibleAccessory[i]))
+                if (accessory.IsAir)
+                    continue;
+
+                if (accessory.type == executionersContract || accessory.type == sealedContract)
                 {
+                    // We're ignoring visibility here, so just set true and break
                     accessoryEquipped = true;
                     break;
                 }

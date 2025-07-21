@@ -96,7 +96,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 
                     if (recipe.HasResult<FilthyGlove>() || recipe.HasResult<BloodstainedGlove>())
                     {
-                        recipe.AddIngredient(thorium.Find<ModItem>("UnholyShards"));
+                        recipe.AddIngredient(thorium.Find<ModItem>("UnholyShards"), 5);
                         recipe.AddIngredient(thorium.Find<ModItem>("BoneGrip"));
                     }
 

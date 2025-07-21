@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria;
+using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
+using CalamityMod.CalPlayer;
 
 namespace InfernalEclipseAPI.Content.RogueThrower
 {
@@ -20,9 +22,10 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         private int soul2Type = -1;
         private int soul3Type = -1;
         private int wing1Type = -1;
+        private bool initialized = false;
 
-        private bool initialized;
-        private Item previousHeldItem;
+        private int? previousHeldItemType;
+        private int? previousHeldItemPrefix = null;
         private bool? previousHeldItemOriginalExhaustion;
 
         public int whiteDwarfCooldown;
@@ -67,68 +70,193 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         public override void UpdateEquips()
         {
             EnsureInitialized();
-            bool shouldBypass = false;
 
-            for (int i = 3; i < Player.armor.Length; i++)
-            {
-                Item item = Player.armor[i];
-                if (!item.IsAir &&
-                    (item.type == volume2Type || item.type == volume3Type || item.type == volume4Type ||
-                     item.type == soul1Type || item.type == soul2Type || item.type == soul3Type 
-                     //|| item.type == wing1Type
-                     ) &&
-                    !Player.hideVisibleAccessory[i])
-                {
-                    shouldBypass = true;
-                    break;
-                }
-            }
+            bool accessoryEquipped = HasExhaustionClearingAccessoryEquipped();
 
-            if (Player.HeldItem != previousHeldItem)
+            Item heldItem = Player.HeldItem;
+
+            bool heldItemChanged =
+                previousHeldItemType == null ||
+                previousHeldItemPrefix == null ||
+                heldItem.type != previousHeldItemType ||
+                heldItem.prefix != previousHeldItemPrefix;
+
+            if (heldItemChanged)
             {
-                RestoreExhaustion(previousHeldItem);
-                previousHeldItem = Player.HeldItem;
+                RestoreExhaustion();
+
+                previousHeldItemType = heldItem.type;
+                previousHeldItemPrefix = heldItem.prefix;
                 previousHeldItemOriginalExhaustion = null;
             }
 
-            if (shouldBypass)
+            if (accessoryEquipped)
             {
                 ApplyExhaustionDisabling();
+            }
+            else
+            {
+                RestoreExhaustion();
             }
         }
 
         private void ApplyExhaustionDisabling()
         {
             Item heldItem = Player.HeldItem;
-            if (heldItem.IsAir || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
+            if (heldItem.IsAir || heldItem.ModItem == null)
                 return;
 
             ModItem modItem = heldItem.ModItem;
-            if (modItem?.Mod?.Name != "ThoriumMod")
-                return;
 
-            FieldInfo field = modItem.GetType().GetField("isThrowerNon", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (field == null || !(field.GetValue(modItem) is bool currentValue) || !currentValue)
-                return;
+            if (modItem.Mod?.Name == "ThoriumMod")
+            {
+                var field = modItem.GetType().GetField("isThrowerNon", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (field != null)
+                {
+                    bool currentValue = (bool)field.GetValue(modItem);
 
-            previousHeldItemOriginalExhaustion = true;
-            field.SetValue(modItem, false);
+                    if (previousHeldItemOriginalExhaustion == null)
+                    {
+                        previousHeldItemOriginalExhaustion = currentValue;
+                    }
+
+                    if (currentValue)
+                    {
+                        field.SetValue(modItem, false); // Disable exhaustion
+                    }
+                }
+            }
         }
 
-        private void RestoreExhaustion(Item item)
+        private void RestoreExhaustion()
         {
-            if (item == null || item.IsAir || previousHeldItemOriginalExhaustion != true || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
+            if (previousHeldItemOriginalExhaustion == null)
                 return;
 
-            ModItem modItem = item.ModItem;
-            if (modItem?.Mod?.Name != "ThoriumMod")
-                return;
-
-            FieldInfo field = modItem.GetType().GetField("isThrowerNon", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (field != null)
+            for (int i = 0; i < Player.inventory.Length; i++)
             {
-                field.SetValue(modItem, true);
+                Item item = Player.inventory[i];
+                if (!item.IsAir &&
+                    item.type == previousHeldItemType &&
+                    item.prefix == previousHeldItemPrefix &&
+                    item.ModItem != null &&
+                    item.ModItem.Mod?.Name == "ThoriumMod")
+                {
+                    var field = item.ModItem.GetType().GetField("isThrowerNon", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    if (field != null)
+                    {
+                        field.SetValue(item.ModItem, previousHeldItemOriginalExhaustion);
+                    }
+
+                    break;
+                }
             }
+
+            previousHeldItemOriginalExhaustion = null;
+        }
+
+        public override void PostUpdateEquips()
+        {
+            Mod thorium = ModLoader.GetMod("ThoriumMod");
+            if (thorium == null) return;
+
+            int whiteDwarfHelm = thorium.Find<ModItem>("WhiteDwarfMask").Type;
+            int whiteDwarfPlate = thorium.Find<ModItem>("WhiteDwarfGuard").Type;
+            int whiteDwarfGreaves = thorium.Find<ModItem>("WhiteDwarfGreaves").Type;
+
+            if (Player.armor[0].type == whiteDwarfHelm &&
+                Player.armor[1].type == whiteDwarfPlate &&
+                Player.armor[2].type == whiteDwarfGreaves)
+            {
+                Player.setBonus += "\nIvory flares can proc on a 2 second cooldown";
+                // Add effects here if needed
+            }
+        }
+
+        public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
+        {
+            // List of allowed mod names
+            var allowedMods = new HashSet<string>
+            {
+                "BCThrower",
+                "ThrowerPostGame",
+                "Arsenal_Mod",
+                "ThrowerArsenalAddOn"
+            };
+
+            bool isModded = item.ModItem != null;
+            string modName = isModded ? item.ModItem.Mod.Name : null;
+
+            bool isMergedRogue = item.DamageType?.ToString() == "CalamityMod.RogueDamageClass"
+                                 || item.DamageType == MergedThrowerRogue.Instance;
+
+            bool isNotCalamityAndConsumableRogue = isModded && modName != "CalamityMod"
+                                                   && item.consumable && isMergedRogue;
+
+            bool isFromAllowedMod = isModded && allowedMods.Contains(modName) && isMergedRogue;
+
+            // Vanilla items (no ModItem) that use rogue damage
+            bool isVanillaRogue = !isModded && isMergedRogue;
+
+            if (isNotCalamityAndConsumableRogue || isFromAllowedMod || isVanillaRogue)
+            {
+                Player player = Main.LocalPlayer;
+                var calPlayer = player.GetModPlayer<CalamityPlayer>();
+
+                if (ModLoader.TryGetMod("InfernalEclipseAPI", out _))
+                    return;
+
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    if (item.Name == "Clockwork Bomb" || item.Name == "Soul Bomb" || item.Name == "Soulslasher"
+                        || item.Name == "Soft Serve Sunderer" || item.Name == "Shade Shuriken")
+                        return;
+
+                    if (item.consumable || isFromAllowedMod)
+                        damage *= 1.75f;
+
+                    if (InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
+                        damage *= 1.15f;
+                }
+            }
+        }
+
+        public override void PostUpdateMiscEffects()
+        {
+            Player player = Main.LocalPlayer;
+            var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+            Player.GetDamage<MergedThrowerRogue>() += CalPlayer.stealthDamage;
+        }
+
+        public bool HasExhaustionClearingAccessoryEquipped()
+        {
+            EnsureInitialized();
+
+            // Accessory slots start at index 3. We stop before vanity slots.
+            int start = 3;
+            int end = Player.armor.Length - 10; // Excludes vanity and dye slots
+
+            for (int i = start; i < end; i++)
+            {
+                if (i >= Player.armor.Length)
+                    continue;
+
+                Item accessory = Player.armor[i];
+
+                // Skip empty slots
+                if (accessory.IsAir)
+                    continue;
+
+                // Match any of the exhaustion-clearing accessory types
+                if (accessory.type == volume2Type || accessory.type == volume3Type || accessory.type == volume4Type ||
+                    accessory.type == soul1Type || accessory.type == soul2Type || accessory.type == soul3Type ||
+                    accessory.type == wing1Type)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

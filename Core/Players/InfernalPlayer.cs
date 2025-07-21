@@ -284,12 +284,13 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
-        public override void PostUpdateMiscEffects()
-        {
-            Player player = Main.LocalPlayer;
-            var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+        //MOVED TO ROGUETHROWERPLAYER
+        //public override void PostUpdateMiscEffects()
+        //{
+        //    Player player = Main.LocalPlayer;
+        //    var CalPlayer = player.GetModPlayer<CalamityPlayer>();
 
-            Player.GetDamage<MergedThrowerRogue>() += CalPlayer.stealthDamage;
-        }
+        //    Player.GetDamage<MergedThrowerRogue>() += CalPlayer.stealthDamage;
+        //}
     }
 }

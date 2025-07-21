@@ -12,6 +12,7 @@ using InfernalEclipseAPI.Content.Projectiles;
 namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 {
     //Wardrobe Hummus
+    [ExtendsFromMod("ThoriumMod")]
     public class RadioMicRework : GlobalItem
     {
         public override bool IsLoadingEnabled(Mod mod)

@@ -338,7 +338,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             string lifeQuartzShieldInfo1 = "Increases the rate at which you regenerate life";
             string lifeUnder25Info = "Receiving damage below 25% life surrounds you in a protective bubble\nWhile in the bubble, you will recover life equal to your bonus healing every second";
             string lifeUnder25Info2 = "Additionally, damage taken will be reduced by 10%\nThis effect needs to recharge for 30 seconds after triggering";
-            string motpInfo = "Dispels up to one damaging debuff off of you every 6 seconds";
+            string motpInfo = "Dispels up to one damaging debuff off of you every 10 seconds";
             string cotsInfo = "You quickly gain up to 20% damage reduction over time\nGetting hit briefly reduces this bonus to -10% damage reduction\nWhile this bonus is above 0%, you gain up to 2 life recovery and block 1 damage attacks";
             string sweetInfo1 = "Increases movement speed and when damaged";
             string sweetInfo2 = "Causes bees & stars to appear and douses the user in honey when damaged";

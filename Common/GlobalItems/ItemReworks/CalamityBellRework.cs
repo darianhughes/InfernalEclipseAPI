@@ -11,6 +11,7 @@ using InfernalEclipseAPI.Content.Projectiles;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 {
+    [ExtendsFromMod("ThoriumMod")]
     public class CalamityBellRework : GlobalItem
     {
         public override bool InstancePerEntity => true;

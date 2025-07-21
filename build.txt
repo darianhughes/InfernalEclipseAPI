@@ -1,7 +1,8 @@
 displayName = Infernal Eclipse of Ragnarok
 author = Akira & the Infernal Eclipse of Ragnarok Team
-version = 0.7.20
-modReferences = CalamityMod, InfernumMode, YouBoss, PackBuilder, RevengeancePlus
+version = 0.8
+dllReferences = MMHOOK_InfernumMode_v2.0.1.19, MMHOOK_CalamityMod_v2.0.5
+modReferences = CalamityMod, InfernumMode, SubworldLibrary, YouBoss, PackBuilder, RevengeancePlus
 weakReferences = NoxusBoss, SOTS, CalamityHunt, CatalystMod, CalamityAmmo, ThoriumMod@1.7.2.3, Clamity, CalamityModMusic, Consolaria, NoxusPort, SOTSBardHealer@0.2.1
 sortAfter = NoxusBoss, CalamityHunt, ThoriumMod, ThoriumRework, YouBoss, FargowiltasSouls, FargowiltasCrossmod, Clamity, RagnarokMod, CatalystMod, InfernumMode, RevengeancePlus, CalamityMinus, ZenithToilet, Consolaria, SOTS, WHummusMultiModBalancing, NoxusPort, SOTSBardHealer, PackBuilder, CalamityBardHealer, ssm, CalamityAmmo, DraedonExpansion
 hideCode = true

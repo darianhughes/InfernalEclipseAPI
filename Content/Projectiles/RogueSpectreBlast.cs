@@ -89,7 +89,7 @@ namespace InfernalEclipseAPI.Content.Projectiles
                     Projectile.position,
                     Projectile.width,
                     Projectile.height,
-                    180,
+                    DustID.DungeonSpirit,
                     Projectile.velocity.X * 0.1f + Main.rand.NextFloat(-0.5f, 0.5f),
                     Projectile.velocity.Y * 0.1f + Main.rand.NextFloat(-0.5f, 0.5f),
                     0,

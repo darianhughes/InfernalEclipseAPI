@@ -1,4 +1,18 @@
+ItemTooltip: {
+	SandstonePortalDeviceInfo:
+		'''
+		Transports you to the Lost Colosseum
+		Only works if the portal at the Lost Gateway alter has been activated
+		'''
+	SandstonePortalDeviceInfoMP: Summons the Bereft Vassal after the portal at the Lost Gateway has been activated
+}
+
 Items: {
+	SandstonePortalDevice: {
+		DisplayName: Sandstone Portal Device
+		Tooltip: ""
+	}
+
 	ChromaticMassInABottle: {
 		Tooltip: "'Even though KrogNar was up to something, Aaron simply couldn't ignore the presence of this energy.'"
 		DisplayName: Chromatic Mass In A Bottle

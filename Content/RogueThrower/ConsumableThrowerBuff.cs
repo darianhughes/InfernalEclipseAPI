@@ -159,17 +159,33 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         //Provided by Wardrobe Hummus
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable && InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
-            {
-                velocity *= 1.1f;
-            }
-
-            if (ModLoader.TryGetMod("WHummusMultiModBalancing", out _)) return;
-
             if (item.Name == "Captain's Poignard")
                 return;
 
-            if (item.ModItem != null && item.ModItem.Mod?.Name == "ThoriumMod" && item.consumable && (item.DamageType == ModContent.GetInstance<RogueDamageClass>() || item.DamageType == ModContent.GetInstance<MergedThrowerRogue>()) || item.type == ItemID.Shuriken)
+            // Define allowed mod names
+            var allowedMods = new HashSet<string>
+            {
+                "BCThrower",
+                "ThrowerPostGame",
+                "Arsenal_Mod",
+                "ThrowerArsenalAddOn"
+            };
+
+            bool isModded = item.ModItem != null;
+            string modName = isModded ? item.ModItem.Mod.Name : null;
+
+            bool isMergedRogue = item.DamageType?.ToString() == "CalamityMod.RogueDamageClass"
+                                 || item.DamageType == MergedThrowerRogue.Instance;
+
+            bool isNotCalamityAndConsumableRogue = isModded && modName != "CalamityMod"
+                                                   && item.consumable && isMergedRogue;
+
+            bool isFromAllowedMod = isModded && allowedMods.Contains(modName) && isMergedRogue;
+
+            // Vanilla items (no ModItem) that use rogue damage
+            bool isVanillaRogue = !isModded && isMergedRogue;
+
+            if (isNotCalamityAndConsumableRogue || isFromAllowedMod || isVanillaRogue)
             {
                 var CalPlayer = player.GetModPlayer<CalamityPlayer>();
                 if (CalPlayer.StealthStrikeAvailable())
@@ -179,5 +195,4 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
             }
         }
     }
-
 }

@@ -50,7 +50,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
         private static int lostOasisID;
 
         public delegate bool CanItemDoActionWithPlayerDelegate(Item item, Player player);
-        public static event CanItemDoActionWithPlayerDelegate? CanUseItemEvent;
+        public static event CanItemDoActionWithPlayerDelegate CanUseItemEvent;
         public override void Unload()
         {
             CanUseItemEvent = null;

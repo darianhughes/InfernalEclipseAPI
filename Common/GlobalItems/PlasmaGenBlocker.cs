@@ -5,10 +5,13 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.Items.Accessories;
+using CalamityMod.NPCs.CalClone;
 using CalamityMod.NPCs.ExoMechs.Apollo;
 using CalamityMod.NPCs.ExoMechs.Ares;
 using CalamityMod.NPCs.ExoMechs.Artemis;
 using CalamityMod.NPCs.ExoMechs.Thanatos;
+using CalamityMod.NPCs.ProfanedGuardians;
+using CalamityMod.NPCs.SupremeCalamitas;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod.Items.Donate;
@@ -32,7 +35,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 ModContent.NPCType<Apollo>(),
                 ModContent.NPCType<Artemis>(),
                 ModContent.NPCType<AresBody>(),
-                ModContent.NPCType<ThanatosHead>()
+                ModContent.NPCType<ThanatosHead>(),
+                ModContent.NPCType<CalamitasClone>(),
+                ModContent.NPCType<Cataclysm>(),
+                ModContent.NPCType<Catastrophe>(),
+                ModContent.NPCType<SupremeCalamitas>(),
+                ModContent.NPCType<SupremeCataclysm>(),
+                ModContent.NPCType<SupremeCatastrophe>(),
+                ModContent.NPCType<ProfanedGuardianHealer>(),
+                ModContent.NPCType<ProfanedGuardianDefender>(),
+                ModContent.NPCType<ProfanedGuardianCommander>()
             };
 
             foreach (int boss in blockedBosses)

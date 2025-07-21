@@ -130,31 +130,32 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
-        public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
-        {
-            Player player = Main.LocalPlayer;
-            var CalPlayer = player.GetModPlayer<CalamityPlayer>();
-            bool canStealthStike = CalPlayer.StealthStrikeAvailable();
+        //Moved to RogueThrowerPlayer
+        //public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
+        //{
+        //    Player player = Main.LocalPlayer;
+        //    var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+        //    bool canStealthStike = CalPlayer.StealthStrikeAvailable();
 
-            if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _))
-            {
-                // Only for non-consumable Thorium thrower weapons
-                if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable)
-                {
-                    if (canStealthStike)
-                        damage *= 1.15f; // This number centers on 1f, so 1.15f = 1.15x damage.
-                }
-                else if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.consumable && (item.DamageType == ModContent.GetInstance<RogueDamageClass>() || item.DamageType == ModContent.GetInstance<MergedThrowerRogue>()))
-                {
-                    bool canStealthStrike = CalPlayer.StealthStrikeAvailable();
-                    if (canStealthStrike)
-                    {
-                        if (item.Name == "Clockwork Bomb" || item.Name == "Soul Bomb" || item.Name == "Soulslasher" || item.Name == "Soft Serve Sunderer" || item.Name == "Shade Shuriken")
-                            return;
-                        damage *= 1.75f;
-                    }
-                }
-            }
-        }
+        //    if (ModLoader.TryGetMod("CalamityBardHealer", out _) || ModLoader.TryGetMod("RagnarokMod", out _))
+        //    {
+        //        // Only for non-consumable Thorium thrower weapons
+        //        if (item.ModItem is ThoriumItem thoriumItem && item.DamageType == ModContent.GetInstance<RogueDamageClass>() && !item.consumable)
+        //        {
+        //            if (canStealthStike)
+        //                damage *= 1.15f; // This number centers on 1f, so 1.15f = 1.15x damage.
+        //        }
+        //        else if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.consumable && (item.DamageType == ModContent.GetInstance<RogueDamageClass>() || item.DamageType == ModContent.GetInstance<MergedThrowerRogue>()))
+        //        {
+        //            bool canStealthStrike = CalPlayer.StealthStrikeAvailable();
+        //            if (canStealthStrike)
+        //            {
+        //                if (item.Name == "Clockwork Bomb" || item.Name == "Soul Bomb" || item.Name == "Soulslasher" || item.Name == "Soft Serve Sunderer" || item.Name == "Shade Shuriken")
+        //                    return;
+        //                damage *= 1.75f;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
