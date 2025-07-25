@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using CalamityMod.Projectiles.Melee;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RadianceCraftingTree
 {
@@ -46,7 +47,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RadianceCraftingTr
                 new Color(255, 80, 0), // Infernal red/orange
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
-            string graceInfo = "Your respawns happen 33% faster and give 15% more health\nYour respawns also grant increased invulnerability time and movement speed";
+            string graceInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Grace");
 
             if (thorium != null)
             {

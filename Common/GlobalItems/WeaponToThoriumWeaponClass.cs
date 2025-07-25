@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CalamityMod.Items.Weapons.Melee;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -15,10 +16,19 @@ namespace InfernalEclipseAPI.Common.GlobalItems
     {
         public override void SetDefaults(Item entity)
         {
-            if (entity.type == ModContent.ItemType<AncientFlame>() && InfernalConfig.Instance.ChanageWeaponClasses)
+            if (InfernalConfig.Instance.ChanageWeaponClasses) 
             {
-                entity.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
-                entity.damage = 32;
+                if (entity.type == ModContent.ItemType<AncientFlame>())
+                {
+                    entity.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
+                    entity.damage = 32;
+                }
+
+                if (entity.type == ModContent.ItemType<TheBurningSky>())
+                {
+                    entity.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
+                    entity.mana = 35;
+                }
             }
         }
     }

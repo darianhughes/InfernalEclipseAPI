@@ -11,6 +11,7 @@ using Terraria;
 using CalamityMod.Rarities;
 using CalamityMod.Items;
 using CalamityMod;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -35,7 +36,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "ProviLore", "I dreamt of peace once. I don't know why I did.\nEver since I recieved word that there was something beyond this world,\nI've seen that odd woman appearing in my peripheral vision every now and again.\nWhenever I notice her, she disappears again, with a single word ringing in my skull.\nPromise.\nAnd nothing else.\nWhat would Thorne want with them? Who knows.\nBut I'm sure you will make the right call, Terrarian.");
+            TooltipLine fullLore = new(Mod, "ProviLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Provi"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

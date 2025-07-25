@@ -40,6 +40,20 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 if (hasThor && recipe.HasResult(ItemID.LivingMahoganyWand) && !recipe.HasIngredient(mod4.Find<ModItem>("LivingLeaf")))
                     recipe.DisableRecipe();
 
+                Mod mod2;
+                if (ModLoader.TryGetMod("CatalystMod", out mod2))
+                {
+                    if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasIngredient(ModContent.ItemType<MysteriousCircuitry>()))
+                        recipe.DisableRecipe();
+                    if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasResult(ModContent.ItemType<PlasmaRifle>()))
+                        recipe.DisableRecipe();
+                    if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasResult(ModContent.ItemType<Auralis>()))
+                        recipe.DisableRecipe();
+                    if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasResult(ModContent.ItemType<FreedomStar>()))
+                        recipe.DisableRecipe();
+                }
+
+
                 if (!InfernalConfig.Instance.CalamityRecipeTweaks)
                 {
                     return;
@@ -277,18 +291,6 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 }
                 if (recipe.HasResult(1291))
                     recipe.DisableRecipe();
-                Mod mod2;
-                if (ModLoader.TryGetMod("CatalystMod", out mod2))
-                {
-                    if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasIngredient(ModContent.ItemType<MysteriousCircuitry>()))
-                        recipe.DisableRecipe();
-                    if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasResult(ModContent.ItemType<PlasmaRifle>()))
-                        recipe.DisableRecipe();
-                    if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasResult(ModContent.ItemType<Auralis>()))
-                        recipe.DisableRecipe();
-                    if (recipe.HasIngredient(mod2.Find<ModItem>("MetanovaBar")) && recipe.HasResult(ModContent.ItemType<FreedomStar>()))
-                        recipe.DisableRecipe();
-                }
             }
         }
 

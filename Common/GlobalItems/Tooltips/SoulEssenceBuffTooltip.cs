@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 {
@@ -30,47 +31,43 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                 if (mod1.TryFind("ProfanedScythe", out modItem3))
                     scytheTypes.Add(modItem3.Type);
             }
-            Mod mod2;
-            if (!ModLoader.TryGetMod("ThoriumMod", out mod2))
-                return;
-            ModItem modItem4;
-            if (mod2.TryFind("AquaiteScythe", out modItem4))
-                scytheTypes.Add(modItem4.Type);
-            ModItem modItem5;
-            if (mod2.TryFind("BoneReaper", out modItem5))
-                scytheTypes.Add(modItem5.Type);
-            ModItem modItem6;
-            if (mod2.TryFind("FallingTwilight", out modItem6))
-                scytheTypes.Add(modItem6.Type);
-            ModItem modItem7;
-            if (mod2.TryFind("BloodHarvest", out modItem7))
-                scytheTypes.Add(modItem7.Type);
-            ModItem modItem8;
-            if (mod2.TryFind("HallowedScythe", out modItem8))
-                scytheTypes.Add(modItem8.Type);
-            ModItem modItem9;
-            if (mod2.TryFind("TrueHallowedScythe", out modItem9))
-                scytheTypes.Add(modItem9.Type);
-            ModItem modItem10;
-            if (mod2.TryFind("TitanScythe", out modItem10))
-                scytheTypes.Add(modItem10.Type);
-            ModItem modItem11;
-            if (mod2.TryFind("MorningDew", out modItem11))
-                scytheTypes.Add(modItem11.Type);
-            ModItem modItem12;
-            if (mod2.TryFind("DreadTearer", out modItem12))
-                scytheTypes.Add(modItem12.Type);
-            ModItem modItem13;
-            if (!mod2.TryFind("TheBlackScythe", out modItem13))
-                return;
-            scytheTypes.Add(modItem13.Type);
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
+            {
+                if (thoriumMod.TryFind("AquaiteScythe", out ModItem scythe4))
+                    scytheTypes.Add(scythe4.Type);
+                if (thoriumMod.TryFind("MoltenThresher", out ModItem scythe14))
+                    scytheTypes.Add(scythe14.Type);
+                if (thoriumMod.TryFind("BatScythe", out ModItem scythe15))
+                    scytheTypes.Add(scythe15.Type);
+                if (thoriumMod.TryFind("BoneReaper", out ModItem scythe5))
+                    scytheTypes.Add(scythe5.Type);
+                if (thoriumMod.TryFind("FallingTwilight", out ModItem scythe6))
+                    scytheTypes.Add(scythe6.Type);
+                if (thoriumMod.TryFind("BloodHarvest", out ModItem scythe7))
+                    scytheTypes.Add(scythe7.Type);
+
+                if (thoriumMod.TryFind("HallowedScythe", out ModItem scythe8))
+                    scytheTypes.Add(scythe8.Type);
+                if (thoriumMod.TryFind("TrueHallowedScythe", out ModItem scythe9))
+                    scytheTypes.Add(scythe9.Type);
+                if (thoriumMod.TryFind("TitanScythe", out ModItem scythe10))
+                    scytheTypes.Add(scythe10.Type);
+                if (thoriumMod.TryFind("MorningDew", out ModItem scythe11))
+                    scytheTypes.Add(scythe11.Type);
+                if (thoriumMod.TryFind("DreadTearer", out ModItem scythe12))
+                    scytheTypes.Add(scythe12.Type);
+                if (thoriumMod.TryFind("TheBlackScythe", out ModItem scythe13))
+                    scytheTypes.Add(scythe13.Type);
+                if (thoriumMod.TryFind("LustrousBaton", out ModItem scythe16))
+                    scytheTypes.Add(scythe16.Type);
+            }
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if (scytheTypes == null || !scytheTypes.Contains(item.type) || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
-            tooltips.Add(new TooltipLine(Mod, "ExtraInfo", "Gains soul essence rapidly")
+            tooltips.Add(new TooltipLine(Mod, "ExtraInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SoulEssence"))
             {
                 OverrideColor = new Color?(Color.Yellow)
             });

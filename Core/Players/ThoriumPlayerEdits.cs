@@ -13,6 +13,8 @@ using Terraria.ID;
 using InfernalEclipseAPI.Content.Buffs;
 using ThoriumMod.Items;
 using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
+using ThoriumMod.Items.HealerItems;
+using ThoriumMod.Buffs.Healer;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -129,6 +131,19 @@ namespace InfernalEclipseAPI.Core.Players
                 radiantDamageCooldown = 900;
             }
         }
+
+        //public override bool ConsumableDodge(Player.HurtInfo info)
+        //{
+        //    Player player = Main.LocalPlayer;
+        //    var ThorPlayer = player.GetModPlayer<ThoriumPlayer>();
+
+        //    if (player.HasBuff(ModContent.BuffType<BubbleBulwarkWandBuff>()))
+        //    {
+        //        player.AddBuff(ModContent.BuffType<BubbleShock>(), 90);
+        //    }
+
+        //    return base.ConsumableDodge(info);
+        //}
 
         //Moved to RogueThrowerPlayer
         //public override void ModifyWeaponDamage(Item item, ref StatModifier damage)

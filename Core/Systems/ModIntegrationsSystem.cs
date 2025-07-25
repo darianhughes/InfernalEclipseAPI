@@ -62,6 +62,12 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "CDMusic", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Interlude04"), "Calamity before the cynosure", "theforge129", "Infernal Eclipse of Ragnarok");
+        
+            if (ModLoader.TryGetMod("YouBoss", out _))
+            {
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "You", "ENNWAY!", "You");
+            }
         }
 
         private void BossChecklistSetup()

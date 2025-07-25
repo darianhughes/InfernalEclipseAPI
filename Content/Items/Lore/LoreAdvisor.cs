@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -35,7 +36,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "AdvisorLore", "I know not of this \"Advisor\" and it's origins,\nbut it seemed to be much in-tune with the void energy lying deep within the crust of Terraria.\nAs who chained here, maybe you could find the answers of that secret from\nthe collector that absorbed it's essence after its defeat.");
+            TooltipLine fullLore = new(Mod, "AdvisorLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Advisor"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

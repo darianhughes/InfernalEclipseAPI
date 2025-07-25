@@ -13,6 +13,7 @@ using SOTS.Items;
 using ThoriumMod.Items.Donate;
 using InfernumMode.Common.InverseKinematics;
 using Terraria.GameContent.UI;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {
@@ -315,17 +316,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             );
 
             string scryInfo = "Pressing the 'Accessory Ability' key will toggle an increased range of view";
-            string skullInfo = "Minion and sentry attacks briefly deal 2 more damage after killing an enemy";
-            string scorpionInfo = "Minion attacks have a 15% chance to produce a crystal scorpion\nMinion attacks deal 3 more damage while a crystal scorpion is active";
-            string fortressInfoNoThor = "Increases life regeneration by 2\nGenerates 4 platforms to the left and right of you\nYou can right click to drag the platforms, but they will always remain symmetrical\nSentries can be summoned on top of the platforms\nAbsorbs 25% of damage done to players on your team when above 25% life and grants immunity to knockback";
-            string fortressInfo = "Generates 4 platforms to the left and right of you\nYou can right click to drag the platforms, but they will always remain symmetrical\nSentries can be summoned on top of the platforms";
-            string watchInfo = "Your sentries last forever and gain up to 15% damage over the course of 2 minutes";
+            string skullInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull");
+            string scorpionInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CrystalScorpian");
+            string fortressInfoNoThor = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressNoThor");
+            string fortressInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Fortress");
+            string watchInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Watch");
             string yumasInfo = "Taking damage releases a ghostly protector";
 
-            string twoMoreSentries = "Increases max sentries by 2";
-            string threeMoreSentries = "Increases max sentries by 3";
+            string twoMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.TwoSentry");
+            string threeMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ThreeSentry");
 
-            string cyanPearlInfo = "Halves summon penalty for sentries";
+            string cyanPearlInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CyanPearl");
 
             if (sots != null & thorium != null)
             {

@@ -147,29 +147,37 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             //only load if InfernalEclipseAPI isn't active for no overlaps
             //if (ModLoader.TryGetMod("InfernalEclipseAPI", out _)
             //return;
+            string name = npc.ModNPC?.Name ?? "";
+            float damageMod = 0;
+
+            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
+                damageMod += 0.1f;
+
             if (IsWorldLegendary())
             {
-                modifiers.SourceDamage *= 1.1f;
+                damageMod += 1.1f;
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                modifiers.SourceDamage *= 1.35f;
+                damageMod += 1.35f;
             }
             else
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    modifiers.SourceDamage *= 1.25f;
+                    damageMod += 1.25f;
                 }
                 else if (GetCalDifficulty("death"))
                 {
-                    modifiers.SourceDamage *= 1.2f;
+                    damageMod += 1.2f;
                 }
                 else if (GetCalDifficulty("revengeance"))
                 {
-                    modifiers.SourceDamage *= 1.1f;
+                    damageMod += 1.1f;
                 }
             }
+
+            modifiers.SourceDamage *= damageMod;
         }
 
         public override void PostAI(NPC npc)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.RogueThrower
 {
@@ -44,7 +45,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             EnsureInitialized();
             if (supportedTypes == null || !supportedTypes.Contains(item.type) || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
-            tooltips.Add(new TooltipLine(Mod, "NoExhaustion", "Removes all Exhaustion when equipped")
+            tooltips.Add(new TooltipLine(Mod, "NoExhaustion", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.NoExhaustion"))
             {
                 OverrideColor = new Color?(Color.LawnGreen)
             });

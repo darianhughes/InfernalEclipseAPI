@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using CalamityMod.Items.Accessories;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
 {
@@ -103,11 +104,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
 
-            string prisma1 = "Release waves of damage periodically that ignore up to 16 defense total";
-            string prisma2 = "Release more waves at lower health";
-            string prisma3 = "Waves disabled when hidden";
-            string midnight1 = "Critical strikes unleash Nightmare Arms that do 10% damage and pull enemies together";
-            string midnight2 = "Has a 6 second cooldown";
+            string prisma1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Prisma");
+            string prisma2 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Prisma2");
+            string prisma3 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Prisma3");
+            string midnight1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Midnight1");
+            string midnight2 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Midnight2");
 
 
             if (sots != null & thorium != null)

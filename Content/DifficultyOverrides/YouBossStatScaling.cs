@@ -52,7 +52,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (InfernumActive.InfernumActive)
             {   
-                modifiers.SourceDamage *= 1.35f;
+                modifiers.SourceDamage *= 2.35f;
             }
         }
     }

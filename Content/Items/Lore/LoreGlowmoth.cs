@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -48,7 +49,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "GlowmothLore", "This moth-like creature is interesting, as it makes it's homes within the same glowing,\nmushroom-infested caves as another similar beast.\nIt seems to emit some sort of bioluminescent glow, reminiscent of the void...\nperhaps it resides in these caves for their latent void energy?\nWhatever the case may be, it is beyond me.");
+            TooltipLine fullLore = new(Mod, "GlowmothLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Glowmoth"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

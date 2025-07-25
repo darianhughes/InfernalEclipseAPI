@@ -286,7 +286,9 @@ namespace InfernalEclipseAPI
                 //}
 
                 //Borean Strider (Thorium Mod) - Checks to see if Borean Strider is in Boss Rush. If not, adds it.
-                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && !ModLoader.TryGetMod("ThoriumRework", out _))
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) 
+                    //&& !ModLoader.TryGetMod("ThoriumRework", out _)
+                    )
                 {
                     int BoreanInsertID = Terraria.ID.NPCID.WallofFlesh;
                     bool boreanInBossRush = false;

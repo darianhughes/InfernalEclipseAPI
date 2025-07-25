@@ -1,4 +1,5 @@
 ﻿using InfernalEclipseAPI.Common.GlobalProjectiles;
+using InfernalEclipseAPI.Content.Buffs;
 using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using ThoriumMod;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -31,12 +33,25 @@ namespace InfernalEclipseAPI.Core.Players
         public int renewCooldown;
         public int starBirthCooldown;
 
+        public bool buffBubbleBulwarkWandCooldown;
+
+        public override bool FreeDodge(Player.HurtInfo info)
+        {
+            if (buffBubbleBulwarkWandCooldown)
+            {
+                Main.LocalPlayer.AddBuff(ModContent.BuffType<BubbleShock>(), 5400);
+            }
+            return base.ConsumableDodge(info);
+        }
+
+
         public override void ResetEffects()
         {
             if (renewCooldown > 0)
                 renewCooldown--;
             if (starBirthCooldown > 0)
                 starBirthCooldown--;
+            buffBubbleBulwarkWandCooldown = false;
         }
 
         // Dynamic callsite storage
@@ -211,33 +226,29 @@ namespace InfernalEclipseAPI.Core.Players
 
         private void LoadProjectileTypes()
         {
-            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
+            void TryAdd(Mod mod, string name)
             {
-                TryAdd(ragnarok, "ScoriaDualscythePro");
-                TryAdd(ragnarok, "ProfanedScythePro");
-                TryAdd(ragnarok, "MarbleScythePro");
+                if (mod != null && mod.TryFind(name, out ModProjectile proj))
+                    fifthScytheTypes.Add(proj.Type);
             }
 
-            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
-            {
-                string[] names = new[]
-                {
-                "AquaiteScythePro", "BoneReaperPro", "BloodHarvestPro", "FallingTwilightPro",
+            ModLoader.TryGetMod("RagnarokMod", out Mod ragnarokMod);
+            ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod);
+
+            // Ragnarok
+            TryAdd(ragnarokMod, "ScoriaDualscythePro");
+            TryAdd(ragnarokMod, "ProfanedScythePro");
+            TryAdd(ragnarokMod, "MarbleScythePro");
+
+            // Thorium
+            string[] thoriumProjs = {
+                "AquaiteScythePro", "MoltenThresherPro", "BatScythePro", "BoneReaperPro", "BloodHarvestPro", "FallingTwilightPro",
                 "HallowedScythePro", "TrueHallowedScythePro", "TitanScythePro", "MorningDewPro",
                 "DreadTearerPro", "TheBlackScythePro", "LustrousBatonPro"
             };
 
-                foreach (var name in names)
-                    TryAdd(thorium, name);
-            }
-
-            void TryAdd(Mod mod, string name)
-            {
-                if (mod != null && mod.TryFind(name, out ModProjectile proj))
-                {
-                    fifthScytheTypes.Add(proj.Type);
-                }
-            }
+            foreach (string name in thoriumProjs)
+                TryAdd(thoriumMod, name);
         }
 
         public bool CanTriggerChargeEffect() => scytheChargeCooldown <= 0;

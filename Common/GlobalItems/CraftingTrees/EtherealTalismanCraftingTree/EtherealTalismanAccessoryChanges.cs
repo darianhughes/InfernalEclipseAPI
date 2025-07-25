@@ -11,6 +11,7 @@ using CalamityMod.Items.Accessories;
 using ThoriumMod;
 using CalamityMod;
 using Steamworks;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCraftingTree
 {
@@ -74,8 +75,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
 
-            string murkyInfo = "Every sixth magic cast is free and grants you the mana cost";
-            string hungeringInfo = "Instead grants the effects of the Hungering Blossom visibility is off";
+            string murkyInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Murky");
+            string hungeringInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Hungering");
 
             if (item.type == calamity.Find<ModItem>("SigilofCalamitas").Type)
             {

@@ -19,7 +19,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
         //idk honestly i was on something when i wrote this code
         public override void ModifyItemLoot(Item item, ItemLoot loot)
         {
-            if (!InfernalConfig.Instance.BossKillCheckOnOres) { return; }
+            if (!CalamityConfig.Instance.EarlyHardmodeProgressionRework) { return; }
 
             if (item.type == ItemID.CorruptFishingCrate || item.type == ItemID.CorruptFishingCrateHard || item.type == ItemID.DungeonFishingCrateHard || item.type == ItemID.FloatingIslandFishingCrateHard || item.type == ItemID.FrozenCrateHard || item.type == ItemID.GoldenCrateHard || item.type == ItemID.HallowedFishingCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.JungleFishingCrateHard || item.type == ItemID.LavaCrateHard || item.type == ItemID.OasisCrateHard || item.type == ItemID.OceanCrateHard || item.type == ItemID.WoodenCrateHard)
             {
@@ -36,14 +36,14 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 ((ItemLoot)loot).RemoveWhere((Predicate<IItemDropRule>)(tito => tito is CommonDrop commonDrop11 && commonDrop11.itemId == 1106), true);
                 ((ItemLoot)loot).RemoveWhere((Predicate<IItemDropRule>)(titb => titb is CommonDrop commonDrop12 && commonDrop12.itemId == 1198), true);
             }
-            if (item.type == ItemID.WoodenCrateHard && item.type == ItemID.WoodenCrate)
+            if (item.type == ItemID.WoodenCrateHard)
             {
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 381, 5, 2, 3);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 1184, 5, 2, 3);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 364, 7, 4, 15);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 1104, 7, 4, 15);
             }
-            if (item.type == ItemID.IronCrateHard && item.type == ItemID.IronCrate)
+            if (item.type == ItemID.IronCrateHard)
             {
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 381, 14, 3, 7);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode), 1184, 14, 3, 7);
@@ -54,7 +54,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode && NPC.downedMechBossAny), 364, 8, 12, 21);
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() => Main.hardMode && NPC.downedMechBossAny), 1104, 8, 12, 21);
             }
-            if (item.type == ItemID.IronCrateHard && item.type == ItemID.IronCrate)
+            if (item.type == ItemID.IronCrateHard)
             {
                 ((ILoot)(object)loot).AddIf((Func<bool>)(() =>
                 {

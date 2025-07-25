@@ -4,7 +4,274 @@ ItemTooltip: {
 		Transports you to the Lost Colosseum
 		Only works if the portal at the Lost Gateway alter has been activated
 		'''
-	SandstonePortalDeviceInfoMP: Summons the Bereft Vassal after the portal at the Lost Gateway has been activated
+	SandstonePortalDeviceInfoMP: Summons the Bereft Vassal after the portal at the Lost Gateway has been activated <- currently unsued in API
+
+	StealthStrike: {
+		CactusNeedle: Stealth strikes throw out needles in a tight fan of 3
+		IcyTomahawk: Stealth strikes throw out 4 tomahawks of different speeds that last longer and pierce more
+		ZephyrRuin: Stealth strikes throw a stronger spear that always crits
+		ClockworkBomb: Stealth strikes create a larger field that lasts longer
+		SoulBomb: Stealth strikes release a burst of homing souls on detonation
+		PlayingCard: Stealth strikes throw 5 homing cards that are always explosive
+		Soulslasher: Stealth strikes will also aggressively home after hitting an enemy
+		WhiteDwarfCutter: During a stealth strike each hit creates Ivory flares that damage for 0.1% of the target's max HP
+		CaptainsPoignard: Stealth strikes throw a burst of 6 daggers and gives the player increased attack speed for 10 seconds
+		SoftServeSunderer: Stealth strikes summon a rain of cones from above the hit enemy
+		ShadeShuriken: Stealth strikes throw a larger, faster shuriken that has increased pierce
+	}
+
+	MergedCraftingTreeTooltip: {
+		BagOfAmmoConsume: Grants a 20% chance not to consume ammo
+		BagOfAmmoOther:
+			'''
+			Striking enemies has a chance to refund ammo
+			Landing the killing blow on enemies may also refund ammo
+			'''
+		InfintyBag: If accessory visablity is on, you consume void instead of ammunition
+		SerpentsTongue:
+			'''
+			15% increased radiant damage
+			20% increased critical strike damage
+			Enemies have a 10% chance to drop double the loot
+			20% when killed by critical strikes
+			Empowers certain attacks with dark energy
+			Halves radiant life costs but not its life transferring effect
+			Halves the void cost of void-radiant weapons and healing spells
+			Soul essence from radiant scythes will also recover some void
+			Soul essence from void-radiant scythes recover even more void
+			'''
+		ContractNerf: Healing spells grant an additional 2 life
+		Tuner1:
+			'''
+			The effects of this are based on accessory visabilty
+			If visability is on the following effects are applied:
+			Adds all inspiration to maximum void
+			All bard weapons use void instead of inspiration
+			Inspiration regeneration bonuses are converted to void regeneration speed
+			Picking up inspiration notes heal void instead
+			However, inspiration notes no longer grant their armor-related effects
+			Resource-boosting empowerments are much stronger on void stats
+			Otherwise:
+			Picking up inspiration notes heal void when holding a void-bard weapon
+			Upon running out of inspiration, consume 25 void to refill it all back up
+			In addition the following effects are always active:
+			All bard weapons create a shockwave on enemy hits
+			String instrument attacks trigger their tile hit effects on enemy hits
+			String instrument projectiles increase in speed by 20% every pierce
+			Percussive instrument attacks summon a falling hammer on enemy hits
+			Electronic instrument projectiles are significantly much faster
+			"Channel the power of sounds beyond hearing range!"
+			'''
+		Tuner2:
+			'''
+			The effects of this are based on accessory visabilty
+			If visability is on the following effects are applied:
+			Adds all inspiration to maximum void
+			All bard weapons use void instead of inspiration
+			Inspiration regeneration bonuses are converted to void regeneration speed
+			Picking up inspiration notes heal void instead
+			However, inspiration notes no longer grant their armor-related effects
+			Resource-boosting empowerments are much stronger on void stats
+			Otherwise:
+			Picking up inspiration notes heal void when holding a void-bard weapon
+			Upon running out of inspiration, consume 25 void to refill it all back up
+			'''
+		CrystalScorpian:
+			'''
+			Minion attacks have a 15% chance to produce a crystal scorpion
+			Minion attacks deal 3 more damage while a crystal scorpion is active
+			'''
+		Skull: Minion and sentry attacks briefly deal 2 more damage after killing an enemy
+		CyanPearl: Halves summon penalty for sentries
+		Watch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
+		Fortress:
+			'''
+			Generates 4 platforms to the left and right of you
+			You can right click to drag the platforms, but they will always remain symmetrical
+			Sentries can be summoned on top of the platforms
+			'''
+		FortressNoThor:
+			'''
+			Increases life regeneration by 2
+			Generates 4 platforms to the left and right of you
+			You can right click to drag the platforms, but they will always remain symmetrical
+			Sentries can be summoned on top of the platforms
+			'''
+		TwoSentry: Increases max sentries by 2
+		ThreeSentry: Increases max sentries by 3
+		Murky: Every sixth magic cast is free and grants you the mana cost
+		Hungering: Instead grants the effects of the Hungering Blossom visibility is off
+		SlagsplitterCooldown: This effect has a 1.5 second cooldown
+		Grace:
+			'''
+			Your respawns happen 33% faster and give 15% more health
+			Your respawns also grant increased invulnerability time and movement speed
+			'''
+		ChiseledBarrier:
+			'''
+			Surrounds you with 4 orbital projectiles
+			Launches attackers away from you with javelins
+			'''
+		ChiseledHidden: Projectiles disabled when hidden
+		Olympian:
+			'''
+			Increases void gain by 2 and life regeneration by 1
+			Reduces damage taken by 7% and increases critical strike chance by 4%
+			'''
+		Sweet1: Increases movement speed and when damaged
+		Sweet2: Causes bees to appear and douses the user in honey when damaged
+		SweetAlt: Causes bees & stars to appear and douses the user in honey when damaged
+		COTS:
+			'''
+			You quickly gain up to 20% damage reduction over time
+			Getting hit briefly reduces this bonus to -10% damage reduction
+			While this bonus is above 0%, you gain up to 2 life recovery and block 1 damage attacks
+			'''
+		DA:
+			'''
+			Grants bonus invincibility frames based on your missing health
+			This effect scales from 10 frames at full HP to 40 frames at 25% or less HP
+			'''
+		Mantle: Dispels up to one damaging debuff off of you every 10 seconds
+		TerraDefend: When below 25% life, you will rapidly regenerate life and gain increased defense
+		ScytheScale: Grows in strength until the fall of the Devourer
+		ScytheSummon: Has reduced damage if any summons are active
+		ScytheSummonOn: Damage reduced while summons are active
+		OneirophobiaSummon: Hold right click to summon the Ludic Instrument to fight for you
+		SoulEssence: Gains soul essence rapidly
+		Magneto: Increases pickup range of rogue items on the ground
+		Bone:
+			'''
+			Picking up a rogue item has a 33% chance to duplicate it and increase your rogue attack speed  
+			This effect can only trigger once every half-second while out of combat  
+			'''
+		Scuttler: Stealth strike projectiles spawn a jewel spike when destroyed
+		BloodyFilthy: Stealth strikes have +8 armor penetration, deal 8% more damage, and heal for 2 HP
+		NoExhaustion: Removes all Exhaustion when equipped
+		Prisma: Release waves of damage periodically that ignore up to 16 defense total
+		Prisma2: Release more waves at lower health
+		Primsa3: Waves disabled when hidden
+		Midnight1: Critical strikes unleash Nightmare Arms that do 10% damage and pull enemies together
+		Midnight2: Has a 6 second cooldown
+		SHS:
+			'''
+			Getting hit surrounds you with ice shards
+			Increases max life by 20
+			'''
+		MoltenScale: Nearby enemies will melt away
+		PlasmaGen:
+			'''
+			Generates a fiery barrier that burns incoming hostile projectile  
+			After burning a projectile, the shield must regenerate for 10 seconds  
+			While below 25% life, the shield generates twice as fast  
+			'''
+		OmniIns: Increase maximum inspiration by 5
+		OmniEmp: Each unique empowerment you have increases movement speed by 2% and playing speed by 1%
+	}
+
+	AstrageldonRelic: {
+		Line1: You have chosen great suffering for yourself.
+		Line2: Even though this choice has been painful and difficult at times,
+		Line3: The adversity you overcome will bear worthy fruit.
+	}
+
+	AstralCommunicatorInfernum1: Summons Astrageldon in the Astral Infection
+	AstralCommunicatorInfernum2: The interdimentional slime still hungers...
+}
+
+Lore: {
+	DylanLore:
+		'''
+		Hmm ... I'm surprised that you even know of that person.
+		The first time we found him we thought he was a god ... however, ends up he didn't actually have a auric soul.
+		We took him in and he showed us how to make powerful elemental imbued gear and bombs that wasn't just steel.
+		His ideas had helped increase my army's power by a lot, but he never fought himself.
+
+		One day when I went to his room, but nothing was there expect from a note.
+		We couldn't translate his writing but from the pictures it was some sort of ring. 
+		Knowing you, I'm sure you'll figure out how to make it.
+
+		–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
+		'''
+	MysteriousDiary:
+		'''
+		Turning to page one, you see nothing except a few words.
+
+		“Who the hell am I, that I still get to live a life?”
+
+		The rest of the pages are blank…
+
+		[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]
+
+		–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
+		'''
+	Provi:
+		'''
+		I dreamt of peace once. I don't know why I did.
+		Ever since I received word that there was something beyond this world,
+		I've seen that odd woman appearing in my peripheral vision every now and again.
+		Whenever I notice her, she disappears again, with a single word ringing in my skull.
+		Promise.
+		And nothing else.
+		What would Thorne want with them? Who knows.
+		But I'm sure you will make the right call, Terrarian.
+		'''
+	Mirror:
+		'''
+		I stared into it for a long while, but like any other mirror, I only saw myself.
+		But even then, something felt… different. It felt wrong, almost… twisted.
+		I disregarded it. But even now, I can feel the piercing gaze my reflection had… shooting directly through my skull.
+		Once you come so far, the hardest part of your journey is facing yourself.
+		'''
+	Subspace:
+		'''
+		There lies tales of mysterious serpent‑like beings that roam the manifold between dimensions.
+		Many say that they are too dangerous to face alone,
+		and that they could kill anyone within an instant with the void energy they possess.
+		This one, however… is clearly juvenile.
+		'''
+	Polaris:
+		'''
+		When I had initially brought Draedon onto my army, he had immediately began work on a supposed  "secret project" that he refused to elaborate on.
+		Soon after, he presented his first grim death machine.
+		I knew it was fit for my army, however, his prowess shown was… promising. Very much so.
+		'''
+	Putrid:
+		'''
+		A failed experiment, it would seem.
+		It has a certain hunger for Peanuts that grow on the surface, though the reasoning is unknown.
+		It is nowhere near the strength of some of the other gelatinous threats of this world,
+		but it was still formidable irregardless.
+		'''
+	Lux:
+		'''
+		While the Hallow has many that protect it, chaos spirits have no equal.
+		None of them had ever been sufficiently weakened for intelligent use,
+		and Draedon ended up shoving them into constructs for the sole purpose of containment.
+		With this in mind, it is odd that collector once again came to absorb what was left of its energy after its defeat.
+		How quaint.
+		'''
+	Pharoah:
+		'''
+		There was once a Pharaoh in the deserts here.
+		This sandy kingdom was his, and he ruled over it with a golden fist.
+		It is a shame his curse claimed his life; I had a feeling he would have made a formidable ally in my army.
+		Now all that remains is his buried tomb.
+		'''
+	Advisor:
+		'''
+		I know not of this "Advisor" and its origins,
+		but it seemed to be much in‑tune with the void energy lying deep within the crust of Terraria.
+		As who chained here, maybe you could find the answers of that secret
+		from the collector that absorbed its essence after its defeat.
+		'''
+	Glowmoth:
+		'''
+		This moth‑like creature is interesting, as it makes its homes within the same glowing, mushroom‑infested caves as another similar beast.
+		It seems to emit some sort of bioluminescent glow, reminiscent of the void…
+		perhaps it resides in these caves for their latent void energy?
+		Whatever the case may be, it is beyond me.
+		'''
 }
 
 Items: {
@@ -72,6 +339,7 @@ Items: {
 		LoreSerpent.DisplayName: Subspace Serpent
 		LoreProvi.DisplayName: Galactica
 		LoreMirror.DisplayName: The Mirror
+		LoreDylan.DisplayName: Dylan
 	}
 
 	CatastrophicFabricationsMusicBox: {
@@ -127,6 +395,20 @@ Items: {
 	ProphecyMusicBox: {
 		DisplayName: Music Box (Prophecy)
 		Tooltip: Plays 'Reality of the Prophecy' by theforge129
+	}
+
+	SuspiciousLookingPumpkin: {
+		DisplayName: Suspicious Looking Pumpkin
+		Tooltip:
+			'''
+			Summons the Lich when used on the Ancient Phylactery
+			Not consumable
+			'''
+	}
+
+	AstrageldonRelic: {
+		DisplayName: Infernal Astrageldon Relic
+		Tooltip: ""
 	}
 }
 
@@ -184,7 +466,11 @@ Configs: {
 		}
 
 		CalamityBalanceChanges: {
-			Tooltip: Adjusts many of Calamity Vanilla changes back to thier Vanilla values.
+			Tooltip:
+				'''
+				Modifies a few Calamity items that are either undertuned or overtuned.
+				Also adjusts a few cross-mod recipes to mantain balance.
+				'''
 			Label: Calamity Balance Changes
 		}
 
@@ -316,7 +602,11 @@ Configs: {
 
 		EnableInterlude4: {
 			Label: Enable Interlude 4
-			Tooltip: Enables/Disables the 4th Interlude theme will play after the defeat of Supreme Calamitas.
+			Tooltip:
+				'''
+				Enables/Disables the 4th Interlude theme will play after both the Exo Mechs & Supreme Calamitas have been defeated.
+				This song will override Their Fabricator & Acceptance when it plays
+				'''
 		}
 
 		AdjustAdvisorSpawnConditions: {
@@ -464,6 +754,11 @@ Buffs: {
 	BrokenOath: {
 		DisplayName: Broken Oath
 		Description: Do no harm - Hippocrates
+	}
+
+	BubbleShock: {
+		DisplayName: Bubble Shock
+		Description: You can't be affected by any more bubbles!
 	}
 }
 

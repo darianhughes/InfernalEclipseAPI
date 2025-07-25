@@ -17,15 +17,34 @@ namespace InfernalEclipseAPI.Core.Systems
         public override void PostSetupContent()
         {
             // Try to get the mod and item
-            if (!ModLoader.TryGetMod("ThoriumMod", out Mod thorium)
-                || !thorium.TryFind("NinjaEmblem", out ModItem ninjaEmblem))
-                return;
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium)
+                && thorium.TryFind("NinjaEmblem", out ModItem ninjaEmblem))
+            {
+                int type = ninjaEmblem.Type;
+                string replacementPath = "InfernalEclipseAPI/Assets/Textures/Items/HeroEmblem";
 
-            int type = ninjaEmblem.Type;
-            string replacementPath = "InfernalEclipseAPI/Assets/Textures/Items/HeroEmblem";
+                // Replace the texture in TextureAssets.Item
+                TextureAssets.Item[type] = ModContent.Request<Texture2D>(replacementPath, AssetRequestMode.ImmediateLoad);
+            }
 
-            // Replace the texture in TextureAssets.Item
-            TextureAssets.Item[type] = ModContent.Request<Texture2D>(replacementPath, AssetRequestMode.ImmediateLoad);
+            if (ModLoader.TryGetMod("ClamityMusic", out Mod clam))
+            {
+                if (clam.TryFind("ClamityTitleMusicBox", out ModItem clamTitleMusicBox))
+                {
+                    int type = clamTitleMusicBox.Type;
+                    string replacementPath = "InfernalEclipseAPI/Assets/Textures/Items/ClamityTitleScreen";
+
+                    TextureAssets.Item[type] = ModContent.Request<Texture2D>(replacementPath, AssetRequestMode.ImmediateLoad);
+                }
+
+                if (clam.TryFind("ClamityTitleMusicBoxTile", out ModTile clamTitleMusicBoxTile))
+                {
+                    int type = clamTitleMusicBoxTile.Type;
+                    string replacementPath = "InfernalEclipseAPI/Assets/Textures/Tiles/ClamityTitleScreenTile";
+
+                    TextureAssets.Tile[type] = ModContent.Request<Texture2D>(replacementPath, AssetRequestMode.ImmediateLoad);
+                }
+            }
         }
 
         public override void Unload()
@@ -35,6 +54,19 @@ namespace InfernalEclipseAPI.Core.Systems
                 && thorium.TryFind("NinjaEmblem", out ModItem ninjaEmblem))
             {
                 TextureAssets.Item[ninjaEmblem.Type] = null;
+            }
+
+            if (ModLoader.TryGetMod("ClamityMusic", out Mod clam))
+            {
+                if (clam.TryFind("ClamityTitleMusicBox", out ModItem clamTitleMusicBox))
+                {
+                    TextureAssets.Item[clamTitleMusicBox.Type] = null;
+                }
+
+                if (clam.TryFind("ClamityTitleMusicBoxTile", out ModTile clamTitleMusicBoxTile))
+                {
+                    TextureAssets.Tile[clamTitleMusicBoxTile.Type] = null;
+                }
             }
         }
     }

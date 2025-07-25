@@ -7,6 +7,7 @@ using System.Reflection;
 using InfernumMode.Core.Balancing;
 using System.Security.Policy;
 using CalamityMod.Items.Tools;
+using CalamityMod.Items.Weapons.Melee;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -87,6 +88,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (item.type == ItemID.HoundiusShootius)
                 {
                     item.damage = 60;
+                }
+
+                if (item.type == ItemID.ButchersChainsaw)
+                {
+                    item.damage = 110;
                 }
             }
 
@@ -2748,7 +2754,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TidalWave", item))
                     {
-                        item.damage = 160;
+                        item.damage = 190;
                     }
                     #endregion
                     #endregion
@@ -3088,6 +3094,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useTime = 26;
                         item.useAnimation = 26;
                         item.damage = 104;
+                    }
+
+                    if (UnsafeGetItem(thorium, "BubbleBulwarkWand", item))
+                    {
+                        item.useTime = 56;
+                        item.useAnimation = 56;
                     }
 
                     if (GetItem(thorium, "HolyHammer", item))
@@ -3746,8 +3758,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Gelatin Therapy
                 if (item.type == calBardHeal.Find<ModItem>("GelatinTherapy").Type)
                 {
-                    item.useTime = 256;
-                    item.useAnimation = 256;
+                    item.useTime = 86;
+                    item.useAnimation = 86;
+                    item.autoReuse = true;
                 }
 
                 //Birthplace of Stars
@@ -3782,6 +3795,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(calBardHeal, "TidalForce", item))
                 {
                     item.damage = 231;
+                }
+
+                if (UnsafeGetItem(calBardHeal, "HydrogenSulfide", item))
+                {
+                    item.damage = 133;
                 }
 
                 if (GetItem(calBardHeal, "SARS", item))
@@ -3854,7 +3872,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Will of the Ragnarok
                 if (GetItem(calBardHeal, "WilloftheRagnarok", item))
                 {
-                    item.damage = 77;
+                    item.damage = 170;
                 }
 
                 //Cherubim Omega

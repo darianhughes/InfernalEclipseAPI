@@ -12,6 +12,7 @@ using Terraria.ID;
 using ThoriumMod.Items.Donate;
 using CalamityMod.CalPlayer;
 using CalamityMod.NPCs;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {
@@ -331,22 +332,22 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 new Color(251, 198, 207),
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
-            string moltenScaleInfo = "Nearby enemies will melt away";
-            string chiseledBarrierInfo = "Surrounds you with 4 orbital projectiles\nLaunches attackers away from you with javelins";
-            string chiseledHiddenInfo = "Projectiles disabled when hidden";
-            string olympianAegisInfo = "Increases void gain by 2 and life regeneration by 1\nReduces damage taken by 7% and increases critical strike chance by 4%";
+            string moltenScaleInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MoltenScale");
+            string chiseledBarrierInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ChiseledBarrier");
+            string chiseledHiddenInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ChiseledHidden");
+            string olympianAegisInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Olympian");
             string lifeQuartzShieldInfo1 = "Increases the rate at which you regenerate life";
             string lifeUnder25Info = "Receiving damage below 25% life surrounds you in a protective bubble\nWhile in the bubble, you will recover life equal to your bonus healing every second";
             string lifeUnder25Info2 = "Additionally, damage taken will be reduced by 10%\nThis effect needs to recharge for 30 seconds after triggering";
-            string motpInfo = "Dispels up to one damaging debuff off of you every 10 seconds";
-            string cotsInfo = "You quickly gain up to 20% damage reduction over time\nGetting hit briefly reduces this bonus to -10% damage reduction\nWhile this bonus is above 0%, you gain up to 2 life recovery and block 1 damage attacks";
-            string sweetInfo1 = "Increases movement speed and when damaged";
-            string sweetInfo2 = "Causes bees & stars to appear and douses the user in honey when damaged";
-            string sweetAltInfo = "Causes bees to appear and douses the user in honey when damaged";
-            string tdInfo = "When below 25% life, you will rapidly regenerate life and gain increased defense";
-            string daInfo = "Grants bonus invincibility frames based on your missing health\nThis effect scales from 10 frames at full HP to 40 frames at 25% or less HP";
-            string shsInfo = "Getting hit surrounds you with ice shards\nIncreases max life by 20";
-            string pgInfo = "Generates a fiery barrier that burns incoming hostile projectile\nAfter burning a projectile, the shield must regenerate for 10 seconds\nWhile below 25% life, the shield generates twice as fast";
+            string motpInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Mantle");
+            string cotsInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.COTS");
+            string sweetInfo1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Sweet1");
+            string sweetInfo2 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SweetAlt");
+            string sweetAltInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Sweet2");
+            string tdInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.TerraDefend");
+            string daInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.DA");
+            string shsInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SHS");
+            string pgInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.PlasmaGen");
 
             if (sots != null && (item.type == ModContent.ItemType<AsgardsValor>() || item.type == ModContent.ItemType<AsgardianAegis>() || item.type == ModContent.ItemType<OrnateShield>()))
             {

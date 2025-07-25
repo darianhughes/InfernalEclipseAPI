@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 {
@@ -57,7 +58,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
             Color lerpedColor = Color.Lerp(Color.White, new Color(30, 144, 255), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
             Color astraWarningColor = Color.Lerp(Color.White, new Color(110, 42, 259), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
 
-            string progressionText = "Damage will scale with progression";
+            string progressionText = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ScytheScale");
 
             tooltips.Add(new TooltipLine(Mod, "ScytheoftheAbandonedGodDamageInfo", progressionText)
             {
@@ -65,8 +66,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
             });
 
             string tooltipText = Main.LocalPlayer.slotsMinions > 0
-                ? "Damage reduced while summons are active"
-                : "Has reduced damage if any summons are active";
+                ? Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ScytheSummonOn")
+                : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ScytheSummon");
 
             tooltips.Add(new TooltipLine(Mod, "ScytheoftheAbandonedGodInfo", tooltipText)
             {

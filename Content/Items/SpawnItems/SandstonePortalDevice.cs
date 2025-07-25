@@ -33,6 +33,9 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
         public override void SetDefaults()
         {
             Item.CloneDefaults(ModContent.ItemType<SandstormsCore>());
+            Item.useTime = 60;
+            Item.useAnimation = 60;
+            Item.autoReuse = false;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
@@ -47,6 +50,8 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
 
         public override bool? UseItem(Player player)
         {
+            SoundEngine.PlaySound(AstralBeacon.UseSound);
+            SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen);
             if (SubworldSystem.IsActive<LostColosseum>())
                 SubworldSystem.Exit();
             else
@@ -57,39 +62,39 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
                     return true;
                 }
 
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    Vector2 spawnPosition = player.Center - Vector2.UnitY * 800f;
-                    NPC.NewNPC(player.GetSource_ItemUse(Item), (int)spawnPosition.X, (int)spawnPosition.Y, ModContent.NPCType<BereftVassal>());
-                }
-                else
-                {
-                    SoundEngine.PlaySound(AstralBeacon.UseSound);
-                    SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen);
-                    Main.LocalPlayer.Infernum_Biome().PositionBeforeEnteringSubworld = Main.LocalPlayer.Center;
-                    SubworldSystem.Enter<LostColosseum>();
-                }
+                Main.LocalPlayer.Infernum_Biome().PositionBeforeEnteringSubworld = Main.LocalPlayer.Center;
+                SubworldSystem.Enter<LostColosseum>();
+
+                //if (Main.netMode != NetmodeID.MultiplayerClient)
+                //{
+                //    Main.LocalPlayer.Infernum_Biome().PositionBeforeEnteringSubworld = Main.LocalPlayer.Center;
+                //    SubworldSystem.Enter<LostColosseum>();
+                //}
+                //else
+                //{
+                //    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<BereftVassal>());
+                //}
             }
             return true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+            if (WorldSaveSystem.HasGeneratedColosseumEntrance || SubworldSystem.IsActive<LostColosseum>())
             {
-                tooltips.Add(new TooltipLine(Mod, "SandstonePortalDeviceInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SandstonePortalDeviceInfoMP")) { OverrideColor = Color.Lerp(Color.Orange, Color.Yellow, 0.55f) });
+                tooltips.Add(new TooltipLine(Mod, "SandstonePortalDeviceInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SandstonePortalDeviceInfo")) { OverrideColor = Color.Lerp(Color.Orange, Color.Yellow, 0.55f) });
             }
             else
             {
-                if (WorldSaveSystem.HasGeneratedColosseumEntrance || SubworldSystem.IsActive<LostColosseum>())
-                {
-                    tooltips.Add(new TooltipLine(Mod, "SandstonePortalDeviceInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SandstonePortalDeviceInfo")) { OverrideColor = Color.Lerp(Color.Orange, Color.Yellow, 0.55f) });
-                }
-                else
-                {
-                    tooltips.Add(new TooltipLine(Mod, "NoGatewayWarning", Utilities.GetLocalization("Items.SandstormsCore.GatewayWarning").Value) { OverrideColor = Color.Orange });
-                }
+                tooltips.Add(new TooltipLine(Mod, "NoGatewayWarning", Utilities.GetLocalization("Items.SandstormsCore.GatewayWarning").Value) { OverrideColor = Color.Orange });
             }
+            //if (Main.netMode != NetmodeID.MultiplayerClient)
+            //{
+            //}
+            //else
+            //{
+            //    tooltips.Add(new TooltipLine(Mod, "SandstonePortalDeviceInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SandstonePortalDeviceInfoMP")) { OverrideColor = Color.Lerp(Color.Orange, Color.Yellow, 0.55f) });
+            //}
         }
 
         public override void AddRecipes()

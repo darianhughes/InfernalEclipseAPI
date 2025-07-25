@@ -4,7 +4,7 @@
 [b]Check out the associated mod pack here:[/b]
 https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
-Infernal Eclipse of Ragnarok is a ultra modded Infernum Mode addon which currently includes major support for these content mods included in the associated mod pack:
+Infernal Eclipse of Ragnarok is an ultra-modded Infernum Mode addon which currently includes major support for these content mods included in the associated mod pack:
 [list]
 	[*] Calamity Mod (obviously)
 	[*] Thorium Mod
@@ -36,15 +36,17 @@ This API currently adds the following:
 	[*] Some minor cross-mod improvements for other mods outside main mod pack.
 [/list]
 
-In the future, this will be a content mod that has it's own story including each of the mods in the mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder.
+In the future, this will be a content mod that has its own story, including each of the mods in the mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder.
 
 The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
 
 If you have any other issues please report them in the [url=https://discord.gg/tc5nZdRvaU] Discord server[/url]. 
 
+You can also check out the official wiki for our mod: https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok
+
 Also check out [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url] mod, as most of the item balance changes in this mod came from that mod and were created by him!
 
-Thank you to the Bereft Souls team, as well as each of the individuals for each mod in the mod pack for making this possible.
+Very special thanks to the Bereft Souls & Community Souls Expansion teams, as well as each of the individuals for each mod in the mod pack for making this possible.
 
 Created by the Infernal Eclipse of Ragnarok Team:
 [list]
@@ -64,13 +66,15 @@ With some support from the following contributors:
 	[*] Soltan - Playtester, Item Rebalance Designer, & Crafting Tree Designer
 	[*] cheesenuggets - Crafting Tree Designer
 	[*]	Pixus, Yelmut, & Pil - Spriters
+	[*] Pudding - Simpllified Chinese localization
+	[*] Aizen522 - Russian localization
 [/list]
 
 And special thanks to the following creators for the music in this mod:
 [list]
-	[*] CDMusic: "youEnsemble of Fools (Encore Mix)"
+	[*] CDMusic: "Ensemble of Fools (Encore Mix)"
 	[*] Kuudray: "TWISTED GARDEN [Remix]"
 	[*] psykomatic: "Descent Of Divinities"
-	[*] TheForge: "Calamity Before the Cynosure" & an unnamed song
+	[*] theforge128: "Calamity Before the Cynosure" & an unnamed song
 	[*] TheTrester: "Omiscience Of Gods"
 [/list]

@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -34,7 +35,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "MirrorLore", "I stared into it for a long while, but like any other mirror, I only saw myself.\nBut even then, something felt... different. It felt wrong, almost... twisted.\nI disregarded it. But even now, I can feel the piercing gaze my reflection had... shooting directly through my skull.\nOnce you come so far, the hardest part of your journey is facing yourself.");
+            TooltipLine fullLore = new(Mod, "MirrorLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Mirror"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

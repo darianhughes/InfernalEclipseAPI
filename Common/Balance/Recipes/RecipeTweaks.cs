@@ -228,13 +228,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             }
                         }
 
-                        if (thorium.TryFind("LodestoneJavelin", out ModItem lodeJav))
-                            if (recipe.HasResult(lodeJav))
-                                recipe.DisableRecipe();
+                        //if (thorium.TryFind("LodestoneJavelin", out ModItem lodeJav))
+                        //    if (recipe.HasResult(lodeJav))
+                        //        recipe.DisableRecipe();
 
-                        if (thorium.TryFind("ValadiumThrowingAxe", out ModItem valdiumAxe))
-                            if (recipe.HasResult(valdiumAxe))
-                                recipe.DisableRecipe();
+                        //if (thorium.TryFind("ValadiumThrowingAxe", out ModItem valdiumAxe))
+                        //    if (recipe.HasResult(valdiumAxe))
+                        //        recipe.DisableRecipe();
 
                         if (thorium.TryFind("AromaticBulb", out ModItem bulb))
                         {
@@ -267,16 +267,23 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         string[] disabledItems =
                         {
                             "KineticPotion",
-                            "ChlorophyteTomahawk",
+                            //"ChlorophyteTomahawk",
                             "DemonBloodBow",
                             "MyceliumGatlingGun",
-                            "TimeWarp"
+                            "TimeWarp",
+                            "MoltenKnife"
                         };
 
                         foreach (string item in disabledItems)
                             if (thorium.TryFind(item, out ModItem tempItem))
                                 if (recipe.HasResult(tempItem))
                                     recipe.DisableRecipe();
+
+                        if (recipe.HasIngredient(thorium.Find<ModItem>("MoltenKnife")))
+                        {
+                            recipe.RemoveIngredient(thorium.Find<ModItem>("MoltenKnife").Type);
+                            recipe.AddIngredient<InfernalKris>();
+                        }
                     }
 
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -390,7 +397,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                     recipe.AddIngredient(ModContent.ItemType<AuricBar>());
                                 }
                             }
-                            if (thorium.TryFind("MagmaSeerMask", out ModItem magmaseer1))
+                            if (thorium.TryFind("MagmaSeersMask", out ModItem magmaseer1))
                             {
                                 if (recipe.HasResult(magmaseer1))
                                 {
@@ -414,7 +421,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                     recipe.AddIngredient(ModContent.ItemType<AuricBar>());
                                 }
                             }
-                            if (thorium.TryFind("PyromancersCowl", out ModItem pyro1))
+                            if (thorium.TryFind("PyromancerCowl", out ModItem pyro1))
                             {
                                 if (recipe.HasResult(pyro1))
                                 {
@@ -422,7 +429,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                     recipe.AddIngredient(ModContent.ItemType<AuricBar>());
                                 }
                             }
-                            if (thorium.TryFind("PyromancersLeggings", out ModItem pyro2))
+                            if (thorium.TryFind("PyromancerLeggings", out ModItem pyro2))
                             {
                                 if (recipe.HasResult(pyro2))
                                 {
@@ -430,7 +437,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                     recipe.AddIngredient(ModContent.ItemType<AuricBar>());
                                 }
                             }
-                            if (thorium.TryFind("PyromancersTabard", out ModItem pyro3))
+                            if (thorium.TryFind("PyromancerTabard", out ModItem pyro3))
                             {
                                 if (recipe.HasResult(pyro3))
                                 {
@@ -454,7 +461,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                     recipe.AddIngredient(ModContent.ItemType<AuricBar>());
                                 }
                             }
-                            if (thorium.TryFind("SoloistsHat", out ModItem solo1))
+                            if (thorium.TryFind("SoloistHat", out ModItem solo1))
                             {
                                 if (recipe.HasResult(solo1))
                                 {
@@ -495,66 +502,69 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 }
                             }
 
-                            ModItem[] preMechIngredients =
-                            {
-                                GetItem(thorium, "BenignBalloon"),
-                                GetItem(thorium, "AbyssalChitin"),
-                                GetItem(thorium, "CrystalGeode"),
-                                GetItem(thorium, "UnfathomableFlesh"),
-                                GetItem(thorium, "GreenDragonScale"),
-                                GetItem(thorium, "HallowedCharm"),
-                                GetItem(thorium, "LodeStoneIngot"),
-                                GetItem(thorium, "CeruleanMorel"),
-                                GetItem(thorium, "PharaohsBreath"),
-                                GetItem(thorium, "SoulofPlight"),
-                                GetItem(thorium, "ValadiumIngot"),
-                                GetItem(thorium, "PotionChaser"),
-                                GetItem(thorium, "BronzeAlloyFragments"),
-                                GetItem(thorium, "BloodCell")
-                            };
+                            if (CalamityConfig.Instance.EarlyHardmodeProgressionRework) 
+                            { 
+                                ModItem[] preMechIngredients =
+                                {
+                                    GetItem(thorium, "BenignBalloon"),
+                                    GetItem(thorium, "AbyssalChitin"),
+                                    GetItem(thorium, "CrystalGeode"),
+                                    GetItem(thorium, "UnfathomableFlesh"),
+                                    GetItem(thorium, "GreenDragonScale"),
+                                    GetItem(thorium, "HallowedCharm"),
+                                    GetItem(thorium, "LodeStoneIngot"),
+                                    GetItem(thorium, "CeruleanMorel"),
+                                    GetItem(thorium, "PharaohsBreath"),
+                                    GetItem(thorium, "SoulofPlight"),
+                                    GetItem(thorium, "ValadiumIngot"),
+                                    GetItem(thorium, "PotionChaser"),
+                                    GetItem(thorium, "BronzeAlloyFragments"),
+                                    GetItem(thorium, "BloodCell")
+                                };
 
-                            ModItem[] preMechItems = 
-                            {
-                                GetItem(thorium, "CrystalGeode"),
-                                GetItem(thorium, "UnfathomableFlesh"),
-                                GetItem(thorium, "GreenDragonScale"),
-                                GetItem(thorium, "SupportSash"),
-                                GetItem(thorium, "BalanceBloom"),
-                                GetItem(thorium, "ChronoOcarina"),
-                                GetItem(thorium, "CometCrossfire"),
-                                GetItem(thorium, "CorruptlingStaff"),
-                                GetItem(thorium, "CrimsonHoundStaff"),
-                                GetItem(thorium, "FrostwindCymbals"),
-                                GetItem(thorium, "IridescentStaff"),
-                                GetItem(thorium, "LustrousBaton"),
-                                GetItem(thorium, "MastersLibram"),
-                                GetItem(thorium, "Omniwrench"),
-                                GetItem(thorium, "StellarSystem"),
-                                GetItem(thorium, "Violin"),
-                                GetItem(thorium, "WindChimes")
-                            };
+                                ModItem[] preMechItems = 
+                                {
+                                    GetItem(thorium, "CrystalGeode"),
+                                    GetItem(thorium, "UnfathomableFlesh"),
+                                    GetItem(thorium, "GreenDragonScale"),
+                                    GetItem(thorium, "SupportSash"),
+                                    GetItem(thorium, "BalanceBloom"),
+                                    GetItem(thorium, "ChronoOcarina"),
+                                    GetItem(thorium, "CometCrossfire"),
+                                    GetItem(thorium, "CorruptlingStaff"),
+                                    GetItem(thorium, "CrimsonHoundStaff"),
+                                    GetItem(thorium, "FrostwindCymbals"),
+                                    GetItem(thorium, "IridescentStaff"),
+                                    GetItem(thorium, "LustrousBaton"),
+                                    GetItem(thorium, "MastersLibram"),
+                                    GetItem(thorium, "Omniwrench"),
+                                    GetItem(thorium, "StellarSystem"),
+                                    GetItem(thorium, "Violin"),
+                                    GetItem(thorium, "WindChimes")
+                                };
 
-                            if (recipe.HasIngredient(ItemID.DynastyWood) && recipe.HasTile(TileID.MythrilAnvil))
-                            {
-                                recipe.RemoveTile(TileID.MythrilAnvil);
-                                recipe.AddTile(TileID.Anvils);
-                            }
-
-                            foreach (ModItem item in preMechIngredients)
-                            {
-                                if (recipe.HasIngredient(item) && recipe.HasTile(TileID.MythrilAnvil) && !recipe.HasResult(GetItem(thorium, "DragonTalonNecklace")))
+                                if (recipe.HasIngredient(ItemID.DynastyWood) && recipe.HasTile(TileID.MythrilAnvil))
                                 {
                                     recipe.RemoveTile(TileID.MythrilAnvil);
                                     recipe.AddTile(TileID.Anvils);
                                 }
-                            }
 
-                            foreach (ModItem iitem in preMechItems)
-                            {
-                                if (recipe.HasResult(iitem) && recipe.HasTile(TileID.MythrilAnvil))
+                                foreach (ModItem item in preMechIngredients)
                                 {
-                                    recipe.RemoveTile(TileID.MythrilAnvil);
-                                    recipe.AddTile(TileID.Anvils);
+                                    if (recipe.HasIngredient(item) && recipe.HasTile(TileID.MythrilAnvil) && !recipe.HasResult(GetItem(thorium, "DragonTalonNecklace")))
+                                    {
+                                        recipe.RemoveTile(TileID.MythrilAnvil);
+                                        recipe.AddTile(TileID.Anvils);
+                                    }
+                                }
+
+                                foreach (ModItem iitem in preMechItems)
+                                {
+                                    if (recipe.HasResult(iitem) && recipe.HasTile(TileID.MythrilAnvil))
+                                    {
+                                        recipe.RemoveTile(TileID.MythrilAnvil);
+                                        recipe.AddTile(TileID.Anvils);
+                                    }
                                 }
                             }
                         }
@@ -580,6 +590,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.RemoveIngredient(holySycthe.Type);
                         recipe.AddIngredient(elementalReaper.Type);
                     }
+
+                    if (recipe.HasResult(ragCal.Find<ModItem>("MarbleScythe")))
+                    {
+                        recipe.ChangeIngredientStack(ragCal.Find<ModItem>("EnchantedMarble").Type, 3);
+                        recipe.AddIngredient(thorium.Find<ModItem>("BronzeAlloyFragments"), 8);
+                        recipe.AddIngredient(thorium.Find<ModItem>("SpiritDroplet"), 10);
+                    }
                 }
 
                 //Thorium Bosses Reworked
@@ -601,38 +618,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             {
                                 recipe.RemoveIngredient(ItemID.Wire);
                                 recipe.AddIngredient(ModContent.ItemType<StormlionMandible>(), 1);
-                            }
-                        }
-
-                        if (thorRework.TryFind("ExecutionersContract", out ModItem contract))
-                        {
-                            if (recipe.HasResult(contract))
-                            {
-                                recipe.RemoveTile(TileID.Loom);
-                                recipe.AddTile(TileID.LunarCraftingStation);
-                                recipe.AddIngredient(thorium.Find<ModItem>("CelestialFragment"), 5);
-                            }
-                        }
-
-                        if (thorRework.TryFind("SealedContract", out ModItem sealedContract))
-                        {
-                            if (recipe.HasResult(sealedContract))
-                            {
-                                recipe.RemoveTile(TileID.MythrilAnvil);
-                                recipe.AddTile(ModContent.TileType<CosmicAnvil>());
-                                recipe.AddIngredient(ModContent.ItemType<RuinousSoul>());
-                            }
-                        }
-
-                        if (thorRework.TryFind("FanDonations", out ModItem fanDOnations))
-                        {
-                            if (recipe.HasResult(fanDOnations))
-                            {
-                                recipe.RemoveTile(TileID.WorkBenches);
-                                recipe.AddTile(TileID.LunarCraftingStation);
-                                recipe.RemoveTile(TileID.TinkerersWorkbench);
-                                recipe.RemoveIngredient(thorium.Find<ModItem>("BloomWeave").Type);
-                                recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 5);
                             }
                         }
                     }

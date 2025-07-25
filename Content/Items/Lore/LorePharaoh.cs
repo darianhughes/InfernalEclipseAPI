@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
 using ThoriumMod.NPCs;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -37,7 +38,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "CurseLore", "There was once a Pharaoh in the deserts here.\nThis sandy kingdom was his, and he ruled over it with a golden fist.\nIt is a shame his curse claimed his life; I had a feeling he would have made a formidable ally in my army.\nNow all that remains is his burried tomb.");
+            TooltipLine fullLore = new(Mod, "CurseLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Pharoah"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

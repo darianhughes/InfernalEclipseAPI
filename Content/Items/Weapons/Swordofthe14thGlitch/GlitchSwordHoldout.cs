@@ -104,6 +104,19 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch
             float w = reader.ReadSingle();
             Rotation = new(x, y, z, w);
         }
+
+        public override bool PreAI()
+        {
+            Player player = Main.player[Projectile.owner];
+
+            if (player.mount.Active)
+            {
+                player.mount.Dismount(player);
+            }
+
+            return base.PreAI();
+        }
+
         public override void AI()
         {
             base.AI();

@@ -1,0 +1,43 @@
+Items: {
+	ScryingGlass: {
+		DisplayName: 全知水晶球
+		Tooltip: 按下'{$Keybinds.AccessoryAbility.DisplayName}'饰品能力键可以开启/关闭增大视野范围的效果
+	}
+
+	SoulofPlight: {
+		DisplayName: 恶意之魂
+		Tooltip: “可恶生物的精华”
+	}
+
+	TerraKnife: {
+		DisplayName: 泰拉飞刀
+		Tooltip:
+			'''
+			左键快速扔出泰拉匕首
+			右键扔出一把穿刺泰拉小刀，持续伤害选中的目标
+			潜伏攻击会同时投掷匕首和小刀，小刀在命中目标时发起一连串斩击
+			'''
+	}
+
+	GelGlove: {
+		DisplayName: 凝胶手套
+		Tooltip:
+			'''
+			扔出可以在表面反弹的凝胶球
+			可以通过蓄力来增加伤害，反弹次数和大小
+			潜伏攻击在飞行过程中向附近敌人发射手里剑
+			'''
+	}
+
+	TidalWave: {
+		DisplayName: 海潮波
+		Tooltip:
+			'''
+			“以潮汐之怒扫除你的敌人……”
+			扔出一个大型水之手里剑，会释放微型海波
+			潜伏攻击会产生一道可以聚拢附近敌怪的伤害性浪潮
+			'''
+	}
+
+	NinjaEmblem.DisplayName: 英雄徽章
+}

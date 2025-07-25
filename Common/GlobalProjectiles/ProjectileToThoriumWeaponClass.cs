@@ -8,6 +8,7 @@ using ThoriumMod.Items.Cultist;
 using ThoriumMod;
 using Terraria;
 using ThoriumMod.Projectiles;
+using CalamityMod.Projectiles.Melee;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles
 {
@@ -18,7 +19,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
         {
             if (!InfernalConfig.Instance.ChanageWeaponClasses) return;
 
-            if (entity.type == ModContent.ProjectileType<AncientFirePro>() || entity.type == ModContent.ProjectileType<AncientFirePro2>())
+            if (entity.type == ModContent.ProjectileType<AncientFirePro>() || entity.type == ModContent.ProjectileType<AncientFirePro2>() || entity.type == ModContent.ProjectileType<BurningMeteor>())
             {
                 entity.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
             }

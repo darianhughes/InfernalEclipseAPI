@@ -9,6 +9,7 @@ using ThoriumMod;
 using ThoriumMod.Utilities;
 using Microsoft.Xna.Framework;
 using System.Security.Policy;
+using Terraria.Localization;
 
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftingTree
@@ -128,12 +129,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
                         }
                     }
 
-                    tooltips.Add(new TooltipLine(Mod, "MaxInsp", "Increases maximum inspiration by 5")
+                    tooltips.Add(new TooltipLine(Mod, "MaxInsp", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.OmniIns"))
                     {
                         OverrideColor = new Color?(InfernalRed)
                     });
 
-                    tooltips.Add(new TooltipLine(Mod, "HeadsetInfo", "Each unique empowerment you have increases movement speed by 2% and playing speed by 1%")
+                    tooltips.Add(new TooltipLine(Mod, "HeadsetInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.OmniEmp"))
                     {
                         OverrideColor = new Color?(InfernalRed)
                     });

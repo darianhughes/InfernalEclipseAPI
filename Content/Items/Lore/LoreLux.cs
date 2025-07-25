@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -48,7 +49,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "LuxLore", "While the Hallow has many that protect it, chaos spirits have no equal.\nNone of them had ever been sufficiently weakened for intelligent use,\nand Draedon ended up shoving them into constructs for the sole purpose of containment.\nWith this in mind, it is odd that collector once again came to absorb what was left\nof it's energy after its defeat. How quaint.");
+            TooltipLine fullLore = new(Mod, "LuxLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Lux"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

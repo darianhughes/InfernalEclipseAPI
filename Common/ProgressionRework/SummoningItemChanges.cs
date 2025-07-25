@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CalamityMod;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
 using CalamityMod.Items.SummonItems;
@@ -47,6 +48,16 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
 
                     if (hasSOTS)
                         recipe.AddIngredient<InfectedMothwingSpore>();
+                }
+
+                // Slime God
+                if (hasRagnarok)
+                {
+                    if (recipe.HasResult<OverloadedSludge>() && recipe.HasIngredient(ragnarok.Find<ModItem>("EnchantedMarble")) && recipe.HasIngredient(ragnarok.Find<ModItem>("EmpoweredGranite")))
+                    {
+                        recipe.ChangeIngredientStack(ragnarok.Find<ModItem>("EnchantedMarble").Type, 1);
+                        recipe.ChangeIngredientStack(ragnarok.Find<ModItem>("EmpoweredGranite").Type, 1);
+                    }
                 }
 
                 //Star Scouter post-Advisor if SOTS enabled, otherwise, still lock it after Evil Boss 2
@@ -96,8 +107,6 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 if (recipe.HasResult(ModContent.ItemType<BloodyWormFood>()))
                     recipe.AddIngredient(ItemID.TissueSample, 1);
 
-                //Crabulon
-
                 //Aquatic Scourage
                 if (recipe.HasIngredient(319) && recipe.HasIngredient(2626) && recipe.HasIngredient(ModContent.ItemType<SulphurousSand>()) && recipe.HasResult(ModContent.ItemType<Seafood>()))
                     recipe.DisableRecipe();
@@ -111,6 +120,13 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 //Forgotten One
 
                 //Ravager
+                if (hasRagnarok)
+                {
+                    if (recipe.HasResult<DeathWhistle>())
+                    {
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("CursedCloth").Type);
+                    }
+                }
 
                 //The Primoridals
                 if (hasThorium && ModLoader.TryGetMod("ThoriumRework", out Mod thorRework))

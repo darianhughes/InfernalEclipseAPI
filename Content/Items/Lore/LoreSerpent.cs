@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
 using ThoriumMod.NPCs;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -49,7 +50,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "SerpentLore", "There lies tales of mysterious serpent-like beings that roam the manifold between dimensions.\nMany say that they are too dangerous to face alone,\nand that they could kill anyone within an instant with the void energy they possess.\nThis one, however... is clearly juvenile.");
+            TooltipLine fullLore = new(Mod, "SerpentLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Subspace"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

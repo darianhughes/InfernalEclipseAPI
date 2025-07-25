@@ -143,9 +143,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
                 {
                     Recipe.Create(thorium.Find<ModItem>("VoltHatchet").Type)
-                        .AddIngredient(thorium.Find<ModItem>("AbyssalChitin").Type, 10)
-                        .AddIngredient(ragnarok.Find<ModItem>("EmpoweredGranite").Type, 8)
-                        .AddIngredient(thorium.Find<ModItem>("AquaiteBar").Type, 12)
+                        .AddIngredient(thorium.Find<ModItem>("AbyssalChitin").Type, 8)
+                        .AddIngredient(ragnarok.Find<ModItem>("EmpoweredGranite").Type, 3)
+                        .AddIngredient(thorium.Find<ModItem>("AquaiteBar").Type, 10)
                         .AddTile(TileID.Anvils)
                         .Register();
                 }

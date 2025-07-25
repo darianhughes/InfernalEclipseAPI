@@ -11,9 +11,14 @@ using Microsoft.Xna.Framework;
 using SOTS.Void;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using Terraria.ModLoader;
+using ThoriumMod.Items.BossLich;
+using ThoriumMod.Items.Icy;
+using ThoriumMod.Items.ThrownItems;
+using ThoriumMod.Projectiles.Thrower;
 
-namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
+namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
 {
     public enum StealthStrikeType
     {
@@ -33,7 +38,12 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         ShadeShuriken,
         GelGlove,
         TidalWave,
+        LodestoneJavelin,
+        ValadiumAxe,
+        ChlorophyteTomahawk,
     }
+
+    [ExtendsFromMod("ThoriumMod")]
     public class ThoriumStealthStrikes : GlobalItem
     {
         public override bool InstancePerEntity => true;
@@ -184,8 +194,54 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 }
             }
 
+            // ===================== LODESTONE JAVELIN =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Lodestone Javelin")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.LodestoneJavelin);
+                    }
+
+                    return false; // Prevent default behavior
+                }
+            }
 
 
+            // ===================== VALADIUM BATTLE AXE =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Valadium Throwing Axe")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.ValadiumAxe);
+                    }
+
+                    return false; // Prevent default behavior
+                }
+            }
 
             // ===================== CLOCKWORK BOMB =====================
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Clockwork Bomb")
@@ -205,6 +261,33 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                     if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
                     {
                         stealthGlobal.SetupAsStealthStrike(StealthStrikeType.ClockworkBomb);
+                    }
+
+                    return false;
+                }
+            }
+
+            // ===================== CHLOROPHYTE TOMAHAWK =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Chlorophyte Tomahawk")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    velocity *= 0.75f;
+                    damage = (int)(damage * 1f);
+
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        velocity,
+                        type,
+                        damage,
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.ChlorophyteTomahawk);
                     }
 
                     return false;
@@ -482,7 +565,7 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                         player.whoAmI
                     );
 
-                    Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<TidalWaveWhirlpool>(), (int)(damage/2), knockback, player.whoAmI);
+                    Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<TidalWaveWhirlpool>(), damage/2, knockback, player.whoAmI);
 
                     if (Main.projectile.IndexInRange(projID) && Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
                     {
@@ -496,11 +579,11 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
             return true;
         }
 
+        //EXHAUSTION REMOVAL
         public override void SetDefaults(Item item)
         {
             if (!ModLoader.TryGetMod("ThoriumMod", out Mod thorium)) return;
 
-            //EXHAUSTION REMOVAL
             //TERRA KNIFE
             if (item.type == thorium.Find<ModItem>("TerraKnife").Type)
             {
@@ -560,92 +643,60 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         //TOOLTIPS
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Cactus Needle")
+            if (item.type == ModContent.ItemType<CactusNeedle>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw out needles in a tight fan of 3")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.CactusNeedle")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Icy Tomahawk")
+            if (item.type == ModContent.ItemType<IcyTomahawk>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw out 4 tomahawks of different speeds that last longer and pierce more")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.IcyTomahawk")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumRework" && item.Name == "Zephyr's Ruin")
+            if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework))
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw a stronger spear that always crits")
-                {
-                    OverrideColor = Color.White
-                });
+                if (item.type == thorRework.Find<ModItem>("ZephyrsRuin").Type)
+                    tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.ZephyrRuin")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Clockwork Bomb")
+            if (item.type == ModContent.ItemType<ClockWorkBomb>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes create a larger field that lasts longer")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.ClockworkBomb")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soul Bomb")
+            if (item.type == ModContent.ItemType<SoulBomb>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes release a burst of homing souls on detonation")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.SoulBomb")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Playing Card")
+            if (item.type == ModContent.ItemType<MagicCard>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw 5 homing cards that are always explosive")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.PlayingCard")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soulslasher")
+            if (item.type == ModContent.ItemType<Soulslasher>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes will also aggressively home after hitting an enemy")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.Soulslasher")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "White Dwarf Cutter")
+            if (item.type == ModContent.ItemType<WhiteDwarfKunai>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "During a stealth strike each hit creates Ivory flares that damage for 0.1% of the target's max HP")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.WhiteDwarfCutter")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Captain's Poignard")
+            if (item.type == ModContent.ItemType<CaptainsPoniard>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw a burst of 6 daggers and gives the player increased attack speed for 10 seconds")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.CaptainsPoignard")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Soft Serve Sunderer")
+            if (item.type == ModContent.ItemType<SoftServeSunderer>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes summon a rain of cones from above the hit enemy")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.SoftServeSunderer")) { OverrideColor = Color.White });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Shade Shuriken")
+            if (item.type == ModContent.ItemType<BugenkaiShuriken>())
             {
-                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", "Stealth strikes throw a larger, faster shuriken that has increased pierce")
-                {
-                    OverrideColor = Color.White
-                });
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.ShadeShuriken")) { OverrideColor = Color.White });
             }
         }
     }

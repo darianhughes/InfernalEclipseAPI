@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using InfernumMode.Content.Items.SummonItems;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 {
@@ -33,7 +34,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                         tooltip.Text = "You gain 5% damage reduction while dashing";
                     }
                 }
-                tooltips.Add(new TooltipLine(Mod, "CooldownInfo", "This effect has a 1.5 second cooldown")
+                tooltips.Add(new TooltipLine(Mod, "CooldownInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SlagsplitterCooldown"))
                 {
                     OverrideColor = new Color?(InfernalRed)
                 });

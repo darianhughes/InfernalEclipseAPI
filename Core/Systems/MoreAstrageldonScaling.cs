@@ -20,7 +20,7 @@ namespace InfernalEclipseAPI.Core.Systems
 
             public override void Load()
             {
-                if (ModLoader.TryGetMod("Cnl", out _))
+                if (ModLoader.TryGetMod("CnI", out _))
                     return;
 
                 try

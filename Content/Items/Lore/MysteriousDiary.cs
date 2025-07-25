@@ -45,7 +45,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "DiaryLore", "Turning to page one, you see nothing except a few words.\n\n\"Who the hell am I, that I still get to live a life?\"\n\nThe rest of the pages are blank...\n[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]\n-Stay tunned for the future of Infernal Eclipse of Ragnarok!-");
+            TooltipLine fullLore = new(Mod, "DiaryLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.MysteriousDiary"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

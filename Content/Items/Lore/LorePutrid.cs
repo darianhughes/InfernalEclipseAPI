@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
 using ThoriumMod.NPCs;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -37,7 +38,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "PutridLore", "A failed experiment, it would seem.\nIt has a certain hunger for Peanuts that grow on the surface, though the reasoning is unknown.\nIt is nowhere near the strength of some of the other gelatinous threats of this world,\nbut it was still formidable irregardless.");
+            TooltipLine fullLore = new(Mod, "PutridLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Putrid"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

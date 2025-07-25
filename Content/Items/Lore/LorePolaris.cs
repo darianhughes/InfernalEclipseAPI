@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore
 {
@@ -50,7 +51,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "PolarisLore", "When I had initially brought Draedon onto my army, he had immediately began\nwork on a supposed \"secret project\" that he refused to elaborate on.\nSoon after, he presented his first grim death machine.\nI knew it was fit for my army, however, his prowess shown was... promising. Very much so.");
+            TooltipLine fullLore = new(Mod, "PolarisLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Polaris"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

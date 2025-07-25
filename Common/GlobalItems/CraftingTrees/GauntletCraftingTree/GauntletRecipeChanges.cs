@@ -39,14 +39,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.GauntletCraftingTr
                 if (!InfernalConfig.Instance.MergeCraftingTrees)
                     return;
 
-                if (thorium != null)
+                if (recipe.HasResult<ElementalGauntlet>())
                 {
-                    if (recipe.HasResult<ElementalGauntlet>())
-                    {
-                        recipe.RemoveIngredient(ItemID.LunarBar);
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
-                        recipe.AddIngredient<CosmiliteBar>(8);
-                    }
+                    recipe.RemoveIngredient(ItemID.LunarBar);
+                    if (thorium != null) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
+                    recipe.AddIngredient<CosmiliteBar>(8);
                 }
             }
         }

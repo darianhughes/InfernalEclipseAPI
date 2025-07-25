@@ -19,7 +19,7 @@ using CalamityMod.Sounds;
 using CalamityMod;
 using InfernalEclipseAPI.Content.Projectiles;
 
-namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
+namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
 {
     public class StealthStrikeGlobalProjectile : GlobalProjectile
     {
@@ -28,6 +28,8 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         public bool isStealthStrike = false;
         public StealthStrikeType stealthType = StealthStrikeType.None;
         private bool appliedChanges = false;
+
+        private static HashSet<int> stealthCompatibleProjectiles;
 
         //BURST VARIABLES
         private int burstShotsFired = 0;
@@ -47,37 +49,91 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
         }
 
         //SPAWN PROJECTILE INHERETING
+        static StealthStrikeGlobalProjectile()
+        {
+            stealthCompatibleProjectiles = new HashSet<int>();
+
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            {
+                TryAdd(thorium, "ValadiumBattleAxePro");
+                TryAdd(thorium, "MagicCardPro");
+                TryAdd(thorium, "SoulslasherPro");
+                TryAdd(thorium, "LodestoneStaffPro");
+                TryAdd(thorium, "LodestoneStaffPro2");
+                TryAdd(thorium, "LodestoneStaffPro3");
+                TryAdd(thorium, "LodestoneStaffPro4");
+                TryAdd(thorium, "LodestoneStaffPro5");
+                TryAdd(thorium, "ClockWorkBombPro1");
+                TryAdd(thorium, "ClockWorkBombPro2");
+                TryAdd(thorium, "ClockWorkBombPro3");
+            }
+        }
+
+        private static void TryAdd(Mod mod, string name)
+        {
+            if (mod.TryFind(name, out ModProjectile proj))
+            {
+                stealthCompatibleProjectiles.Add(proj.Type);
+            }
+        }
+
+        private bool ShouldInheritStealth(int type)
+        {
+            return stealthCompatibleProjectiles.Contains(type);
+        }
+
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            // This ensures the child projectiles inherit stealth strike logic FOR CLOCKWORK
             if (source is EntitySource_Parent parentSource &&
-                Main.projectile.IndexInRange(parentSource.Entity?.whoAmI ?? -1))
+                parentSource.Entity is Projectile parentProj &&
+                parentProj.TryGetGlobalProjectile(out StealthStrikeGlobalProjectile parentStealth) &&
+                parentStealth.isStealthStrike &&
+                ShouldInheritStealth(projectile.type))
             {
-                Projectile parent = parentSource.Entity as Projectile;
+                isStealthStrike = true;
+                stealthType = parentStealth.stealthType;
 
-                if (parent != null && parent.TryGetGlobalProjectile(out StealthStrikeGlobalProjectile parentStealth) &&
-                    parentStealth.isStealthStrike && parentStealth.stealthType == StealthStrikeType.ClockworkBomb)
+                // Prevent Lodestone re-triggering the cascade
+                if (stealthType == StealthStrikeType.LodestoneJavelin)
+                {
+                    if (parentStealth.cameFromLodestoneStealth)
+                    {
+                        projectile.DamageType = ModContent.GetInstance<RogueDamageClass>();
+                        cameFromLodestoneStealth = true;
+                        return;
+                    }
+                }
+
+                // PLAYING CARD TRAIL SETUP
+                if (stealthType == StealthStrikeType.PlayingCard)
+                {
+                    projectile.oldPos = new Vector2[10]; // Trail length
+                    ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+                    projectile.extraUpdates = 1;
+                }
+
+                // SOULSLASHER behavior
+                if (stealthType == StealthStrikeType.Soulslasher)
+                {
+                    projectile.extraUpdates += 1;
+                    projectile.localNPCHitCooldown = 5;
+                    projectile.usesLocalNPCImmunity = true;
+                }
+
+                //CLOCKWORK BOMB
+                if (stealthType == StealthStrikeType.ClockworkBomb)
                 {
                     isStealthStrike = true;
                     stealthType = StealthStrikeType.ClockworkBomb;
                 }
-            }
 
-            //PLAYING CARD SPAWN
-            if (isStealthStrike && stealthType == StealthStrikeType.PlayingCard)
-            {
-                // Enable trail
-                projectile.oldPos = new Vector2[10]; // Trail length
-                ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-                projectile.extraUpdates = 1; // Optional for smoother trail
-            }
-
-            //SOULSLASHER SPAWN
-            if (isStealthStrike && stealthType == StealthStrikeType.Soulslasher)
-            {
-                projectile.extraUpdates += 1; // Optional: make it smoother
-                projectile.localNPCHitCooldown = 5; // Make it hit more often
-                projectile.usesLocalNPCImmunity = true;
+                // VALADIUM LOCAL IMMUNITY
+                if (parentStealth.cameFromValadiumStealth)
+                {
+                    cameFromValadiumStealth = true;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
+                }
             }
         }
 
@@ -144,12 +200,16 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
 
         //ON HIT
         public bool soulslasherAggressiveHoming = false;
+        public bool cameFromLodestoneStealth = false;
+        public bool cameFromValadiumStealth = false;
+        public bool alreadyTriggeredOnce = false;
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (!isStealthStrike)
                 return;
 
+            //WDC
             if (stealthType == StealthStrikeType.WhiteDwarfCutter)
             {
                 if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
@@ -174,11 +234,13 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 }
             }
 
+            //Soul Slasher
             if (isStealthStrike && stealthType == StealthStrikeType.Soulslasher)
             {
                 soulslasherAggressiveHoming = true;
             }
 
+            //SSS
             if (stealthType == StealthStrikeType.SoftServeSunderer)
             {
                 if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
@@ -218,11 +280,143 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 }
             }
 
+            //Terra Knife
             if (stealthType == StealthStrikeType.TerraKnife)
             {
                 int projType = ModContent.ProjectileType<TerratomereSlashCreator>();
 
                 Projectile.NewProjectile(new EntitySource_Misc("TerraKnifeStealthStrike"), target.Center, Vector2.Zero, projType, projectile.damage * 2, 0f, projectile.owner, target.whoAmI, Main.rand.NextFloat(MathHelper.TwoPi), 1);
+            }
+
+            //Lodestone Javelin
+            if (stealthType == StealthStrikeType.LodestoneJavelin && !cameFromLodestoneStealth)
+            {
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
+                    thorium.TryFind("LodestoneStaffPro", out ModProjectile cascadeProj))
+                {
+                    int cascadeType = cascadeProj.Type;
+
+                    Vector2 spawnPos = target.Center;
+
+                    int damage = (int)Math.Round(projectile.damage * 0.5f);
+
+                    int projID = Projectile.NewProjectile(
+                        projectile.GetSource_OnHit(target),
+                        spawnPos,
+                        Vector2.Zero,
+                        cascadeType,
+                        damage,
+                        0f,
+                        projectile.owner
+                    );
+
+                    if (Main.projectile.IndexInRange(projID))
+                    {
+                        Projectile newProj = Main.projectile[projID];
+
+                        if (newProj.TryGetGlobalProjectile(out StealthStrikeGlobalProjectile spawnedStealth))
+                        {
+                            spawnedStealth.isStealthStrike = true;
+                            spawnedStealth.stealthType = StealthStrikeType.LodestoneJavelin;
+                            spawnedStealth.cameFromLodestoneStealth = true;
+                        }
+
+                        newProj.DamageType = ModContent.GetInstance<RogueDamageClass>();
+
+                        newProj.localAI[0] = 45f;
+
+                        // Optional: sync the projectile to clients if needed
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, projID);
+                    }
+                }
+            }
+
+            //Valadium Throwing Axe
+            if (stealthType == StealthStrikeType.ValadiumAxe && !alreadyTriggeredOnce && !cameFromValadiumStealth)
+            {
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
+                    thorium.TryFind("ValadiumBattleAxePro", out ModProjectile axeProj))
+                {
+                    int axeType = axeProj.Type;
+                    Vector2 center = target.Center;
+
+                    int damage = (int)Math.Round(projectile.damage * 0.4f);
+
+                    for (int i = 0; i < 8; i++)
+                    {
+                        float angle = MathHelper.TwoPi * i / 8f;
+                        Vector2 offset = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 128f;
+                        Vector2 spawnPos = center + offset;
+                        Vector2 velocity = Vector2.Normalize(target.Center - spawnPos) * 10f;
+
+                        int id = Projectile.NewProjectile(
+                            projectile.GetSource_OnHit(target),
+                            spawnPos,
+                            velocity,
+                            axeType,
+                            damage,
+                            0f,
+                            projectile.owner
+                        );
+
+                        if (Main.projectile.IndexInRange(id))
+                        {
+                            Projectile newAxe = Main.projectile[id];
+
+                            if (newAxe.TryGetGlobalProjectile(out StealthStrikeGlobalProjectile axeStealth))
+                            {
+                                axeStealth.isStealthStrike = true;
+                                axeStealth.stealthType = StealthStrikeType.ValadiumAxe;
+                                axeStealth.cameFromValadiumStealth = true;
+                            }
+
+                            newAxe.DamageType = ModContent.GetInstance<RogueDamageClass>();
+
+                            // **Apply local immunity immediately here:**
+                            newAxe.usesLocalNPCImmunity = true;
+                            newAxe.localNPCHitCooldown = 10;
+
+                            // Spawn glowing dust poof effect like Thorium's ValadiumBattleAxePro
+                            for (int k = 0; k < 8; k++)
+                            {
+                                int dust = Dust.NewDust(
+                                    newAxe.position,
+                                    newAxe.width,
+                                    newAxe.height,
+                                    62, // glowing dust type
+                                    Main.rand.NextFloat(-3f, 3f),
+                                    Main.rand.NextFloat(-3f, 3f),
+                                    75,
+                                    default(Color),
+                                    1.5f
+                                );
+                                Main.dust[dust].noGravity = true;
+                            }
+
+                            for (int j = 0; j < 5; j++)
+                            {
+                                int dust2 = Dust.NewDust(
+                                    newAxe.position,
+                                    newAxe.width,
+                                    newAxe.height,
+                                    DustID.Obsidian, // secondary dust for color variation
+                                    Main.rand.NextFloat(-2f, 2f),
+                                    Main.rand.NextFloat(-2f, 2f),
+                                    75,
+                                    default(Color),
+                                    1f
+                                );
+                                Main.dust[dust2].noGravity = true;
+                            }
+                        }
+
+                        SoundEngine.PlaySound(SoundID.Item8, center);
+                    }
+                }
+
+                // Prevent this from happening again
+                alreadyTriggeredOnce = true;
             }
         }
 
@@ -380,7 +574,7 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                             projectile.Center,
                             shootVelocity,
                             shurikenType,
-                            projectile.damage - (projectile.damage / 4),
+                            projectile.damage - projectile.damage / 4,
                             projectile.knockBack,
                             projectile.owner,
                             7 //uses an ai slot to tell the game to switch the damage type (see above)
@@ -391,6 +585,44 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 {
                     // Reset timer while stationary to avoid leftover charge
                     projectile.localAI[1] = 0;
+                }
+            }
+
+            // CHLOROPHYTETOMAHAWK
+            if (stealthType == StealthStrikeType.ChlorophyteTomahawk)
+            {
+                projectile.localAI[1]++;
+
+                if (projectile.localAI[1] >= 30)
+                {
+                    projectile.localAI[1] = 0;
+
+                    Player player = Main.player[projectile.owner];
+                    var calPlayer = player.GetModPlayer<CalamityMod.CalPlayer.CalamityPlayer>();
+
+                    int sporeType = 567;
+                    int damage = (int)Math.Round(projectile.damage * 0.25);
+
+                    // Radius within which spores spawn
+                    float spawnRadius = 128f;
+
+                    // Generate a random position within a circle around the tomahawk's center
+                    Vector2 randomOffset = Main.rand.NextVector2Circular(spawnRadius, spawnRadius);
+
+                    Vector2 spawnPosition = projectile.Center + randomOffset;
+
+                    // Velocity = zero, so spores just spawn in place
+                    Vector2 spawnVelocity = Vector2.Zero;
+
+                    int sporeID = Projectile.NewProjectile(
+                        projectile.GetSource_FromThis(),
+                        spawnPosition,
+                        spawnVelocity,
+                        sporeType,
+                        damage,
+                        projectile.knockBack,
+                        projectile.owner
+                    );
                 }
             }
 
@@ -562,6 +794,26 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0.5f;
             }
+
+            // SPORE DUST FOR CHLOROPHYTE TOMAHAWK
+            if (stealthType == StealthStrikeType.ChlorophyteTomahawk && Main.rand.NextBool(3))
+            {
+                int dust = Dust.NewDust(
+                    projectile.position,
+                    projectile.width,
+                    projectile.height,
+                    DustID.JungleSpore,  // Vanilla green spore dust ID
+                    0f,
+                    0f,
+                    100,
+                    default,
+                    1.1f
+                );
+
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 0.2f;  // subtle floating effect
+                Main.dust[dust].fadeIn = 1.1f;     // fade-in for that soft spore glow
+            }
         }
 
         // Helper method to find nearest enemy NPC for Gel Glove
@@ -628,8 +880,6 @@ namespace InfernalEclipseAPI.Content.ThoriumStealthStrikes
 
             SoundEngine.PlaySound(SoundID.Item1, projectile.Center);
         }
-
-
 
         //GUARANTEED CRIT SET
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)

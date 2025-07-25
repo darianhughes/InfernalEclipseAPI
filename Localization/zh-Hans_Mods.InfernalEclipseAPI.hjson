@@ -1,0 +1,771 @@
+ItemTooltip: {
+	SandstonePortalDeviceInfo:
+		'''
+		Transports you to the Lost Colosseum
+		Only works if the portal at the Lost Gateway alter has been activated
+		'''
+	SandstonePortalDeviceInfoMP: Summons the Bereft Vassal after the portal at the Lost Gateway has been activated <- currently unsued in API
+
+	StealthStrike: {
+		CactusNeedle: Stealth strikes throw out needles in a tight fan of 3
+		IcyTomahawk: Stealth strikes throw out 4 tomahawks of different speeds that last longer and pierce more
+		ZephyrRuin: Stealth strikes throw a stronger spear that always crits
+		ClockworkBomb: Stealth strikes create a larger field that lasts longer
+		SoulBomb: Stealth strikes release a burst of homing souls on detonation
+		PlayingCard: Stealth strikes throw 5 homing cards that are always explosive
+		Soulslasher: Stealth strikes will also aggressively home after hitting an enemy
+		WhiteDwarfCutter: During a stealth strike each hit creates Ivory flares that damage for 0.1% of the target's max HP
+		CaptainsPoignard: Stealth strikes throw a burst of 6 daggers and gives the player increased attack speed for 10 seconds
+		SoftServeSunderer: Stealth strikes summon a rain of cones from above the hit enemy
+		ShadeShuriken: Stealth strikes throw a larger, faster shuriken that has increased pierce
+	}
+
+	MergedCraftingTreeTooltip: {
+		BagOfAmmoConsume: Grants a 20% chance not to consume ammo
+		BagOfAmmoOther:
+			'''
+			Striking enemies has a chance to refund ammo
+			Landing the killing blow on enemies may also refund ammo
+			'''
+		InfintyBag: If accessory visablity is on, you consume void instead of ammunition
+		SerpentsTongue:
+			'''
+			15% increased radiant damage
+			20% increased critical strike damage
+			Enemies have a 10% chance to drop double the loot
+			20% when killed by critical strikes
+			Empowers certain attacks with dark energy
+			Halves radiant life costs but not its life transferring effect
+			Halves the void cost of void-radiant weapons and healing spells
+			Soul essence from radiant scythes will also recover some void
+			Soul essence from void-radiant scythes recover even more void
+			'''
+		ContractNerf: Healing spells grant an additional 2 life
+		Tuner1:
+			'''
+			The effects of this are based on accessory visabilty
+			If visability is on the following effects are applied:
+			Adds all inspiration to maximum void
+			All bard weapons use void instead of inspiration
+			Inspiration regeneration bonuses are converted to void regeneration speed
+			Picking up inspiration notes heal void instead
+			However, inspiration notes no longer grant their armor-related effects
+			Resource-boosting empowerments are much stronger on void stats
+			Otherwise:
+			Picking up inspiration notes heal void when holding a void-bard weapon
+			Upon running out of inspiration, consume 25 void to refill it all back up
+			In addition the following effects are always active:
+			All bard weapons create a shockwave on enemy hits
+			String instrument attacks trigger their tile hit effects on enemy hits
+			String instrument projectiles increase in speed by 20% every pierce
+			Percussive instrument attacks summon a falling hammer on enemy hits
+			Electronic instrument projectiles are significantly much faster
+			"Channel the power of sounds beyond hearing range!"
+			'''
+		Tuner2:
+			'''
+			The effects of this are based on accessory visabilty
+			If visability is on the following effects are applied:
+			Adds all inspiration to maximum void
+			All bard weapons use void instead of inspiration
+			Inspiration regeneration bonuses are converted to void regeneration speed
+			Picking up inspiration notes heal void instead
+			However, inspiration notes no longer grant their armor-related effects
+			Resource-boosting empowerments are much stronger on void stats
+			Otherwise:
+			Picking up inspiration notes heal void when holding a void-bard weapon
+			Upon running out of inspiration, consume 25 void to refill it all back up
+			'''
+		CrystalScorpian:
+			'''
+			仆从和哨兵攻击有15%概率产生一只水晶蝎
+			水晶蝎存在时仆从和哨兵攻击多造成3点伤害
+			'''
+		Skull: 仆从和哨兵在击杀敌人后短暂地多造成2点伤害
+		CyanPearl: 减半哨兵受到的召唤伤害惩罚
+		Watch: 的哨兵会永久存在，并在两分钟内增加最多15%伤害
+		Fortress:
+			'''
+			在你的左右生成4个平台
+			你可以右键拖动平台，但它们会始终保持对称
+			哨兵可以被放置在这些平台上
+			'''
+		FortressNoThor:
+			'''
+			Increases life regeneration by 2
+			在你的左右生成4个平台
+			你可以右键拖动平台，但它们会始终保持对称
+			哨兵可以被放置在这些平台上
+			'''
+		TwoSentry: 提升2格最大哨兵栏位
+		ThreeSentry: 提升3格最大哨兵栏位
+		Murky: 每第六次施法不消耗魔力并返还你魔力花费
+		Hungering: Instead grants the effects of the Hungering Blossom visibility is off
+		SlagsplitterCooldown: 这个效果有1.5秒冷却时间
+		Grace:
+			'''
+			你的重生速度加快33%并获得多15%的生命值
+			你重生时也会增加无敌时间和移动速度
+			'''
+		ChiseledBarrier:
+			'''
+			使4个轨道弹幕围绕你
+			发射能让攻击者远离你的标枪
+			'''
+		ChiseledHidden: 隐藏外观时会禁用弹幕
+		Olympian:
+			'''
+			增加2点虚空恢复量和1点生命恢复速度
+			降低7%所受伤害，并增加4%暴击率
+			'''
+		Sweet1: 受伤后增加移动速度
+		Sweet2: 受伤时释放蜜蜂，并将使用者浸入蜂蜜
+		SweetAlt: 受伤时释放蜜蜂和星星，并将使用者浸入蜂蜜
+		COTS:
+			'''
+			你随时间快速地获取至多20%伤害减免
+			受击时会短暂地将此加成变为-10%伤害减免
+			当此加成高于0%时，你会获得至多2点生命恢复并能阻挡1次伤害性攻击
+			'''
+		DA:
+			'''
+			根据你已损失的生命值在受伤时获得额外的无敌帧
+			满血时提供10无敌帧，最高提升至25%以下血量时的40无敌帧
+			'''
+		Mantle: 每10秒驱散最多一个伤害性的的减益效果
+		TerraDefend: 当生命值低于25%时，你将迅速恢复生命并获得额外防御力
+		ScytheScale: 持续增强直到吞噬者陨落
+		ScytheSummon: 当存在召唤物时，造成的伤害减少
+		ScytheSummonOn: Damage reduced while summons are active
+		OneirophobiaSummon: 按住右键召唤顽皮的乐器为你而战
+		SoulEssence: 极快速获得灵魂精华
+		Magneto: 增加地面上盗贼物品的拾取范围
+		Bone:
+			'''
+			拾取盗贼物品时有33%概率复制它并增加你的盗贼弹幕速度
+			此效果只能在脱战时每半秒触发一次
+			'''
+		Scuttler: 潜伏攻击的弹幕消失时会生成一根宝石尖刺
+		BloodyFilthy: 潜伏攻击会附带8点护甲穿透，额外造成8%伤害并为你回复2点生命值
+		NoExhaustion: 装备时移除所有疲劳值效果
+		Prisma: 定期释放会伤害敌人的水波，最多无视敌人16点防御
+		Prisma2: 生命值越低，释放的水波就越多
+		// Primsa3: Waves disabled when hidden
+		Midnight1: 暴击会释放梦魇手臂，造成10%伤害并将敌人吸引到一起
+		Midnight2: 有6秒冷却时间
+		SHS:
+			'''
+			受伤时会使冰碎块围绕你
+			增加20点最大生命值
+			'''
+		MoltenScale: 附近敌怪会被焚烧
+		PlasmaGen:
+			'''
+			生成一道火焰屏障点燃即将到来的敌对弹幕
+			点燃弹幕后，护盾必须要10秒再生
+			低于25%生命值时，护盾生成的速度翻倍
+			'''
+		OmniIns: 最大灵感值增加5
+		OmniEmp: 每拥有一种咒音增幅使移动速度增加2%，音波演奏速度增加1%
+	}
+
+	AstrageldonRelic: {
+		Line1: You have chosen great suffering for yourself.
+		Line2: Even though this choice has been painful and difficult at times,
+		Line3: The adversity you overcome will bear worthy fruit.
+	}
+
+	AstralCommunicatorInfernum1: Summons Astrageldon in the Astral Infection
+	AstralCommunicatorInfernum2: The interdimentional slime still hungers...
+}
+
+Lore: {
+	DylanLore:
+		'''
+		Hmm ... I'm surprised that you even know of that person.
+		The first time we found him we thought he was a god ... however, ends up he didn't actually have a auric soul.
+		We took him in and he showed us how to make powerful elemental imbued gear and bombs that wasn't just steel.
+		His ideas had helped increase my army's power by a lot, but he never fought himself.
+
+		One day when I went to his room, but nothing was there expect from a note.
+		We couldn't translate his writing but from the pictures it was some sort of ring. 
+		Knowing you, I'm sure you'll figure out how to make it.
+
+		–敬请期待《诸神黄昏：炼狱蚀光》的未来篇章！–
+		'''
+	MysteriousDiary:
+		'''
+		Turning to page one, you see nothing except a few words.
+
+		“Who the hell am I, that I still get to live a life?”
+
+		The rest of the pages are blank…
+
+		[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]
+
+		–敬请期待《诸神黄昏：炼狱蚀光》的未来篇章！–
+		'''
+	Provi:
+		'''
+		我曾一度梦见和平，却不知道为什么。
+		自从我得知天地之外另有天地，
+		我便时常在余光中瞥见那个古怪女子。
+		每当我凝视她，她便凭空隐去，
+		唯留下一个词语在我脑海回响——
+		“承诺。”
+		除此之外，再无任何她存在过的痕迹。
+		仁想从她们那里获得什么？无人知晓。
+		但我相信，你会做出正确的抉择，泰拉人。
+		'''
+	Mirror:
+		'''
+		我凝视它许久，却如同其它镜面一般，只见自身。
+		可即便如此，心底总觉有些……异样。它很诡异，几近扭曲的诡异。
+		我将其抛诸脑后。但直至今日，我仍能感受到镜中倒影那穿透骨髓的凝视。
+		经历过如此漫长的旅途，早该发现——最难的部分，便是直面你自己。
+		'''
+	Subspace:
+		'''
+		传闻于维度交错的缝隙间，有神秘的蛇蟒生物游走其中。
+		人们都说，若非结伴而行，其恐怖无人能及
+		它们只凭虚空能量就可以瞬间取走任何人的性命。
+		然而这一只……显然只是幼体。
+		'''
+	Polaris:
+		'''
+		当初将嘉登招入麾下之时，他便立刻着手于一个“秘密计划”，关于内容他却拒绝多言。
+		不久之后，他便展现了那第一台阴森的死亡机械。
+		我立刻意识到它已足以在我的军队中服役，而他的天赋……真是令人期待。
+		非常，令我期待。
+		'''
+	Putrid:
+		'''
+		看起来是一场失败的实验。
+		出于未知原因，它对地表生长的花生有一种执念。
+		它和这个世界里的某些凝胶生物相比，威胁性有着太大的差距。
+		当然，我不建议你小觑它的威胁。
+		'''
+	Lux:
+		'''
+		虽然辉光本身被神圣加护，混沌精灵却没有设下什么防御。
+		它们从未成功被无害化到可以被利用的地步，
+		嘉登因此将其封入人造的构造体中以作禁锢。
+		想来奇怪，收藏家竟然在它陨落后再度现身，吸收它残余的能量。
+		真是有趣。
+		'''
+	Pharoah:
+		'''
+		这片沙漠之上曾有一位法老立国。
+		沙海之邦尽为其所有，他以金拳统御四方。
+		可惜诅咒夺去了他的性命。他本可以成为成为我麾下的强将。
+		如今，仅剩他被掩埋的陵寝。
+		'''
+	Advisor:
+		'''
+		我不知这所谓“启示”是什么，或是它如何诞生的，
+		但它似乎与埋藏于泰拉瑞亚地壳深处的虚空能量颇为契合。
+		既然它被囚于此，也许你可以向击败它后吸收其精华的收藏家，
+		探得它那隐藏的秘密。
+		'''
+	Glowmoth:
+		'''
+		这种蛾类生物相当有趣，它与另一种相似的怪兽一同栖息在那些幽暗而布满蘑菇的洞穴之中。
+		它似乎能散发出一钟生物荧光，让人不禁联想到虚空……
+		或许正是那些洞穴中潜藏的虚空能量吸引了它？
+		无论如何，这一切仍超出我的理解范围。
+		'''
+}
+
+Items: {
+	SandstonePortalDevice: {
+		// DisplayName: Sandstone Portal Device
+		// Tooltip: ""
+	}
+
+	ChromaticMassInABottle: {
+		Tooltip: “纵使科洛格纳在暗中有所图谋，艾洛恩却无法忽视这股能量的存在。”
+		DisplayName: 瓶中虹色物质
+	}
+
+	Swordofthe14thGlitch: {
+		DisplayName: 第十四裂隙之刃
+		Tooltip:
+			'''
+			“驾驭裂隙的真正力量！”
+			- 开发中: 目前仅使用You模组的第一分型AI -
+			'''
+	}
+
+	BossRushTier6MusicBox: {
+		Tooltip: 播放“Descent Of Divinities” 作者：psykomatic
+		DisplayName: 音乐盒 (Boss Rush第六阶段)
+	}
+
+	Weapons: {
+		Rogue: {
+			NovaBomb: {
+				Tooltip:
+					'''
+					发射一团极炽的紫色新星，带来末日般的毁灭风潮
+					“放心吧维洛，我一个人搞定。”
+					— 开发中：目前仅使用灾厄模组的超新星AI —
+					'''
+				DisplayName: 紫辰星核
+			}
+		}
+	}
+
+	BossRushTierNamelessMusicBox: {
+		Tooltip: 播放“TWISTED GARDEN [Remix]” 作者：Kuudray
+		DisplayName: 音乐盒 (Boss Rush第???阶段)
+	}
+
+	BossRushEncoreMusicBox: {
+		Tooltip: 播放“Ensemble of Fools (Encore Mix)” 作者：CDMusic
+		DisplayName: 音乐盒 (Boss Rush再献)
+	}
+
+	StellarSabre: {
+		DisplayName: 星火弯刀
+		Tooltip: ""
+	}
+
+	Lore: {
+		MysteriousDiary.DisplayName: 神秘日记
+		LorePolaris.DisplayName: 极北灾星
+		LoreAdvisor.DisplayName: 启示异械
+		LoreGlowmoth.DisplayName: 荧灯蛾
+		LoreLux.DisplayName: 辉光圣魂
+		LorePharaoh.DisplayName: 法老咒魔
+		LorePutrid.DisplayName: 腐蚀之粉
+		LoreSerpent.DisplayName: 亚空骇蟒
+		LoreProvi.DisplayName: 星河
+		LoreMirror.DisplayName: 镜像
+		LoreDylan.DisplayName: Dylan
+	}
+
+	CatastrophicFabricationsMusicBox: {
+		DisplayName: 音乐盒 (星流巨械 - 炼狱模式)
+		Tooltip: 播放“Catastrophic Fabrications” 作者：PinpinNeon
+	}
+
+	EyeMusicBox: {
+		DisplayName: 音乐盒 (克苏鲁之眼 - 炼狱模式)
+		Tooltip: 播放“Seer of the Night” 作者：PinpinNeon
+	}
+
+	InfectedMothwingSpore: {
+		DisplayName: 感染蛾翼孢子
+		Tooltip: ""
+	}
+
+	BeeMusicBox: {
+		DisplayName: 音乐盒 (蜂后 - 炼狱模式)
+		Tooltip: 播放“Royal Retaliation” 作者：PinpinNeon
+	}
+
+	CultistMusicBox: {
+		DisplayName: 音乐盒 (拜月教邪教徒 - 炼狱模式)
+		Tooltip: 播放“Eidolic Ancestry ~ Ancient Doomsayer” 作者：PinpinNeon
+	}
+
+	GolemMusicBox: {
+		DisplayName: 音乐盒 (石巨人 - 炼狱模式)
+		Tooltip: 播放“Icon of the Sun“ 作者：PinpinNeon
+	}
+
+	GrandThunderBirdRelic: {
+		DisplayName: 惊雷王鹰炼狱圣物
+		Tooltip: ""
+	}
+
+	BurriedChampionRelic: {
+		DisplayName: 英灵遗骸炼狱圣物
+		Tooltip: ""
+	}
+
+	CorpseBloomRelic: {
+		DisplayName: 绝命花炼狱圣物
+		Tooltip: ""
+	}
+
+	QueenJellyfishRelic: {
+		DisplayName: 水母皇后炼狱圣物
+		Tooltip: ""
+	}
+
+	ProphecyMusicBox: {
+		DisplayName: 音乐盒 (预言)
+		Tooltip: 播放“Reality of the Prophecy” 作者：theforge129
+	}
+
+	SuspiciousLookingPumpkin: {
+		DisplayName: Suspicious Looking Pumpkin
+		Tooltip:
+			'''
+			Summons the Lich when used on the Ancient Phylactery
+			Not consumable
+			'''
+	}
+
+	AstrageldonRelic: {
+		DisplayName: Infernal Astrageldon Relic
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	// GlitchSwordHoldout.DisplayName: Glitch Sword Holdout
+	// Rogue.NovaBombProj.DisplayName: Nova Bomb Proj
+	// StellarStar.DisplayName: Stellar Star
+	// BossRushTier6Animation.DisplayName: Boss Rush Tier6 Animation
+	// RogueSpectreBlast.DisplayName: Rogue Spectre Blast
+	// BountifulHarvestStinger.DisplayName: Bountiful Harvest Stinger
+	// FriendlyBrimstoneBarrage.DisplayName: Friendly Brimstone Barrage
+	// FriendlyBrimstoneFireblast.DisplayName: Friendly Brimstone Fireblast
+	// RadioMicPro.DisplayName: Radio Mic Pro
+	// RadioMicShadowBurst.DisplayName: Radio Mic Shadow Burst
+	// TidalWaveWhirlpool.DisplayName: Tidal Wave Whirlpool
+}
+
+DiaryTooltip:
+	'''
+	[c/E3AF40:一本落款“星河”的神秘日记……]
+	[c/BEBEBE:长按“左Shift”键以阅读日记]
+	'''
+
+Configs: {
+	InfernalConfig: {
+		WrathoftheGodsBossesInBossRush: {
+			Tooltip: 为Boss Rush添加XG-07玛尔斯、虚无化身和无名光神
+			Label: Boss Rush添加众神之怒Boss
+		}
+
+		BetsyInBossRush: {
+			Tooltip: 为Boss Rush添加双足翼龙 - 当前存在bug
+			Label: Boss Rush添加双足翼龙
+		}
+
+		DreadnautillusInBossRush: {
+			Tooltip: 为Boss Rush添加恐惧鹦鹉螺
+			Label: Boss Rush添加恐惧鹦鹉螺
+		}
+
+		Headers: {
+			BossRushChanges: Boss Rush调整
+			BalanceChanges: 模组平衡修改
+			Miscellaneous: 融合
+		}
+
+		ThoriumBalanceChangess: {
+			Tooltip: 修改了瑟银及其附属的部分物品以匹配灾厄平衡性
+			Label: 瑟银平衡修改
+		}
+
+		CalamityRecipeTweaks: {
+			Tooltip: 修改了灾厄的部分配方并移除了大部分灾厄原版物品配方
+			Label: 灾厄配方修改
+		}
+
+		CalamityBalanceChanges: {
+			Tooltip: 将大部分灾厄对原版内容的修改恢复原版数值
+			Label: 灾厄平衡修改
+		}
+
+		BossKillCheckOnOres: {
+			Tooltip: 直到你击败指定的Boss前，阻止你挖掘特定的矿石以及物品
+			Label: 矿石阶段锁
+		}
+
+		VanillaBalanceChanges: {
+			Tooltip: 修改了一些原版物品以匹配灾厄平衡性
+			Label: 原版平衡修改
+		}
+
+		DisplayName: 主要配置选项
+
+		TerraBladeBossInBossRush: {
+			Tooltip: 为Boss Rush添加泰拉刃，你的镜像
+			Label: Boss Rush添加泰拉刃
+		}
+
+		InfernumModeForced: {
+			Tooltip: 强制玩家开启炼狱模式，适用于多人游戏
+			Label: 强制开启炼狱模式
+		}
+
+		SOTSBalanceChanges: {
+			Tooltip: 修改了暗影奥秘的部分物品以匹配灾厄平衡性
+			Label: 暗影奥秘平衡修改
+		}
+
+		ConsolariaBalanceChanges: {
+			Tooltip: 修改了Consolaria的部分物品以匹配灾厄平衡性
+			Label: Consolaria平衡修改
+		}
+
+		InfernumRecipeTweaks: {
+			Tooltip: 修改了炼狱模式物品的部分配方
+			Label: 炼狱配方修改
+		}
+
+		ForceFullXerocDialogue: {
+			Label: 强制播放克希洛克的对话
+			Tooltip: 当你开启或击败Boss Rush时，强制游戏播放克希洛克的对话，适用于多人游戏
+		}
+
+		SOTSThrowerToRogue: {
+			Tooltip: 让来自Unofficial SOTS Bard, Thrower, and Healer模组的虚空+投掷伤害物品也被算作虚空+盗贼伤害物品
+			Label: 融合盗贼伤害和虚空+投掷伤害
+		}
+
+		DisableBloodOrbPotions: {
+			Tooltip: 禁用含有血珠的药水配方
+			Label: 禁用血珠药水配方
+		}
+
+		PreventBossCheese: {
+			Tooltip: 加入了一些机制，使得部分Boss无法被特殊方法轻松击杀
+			Label: 防止逃课
+		}
+
+		DisableUnfinisedContent: {
+			Label: 禁用未完成物品
+			Tooltip: 禁用来自其他模组的未完成物品，以便玩家享受更完整的流程
+		}
+
+		DisableDuplicateContent: {
+			Label: 禁用重复内容
+			Tooltip: 禁用来自不同模组的重复物品
+		}
+
+		AdditonalVanillaBossAdjustments: {
+			Label: A额外原版Boss调整
+			Tooltip:
+				'''
+				小幅度调整了部分原版Boss的数值，让它们变得更有挑战性
+				部分调整会在开启Fargo's Souls永恒模式或受虐模式的情况下被自动禁用
+				'''
+		}
+
+		MergeCraftingTrees: {
+			Label: 融合制作树
+			Tooltip: 将不同模组的相似物品制作树融合起来，并加入跨模组的制作材料
+		}
+
+		BloodOrbPotionDuplication: {
+			Label: 药水血珠复制
+			Tooltip: 将药水的血珠配方修改为使用血珠复制的配方
+		}
+
+		AutomaticallyReforgeThoriumRogueItems: {
+			Label: 自动重铸瑟银投手物品
+			Tooltip:
+				'''
+				自动将化境前缀应用到所有非消耗型瑟银投手物品上
+				可帮助瑟银投手物品追赶带前缀的灾厄物品——因为瑟银投手物品无法重铸
+				仅在启用 Ragnarok 或 Unofficial Calamity Bard & Healer 时生效
+				若启用融合盗贼和投手伤害，则此设置不发挥任何作用
+				'''
+		}
+
+		ChanageWeaponClasses: {
+			Label: 修改武器类别
+			Tooltip: 修改部分武器的伤害类别，以提供更多选项或使武器定位更合乎逻辑
+		}
+
+		DisplayWorldEntryMessages: {
+			Label: 进入世界时显示提示信息
+			Tooltip: 开启/关闭进入世界时聊天框内的提示信息
+		}
+
+		UseAprilFoolsMutant: {
+			Label: 使用愚人节突变体
+			Tooltip:
+				'''
+				将突变体更换为亚利姆
+				若启用Fargo's Souls，则此设置不发挥任何作用
+				'''
+		}
+
+		MergeThrowerIntoRogue: {
+			Label: 融合盗贼和投手伤害
+			Tooltip:
+				'''
+				将投手和盗贼职业融合为一个职业
+				允许融合后的投手武器使用它们原本的重铸修饰语
+				同时保持潜伏条的伤害加成效果不变
+				'''
+		}
+
+		EnableInterlude4: {
+			Label: 启用插曲4
+			Tooltip: 启用/禁用在击败至尊灾厄后播放的第四插曲
+		}
+
+		AdjustAdvisorSpawnConditions: {
+			Label: 调整启示异械生成条件
+			Tooltip:
+				'''
+				调整启示异械（暗影奥秘）的刷新条件，使其不再始终在世界中激活
+				如果你使用炼狱的Boss血条，又不想因启示异械持续存活而一直显示，此设置非常有用
+				已知此项在多人游戏中可能导致问题；若要进行多人游戏，请禁用它
+				'''
+		}
+	}
+}
+
+DamageClasses: {
+	VoidRogue.DisplayName: 虚空+盗贼伤害
+	MergedThrowerRogue.DisplayName: 盗贼伤害
+}
+
+BossRushIntroText1:
+	'''
+	克希罗克的挑战
+	愚者之合奏
+	'''
+
+InfernumIntegration: {
+	Polaris:
+		'''
+		冰封的战争机器
+		极北灾星
+		'''
+	NewPolaris:
+		'''
+		冰封的战争机器
+		极北灾星
+		'''
+	TrojanSquirrel:
+		'''
+		癫狂森林之爵
+		特洛伊松鼠
+		'''
+	CursedCoffin:
+		'''
+		闹鬼法老之陵寝
+		咒缚灵棺
+		'''
+	DeviBoss:
+		'''
+		守望魔女
+		戴薇安
+		'''
+	BanishedBaron:
+		'''
+		钢铁反叛装置
+		放逐遗爵
+		'''
+	LifeChallenger:
+		'''
+		像素生灵之共主
+		飘渺游光
+		'''
+	TimberChampion:
+		'''
+		林海帝君
+		森林英灵
+		'''
+	TerraChampion:
+		'''
+		地脉潜掘者
+		泰拉英灵
+		'''
+	EarthChampion:
+		'''
+		熔岩怒潮使
+		大地英灵
+		'''
+	NatureChampion:
+		'''
+		元素九头蛇
+		自然英灵
+		'''
+	LifeChampion:
+		'''
+		天使赋生
+		生命英灵
+		'''
+	DeathChampion:
+		'''
+		龙裔殒使
+		死亡英灵
+		'''
+	SpiritChampion:
+		'''
+		灵息之影
+		心灵英灵
+		'''
+	WillChampion:
+		'''
+		凯旋的鱼龙之王
+		意志英灵
+		'''
+	Eridanus:
+		'''
+		宇宙英灵
+		织星者，厄里达诺斯
+		'''
+	AbomBoss:
+		'''
+		诸象融典
+		憎恶
+		'''
+	YharimMutant:
+		'''
+		寻神者
+		亚利姆
+		'''
+	Mutant:
+		'''
+		万象幻合
+		突变体
+		'''
+	MutantEX:
+		'''
+		星光小猫咪
+		魔神
+		'''
+}
+
+Buffs: {
+	StarboundHorrification: {
+		Description: 你无法逃脱末世星史莱姆……
+		DisplayName: 星界惊惧
+	}
+
+	WarpJammed: {
+		Description: 嘉登正在监控你的传送行动……
+		DisplayName: 时空阻滞
+	}
+
+	AnchoredSoul: {
+		DisplayName: 灵魂锚定
+		Description: 你的灵魂当前被锚定在另一个位置
+	}
+
+	BrokenOath: {
+		DisplayName: 破碎之誓
+		Description: Primum non nocere - 希波克拉底誓言
+	}
+
+	BubbleShock: {
+		DisplayName: Bubble Shock
+		Description: You can't be affected by any more bubbles!
+	}
+}
+
+SpawnInfo: {
+	Dreadnautilus: 在血月钓鱼有概率生成
+	PrimordialWyrmHead: 在深渊最深处，潜藏着一件古老的遗物……
+}
+
+Tiles: {
+	// CatastrophicFabricationsMusicBoxTile.MapEntry: Catastrophic Fabrications Music Box Tile
+	// EyeMusicBoxTile.MapEntry: Eye Music Box Tile
+	// BeeMusicBoxTile.MapEntry: Bee Music Box Tile
+	// CultistMusicBoxTile.MapEntry: Cultist Music Box Tile
+	// GolemMusicBoxTile.MapEntry: Golem Music Box Tile
+	// ProphecyMusicBoxTile.MapEntry: Prophecy Music Box Tile
+}

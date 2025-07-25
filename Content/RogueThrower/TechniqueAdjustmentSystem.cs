@@ -48,7 +48,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                     {
                         if (costTwoCount == 5) // 0-based index; 6th occurrence is ShadowDance
                         {
-                            instruction.OpCode = OpCodes.Ldc_I4_4; // Replace with 'ldc.i4.4'
+                            instruction.OpCode = OpCodes.Ldc_I4_5; // Replace with 'ldc.i4.4'
                             instruction.Operand = null; // Always null for short-form
                             return;
                         }

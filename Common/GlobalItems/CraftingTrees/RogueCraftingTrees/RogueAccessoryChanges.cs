@@ -6,6 +6,7 @@ using CalamityMod.Items.Accessories;
 using CalamityMod.CalPlayer;
 using CalamityMod;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 {
@@ -177,10 +178,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
 
-            string scuttlerInfo = "Stealth strike projectiles spawn a jewel spike when destroyed";
-            string boneInfo = "Picking up a rogue item has a 33% chance to duplicate it and increase your rogue attack speed\nThis effect can only trigger once every half-second while out of combat";
-            string bloodyfilthyInfo = "Stealth strikes have +8 armor penetration, deal 8% more damage, and heal for 2 HP";
-            string magnetoInfo = "Increases pickup range of rogue items on the ground";
+            string scuttlerInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Scuttler");
+            string boneInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Bone");
+            string bloodyfilthyInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.BloodyFilthy");
+            string magnetoInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Magneto");
 
             string shinobiSigil = "6% increased throwing critical strike chance\nDealing two consecutive throwing critical strikes will discharge dark lightning and increase throwing speed briefly\nThis effect has a cooldown of 2 seconds.";
 
@@ -259,25 +260,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     {
                         OverrideColor = InfernalRed
                     });
-                }
-
-                if (SSM != null)
-                {
-                    if (item.type == SSM.Find<ModItem>("GtTETFinal").Type)
-                    {
-                        tooltips.Add(new TooltipLine(((ModType)this).Mod, "magnetoInfo", magnetoInfo)
-                        {
-                            OverrideColor = InfernalRed
-                        });
-                        tooltips.Add(new TooltipLine(((ModType)this).Mod, "boneInfo", boneInfo)
-                        {
-                            OverrideColor = InfernalRed
-                        });
-                        tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
-                        {
-                            OverrideColor = InfernalRed
-                        });
-                    }
                 }
             }
         }

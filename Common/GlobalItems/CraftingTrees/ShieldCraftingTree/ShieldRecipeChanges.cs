@@ -80,7 +80,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.RemoveIngredient(ItemID.CrossNecklace);
                         recipe.AddIngredient(thorium.Find<ModItem>("CapeoftheSurvivor"));
                         recipe.AddIngredient<DeificAmulet>(1);
-                        recipe.AddIngredient<EffulgentFeather>(3);
+                        recipe.AddIngredient<EffulgentFeather>(5);
                         recipe.RemoveTile(TileID.TinkerersWorkbench);
                         recipe.AddTile(TileID.LunarCraftingStation);
                     }

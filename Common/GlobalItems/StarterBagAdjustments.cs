@@ -20,6 +20,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<LoreProvi>()));
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<MysteriousDiary>()));
+
+                itemLoot.Add(ItemDropRule.ByCondition(new SoltanPlayerCondition(), ModContent.ItemType<LoreDylan>()));
             }
 
             if (!ModLoader.TryGetMod("ThoriumMod", out var thoriumMod) ||
@@ -50,6 +52,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 Player player = Main.player[i];
                 if (player.active && player.name == "Galactica")
+                    return true;
+            }
+            return false;
+        }
+
+        public bool CanShowItemDropInUI() => false;
+        public string GetConditionDescription() => "A certain person must be present...";
+    }
+
+    public class SoltanPlayerCondition : IItemDropRuleCondition
+    {
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            // Loop through all players in the world
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.active && player.name == "Bloxxer")
                     return true;
             }
             return false;
