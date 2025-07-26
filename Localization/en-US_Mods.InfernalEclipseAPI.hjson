@@ -100,7 +100,7 @@ ItemTooltip: {
 		TwoSentry: Increases max sentries by 2
 		ThreeSentry: Increases max sentries by 3
 		Murky: Every sixth magic cast is free and grants you the mana cost
-		Hungering: Instead grants the effects of the Hungering Blossom visibility is off
+		Hungering: Instead grants the effects of the Hungering Blossom if visibility is off
 		SlagsplitterCooldown: This effect has a 1.5 second cooldown
 		Grace:
 			'''
@@ -150,7 +150,7 @@ ItemTooltip: {
 		NoExhaustion: Removes all Exhaustion when equipped
 		Prisma: Release waves of damage periodically that ignore up to 16 defense total
 		Prisma2: Release more waves at lower health
-		Primsa3: Waves disabled when hidden
+		Prisma3: Waves disabled when hidden
 		Midnight1: Critical strikes unleash Nightmare Arms that do 10% damage and pull enemies together
 		Midnight2: Has a 6 second cooldown
 		SHS:

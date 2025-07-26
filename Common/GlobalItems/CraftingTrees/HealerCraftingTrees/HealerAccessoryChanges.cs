@@ -137,7 +137,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTree
                             }
                             else
                             {
-                                tooltip.Text = null;
+                                //tooltip.Text = null;
                             }
                         }
                         if (tooltip.Text.Contains("Healing spells grant an additional 5 life"))

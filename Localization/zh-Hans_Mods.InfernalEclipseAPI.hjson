@@ -150,7 +150,7 @@ ItemTooltip: {
 		NoExhaustion: 装备时移除所有疲劳值效果
 		Prisma: 定期释放会伤害敌人的水波，最多无视敌人16点防御
 		Prisma2: 生命值越低，释放的水波就越多
-		// Primsa3: Waves disabled when hidden
+		// Prisma3: Waves disabled when hidden
 		Midnight1: 暴击会释放梦魇手臂，造成10%伤害并将敌人吸引到一起
 		Midnight2: 有6秒冷却时间
 		SHS:
