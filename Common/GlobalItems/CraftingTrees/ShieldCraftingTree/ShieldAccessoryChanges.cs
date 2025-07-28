@@ -71,7 +71,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             if (item.ModItem != null &&
                 item.ModItem.Mod.Name == "CalamityMod" &&
                 item.ModItem.Name == "AsgardsValor" &&
-                thorium != null)
+                thorium != null && sots != null)
             {
                 //ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
                 //moltenScale.UpdateAccessory(player, hideVisual);

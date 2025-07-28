@@ -14,40 +14,61 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
     {
         public override bool InstancePerEntity => true;
 
+        private static int? _gelatinTherapyType;
+
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
         {
-            var mod = ModLoader.GetMod("CalamityBardHealer");
-            if (mod == null) return false;
+            if (!ModLoader.HasMod("CalamityBardHealer"))
+                return false;
 
-            int targetType = mod.Find<ModItem>("GelatinTherapy")?.Type ?? -1;
-            return item.type == targetType;
+            if (ModLoader.HasMod("WHummusMultiModBalancing"))
+                return false;
+
+            var mod = ModLoader.GetMod("CalamityBardHealer");
+            if (mod == null)
+                return false;
+
+            // Cache the type once (optional optimization)
+            if (_gelatinTherapyType == null)
+            {
+                var modItem = mod.TryFind("GelatinTherapy", out ModItem foundItem) ? foundItem : null;
+                _gelatinTherapyType = modItem?.Type;
+            }
+
+            return item.type == _gelatinTherapyType;
         }
 
         public override void SetDefaults(Item item)
         {
-
-            item.autoReuse = true;
+            // Only affect GelatinTherapy if Calamity is present
+            if (_gelatinTherapyType != null && item.type == _gelatinTherapyType)
+            {
+                item.autoReuse = true;
+            }
         }
 
         public override bool Shoot(Item item, Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            // Fire a spread of 3 projectiles at varying angles/speeds
-            int numberProjectiles = 3;
-
-            for (int i = 0; i < numberProjectiles; i++)
+            if (_gelatinTherapyType != null && item.type == _gelatinTherapyType)
             {
-                // Random rotation within 20 degrees (~0.35 radians)
-                Vector2 perturbedSpeed = velocity.RotatedByRandom(MathHelper.ToRadians(25f));
+                // Fire a spread of 3 projectiles at varying angles/speeds
+                int numberProjectiles = 3;
 
-                // Random scale between 0.7x and 1.2x speed
-                float scale = 0.7f + Main.rand.NextFloat() * 0.5f;
-                perturbedSpeed *= scale;
+                for (int i = 0; i < numberProjectiles; i++)
+                {
+                    Vector2 perturbedSpeed = velocity.RotatedByRandom(MathHelper.ToRadians(25f));
+                    float scale = 0.7f + Main.rand.NextFloat() * 0.5f;
+                    perturbedSpeed *= scale;
 
-                Projectile.NewProjectile(source, position, perturbedSpeed, type, damage, knockback, player.whoAmI);
+                    Projectile.NewProjectile(source, position, perturbedSpeed, type, damage, knockback, player.whoAmI);
+                }
+
+                // Prevent vanilla projectile from firing
+                return false;
             }
 
-            // Prevent vanilla projectile from firing
-            return false;
+            // Let vanilla behavior happen otherwise
+            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
     }
 }
