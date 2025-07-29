@@ -16,7 +16,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 
         public override bool AppliesToEntity(Item item, bool lateInstantiation)
         {
-            var mod = ModLoader.GetMod("CalamityBardHealer");
+            Mod mod;
+            ModLoader.TryGetMod("CalamityBardHealer", out mod);
             if (mod == null) return false;
 
             int targetType = mod.Find<ModItem>("GelatinTherapy")?.Type ?? -1;

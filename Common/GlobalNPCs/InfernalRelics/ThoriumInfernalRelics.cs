@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod;
-using InfernalEclipseAPI.Content.Items.Placeables.Relics;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics.Thorium;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;

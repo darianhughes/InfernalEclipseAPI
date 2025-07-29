@@ -20,7 +20,7 @@ namespace InfernalEclipseAPI
         #region Balance Changess
         [Header("BalanceChanges")]
 
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool BossKillCheckOnOres { get; set; }
 
         [DefaultValue(false)]

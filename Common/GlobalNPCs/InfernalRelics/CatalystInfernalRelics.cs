@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CalamityMod;
 using CatalystMod.NPCs.Boss.Astrageldon;
-using InfernalEclipseAPI.Content.Items.Placeables.Relics;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod.NPCs.BossTheGrandThunderBird;

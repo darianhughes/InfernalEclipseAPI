@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CatalystMod.Items;
-using InfernalEclipseAPI.Content.Tiles.Relics;
 using InfernumMode.Content.Items.Relics;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria;
+using InfernalEclipseAPI.Content.Tiles.Relics.CalamityAddons;
 
-namespace InfernalEclipseAPI.Content.Items.Placeables.Relics
+namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons
 {
     [ExtendsFromMod("CatalystMod")]
     public class AstrageldonRelic : BaseRelicItem
@@ -50,7 +50,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics
                 else tooltip1 = "TooltipLast";
                 string tooltip2 = tooltipArray[i];
                 TooltipLine tooltipLine = new TooltipLine(mod, tooltip1, tooltip2);
-                if (tooltipLine.Name != "TooltipLast") tooltipLine.OverrideColor = new Color?(new Color(200, 100, (int)byte.MaxValue));
+                if (tooltipLine.Name != "TooltipLast") tooltipLine.OverrideColor = new Color?(new Color(200, 100, byte.MaxValue));
                 tooltips.Add(tooltipLine);
             }
         }
@@ -61,7 +61,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics
     {
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
         {
-            if (item.ModItem is AstrageldonRelic && (line.Name == "ItemName"))
+            if (item.ModItem is AstrageldonRelic && line.Name == "ItemName")
             {
                 SuperbossRarity.Draw(item, line);
                 return false;

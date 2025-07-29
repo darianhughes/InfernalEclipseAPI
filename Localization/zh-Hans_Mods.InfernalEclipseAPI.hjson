@@ -412,6 +412,11 @@ Items: {
 		DisplayName: Infernal Astrageldon Relic
 		Tooltip: ""
 	}
+
+	SubspaceSpawner: {
+		// DisplayName: Subspace Spawner
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -473,8 +478,12 @@ Configs: {
 		}
 
 		BossKillCheckOnOres: {
-			Tooltip: 直到你击败指定的Boss前，阻止你挖掘特定的矿石以及物品
-			Label: 矿石阶段锁
+			Tooltip:
+				'''
+				Makes changes to certain items to make them unobtainable until their intended tier.
+				直到你击败指定的Boss前，阻止你挖掘特定的矿石以及物品
+				'''
+			Label: Maintain Calamity Tier Progression
 		}
 
 		VanillaBalanceChanges: {

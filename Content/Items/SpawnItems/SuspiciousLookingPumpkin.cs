@@ -109,7 +109,7 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
                                 if (Main.netMode != NetmodeID.MultiplayerClient)
                                     NPC.SpawnOnPlayer(localPlayer.whoAmI, ModContent.NPCType<Lich>());
                                 else
-                                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, localPlayer.whoAmI, type, 0.0f, 0.0f, 0, 0, 0);
+                                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, localPlayer.whoAmI, ModContent.NPCType<Lich>(), 0.0f, 0.0f, 0, 0, 0);
                             }
                         }
                     }

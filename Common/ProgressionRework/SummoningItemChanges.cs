@@ -79,6 +79,12 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                     }
                 }
 
+                //Pumpking Moon
+                if (recipe.HasResult(ItemID.PumpkinMoonMedallion) || recipe.HasResult(ItemID.NaughtyPresent))
+                {
+                    recipe.AddIngredient<LifeAlloy>(3);
+                }
+
                 //DoG is only post sentinals
                 if (recipe.HasIngredient(3467) && recipe.HasIngredient(ModContent.ItemType<GalacticaSingularity>()) && recipe.HasIngredient(ModContent.ItemType<Necroplasm>()) && recipe.HasResult(ModContent.ItemType<CosmicWorm>()))
                     recipe.DisableRecipe();

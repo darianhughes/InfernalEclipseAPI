@@ -77,52 +77,53 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public class AdvisorDefenseReset : GlobalNPC
         {
-            public override void PostAI(NPC npc)
-            {
-                // 1) Only target SOTS's TheAdvisorHead
-                if (npc.ModNPC is not ModNPC modNpc
-                    || modNpc.Mod.Name != "SOTS"
-                    || modNpc.Name != "TheAdvisorHead")
-                {
-                    return;
-                }
+            // This issue has been fixed in main Revengence+
+            //public override void PostAI(NPC npc)
+            //{
+            //    // 1) Only target SOTS's TheAdvisorHead
+            //    if (npc.ModNPC is not ModNPC modNpc
+            //        || modNpc.Mod.Name != "SOTS"
+            //        || modNpc.Name != "TheAdvisorHead")
+            //    {
+            //        return;
+            //    }
 
                 
 
-                // 2) If Calamity Boss Rush is active, do nothing
-                if (BossRushEvent.BossRushActive)
-                {
-                    npc.lifeMax += (int)(((double).25) * (double)npc.lifeMax);
-                    return;
-                }
+            //    // 2) If Calamity Boss Rush is active, do nothing
+            //    if (BossRushEvent.BossRushActive)
+            //    {
+            //        npc.lifeMax += (int)(((double).25) * (double)npc.lifeMax);
+            //        return;
+            //    }
 
-                // 3) Default to base SOTS defense
-                int targetDefense = 24;
+            //    // 3) Default to base SOTS defense
+            //    int targetDefense = 24;
 
-                // 4) If Calamity is loaded, ask it which alternate difficulty is active
-                if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
-                {
-                    // These calls must match Calamity's internal names exactly:
-                    object isDeath = calamity.Call("GetDifficultyActive", "Death");
-                    object isRevenge = calamity.Call("GetDifficultyActive", "Revengeance");
+            //    // 4) If Calamity is loaded, ask it which alternate difficulty is active
+            //    if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
+            //    {
+            //        // These calls must match Calamity's internal names exactly:
+            //        object isDeath = calamity.Call("GetDifficultyActive", "Death");
+            //        object isRevenge = calamity.Call("GetDifficultyActive", "Revengeance");
 
-                    if (isDeath is bool bDeath && bDeath)
-                    {
-                        // Death Mode
-                        npc.position += npc.velocity * 0.35f;
-                        targetDefense = 39;
-                    }
-                    else if (isRevenge is bool bRev && bRev)
-                    {
-                        // Revengeance Mode
-                        npc.position += npc.velocity * 0.25f;
-                        targetDefense = 32;
-                    }
-                }
+            //        if (isDeath is bool bDeath && bDeath)
+            //        {
+            //            // Death Mode
+            //            npc.position += npc.velocity * 0.35f;
+            //            targetDefense = 39;
+            //        }
+            //        else if (isRevenge is bool bRev && bRev)
+            //        {
+            //            // Revengeance Mode
+            //            npc.position += npc.velocity * 0.25f;
+            //            targetDefense = 32;
+            //        }
+            //    }
 
-                // 5) Clamp it on the NPC
-                npc.defense = targetDefense;
-            }
+            //    // 5) Clamp it on the NPC
+            //    npc.defense = targetDefense;
+            //}
 
             public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
             {

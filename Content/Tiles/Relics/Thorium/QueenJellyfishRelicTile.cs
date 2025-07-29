@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InfernalEclipseAPI.Content.Items.Placeables.Relics;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics.Thorium;
 using InfernumMode.Content.Tiles.Relics;
 using Terraria.ModLoader;
 
-namespace InfernalEclipseAPI.Content.Tiles.Relics
+namespace InfernalEclipseAPI.Content.Tiles.Relics.Thorium
 {
     public class QueenJellyfishRelicTile : BaseInfernumBossRelic
     {

@@ -410,6 +410,11 @@ Items: {
 		DisplayName: Infernal Astrageldon Relic
 		Tooltip: ""
 	}
+
+	SubspaceSpawner: {
+		DisplayName: Subspace Spawner
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -475,8 +480,12 @@ Configs: {
 		}
 
 		BossKillCheckOnOres: {
-			Tooltip: Prevents certain ores & tiles from being mined until you kill certain bosses.
-			Label: Boss Kill Check On Ores
+			Tooltip:
+				'''
+				Makes changes to certain items to make them unobtainable until their intended tier.
+				Prevents certain ores & tiles from being mined until you kill certain bosses.
+				'''
+			Label: Maintain Calamity Tier Progression
 		}
 
 		VanillaBalanceChanges: {
