@@ -80,7 +80,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 }
 
                 //Pumpking Moon
-                if (recipe.HasResult(ItemID.PumpkinMoonMedallion) || recipe.HasResult(ItemID.NaughtyPresent))
+                if ((recipe.HasResult(ItemID.PumpkinMoonMedallion) || recipe.HasResult(ItemID.NaughtyPresent)) && InfernalConfig.Instance.BossKillCheckOnOres)
                 {
                     recipe.AddIngredient<LifeAlloy>(3);
                 }

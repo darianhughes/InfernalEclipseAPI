@@ -17,7 +17,7 @@ using Steamworks;
 using CalamityMod.Enums;
 using CalamityMod.Sounds;
 using CalamityMod;
-using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.Content.Projectiles.StealthPro;
 
 namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
 {
@@ -203,6 +203,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
         public bool cameFromLodestoneStealth = false;
         public bool cameFromValadiumStealth = false;
         public bool alreadyTriggeredOnce = false;
+        public bool spawnedFromStealthAxe = false;
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -417,6 +418,33 @@ namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
 
                 // Prevent this from happening again
                 alreadyTriggeredOnce = true;
+            }
+
+            // Fire Axe - spawn fiery axe on hit
+            if (stealthType == StealthStrikeType.FireAxe && !spawnedFromStealthAxe)
+            {
+                int axeType = ModContent.ProjectileType<FireAxeStealthPro>();
+
+                Vector2 spawnVelocity = Vector2.Normalize(target.Center - projectile.Center) * 12f;
+
+                int spawnedID = Projectile.NewProjectile(
+                    projectile.GetSource_OnHit(target),
+                    projectile.Center,
+                    spawnVelocity,
+                    axeType,
+                    (int)(projectile.damage * 1.5f), // Stronger than base
+                    projectile.knockBack,
+                    projectile.owner,
+                    0f,
+                    target.whoAmI
+                );
+
+                if (Main.projectile.IndexInRange(spawnedID) &&
+                    Main.projectile[spawnedID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile newStealth))
+                {
+                    newStealth.SetupAsStealthStrike(StealthStrikeType.FireAxe);
+                    newStealth.spawnedFromStealthAxe = true;
+                }
             }
         }
 

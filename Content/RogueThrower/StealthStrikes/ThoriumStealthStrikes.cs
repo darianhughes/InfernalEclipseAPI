@@ -6,7 +6,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.CalPlayer;
-using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.Content.Projectiles.StealthPro;
 using Microsoft.Xna.Framework;
 using SOTS.Void;
 using Terraria;
@@ -41,6 +41,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
         LodestoneJavelin,
         ValadiumAxe,
         ChlorophyteTomahawk,
+        FireAxe,
     }
 
     [ExtendsFromMod("ThoriumMod")]
@@ -576,6 +577,31 @@ namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
                 }
             }
 
+            // ===================== FIRE AXE =====================
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Fire Axe")
+            {
+                if (calPlayer.StealthStrikeAvailable())
+                {
+                    int projID = Projectile.NewProjectile(
+                        source,
+                        position,
+                        (velocity * 1.5f),
+                        type,
+                        (int)(damage * 1f),
+                        knockback,
+                        player.whoAmI
+                    );
+
+                    if (Main.projectile.IndexInRange(projID) &&
+                        Main.projectile[projID].TryGetGlobalProjectile(out StealthStrikeGlobalProjectile stealthGlobal))
+                    {
+                        stealthGlobal.SetupAsStealthStrike(StealthStrikeType.FireAxe);
+                    }
+
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -598,6 +624,12 @@ namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
 
             //TIDAL WAVE
             if (item.type == thorium.Find<ModItem>("TidalWave").Type)
+            {
+                TrySetIsThrowerNon(item, false);
+            }
+
+            //FIRE AXE
+            if (item.type == thorium.Find<ModItem>("FireAxe").Type)
             {
                 TrySetIsThrowerNon(item, false);
             }
@@ -697,6 +729,38 @@ namespace InfernalEclipseAPI.Content.RogueThrower.StealthStrikes
             if (item.type == ModContent.ItemType<BugenkaiShuriken>())
             {
                 tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.ShadeShuriken")) { OverrideColor = Color.White });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Lodestone Javelin")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.LodestoneJav"))
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Valadium Throwing Axe")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.ValadiumThrowingAxe"))
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Chlorophyte Tomahawk")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.ChlorophyteTomahawk"))
+                {
+                    OverrideColor = Color.White
+                });
+            }
+
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.Name == "Fire Axe")
+            {
+                tooltips.Add(new TooltipLine(Mod, "CustomStealthStrikes", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.StealthStrike.FireAxe"))
+                {
+                    OverrideColor = Color.White
+                });
             }
         }
     }

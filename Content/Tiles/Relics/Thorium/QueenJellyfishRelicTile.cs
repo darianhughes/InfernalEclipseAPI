@@ -13,6 +13,6 @@ namespace InfernalEclipseAPI.Content.Tiles.Relics.Thorium
     {
         public override int DropItemID => ModContent.ItemType<QueenJellyfishRelic>();
 
-        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/QueenJellyfishRelicTile";
+        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/Thorium/QueenJellyfishRelicTile";
     }
 }

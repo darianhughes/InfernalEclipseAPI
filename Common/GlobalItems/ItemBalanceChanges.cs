@@ -254,6 +254,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 116;
                 }
+
+                if (item.type == ModContent.ItemType<RemsRevenge>())
+                {
+                    item.damage = 850;
+                }
                 #endregion
 
                 #region Summoner
@@ -2896,6 +2901,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 53;
                     }
 
+                    //Eater of Pain
+                    if (item.type == thorium.Find<ModItem>("EaterOfPain").Type)
+                    {
+                        item.useTime = 13;
+                        item.useAnimation = 13;
+                    }
+
                     //Molten Thresher
                     if (item.type == thorium.Find<ModItem>("MoltenThresher").Type)
                     {
@@ -3145,6 +3157,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "TerrariumHolyScythe", item))
                     {
                         item.damage = 25;
+                    }
+
+                    if (UnsafeGetItem(thorium, "CelestialWand", item))
+                    {
+                        item.useTime = 46;
+                        item.useAnimation = 46;
                     }
 
                     //Lucidty
@@ -3717,6 +3735,18 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (UnsafeGetItem(thorium, "ShinobiSigil", item))
                     {
                         TrySetAccessoryDamage(item, "25% basic damage");
+                    }
+                    #endregion
+
+                    if (UnsafeGetItem(thorium, "BlacksmithsBarrier", item))
+                    {
+                        item.defense = 4;
+                    }
+
+                    #region Ammo
+                    if (UnsafeGetItem(thorium, "IcyArrow", item))
+                    {
+                        item.damage = 7;
                     }
                     #endregion
                 }

@@ -17,6 +17,6 @@ namespace InfernalEclipseAPI.Content.Tiles.Relics.CalamityAddons
         }
         public override int DropItemID => ModContent.ItemType<AstrageldonRelic>();
 
-        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/AstrageldonRelicTile";
+        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/CalamityAddons/AstrageldonRelicTile";
     }
 }

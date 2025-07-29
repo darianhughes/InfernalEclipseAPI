@@ -13,6 +13,6 @@ namespace InfernalEclipseAPI.Content.Tiles.Relics.Thorium
     {
         public override int DropItemID => ModContent.ItemType<BurriedChampionRelic>();
 
-        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/BurriedChampionRelicTile";
+        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/Thorium/BurriedChampionRelicTile";
     }
 }

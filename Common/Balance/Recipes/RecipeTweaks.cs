@@ -567,6 +567,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                     }
                                 }
                             }
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("IridescentHelmet")) || recipe.HasResult(thorium.Find<ModItem>("IridescentMail")) || recipe.HasResult(thorium.Find<ModItem>("IridescentGreaves")))
+                            {
+                                recipe.RemoveTile(16);
+                                recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
+                            }
                         }
                     }
                 }

@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;
 using ThoriumMod.Projectiles.Thrower;
 using CalamityMod;
 
-namespace InfernalEclipseAPI.Content.Projectiles
+namespace InfernalEclipseAPI.Content.Projectiles.StealthPro
 {
     [ExtendsFromMod("ThoriumMod")]
     public class TidalWaveWhirlpool : ModProjectile

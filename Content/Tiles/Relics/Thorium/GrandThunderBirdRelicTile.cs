@@ -13,6 +13,6 @@ namespace InfernalEclipseAPI.Content.Tiles.Relics.Thorium
     {
         public override int DropItemID => ModContent.ItemType<GrandThunderBirdRelic>();
 
-        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/GrandThunderBirdRelicTile";
+        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/Thorium/GrandThunderBirdRelicTile";
     }
 }

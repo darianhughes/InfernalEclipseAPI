@@ -18,6 +18,10 @@ ItemTooltip: {
 		CaptainsPoignard: Stealth strikes throw a burst of 6 daggers and gives the player increased attack speed for 10 seconds
 		SoftServeSunderer: Stealth strikes summon a rain of cones from above the hit enemy
 		ShadeShuriken: Stealth strikes throw a larger, faster shuriken that has increased pierce
+		LodestoneJav: Stealth strikes cause earth to erupt from the struck enemy, inflicting sunder
+		ValadiumThrowingAxe: Stealth strikes on first hit will create a ring of axes to fly at the struck enemy
+		ChlorophyteTomahawk: Stealth strikes will last longer, have more pierce and generate homing spores throughout it's duration
+		FireAxe: Stealth strikes summon a spectral axe of flames to cleave hit enemies
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -175,6 +179,18 @@ ItemTooltip: {
 		Line3: The adversity you overcome will bear worthy fruit.
 	}
 
+	AvatarRelic:
+		'''
+		You have done well.
+		Now, seek the Terminus. Your final test is at hand.
+		'''
+	GoozmaRelic:
+		'''
+		It's funny, isn't it?
+		Even though you beat hell's game, you keep challenging higher beings... 
+		One day this luck will run out.
+		'''
+	NamelessRelic: You have passed the test.
 	AstralCommunicatorInfernum1: Summons Astrageldon in the Astral Infection
 	AstralCommunicatorInfernum2: The interdimentional slime still hungers...
 }
@@ -415,6 +431,111 @@ Items: {
 		DisplayName: Subspace Spawner
 		Tooltip: ""
 	}
+
+	AvatarOfEmptinessRelic: {
+		DisplayName: Infernal Avatar Of Emptiness Relic
+		Tooltip: ""
+	}
+
+	GoozmaRelic: {
+		DisplayName: Infernal Goozma Relic
+		Tooltip: ""
+	}
+
+	NamelessDeityRelic: {
+		DisplayName: Infernal Nameless Deity Relic
+		Tooltip: ""
+	}
+
+	LepusRelic: {
+		DisplayName: Infernal Lepus Relic
+		Tooltip: ""
+	}
+
+	OcramRelic: {
+		DisplayName: Infernal Ocram Relic
+		Tooltip: ""
+	}
+
+	TurkorTheUngratefulRelic: {
+		DisplayName: Infernal Turkor The Ungrateful Relic
+		Tooltip: ""
+	}
+
+	AdvisorRelic: {
+		DisplayName: Infernal Advisor Relic
+		Tooltip: ""
+	}
+
+	ExcavatorRelic: {
+		DisplayName: Infernal Excavator Relic
+		Tooltip: ""
+	}
+
+	GlowmothRelic: {
+		DisplayName: Infernal Glowmoth Relic
+		Tooltip: ""
+	}
+
+	PolarisRelic: {
+		DisplayName: Infernal Polaris Relic
+		Tooltip: ""
+	}
+
+	PutridPinkyRelic: {
+		DisplayName: Infernal Putrid Pinky Relic
+		Tooltip: ""
+	}
+
+	SubspaceSerpentRelic: {
+		DisplayName: Infernal Subspace Serpent Relic
+		Tooltip: ""
+	}
+
+	BoreanStriderRelic: {
+		DisplayName: Infernal Borean Strider Relic
+		Tooltip: ""
+	}
+
+	FallenBeholderRelic: {
+		DisplayName: Infernal Fallen Beholder Relic
+		Tooltip: ""
+	}
+
+	ForgottenOneRelic: {
+		DisplayName: Infernal Forgotten One Relic
+		Tooltip: ""
+	}
+
+	GraniteEnergyStormRelic: {
+		DisplayName: Infernal Granite Energy Storm Relic
+		Tooltip: ""
+	}
+
+	LichRelic: {
+		DisplayName: Infernal Lich Relic
+		Tooltip: ""
+	}
+
+	PatchWerkRelic: {
+		DisplayName: Infernal Patch Werk Relic
+		Tooltip: ""
+	}
+
+	PrimordialsRelic: {
+		DisplayName: Infernal Primordials Relic
+		Tooltip: ""
+	}
+
+	StarScouterRelic: {
+		DisplayName: Infernal Star Scouter Relic
+		Tooltip: ""
+	}
+
+	ViscountRelic: {
+		DisplayName: Infernal Viscount Relic
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -429,6 +550,7 @@ Projectiles: {
 	RadioMicPro.DisplayName: Radio Mic Pro
 	RadioMicShadowBurst.DisplayName: Radio Mic Shadow Burst
 	TidalWaveWhirlpool.DisplayName: Tidal Wave Whirlpool
+	FireAxeStealthPro.DisplayName: Fire Axe Stealth Pro
 }
 
 DiaryTooltip:

@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using CalamityMod;
 
-namespace InfernalEclipseAPI.Content.Projectiles
+namespace InfernalEclipseAPI.Content.Projectiles.StealthPro
 {
     //Wardrobe Hummus
     public class RogueSpectreBlast : ModProjectile

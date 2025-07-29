@@ -20,9 +20,6 @@
 	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
 	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />
 	  <Folder Include="Content\InfernumBehaviorOverrides\BossAIs\" />
-	  <Folder Include="Content\Items\Placeables\Relics\Consolaria\" />
-	  <Folder Include="Content\Tiles\Relics\Consolaria\" />
-	  <Folder Include="Content\Tiles\Relics\SOTS\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="MonoMod" Version="22.7.31.1" />
