@@ -27,7 +27,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 }
 
                 // Only add the item back if either Brain of Cthulhu or Eater of Worlds has been defeated
-                if (NPC.downedBoss2 || NPC.downedBoss3)
+                if (NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3)
                 {
                     // Find first empty slot
                     for (int i = 0; i < items.Length; i++)
