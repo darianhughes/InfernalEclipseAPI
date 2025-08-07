@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CalamityMod.Items.Accessories;
+using CalamityMod.Items.Accessories.Wings;
 using CalamityMod.Items.Materials;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
 {
     public class ShoeRecipeChanges : ModSystem
     {
-        private Mod calamity
-        {
-            get
-            {
-                ModLoader.TryGetMod("CalamityMod", out Mod cal);
-                return cal;
-            }
-        }
-
         private Mod thorium
         {
             get
@@ -47,6 +41,33 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
             }
         }
 
+        public Mod calFargo
+        {
+            get
+            {
+                ModLoader.TryGetMod("FargowiltasCrossmod", out Mod fargoCrossmod);
+                return fargoCrossmod;
+            }
+        }
+
+        private Mod Ragnarok
+        {
+            get
+            {
+                ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
+                return ragnarok;
+            }
+        }
+
+        private Mod CalBardHealer
+        {
+            get
+            {
+                ModLoader.TryGetMod("CalamityBardHealer", out Mod calbh);
+                return calbh;
+            }
+        }
+
         public override void PostAddRecipes()
         {
             for (int index = 0; index < Recipe.numRecipes; ++index)
@@ -56,11 +77,82 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
                 if (!InfernalConfig.Instance.MergeCraftingTrees)
                     return;
 
+                if (calFargo != null)
+                {
+                    if (recipe.HasResult(fargosSouls.Find<ModItem>("AeolusBoots")))
+                    {
+                        recipe.RemoveIngredient(ItemID.SoulofFright);
+                        recipe.RemoveIngredient(ItemID.SoulofSight);
+                        recipe.RemoveIngredient(ItemID.SoulofMight);
+
+                        if (ModLoader.TryGetMod("Consolaria", out Mod console))
+                        {
+                            recipe.AddIngredient(console.Find<ModItem>("SoulofBlight"), 5);
+                        }
+                        else recipe.AddIngredient(ItemID.BeetleHusk, 5);
+                    }
+                }
+
+                if (thorium != null)
+                {
+                    if (recipe.HasResult(thorium.Find<ModItem>("TerrariumParticleSprinters").Type))
+                    {
+                        recipe.RemoveIngredient(ItemID.TerrasparkBoots);
+
+                        if (sots != null)
+                        {
+                            recipe.RemoveIngredient(sots.Find<ModItem>("SubspaceBoosters").Type);
+                        }
+
+                        if (calFargo != null)
+                        {
+                            recipe.RemoveIngredient(ModContent.ItemType<AngelTreads>());
+                            recipe.AddIngredient(fargosSouls.Find<ModItem>("AeolusBoots"));
+                        }
+                        else
+                        {
+                            recipe.AddIngredient<AngelTreads>();
+                        }
+                    }
+
+                    if (sots == null)
+                    {
+                        if (recipe.HasResult<TracersCelestial>())
+                        {
+                            recipe.RemoveIngredient(ModContent.ItemType<AngelTreads>());
+                            if (calFargo != null) recipe.RemoveIngredient(fargosSouls.Find<ModItem>("AeolusBoots").Type);
+                            
+                            if (thorium != null)
+                            {
+                                recipe.AddIngredient(thorium.Find<ModItem>("TerrariumParticleSprinters").Type);
+                            }
+                        }
+                    }
+                }
+
                 if (sots != null)
                 {
                     if (recipe.HasResult(sots.Find<ModItem>("FlashsparkBoots")))
                     {
+                        recipe.RemoveIngredient(ItemID.TerrasparkBoots);
+                        recipe.RemoveIngredient(ModContent.ItemType<AngelTreads>());
+                        recipe.AddIngredient(ItemID.HellfireTreads);
                         recipe.AddIngredient<AshesofCalamity>(4);
+                    }
+
+                    if (recipe.HasResult(sots.Find<ModItem>("SubspaceBoosters")))
+                    {
+                        if (thorium != null) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumParticleSprinters"));
+                        else if (calFargo != null) recipe.AddIngredient(fargosSouls.Find<ModItem>("AeolusBoots"));
+                    }
+
+                    if (recipe.HasResult<TracersCelestial>())
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<AngelTreads>());
+                        if (calFargo != null) recipe.RemoveIngredient(fargosSouls.Find<ModItem>("AeolusBoots").Type);
+                        if (thorium != null) recipe.RemoveIngredient(thorium.Find<ModItem>("TerrariumParticleSprinters").Type);
+
+                        recipe.AddIngredient(sots.Find<ModItem>("SubspaceBoosters"));
                     }
                 }
             }

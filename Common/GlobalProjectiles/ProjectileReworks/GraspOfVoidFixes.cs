@@ -15,7 +15,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            var ragnarok = ModLoader.GetMod("RagnarokMod");
+            ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
             if (ragnarok == null)
                 return;
 

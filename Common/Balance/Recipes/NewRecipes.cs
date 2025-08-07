@@ -132,12 +132,15 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
 
                     thorium.TryFind("ManaBerry", out ModItem manaberry);
-                    Recipe.Create(thorRework.Find<ModItem>("InspirationRegenerationPotion").Type)
-                        .AddIngredient(ItemID.BottledWater)
-                        .AddIngredient<BloodOrb>(10)
-                        .AddIngredient(manaberry.Type)
-                        .AddTile(TileID.AlchemyTable)
-                        .Register();
+                    if (thorRework.TryFind("InspirationRegenerationPotion", out ModItem inspRegenPotion))
+                    {
+                        Recipe.Create(thorRework.Find<ModItem>("InspirationRegenerationPotion").Type)
+                            .AddIngredient(ItemID.BottledWater)
+                            .AddIngredient<BloodOrb>(10)
+                            .AddIngredient(manaberry.Type)
+                            .AddTile(TileID.AlchemyTable)
+                            .Register();
+                    }
                 }
 
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))

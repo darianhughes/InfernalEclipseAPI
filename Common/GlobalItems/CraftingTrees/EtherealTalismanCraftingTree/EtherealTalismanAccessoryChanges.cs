@@ -12,6 +12,7 @@ using ThoriumMod;
 using CalamityMod;
 using Steamworks;
 using Terraria.Localization;
+using Terraria.ModLoader.Config;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCraftingTree
 {
@@ -64,38 +65,59 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
             }
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        public void AddTooltip(List<TooltipLine> tooltips, string stealthTooltip, bool InfernalRedActive = false)
         {
-            if (!InfernalConfig.Instance.MergeCraftingTrees || calamity == null || thorium == null)
-                return;
-
             Color InfernalRed = Color.Lerp(
                Color.White,
                new Color(255, 80, 0), // Infernal red/orange
                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
 
+            int maxTooltipIndex = -1;
+            int maxNumber = -1;
+
+            // Find the TooltipLine with the highest TooltipX name
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name.StartsWith("Tooltip"))
+                {
+                    if (int.TryParse(tooltips[i].Name.Substring(7), out int num) && num > maxNumber)
+                    {
+                        maxNumber = num;
+                        maxTooltipIndex = i;
+                    }
+                }
+            }
+
+            // If found, insert a new TooltipLine right after it with the desired color
+            if (maxTooltipIndex != -1)
+            {
+                int insertIndex = maxTooltipIndex + 1;
+                TooltipLine customLine = new TooltipLine(Mod, "StealthTooltip", stealthTooltip);
+                if (InfernalRedActive)
+                    customLine.OverrideColor = InfernalRed;
+
+                tooltips.Insert(insertIndex, customLine);
+            }
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (!InfernalConfig.Instance.MergeCraftingTrees || calamity == null || thorium == null)
+                return;
+
             string murkyInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Murky");
             string hungeringInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Hungering");
 
             if (item.type == calamity.Find<ModItem>("SigilofCalamitas").Type)
             {
-                tooltips.Add(new TooltipLine(Mod, "MurkyInfo", murkyInfo)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
+                AddTooltip(tooltips, murkyInfo, true);
             }
 
             if (item.type == calamity.Find<ModItem>("EtherealTalisman").Type)
             {
-                tooltips.Add(new TooltipLine(Mod, "MurkyInfo", murkyInfo)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
-                tooltips.Add(new TooltipLine(Mod, "HungeringInfo", hungeringInfo)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
+                AddTooltip(tooltips, murkyInfo, true);
+                AddTooltip(tooltips, hungeringInfo, true);
             }
         }
     }

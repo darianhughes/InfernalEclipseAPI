@@ -17,19 +17,19 @@ using CalamityMod.Items;
 using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
 using InfernalEclipseAPI.Content.Items.Weapons.NovaBomb;
 using InfernumMode.Content.Items.Weapons.Magic;
-using InfernalEclipseAPI.Content.Items.Weapons.ChromaticMassInABottle;
 using ThoriumMod.Contracts;
 using CalamityMod.Items.Mounts;
 using CalamityMod.Items.Accessories;
 using CalamityMod;
 using ThoriumMod.Items.Misc;
 using CalamityMod.Items.Weapons.Rogue;
-using InfernalEclipseAPI.Content.Items.Weapons.StellarSabre;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Accessories.Wings;
 using CalamityMod.Items.PermanentBoosters;
 using CalamityMod.Items.Weapons.Summon;
+using InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre;
+using InfernalEclipseAPI.Content.Items.Accessories.ChromaticMassInABottle;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {

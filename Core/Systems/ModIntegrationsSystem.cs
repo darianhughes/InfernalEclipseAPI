@@ -3,7 +3,7 @@ using CalamityMod.Items.Placeables.FurnitureAuric;
 using CalamityMod.NPCs.CalClone;
 using CalamityMod.NPCs.PrimordialWyrm;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
-using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
+using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.Items.SummonItems;
 using Microsoft.Build.Exceptions;
@@ -182,13 +182,21 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (ModLoader.TryGetMod("ColoredDamageTypes", out Mod coloredDamageTypes))
             {
-                Color mergedThrowerColor = new Color(255, 100, 100);
+                //Color mergedThrowerColor = new Color(255, 100, 100);
 
-                Vector3 hslVector = Main.rgbToHsl(mergedThrowerColor);
+                //Vector3 hslVector = Main.rgbToHsl(mergedThrowerColor);
+                //hslVector.Y = MathHelper.Lerp(hslVector.Y, 1f, 0.6f);
+                //Color mergedThrowerCritColor = Main.hslToRgb(hslVector);
+
+                //coloredDamageTypes.Call("AddDamageType", MergedThrowerRogue.Instance, mergedThrowerColor, mergedThrowerColor, mergedThrowerCritColor);
+
+                Color legendaryColor = new Color(255, 215, 0); // Gold
+                Vector3 hslVector = Main.rgbToHsl(legendaryColor);
                 hslVector.Y = MathHelper.Lerp(hslVector.Y, 1f, 0.6f);
-                Color mergedThrowerCritColor = Main.hslToRgb(hslVector);
+                Color legendaryCritColor = Main.hslToRgb(hslVector);
 
-                coloredDamageTypes.Call("AddDamageType", MergedThrowerRogue.Instance, mergedThrowerColor, mergedThrowerColor, mergedThrowerCritColor);
+                coloredDamageTypes.Call("AddDamageType", LegendaryMelee.Instance, legendaryColor, legendaryColor, legendaryCritColor);
+                coloredDamageTypes.Call("AddDamageType", LegendaryRanged.Instance, legendaryColor, legendaryColor, legendaryCritColor);
             }
         }
     }

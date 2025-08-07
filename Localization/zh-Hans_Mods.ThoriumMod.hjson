@@ -9,35 +9,63 @@ Items: {
 		Tooltip: “可恶生物的精华”
 	}
 
-	TerraKnife: {
-		DisplayName: 泰拉飞刀
-		Tooltip:
-			'''
-			左键快速扔出泰拉匕首
-			右键扔出一把穿刺泰拉小刀，持续伤害选中的目标
-			潜伏攻击会同时投掷匕首和小刀，小刀在命中目标时发起一连串斩击
-			'''
-	}
-
-	GelGlove: {
-		DisplayName: 凝胶手套
-		Tooltip:
-			'''
-			扔出可以在表面反弹的凝胶球
-			可以通过蓄力来增加伤害，反弹次数和大小
-			潜伏攻击在飞行过程中向附近敌人发射手里剑
-			'''
-	}
-
-	TidalWave: {
-		DisplayName: 海潮波
-		Tooltip:
-			'''
-			“以潮汐之怒扫除你的敌人……”
-			扔出一个大型水之手里剑，会释放微型海波
-			潜伏攻击会产生一道可以聚拢附近敌怪的伤害性浪潮
-			'''
-	}
-
 	NinjaEmblem.DisplayName: 英雄徽章
+
+	TerrariumHelmet: {
+		DisplayName: 元素之灵头盔
+		Tooltip:
+			'''
+			“一切都会在你的力量面前倒下……”
+			最大生命值增加{0}，生命再生增加{1}
+			增加{2}%伤害
+			黑暗中的视野提升
+			'''
+		SetBonus:
+			'''
+			当你在战斗中时泰拉瑞亚的能量会追寻并保护你
+			按下'{$Keybinds.ArmorAbility.DisplayName}'键可以切换职业专注
+			'''
+
+		Focus: {
+			Generic: {
+				Name: 没有专注
+				Description: 增加{0}%伤害
+			}
+
+			Melee: {
+				Name: 近战专注
+				Description: 增加{0}%伤害减免
+			}
+
+			Ranged: {
+				Name: 远程专注
+				Description: 增加{0}%射速
+			}
+
+			Magic: {
+				Name: 魔法专注
+				Description: 最大魔力值增加{0}
+			}
+
+			Summon: {
+				Name: 召唤专注
+				Description: 最大仆从数量增加{0}，非召唤伤害降低{1}%
+			}
+
+			Throwing: {
+				Name: 投掷专注
+				Description: 最大技巧值增加{0}，给予110最大潜伏值
+			}
+
+			Healer: {
+				Name: 光辉专注
+				Description: 治疗法术会额外治疗{0}生命值
+			}
+
+			Bard: {
+				Name: 音波专注
+				Description: 咒音增幅持续时间延长{0}秒
+			}
+		}
+	}
 }

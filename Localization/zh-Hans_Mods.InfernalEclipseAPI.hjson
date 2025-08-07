@@ -1,84 +1,94 @@
+WelcomeMessage: {
+	Welcome: 感谢游玩《诸神黄昏：炼狱蚀光》模组包！
+	TBRNotice: 注意：检测到已启用 Thorium Bosses Reworked，请在兼容性配置中将生命、伤害与速度倍率均设为 1（除非你想要更高难度），该模组会根据当前难度自动调整瑟银 Boss 属性。
+	TBRWarning: 警告：检测到未启用 Thorium Bosses Reworked！我们强烈建议您启用该模组，它重新平衡了瑟银模组的Boss，使其机制更贴合炼狱模式及灾厄模组的整体进程。
+	RagWarning: 警告：检测到未启用 Ragnarok！若未启用此模组，瑟银与灾厄可能无法良好协同。强烈建议启用此模组，以获得更完整、更平衡的游戏体验。
+	EventTrophyNotice: 注意：检测到您未启用更多圣物和纪念章和传颂之物！  如果缺少此模组，任何非原版、灾厄或炼狱模式的 Boss 可能缺失传颂之物或炼狱开场动画。强烈建议您启用此模组，以获得更完整、更平滑的游戏体验。
+	SoulsWarning: 警告：检测到您已启用 Fargo’s Souls Mod！请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
+	CalMinusNotice: 注意：检测到您已启用 Calamity Minus 模组！在《诸神黄昏：炼狱蚀光》配置中开启 “灾厄平衡修改” 后，该模组的所有功能已经被包含在内。
+	CalBalNotice: 注意：检测到您已启用 Calamity Balance Changes 模组！在《诸神黄昏：炼狱蚀光》配置中开启 “灾厄平衡修改” 后，该模组已包含其创意工坊页面上列出的绝大多数功能。此外，Calamity Balance Changes 还添加了大量未列出的改动，可能会使您的游戏体验比预期更差。
+	InfernumActive: 身负异兆之人归来，再度直面炼狱蚀光……
+	MPConnect: 一位异兆之人再度降临炼狱……
+	InfernumForced: 炼狱能量已注入此界……
+}
+
 ItemTooltip: {
+	Playtester: -测试者物品-
+	Contributor: -贡献者物品-
 	SandstonePortalDeviceInfo:
 		'''
-		Transports you to the Lost Colosseum
-		Only works if the portal at the Lost Gateway alter has been activated
+		将你传送到失落竞技场
+		在激活通往失落竞技场的传送门后才可使用
 		'''
-	SandstonePortalDeviceInfoMP: Summons the Bereft Vassal after the portal at the Lost Gateway has been activated <- currently unsued in API
-
-	StealthStrike: {
-		CactusNeedle: Stealth strikes throw out needles in a tight fan of 3
-		IcyTomahawk: Stealth strikes throw out 4 tomahawks of different speeds that last longer and pierce more
-		ZephyrRuin: Stealth strikes throw a stronger spear that always crits
-		ClockworkBomb: Stealth strikes create a larger field that lasts longer
-		SoulBomb: Stealth strikes release a burst of homing souls on detonation
-		PlayingCard: Stealth strikes throw 5 homing cards that are always explosive
-		Soulslasher: Stealth strikes will also aggressively home after hitting an enemy
-		WhiteDwarfCutter: During a stealth strike each hit creates Ivory flares that damage for 0.1% of the target's max HP
-		CaptainsPoignard: Stealth strikes throw a burst of 6 daggers and gives the player increased attack speed for 10 seconds
-		SoftServeSunderer: Stealth strikes summon a rain of cones from above the hit enemy
-		ShadeShuriken: Stealth strikes throw a larger, faster shuriken that has increased pierce
-		// LodestoneJav: Stealth strikes cause earth to erupt from the struck enemy, inflicting sunder
-		// ValadiumThrowingAxe: Stealth strikes on first hit will create a ring of axes to fly at the struck enemy
-		// ChlorophyteTomahawk: Stealth strikes will last longer, have more pierce and generate homing spores throughout it's duration
-		// FireAxe: Stealth strikes summon a spectral axe of flames to cleave hit enemies
-	}
+	SandstonePortalDeviceInfoMP: 在激活通往失落竞技场的门户后，召唤无邦封臣 <- currently unsued in API
 
 	MergedCraftingTreeTooltip: {
-		BagOfAmmoConsume: Grants a 20% chance not to consume ammo
+		TPS:
+			'''
+			允许飞行、急速奔跑，并在冰面上获得额外机动能力
+			 		移动速度提高12%
+			 		给予你在水面、蜂蜜与熔岩上行走的能力
+			 		免疫火块与熔岩伤害
+			'''
+		Hellfire:
+			'''
+			所有火系减益的伤害倍率乘以1.5，不与下位效果叠加
+			攻击附带狱火效果
+			'''
+		BagOfAmmoConsume: 有20%的概率不消耗弹药
 		BagOfAmmoOther:
 			'''
-			Striking enemies has a chance to refund ammo
-			Landing the killing blow on enemies may also refund ammo
+			命中敌人概率返还弹药
+			击杀敌人也有概率返还弹药
 			'''
-		InfintyBag: If accessory visablity is on, you consume void instead of ammunition
+		InfintyBag: 如果启用饰品的可视性，你会消耗虚空值而不是弹药
 		SerpentsTongue:
 			'''
-			15% increased radiant damage
-			20% increased critical strike damage
-			Enemies have a 10% chance to drop double the loot
-			20% when killed by critical strikes
-			Empowers certain attacks with dark energy
-			Halves radiant life costs but not its life transferring effect
-			Halves the void cost of void-radiant weapons and healing spells
-			Soul essence from radiant scythes will also recover some void
-			Soul essence from void-radiant scythes recover even more void
+			增加15%光辉伤害
+			暴击多造成20%伤害
+			敌人有10%的概率掉落双倍战利品
+			如果敌人被暴击伤害杀死，则概率为20%
+			用暗能量增幅一些光辉攻击
+			光辉法术的生命消耗减半，不包括生命转移效果
+			虚空-光辉武器和治疗法术的虚空值消耗减半
+			光辉镰刀的灵魂精华也会回复虚空值
+			虚空镰刀的灵魂精华回复更多虚空值
 			'''
-		ContractNerf: Healing spells grant an additional 2 life
+		ContractNerf: 治疗法术额外治疗2生命值
 		Tuner1:
 			'''
-			The effects of this are based on accessory visabilty
-			If visability is on the following effects are applied:
-			Adds all inspiration to maximum void
-			All bard weapons use void instead of inspiration
-			Inspiration regeneration bonuses are converted to void regeneration speed
-			Picking up inspiration notes heal void instead
-			However, inspiration notes no longer grant their armor-related effects
-			Resource-boosting empowerments are much stronger on void stats
-			Otherwise:
-			Picking up inspiration notes heal void when holding a void-bard weapon
-			Upon running out of inspiration, consume 25 void to refill it all back up
-			In addition the following effects are always active:
-			All bard weapons create a shockwave on enemy hits
-			String instrument attacks trigger their tile hit effects on enemy hits
-			String instrument projectiles increase in speed by 20% every pierce
-			Percussive instrument attacks summon a falling hammer on enemy hits
-			Electronic instrument projectiles are significantly much faster
-			"Channel the power of sounds beyond hearing range!"
+			此饰品的效果取决于其饰品可见性
+			如果启用饰品可见性，以下效果会被激活：
+			将最大灵感值转化为最大虚空值
+			吟游诗人武器使用虚空值而不是灵感值
+			灵感值回复速度转化为虚空恢复速度
+			灵感音符可以再生虚空值
+			然而，灵感音符不再受到盔甲增益的影响
+			咒音增幅会大幅增强虚空属性
+			如果饰品可见性被关闭：
+			手持虚空吟游诗人武器时，拾取灵感音符将恢复虚空值
+			灵感值耗尽后，消耗25点虚空值填满
+			以下效果会一定激活，无关饰品可见性:
+			所有乐器击中敌人会产生爆炸
+			弦乐器的弹幕在与实体方块碰撞时产生的效果也能在敌人身上产生
+			穿透性弦乐器攻击每次击中后速度增加20%
+			打击乐器攻击时，会在敌人身上掷出一个锤子
+			电子乐器的弹幕速度大幅提升
+			"引导听觉上限之外的音波之力！"
 			'''
 		Tuner2:
 			'''
-			The effects of this are based on accessory visabilty
-			If visability is on the following effects are applied:
-			Adds all inspiration to maximum void
-			All bard weapons use void instead of inspiration
-			Inspiration regeneration bonuses are converted to void regeneration speed
-			Picking up inspiration notes heal void instead
-			However, inspiration notes no longer grant their armor-related effects
-			Resource-boosting empowerments are much stronger on void stats
-			Otherwise:
-			Picking up inspiration notes heal void when holding a void-bard weapon
-			Upon running out of inspiration, consume 25 void to refill it all back up
+			此饰品的效果取决于其饰品可见性
+			如果启用饰品可见性，以下效果会被激活：
+			将最大灵感值转化为最大虚空值
+			吟游诗人武器使用虚空值而不是灵感值
+			灵感值回复速度转化为虚空恢复速度
+			灵感音符可以再生虚空值
+			然而，灵感音符不再受到盔甲增益的影响
+			咒音增幅会大幅增强虚空属性
+			如果饰品可见性被关闭：
+			手持虚空吟游诗人武器时，拾取灵感音符将恢复虚空值
+			灵感值耗尽后，消耗25点虚空值填满
 			'''
 		CrystalScorpian:
 			'''
@@ -174,50 +184,48 @@ ItemTooltip: {
 	}
 
 	AstrageldonRelic: {
-		Line1: You have chosen great suffering for yourself.
-		Line2: Even though this choice has been painful and difficult at times,
-		Line3: The adversity you overcome will bear worthy fruit.
+		Line1: 你为自己选择了巨大的苦难。
+		Line2: 即便这一抉择时常痛苦艰难，
+		Line3: 你所克服的逆境终将结出可贵的硕果。
 	}
 
-	/* AvatarRelic:
+	AvatarRelic:
 		'''
-		You have done well.
-		Now, seek the Terminus. Your final test is at hand.
-		''' */
-	/* GoozmaRelic:
+		你做得很好。
+		现在，去找到终末石，你的最终试炼就在眼前。
 		'''
-		It's funny, isn't it?
-		Even though you beat hell's game, you keep challenging higher beings... 
-		One day this luck will run out.
-		''' */
-	// NamelessRelic: You have passed the test.
-	AstralCommunicatorInfernum1: Summons Astrageldon in the Astral Infection
-	AstralCommunicatorInfernum2: The interdimentional slime still hungers...
+	GoozmaRelic:
+		'''
+		很有趣，不是吗？
+		尽管你已经通关了地狱的考验，却依旧在不断挑战更崇高的存在……
+		总有一天，这份运气将耗尽。
+		'''
+	NamelessRelic: 你通过了试炼。
+	AstralCommunicatorInfernum1: 在星辉瘟疫环境中召唤末世星史莱姆
+	AstralCommunicatorInfernum2: 来自异界的史莱姆依旧饥渴不止……
 }
 
 Lore: {
 	DylanLore:
 		'''
-		Hmm ... I'm surprised that you even know of that person.
-		The first time we found him we thought he was a god ... however, ends up he didn't actually have a auric soul.
-		We took him in and he showed us how to make powerful elemental imbued gear and bombs that wasn't just steel.
-		His ideas had helped increase my army's power by a lot, but he never fought himself.
+		嗯……你居然还知道他，真令人惊讶。
+		我们第一次发现他时，还以为他是一尊神明……然而，事实证明他并不拥有金源魄。
+		我们收留了他，他教会我们如何打造强大的元素附魔装备，以及不再局限于纯钢铸造的爆破物。
+		他的构想大幅提升了我的军队实力，可他本人却从未亲自上阵。
 
-		One day when I went to his room, but nothing was there expect from a note.
-		We couldn't translate his writing but from the pictures it was some sort of ring. 
-		Knowing you, I'm sure you'll figure out how to make it.
+		直到有一天，我走进他的房间，却只看到一张纸条。
+		我们无法破解上面的文字，但从图画来看，那似乎是一枚戒指。 
+		接下来，就请你查明它的制作方法。
 
 		–敬请期待《诸神黄昏：炼狱蚀光》的未来篇章！–
 		'''
 	MysteriousDiary:
 		'''
-		Turning to page one, you see nothing except a few words.
+		翻到第一页，你只看到几行文字。
+		“我究竟是谁，我为何还活着？”
+		余下的页面一片空白……
 
-		“Who the hell am I, that I still get to live a life?”
-
-		The rest of the pages are blank…
-
-		[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]
+		[c/E3AF40:此书洋溢着异界气息……或许在亚利姆甚至诸神之外，还潜藏着更宏伟的存在。]
 
 		–敬请期待《诸神黄昏：炼狱蚀光》的未来篇章！–
 		'''
@@ -292,9 +300,11 @@ Lore: {
 		'''
 }
 
+LegendaryTooltip.Base: 随着你击败强敌，此武器的力量可能不断增强。
+
 Items: {
 	SandstonePortalDevice: {
-		// DisplayName: Sandstone Portal Device
+		DisplayName: 砂岩传送装置
 		// Tooltip: ""
 	}
 
@@ -344,6 +354,62 @@ Items: {
 	StellarSabre: {
 		DisplayName: 星火弯刀
 		Tooltip: ""
+
+		Progression: {
+			WoF:
+				'''
+				击败地狱守护者以获得更多力量……
+							尚未获得额外力量……
+				'''
+			Mechs:
+				'''
+				随着血肉墙被击败，此剑可发射额外的星辰
+							击败机械巨兽以获得更多力量……
+				'''
+			Plantera:
+				'''
+				击败嘉登的机械装置后，它现在会附加破晓减益
+							击败丛林守护者以获得更多力量……
+				'''
+			Golem:
+				'''
+				击败世纪之花后，星辰在命中时会分裂
+							击败神庙的蜥蜴造物以获得更多力量……
+				'''
+			Cultist:
+				'''
+				击败石巨人后，星辰会自动追踪敌人
+							击败古代邪教领袖以获得更多力量……
+				'''
+			MoonLord:
+				'''
+				击败拜月教邪教徒后，星辰在命中时爆炸
+							击败古神的邪异残躯以获得更多力量……
+				'''
+			Full: 星火军刀已苏醒，最大威能解禁！
+		}
+
+		Lore: “即便历经这一切，仍有一人——赞达尔，始终不愿攻击……”
+	}
+
+	ExoSights: {
+		DisplayName: 星流视域
+		Tooltip: ""
+		ThoriumTooltip:
+			'''
+			暴击率提高25%
+			暴击额外多造成40点伤害，释放毁灭性火花，并有概率引爆敌人，造成100%额外伤害
+			暴击汲取生命，恢复虚空值并回复法力
+			免疫流血与中毒效果，并给予你夜视能力
+			'''
+		DefaultTooltip:
+			'''
+			暴击率提高25%
+			暴击额外多造成40点伤害，并有概率引爆敌人，造成100%额外伤害
+			暴击汲取生命，恢复虚空值并回复法力
+			免疫流血与中毒效果，并给予你夜视能力
+			'''
+		Lore: 在埃瑞利安从嘉登处获得星流棱镜后，他终于完善了战甲的灵魂AI——现在，暴君的身影已映入他的瞄准镜中。
 	}
 
 	Lore: {
@@ -416,127 +482,168 @@ Items: {
 	}
 
 	SuspiciousLookingPumpkin: {
-		DisplayName: Suspicious Looking Pumpkin
+		DisplayName: 可疑南瓜
 		Tooltip:
 			'''
-			Summons the Lich when used on the Ancient Phylactery
-			Not consumable
+			在自然墓地的万魂匣使用以召唤巫妖
+			不消耗
 			'''
 	}
 
 	AstrageldonRelic: {
-		DisplayName: Infernal Astrageldon Relic
+		DisplayName: 末世星史莱姆炼狱圣物
 		Tooltip: ""
 	}
 
 	SubspaceSpawner: {
-		// DisplayName: Subspace Spawner
-		// Tooltip: ""
+		DisplayName: 亚空间生成装置
+		Tooltip: ""
 	}
 
 	AvatarOfEmptinessRelic: {
-		// DisplayName: Infernal Avatar Of Emptiness Relic
-		// Tooltip: ""
+		DisplayName: 虚无化身炼狱圣物
+		Tooltip: ""
 	}
 
 	GoozmaRelic: {
-		// DisplayName: Infernal Goozma Relic
-		// Tooltip: ""
+		DisplayName: 古泽玛炼狱圣物
+		Tooltip: ""
 	}
 
 	NamelessDeityRelic: {
-		// DisplayName: Infernal Nameless Deity Relic
-		// Tooltip: ""
+		DisplayName: 无名光神炼狱圣物
+		Tooltip: ""
 	}
 
 	LepusRelic: {
-		// DisplayName: Infernal Lepus Relic
-		// Tooltip: ""
+		DisplayName: 天兔炼狱圣物
+		Tooltip: ""
 	}
 
 	OcramRelic: {
-		// DisplayName: Infernal Ocram Relic
-		// Tooltip: ""
+		DisplayName: 奥库瑞姆炼狱圣物
+		Tooltip: ""
 	}
 
 	TurkorTheUngratefulRelic: {
-		// DisplayName: Infernal Turkor The Ungrateful Relic
-		// Tooltip: ""
+		DisplayName: 不感恩的火鸡炼狱圣物
+		Tooltip: ""
 	}
 
 	AdvisorRelic: {
-		// DisplayName: Infernal Advisor Relic
-		// Tooltip: ""
+		DisplayName: 启示异械炼狱圣物
+		Tooltip: ""
 	}
 
 	ExcavatorRelic: {
-		// DisplayName: Infernal Excavator Relic
-		// Tooltip: ""
+		DisplayName: 掘地重蝎炼狱圣物
+		Tooltip: ""
 	}
 
 	GlowmothRelic: {
-		// DisplayName: Infernal Glowmoth Relic
-		// Tooltip: ""
+		DisplayName: 荧灯蛾炼狱圣物
+		Tooltip: ""
 	}
 
 	PolarisRelic: {
-		// DisplayName: Infernal Polaris Relic
-		// Tooltip: ""
+		DisplayName: 极北灾星炼狱圣物
+		Tooltip: ""
 	}
 
 	PutridPinkyRelic: {
-		// DisplayName: Infernal Putrid Pinky Relic
-		// Tooltip: ""
+		DisplayName: 腐蚀之粉炼狱圣物
+		Tooltip: ""
 	}
 
 	SubspaceSerpentRelic: {
-		// DisplayName: Infernal Subspace Serpent Relic
-		// Tooltip: ""
+		DisplayName: 亚空骇蟒炼狱圣物
+		Tooltip: ""
 	}
 
 	BoreanStriderRelic: {
-		// DisplayName: Infernal Borean Strider Relic
-		// Tooltip: ""
+		DisplayName: 极地遁蛛炼狱圣物
+		Tooltip: ""
 	}
 
 	FallenBeholderRelic: {
-		// DisplayName: Infernal Fallen Beholder Relic
-		// Tooltip: ""
+		DisplayName: 堕落注视者炼狱圣物
+		Tooltip: ""
 	}
 
 	ForgottenOneRelic: {
-		// DisplayName: Infernal Forgotten One Relic
-		// Tooltip: ""
+		DisplayName: 遗忘之主炼狱圣物
+		Tooltip: ""
 	}
 
 	GraniteEnergyStormRelic: {
-		// DisplayName: Infernal Granite Energy Storm Relic
-		// Tooltip: ""
+		DisplayName: 花岗岩流能风暴炼狱圣物
+		Tooltip: ""
 	}
 
 	LichRelic: {
-		// DisplayName: Infernal Lich Relic
-		// Tooltip: ""
+		DisplayName: 巫妖炼狱圣物
+		Tooltip: ""
 	}
 
 	PatchWerkRelic: {
-		// DisplayName: Infernal Patch Werk Relic
-		// Tooltip: ""
+		DisplayName: 缝合人炼狱圣物
+		Tooltip: ""
 	}
 
 	PrimordialsRelic: {
-		// DisplayName: Infernal Primordials Relic
-		// Tooltip: ""
+		DisplayName: 始生灾灵炼狱圣物
+		Tooltip: ""
 	}
 
 	StarScouterRelic: {
-		// DisplayName: Infernal Star Scouter Relic
-		// Tooltip: ""
+		DisplayName: 星际监察者炼狱圣物
+		Tooltip: ""
 	}
 
 	ViscountRelic: {
-		// DisplayName: Infernal Viscount Relic
-		// Tooltip: ""
+		DisplayName: 蝙蝠子爵炼狱圣物
+		Tooltip: ""
+	}
+
+	Lycanroc: {
+		DisplayName: 鬃岩狼妖
+		Tooltip: ""
+
+		Progression: {
+			WoF:
+				'''
+				击败地狱守护者以获得更多力量……
+				    		尚未获得额外力量……
+				'''
+			Mechs:
+				'''
+				随着血肉墙被击败，该武器发射的子弹可造成碎甲效果
+				    		击败机械巨兽以获得更多力量……
+				'''
+			Plantera:
+				'''
+				击败嘉登的机器装置后，该武器将普通子弹转换为高速子弹
+				    		击败丛林守护者以获得更多力量……
+				'''
+			Golem:
+				'''
+				击败世纪之花后，你的怒火使该武器射速大幅增加
+				    		击败神庙的蜥蜴造物以获得更多力量……
+				'''
+			Cultist:
+				'''
+				击败石巨人后，你开启肾上腺素时将一定会暴击
+				    		击败古代邪教领袖以获得更多力量……
+				'''
+			MoonLord:
+				'''
+				击败拜月教邪教徒后，该武器现在有概率触发超级暴击
+				    		击败古神的邪异残躯以获得更多力量……
+				'''
+			Full: 鬃岩狼妖已苏醒，最大威能解禁！
+		}
+
+		Lore: “你打算做什么？杀了我？”
 	}
 }
 
@@ -602,10 +709,10 @@ Configs: {
 		BossKillCheckOnOres: {
 			Tooltip:
 				'''
-				Makes changes to certain items to make them unobtainable until their intended tier.
+				修改了部分物品，使其在达到预期游戏阶段之前无法获得
 				直到你击败指定的Boss前，阻止你挖掘特定的矿石以及物品
 				'''
-			Label: Maintain Calamity Tier Progression
+			Label: 保持灾厄模组的游戏阶段进度
 		}
 
 		VanillaBalanceChanges: {
@@ -749,6 +856,8 @@ Configs: {
 DamageClasses: {
 	VoidRogue.DisplayName: 虚空+盗贼伤害
 	MergedThrowerRogue.DisplayName: 盗贼伤害
+	LegendaryMelee.DisplayName: 传说近战伤害
+	LegendaryRanged.DisplayName: 传说远程伤害
 }
 
 BossRushIntroText1:
@@ -882,8 +991,8 @@ Buffs: {
 	}
 
 	BubbleShock: {
-		DisplayName: Bubble Shock
-		Description: You can't be affected by any more bubbles!
+		DisplayName: 气泡冲击
+		Description: 你将不再受到任何气泡的影响！
 	}
 }
 

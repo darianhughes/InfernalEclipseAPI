@@ -4371,7 +4371,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             ModItem foundItem;
             ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHealer);
             ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
-            if (mod == calBardHealer || mod == thorium)
+            ModLoader.TryGetMod("ThoriumRework", out Mod thorRework);
+            if (mod == calBardHealer || mod == thorium || mod == thorRework)
             {
                 if (!mod.TryFind(name, out foundItem))
                     return false;

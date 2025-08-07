@@ -8,8 +8,9 @@ using Terraria.ModLoader;
 using Terraria;
 using ThoriumMod.Tiles;
 
-namespace InfernalEclipseAPI.Common.Balance
+namespace InfernalEclipseAPI.Common.Balance.Thorium
 {
+    [ExtendsFromMod("ThoriumMod")]
     public class ThoriumTileSafeguard : GlobalTile
     {
         public override bool CanKillTile(int i, int j, int tile, ref bool blockDamaged)

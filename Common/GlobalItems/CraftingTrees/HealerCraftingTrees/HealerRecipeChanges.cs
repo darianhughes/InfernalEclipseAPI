@@ -106,18 +106,21 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTree
                     if (!InfernalConfig.Instance.MergeCraftingTrees)
                         return;
 
-                    if (recipe.HasResult(ThoriumRework.Find<ModItem>("SealedContract")))
+                    if (ThoriumRework.TryFind("SealedContract", out ModItem sealedContract))
                     {
-                        recipe.RemoveIngredient(thorium.Find<ModItem>("LifeGem").Type);
-
-                        if (SOTSBardHealer != null)
+                        if (recipe.HasResult(sealedContract))
                         {
-                            recipe.AddIngredient(SOTSBardHealer.Find<ModItem>("SerpentsTongue"));
-                        }
+                            recipe.RemoveIngredient(thorium.Find<ModItem>("LifeGem").Type);
 
-                        recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence"), 3);
-                        recipe.RemoveTile(TileID.MythrilAnvil);
-                        recipe.AddTile(ModContent.TileType<CosmicAnvil>());
+                            if (SOTSBardHealer != null)
+                            {
+                                recipe.AddIngredient(SOTSBardHealer.Find<ModItem>("SerpentsTongue"));
+                            }
+
+                            recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence"), 3);
+                            recipe.RemoveTile(TileID.MythrilAnvil);
+                            recipe.AddTile(ModContent.TileType<CosmicAnvil>());
+                        }
                     }
                 }
             }

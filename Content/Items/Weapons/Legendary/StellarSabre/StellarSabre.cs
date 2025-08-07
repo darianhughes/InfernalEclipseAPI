@@ -6,15 +6,17 @@ using System.Collections.Generic;
 using InfernumMode.Content.Rarities.InfernumRarities;
 using CalamityMod.Items.Materials;
 using System;
+using Terraria.Localization;
+using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 
-namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
+namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre
 {
     public class StellarSabre : ModItem
     {
         public override void SetDefaults()
         {
             Item.damage = 30; // will scale in ModifyWeaponDamage
-            Item.DamageType = DamageClass.Melee;
+            Item.DamageType = LegendaryMelee.Instance;
             Item.width = 40;
             Item.height = 40;
             Item.useTime = 12;
@@ -102,25 +104,21 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
         {
             Color lerpedColor = Color.Lerp(Color.White, new Color(30, 144, 255), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
 
+            TooltipLine line4 = new(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Lore"));
+            tooltips.Add(line4);
+
             if (!NPC.downedMoonlord)
             {
-                TooltipLine line3 = new(Mod, "Progression2", "This weapon may grow in power as you defeat difficult foes.");
+                TooltipLine line3 = new(Mod, "Progression2", Language.GetTextValue("Mods.InfernalEclipseAPI.LegendaryTooltip.Base"));
                 line3.OverrideColor = lerpedColor;
                 tooltips.Add(line3);
             }
-
-            TooltipLine line2 = new(Mod, "Progression2", GetProgressionTooltip2());
-            line2.OverrideColor = lerpedColor;
-            tooltips.Add(line2);
 
             TooltipLine line = new(Mod, "Progression", GetProgressionTooltip());
             line.OverrideColor = lerpedColor;
             tooltips.Add(line);
 
-            TooltipLine line4 = new(Mod, "Lore", "'Even after everything, there was still one person Xander refused to attack...'");
-            tooltips.Add(line4);
-
-            TooltipLine line5 = new(Mod, "DedicatedItem", "- Playtester Item -");
+            TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Playtester"));
             line5.OverrideColor = lerpedColor;
             tooltips.Add(line5);
         }
@@ -128,35 +126,18 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
         private string GetProgressionTooltip()
         {
             if (NPC.downedMoonlord)
-                return "The Stellar Sabre is fully awaked, and its maximum power is unleashed!";
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Full");
             if (NPC.downedAncientCultist)
-                return "With the defeat of the Lunatic Cultist, stars explode on impact.";
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.MoonLord");
             if (NPC.downedGolemBoss)
-                return "With the defeat of Golem, stars home in on enemies.";
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Cultist");
             if (NPC.downedPlantBoss)
-                return "With the defeat of Plantera, stars now split on hit.";
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Golem");
             if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                return "With the defeat of Draedon's machines, it now inflicts Daybroken.";
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Plantera");
             if (Main.hardMode)
-                return "With the defeat of the Wall of Flesh, this sword now fires extra stars.";
-            return "No extra power has been gained...";
-        }
-
-        private string GetProgressionTooltip2()
-        {
-            if (NPC.downedMoonlord)
-                return "The Stellar Sabre is fully awakened!";
-            if (NPC.downedAncientCultist)
-                return "Defeat the celestial of the moon to gain more power...";
-            if (NPC.downedGolemBoss)
-                return "Defeat the leader of the ancient cult to gain more power...";
-            if (NPC.downedPlantBoss)
-                return "Defeat the construct of the Lizhard Temple to gain more power...";
-            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                return "Defeat the gaurdian of the jungle to gain more power...";
-            if (Main.hardMode)
-                return "Defeat the mechanical beasts to gain more power...";
-            return "Defeat the keeper of Hell to gain more power...";
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Mechs");
+            return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.WoF");
         }
     }
 }

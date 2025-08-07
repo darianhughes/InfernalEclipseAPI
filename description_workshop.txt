@@ -21,7 +21,7 @@ As well minor support for these content mods & add-ons:
 	[*] Community Souls Expansion
 [/list]
 
-The only mods required for this API to run are Calamity Mod, Infernum Mode, Revengence+, You, tPackBuilder, and any dependency included with those mods.
+The only mods required for this API to run are Calamity Mod, Infernum Mode, Revengence+, Thrower Unification, You, and any dependency included with those mods.
 
 This API currently adds the following:
 [list]
@@ -36,7 +36,7 @@ This API currently adds the following:
 	[*] Some minor cross-mod improvements for other mods outside main mod pack.
 [/list]
 
-In the future, this will be a content mod that has its own story, including each of the mods in the mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder.
+In the future, this will be a content mod that has its own story, including each of the mods in the mod pack in the future, with a functional reworked boss progression using the QuestBookUI & tPackBuilder.
 
 The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
 
@@ -44,31 +44,21 @@ If you have any other issues please report them in the [url=https://discord.gg/t
 
 You can also check out the official wiki for our mod: https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok
 
+If you want to support the development team, see our pateron page: 
+
 Also check out [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url] mod, as most of the item balance changes in this mod came from that mod and were created by him!
 
 Very special thanks to the Bereft Souls & Community Souls Expansion teams, as well as each of the individuals for each mod in the mod pack for making this possible.
 
 Created by the Infernal Eclipse of Ragnarok Team:
-[list]
-	[*] Akira - Creator and Lead Developer
-	[*] Wardrobe Hummus - Item Rebalance Designer & Developer
-	[*] Advantaje - Developer
-	[*] Yob - Boss Progression Redesigner & Spriter
-	[*] trembler - Weapons Designer & Connections Manager
-	[*] Suu - Lead Story Designer
-	[*] Prime - Lead Texture Pack Spriter
-	[*] ZaKami - Project Coordinator
-	[*] TheRogueX - Lead Playtester & Testing Server Host
-[/list]
-
-With some support from the following contributors:
-[list]
-	[*] Soltan - Playtester, Item Rebalance Designer, & Crafting Tree Designer
-	[*] cheesenuggets - Crafting Tree Designer
-	[*]	Pixus, Yelmut, & Pil - Spriters
-	[*] Pudding - Simpllified Chinese localization
-	[*] Aizen522 - Russian localization
-[/list]
+Developers: Akira, Wardrobe Hummus, Advantaje
+Designers: Wardrobe Hummus, Yob, trembler
+Story: Akira, Yob, Suu
+Coordinators: ZaKami, TheRogueX
+Wiki Moderators: Akira, Wardrobe Hummus, Soltan
+Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat
+Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, Pil
+Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
 And special thanks to the following creators for the music in this mod:
 [list]

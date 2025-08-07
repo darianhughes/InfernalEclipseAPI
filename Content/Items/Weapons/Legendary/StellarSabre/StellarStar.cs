@@ -8,8 +8,9 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using CalamityMod.Buffs.DamageOverTime;
+using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 
-namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
+namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre
 {
     public class StellarStar : ModProjectile
     {
@@ -19,7 +20,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.StellarSabre
             Projectile.width = 22;
             Projectile.height = 22;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Melee;
+            Projectile.DamageType = LegendaryMelee.Instance;
             Projectile.penetrate = 1;
             Projectile.tileCollide = true;
             Projectile.ignoreWater = true;

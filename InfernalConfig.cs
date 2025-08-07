@@ -115,14 +115,6 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool DisableDuplicateContent { get; set; }
 
-        [DefaultValue(true)]
-        [ReloadRequired]
-        public bool AutomaticallyReforgeThoriumRogueItems { get; set; }
-
-        [DefaultValue(true)]
-        [ReloadRequired]
-        public bool MergeThrowerIntoRogue { get; set; }
-
         //[DefaultValue(true)]
         //public bool PlayInfernumExoMechThemeWithWoTM {  get; set; }
 

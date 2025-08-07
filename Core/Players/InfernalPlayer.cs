@@ -22,7 +22,8 @@ using Terraria.Localization;
 using InfernalEclipseAPI.Common.GlobalItems;
 using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
 using CalamityMod.CalPlayer;
-using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
+using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
+using CalamityMod.Buffs.StatDebuffs;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -31,149 +32,58 @@ namespace InfernalEclipseAPI.Core.Players
         public override void PlayerConnect()
         {
             if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
-        //    Main.NewText("Welcome to the Infernal Eclipse of Ragnarok Mod Pack!", 95, 06, 06);
-
-        //    if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
-        //    {
-        //        //This message should always popup upon entering a world if they are playing the mod pack.
-        //        if (ModLoader.TryGetMod("ThoriumRework", out Mod rework))
-        //        {
-        //            Main.NewText("NOTICE: It is detected that you have Thorium Bosses Reworked enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatability config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses when the Infernum difficulty is active.", 255, 255, 0);
-        //        }
-        //        else
-        //        {
-        //            Main.NewText("WARNING: It is detected that you do not have Thorium Bosses Reworked enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.", 255, 0, 0);
-        //        }
-
-        //        if (!(ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok)))
-        //        {
-        //            Main.NewText("WARNING: It is detected that you do not have Ragnarok enabled! Without this mod, Thorium & Calamity may not work well together. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 0, 0);
-        //        }
-        //    }
-
-        //    //These messages should not appear if they are plaing the mod pack.
-        //    if (!(ModLoader.TryGetMod("RevengeancePlus", out Mod revenge)))
-        //    {
-        //        Main.NewText("WARNING: It is detected that you do not have Revengeance Plus enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, Infernum, or Thorium will not have Infernum mechanics or intros, and may not be included in Boss Rush. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 0, 0);
-        //    }
-
-        //    if (ModLoader.TryGetMod("EventTrophies", out Mod eventTrophy))
-        //    {
-        //        Main.NewText("WARNING: It is detected that you using More Trophies and Reclis in a multiplayer world! Make sure you only have what you need to have enabled in More Trophies and Relics config or else mobs may not spawn! You can download the suggested config off of the mod packs collection page on Steam.", 255, 255, 0);
-
-        //    }
-        //    else
-        //    {
-        //        Main.NewText("NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 255, 0);
-
-        //    }
-
-
-        //    //Alerts the player if they have Fargo's Souls enabled.
-        //    if (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls))
-        //    {
-        //        Main.NewText("WARNING: It is detected that you have the Fargo's Souls Mod enabled! Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.", 255, 0, 0);
-        //    }
-
-        //    //Alertes the player about WotG Mutliplayer incompatability
-        //    if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))
-        //    {
-        //        Main.NewText("NOTICE: Calamity: Wrath of the Gods is currently multiplayer incompatiable. If you are wanting to play this world in multiplayer, please disable Wrath of the Gods first.", 255, 255, 0);
-        //    }
-
-        //    if (ModLoader.TryGetMod("CalamityMinus", out Mod calMinus))
-        //    {
-        //        Main.NewText("NOTICE: It is detected that you have the Calamity Minus Mod enabled! This mod already includes all of the mods features while you have Calamaity Balance Changes on in the config.", 255, 255, 06);
-        //    }
-
-        //    if (ModLoader.TryGetMod("CalBalChange", out Mod calBal))
-        //    {
-        //        Main.NewText("NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled! This mod already includes most of the mods features that are listed on their Steam Workshop page, while you have Calamaity Balance Changes on in the config. Calamity Balance Changes also adds a bunch of unlisted changes which might make your playthough worse than intended.", 255, 255, 06);
-        //    }
-
-        //    if (InfernumActive.InfernumActive)
-        //    {
-                Main.NewText("A prodigy has returned to help face the Infernal Eclipse...", 95, 06, 06);
-        //        //SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);
-        //    }
-        //    else if (InfernalConfig.Instance.InfernumModeForced)
-        //    {
-        //        Main.NewText("Infernal energy has been infused into this world...", 95, 06, 06);
-        //        SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, this.Player.Center);
-        //        WorldSaveSystem.InfernumModeEnabled = true;
-        //    }
-
-        //    if (InfernalConfig.Instance.ForceFullXerocDialogue)
-        //    {
-        //        DownedBossSystem.startedBossRushAtLeastOnce = false;
-        //    }
+            ;
+            Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.MPConnect"), 95, 06, 06);
         }
 
         public override void OnEnterWorld()
         {
             if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
 
-            Main.NewText("Welcome to the Infernal Eclipse of Ragnarok Mod Pack!", 95, 06, 06);
+            Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.Welcome"), 95, 06, 06);
 
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
                 //This message should always popup upon entering a world if they are playing the mod pack.
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod rework))
                 {
-                    Main.NewText("NOTICE: It is detected that you have Thorium Bosses Reworked enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatability config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses depending on the current difficulty.", 255, 255, 0);
+                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.TBRNotice"), 255, 255, 0);
                 }
                 else
                 {
-                    Main.NewText("WARNING: It is detected that you do not have Thorium Bosses Reworked enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.", 255, 0, 0);
+                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.TBRWarning"), 255, 0, 0);
                 }
 
                 if (!ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
                 {
-                    Main.NewText("WARNING: It is detected that you do not have Ragnarok enabled! Without this mod, Thorium & Calamity may not work well together. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 0, 0);
+                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagWarning"), 255, 0, 0);
                 }
-            }
-
-            //These messages should not appear if they are plaing the mod pack.
-            if (!ModLoader.TryGetMod("RevengeancePlus", out Mod revenge)) //this message should never appear now with it being a dependency
-            {
-                Main.NewText("WARNING: It is detected that you do not have Revengeance Plus enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, Infernum, or Thorium will not have Infernum mechanics or intros, and may not be included in Boss Rush. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 0, 0);
-            }
-
-            if (!ModLoader.TryGetMod("EventTrophies", out Mod eventTrophy))
-            {
-                Main.NewText("NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience", 255, 255, 0);
             }
 
             //Alerts the player if they have Fargo's Souls enabled.
             if (ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls)) 
             {
-                Main.NewText("WARNING: It is detected that you have the Fargo's Souls Mod enabled! Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.", 255, 0, 0);
-            }
-
-            //Alertes the player about WotG Mutliplayer incompatability
-            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))
-            {
-                Main.NewText("NOTICE: Calamity: Wrath of the Gods is currently multiplayer incompatiable. If you are wanting to play this world in multiplayer, please disable Wrath of the Gods first.", 255, 255, 0);
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning"), 255, 0, 0);
             }
 
             if (ModLoader.TryGetMod("CalamityMinus", out Mod calMinus))
             {
-                Main.NewText("NOTICE: It is detected that you have the Calamity Minus Mod enabled! This mod already includes all of the mods features while you have Calamaity Balance Changes on in the Infernal Eclipse of Raganrok config.", 255, 255, 06);
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalMinus"), 255, 255, 06);
             }
 
             if (ModLoader.TryGetMod("CalBalChange", out Mod calBal))
             {
-                Main.NewText("NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled! This mod already includes most of the mods features that are listed on their Steam Workshop page, while you have Calamaity Balance Changes on in the Infernal Eclipse of Ragnarok config. Calamity Balance Changes also adds a bunch of unlisted changes which might make your playthough worse than intended.", 255, 255, 06);
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalBalNotice"), 255, 255, 06);
             }
 
             if (InfernumActive.InfernumActive)
             {
-                Main.NewText("The prodigy has returned to face the Infernal Eclipse...", 95, 06, 06);
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.InfernumActive"), 95, 06, 06);
                 SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
             }
             else if (InfernalConfig.Instance.InfernumModeForced)
             {
-                Main.NewText("Infernal energy has been infused into this world...", 95, 06, 06);
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.InfernumForced"), 95, 06, 06);
                 SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
                 WorldSaveSystem.InfernumModeEnabled = true;
             }
@@ -284,13 +194,23 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
-        //MOVED TO ROGUETHROWERPLAYER
-        //public override void PostUpdateMiscEffects()
-        //{
-        //    Player player = Main.LocalPlayer;
-        //    var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (Player.whoAmI != Main.myPlayer) return;
 
-        //    Player.GetDamage<MergedThrowerRogue>() += CalPlayer.stealthDamage;
-        //}
+            if (!proj.npcProj && !proj.trap && proj.friendly)
+            {
+                LycanrocGlobalProjectile lgp = proj.GetGlobalProjectile<LycanrocGlobalProjectile>();
+                if (lgp.appliesArmorCrunch)
+                {
+                    target.AddBuff(ModContent.BuffType<ArmorCrunch>(), 180);
+                }
+
+                if (lgp.appliesCrumbling)
+                {
+                    target.AddBuff(ModContent.BuffType<Crumbling>(), 180);
+                }
+            }
+        }
     }
 }

@@ -39,10 +39,12 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
             if (!(ModLoader.TryGetMod("RagnarokMod", out Mod ragnarokMod) &&
                   ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) &&
                   ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod2)))
+            {
                 return;
+            }
 
-            // Helper function for modular lookups
-            void TryApplyBuff(string projName, Mod modProj, string buffName, Mod modBuff, int time)
+                // Helper function for modular lookups
+                void TryApplyBuff(string projName, Mod modProj, string buffName, Mod modBuff, int time)
             {
                 var proj = modProj.Find<ModProjectile>(projName);
                 var buff = modBuff.Find<ModBuff>(buffName);

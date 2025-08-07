@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using InfernumMode;
 
-namespace InfernalEclipseAPI.Content.Items.Weapons.ChromaticMassInABottle
+namespace InfernalEclipseAPI.Content.Items.Accessories.ChromaticMassInABottle
 {
     internal class ChromaticMassInABottle : ModItem
     {
@@ -28,6 +28,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.ChromaticMassInABottle
                 cal.TryFind("Violet", out r);
                 Item.rare = r.Type;
             }
+
+            Item.accessory = true;
 
             Item.Infernum_Tooltips().DeveloperItem = true;
         }

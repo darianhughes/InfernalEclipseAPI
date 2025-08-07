@@ -1,4 +1,20 @@
+WelcomeMessage: {
+	Welcome: Welcome to the Infernal Eclipse of Ragnarok Mod Pack!
+	TBRNotice: NOTICE: It is detected that you have Thorium Bosses Reworked enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatibility config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses depending on the current difficulty.
+	TBRWarning: WARNING: It is detected that you do not have Thorium Bosses Reworked enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.
+	RagWarning: WARNING: It is detected that you do not have Ragnarok enabled! Without this mod, Thorium & Calamity may not work well together. It is heavily recommended you enable this mod for a more complete & balanced experience
+	EventTrophyNotice: NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience.
+	SoulsWarning: WARNING: It is detected that you have the Fargo's Souls Mod enabled! Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.
+	CalMinusNotice: NOTICE: It is detected that you have the Calamity Minus Mod enabled! This mod already includes all of the mods features while you have Calamaity Balance Changes on in the Infernal Eclipse of Raganrok config.
+	CalBalNotice: NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled! This mod already includes most of the mods features that are listed on their Steam Workshop page, while you have Calamaity Balance Changes on in the Infernal Eclipse of Ragnarok config. Calamity Balance Changes also adds a bunch of unlisted changes which might make your playthough worse than intended.
+	InfernumActive: The prodigy has returned to face the Infernal Eclipse...
+	MPConnect: A prodigy has returned to help face the Infernal Eclipse...
+	InfernumForced: Infernal energy has been infused into this world...
+}
+
 ItemTooltip: {
+	Playtester: - Playtester Item -
+	Contributor: - Contributor Item -
 	SandstonePortalDeviceInfo:
 		'''
 		Transports you to the Lost Colosseum
@@ -6,25 +22,19 @@ ItemTooltip: {
 		'''
 	SandstonePortalDeviceInfoMP: Summons the Bereft Vassal after the portal at the Lost Gateway has been activated <- currently unsued in API
 
-	StealthStrike: {
-		CactusNeedle: Stealth strikes throw out needles in a tight fan of 3
-		IcyTomahawk: Stealth strikes throw out 4 tomahawks of different speeds that last longer and pierce more
-		ZephyrRuin: Stealth strikes throw a stronger spear that always crits
-		ClockworkBomb: Stealth strikes create a larger field that lasts longer
-		SoulBomb: Stealth strikes release a burst of homing souls on detonation
-		PlayingCard: Stealth strikes throw 5 homing cards that are always explosive
-		Soulslasher: Stealth strikes will also aggressively home after hitting an enemy
-		WhiteDwarfCutter: During a stealth strike each hit creates Ivory flares that damage for 0.1% of the target's max HP
-		CaptainsPoignard: Stealth strikes throw a burst of 6 daggers and gives the player increased attack speed for 10 seconds
-		SoftServeSunderer: Stealth strikes summon a rain of cones from above the hit enemy
-		ShadeShuriken: Stealth strikes throw a larger, faster shuriken that has increased pierce
-		LodestoneJav: Stealth strikes cause earth to erupt from the struck enemy, inflicting sunder
-		ValadiumThrowingAxe: Stealth strikes on first hit will create a ring of axes to fly at the struck enemy
-		ChlorophyteTomahawk: Stealth strikes will last longer, have more pierce and generate homing spores throughout it's duration
-		FireAxe: Stealth strikes summon a spectral axe of flames to cleave hit enemies
-	}
-
 	MergedCraftingTreeTooltip: {
+		TPS:
+			'''
+			Allows flight, hyper fast running, and extra mobility on ice
+			12% increased movement speed
+			Provides the ability to walk on water, honey & lava
+			Grants immunity to fire blocks and lava
+			'''
+		Hellfire:
+			'''
+			Multiplies all fire-based debuff damage by 1.5, does not stack with downgrades
+			All attacks inflict Hellfire
+			'''
 		BagOfAmmoConsume: Grants a 20% chance not to consume ammo
 		BagOfAmmoOther:
 			'''
@@ -290,6 +300,8 @@ Lore: {
 		'''
 }
 
+LegendaryTooltip.Base: This weapon may grow in power as you defeat difficult foes
+
 Items: {
 	SandstonePortalDevice: {
 		DisplayName: Sandstone Portal Device
@@ -342,6 +354,62 @@ Items: {
 	StellarSabre: {
 		DisplayName: Stellar Sabre
 		Tooltip: ""
+
+		Progression: {
+			WoF:
+				'''
+				Defeat the keeper of Hell to gain more power...
+				No extra power has been gained...
+				'''
+			Mechs:
+				'''
+				With the defeat of the Wall of Flesh, this sword now fires extra stars
+				Defeat the mechanical beasts to gain more power...
+				'''
+			Plantera:
+				'''
+				With the defeat of Draedon's machines, it now inflicts Daybroken
+				Defeat the gaurdian of the jungle to gain more power...
+				'''
+			Golem:
+				'''
+				With the defeat of Plantera, stars now split on hit
+				Defeat the construct of the Lizhard Temple to gain more power...
+				'''
+			Cultist:
+				'''
+				With the defeat of Golem, stars home in on enemies
+				Defeat the leader of the ancient cult to gain more power...
+				'''
+			MoonLord:
+				'''
+				With the defeat of the Lunatic Cultist, stars explode on impact
+				Defeat the Eldritch corpse to gain more power...
+				'''
+			Full: The Stellar Sabre is fully awaked, and its maximum power is unleashed!
+		}
+
+		Lore: Even after everything, there was still one person Xander refused to attack...
+	}
+
+	ExoSights: {
+		DisplayName: Exo Sights
+		Tooltip: ""
+		ThoriumTooltip:
+			'''
+			Increases critical strike chance by 25%
+			Critical strikes deal 40 more damage, release a burst of damaging sparks, and may detonate enemies for 100% damage
+			Critical strikes steal life, regenerate void, and recover mana
+			Immunity to bleeding and poisoned debuffs, & grants night vision
+			'''
+		DefaultTooltip:
+			'''
+			Increases critical strike chance by 25%
+			Critical strikes deal 40 more damage and may detonate enemies for 100% damage
+			Critical strikes steal life, regenerate void, and recover mana
+			Immunity to bleeding and poisoned debuffs, & grants night vision
+			'''
+		Lore: After Erelian had obtained the Exo Prism from Draedon, he finnaly had everything to perfect his suit's spirit AI - and now the tyrant was finnally in his sights.
 	}
 
 	Lore: {
@@ -536,6 +604,47 @@ Items: {
 		DisplayName: Infernal Viscount Relic
 		Tooltip: ""
 	}
+
+	Lycanroc: {
+		DisplayName: Lycanroc
+		Tooltip: ""
+
+		Progression: {
+			WoF:
+				'''
+				Defeat the keeper of Hell to gain more power...
+				No extra power has been gained...
+				'''
+			Mechs:
+				'''
+				With the defeat of the Wall of Flesh, bullets shot by this weapon inflict crumbling
+				Defeat the mechanical beasts to gain more power...
+				'''
+			Plantera:
+				'''
+				With the defeat of Draedon's machines, this weapons now converts regular bullets to high velocity bullets
+				Defeat the gaurdian of the jungle to gain more power...
+				'''
+			Golem:
+				'''
+				With the defeat of Plantera, your rage now makes this weapon shoot increadbily fast
+				Defeat the construct of the Lizhard Temple to gain more power...
+				'''
+			Cultist:
+				'''
+				With the defeat of Golem, your adrenaline guarantee critical hits
+				Defeat the leader of the ancient cult to gain more power...
+				'''
+			MoonLord:
+				'''
+				With the defeat of the Lunatic Cultist, this weapon now has a chance to super crit
+				Defeat the Eldritch corpse to gain more power...
+				'''
+			Full: The Lycanroc is fully awaked, and its maximum power is unleashed!
+		}
+
+		Lore: "'What are you gonna do? Kill me?'"
+	}
 }
 
 Projectiles: {
@@ -703,7 +812,7 @@ Configs: {
 		}
 
 		ChanageWeaponClasses: {
-			Label: Chanage Weapon Classes
+			Label: Change Weapon Classes
 			Tooltip: Changes the class of some weapons to give more varity or to make more sense with the weapon.
 		}
 
@@ -755,6 +864,8 @@ Configs: {
 DamageClasses: {
 	VoidRogue.DisplayName: void + rogue damage
 	MergedThrowerRogue.DisplayName: rogue damage
+	LegendaryMelee.DisplayName: legendary melee damage
+	LegendaryRanged.DisplayName: legendary ranged damage
 }
 
 BossRushIntroText1:

@@ -83,7 +83,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
                 return;
             string str = Main.LocalPlayer.slotsMinions > 0.0 ? Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ScytheSummonOn") : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ScytheSummon");
             Color color = Color.Lerp(Color.White, new Color(30, 144 /*0x90*/, byte.MaxValue), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
-            tooltips.Add(new TooltipLine(Mod, "OneirophobiaInfo1", "Hold right click to summon the Ludic Instrument to fight for you")
+            tooltips.Add(new TooltipLine(Mod, "OneirophobiaInfo1", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.OneirophobiaSummon"))
             {
                 OverrideColor = new Color?(color)
             });

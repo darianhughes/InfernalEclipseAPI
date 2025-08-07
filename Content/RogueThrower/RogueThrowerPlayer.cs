@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria;
-using InfernalEclipseAPI.Core.DamageClasses.MergedRogueClass;
 using CalamityMod.CalPlayer;
 
 namespace InfernalEclipseAPI.Content.RogueThrower
@@ -168,64 +167,9 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 Player.armor[1].type == whiteDwarfPlate &&
                 Player.armor[2].type == whiteDwarfGreaves)
             {
-                Player.setBonus += "\nIvory flares can proc on a 2 second cooldown";
+                Player.setBonus += "\nIvory flares spawn on a 2 second cooldown";
                 // Add effects here if needed
             }
-        }
-
-        public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
-        {
-            // List of allowed mod names
-            var allowedMods = new HashSet<string>
-            {
-                "BCThrower",
-                "ThrowerPostGame",
-                "Arsenal_Mod",
-                "ThrowerArsenalAddOn"
-            };
-
-            bool isModded = item.ModItem != null;
-            string modName = isModded ? item.ModItem.Mod.Name : null;
-
-            bool isMergedRogue = item.DamageType?.ToString() == "CalamityMod.RogueDamageClass"
-                                 || item.DamageType == MergedThrowerRogue.Instance;
-
-            bool isNotCalamityAndConsumableRogue = isModded && modName != "CalamityMod"
-                                                   && item.consumable && isMergedRogue;
-
-            bool isFromAllowedMod = isModded && allowedMods.Contains(modName) && isMergedRogue;
-
-            // Vanilla items (no ModItem) that use rogue damage
-            bool isVanillaRogue = !isModded && isMergedRogue;
-
-            if (isNotCalamityAndConsumableRogue || isFromAllowedMod || isVanillaRogue)
-            {
-                Player player = Main.LocalPlayer;
-                var calPlayer = player.GetModPlayer<CalamityPlayer>();
-
-                if (ModLoader.TryGetMod("InfernalEclipseAPI", out _))
-                    return;
-
-                if (calPlayer.StealthStrikeAvailable())
-                {
-                    if (item.Name == "Clockwork Bomb" || item.Name == "Soul Bomb" || item.Name == "Soulslasher"
-                        || item.Name == "Soft Serve Sunderer" || item.Name == "Shade Shuriken")
-                        return;
-
-                    if (item.consumable || isFromAllowedMod)
-                        damage *= 1.75f;
-
-                    if (InfernalConfig.Instance.AutomaticallyReforgeThoriumRogueItems)
-                        damage *= 1.15f;
-                }
-            }
-        }
-
-        public override void PostUpdateMiscEffects()
-        {
-            Player player = Main.LocalPlayer;
-            var CalPlayer = player.GetModPlayer<CalamityPlayer>();
-            Player.GetDamage<MergedThrowerRogue>() += CalPlayer.stealthDamage;
         }
 
         public bool HasExhaustionClearingAccessoryEquipped()

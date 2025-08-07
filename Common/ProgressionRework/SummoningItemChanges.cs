@@ -12,6 +12,7 @@ using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernumMode.Content.Items.SummonItems;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -126,11 +127,18 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 //Forgotten One
 
                 //Ravager
-                if (hasRagnarok)
+                if (recipe.HasResult<DeathWhistle>())
                 {
-                    if (recipe.HasResult<DeathWhistle>())
+                    if (hasRagnarok)
                     {
                         recipe.RemoveIngredient(thorium.Find<ModItem>("CursedCloth").Type);
+                    }
+
+                    recipe.AddIngredient<LifeAlloy>(3);
+                    
+                    if (ModLoader.TryGetMod("Consolaria", out Mod console))
+                    {
+                        recipe.AddIngredient(console.Find<ModItem>("SoulofBlight"), 5);
                     }
                 }
 
@@ -184,10 +192,33 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                         recipe.DisableRecipe();
                 }
 
-                //Yharon
-                if (recipe.HasIngredient(ModContent.ItemType<LifeAlloy>()) && recipe.HasResult(ModContent.ItemType<YharonEgg>()))
+                //Yharon Post-Providence, DoG & Primordials
+                if (recipe.HasResult(ModContent.ItemType<YharonEgg>()))
                 {
-                    recipe.DisableRecipe();
+                    recipe.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 10);
+                    if (recipe.HasIngredient<AscendantSpiritEssence>())
+                    {
+                        recipe.ChangeIngredientStack(ModContent.ItemType<AscendantSpiritEssence>(), 5);
+                    }
+                    else
+                    {
+                        recipe.AddIngredient<AscendantSpiritEssence>(5);
+                    }
+                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium2) && !ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                    {
+                        thorium2.TryFind("DeathEssence", out ModItem death);
+                        thorium2.TryFind("OceanEssence", out ModItem ocean);
+                        thorium2.TryFind("InfernoEssence", out ModItem inferno);
+
+                        if (death != null && ocean != null && inferno != null)
+                        {
+                            recipe.AddIngredient(death.Type);
+                            recipe.AddIngredient(ocean.Type);
+                            recipe.AddIngredient(inferno.Type);
+                        }
+                    }
+                    recipe.RemoveTile(ItemID.LunarCraftingStation);
+                    recipe.AddTile(ModContent.TileType<CosmicAnvil>());
                 }
             }
         }
@@ -216,30 +247,6 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
             recipe2.AddIngredient(ItemID.FragmentSolar, 5);
             recipe2.AddTile(TileID.LunarCraftingStation);
             recipe2.Register();
-
-            //Yharon Post-Providence, DoG & Primordials
-            Recipe recipe6 = Recipe.Create(ModContent.ItemType<YharonEgg>(), 1);
-            recipe6.AddIngredient(ModContent.ItemType<EffulgentFeather>(), 15);
-            recipe6.AddIngredient(ModContent.ItemType<CosmiliteBar>(), 10);
-            recipe6.AddIngredient(ModContent.ItemType<UnholyEssence>(), 50);
-            recipe6.AddIngredient(ModContent.ItemType<AscendantSpiritEssence>(), 5);
-
-            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && !ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
-            {
-                thorium.TryFind("DeathEssence", out ModItem death);
-                thorium.TryFind("OceanEssence", out ModItem ocean);
-                thorium.TryFind("InfernoEssence", out ModItem inferno);
-
-                if (death != null && ocean != null && inferno != null)
-                {
-                    recipe6.AddIngredient(death.Type);
-                    recipe6.AddIngredient(ocean.Type);
-                    recipe6.AddIngredient(inferno.Type);
-                }
-            }
-
-            recipe6.AddTile(ModContent.TileType<CosmicAnvil>());
-            recipe6.Register();
 
             //Plaguebringer post Golem
             Recipe recipe7 = Recipe.Create(ModContent.ItemType<Abombination>(), 1);

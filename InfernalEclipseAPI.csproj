@@ -16,7 +16,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Assets\Textures\BossChecklist\" />
-	  <Folder Include="Common\Balance\Thorium\" />
 	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
 	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />
 	  <Folder Include="Content\InfernumBehaviorOverrides\BossAIs\" />

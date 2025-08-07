@@ -9,35 +9,63 @@ Items: {
 		Tooltip: "'The essence of damned creatures'"
 	}
 
-	TerraKnife: {
-		DisplayName: Terra Knife
-		Tooltip:
-			'''
-			Left click to quickly throw terra daggers
-			Right click to throw an impaling terra knife, which constantly damages your chosen target
-			Both the daggers and the knife are thrown on a stealth strike, with the knife summoning a barrage of slashes on hit
-			'''
-	}
-
-	GelGlove: {
-		DisplayName: Gel Glove
-		Tooltip:
-			'''
-			Throws out a ball of gel that bounces against surfaces
-			Can be charged to increase in damage, bounce amount, and size
-			Stealth strikes shoot out shurikens at nearby enemies as they travel
-			'''
-	}
-
-	TidalWave: {
-		DisplayName: Tidal Wave
-		Tooltip:
-			'''
-			'Sweep away your foes with the fury of the tide...'
-			Throws out a massive aquatic shuriken that releases miniature waves
-			Stealth strikes spawn a damaging tidal wave that follows the shuriken and pulls enemies in
-			'''
-	}
-
 	NinjaEmblem.DisplayName: Hero Emblem
+
+	TerrariumHelmet: {
+		DisplayName: Terrarium Helmet
+		Tooltip:
+			'''
+			'All will fall before your might...'
+			Maximum life increased by {0} & life regen increased by {1}
+			{2}% increased damage
+			Sight in the dark is improved
+			'''
+		SetBonus:
+			'''
+			The energies of Terraria will seek to protect you when you're in combat
+			Pressing the '{$Keybinds.ArmorAbility.DisplayName}' key will allow you to cycle and select a Class Focus
+			'''
+
+		Focus: {
+			Generic: {
+				Name: No Focus
+				Description: "{0}% increased damage"
+			}
+
+			Melee: {
+				Name: Melee Focus
+				Description: "{0}% increased damage reduction"
+			}
+
+			Ranged: {
+				Name: Ranged Focus
+				Description: "{0}% increased firing speed"
+			}
+
+			Magic: {
+				Name: Magic Focus
+				Description: Maximum mana increased by {0}
+			}
+
+			Summon: {
+				Name: Summon Focus
+				Description: Increases your max number of minions by {0} & decreases non-summon damage by {1}%
+			}
+
+			Throwing: {
+				Name: Throwing Focus
+				Description: Increases your maximum technique points by {0} & grants +110 stealth
+			}
+
+			Healer: {
+				Name: Radiant Focus
+				Description: Healing spells will heal an additional {0} life
+			}
+
+			Bard: {
+				Name: Symphonic Focus
+				Description: Increases empowerment duration by {0} {^0:second;seconds}
+			}
+		}
+	}
 }
