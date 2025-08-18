@@ -112,7 +112,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     {
                         recipe.RemoveIngredient(ItemID.LunarBar);
                         recipe.AddIngredient<CosmiliteBar>(8);
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
+                        if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
                     }
                 }
             }

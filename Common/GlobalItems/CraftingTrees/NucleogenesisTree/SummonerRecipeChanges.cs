@@ -65,7 +65,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     }
 
                     if (recipe.HasResult(ModContent.ItemType<Nucleogenesis>()))
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
+                        if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
 
                     if (recipe.HasResult<StarTaintedGenerator>())
                     {

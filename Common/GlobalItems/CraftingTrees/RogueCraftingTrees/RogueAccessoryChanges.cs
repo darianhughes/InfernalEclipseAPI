@@ -167,16 +167,46 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
             }
         }
 
+        public void AddTooltip(List<TooltipLine> tooltips, string stealthTooltip, bool InfernalRedActive = false)
+        {
+            Color InfernalRed = Color.Lerp(
+               Color.White,
+               new Color(255, 80, 0), // Infernal red/orange
+               (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+            );
+
+            int maxTooltipIndex = -1;
+            int maxNumber = -1;
+
+            // Find the TooltipLine with the highest TooltipX name
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name.StartsWith("Tooltip"))
+                {
+                    if (int.TryParse(tooltips[i].Name.Substring(7), out int num) && num > maxNumber)
+                    {
+                        maxNumber = num;
+                        maxTooltipIndex = i;
+                    }
+                }
+            }
+
+            // If found, insert a new TooltipLine right after it with the desired color
+            if (maxTooltipIndex != -1)
+            {
+                int insertIndex = maxTooltipIndex + 1;
+                TooltipLine customLine = new TooltipLine(Mod, "StealthTooltip", stealthTooltip);
+                if (InfernalRedActive)
+                    customLine.OverrideColor = InfernalRed;
+
+                tooltips.Insert(insertIndex, customLine);
+            }
+        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if (!InfernalConfig.Instance.MergeCraftingTrees)
                 return;
-
-            Color InfernalRed = Color.Lerp(
-                Color.White,
-                new Color(255, 80, 0), // Infernal red/orange
-                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
-            );
 
             string scuttlerInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Scuttler");
             string boneInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Bone");
@@ -189,77 +219,44 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
             {
                 if (item.type == thorium.Find<ModItem>("ShinobiSigil").Type)
                 {
-                    tooltips.Add(new TooltipLine(Mod, "ShinobiCooldown", "This effect has a cooldowwn of 2 seconds")
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
+                    AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ShinobiNerf"), true);
                 }
 
                 if (item.type == ModContent.ItemType<VampiricTalisman>())
                 {
-                    tooltips.Add(new TooltipLine(Mod, "shinobiInfo", shinobiSigil)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
+                    AddTooltip(tooltips, shinobiSigil, true);
                 }
 
                 if (clamity != null)
                 {
                     if (item.type == clamity.Find<ModItem>("DraculasCharm").Type)
                     {
-                        tooltips.Add(new TooltipLine(Mod, "shinobiInfo", shinobiSigil)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
+                        AddTooltip(tooltips, shinobiSigil, true);
                     }
                 }
 
                 if (item.type == thorium.Find<ModItem>("BoneGrip").Type)
                 {
-                    tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
-                    {
-                        OverrideColor = InfernalRed
-                    });
+                    AddTooltip(tooltips, scuttlerInfo, true);
                 }
 
                 if (item.type == ModContent.ItemType<FilthyGlove>() || item.type == ModContent.ItemType<BloodstainedGlove>())
                 {
-                    tooltips.Add(new TooltipLine(Mod, "boneInfo", boneInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
-                    {
-                        OverrideColor = InfernalRed
-                    });
+                    AddTooltip(tooltips, boneInfo, true);
+                    AddTooltip(tooltips, scuttlerInfo, true);
                 }
 
                 if (item.type == thorium.Find<ModItem>("MagnetoGrip").Type)
                 {
-                    tooltips.Add(new TooltipLine(Mod, "bloodyfilthyInfo", bloodyfilthyInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
-                    {
-                        OverrideColor = InfernalRed
-                    });
+                    AddTooltip(tooltips, bloodyfilthyInfo, true);
+                    AddTooltip(tooltips, scuttlerInfo, true);
                 }
 
                 if (item.type == ModContent.ItemType<Nanotech>() || item.type == ModContent.ItemType<ElectriciansGlove>())
                 {
-                    tooltips.Add(new TooltipLine(Mod, "magnetoInfo", magnetoInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "boneInfo", boneInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(((ModType)this).Mod, "scuttlerInfo", scuttlerInfo)
-                    {
-                        OverrideColor = InfernalRed
-                    });
+                    AddTooltip(tooltips, magnetoInfo, true);
+                    AddTooltip(tooltips, boneInfo, true);
+                    AddTooltip(tooltips, scuttlerInfo, true);
                 }
             }
         }

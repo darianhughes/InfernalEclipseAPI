@@ -75,7 +75,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.QuiverCraftingTree
 
                         if (thorium != null)
                         {
-                            recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
+                            if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
                         }
                     }
                 }
@@ -94,7 +94,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.QuiverCraftingTree
                 blazingQuiverRecipe.AddIngredient<DeadshotBrooch>();
                 blazingQuiverRecipe.AddIngredient(sots.Find<ModItem>("BagOfAmmoGathering"));
                 blazingQuiverRecipe.AddIngredient(sots.Find<ModItem>("InfinityPouch"));
-                if (thorium != null) blazingQuiverRecipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
+                if (thorium != null && !ModLoader.TryGetMod("ssm", out _)) blazingQuiverRecipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
                 blazingQuiverRecipe.AddIngredient<GalacticaSingularity>(4);
                 blazingQuiverRecipe.AddIngredient<AscendantSpiritEssence>(4);
                 blazingQuiverRecipe.Register();

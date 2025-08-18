@@ -68,7 +68,7 @@ namespace InfernalEclipseAPI.Content.Projectiles
             }
         }
 
-
+        [Obsolete]
         public override void Kill(int timeLeft)
         {
             // Explosion dust on death

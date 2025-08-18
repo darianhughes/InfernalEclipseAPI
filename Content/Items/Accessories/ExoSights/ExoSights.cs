@@ -40,32 +40,20 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
         #region Sprite Drawing
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            int frameWidth = 44;
-            int frameHeight = 36;
-            int totalFrames = 10;
-            int ticksPerFrame = 5;
-
+            const int frameWidth = 44, frameHeight = 36, totalFrames = 10, ticksPerFrame = 5;
             int currentFrame = (int)((Main.GameUpdateCount / ticksPerFrame) % totalFrames);
+            Rectangle src = new Rectangle(0, currentFrame * frameHeight, frameWidth, frameHeight);
 
-            Rectangle sourceRect = new Rectangle(0, frameHeight * currentFrame, frameWidth, frameHeight);
+            Texture2D tex = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Accessories/ExoSights/ExoSights").Value;
 
-            Texture2D texture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Accessories/ExoSights/ExoSights").Value;
+            //Vector2 center = position + origin;                     // vanilla’s draw center
+            //Vector2 drawOrigin = new Vector2(frameWidth / 2f, frameHeight / 2f);
 
-            // Calculate offset: (frame - slot) / 2 for both x and y
-            Vector2 slotOffset = new Vector2((frameWidth - 32) / 2f, (frameHeight - 32) / 2f);
+            // If your custom frame is larger than 32x32 and looks clipped, uncomment this:
+            // scale *= Math.Min(1f, 32f / Math.Max(frameWidth, frameHeight));
 
-            spriteBatch.Draw(
-                texture,
-                position - slotOffset,
-                sourceRect,
-                drawColor,
-                0f,
-                Vector2.Zero,
-                scale,
-                SpriteEffects.None,
-                0f
-            );
-            return false; // Don't draw default
+            spriteBatch.Draw(tex, position, src, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
+            return false;
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
@@ -130,7 +118,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
                 tooltips.Add(new(Mod, "ItemInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.DefaultTooltip")));
             }
 
-            tooltips.Add(new TooltipLine(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.Lore")) { OverrideColor = Color.MediumPurple });
+            //tooltips.Add(new TooltipLine(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.Lore")) { OverrideColor = Color.MediumPurple });
 
             tooltips.Add(new TooltipLine(Mod, "DedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor"))
             {

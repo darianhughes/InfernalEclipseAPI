@@ -45,6 +45,17 @@ namespace InfernalEclipseAPI.Core.Systems
                     TextureAssets.Tile[type] = ModContent.Request<Texture2D>(replacementPath, AssetRequestMode.ImmediateLoad);
                 }
             }
+
+            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
+            {
+                if (ModLoader.TryGetMod("InfernalEclipseWeaponsDLC", out _))
+                {
+                    int type = ragnarok.Find<ModItem>("Virusprayer").Type;
+                    string replacementPath = "InfernalEclipseAPI/Assets/Textures/Items/Virusprayer";
+
+                    TextureAssets.Item[type] = ModContent.Request<Texture2D>(replacementPath, AssetRequestMode.ImmediateLoad);
+                }
+            }
         }
 
         public override void Unload()
@@ -66,6 +77,15 @@ namespace InfernalEclipseAPI.Core.Systems
                 if (clam.TryFind("ClamityTitleMusicBoxTile", out ModTile clamTitleMusicBoxTile))
                 {
                     TextureAssets.Tile[clamTitleMusicBoxTile.Type] = null;
+                }
+            }
+
+            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
+            {
+                if (ModLoader.TryGetMod("InfernalEclipseWeaponsDLC", out _))
+                {
+                    int type = ragnarok.Find<ModItem>("Virusprayer").Type;
+                    TextureAssets.Item[type] = null;
                 }
             }
         }

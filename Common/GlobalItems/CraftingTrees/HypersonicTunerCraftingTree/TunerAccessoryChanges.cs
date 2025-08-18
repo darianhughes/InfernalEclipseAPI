@@ -90,6 +90,40 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCra
                     }
                 }
             }
+
+            if (SOTSBardHealer != null)
+            {
+                if (item.type == SOTSBardHealer.Find<ModItem>("TesseractTuner").Type)
+                {
+                    if (hideVisual)
+                    {
+                        VoidPlayer voidPlayer = VoidPlayer.ModPlayer(player);
+                        voidPlayer.voidMeterMax2 -= player.GetThoriumPlayer().bardResourceMax2;
+                        voidPlayer.voidRegenSpeed -= player.GetThoriumPlayer().inspirationRegenBonus - 1f;
+                        player.GetModPlayer<SecretsOfThoriumPlayer>().HypersonicTuner = false;
+
+                        ModItem infrasonicTuner = SOTSBardHealer.Find<ModItem>("InfrasonicTuner");
+                        infrasonicTuner.UpdateAccessory(player, hideVisual);
+                    }
+                }
+            }
+
+            if (ModLoader.TryGetMod("ssm", out Mod CSE))
+            {
+                if (item.type == CSE.Find<ModItem>("BardSoul").Type)
+                {
+                    if (hideVisual)
+                    {
+                        ModItem infrasonicTuner = SOTSBardHealer.Find<ModItem>("InfrasonicTuner");
+                        infrasonicTuner.UpdateAccessory(player, hideVisual);
+                    }
+                    else
+                    {
+                        ModItem infrasonicTuner = SOTSBardHealer.Find<ModItem>("HypersonicTuner");
+                        infrasonicTuner.UpdateAccessory(player, hideVisual);
+                    }
+                }
+            }
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -112,9 +146,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCra
                         if (tooltips[i].Name == "Tooltip0")
                         {
                             TooltipLine tooltip = tooltips[i];
-
-                            if (ThoriumRework != null) tooltip.Text = $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Tuner1")}";
-                            else tooltip.Text = $"{Language.GetTextValue("Mods.InfernalEclipseAPI.Tuner2")}";
+                            tooltip.Text = $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Tuner2")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.HypersonicTooltip")}";
                         }
                         else if (tooltips[i].Name.Contains("Tooltip"))
                         {
@@ -123,6 +155,26 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCra
                     }
                 }
             }
+
+            if (item.type == SOTSBardHealer.Find<ModItem>("TesseractTuner").Type)
+            {
+                for (int i = 0; i < tooltips.Count; ++i)
+                {
+                    if (tooltips[i].Mod == "Terraria")
+                    {
+                        if (tooltips[i].Name == "Tooltip0")
+                        {
+                            TooltipLine tooltip = tooltips[i];
+
+                            tooltip.Text = $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Tuner1")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.4DTooltip")}";
+                        }
+                        else if (tooltips[i].Name.Contains("Tooltip"))
+                        {
+                            tooltips[i].Hide();
+                        }
+                    }
+                }
             }
         }
+    }
 }

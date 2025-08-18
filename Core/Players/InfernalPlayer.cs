@@ -19,8 +19,6 @@ using CalamityMod.NPCs.BrimstoneElemental;
 using InfernalEclipseAPI.Core.World;
 using Terraria.Chat;
 using Terraria.Localization;
-using InfernalEclipseAPI.Common.GlobalItems;
-using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
 using CalamityMod.CalPlayer;
 using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
 using CalamityMod.Buffs.StatDebuffs;
@@ -210,6 +208,15 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     target.AddBuff(ModContent.BuffType<Crumbling>(), 180);
                 }
+            }
+        }
+
+        public override void PreUpdate()
+        {
+            if (Player.ZoneLihzhardTemple && !NPC.downedPlantBoss)
+            {
+                Player.statLife -= 1;
+                Player.AddBuff(BuffID.PotionSickness, 60);
             }
         }
     }

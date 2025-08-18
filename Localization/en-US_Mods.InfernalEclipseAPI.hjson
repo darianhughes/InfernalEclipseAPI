@@ -23,6 +23,7 @@ ItemTooltip: {
 	SandstonePortalDeviceInfoMP: Summons the Bereft Vassal after the portal at the Lost Gateway has been activated <- currently unsued in API
 
 	MergedCraftingTreeTooltip: {
+		Gilded: Effects of the Gilded Blade Wings
 		TPS:
 			'''
 			Allows flight, hyper fast running, and extra mobility on ice
@@ -74,7 +75,6 @@ ItemTooltip: {
 			String instrument projectiles increase in speed by 20% every pierce
 			Percussive instrument attacks summon a falling hammer on enemy hits
 			Electronic instrument projectiles are significantly much faster
-			"Channel the power of sounds beyond hearing range!"
 			'''
 		Tuner2:
 			'''
@@ -90,6 +90,8 @@ ItemTooltip: {
 			Picking up inspiration notes heal void when holding a void-bard weapon
 			Upon running out of inspiration, consume 25 void to refill it all back up
 			'''
+		HypersonicTooltip: '''"Channel the power of sounds beyond hearing range!"'''
+		4DTooltip: '''"Sound that can create wormholes to other worlds"'''
 		CrystalScorpian:
 			'''
 			Minion attacks have a 15% chance to produce a crystal scorpion
@@ -181,7 +183,10 @@ ItemTooltip: {
 			'''
 		OmniIns: Increase maximum inspiration by 5
 		OmniEmp: Each unique empowerment you have increases movement speed by 2% and playing speed by 1%
+		ShinobiNerf: This effect has a cooldowwn of 2 seconds
 	}
+
+	AmmoConversion.Mycelium: Fires barrages of Mycelium
 
 	AstrageldonRelic: {
 		Line1: You have chosen great suffering for yourself.
@@ -645,6 +650,11 @@ Items: {
 
 		Lore: "'What are you gonna do? Kill me?'"
 	}
+
+	Genesis: {
+		DisplayName: Genesis
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -660,6 +670,7 @@ Projectiles: {
 	RadioMicShadowBurst.DisplayName: Radio Mic Shadow Burst
 	TidalWaveWhirlpool.DisplayName: Tidal Wave Whirlpool
 	FireAxeStealthPro.DisplayName: Fire Axe Stealth Pro
+	GalaxyRainController.DisplayName: Galaxy Rain Controller
 }
 
 DiaryTooltip:
@@ -866,6 +877,7 @@ DamageClasses: {
 	MergedThrowerRogue.DisplayName: rogue damage
 	LegendaryMelee.DisplayName: legendary melee damage
 	LegendaryRanged.DisplayName: legendary ranged damage
+	MythicMelee.DisplayName: Mythic Melee
 }
 
 BossRushIntroText1:
@@ -972,7 +984,7 @@ InfernumIntegration: {
 		'''
 	MutantEX:
 		'''
-		The Starlight Cat
+		The Champion of the Omniverse
 		Monstrosity
 		'''
 }

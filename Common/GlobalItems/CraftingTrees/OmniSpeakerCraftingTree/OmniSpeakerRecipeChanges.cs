@@ -58,7 +58,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
                         recipe.RemoveIngredient(ItemID.LunarBar);
                         recipe.AddIngredient<CosmiliteBar>(8);
                         recipe.AddIngredient(Ragnarok.Find<ModItem>("UniversalHeadset"));
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
+                        if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
                     }
                 }
             }

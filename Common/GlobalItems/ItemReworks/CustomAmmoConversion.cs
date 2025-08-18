@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 {
@@ -197,7 +198,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.ModItem.Name == "MyceliumGattlingGun")
             {
-                tooltips.Add(new TooltipLine(Mod, "AmmoChange", "Fires barrages of Mycelium")
+                tooltips.Add(new TooltipLine(Mod, "AmmoChange", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AmmoConversion.Mycelium"))
                 {
                     OverrideColor = Microsoft.Xna.Framework.Color.White
                 });

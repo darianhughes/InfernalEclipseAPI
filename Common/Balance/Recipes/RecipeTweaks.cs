@@ -14,8 +14,6 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using static NoxusBoss.Assets.GennedAssets.Sounds;
 using CalamityMod.Items;
-using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
-using InfernalEclipseAPI.Content.Items.Weapons.NovaBomb;
 using InfernumMode.Content.Items.Weapons.Magic;
 using ThoriumMod.Contracts;
 using CalamityMod.Items.Mounts;
@@ -30,6 +28,8 @@ using CalamityMod.Items.PermanentBoosters;
 using CalamityMod.Items.Weapons.Summon;
 using InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre;
 using InfernalEclipseAPI.Content.Items.Accessories.ChromaticMassInABottle;
+using InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb;
+using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -127,9 +127,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 1);
                     }
 
-                    if (recipe.HasResult<MiracleMatter>())
+                    if (recipe.HasResult<MiracleMatter>() && !recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore")))
                     {
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
+                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 5);
                     }
 
                     if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
@@ -269,7 +269,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             "KineticPotion",
                             //"ChlorophyteTomahawk",
                             "DemonBloodBow",
-                            "MyceliumGatlingGun",
+                            //"MyceliumGatlingGun",
                             "TimeWarp",
                             "MoltenKnife"
                         };
@@ -602,6 +602,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.ChangeIngredientStack(ragCal.Find<ModItem>("EnchantedMarble").Type, 3);
                         recipe.AddIngredient(thorium.Find<ModItem>("BronzeAlloyFragments"), 8);
                         recipe.AddIngredient(thorium.Find<ModItem>("SpiritDroplet"), 10);
+                    }
+
+                    if (recipe.HasResult(ragCal.Find<ModItem>("Virusprayer")))
+                    {
+                        recipe.DisableRecipe();
                     }
                 }
 

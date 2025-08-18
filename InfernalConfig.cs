@@ -126,10 +126,6 @@ namespace InfernalEclipseAPI
         public bool AdjustAdvisorSpawnConditions { get; set; }
 
         [DefaultValue(true)]
-        [ReloadRequired]
-        public bool UseAprilFoolsMutant { get; set; }
-
-        [DefaultValue(true)]
         public bool EnableInterlude4 { get; set; }
 
         #endregion

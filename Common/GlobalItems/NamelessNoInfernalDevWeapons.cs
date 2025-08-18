@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InfernalEclipseAPI.Content.Items.Weapons.NovaBomb;
-using InfernalEclipseAPI.Content.Items.Weapons.Swordofthe14thGlitch;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.Items.Weapons.Magic;
 using NoxusBoss.Content.NPCs.Bosses.NamelessDeity;
@@ -16,7 +14,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Players;
-using InfernalEclipseAPI.Content.RogueThrower;
+using InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb;
+using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {

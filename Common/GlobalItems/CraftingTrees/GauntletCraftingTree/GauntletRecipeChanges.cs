@@ -42,7 +42,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.GauntletCraftingTr
                 if (recipe.HasResult<ElementalGauntlet>())
                 {
                     recipe.RemoveIngredient(ItemID.LunarBar);
-                    if (thorium != null) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
+                    if (thorium != null) if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
                     recipe.AddIngredient<CosmiliteBar>(8);
                 }
             }

@@ -19,16 +19,36 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             {
                 if (recipe.HasResult(ItemID.DrillContainmentUnit))
                 {
+                    //Uses our stack size instead of any other mods
+                    recipe.RemoveIngredient(ModContent.ItemType<AstralBar>());
+                    recipe.RemoveIngredient(ModContent.ItemType<LifeAlloy>());
+                    recipe.RemoveIngredient(ModContent.ItemType<AerialiteBar>());
+
                     recipe.AddIngredient<AstralBar>(40);
                     recipe.AddIngredient<LifeAlloy>(40);
                     recipe.AddIngredient<AerialiteBar>(40);
 
                     if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
                     {
+                        //Included in Terrarium Core
                         recipe.RemoveIngredient(ItemID.ChlorophyteBar);
                         recipe.RemoveIngredient(ItemID.SpectreBar);
                         recipe.RemoveIngredient(ItemID.HellstoneBar);
                         recipe.RemoveIngredient(ItemID.MeteoriteBar);
+
+                        //Included in Life Alloy
+                        thorium.TryFind("TitanicBar", out ModItem titanBar);
+                        recipe.RemoveIngredient(titanBar.Type);
+
+                        //Use our stack size
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("TerrariumCore").Type);
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("IllumiteIngot").Type);
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("LodeStoneIngot").Type);
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("ValadiumIngot").Type);
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("aDarksteelAlloy").Type);
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("AquaiteBar").Type);
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("SandstoneIngot").Type);
+
                         recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 40);
                         recipe.AddIngredient(thorium.Find<ModItem>("IllumiteIngot"), 40);
                         recipe.AddIngredient(thorium.Find<ModItem>("LodeStoneIngot"), 40);

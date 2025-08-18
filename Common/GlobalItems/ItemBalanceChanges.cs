@@ -583,6 +583,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 70;
                 }
+
+                if (UnsafeGetItem(clam, "WulfrumLeechDagger", item))
+                {
+                    item.value = 0;
+                }
             }
             #endregion
 

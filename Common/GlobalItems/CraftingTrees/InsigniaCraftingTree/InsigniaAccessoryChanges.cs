@@ -14,6 +14,8 @@ using CalamityMod.Items.Accessories;
 using CalamityMod;
 using InfernumMode.Core.OverridingSystem;
 using Steamworks;
+using Terraria.Localization;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTree
 {
@@ -34,6 +36,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
             {
                 ModLoader.TryGetMod("SOTS", out Mod sots);
                 return sots;
+            }
+        }
+
+        public Mod fargosSouls
+        {
+            get
+            {
+                ModLoader.TryGetMod("FargowiltasSouls", out Mod fargosSouls);
+                return fargosSouls;
+            }
+        }
+
+        public Mod calFargo
+        {
+            get
+            {
+                ModLoader.TryGetMod("FargowiltasCrossmod", out Mod fargoCrossmod);
+                return fargoCrossmod;
             }
         }
 
@@ -63,6 +83,59 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                 CalPlayer.ascendantInsignia = true;
                 MachinaBoosterPlayer modPlayer = player.GetModPlayer<MachinaBoosterPlayer>();
                 modPlayer.CreativeFlightTier2 = false;
+                player.wingTimeMax = 350;
+                player.wingAccRunSpeed = 11f;
+                player.wingRunAccelerationMult = 2f;
+            }
+
+            if (sots != null & calFargo != null)
+            {
+                if (item.type == fargosSouls.Find<ModItem>("FlightMasterySoul").Type)
+                {
+                    SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(player);
+                    VoidPlayer voidPlayer = VoidPlayer.ModPlayer(player);
+                    voidPlayer.bonusVoidGain += 3f;
+                    voidPlayer.voidRegenSpeed += 0.25f;
+                    sotsPlayer.SpiritSymphony = true;
+                    MachinaBoosterPlayer modPlayer = player.GetModPlayer<MachinaBoosterPlayer>();
+                    modPlayer.canCreativeFlight = true;
+                }
+            }
+        }
+
+        public void AddTooltip(List<TooltipLine> tooltips, string stealthTooltip, bool InfernalRedActive = false)
+        {
+            Color InfernalRed = Color.Lerp(
+               Color.White,
+               new Color(255, 80, 0), // Infernal red/orange
+               (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+            );
+
+            int maxTooltipIndex = -1;
+            int maxNumber = -1;
+
+            // Find the TooltipLine with the highest TooltipX name
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name.StartsWith("Tooltip"))
+                {
+                    if (int.TryParse(tooltips[i].Name.Substring(7), out int num) && num > maxNumber)
+                    {
+                        maxNumber = num;
+                        maxTooltipIndex = i;
+                    }
+                }
+            }
+
+            // If found, insert a new TooltipLine right after it with the desired color
+            if (maxTooltipIndex != -1)
+            {
+                int insertIndex = maxTooltipIndex + 1;
+                TooltipLine customLine = new TooltipLine(Mod, "StealthTooltip", stealthTooltip);
+                if (InfernalRedActive)
+                    customLine.OverrideColor = InfernalRed;
+
+                tooltips.Insert(insertIndex, customLine);
             }
         }
 
@@ -81,6 +154,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
             string accendInfo1 = "Increases movement and jump speed by 10% and acceleration by 1.1x";
             string accendInfo2 = "Pressing the Ascendant Insignia keybind will give you the power of ascension, providing infinite flight time for 4 seconds";
             string accendInfo3 = "Ascension has a 40 second cooldown";
+
+            string gildedInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Gilded");
 
             if (item.type == sots.Find<ModItem>("SpiritInsignia").Type)
             {
@@ -127,6 +202,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                 {
                     OverrideColor = Color.Red
                 });
+            }
+
+            if (calFargo != null)
+            { 
+                if (item.type == fargosSouls.Find<ModItem>("FlightMasterySoul").Type)
+                {
+                    AddTooltip(tooltips, gildedInfo, true);
+                }
             }
         }
     }

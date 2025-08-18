@@ -7,6 +7,7 @@ using CalamityMod.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static NoxusBoss.Assets.GennedAssets.Sounds;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCraftingTree
 {
@@ -97,7 +98,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCra
 
                         recipe.AddIngredient(SOTSBardHealer, "InfrasonicTuner");
                         recipe.AddIngredient(thorium, "ShootingStarFragment", 6);
-                        recipe.AddIngredient<EffulgentFeather>(5);
+                    }
+
+                    if (ModLoader.TryGetMod("ssm", out Mod CSE))
+                    {
+                        if (recipe.HasResult(CSE.Find<ModItem>("BardSoul").Type))
+                        {
+                            recipe.RemoveIngredient(ThoriumRework.Find<ModItem>("FanDonations").Type);
+                            recipe.AddIngredient(SOTSBardHealer.Find<ModItem>("TesseractTuner").Type);
+                        }
                     }
                 }
             }

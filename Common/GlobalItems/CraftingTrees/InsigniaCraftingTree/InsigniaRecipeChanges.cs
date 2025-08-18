@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,6 +32,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
             }
         }
 
+        public Mod fargosSouls
+        {
+            get
+            {
+                ModLoader.TryGetMod("FargowiltasSouls", out Mod fargosSouls);
+                return fargosSouls;
+            }
+        }
+
+        public Mod calFargo
+        {
+            get
+            {
+                ModLoader.TryGetMod("FargowiltasCrossmod", out Mod fargoCrossmod);
+                return fargoCrossmod;
+            }
+        }
+
         public override void PostAddRecipes()
         {
             if (!InfernalConfig.Instance.MergeCraftingTrees)
@@ -53,6 +72,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                         recipe.RemoveIngredient(sots.Find<ModItem>("SpiritInsignia").Type);
                         recipe.AddIngredient<AscendantInsignia>(1);
                         recipe.AddIngredient<AscendantSpiritEssence>(3);
+                    }
+
+                    if (calFargo != null)
+                    {
+                        if (recipe.HasResult(fargosSouls.Find<ModItem>("FlightMasterySoul")))
+                        {
+                            recipe.RemoveIngredient(ModContent.ItemType<AscendantInsignia>());
+                            recipe.AddIngredient(sots.Find<ModItem>("GildedBladeWings"));
+                        }
                     }
                 }
             }

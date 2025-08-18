@@ -81,6 +81,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
                 {
                     if (recipe.HasResult(fargosSouls.Find<ModItem>("AeolusBoots")))
                     {
+                        if (!recipe.HasIngredient<AngelTreads>()) recipe.AddIngredient<AngelTreads>();
+
                         recipe.RemoveIngredient(ItemID.SoulofFright);
                         recipe.RemoveIngredient(ItemID.SoulofSight);
                         recipe.RemoveIngredient(ItemID.SoulofMight);
@@ -104,14 +106,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
                             recipe.RemoveIngredient(sots.Find<ModItem>("SubspaceBoosters").Type);
                         }
 
-                        if (calFargo != null)
+                        if (calFargo != null || ModLoader.TryGetMod("ssm", out _))
                         {
                             recipe.RemoveIngredient(ModContent.ItemType<AngelTreads>());
-                            recipe.AddIngredient(fargosSouls.Find<ModItem>("AeolusBoots"));
+                            if (!recipe.HasIngredient(fargosSouls.Find<ModItem>("AeolusBoots"))) recipe.AddIngredient(fargosSouls.Find<ModItem>("AeolusBoots"));
                         }
                         else
                         {
-                            recipe.AddIngredient<AngelTreads>();
+                            if (!recipe.HasIngredient(ModContent.ItemType<AngelTreads>())) recipe.AddIngredient<AngelTreads>();
                         }
                     }
 
@@ -132,6 +134,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
 
                 if (sots != null)
                 {
+                    if (fargosSouls != null)
+                    {
+                        if (recipe.HasResult(fargosSouls.Find<ModItem>("AeolusBoots").Type))
+                        {
+                            recipe.RemoveIngredient(sots.Find<ModItem>("SubspaceBoosters").Type);
+                        }
+                    }
+
                     if (recipe.HasResult(sots.Find<ModItem>("FlashsparkBoots")))
                     {
                         recipe.RemoveIngredient(ItemID.TerrasparkBoots);
