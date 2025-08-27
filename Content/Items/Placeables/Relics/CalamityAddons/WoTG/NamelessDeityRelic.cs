@@ -11,10 +11,10 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria;
 using InfernalEclipseAPI.Content.Tiles.Relics.CalamityAddons;
-using InfernalEclipseAPI.Content.Tiles.Relics.Thorium;
 using NoxusBoss.Content.Rarities;
+using InfernalEclipseAPI.Content.Tiles.Relics.CalamityAddons.WoTG;
 
-namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons
+namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG
 {
     [ExtendsFromMod("NoxusBoss")]
     public class NamelessDeityRelic : BaseRelicItem

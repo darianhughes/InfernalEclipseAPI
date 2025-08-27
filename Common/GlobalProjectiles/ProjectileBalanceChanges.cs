@@ -127,48 +127,30 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                 if (entity.type == thorium.Find<ModProjectile>("BatScythePro2").Type)
                 {
-                    if (entity.usesLocalNPCImmunity)
-                    {
-                        entity.localNPCHitCooldown = 1;
-                    }
+                    //if (entity.usesLocalNPCImmunity)
+                    //{
+                    //    entity.localNPCHitCooldown = 1;
+                    //}
 
-                    if (entity.usesIDStaticNPCImmunity)
-                    {
-                        entity.idStaticNPCHitCooldown = 1;
-                    }
+                    //if (entity.usesIDStaticNPCImmunity)
+                    //{
+                    //    entity.idStaticNPCHitCooldown = 1;
+                    //}
                 }
 
                 if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                 {
-                    if (thorium.TryFind("MoltenThresherPro", out ModProjectile moltenThresherProj))
-                        moltenThresherType = moltenThresherProj.Type;
-
-                    if (thorium.TryFind("BatScythePro", out ModProjectile batScytheProj))
-                        batScytheType = batScytheProj.Type;
-
-                    if (thorium.TryFind("BatScythePro2", out ModProjectile batScytheProj2))
-                        batScytheType2 = batScytheProj2.Type;
-
-                    if (thorium.TryFind("FallingTwilightPro", out ModProjectile fallingTwilightProj))
-                        fallingTwilightType = fallingTwilightProj.Type;
-
-                    if (thorium.TryFind("BloodHarvestPro", out ModProjectile bloodHarvestProj))
-                        bloodHarvestType = bloodHarvestProj.Type;
-
-                    if (thorium.TryFind("TrueFallingTwilightPro", out ModProjectile trueFallingTwilightProj))
-                        trueFallingTwilightType = trueFallingTwilightProj.Type;
-
-                    if (thorium.TryFind("TrueBloodHarvestPro", out ModProjectile trueBloodHarvestProj))
-                        trueBloodHarvestType = trueBloodHarvestProj.Type;
-
-                    if (thorium.TryFind("TheBlackScythePro", out ModProjectile theBlackScytheProj))
-                        theBlackScytheType = theBlackScytheProj.Type;
-
-                    if (thorium.TryFind("TitanScythePro", out ModProjectile titanScytheProj))
-                        titanScytheType = titanScytheProj.Type;
-
-                    if (thorium.TryFind("BoneBatonPro", out ModProjectile boneBatonProj))
-                        boneBatonType = boneBatonProj.Type;
+                    moltenThresherType = thorium.Find<ModProjectile>("MoltenThresherPro")?.Type ?? -1;
+                    batScytheType = thorium.Find<ModProjectile>("BatScythePro")?.Type ?? -1;
+                    batScytheType2 = thorium.Find<ModProjectile>("BatScythePro2")?.Type ?? -1;
+                    fallingTwilightType = thorium.Find<ModProjectile>("FallingTwilightPro")?.Type ?? -1;
+                    bloodHarvestType = thorium.Find<ModProjectile>("BloodHarvestPro")?.Type ?? -1;
+                    trueFallingTwilightType = thorium.Find<ModProjectile>("TrueFallingTwilightPro")?.Type ?? -1;
+                    trueBloodHarvestType = thorium.Find<ModProjectile>("TrueBloodHarvestPro")?.Type ?? -1;
+                    theBlackScytheType = thorium.Find<ModProjectile>("TheBlackScythePro")?.Type ?? -1;
+                    titanScytheType = thorium.Find<ModProjectile>("TitanScythePro")?.Type ?? -1;
+                    boneBatonType = thorium.Find<ModProjectile>("BoneBatonPro")?.Type ?? -1;
+                    trueHallowedType = thorium.Find<ModProjectile>("TrueHallowedScythePro")?.Type ?? -1;
                 }
             } 
 
@@ -176,8 +158,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             {
                 if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                 {
-                    if (ragnarok.TryFind("WindSlashPro", out ModProjectile windSlashProj))
-                        windSlashType = windSlashProj.Type;
+                    windSlashType = ragnarok.Find<ModProjectile>("WindSlashPro")?.Type ?? -1;
                 }
                 
                 if (entity.type == ragnarok.Find<ModProjectile>("GelScythePro2").Type)
@@ -237,6 +218,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 if (entity.type == ragnarok.Find<ModProjectile>("AuricDamruShock").Type)
                 {
                     entity.scale = 2;
+                }
+
+                if (entity.type == ragnarok.Find<ModProjectile>("GraspofVoidPro1").Type)
+                {
+                    entity.penetrate = 6;
                 }
             }
 
@@ -312,6 +298,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
             return false;
         }
 
+        public override bool InstancePerEntity => true;
+
         private static int moltenThresherType = -1;
         private static int fallingTwilightType = -1;
         private static int bloodHarvestType = -1;
@@ -322,101 +310,100 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int batScytheType = -1;
         private static int batScytheType2 = -1;
         private static int boneBatonType = -1;
+        private static int trueHallowedType = -1;
         private static int windSlashType = -1;
 
-        private float GetScaleForProjectile(int type)
+        private bool scaled = false;
+
+        private float GetScaleForProjectile(int type) => type switch
         {
-            if (type == moltenThresherType) return 1.5f;
-            if (type == batScytheType) return 1.5f;
-            if (type == batScytheType2) return 3f;
-            if (type == fallingTwilightType) return 1.5f;
-            if (type == bloodHarvestType) return 1.5f;
-            if (type == trueFallingTwilightType) return 1.5f;
-            if (type == trueBloodHarvestType) return 1.5f;
-            if (type == theBlackScytheType) return 1.5f;
-            if (type == titanScytheType) return 2f;
-            if (type == windSlashType) return 2f;
-            if (type == boneBatonType) return 2f;
-            return 1f;
+            var t when t == moltenThresherType => 1.5f,
+            var t when t == batScytheType => 1.5f,
+            var t when t == batScytheType2 => 3f,
+            var t when t == fallingTwilightType => 1.5f,
+            var t when t == bloodHarvestType => 1.5f,
+            var t when t == trueFallingTwilightType => 1.5f,
+            var t when t == trueBloodHarvestType => 1.5f,
+            var t when t == theBlackScytheType => 1.5f,
+            var t when t == titanScytheType => 2f,
+            var t when t == trueHallowedType => 1.3f,
+            var t when t == boneBatonType => 2f,
+            var t when t == windSlashType => 2f,
+            _ => 1f,
+        };
+
+        public override void AI(Projectile projectile)
+        {
+            if (!scaled) ApplyScaling(projectile);
         }
 
-        private bool IsEligibleForChildScaling(int type)
+        private void ApplyScaling(Projectile projectile)
         {
-            // Add only child projectiles that should inherit scale
-            // Example: return type == someKnownChildProjectileType;
-            return false; // default: no other projectiles should scale
+            float scale = GetScaleForProjectile(projectile.type);
+            if (scale == 1f) return;
+
+            Vector2 originalSize = new Vector2(projectile.width, projectile.height);
+            Vector2 oldCenter = projectile.Center;
+
+            projectile.scale *= scale;
+            projectile.width = (int)(originalSize.X * scale);
+            projectile.height = (int)(originalSize.Y * scale);
+            projectile.Center = oldCenter;
+
+            scaled = true;
         }
 
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
             if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
             {
-                if (projectile.type != moltenThresherType
-                    && projectile.type != titanScytheType
-                    && projectile.type != batScytheType
-                    && projectile.type != batScytheType2
-                    && projectile.type != bloodHarvestType
-                    && projectile.type != fallingTwilightType
-                    && projectile.type != trueFallingTwilightType
-                    && projectile.type != trueBloodHarvestType
-                    && projectile.type != theBlackScytheType
-                    && projectile.type != windSlashType
-                    && projectile.type != boneBatonType
-                    )
-                {
+                int[] staticProjectiles = new int[]
+            {
+                moltenThresherType, batScytheType, batScytheType2,
+                fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
+                trueBloodHarvestType, theBlackScytheType, titanScytheType,
+                boneBatonType, windSlashType, trueHallowedType
+            };
+
+                if (!Array.Exists(staticProjectiles, t => t == projectile.type))
                     return true;
-                }
 
                 Texture2D texture = TextureAssets.Projectile[projectile.type].Value;
-                int frameCount = Main.projFrames[projectile.type];
-                int frameHeight = texture.Height / frameCount;
+                int frameHeight = texture.Height / Main.projFrames[projectile.type];
                 Rectangle sourceRectangle = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight);
                 Vector2 origin = sourceRectangle.Size() / 2f;
-
-                float baseScale = GetScaleForProjectile(projectile.type);
-                float scale = projectile.scale * baseScale;
                 Vector2 drawPos = projectile.Center - Main.screenPosition;
-                Color drawColor = lightColor * ((255 - projectile.alpha) / 255f);
+                SpriteEffects effects = Main.player[projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-                Player owner = Main.player[projectile.owner];
-                SpriteEffects effect = (owner.direction == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                // Draw base projectile
+                Main.EntitySpriteDraw(texture, drawPos, sourceRectangle, lightColor, projectile.rotation, origin, projectile.scale, effects, 0);
 
-                Main.EntitySpriteDraw(
-                    texture,
-                    drawPos,
-                    sourceRectangle,
-                    drawColor,
-                    projectile.rotation,
-                    origin,
-                    scale,
-                    effect,
-                    0
-                );
-                return false;
+                // Draw glowmask for known Thorium projectiles
+                string glowPath = projectile.type switch
+                {
+                    var t when t == moltenThresherType => "ThoriumMod/Projectiles/Scythe/MoltenThresherPro_Glowmask",
+                    _ => null
+                };
+
+                if (glowPath != null)
+                {
+                    Texture2D glowTexture = ModContent.Request<Texture2D>(glowPath).Value;
+
+                    Main.spriteBatch.End();
+                    Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
+
+                    Main.EntitySpriteDraw(glowTexture, drawPos, sourceRectangle, Color.White, projectile.rotation, origin, projectile.scale, effects, 0);
+
+                    Main.spriteBatch.End();
+                    Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
+                }
+
+                return false; // prevent default draw
             }
             return true;
         }
 
-        public override void AI(Projectile projectile)
-        {
-            if (projectile.localAI[1] == 1f)
-                return;
-
-            if (!IsEligibleForChildScaling(projectile.type))
-                return;
-
-            Projectile ownerProj = Main.projectile[projectile.owner];
-
-            if (ownerProj != null && ownerProj.active)
-            {
-                float parentScale = GetScaleForProjectile(ownerProj.type);
-                if (parentScale > 1f)
-                {
-                    projectile.scale *= parentScale;
-                    projectile.localAI[1] = 1f;
-                }
-            }
-        }
+        public override void PostDraw(Projectile projectile, Color lightColor) { }
 
         public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)
         {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Summon;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.Balance.Calamity
@@ -19,9 +20,9 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 Recipe recipe = Main.recipe[index];
                 Item obj;
                 if (recipe.TryGetResult(1309, out obj))
-                    recipe.AddIngredient(179, 1);
+                    recipe.AddIngredient(ItemID.Emerald);
                 if (recipe.TryGetResult(ModContent.ItemType<SquirrelSquireStaff>(), out obj))
-                    recipe.AddIngredient(2018, 1);
+                    recipe.AddIngredient(ItemID.Squirrel);
                 if (recipe.TryGetResult(ModContent.ItemType<WulfrumController>(), out obj))
                 {
                     recipe.requiredItem.Clear();

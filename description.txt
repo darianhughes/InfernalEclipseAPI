@@ -24,7 +24,8 @@ This API currently adds the following:
 	- Some cross-mod Infernum intros.
 	- Boss stat adjustments for Infernum mode to keep the difficulty consistent.
 	- Boss Rush support for all included bosses, as well as a custom "tier 6."
-	- Custom Boss Rush music for tiers 5 & 6
+	- New music for certain points of the game.
+	- World Generation changes to help prevent overlap between mods.
 	- Some fixes to help Infernum more multiplayer compatible.
 	- Some minor cross-mod improvements for other mods associated main mod pack.
 

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ThoriumMod.Projectiles;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles
 {
     //Wardrobe Hummus
-    [ExtendsFromMod("ThoriumMod")]
     public class ProjectileDebuffs : GlobalProjectile
     {
         public override bool IsLoadingEnabled(Mod mod)
@@ -33,6 +28,89 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                 {
                     target.AddBuff(144, 180); // Electrified
                 }
+
+                if (projectile.type == (thoriumMod.Find<ModProjectile>("VoltHatchetPro")?.Type ?? -1))
+                {
+                    target.AddBuff(BuffID.Electrified, 60);
+                }
+
+                if (ModLoader.TryGetMod("CalamityMod", out Mod calamity1))
+                {
+                    if (projectile.type == thoriumMod.Find<ModProjectile>("DrenchedPro").Type)
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 60);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("AquaPelterPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 60);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("GeyserPro2")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 180);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("AquaiteKnifePro")?.Type ?? -1) || projectile.type == (thoriumMod.Find<ModProjectile>("AquaiteKnifePro2")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 60);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("AquamarineWineGlassPro2")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 180);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("AquaiteScythePro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 180);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("IllustriousPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 120);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("IridescentPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 120);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("PearlPikePro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 120);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("ScubaCurvaPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 120);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("ScubaCurvaPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 120);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("BlobhornCoralStaffPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 180);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("SeaFoamScepterPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 180);
+                    }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("SerpentsCryPro")?.Type ?? -1) || projectile.type == (thoriumMod.Find<ModProjectile>("SerpentsCryPro2")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("RiptideDebuff")?.Type ?? -1, 120);
+                    }
+
+                    if (projectile.type == (calamity1.Find<ModProjectile>("UrchinMaceProjectile")?.Type ?? -1) || projectile.type == (calamity1.Find<ModProjectile>("RedtideWhirlpool")?.Type ?? -1))
+                    {
+                        target.AddBuff(BuffID.Poisoned, 120);
+                    }
+                }
             }
 
             // Check if all mods are loaded before continuing.
@@ -43,8 +121,8 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                 return;
             }
 
-                // Helper function for modular lookups
-                void TryApplyBuff(string projName, Mod modProj, string buffName, Mod modBuff, int time)
+            // Helper function for modular lookups
+            void TryApplyBuff(string projName, Mod modProj, string buffName, Mod modBuff, int time)
             {
                 var proj = modProj.Find<ModProjectile>(projName);
                 var buff = modBuff.Find<ModBuff>(buffName);
@@ -55,6 +133,10 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
             // Ragnarok projectiles that apply Calamity/Thorium debuffs
             TryApplyBuff("MarbleScythePro", ragnarokMod, "HolyGlare", thoriumMod2, 180);
             TryApplyBuff("CorrosiveFluxPro", ragnarokMod, "Irradiated", calamityMod, 180);
+            if (projectile.type == (ragnarokMod.Find<ModProjectile>("VirusprayerPro1")?.Type ?? -1) || projectile.type == (ragnarokMod.Find<ModProjectile>("VirusprayerPro2")?.Type ?? -1))
+            {
+                target.AddBuff(calamityMod.Find<ModBuff>("Irradiated")?.Type ?? -1, 180);
+            }
             TryApplyBuff("AstralRipperPro", ragnarokMod, "AstralInfectionDebuff", calamityMod, 180);
             TryApplyBuff("AstralRipperStarPro", ragnarokMod, "AstralInfectionDebuff", calamityMod, 120);
 

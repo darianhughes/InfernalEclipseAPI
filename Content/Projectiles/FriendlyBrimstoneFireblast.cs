@@ -153,13 +153,16 @@ namespace InfernalEclipseAPI.Content.Projectiles
                         smallProjectileType,
                         (int)(Projectile.damage * 0.25f),
                         0f,
-                        Projectile.owner
+                        Projectile.owner,
+                        0f
                     );
 
                     // Make sure the projectile exists before setting rotation
                     if (Main.projectile.IndexInRange(projIndex))
                     {
-                        Main.projectile[projIndex].rotation = velocity.ToRotation();
+                        Projectile spawned = Main.projectile[projIndex];
+                        spawned.rotation = velocity.ToRotation();
+                        spawned.ai[0] = 0; // <-- trying to set here
                     }
                 }
             }

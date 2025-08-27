@@ -13,6 +13,8 @@ using SOTS.NPCs.Boss.Glowmoth;
 using SOTS.NPCs.Boss.Polaris;
 using SOTS.NPCs.Boss.Polaris.NewPolaris;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.SOTS;
+using SOTS.NPCs.Boss.Curse;
+using SOTS.NPCs.Boss.Lux;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {
@@ -25,6 +27,10 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (npc.type == ModContent.NPCType<Glowmoth>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<GlowmothRelic>());
+            }
+            if (npc.type == ModContent.NPCType<PharaohsCurse>())
+            {
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<PharohsCurseRelic>());
             }
             if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
             {
@@ -41,6 +47,10 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (npc.type == ModContent.NPCType<Polaris>() || npc.type == ModContent.NPCType<NewPolaris>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<PolarisRelic>());
+            }
+            if (npc.type == ModContent.NPCType<Lux>())
+            {
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<LuxRelic>());
             }
             if (npc.type == ModContent.NPCType<SubspaceSerpentHead>())
             {

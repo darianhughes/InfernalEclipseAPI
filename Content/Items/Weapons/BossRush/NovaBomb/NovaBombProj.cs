@@ -74,7 +74,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
             Color auraColor = Projectile.GetAlpha(Color.Lerp(Color.White, randomColor, 0.3f)) * 0.25f;
             for (int i = 0; i < 7; i++)
             {
-                Texture2D centerTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/NovaBomb/NovaBombProjectile").Value;
+                Texture2D centerTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/BossRush/NovaBomb/NovaBombProjectile").Value;
                 Vector2 rotationalDrawOffset = (MathHelper.TwoPi * i / 7f + Main.GlobalTimeWrappedHourly * 8f).ToRotationVector2();
                 rotationalDrawOffset *= MathHelper.Lerp(3f, 5.25f, (float)Math.Cos(Main.GlobalTimeWrappedHourly * 4f) * 0.5f + 0.5f);
                 Main.EntitySpriteDraw(centerTexture, Projectile.Center - Main.screenPosition + rotationalDrawOffset, null, auraColor, Projectile.rotation, centerTexture.Size() * 0.5f, Projectile.scale * 1.1f, SpriteEffects.None, 0f);

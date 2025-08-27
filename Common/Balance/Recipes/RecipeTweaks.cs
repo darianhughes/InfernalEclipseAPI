@@ -30,6 +30,9 @@ using InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre;
 using InfernalEclipseAPI.Content.Items.Accessories.ChromaticMassInABottle;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
+using CalamityMod.Items.DraedonMisc;
+using CalamityMod.Items.Placeables;
+using SOTS;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -196,6 +199,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         {
                             recipe.AddIngredient(titanBar, 1);
                         }
+                    }
+
+                    if (recipe.HasIngredient<DepthCells>() && !recipe.HasIngredient(thorium.Find<ModItem>("AbyssalChitin")))
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("AbyssalChitin"), 5);
+                    }
+
+                    if (recipe.HasResult(thorium.Find<ModItem>("AquaiteBar")))
+                    {
+                        recipe.AddIngredient<SeaPrism>(5);
                     }
 
                     if (InfernalConfig.Instance.DisableDuplicateContent)
@@ -573,6 +586,23 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 recipe.RemoveTile(16);
                                 recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
                             }
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("CrystalArrow")))
+                            {
+                                recipe.ReplaceResult(thorium.Find<ModItem>("CrystalArrow"), 75);
+                            }
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("CapeoftheSurvivor")))
+                            {
+                                if (ModLoader.TryGetMod("Consolaria", out Mod console))
+                                {
+                                    recipe.AddIngredient(console.Find<ModItem>("SoulofBlight"), 5);
+                                }
+                                else
+                                {
+                                    recipe.AddIngredient(ItemID.BeetleHusk, 3);
+                                }
+                            }
                         }
                     }
                 }
@@ -694,6 +724,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                     recipe.AddIngredient(phaseBar, 6);
                                 }
                             }
+                        }
+
+                        if (recipe.HasResult<AuricQuantumCoolingCell>())
+                        {
+                            recipe.AddIngredient(sots.Find<ModItem>("DissolvingAurora"));
                         }
 
                         if (recipe.HasResult(ItemID.TrueNightsEdge))

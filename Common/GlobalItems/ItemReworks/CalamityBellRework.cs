@@ -34,7 +34,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 

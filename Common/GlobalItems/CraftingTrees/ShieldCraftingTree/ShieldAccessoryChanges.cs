@@ -317,21 +317,64 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             }
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        public void AddTooltip(List<TooltipLine> tooltips, string stealthTooltip, bool InfernalRedActive = false, bool NoSOTSPinkActive = false)
         {
-            if (!InfernalConfig.Instance.MergeCraftingTrees)
-                return;
-
             Color InfernalRed = Color.Lerp(
-                Color.White,
-                new Color(255, 80, 0), // Infernal red/orange
-                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+               Color.White,
+               new Color(255, 80, 0), // Infernal red/orange
+               (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
             Color NoSOTSPink = Color.Lerp(
                 Color.White,
                 new Color(251, 198, 207),
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
+
+            int maxTooltipIndex = -1;
+            int maxNumber = -1;
+
+            // Find the TooltipLine with the highest TooltipX name
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name.StartsWith("Tooltip"))
+                {
+                    if (int.TryParse(tooltips[i].Name.Substring(7), out int num) && num > maxNumber)
+                    {
+                        maxNumber = num;
+                        maxTooltipIndex = i;
+                    }
+                }
+            }
+
+            // If found, insert a new TooltipLine right after it with the desired color
+            if (maxTooltipIndex != -1)
+            {
+                int insertIndex = maxTooltipIndex + 1;
+                TooltipLine customLine = new TooltipLine(Mod, "StealthTooltip", stealthTooltip);
+                if (InfernalRedActive)
+                    customLine.OverrideColor = InfernalRed;
+
+                tooltips.Insert(insertIndex, customLine);
+            }
+        }
+
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (!InfernalConfig.Instance.MergeCraftingTrees)
+                return;
+
+            Color InfernalRed = Color.Lerp(
+               Color.White,
+               new Color(255, 80, 0), // Infernal red/orange
+               (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+            );
+            Color NoSOTSPink = Color.Lerp(
+                Color.White,
+                new Color(251, 198, 207),
+                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+            );
+
             string moltenScaleInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MoltenScale");
             string chiseledBarrierInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ChiseledBarrier");
             string chiseledHiddenInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ChiseledHidden");
@@ -347,14 +390,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             string tdInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.TerraDefend");
             string daInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.DA");
             string shsInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SHS");
-            string pgInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.PlasmaGenL");
+            string pgInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.PlasmaGen");
 
             if (sots != null && (item.type == ModContent.ItemType<AsgardsValor>() || item.type == ModContent.ItemType<AsgardianAegis>() || item.type == ModContent.ItemType<OrnateShield>()))
             {
-                tooltips.Add(new TooltipLine(Mod, "shsInfo", shsInfo)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
+                AddTooltip(tooltips, shsInfo, true);
             }
 
             ModItem plasmaGen = null;
@@ -364,26 +404,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 {
                     if (item.type == plasmaGen.Type)
                     {
-                        tooltips.Add(new TooltipLine(Mod, "MoltenScaleInfo", moltenScaleInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
+                        AddTooltip(tooltips, moltenScaleInfo, true);
                     }
                 }
             }
 
             if (item.type == ModContent.ItemType<AsgardianAegis>() & thorium != null)
             {
-                tooltips.Add(new TooltipLine(Mod, "MoltenScaleInfo", moltenScaleInfo)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
+                AddTooltip(tooltips, moltenScaleInfo, true);
                 if (plasmaGen != null)
                 {
-                    tooltips.Add(new TooltipLine(Mod, "pgInfo", pgInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
+                    AddTooltip(tooltips, pgInfo, true);
                 }
             }
 
@@ -391,34 +422,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             {
                 if (item.type == ModContent.ItemType<DeificAmulet>())
                 {
-                    tooltips.Add(new TooltipLine(Mod, "sI1", sweetInfo1)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "sAI", sweetAltInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
+                    AddTooltip(tooltips, sweetInfo1, true);
+                    AddTooltip(tooltips, sweetAltInfo, true);
                 }
 
                 if (item.type == thorium.Find<ModItem>("MantleoftheProtector").Type)
                 {
-                    tooltips.Add(new TooltipLine(Mod, "costI1", cotsInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "sI1", sweetInfo1)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "sI2", sweetInfo2)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "daI", daInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
+                    AddTooltip(tooltips, cotsInfo, true);
+                    AddTooltip(tooltips, sweetInfo1, true);
+                    AddTooltip(tooltips, sweetInfo2, true);
+                    AddTooltip(tooltips, daInfo, true);
                 }
 
                 if (sots != null)
@@ -448,95 +461,37 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     {
                         if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
                         {
-                            tooltips.Add(new TooltipLine(Mod, "shsInfo", shsInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
+                            AddTooltip(tooltips, shsInfo, true);
                             if (plasmaGen != null)
                             {
-                                tooltips.Add(new TooltipLine(Mod, "pgInfo", pgInfo)
-                                {
-                                    OverrideColor = new Color?(InfernalRed)
-                                });
+                                AddTooltip(tooltips, pgInfo, true);
                             }
+                            AddTooltip(tooltips, moltenScaleInfo, true);
 
-                            tooltips.Add(new TooltipLine(Mod, "MoltenScaleInfo", moltenScaleInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
+                            AddTooltip(tooltips, tdInfo, true);
 
-                            tooltips.Add(new TooltipLine(Mod, "tdInfo", tdInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
+                            AddTooltip(tooltips, motpInfo, true);
+                            AddTooltip(tooltips, chiseledBarrierInfo, true);
+                            AddTooltip(tooltips, olympianAegisInfo, true);
+                            AddTooltip(tooltips, chiseledHiddenInfo, true);
 
-                            tooltips.Add(new TooltipLine(Mod, "motpInfo", motpInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed) 
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "cbI1", chiseledBarrierInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "oaI", olympianAegisInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "cbhI", chiseledHiddenInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
-
-                            tooltips.Add(new TooltipLine(Mod, "costI1", cotsInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "sI1", sweetInfo1)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "sI2", sweetInfo2)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
+                            AddTooltip(tooltips, cotsInfo, true);
+                            AddTooltip(tooltips, sweetInfo1, true);
+                            AddTooltip(tooltips, sweetInfo2, true);
                         }
                     }
                     if (item.type == ModContent.ItemType<RampartofDeities>())
                     {
-                        tooltips.Add(new TooltipLine(Mod, "tdInfo", tdInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
+                        AddTooltip(tooltips, tdInfo, true);
 
-                        tooltips.Add(new TooltipLine(Mod, "motpInfo", motpInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "cbI1", chiseledBarrierInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "oaI", olympianAegisInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "cbhI", chiseledHiddenInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
+                        AddTooltip(tooltips, motpInfo, true);
+                        AddTooltip(tooltips, chiseledBarrierInfo, true);
+                        AddTooltip(tooltips, olympianAegisInfo, true);
+                        AddTooltip(tooltips, chiseledHiddenInfo, true);
 
-                        tooltips.Add(new TooltipLine(Mod, "costI1", cotsInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "sI1", sweetInfo1)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "sI2", sweetInfo2)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
+                        AddTooltip(tooltips, cotsInfo, true);
+                        AddTooltip(tooltips, sweetInfo1, true);
+                        AddTooltip(tooltips, sweetInfo2, true);
                     }
                 }
                 else
@@ -568,80 +523,32 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         {
                             if (plasmaGen != null)
                             {
-                                tooltips.Add(new TooltipLine(Mod, "pgInfo", pgInfo)
-                                {
-                                    OverrideColor = new Color?(InfernalRed)
-                                });
+                                AddTooltip(tooltips, pgInfo, true);
                             }
-                            tooltips.Add(new TooltipLine(Mod, "tdInfo", tdInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
+                            AddTooltip(tooltips, tdInfo, true);
 
-                            tooltips.Add(new TooltipLine(Mod, "lqI1", lifeQuartzShieldInfo1)
-                            {
-                                OverrideColor = new Color?(NoSOTSPink)
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "lqI2", lifeUnder25Info) 
-                            {
-                                OverrideColor = new Color?(NoSOTSPink)
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "lqI3", lifeUnder25Info2)
-                            {
-                                OverrideColor = new Color?(NoSOTSPink)
-                            });
+                            AddTooltip(tooltips, lifeQuartzShieldInfo1, false, true);
+                            AddTooltip(tooltips, lifeUnder25Info, false, true);
+                            AddTooltip(tooltips, lifeUnder25Info2, false, true);
 
-                            tooltips.Add(new TooltipLine(Mod, "costI1", cotsInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "sI1", sweetInfo1)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
-                            tooltips.Add(new TooltipLine(Mod, "sI2", sweetInfo2)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
+                            AddTooltip(tooltips, cotsInfo, true);
+                            AddTooltip(tooltips, sweetInfo1, true);
+                            AddTooltip(tooltips, sweetInfo2, true);
 
-                            tooltips.Add(new TooltipLine(Mod, "MoltenScaleInfo", moltenScaleInfo)
-                            {
-                                OverrideColor = new Color?(InfernalRed)
-                            });
+                            AddTooltip(tooltips, moltenScaleInfo, true);
                         }
                     }
                     if (item.type == ModContent.ItemType<RampartofDeities>())
                     {
-                        tooltips.Add(new TooltipLine(Mod, "tdInfo", tdInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
+                        AddTooltip(tooltips, tdInfo, true);
 
-                        tooltips.Add(new TooltipLine(Mod, "lqI1", lifeQuartzShieldInfo1)
-                        {
-                            OverrideColor = new Color?(NoSOTSPink)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "lqI2", lifeUnder25Info)
-                        {
-                            OverrideColor = new Color?(NoSOTSPink)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "lqI3", lifeUnder25Info2)
-                        {
-                            OverrideColor = new Color?(NoSOTSPink)
-                        });
+                        AddTooltip(tooltips, lifeQuartzShieldInfo1, false, true);
+                        AddTooltip(tooltips, lifeUnder25Info, false, true);
+                        AddTooltip(tooltips, lifeUnder25Info2, false, true);
 
-                        tooltips.Add(new TooltipLine(Mod, "costI1", cotsInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "sI1", sweetInfo1)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "sI2", sweetInfo2)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
+                        AddTooltip(tooltips, cotsInfo, true);
+                        AddTooltip(tooltips, sweetInfo1, true);
+                        AddTooltip(tooltips, sweetInfo2, true);
                     }
                 }
             }
@@ -651,38 +558,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 {
                     if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
                     {
-                        tooltips.Add(new TooltipLine(Mod, "shsInfo", shsInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "cbI1", chiseledBarrierInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "oaI", olympianAegisInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
-                        tooltips.Add(new TooltipLine(Mod, "cbhI", chiseledHiddenInfo)
-                        {
-                            OverrideColor = new Color?(InfernalRed)
-                        });
+                        AddTooltip(tooltips, shsInfo, true);
+                        AddTooltip(tooltips, chiseledBarrierInfo, true);
+                        AddTooltip(tooltips, olympianAegisInfo, true);
+                        AddTooltip(tooltips, chiseledHiddenInfo, true);
                     }
                 }
                 if (item.type == ModContent.ItemType<RampartofDeities>())
                 {
-                    tooltips.Add(new TooltipLine(Mod, "cbI1", chiseledBarrierInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "oaI", olympianAegisInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
-                    tooltips.Add(new TooltipLine(Mod, "cbhI", chiseledHiddenInfo)
-                    {
-                        OverrideColor = new Color?(InfernalRed)
-                    });
+                    AddTooltip(tooltips, chiseledBarrierInfo, true);
+                    AddTooltip(tooltips, olympianAegisInfo, true);
+                    AddTooltip(tooltips, chiseledHiddenInfo, true);
                 }
             }
         }

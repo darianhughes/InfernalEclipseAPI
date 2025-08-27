@@ -8,6 +8,13 @@ using InfernumMode.Core.Balancing;
 using System.Security.Policy;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.Melee;
+using InfernumMode.Content.Items.Weapons.Melee;
+using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
+using System.Collections.Generic;
+using CalamityMod.Items.Weapons.DraedonsArsenal;
+using CalamityMod.Items.Weapons.Magic;
+using CalamityMod.Items.Weapons.Ranged;
+using CalamityMod.Items.Weapons.Rogue;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -129,6 +136,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(youBoss, "FirstFractal", item))
                 {
                     item.damage = 315;
+                    item.DamageType = ModContent.GetInstance<MythicMelee>();
                 }
             }
             #endregion
@@ -174,6 +182,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useTime = 16;
                     item.useAnimation = 16;
                     item.damage = 90;
+                }
+
+                if (item.type == ModContent.ItemType<GalvanizingGlaive>())
+                {
+                    item.damage = 160;
                 }
                 #endregion
 
@@ -259,6 +272,23 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 850;
                 }
+
+                if (item.type == ModContent.ItemType<ReedBlowgun>())
+                {
+                    item.damage = 30;
+                }
+                #endregion
+
+                #region Mage
+                if (item.type == ModContent.ItemType<CoralSpout>())
+                {
+                    item.damage = 13;
+                }
+
+                if (item.type == ModContent.ItemType<HyphaeRod>())
+                {
+                    item.damage = 28;
+                }
                 #endregion
 
                 #region Summoner
@@ -284,6 +314,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(cal, "PlantationStaff", item))
                 {
                     item.damage = 82;
+                }
+                #endregion
+
+                #region Rogue
+                if (item.type == ModContent.ItemType<FishboneBoomerang>())
+                {
+                    item.damage = 35;
                 }
                 #endregion
             }
@@ -591,6 +628,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
+            #region Infernum
+            if (item.type == ModContent.ItemType<Myrindael>())
+            {
+                item.DamageType = ModContent.GetInstance<MythicMelee>();
+            }
+            #endregion
+
             #region Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
@@ -876,6 +920,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #endregion
 
                     #region Hardmode
+                    if (UnsafeGetItem(thorium, "ToothOfTheConsumer", item))
+                    {
+                        item.crit = 0;
+                        item.useTime = 35;
+                        item.useAnimation = 35;
+                    }
+
                     //Durasteel Blade
                     if (item.type == FindItem(thorium, "DurasteelBlade"))
                     {
@@ -1167,7 +1218,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TerrariumSaber", item))
                     {
-                        item.damage = 230;
+                        item.damage = 180;
                         item.crit = 0;
                     }
 
@@ -2238,7 +2289,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.shootSpeed = 15;
                         item.useTime = 10;
                         item.useAnimation = 10;
-                        item.damage = 13;
+                        item.damage = 10;
                     }
 
                     //Iron Tomahawk
@@ -3161,7 +3212,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TerrariumHolyScythe", item))
                     {
-                        item.damage = 25;
+                        item.damage = 30;
                     }
 
                     if (UnsafeGetItem(thorium, "CelestialWand", item))
@@ -3761,6 +3812,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #region Unofficial Calamity Bard & Healler
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && (ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess || ModContent.GetInstance<InfernalConfig>().CalamityBalanceChanges))
             {
+                if(UnsafeGetItem(calBardHeal, "InfestedCastanet", item))
+                {
+                    item.damage = 21;
+                }
+
                 #region Healer
                 #region Pre-Hardmode
                 //Wulfrum Weed Wacker
@@ -3781,7 +3837,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //The Windmill
                 if (item.type == calBardHeal.Find<ModItem>("TheWindmill").Type)
                 {
-                    item.damage = 5;
+                    //item.damage = 5;
                 }
 
                 //Duality
@@ -4053,7 +4109,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(calBardHeal, "Gashadokuro", item))
                 {
-                    item.damage = 444;
+                    item.damage = 333;
                 }
 
                 if (hasCalHunt)
@@ -4086,6 +4142,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #region Thorium Bosses Reworked
             if (ModLoader.TryGetMod("ThoriumRework", out Mod rethorium) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
+                if (UnsafeGetItem(rethorium, "HeadHunter", item))
+                {
+                    item.damage = 60;
+                }
+
                 #region Melee
                 //Will of Coznix
                 if (GetItem(rethorium, "BeholderBlade", item))
@@ -4145,6 +4206,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #region Ragnarok
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
+                if (UnsafeGetItem(ragnarok, "GraspofVoid", item))
+                {
+                    item.damage = 150;
+                }
                 #region Healer
                 //Prisma
                 if (item.type == ragnarok.Find<ModItem>("Prisma").Type)
@@ -4220,6 +4285,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(ragnarok, "Fractal", item))
                 {
                     item.shootSpeed = 2;
+                }
+
+                if (UnsafeGetItem(ragnarok, "Virusprayer", item))
+                {
+                    item.damage = 160;
                 }
 
                 //Nightmare Freezer
@@ -4306,6 +4376,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(ragnarok, "Korobeiniki", item))
                 {
                     item.damage = 250;
+                }
+
+                if (UnsafeGetItem(ragnarok, "Lamentation", item))
+                {
+                    item.damage = 1150;
+                    item.shootSpeed = 24;
+                    item.useTime = 50;
+                    item.useAnimation = 50;
                 }
                 #endregion
             }

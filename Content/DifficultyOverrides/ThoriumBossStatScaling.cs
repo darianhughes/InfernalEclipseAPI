@@ -151,7 +151,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             float damageMod = 0;
 
             if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
-                damageMod += 0.1f;
+                damageMod += 0.25f;
 
             if (IsWorldLegendary())
             {

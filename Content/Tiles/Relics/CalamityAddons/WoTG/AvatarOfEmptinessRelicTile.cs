@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.Thorium;
 using InfernumMode.Content.Tiles.Relics;
 using Terraria.ModLoader;
 
-namespace InfernalEclipseAPI.Content.Tiles.Relics.Thorium
+namespace InfernalEclipseAPI.Content.Tiles.Relics.CalamityAddons.WoTG
 {
     public class AvatarOfEmptinessRelicTile : BaseInfernumBossRelic
     {
         public override int DropItemID => ModContent.ItemType<AvatarOfEmptinessRelic>();
 
-        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/CalamityAddons/AvatarOfEmptinessRelicTile";
+        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/CalamityAddons/WoTG/AvatarOfEmptinessRelicTile";
     }
 }

@@ -13,6 +13,7 @@ using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.Projectiles.Bard;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Content.Projectiles
 {
@@ -32,14 +33,30 @@ namespace InfernalEclipseAPI.Content.Projectiles
         {
             Projectile.width = 14;
             Projectile.height = 14;
-            Projectile.friendly = true; // Friendly projectile
+            Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 90;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
-            Projectile.DamageType = ThoriumDamageBase<BardDamage>.Instance; // Bard damage from Thorium
+            Projectile.DamageType = ThoriumDamageBase<BardDamage>.Instance;
             Projectile.scale = 1f;
+
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 60;
+            Projectile.usesIDStaticNPCImmunity = false;
+        }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            // Default pierce
+            Projectile.penetrate = 1;
+
+            // If spawned by Gigablast
+            if (Projectile.ai[0] == 1f)
+            {
+                Projectile.penetrate = 2;
+            }
         }
 
         public override void AI()

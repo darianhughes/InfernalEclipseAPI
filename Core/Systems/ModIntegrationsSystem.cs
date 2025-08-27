@@ -4,6 +4,7 @@ using CalamityMod.NPCs.CalClone;
 using CalamityMod.NPCs.PrimordialWyrm;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
+using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.Items.SummonItems;
 using Microsoft.Build.Exceptions;
@@ -66,7 +67,12 @@ namespace InfernalEclipseAPI.Core.Systems
         
             if (ModLoader.TryGetMod("YouBoss", out _))
             {
-                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "You", "ENNWAY!", "You");
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "FINAL FRACTAL", "ENNWAY!", "You");
+            }
+
+            if (ModLoader.TryGetMod("NoxusBoss", out _))
+            {
+
             }
         }
 
@@ -194,6 +200,13 @@ namespace InfernalEclipseAPI.Core.Systems
 
                 coloredDamageTypes.Call("AddDamageType", LegendaryMelee.Instance, legendaryColor, legendaryColor, legendaryCritColor);
                 coloredDamageTypes.Call("AddDamageType", LegendaryRanged.Instance, legendaryColor, legendaryColor, legendaryCritColor);
+
+                Color mythicColor = Color.Cyan;
+                Vector3 hslVector2 = Main.rgbToHsl(mythicColor);
+                hslVector2.Y = MathHelper.Lerp(hslVector2.Y, 1f, 0.6f);
+                Color mythicCritColor = Main.hslToRgb(hslVector2);
+
+                coloredDamageTypes.Call("AddDamageType", MythicMelee.Instance, mythicColor, mythicColor, mythicCritColor);
             }
         }
     }

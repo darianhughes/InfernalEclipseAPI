@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CalamityMod;
 using CalamityMod.Events;
+using SOTS.Items.Celestial;
 using SOTS.NPCs.Boss;
 using Terraria;
 using Terraria.Audio;
@@ -14,9 +15,8 @@ using Terraria.ModLoader;
 namespace InfernalEclipseAPI.Content.Items.SpawnItems
 {
     [ExtendsFromMod("SOTS")]
-    public class SubspaceSpawner : ModItem
+    public class CatalyzedCrystal : ModItem
     {
-        public override string Texture => "SOTS/Items/Celestial/CatalystBomb"; //placeholder until real sprite is made
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = 13;
@@ -38,7 +38,8 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
 
         public override bool CanUseItem(Player player)
         {
-            return player.ZoneUnderworldHeight && !NPC.AnyNPCs(ModContent.NPCType<SubspaceSerpentHead>()) && !BossRushEvent.BossRushActive;
+            bool allowMoreThanOneBoss = ModLoader.TryGetMod("Fargowiltas", out _) ? true : !NPC.AnyNPCs(ModContent.NPCType<SubspaceSerpentHead>());
+            return player.ZoneUnderworldHeight && allowMoreThanOneBoss && !BossRushEvent.BossRushActive;
         }
 
         public override bool? UseItem(Player player)
@@ -55,7 +56,7 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.FragmentNebula, 1)
+                .AddIngredient(ModContent.ItemType<CatalystBomb>())
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }

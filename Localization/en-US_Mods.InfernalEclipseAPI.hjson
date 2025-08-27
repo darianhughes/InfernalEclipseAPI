@@ -139,9 +139,9 @@ ItemTooltip: {
 		SweetAlt: Causes bees & stars to appear and douses the user in honey when damaged
 		COTS:
 			'''
-			You quickly gain up to 20% damage reduction over time
+			You quickly gain up to 15% damage reduction over time
 			Getting hit briefly reduces this bonus to -10% damage reduction
-			While this bonus is above 0%, you gain up to 2 life recovery and block 1 damage attacks
+			While this bonus is above 0%, you gain up to 2 life recovery
 			'''
 		DA:
 			'''
@@ -206,6 +206,7 @@ ItemTooltip: {
 		One day this luck will run out.
 		'''
 	NamelessRelic: You have passed the test.
+	NoxusRelic: So did you cheat this item in or do you actually have my super obscure mod that is not on the workshop anymore installed? Either way, congrats I guess.
 	AstralCommunicatorInfernum1: Summons Astrageldon in the Astral Infection
 	AstralCommunicatorInfernum2: The interdimentional slime still hungers...
 }
@@ -655,6 +656,121 @@ Items: {
 		DisplayName: Genesis
 		Tooltip: ""
 	}
+
+	ClamitasRelic: {
+		DisplayName: Infernal Clamitas Relic
+		Tooltip: ""
+	}
+
+	PyrogenRelic: {
+		DisplayName: Infernal Pyrogen Relic
+		Tooltip: ""
+	}
+
+	WallofBronzeRelic: {
+		DisplayName: Infernal Wall of Bronze Relic
+		Tooltip: ""
+	}
+
+	NoxusRelic: {
+		DisplayName: Infernal Noxus Relic
+		Tooltip: ""
+	}
+
+	AbominationnRelic: {
+		DisplayName: Infernal Abominationn Relic
+		Tooltip: ""
+	}
+
+	BanishedBaronRelic: {
+		DisplayName: Infernal Banished Baron Relic
+		Tooltip: ""
+	}
+
+	CursedCoffinRelic: {
+		DisplayName: Infernal Cursed Coffin Relic
+		Tooltip: ""
+	}
+
+	DeathChampionRelic: {
+		DisplayName: Infernal Champion of Death Relic
+		Tooltip: ""
+	}
+
+	DevianttRelic: {
+		DisplayName: Infernal Deviantt Relic
+		Tooltip: ""
+	}
+
+	EarthChampionRelic: {
+		DisplayName: Infernal Champion of Earth Relic
+		Tooltip: ""
+	}
+
+	EridanusRelic: {
+		DisplayName: Infernal Eridanus, Champion of Cosmos Relic
+		Tooltip: ""
+	}
+
+	LifeChampionRelic: {
+		DisplayName: Infernal Champion of Life Relic
+		Tooltip: ""
+	}
+
+	LifelightRelic: {
+		DisplayName: Infernal Lifelight Relic
+		Tooltip: ""
+	}
+
+	MutantRelic: {
+		DisplayName: Infernal Mutant Relic
+		Tooltip: ""
+	}
+
+	NatureChampionRelic: {
+		DisplayName: Infernal Champion of Nature Relic
+		Tooltip: ""
+	}
+
+	SpiritChampionRelic: {
+		DisplayName: Infernal Champion of Spirit Relic
+		Tooltip: ""
+	}
+
+	TerraChampionRelic: {
+		DisplayName: Infernal Champion of Terra Relic
+		Tooltip: ""
+	}
+
+	TrojanSquirrelRelic: {
+		DisplayName: Infernal Trojan Squirrel Relic
+		Tooltip: ""
+	}
+
+	WillChampionRelic: {
+		DisplayName: Infernal Champion of Will Relic
+		Tooltip: ""
+	}
+
+	LuxRelic: {
+		DisplayName: Infernal Lux Relic
+		Tooltip: ""
+	}
+
+	PharohsCurseRelic: {
+		DisplayName: Infernal Pharaoh's Curse Relic
+		Tooltip: ""
+	}
+
+	CatalyzedCrystal: {
+		DisplayName: Catalyzed Crystal
+		Tooltip:
+			'''
+			A crystal created after the explosion of the Catalyst Bomb
+			Summons the Subspace Serpent when used in Hell
+			Not consumable
+			'''
+	}
 }
 
 Projectiles: {
@@ -671,6 +787,7 @@ Projectiles: {
 	TidalWaveWhirlpool.DisplayName: Tidal Wave Whirlpool
 	FireAxeStealthPro.DisplayName: Fire Axe Stealth Pro
 	GalaxyRainController.DisplayName: Galaxy Rain Controller
+	FriendlyBrimstoneGigablast.DisplayName: Friendly Brimstone Gigablast
 }
 
 DiaryTooltip:
@@ -877,7 +994,7 @@ DamageClasses: {
 	MergedThrowerRogue.DisplayName: rogue damage
 	LegendaryMelee.DisplayName: legendary melee damage
 	LegendaryRanged.DisplayName: legendary ranged damage
-	MythicMelee.DisplayName: Mythic Melee
+	MythicMelee.DisplayName: mythic melee damage
 }
 
 BossRushIntroText1:

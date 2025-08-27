@@ -20,6 +20,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             return npc.boss && ((ModType)npc.ModNPC)?.Mod.Name == "SOTS";
         }
 
+        public override void SetDefaults(NPC entity)
+        {
+            if (entity.ModNPC.Name.Contains("Excavator"))
+            {
+                entity.defense += 5;
+            }
+        }
+
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
             Mod mod;
@@ -50,7 +58,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     npc.lifeMax += (int)(((double).25 * (double)npc.lifeMax));
                 }
 
-                if (npc.ModNPC?.Name?.Contains("TheAdvisorHead") == true)
+                if (npc.ModNPC?.Name?.Contains("TheAdvisorHead") == true || npc.ModNPC.Name.Contains("Excavator"))
                 {
                     npc.lifeMax += (int)(0.25 * npc.lifeMax);
                 }
@@ -64,6 +72,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (InfernumActive.InfernumActive)
             {
                 modifiers.SourceDamage *= 1.35f;
+
+                if (npc.ModNPC.Name.Contains("Excavator"))
+                {
+                    modifiers.SourceDamage *= 0.25f;
+                }
             }
         }
 

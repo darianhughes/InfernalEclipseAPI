@@ -13,6 +13,7 @@ using ThoriumMod.Utilities;
 
 namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
 {
+    [ExtendsFromMod("RagnarokMod")]
     public class DisableRagnarokSigilNerf : ModSystem
     {
         private Hook _postUpdateHook;
@@ -62,6 +63,7 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
         }
     }
 
+    [ExtendsFromMod("RagnarokMod")]
     public sealed class NopShinobiSigilTooltipEdits : ModSystem
     {
         private ILHook _hook;

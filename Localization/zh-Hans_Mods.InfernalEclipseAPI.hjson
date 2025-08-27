@@ -207,6 +207,7 @@ ItemTooltip: {
 		总有一天，这份运气将耗尽。
 		'''
 	NamelessRelic: 你通过了试炼。
+	// NoxusRelic: So did you cheat this item in or do you actually have my super obscure mod that is not on the workshop anymore installed? Either way, congrats I guess.
 	AstralCommunicatorInfernum1: 在星辉瘟疫环境中召唤末世星史莱姆
 	AstralCommunicatorInfernum2: 来自异界的史莱姆依旧饥渴不止……
 }
@@ -656,6 +657,121 @@ Items: {
 		// DisplayName: Genesis
 		// Tooltip: ""
 	}
+
+	ClamitasRelic: {
+		// DisplayName: Infernal Clamitas Relic
+		// Tooltip: ""
+	}
+
+	PyrogenRelic: {
+		// DisplayName: Infernal Pyrogen Relic
+		// Tooltip: ""
+	}
+
+	WallofBronzeRelic: {
+		// DisplayName: Infernal Wall of Bronze Relic
+		// Tooltip: ""
+	}
+
+	NoxusRelic: {
+		// DisplayName: Infernal Noxus Relic
+		// Tooltip: ""
+	}
+
+	AbominationnRelic: {
+		// DisplayName: Infernal Abominationn Relic
+		// Tooltip: ""
+	}
+
+	BanishedBaronRelic: {
+		// DisplayName: Infernal Banished Baron Relic
+		// Tooltip: ""
+	}
+
+	CursedCoffinRelic: {
+		// DisplayName: Infernal Cursed Coffin Relic
+		// Tooltip: ""
+	}
+
+	DeathChampionRelic: {
+		// DisplayName: Infernal Champion of Death Relic
+		// Tooltip: ""
+	}
+
+	DevianttRelic: {
+		// DisplayName: Infernal Deviantt Relic
+		// Tooltip: ""
+	}
+
+	EarthChampionRelic: {
+		// DisplayName: Infernal Champion of Earth Relic
+		// Tooltip: ""
+	}
+
+	EridanusRelic: {
+		// DisplayName: Infernal Eridanus, Champion of Cosmos Relic
+		// Tooltip: ""
+	}
+
+	LifeChampionRelic: {
+		// DisplayName: Infernal Champion of Life Relic
+		// Tooltip: ""
+	}
+
+	LifelightRelic: {
+		// DisplayName: Infernal Lifelight Relic
+		// Tooltip: ""
+	}
+
+	MutantRelic: {
+		// DisplayName: Infernal Mutant Relic
+		// Tooltip: ""
+	}
+
+	NatureChampionRelic: {
+		// DisplayName: Infernal Champion of Nature Relic
+		// Tooltip: ""
+	}
+
+	SpiritChampionRelic: {
+		// DisplayName: Infernal Champion of Spirit Relic
+		// Tooltip: ""
+	}
+
+	TerraChampionRelic: {
+		// DisplayName: Infernal Champion of Terra Relic
+		// Tooltip: ""
+	}
+
+	TrojanSquirrelRelic: {
+		// DisplayName: Infernal Trojan Squirrel Relic
+		// Tooltip: ""
+	}
+
+	WillChampionRelic: {
+		// DisplayName: Infernal Champion of Will Relic
+		// Tooltip: ""
+	}
+
+	LuxRelic: {
+		// DisplayName: Infernal Lux Relic
+		// Tooltip: ""
+	}
+
+	PharohsCurseRelic: {
+		// DisplayName: Infernal Pharaoh's Curse Relic
+		// Tooltip: ""
+	}
+
+	CatalyzedCrystal: {
+		// DisplayName: Catalyzed Crystal
+		/* Tooltip:
+			'''
+			A crystal created after the explosion of the Catalyst Bomb
+			Summons the Subspace Serpent when used in Hell
+			Not consumable
+			''' */
+	}
 }
 
 Projectiles: {
@@ -672,6 +788,7 @@ Projectiles: {
 	// TidalWaveWhirlpool.DisplayName: Tidal Wave Whirlpool
 	// FireAxeStealthPro.DisplayName: Fire Axe Stealth Pro
 	// GalaxyRainController.DisplayName: Galaxy Rain Controller
+	// FriendlyBrimstoneGigablast.DisplayName: Friendly Brimstone Gigablast
 }
 
 DiaryTooltip:
@@ -870,7 +987,7 @@ DamageClasses: {
 	MergedThrowerRogue.DisplayName: 盗贼伤害
 	LegendaryMelee.DisplayName: 传说近战伤害
 	LegendaryRanged.DisplayName: 传说远程伤害
-	// MythicMelee.DisplayName: Mythic Melee
+	// MythicMelee.DisplayName: mythic melee damage
 }
 
 BossRushIntroText1:

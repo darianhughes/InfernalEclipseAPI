@@ -32,6 +32,7 @@ This API currently adds the following:
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
 	[*] Boss Rush support for all included bosses, as well as a custom "tier 6."
 	[*] New music for certain points of the game.
+	[*] World Generation changes to help prevent overlap between mods.
 	[*] Some fixes to help Infernum more multiplayer compatible.
 	[*] Some minor cross-mod improvements for other mods outside main mod pack.
 [/list]
@@ -57,7 +58,7 @@ Story: Akira, Yob, Suu
 Coordinators: ZaKami, TheRogueX
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan
 Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat
-Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, Pil
+Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
 And special thanks to the following creators for the music in this mod:

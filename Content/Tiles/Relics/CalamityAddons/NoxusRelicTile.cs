@@ -10,10 +10,10 @@ using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Content.Tiles.Relics.Thorium
 {
-    public class NamelessDeityRelicTile : BaseInfernumBossRelic
+    public class NoxusRelicTile : BaseInfernumBossRelic
     {
-        public override int DropItemID => ModContent.ItemType<NamelessDeityRelic>();
+        public override int DropItemID => ModContent.ItemType<NoxusRelic>();
 
-        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/CalamityAddons/NamelessDeityRelicTile";
+        public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/CalamityAddons/NoxusRelicTile";
     }
 }

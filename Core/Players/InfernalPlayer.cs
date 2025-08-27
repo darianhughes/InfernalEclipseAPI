@@ -56,6 +56,15 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagWarning"), 255, 0, 0);
                 }
+                else if (ragnarok != null)
+                {
+                    Main.NewText("NOTICE: For the Balancing of weapons to be as intended, set the Ragnarok mod config of 'Generic Weapon Tweaks' to OFF, as otherwise the changes will stack and weapons will be far stronger than intended.", 255, 255, 0);
+
+                    if (rework != null)
+                    {
+                        Main.NewText("NOTICE: It is detected that you have both the Ragnarok mod and Thorium Bosses Reworked enabled. For the intended experience, turn all the boss toggles in the Ragnarok Boss Config to Thorium Bosses Reworked.", 255, 255, 0);
+                    }
+                }
             }
 
             //Alerts the player if they have Fargo's Souls enabled.

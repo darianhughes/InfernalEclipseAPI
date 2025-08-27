@@ -61,29 +61,34 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 
         bool IsBarrier(Item item)
         {
-            int supremeBarrierType = 0;
+            int supremeBarrierType = -1;
             if (clamity != null)
-                supremeBarrierType = clamity?.Find<ModItem>("SupremeBarrier")?.Type ?? 0;
+                supremeBarrierType = clamity.Find<ModItem>("SupremeBarrier").Type;
 
-            int bulwarkType = 0;
+            int bulwarkType = -1;
             if (sots != null)
-                bulwarkType = sots?.Find<ModItem>("BulwarkOfTheAncients")?.Type ?? 0;
+                bulwarkType = sots.Find<ModItem>("BulwarkOfTheAncients").Type;
 
-            int colossusType = 0;
+            int colossusType = -1;
             if (souls != null)
                 colossusType = souls.Find<ModItem>("ColossusSoul").Type;
 
             int rampartType = ModContent.ItemType<RampartofDeities>();
 
-            if (InfernalConfig.Instance.CalamityBalanceChanges || InfernalConfig.Instance.MergeCraftingTrees)
+            int[] itemTypes =
             {
-                return item.type == supremeBarrierType || item.type == rampartType;
-            }
-            if (InfernalConfig.Instance.SOTSBalanceChanges)
+                supremeBarrierType,
+                bulwarkType,
+                colossusType,
+                rampartType
+            };
+
+            foreach (int itemType in itemTypes)
             {
-                return item.type == bulwarkType;
+                if (itemType == -1) continue;
+                if (item.type == itemType) return true;
             }
-            return item.type == colossusType;
+            return false;
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

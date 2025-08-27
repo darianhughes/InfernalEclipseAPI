@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod;
+﻿using CalamityMod;
 using CatalystMod.NPCs.Boss.Astrageldon;
+using Clamity.Content.Bosses.Clamitas.NPCs;
+using Clamity.Content.Bosses.Pyrogen.NPCs;
+using Clamity.Content.Bosses.WoB.NPCs;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.Clamity;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.SecondPhaseForm;
 using NoxusBoss.Content.NPCs.Bosses.NamelessDeity;
 using Terraria;
 using Terraria.ModLoader;
-using ThoriumMod.NPCs.BossTheGrandThunderBird;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
@@ -56,6 +55,42 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (npc.type == ModContent.NPCType<NamelessDeityBoss>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<NamelessDeityRelic>());
+            }
+        }
+    }
+
+    public class NoxusInfernalRelic : GlobalNPC
+    {
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
+            if (ModLoader.TryGetMod("NoxusPort", out Mod port))
+            {
+                if (npc.type == port.Find<ModNPC>("EntropicGod").Type)
+                {
+                    npcLoot.AddIf(isInfernum, ModContent.ItemType<NoxusRelic>());
+                }
+            }
+        }
+    }
+
+    [ExtendsFromMod("Clamity")]
+    public class ClamityInfernalRelic : GlobalNPC
+    {
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
+            if (npc.type == ModContent.NPCType<PyrogenBoss>())
+            {
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<PyrogenRelic>());
+            }
+            if (npc.type == ModContent.NPCType<ClamitasBoss>())
+            {
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<ClamitasRelic>());
+            }
+            if (npc.type == ModContent.NPCType<WallOfBronze>())
+            {
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<WallofBronzeRelic>());
             }
         }
     }

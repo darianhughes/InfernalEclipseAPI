@@ -20,14 +20,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
         {
             Mod mod;
             ModLoader.TryGetMod("CalamityBardHealer", out mod);
-            if (mod == null) return false;
+            if (mod == null && !ModLoader.TryGetMod("Catalyst", out _)) return false;
+
+            _gelatinTherapyType = mod.Find<ModItem>("GelatinTherapy").Type;
 
             return item.type == _gelatinTherapyType;
         }
 
         public override void SetDefaults(Item item)
         {
-            // Only affect GelatinTherapy if Calamity is present
             if (_gelatinTherapyType != null && item.type == _gelatinTherapyType)
             {
                 item.autoReuse = true;

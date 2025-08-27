@@ -13,7 +13,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
     {
         public override bool InstancePerEntity => true;  // So each projectile has its own data
 
-        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        public override void SetDefaults(Projectile projectile)
         {
             ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
             if (ragnarok == null)
@@ -25,7 +25,9 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             if (projectile.type == pro1Type || projectile.type == pro2Type)
             {
                 projectile.usesLocalNPCImmunity = true;
-                projectile.localNPCHitCooldown = 20; // 20 ticks cooldown per NPC hit
+                projectile.localNPCHitCooldown = 80;
+
+                projectile.usesIDStaticNPCImmunity = false;
             }
         }
     }

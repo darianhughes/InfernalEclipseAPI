@@ -123,8 +123,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
                         {
                             recipe.RemoveIngredient(ModContent.ItemType<AngelTreads>());
                             if (calFargo != null) recipe.RemoveIngredient(fargosSouls.Find<ModItem>("AeolusBoots").Type);
-                            
-                            if (thorium != null)
+
+                            if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumParticleSprinters").Type))
                             {
                                 recipe.AddIngredient(thorium.Find<ModItem>("TerrariumParticleSprinters").Type);
                             }
