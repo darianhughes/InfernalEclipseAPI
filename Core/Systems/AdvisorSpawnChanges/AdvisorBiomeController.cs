@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Reflection;
+using SOTS;
 
 namespace InfernalEclipseAPI.Core.Systems.AdvisorSpawnChanges
 {

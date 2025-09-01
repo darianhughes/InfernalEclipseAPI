@@ -29,6 +29,13 @@ This API currently adds the following:
 	- Some fixes to help Infernum more multiplayer compatible.
 	- Some minor cross-mod improvements for other mods associated main mod pack.
 
+It also includes some built-in systems such as:
+	- A new rogue/thrower class merge system with custom stealth strikes for crossmod thrower weapons using Thrower Unification.
+	- A new highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
+	- A system that allows you to lock the Calamity difficulty.
+	- A system that allows Astrageldon to be spawned even if Moon Lord has already been defeated.
+	- A system that allows Infernum Mode to be played in Master Mode and Legendary Mode worlds.
+
 In the future, this will be a content mod that has it's own story including each of the mods in the associated mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder & the tools provided by the Bereft Souls team.
 
 The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as we am still testing and developing it.

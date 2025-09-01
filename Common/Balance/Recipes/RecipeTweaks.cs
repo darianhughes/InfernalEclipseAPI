@@ -33,6 +33,8 @@ using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
 using CalamityMod.Items.DraedonMisc;
 using CalamityMod.Items.Placeables;
 using SOTS;
+using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
+using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -167,9 +169,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.RemoveTile(TileID.MythrilAnvil);
                             recipe.AddTile(ModContent.TileType<DraedonsForge>());
                             recipe.AddIngredient(ModContent.ItemType<StellarSabre>(), 1);
+                            recipe.AddIngredient(ModContent.ItemType<Lycanroc>());
                             recipe.AddIngredient(ModContent.ItemType<Swordofthe14thGlitch>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<NovaBomb>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<Kevin>(), 1);
+                            recipe.AddIngredient(ModContent.ItemType<ChaosBlaster>());
                             recipe.AddIngredient(ModContent.ItemType<ChromaticMassInABottle>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
                         }

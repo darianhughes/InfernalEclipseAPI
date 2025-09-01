@@ -102,6 +102,20 @@ namespace InfernalEclipseAPI
 
         #endregion
 
+        #region Multiplayer Adjustments
+        [Header("MultiplayerAdjustments")]
+        [DefaultValue(60)]
+        public int MultiplayerBossRespawnTimer {  get; set; }
+
+        [DrawTicks]
+        [DefaultValue(Difficulty.Infernum)]
+        public Difficulty MinimumDifficultyToPreventRespawns { get; set; }
+
+        [DefaultValue(1)]
+        public int MultiplayerRespawnsAllowed {  get; set; }
+
+        #endregion
+
         #region Miscellaneous
         [Header ("Miscellaneous")]
         [DefaultValue(false)]
@@ -129,5 +143,25 @@ namespace InfernalEclipseAPI
         public bool EnableInterlude4 { get; set; }
 
         #endregion
+    }
+
+    public enum Difficulty : byte
+    {
+        AlwaysOff,
+        AlwaysOn,
+        Expert,
+        Master,
+        Legendary,
+        Revengence,
+        MasterRevengence,
+        LegendaryRevengence,
+        Death,
+        MasterDeath,
+        LegendaryDeath,
+        Infernum,
+        MasterInfernum,
+        LegendaryInfernum,
+        //Primordial,
+        //LegendaryPrimordial
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 using SOTS.Void;
 using CalamityMod;
-using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Core.DamageClasses
 {

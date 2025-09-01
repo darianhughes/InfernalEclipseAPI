@@ -291,7 +291,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         private bool GetProj(Projectile entity, Mod mod, string item)
         {
-            if (entity.type == mod.Find<ModProjectile>(item).Type)
+            mod.TryFind(item, out ModProjectile projectile);
+            if (projectile == null)
+            {
+                return false;
+            }
+            if (entity.type == projectile.Type)
             {
                 return true;
             }

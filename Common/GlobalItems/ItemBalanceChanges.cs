@@ -101,6 +101,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 110;
                 }
+
+                if (item.type == ItemID.BreakerBlade)
+                {
+                    item.scale *= 1.5f;
+                }
             }
 
             if (InfernalConfig.Instance.ChanageWeaponClasses)
@@ -4142,7 +4147,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #region Thorium Bosses Reworked
             if (ModLoader.TryGetMod("ThoriumRework", out Mod rethorium) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
-                if (UnsafeGetItem(rethorium, "HeadHunter", item))
+                if (GetItem(rethorium, "HeadHunter", item))
                 {
                     item.damage = 60;
                 }

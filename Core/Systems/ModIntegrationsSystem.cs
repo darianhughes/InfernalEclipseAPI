@@ -207,6 +207,7 @@ namespace InfernalEclipseAPI.Core.Systems
                 Color mythicCritColor = Main.hslToRgb(hslVector2);
 
                 coloredDamageTypes.Call("AddDamageType", MythicMelee.Instance, mythicColor, mythicColor, mythicCritColor);
+                coloredDamageTypes.Call("AddDamageType", MythicMagic.Instance, mythicColor, mythicColor, mythicCritColor);
             }
         }
     }

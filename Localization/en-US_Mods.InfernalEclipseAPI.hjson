@@ -1,3 +1,26 @@
+﻿UI: {
+	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
+	NoRespawn2: Respawn prevented: Only {0} respawns per boss in {1} multiplayer!
+	NoRespawn3: Respawn prevented: No respawns during bosses in {0} multiplayer!
+	NoRespawn4: Respawn prevented: No respawns during bosses in multiplayer!
+	NoRespawn5: Respawn prevented: Only one respawn per boss in multiplayer!
+	NoRespawn6: Respawn prevented: Only {0} respawns per boss in multiplayer!
+	Expert: Expert Mode
+	Master: Master Mode
+	Legendary: Legendary Mode
+	Revengence: Revengence Mode
+	MRevengence: Master-Revengence Mode
+	LRevengence: Legendary-Revengence Mode
+	Death: Death Mode
+	MDeath: Master-Death Mode
+	LDeath: Legendary-Death Mode
+	Infernum: Infernum Mode
+	MInfernum: Master-Infernum Mode
+	LInfernum: Legendary-Infernum Mode
+	Primordial: Primodrial Mode
+	LPrimoridal: Legendary-Primordial Mode
+}
+
 WelcomeMessage: {
 	Welcome: Welcome to the Infernal Eclipse of Ragnarok Mod Pack!
 	TBRNotice: NOTICE: It is detected that you have Thorium Bosses Reworked enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatibility config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses depending on the current difficulty.
@@ -15,6 +38,8 @@ WelcomeMessage: {
 ItemTooltip: {
 	Playtester: - Playtester Item -
 	Contributor: - Contributor Item -
+	SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
+	SFlight: Holding right click grants fast, unlimited flight
 	SandstonePortalDeviceInfo:
 		'''
 		Transports you to the Lost Colosseum
@@ -207,11 +232,59 @@ ItemTooltip: {
 		'''
 	NamelessRelic: You have passed the test.
 	NoxusRelic: So did you cheat this item in or do you actually have my super obscure mod that is not on the workshop anymore installed? Either way, congrats I guess.
+	DeviRelic:
+		'''
+		The youngest of the three siblings.
+		Quite chaotic, especially this early in the game, however, you overcame her with confidence.
+		Enjoy the loot upgrades and power boost while you can...
+		'''
+	AbomRelic:
+		'''
+		The second of the three siblings.
+		It has been a while since you fought their sister, but this battle was extreme step up from that.
+		Are you brave enough to challenge the oldest sibling?
+		'''
+	MutantRelic:
+		'''
+		The oldest of the three siblings, as well as the strongest.
+		You have beat what is known as one of the hardest modded bosses, and with all of eternity in your hands surely nothing will stop you now.
+		What will you seek out now?
+		'''
+	EridanusRelic:
+		'''
+		Your almost to the finish line.
+		The godseeker's army is all that stands in between you and eternity.
+		Make the fullest of your new crafting station...
+		'''
 	AstralCommunicatorInfernum1: Summons Astrageldon in the Astral Infection
 	AstralCommunicatorInfernum2: The interdimentional slime still hungers...
 }
 
 Lore: {
+	Abom:
+		'''
+		The middle child of the eternal siblings, and one of the laziest people I've ever seen.
+		While the Abominationn has the ability to fully control the weather and fully turn away invaders, he truly is super lazy, going to the point of even fusing his weapons to his hands.
+		His weapon has the ability to divide the soul itself, and has the ability to use all supernatural phenomena. 
+		Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
+		'''
+	Devi:
+		'''
+		The youngest of the eternal siblings, and also the weakest.
+		She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
+		However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
+		The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while using a living axe made of evil.
+		Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
+		'''
+	Mutant:
+		'''
+		The oldest and strongest of the eternal siblings.
+		While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
+		He is the keeper of eternity, with ultimate power incarnate.
+		Believed to come from another world beyond that dimensional rift, he was the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
+		Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
+		He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
+		'''
 	DylanLore:
 		'''
 		Hmm ... I'm surprised that you even know of that person.
@@ -251,8 +324,8 @@ Lore: {
 	Mirror:
 		'''
 		I stared into it for a long while, but like any other mirror, I only saw myself.
-		But even then, something felt… different. It felt wrong, almost… twisted.
-		I disregarded it. But even now, I can feel the piercing gaze my reflection had… shooting directly through my skull.
+		But even then, something felt... different. It felt wrong, almost... twisted.
+		I disregarded it. But even now, I can feel the piercing gaze my reflection had... shooting directly through my skull.
 		Once you come so far, the hardest part of your journey is facing yourself.
 		'''
 	Subspace:
@@ -292,10 +365,10 @@ Lore: {
 		'''
 	Advisor:
 		'''
-		I know not of this "Advisor" and its origins,
-		but it seemed to be much in‑tune with the void energy lying deep within the crust of Terraria.
-		As who chained here, maybe you could find the answers of that secret
-		from the collector that absorbed its essence after its defeat.
+		Unlike most creatures, I know not of this "Advisor" or its origins
+		However, it seemed to be much in tune with the void energy lying deep within the crust of Terraria.
+		As who chained it to the Planetarium? I couldn't tell you. 
+		Maybe you could find the answers of that secret from the collector that absorbed its essence after its defeat.
 		'''
 	Glowmoth:
 		'''
@@ -320,10 +393,10 @@ Items: {
 	}
 
 	Swordofthe14thGlitch: {
-		DisplayName: Sword of the 14th Glitch
+		DisplayName: Sword of the Zenith
 		Tooltip:
 			'''
-			'Harness the true power of the Glitch!'
+			'The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi'
 			- WIP: Currently just uses the First Fractal AI from YouBoss. -
 			'''
 	}
@@ -771,6 +844,11 @@ Items: {
 			Not consumable
 			'''
 	}
+
+	ChaosBlaster: {
+		DisplayName: Chaos Blaster
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -788,6 +866,8 @@ Projectiles: {
 	FireAxeStealthPro.DisplayName: Fire Axe Stealth Pro
 	GalaxyRainController.DisplayName: Galaxy Rain Controller
 	FriendlyBrimstoneGigablast.DisplayName: Friendly Brimstone Gigablast
+	BeamChargeUp.DisplayName: Beam Charge Up
+	ChaosBlasterBeam.DisplayName: Chaos Blaster Beam
 }
 
 DiaryTooltip:
@@ -817,6 +897,7 @@ Configs: {
 			BossRushChanges: Boss Rush Toggles
 			BalanceChanges: Mod Balance Changes
 			Miscellaneous: Miscellaneous
+			MultiplayerAdjustments: Multiplayer Adjustments
 		}
 
 		ThoriumBalanceChangess: {
@@ -986,6 +1067,39 @@ Configs: {
 				This is known to cause problems in multiplayer, so disable this if your planning to play multiplayer.
 				'''
 		}
+
+		MultiplayerBossRespawnTimer: {
+			Label: Multiplayer Boss Respawn Timer
+			Tooltip: ""
+		}
+
+		MinimumDifficultyToPreventRespawns: {
+			Label: Minimum Difficulty To Prevent Respawns
+			Tooltip: ""
+		}
+
+		MultiplayerRespawnsAllowed: {
+			Label: Multiplayer Respawns Allowed
+			Tooltip: ""
+		}
+	}
+
+	Difficulty: {
+		Tooltip: ""
+		AlwaysOff.Label: Always Off
+		AlwaysOn.Label: Always On
+		Expert.Label: Expert
+		Master.Label: Master
+		Legendary.Label: Legendary
+		Revengence.Label: Revengence
+		MasterRevengence.Label: Master Revengence
+		LegendaryRevengence.Label: Legendary Revengence
+		Death.Label: Death
+		MasterDeath.Label: Master Death
+		LegendaryDeath.Label: Legendary Death
+		Infernum.Label: Infernum
+		MasterInfernum.Label: Master Infernum
+		LegendaryInfernum.Label: Legendary Infernum
 	}
 }
 
@@ -995,6 +1109,7 @@ DamageClasses: {
 	LegendaryMelee.DisplayName: legendary melee damage
 	LegendaryRanged.DisplayName: legendary ranged damage
 	MythicMelee.DisplayName: mythic melee damage
+	MythicMagic.DisplayName: Mythic Magic
 }
 
 BossRushIntroText1:
@@ -1026,7 +1141,7 @@ InfernumIntegration: {
 		'''
 	DeviBoss:
 		'''
-		Watching Enchantress
+		Lovestruck Sadist
 		Deviantt
 		'''
 	BanishedBaron:

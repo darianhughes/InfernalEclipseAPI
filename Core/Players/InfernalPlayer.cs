@@ -30,8 +30,17 @@ namespace InfernalEclipseAPI.Core.Players
         public override void PlayerConnect()
         {
             if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
-            ;
             Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.MPConnect"), 95, 06, 06);
+
+            if (InfernalConfig.Instance.InfernumModeForced && WorldSaveSystem.InfernumModeEnabled == false)
+            {
+                WorldSaveSystem.InfernumModeEnabled = true;
+            }
+
+            if (InfernalConfig.Instance.ForceFullXerocDialogue)
+            {
+                DownedBossSystem.startedBossRushAtLeastOnce = false;
+            }
         }
 
         public override void OnEnterWorld()

@@ -27,7 +27,6 @@ This API currently adds the following:
 [list]
 	[*] Toggleable balance changes to many of the included mods to help the experience flow together better.
 	[*] Merged crafting trees for many accessories
-	[*] A new rogue/thrower class merge system with custom stealth strikes for some Thorium thrower weapons.
 	[*]	Some cross-mod Infernum intros.
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
 	[*] Boss Rush support for all included bosses, as well as a custom "tier 6."
@@ -35,6 +34,15 @@ This API currently adds the following:
 	[*] World Generation changes to help prevent overlap between mods.
 	[*] Some fixes to help Infernum more multiplayer compatible.
 	[*] Some minor cross-mod improvements for other mods outside main mod pack.
+[/list]
+
+It also includes some built-in systems such as:
+[list]
+	[*] A new rogue/thrower class merge system with custom stealth strikes for crossmod thrower weapons using [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535746309] Thrower Unification[/url].
+	[*] A new highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
+	[*] A system that allows you to lock the Calamity difficulty.
+	[*] A system that allows Astrageldon to be spawned even if Moon Lord has already been defeated.
+	[*] A system that allows Infernum Mode to be played in Master Mode and Legendary Mode worlds.
 [/list]
 
 In the future, this will be a content mod that has its own story, including each of the mods in the mod pack in the future, with a functional reworked boss progression using the QuestBookUI & tPackBuilder.

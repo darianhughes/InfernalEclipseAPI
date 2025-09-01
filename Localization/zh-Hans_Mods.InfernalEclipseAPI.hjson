@@ -1,3 +1,26 @@
+UI: {
+	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
+	NoRespawn2: Respawn prevented: Only {0} respawns per boss in {1} multiplayer!
+	NoRespawn3: Respawn prevented: No respawns during bosses in {0} multiplayer!
+	NoRespawn4: Respawn prevented: No respawns during bosses in multiplayer!
+	NoRespawn5: Respawn prevented: Only one respawn per boss in multiplayer!
+	NoRespawn6: Respawn prevented: Only {0} respawns per boss in multiplayer!
+	Expert: Expert Mode
+	Master: Master Mode
+	Legendary: Legendary Mode
+	Revengence: Revengence Mode
+	MRevengence: Master-Revengence Mode
+	LRevengence: Legendary-Revengence Mode
+	Death: Death Mode
+	MDeath: Master-Death Mode
+	LDeath: Legendary-Death Mode
+	Infernum: Infernum Mode
+	MInfernum: Master-Infernum Mode
+	LInfernum: Legendary-Infernum Mode
+	Primordial: Primodrial Mode
+	LPrimoridal: Legendary-Primordial Mode
+}
+
 WelcomeMessage: {
 	Welcome: 感谢游玩《诸神黄昏：炼狱蚀光》模组包！
 	TBRNotice: 注意：检测到已启用 Thorium Bosses Reworked，请在兼容性配置中将生命、伤害与速度倍率均设为 1（除非你想要更高难度），该模组会根据当前难度自动调整瑟银 Boss 属性。
@@ -15,6 +38,8 @@ WelcomeMessage: {
 ItemTooltip: {
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
+	// SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
+	// SFlight: Holding right click grants fast, unlimited flight
 	SandstonePortalDeviceInfo:
 		'''
 		将你传送到失落竞技场
@@ -208,11 +233,59 @@ ItemTooltip: {
 		'''
 	NamelessRelic: 你通过了试炼。
 	// NoxusRelic: So did you cheat this item in or do you actually have my super obscure mod that is not on the workshop anymore installed? Either way, congrats I guess.
+	/* DeviRelic:
+		'''
+		The youngest of the three siblings.
+		Quite chaotic, especially this early in the game, however, you overcame her with confidence.
+		Enjoy the loot upgrades and power boost while you can...
+		''' */
+	/* AbomRelic:
+		'''
+		The second of the three siblings.
+		It has been a while since you fought their sister, but this battle was extreme step up from that.
+		Are you brave enough to challenge the oldest sibling?
+		''' */
+	/* MutantRelic:
+		'''
+		The oldest of the three siblings, as well as the strongest.
+		You have beat what is known as one of the hardest modded bosses, and with all of eternity in your hands surely nothing will stop you now.
+		What will you seek out now?
+		''' */
+	/* EridanusRelic:
+		'''
+		Your almost to the finish line.
+		The godseeker's army is all that stands in between you and eternity.
+		Make the fullest of your new crafting station...
+		''' */
 	AstralCommunicatorInfernum1: 在星辉瘟疫环境中召唤末世星史莱姆
 	AstralCommunicatorInfernum2: 来自异界的史莱姆依旧饥渴不止……
 }
 
 Lore: {
+	/* Abom:
+		'''
+		The middle child of the eternal siblings, and one of the laziest people I've ever seen.
+		While the Abominationn has the ability to fully control the weather and fully turn away invaders, he truly is super lazy, going to the point of even fusing his weapons to his hands.
+		His weapon has the ability to divide the soul itself, and has the ability to use all supernatural phenomena. 
+		Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
+		''' */
+	/* Devi:
+		'''
+		The youngest of the eternal siblings, and also the weakest.
+		She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
+		However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
+		The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while using a living axe made of evil.
+		Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
+		''' */
+	/* Mutant:
+		'''
+		The oldest and strongest of the eternal siblings.
+		While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
+		He is the keeper of eternity, with ultimate power incarnate.
+		Believed to come from another world beyond that dimensional rift, he was the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
+		Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
+		He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
+		''' */
 	DylanLore:
 		'''
 		嗯……你居然还知道他，真令人惊讶。
@@ -321,12 +394,12 @@ Items: {
 	}
 
 	Swordofthe14thGlitch: {
-		DisplayName: 第十四裂隙之刃
-		Tooltip:
+		// DisplayName: Sword of the Zenith
+		/* Tooltip:
 			'''
-			“驾驭裂隙的真正力量！”
-			- 开发中: 目前仅使用You模组的第一分型AI -
-			'''
+			'The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi'
+			- WIP: Currently just uses the First Fractal AI from YouBoss. -
+			''' */
 	}
 
 	BossRushTier6MusicBox: {
@@ -431,6 +504,7 @@ Items: {
 		LoreProvi.DisplayName: 星河
 		LoreMirror.DisplayName: 镜像
 		LoreDylan.DisplayName: Dylan
+		// LoreAbominationn.DisplayName: Lore Abominationn
 	}
 
 	CatastrophicFabricationsMusicBox: {
@@ -772,6 +846,11 @@ Items: {
 			Not consumable
 			''' */
 	}
+
+	ChaosBlaster: {
+		// DisplayName: Chaos Blaster
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -789,6 +868,8 @@ Projectiles: {
 	// FireAxeStealthPro.DisplayName: Fire Axe Stealth Pro
 	// GalaxyRainController.DisplayName: Galaxy Rain Controller
 	// FriendlyBrimstoneGigablast.DisplayName: Friendly Brimstone Gigablast
+	// BeamChargeUp.DisplayName: Beam Charge Up
+	// ChaosBlasterBeam.DisplayName: Chaos Blaster Beam
 }
 
 DiaryTooltip:
@@ -818,6 +899,7 @@ Configs: {
 			BossRushChanges: Boss Rush调整
 			BalanceChanges: 模组平衡修改
 			Miscellaneous: 融合
+			// MultiplayerAdjustments: Multiplayer Adjustments Header
 		}
 
 		ThoriumBalanceChangess: {
@@ -979,6 +1061,39 @@ Configs: {
 				已知此项在多人游戏中可能导致问题；若要进行多人游戏，请禁用它
 				'''
 		}
+
+		MultiplayerBossRespawnTimer: {
+			// Label: Multiplayer Boss Respawn Timer
+			// Tooltip: ""
+		}
+
+		MinimumDifficultyToPreventRespawns: {
+			// Label: Minimum Difficulty To Prevent Respawns
+			// Tooltip: ""
+		}
+
+		MultiplayerRespawnsAllowed: {
+			// Label: Multiplayer Respawns Allowed
+			// Tooltip: ""
+		}
+	}
+
+	Difficulty: {
+		// Tooltip: ""
+		// AlwaysOff.Label: Always Off
+		// AlwaysOn.Label: Always On
+		// Expert.Label: Expert
+		// Master.Label: Master
+		// Legendary.Label: Legendary
+		// Revengence.Label: Revengence
+		// MasterRevengence.Label: Master Revengence
+		// LegendaryRevengence.Label: Legendary Revengence
+		// Death.Label: Death
+		// MasterDeath.Label: Master Death
+		// LegendaryDeath.Label: Legendary Death
+		// Infernum.Label: Infernum
+		// MasterInfernum.Label: Master Infernum
+		// LegendaryInfernum.Label: Legendary Infernum
 	}
 }
 
@@ -988,6 +1103,7 @@ DamageClasses: {
 	LegendaryMelee.DisplayName: 传说近战伤害
 	LegendaryRanged.DisplayName: 传说远程伤害
 	// MythicMelee.DisplayName: mythic melee damage
+	// MythicMagic.DisplayName: Mythic Magic
 }
 
 BossRushIntroText1:

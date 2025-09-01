@@ -24,6 +24,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
+            Mod sots = ModLoader.GetMod("SOTS");
             if (npc.type == ModContent.NPCType<Glowmoth>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<GlowmothRelic>());
@@ -39,6 +40,10 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<PutridPinkyRelic>());
+            }
+            if (npc.type == sots.Find<ModNPC>("Excavator").Type)
+            {
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<ExcavatorRelic>());
             }
             if (npc.type == ModContent.NPCType<TheAdvisorHead>())
             {
