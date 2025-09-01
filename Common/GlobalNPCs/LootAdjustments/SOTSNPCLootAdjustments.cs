@@ -2,7 +2,7 @@
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.TreasureBags;
 using CalamityMod.NPCs.Cryogen;
-using InfernalEclipseAPI.Content.Items.Lore;
+using InfernalEclipseAPI.Content.Items.Lore.SOTS;
 using SOTS.Items.Fragments;
 using SOTS.NPCs.Boss;
 using SOTS.NPCs.Boss.Advisor;

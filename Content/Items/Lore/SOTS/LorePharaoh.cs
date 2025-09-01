@@ -3,49 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalamityMod;
-using CalamityMod.Items.LoreItems;
-using CalamityMod.Rarities;
-using InfernumMode.Content.Items.Placeables;
 using Microsoft.Xna.Framework.Input;
-using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria;
+using CalamityMod.Items.LoreItems;
+using ThoriumMod.NPCs;
+using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.SOTS
 {
-    public class MysteriousDiary : LoreItem
+    public class LorePharaoh : LoreItem
     {
-
-        public override LocalizedText Tooltip => Language.GetOrRegister("Mods.InfernalEclipseAPI.DiaryTooltip");
-
-        public override void SetStaticDefaults()
-        {
-            ItemID.Sets.ItemNoGravity[Item.type] = false;
-        }
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("SOTS", out _);
 
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 32;
-            Item.rare = ModContent.RarityType<HotPink>();
+            Item.width = 38;
+            Item.height = 26;
+            Item.rare = ItemRarityID.Orange;
             Item.consumable = false;
-            Item.Calamity().devItem = true;
         }
 
         public override void AddRecipes()
         {
+            ModLoader.TryGetMod("SOTS", out Mod sots);
+
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<DemonicChaliceOfInfernum>())
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(sots.Find<ModItem>("CurseTrophy").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "DiaryLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.MysteriousDiary"));
+            TooltipLine fullLore = new(Mod, "CurseLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Pharoah"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

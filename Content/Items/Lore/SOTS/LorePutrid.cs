@@ -3,40 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalamityMod.Items.LoreItems;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using CalamityMod.Rarities;
-using CalamityMod.Items;
-using CalamityMod;
+using CalamityMod.Items.LoreItems;
+using ThoriumMod.NPCs;
 using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.SOTS
 {
-    public class LoreProvi : LoreItem
+    public class LorePutrid : LoreItem
     {
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("SOTS", out _);
+
         public override void SetDefaults()
         {
-            Item.width = 26;
+            Item.width = 38;
             Item.height = 26;
-            Item.rare = ModContent.RarityType<HotPink>();
+            Item.rare = ItemRarityID.LightRed;
             Item.consumable = false;
-            Item.Calamity().devItem = true;
         }
-        
+
         public override void AddRecipes()
         {
-            ModLoader.TryGetMod("CalamityMod", out Mod cal);
+            ModLoader.TryGetMod("SOTS", out Mod sots);
 
-            cal.Call("MakeItemExhumable", ModContent.ItemType<MysteriousDiary>(), ModContent.ItemType<LoreProvi>());
-            cal.Call("MakeItemExhumable", ModContent.ItemType<LoreProvi>(), ModContent.ItemType<MysteriousDiary>());
+            CreateRecipe()
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(sots.Find<ModItem>("PutridPinkyTrophy").Type)
+                .AddTile(TileID.Bookcases)
+                .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "ProviLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Provi"));
+            TooltipLine fullLore = new(Mod, "PutridLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Putrid"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

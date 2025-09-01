@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CalamityMod;
-using InfernalEclipseAPI.Content.Items.Lore;
+using InfernalEclipseAPI.Content.Items.Lore.Other;
 using Terraria;
 using Terraria.ModLoader;
 using YouBoss.Content.NPCs.Bosses.TerraBlade;

@@ -1,56 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
-using ThoriumMod.NPCs;
-using Terraria.Localization;
+using Microsoft.Xna.Framework.Graphics;
+using Luminance.Core.Graphics;
+using Microsoft.Xna.Framework;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.FargosSouls
 {
-    public class LoreSerpent : LoreItem
+    public class LoreMutant : LoreItem
     {
-        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("SOTS", out _);
+        public override bool IsLoadingEnabled(Mod mod) => !ModLoader.TryGetMod("ssm", out _) && ModLoader.TryGetMod("FargowiltasSouls", out _);
 
         public override void SetDefaults()
         {
-            Item.width = 38;
+            Item.width = 34;
             Item.height = 26;
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.Purple;
             Item.consumable = false;
         }
 
         public override void AddRecipes()
         {
-            ModLoader.TryGetMod("SOTS", out Mod sots);
+            ModLoader.TryGetMod("FargowiltasSouls", out Mod souls);
 
             CreateRecipe()
                 .AddIngredient(ItemID.Book)
-                .AddIngredient(sots.Find<ModItem>("SerpentSpine").Type)
-                .AddTile(TileID.Bookcases)
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient(ItemID.Book)
-                .AddIngredient(sots.Find<ModItem>("SubspaceSerpentRelic").Type)
-                .AddTile(TileID.Bookcases)
-                .Register();
-
-            CreateRecipe()
-                .AddIngredient(ItemID.Book)
-                .AddIngredient(sots.Find<ModItem>("SubspaceBag").Type)
+                .AddIngredient(souls.Find<ModItem>("MutantTrophy").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
+        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
+        {
+            if ((line.Mod == "Terraria" && line.Name == "ItemName") || line.Name == "FlavorText")
+            {
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Main.UIScaleMatrix);
+                ManagedShader shader = ShaderManager.GetShader("FargowiltasSouls.Text");
+                shader.TrySetParameter("mainColor", new Color(42, 66, 99));
+                shader.TrySetParameter("secondaryColor", Color.Teal);
+                shader.Apply("PulseUpwards");
+                Utils.DrawBorderString(Main.spriteBatch, line.Text, new Vector2(line.X, line.Y), Color.White, 1);
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.UIScaleMatrix);
+                return false;
+            }
+            return true;
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "SerpentLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Subspace"));
+            TooltipLine fullLore = new(Mod, "MutantLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Mutant"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

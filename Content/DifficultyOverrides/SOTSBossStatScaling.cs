@@ -10,9 +10,11 @@ using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive
 using Terraria.ID;
 using CalamityMod.Events;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
+using SOTS.NPCs.Boss;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
+    [ExtendsFromMod("SOTS")]
     public class SOTSBossStatScaling : GlobalNPC
     {
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation)
@@ -63,7 +65,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     npc.lifeMax += (int)(0.25 * npc.lifeMax);
                 }
 
-                npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
+                {
+                    npc.lifeMax += (int)(((double).25) * npc.lifeMax);
+                }
+                else npc.lifeMax += (int)(((double).35) * npc.lifeMax);
             }
         }
 
@@ -71,7 +77,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (InfernumActive.InfernumActive)
             {
-                modifiers.SourceDamage *= 1.35f;
+                if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
+                {
+                    modifiers.SourceDamage *= 1.20f;
+                }
+                else modifiers.SourceDamage *= 1.35f;
 
                 if (npc.ModNPC.Name.Contains("Excavator"))
                 {
@@ -84,7 +94,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (InfernumActive.InfernumActive)
             {
-                npc.position += npc.velocity * 0.35f;
+                if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
+                {
+                    npc.position += npc.velocity * 0.3f;
+                }
+                else npc.position += npc.velocity * 0.35f;
             }
         }
 

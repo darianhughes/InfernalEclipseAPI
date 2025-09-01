@@ -5,60 +5,40 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
-using Microsoft.Xna.Framework.Graphics;
-using Luminance.Core.Graphics;
-using Microsoft.Xna.Framework;
+using CalamityMod.Rarities;
+using CalamityMod.Items.Materials;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse
 {
-    public class LoreAbominationn : LoreItem
+    public class LoreMegalomaniac : LoreItem
     {
-        public override bool IsLoadingEnabled(Mod mod) => !ModLoader.TryGetMod("ssm", out _) && ModLoader.TryGetMod("FargowiltasSouls", out _);
-
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public override void SetDefaults()
         {
-            Item.width = 34;
+            Item.width = 38;
             Item.height = 26;
-            Item.rare = ItemRarityID.Purple;
+            Item.rare = ModContent.RarityType<HotPink>();
             Item.consumable = false;
         }
 
         public override void AddRecipes()
         {
-            ModLoader.TryGetMod("FargowiltasSouls", out Mod souls);
-
             CreateRecipe()
-                .AddIngredient(ItemID.Book)
-                .AddIngredient(souls.Find<ModItem>("AbomTrophy").Type)
+                .AddIngredient(ModContent.ItemType<LoreCynosure>())
+                .AddIngredient(ModContent.ItemType<ShadowspecBar>())
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
-        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
-        {
-            if ((line.Mod == "Terraria" && line.Name == "ItemName") || line.Name == "FlavorText")
-            {
-                Main.spriteBatch.End();
-                Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Main.UIScaleMatrix);
-                ManagedShader shader = ShaderManager.GetShader("FargowiltasSouls.Text");
-                shader.TrySetParameter("mainColor", new Color(42, 66, 99));
-                shader.TrySetParameter("secondaryColor", Color.Orange);
-                shader.Apply("PulseUpwards");
-                Utils.DrawBorderString(Main.spriteBatch, line.Text, new Vector2(line.X, line.Y), Color.White, 1);
-                Main.spriteBatch.End();
-                Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.UIScaleMatrix);
-                return false;
-            }
-            return true;
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "AbomLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Abom"));
+            TooltipLine fullLore = new(Mod, "YharimLore", "The Devourer, the Dragon, and the Witch.\nAll fell to your ambition. Your motive. Your drive.\nI had an ambition similar.\nBut never was I deemed hero.\nI freed this world of tyranny, and yet I stand known as a tyrant.\nNow one with a determination like mine arrives hell-bent on my destruction.\nI will meet the same fate the oppressor I felled had.\nDestined to be dispatched of by one with similar aspirations as themself.\nI should have known, realized it sooner.\nIt was always meant to be this way.");
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

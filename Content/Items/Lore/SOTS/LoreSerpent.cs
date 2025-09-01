@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalamityMod.Items.LoreItems;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using CalamityMod.Items.LoreItems;
+using ThoriumMod.NPCs;
 using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.SOTS
 {
-    public class LoreLux : LoreItem
+    public class LoreSerpent : LoreItem
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("SOTS", out _);
 
@@ -20,7 +21,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
         {
             Item.width = 38;
             Item.height = 26;
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Yellow;
             Item.consumable = false;
         }
 
@@ -30,26 +31,26 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
             CreateRecipe()
                 .AddIngredient(ItemID.Book)
-                .AddIngredient(sots.Find<ModItem>("SpiritSymphony").Type)
+                .AddIngredient(sots.Find<ModItem>("SerpentSpine").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
 
             CreateRecipe()
                 .AddIngredient(ItemID.Book)
-                .AddIngredient(sots.Find<ModItem>("LuxRelic").Type)
+                .AddIngredient(sots.Find<ModItem>("SubspaceSerpentRelic").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
 
             CreateRecipe()
                 .AddIngredient(ItemID.Book)
-                .AddIngredient(sots.Find<ModItem>("LuxBag").Type)
+                .AddIngredient(sots.Find<ModItem>("SubspaceBag").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "LuxLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Lux"));
+            TooltipLine fullLore = new(Mod, "SerpentLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Subspace"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

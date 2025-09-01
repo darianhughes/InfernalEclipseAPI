@@ -3,42 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CalamityMod.Items.LoreItems;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using CalamityMod.Items.LoreItems;
-using ThoriumMod.NPCs;
+using CalamityMod.Rarities;
+using CalamityMod.Items;
+using CalamityMod;
 using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse
 {
-    public class LorePutrid : LoreItem
+    public class LoreDylan : LoreItem
     {
-        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("SOTS", out _);
-
         public override void SetDefaults()
         {
-            Item.width = 38;
+            Item.width = 26;
             Item.height = 26;
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ModContent.RarityType<HotPink>();
             Item.consumable = false;
+            Item.Calamity().devItem = true;
         }
-
+        
         public override void AddRecipes()
         {
-            ModLoader.TryGetMod("SOTS", out Mod sots);
-
             CreateRecipe()
-                .AddIngredient(ItemID.Book)
-                .AddIngredient(sots.Find<ModItem>("PutridPinkyTrophy").Type)
+                .AddIngredient(ItemID.Book, 1)
+                .AddIngredient(ItemID.TeamBlockYellow, 5)
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "PutridLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Putrid"));
+            TooltipLine fullLore = new(Mod, "DylanLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.DylanLore"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

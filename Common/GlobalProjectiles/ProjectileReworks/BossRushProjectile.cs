@@ -1,5 +1,5 @@
 ﻿using CalamityMod.Projectiles.Typeless;
-using InfernalEclipseAPI.Content.Items.Lore;
+using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
 using InfernumMode.Content.Items.Placeables;
 using Terraria;
 using Terraria.ID;

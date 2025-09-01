@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CalamityMod.Items.LoreItems;
+using CalamityMod.Rarities;
+using InfernumMode.Content.Items.Placeables;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria;
-using CalamityMod.Items.LoreItems;
-using ThoriumMod.NPCs;
+using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.SOTS
 {
-    public class LorePharaoh : LoreItem
+    public class LorePolaris : LoreItem
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("SOTS", out _);
 
@@ -21,7 +22,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore
         {
             Item.width = 38;
             Item.height = 26;
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ItemRarityID.Pink;
             Item.consumable = false;
         }
 
@@ -31,14 +32,26 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
             CreateRecipe()
                 .AddIngredient(ItemID.Book)
-                .AddIngredient(sots.Find<ModItem>("CurseTrophy").Type)
+                .AddIngredient(sots.Find<ModItem>("FrigidHourglass").Type)
+                .AddTile(TileID.Bookcases)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(sots.Find<ModItem>("PolarisRelic").Type)
+                .AddTile(TileID.Bookcases)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(sots.Find<ModItem>("PolarisBossBag").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "CurseLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Pharoah"));
+            TooltipLine fullLore = new(Mod, "PolarisLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Polaris"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

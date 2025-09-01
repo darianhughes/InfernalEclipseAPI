@@ -1,22 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
-using Terraria.Localization;
+using Microsoft.Xna.Framework.Graphics;
+using Luminance.Core.Graphics;
+using Microsoft.Xna.Framework;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.FargosSouls
 {
-    public class LoreMirror : LoreItem
+    public class LoreDeviantt : LoreItem
     {
+        public override bool IsLoadingEnabled(Mod mod) => !ModLoader.TryGetMod("ssm", out _) && ModLoader.TryGetMod("FargowiltasSouls", out _);
+
         public override void SetDefaults()
         {
-            Item.width = 38;
+            Item.width = 34;
             Item.height = 26;
             Item.rare = ItemRarityID.Purple;
             Item.consumable = false;
@@ -24,18 +25,36 @@ namespace InfernalEclipseAPI.Content.Items.Lore
 
         public override void AddRecipes()
         {
-            ModLoader.TryGetMod("YouBoss", out Mod you);
+            ModLoader.TryGetMod("FargowiltasSouls", out Mod souls);
 
             CreateRecipe()
                 .AddIngredient(ItemID.Book)
-                .AddIngredient(you.Find<ModItem>("FirstFractal").Type)
+                .AddIngredient(souls.Find<ModItem>("DeviTrophy").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
+        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
+        {
+            if ((line.Mod == "Terraria" && line.Name == "ItemName") || line.Name == "FlavorText")
+            {
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Main.UIScaleMatrix);
+                ManagedShader shader = ShaderManager.GetShader("FargowiltasSouls.Text");
+                shader.TrySetParameter("mainColor", new Color(42, 66, 99));
+                shader.TrySetParameter("secondaryColor", Color.Pink);
+                shader.Apply("PulseUpwards");
+                Utils.DrawBorderString(Main.spriteBatch, line.Text, new Vector2(line.X, line.Y), Color.White, 1);
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.UIScaleMatrix);
+                return false;
+            }
+            return true;
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "MirrorLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Mirror"));
+            TooltipLine fullLore = new(Mod, "DeviLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Devi"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

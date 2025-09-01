@@ -75,6 +75,8 @@ namespace InfernalEclipseAPI
 
         public override void Load()
         {
+            DifficultyManagementSystem.DisableDifficultyModes = false;
+
             // Cache the WhiteFlare projectile type from Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
@@ -95,6 +97,7 @@ namespace InfernalEclipseAPI
 
         public override void Unload()
         {
+            DifficultyManagementSystem.DisableDifficultyModes = true;
             WhiteFlareType = 0; // Clean up on unload
             On_Player.IsTileTypeInInteractionRange -= On_Player_IsTileTypeInInteractionRange;
             On_Player.InInteractionRange -= On_Player_InInteractionRange;

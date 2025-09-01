@@ -264,7 +264,8 @@ Lore: {
 	Abom:
 		'''
 		The middle child of the eternal siblings, and one of the laziest people I've ever seen.
-		While the Abominationn has the ability to fully control the weather and fully turn away invaders, he truly is super lazy, going to the point of even fusing his weapons to his hands.
+		While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
+		he truly is super lazy, going to the point of even fusing his weapons to his hands.
 		His weapon has the ability to divide the soul itself, and has the ability to use all supernatural phenomena. 
 		Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
 		'''
@@ -280,8 +281,8 @@ Lore: {
 		'''
 		The oldest and strongest of the eternal siblings.
 		While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
-		He is the keeper of eternity, with ultimate power incarnate.
-		Believed to come from another world beyond that dimensional rift, he was the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
+		He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift, 
+		Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
 		Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
 		He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
 		'''
@@ -503,6 +504,9 @@ Items: {
 		LoreProvi.DisplayName: Galactica
 		LoreMirror.DisplayName: The Mirror
 		LoreDylan.DisplayName: Dylan
+		LoreAbominationn.DisplayName: The Abominationn
+		LoreDeviantt.DisplayName: The Deviantt
+		LoreMutant.DisplayName: The Mutant
 	}
 
 	CatastrophicFabricationsMusicBox: {

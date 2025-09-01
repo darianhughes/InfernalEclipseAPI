@@ -8,36 +8,48 @@ using Microsoft.Xna.Framework.Input;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using CalamityMod.Rarities;
-using CalamityMod.Items;
-using CalamityMod;
 using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Content.Items.Lore
+namespace InfernalEclipseAPI.Content.Items.Lore.SOTS
 {
-    public class LoreDylan : LoreItem
+    public class LoreGlowmoth : LoreItem
     {
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("SOTS", out _);
+
         public override void SetDefaults()
         {
-            Item.width = 26;
+            Item.width = 38;
             Item.height = 26;
-            Item.rare = ModContent.RarityType<HotPink>();
+            Item.rare = ItemRarityID.Blue;
             Item.consumable = false;
-            Item.Calamity().devItem = true;
         }
-        
+
         public override void AddRecipes()
         {
+            ModLoader.TryGetMod("SOTS", out Mod sots);
+
             CreateRecipe()
-                .AddIngredient(ItemID.Book, 1)
-                .AddIngredient(ItemID.TeamBlockYellow, 5)
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(sots.Find<ModItem>("IlluminantLantern").Type)
+                .AddTile(TileID.Bookcases)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(sots.Find<ModItem>("GlowmothRelic").Type)
+                .AddTile(TileID.Bookcases)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.Book)
+                .AddIngredient(sots.Find<ModItem>("GlowmothBag").Type)
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine fullLore = new(Mod, "DylanLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.DylanLore"));
+            TooltipLine fullLore = new(Mod, "GlowmothLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.Glowmoth"));
             if (LoreColor.HasValue)
                 fullLore.OverrideColor = LoreColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);

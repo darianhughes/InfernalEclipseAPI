@@ -7,9 +7,9 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using Terraria;
 using CalamityMod.Items.LoreItems;
-using InfernalEclipseAPI.Content.Items.Lore;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using CalamityMod.Items.SummonItems;
+using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
