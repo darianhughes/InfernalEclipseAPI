@@ -25,8 +25,6 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
             if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active || npc.type != ModContent.NPCType<DevourerofGodsHead>()) return base.PreAI(npc);
 
             Player target = Main.player[npc.target];
-            if (target.mount?.Type == ModContent.MountType<DraedonGamerChairMount>())
-                target.mount.Dismount(target);
             if (clamity != null)
             {
                 if (target.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)

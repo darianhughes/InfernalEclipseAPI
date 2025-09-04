@@ -26,10 +26,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                     importantName = "Argus'";
                 }
 
-                if (item.type == ModContent.ItemType<FirstFractal>())
+                if (ModLoader.TryGetMod("YouBoss", out Mod you))
                 {
-                    canAddTooltip = true;
-                    importantName = "Your";
+                    if (item.type == you.Find<ModItem>("FirstFractal").Type)
+                    {
+                        canAddTooltip = true;
+                        importantName = "Your";
+                    }
                 }
 
                 if (canAddTooltip)

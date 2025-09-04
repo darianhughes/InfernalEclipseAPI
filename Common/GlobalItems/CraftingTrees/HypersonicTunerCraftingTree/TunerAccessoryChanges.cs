@@ -93,7 +93,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCra
 
             if (SOTSBardHealer != null)
             {
-                if (item.type == SOTSBardHealer.Find<ModItem>("TesseractTuner").Type)
+                if (SOTSBardHealer.TryFind("TesseractTuner", out ModItem tuner) && item.type == tuner.Type)
                 {
                     if (hideVisual)
                     {
@@ -112,15 +112,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCra
             {
                 if (item.type == CSE.Find<ModItem>("BardSoul").Type)
                 {
-                    if (hideVisual)
+                    if (hideVisual && SOTSBardHealer.TryFind("TesseractTuner", out ModItem infrasonicTuner))
                     {
-                        ModItem infrasonicTuner = SOTSBardHealer.Find<ModItem>("InfrasonicTuner");
                         infrasonicTuner.UpdateAccessory(player, hideVisual);
                     }
                     else
                     {
-                        ModItem infrasonicTuner = SOTSBardHealer.Find<ModItem>("HypersonicTuner");
-                        infrasonicTuner.UpdateAccessory(player, hideVisual);
+                        ModItem hypersonicTuner = SOTSBardHealer.Find<ModItem>("HypersonicTuner");
+                        hypersonicTuner.UpdateAccessory(player, hideVisual);
                     }
                 }
             }
@@ -156,7 +155,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCra
                 }
             }
 
-            if (item.type == SOTSBardHealer.Find<ModItem>("TesseractTuner").Type)
+            if (SOTSBardHealer.TryFind("TesseractTuner", out ModItem tuner) && item.type == tuner.Type)
             {
                 for (int i = 0; i < tooltips.Count; ++i)
                 {

@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CalamityMod;
 using CalamityMod.Items;
 using CalamityMod.Items.Materials;
-using CalamityMod.Items.Placeables.Furniture.CraftingStations;
 using CalamityMod.Items.Weapons.Melee;
 using InfernumMode;
 using InfernumMode.Content.Rarities.InfernumRarities;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YouBoss.Content.Items.ItemReworks;
-using static Microsoft.Xna.Framework.MathHelper;
+using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 {
     public class Swordofthe14thGlitch : ModItem
     {
-        public static int UseTime => GlitchSwordHoldout.MaxUpdates * (int)Math.Round(0.55f * 60f);
+        public static int UseTime => GlitchSwordHoldout.MaxUpdates * (int)Math.Round(0.45f * 60f); // was 0.55f
 
         public static int BaseDamage => 23000;
 
@@ -53,7 +49,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             Item.useTime = 7;
             Item.useAnimation = 7;
             Item.useTurn = true;
-            Item.DamageType = DamageClass.MeleeNoSpeed;
+            Item.DamageType = ModContent.GetInstance<TrueMeleeNoSpeedDamageClass>();
             Item.UseSound = null;
             Item.knockBack = 8f;
             Item.autoReuse = true;
@@ -74,7 +70,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 
         public override bool CanUseItem(Player player)
         {
-            if (player.mount.Active)
+            if (player.mount.Active && player.altFunctionUse == 2)
                 player.mount.Dismount(player);
 
             if (Item.type != ItemID.FirstFractal)
@@ -85,41 +81,48 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 
         public override bool? UseItem(Player player)
         {
-            if (player.mount.Active)
+            if (player.mount.Active && player.altFunctionUse == 2)
             {
                 player.mount.Dismount(player);
             }
             return base.UseItem(player);
         }
 
+        public override bool AltFunctionUse(Player player) => true;
+
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo src, Vector2 pos, Vector2 vel, int type, int dmg, float kb)
+        {
+            if (player.ownedProjectileCounts[type] > 0) return false;
+
+            Vector2 v = (Main.MouseWorld - player.Center).SafeNormalize(Vector2.UnitX);
+            int p = Projectile.NewProjectile(src, player.Center, v, type, dmg, kb, player.whoAmI);
+
+            if ((uint)p < Main.maxProjectiles)
+            {
+                var proj = Main.projectile[p];
+                if (proj.ModProjectile is GlitchSwordHoldout h)
+                    h.Mode = (player.altFunctionUse == 2) ? GlitchSwordHoldout.AttackMode.Dash : GlitchSwordHoldout.AttackMode.Slashes;
+
+                proj.ai[1] = Math.Sign(v.X == 0f ? player.direction : v.X);
+                proj.netUpdate = true;
+            }
+            return false;
+        }
+
         public override void AddRecipes()
         {
-            if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt) && calamityHunt.TryFind("ChromaticMass", out ModItem ChormaticMass))
-            {
-                CreateRecipe()
-                    .AddIngredient<AshesofAnnihilation>(3)
-                    .AddIngredient<MiracleMatter>(3)
-                    .AddIngredient(ChormaticMass.Type, 3)
-                    .AddIngredient<FirstFractal>(1)
-                    .AddIngredient(ItemID.Zenith, 1)
-                    .AddIngredient<ArkoftheCosmos>(1)
-                    .AddIngredient<Rock>()
-                    .AddTile(TileID.DemonAltar)
-                    .Register();
-            }
-            else
-            {
-                CreateRecipe()
-                    .AddIngredient<AshesofAnnihilation>(3)
-                    .AddIngredient<MiracleMatter>(3)
-                    .AddIngredient<ShadowspecBar>(3)
-                    .AddIngredient<FirstFractal>(1)
-                    .AddIngredient(ItemID.Zenith, 1)
-                    .AddIngredient<ArkoftheCosmos>(1)
-                    .AddIngredient<Rock>()
-                    .AddTile(TileID.DemonAltar)
-                    .Register();
-            }
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.Zenith);
+            if (ModLoader.TryGetMod("YouBoss", out Mod you)) recipe.AddIngredient(you.Find<ModItem>("FirstFractal").Type);
+            recipe.AddIngredient<ArkoftheCosmos>();
+            recipe.AddIngredient<AshesofAnnihilation>(3);
+            recipe.AddIngredient<MiracleMatter>(3);
+            if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt)) recipe.AddIngredient(calamityHunt.Find<ModItem>("ChromaticMass").Type, 3);
+            if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
+            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient(wotg.Find<ModItem>("MetallicChunk").Type);
+            recipe.AddIngredient<Rock>();
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.Register();
         }
     }
 }

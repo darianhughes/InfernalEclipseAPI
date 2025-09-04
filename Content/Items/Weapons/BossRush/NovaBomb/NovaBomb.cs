@@ -20,7 +20,7 @@ using YouBoss.Content.Items.ItemReworks;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
 {
-    public class NovaBomb : Supernova
+    public class NovaBomb : ModItem
     {
         public override void SetDefaults()
         {
@@ -34,59 +34,39 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
             Item.useTime = 70;
             Item.knockBack = 18f;
             Item.UseSound = SoundID.Item60;
-            Item.autoReuse = true; 
+            Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<NovaBombProj>();
             Item.shootSpeed = 16f;
             Item.DamageType = DamageClass.Magic;
-            Item.mana = 150;
-            Item.rare = ModContent.RarityType<Violet>();
-
+            Item.mana = 250;
+            Item.rare = ModContent.RarityType<HotPink>();
             Item.Infernum_Tooltips().DeveloperItem = true;
         }
 
-        public override float StealthDamageMultiplier => 0.7f;
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        // Block use if either projectile is already active for this player
+        public override bool CanUseItem(Player player)
         {
-            int stealth = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
-            if (stealth.WithinBounds(Main.maxProjectiles))
-                Main.projectile[stealth].Calamity().stealthStrike = true;
-            return false;
-        }
+            int homingType = ModContent.ProjectileType<NovaBombProj>();
+            int blackHoleType = ModContent.ProjectileType<NovaBombBlackHoleProj>();
 
-        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
-        {
-            base.PostDrawInWorld(spriteBatch, lightColor, alphaColor, rotation, scale, whoAmI);
+            return player.ownedProjectileCounts[homingType] == 0 &&
+                   player.ownedProjectileCounts[blackHoleType] == 0;
         }
 
         public override void AddRecipes()
         {
-            if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt) && calamityHunt.TryFind("ChromaticMass", out ModItem ChormaticMass))
-            {
-                CreateRecipe().
-                    AddIngredient<AshesofAnnihilation>(3).
-                    AddIngredient<MiracleMatter>(3).
-                    AddIngredient(ChormaticMass.Type, 3).
-                    AddIngredient<DarkPlasma>(10).
-                    AddIngredient<MeldConstruct>(15).
-                    AddIngredient<Voidstone>(10).
-                    AddIngredient<Rock>().
-                    AddTile<DraedonsForge>().
-                    Register();
-            }
-            else 
-            { 
-                CreateRecipe().
-                    AddIngredient<AshesofAnnihilation>(3).
-                    AddIngredient<MiracleMatter>(3).
-                    AddIngredient<ShadowspecBar>(3).
-                    AddIngredient<DarkPlasma>(10).
-                    AddIngredient<MeldConstruct>(15).
-                    AddIngredient<Voidstone>(10).
-                    AddIngredient<Rock>().
-                    AddTile<DraedonsForge>().
-                    Register();
-            }
+            CreateRecipe()
+                .AddIngredient<AshesofAnnihilation>(3)
+                .AddIngredient<MiracleMatter>(3)
+                .AddIngredient(ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt) &&
+                               calamityHunt.TryFind("ChromaticMass", out ModItem ChormaticMass)
+                               ? ChormaticMass.Type : ModContent.ItemType<ShadowspecBar>())
+                .AddIngredient<DarkPlasma>(10)
+                .AddIngredient<MeldConstruct>(15)
+                .AddIngredient<Voidstone>(10)
+                .AddIngredient<Rock>()
+                .AddTile<DraedonsForge>()
+                .Register();
         }
     }
 }

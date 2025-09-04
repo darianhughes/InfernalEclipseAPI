@@ -15,6 +15,7 @@
 	  <None Remove="Common\Balance\tPackBuilder\projectilemod\Pyrogen\**" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Folder Include="Assets\Sounds\Custom\TerraBlade\" />
 	  <Folder Include="Assets\Textures\BossChecklist\" />
 	  <Folder Include="Common\Balance\tPackBuilder\npcmod\" />
 	  <Folder Include="Common\Balance\tPackBuilder\projectilemod\" />

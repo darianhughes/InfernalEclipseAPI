@@ -106,7 +106,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     if (recipe.HasResult(sots.Find<ModItem>("FortressGenerator")) && recipe.HasIngredient(ItemID.PygmyNecklace))
                     {
                         recipe.RemoveIngredient(ItemID.PygmyNecklace);
-                        recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
+                        if (!recipe.HasIngredient(thorium.Find<ModItem>("NecroticSkull"))) recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
                     }
 
                     if (recipe.HasResult(ModContent.ItemType<StatisBlessing>()))

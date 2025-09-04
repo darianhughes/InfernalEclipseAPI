@@ -12,10 +12,9 @@ using YouBoss.Content.NPCs.Bosses.TerraBlade;
 using CalamityMod.Events;
 using YouBoss.Common.Utilities;
 
-
-
 namespace InfernalEclipseAPI.Core.Systems.MultiplayerFixes
 {
+    [ExtendsFromMod("YouBoss")]
     public class YouBossModSceneFix : ModSystem
     {
         private static Hook _isSceneEffectActiveHook;

@@ -15,37 +15,35 @@ namespace InfernalEclipseAPI.Core.HallowedBarFix
     {
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
-            if (DownedAllMechBosses())
+            if (!IsMechBossBag(item.type))
                 return;
 
-            if (IsMechBossBag(item.type))
-            {
-                itemLoot.RemoveWhere(rule =>
-                {
-                    if (rule is CommonDrop commonDrop)
-                        return commonDrop.itemId == ItemID.HallowedBar;
+            // 1) Always remove vanilla bar drops from bags
+            itemLoot.RemoveWhere(IsHallowedBarDrop);
 
-                    if (rule is DropBasedOnExpertMode expertDrop)
-                    {
-                        return (expertDrop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.HallowedBar)
-                            || (expertDrop.ruleForExpertMode is CommonDrop expert && expert.itemId == ItemID.HallowedBar);
-                    }
+            // 2) Re-add bars gated by "all mechs down" (bags are Expert/Master anyway)
+            var condRule = new LeadingConditionRule(new AllMechsDown_Cond());
 
-                    return false;
-                });
-            }
+            // Use Expert vs Normal counts if someone spawns bags in normal; otherwise Expert path applies in real worlds
+            var normalBars = ItemDropRule.Common(ItemID.HallowedBar, 1, 15, 30);
+            var expertBars = ItemDropRule.Common(ItemID.HallowedBar, 1, 20, 35);
+            condRule.OnSuccess(new DropBasedOnExpertMode(expertBars, normalBars));
+
+            itemLoot.Add(condRule);
         }
 
-        private bool DownedAllMechBosses()
-        {
-            return NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3;
-        }
+        private static bool IsMechBossBag(int type) =>
+            type == ItemID.TwinsBossBag ||
+            type == ItemID.SkeletronPrimeBossBag ||
+            type == ItemID.DestroyerBossBag;
 
-        private bool IsMechBossBag(int type)
+        private static bool IsHallowedBarDrop(IItemDropRule rule)
         {
-            return type == ItemID.TwinsBossBag ||
-                   type == ItemID.SkeletronPrimeBossBag ||
-                   type == ItemID.DestroyerBossBag;
+            if (rule is CommonDrop cd) return cd.itemId == ItemID.HallowedBar;
+            if (rule is DropBasedOnExpertMode ex)
+                return (ex.ruleForNormalMode is CommonDrop n && n.itemId == ItemID.HallowedBar)
+                    || (ex.ruleForExpertMode is CommonDrop e && e.itemId == ItemID.HallowedBar);
+            return false;
         }
     }
 }

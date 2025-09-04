@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.Items.Weapons.Melee;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.Items.Cultist;
@@ -18,6 +19,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             if (InfernalConfig.Instance.ChanageWeaponClasses) 
             {
+                if (entity.type == ItemID.TheAxe)
+                {
+                    entity.DamageType = ThoriumDamageBase<BardDamage>.Instance;
+                }
+
                 if (entity.type == ModContent.ItemType<AncientFlame>())
                 {
                     entity.DamageType = ThoriumDamageBase<HealerDamage>.Instance;

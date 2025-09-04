@@ -24,13 +24,14 @@ namespace InfernalEclipseAPI.Content.Items.Lore.Other
 
         public override void AddRecipes()
         {
-            ModLoader.TryGetMod("YouBoss", out Mod you);
-
-            CreateRecipe()
-                .AddIngredient(ItemID.Book)
-                .AddIngredient(you.Find<ModItem>("FirstFractal").Type)
-                .AddTile(TileID.Bookcases)
-                .Register();
+            if (ModLoader.TryGetMod("YouBoss", out Mod you))
+            {
+                CreateRecipe()
+                    .AddIngredient(ItemID.Book)
+                    .AddIngredient(you.Find<ModItem>("FirstFractal").Type)
+                    .AddTile(TileID.Bookcases)
+                    .Register();
+            }
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

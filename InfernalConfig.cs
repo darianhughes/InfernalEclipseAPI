@@ -63,10 +63,11 @@ namespace InfernalEclipseAPI
 
         [DefaultValue(true)]
         [ReloadRequired]
-        public bool InfernumRecipeTweaks { get; set; }
+        public bool NerfThoriumMulticlass { get; set; }
 
         [DefaultValue(true)]
-        public bool SOTSThrowerToRogue { get; set; }
+        [ReloadRequired]
+        public bool InfernumRecipeTweaks { get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]
@@ -74,6 +75,9 @@ namespace InfernalEclipseAPI
 
         [DefaultValue(true)]
         public bool ChanageWeaponClasses { get; set; }
+
+        [DefaultValue(true)]
+        public bool SOTSThrowerToRogue { get; set; }
 
         #endregion
 

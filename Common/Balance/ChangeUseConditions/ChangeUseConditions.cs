@@ -78,10 +78,12 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 
             CanUseItemEvent += ModifyDungeonCurseUseConditions;
 
-            ModLoader.TryGetMod("YouBoss", out Mod you);
-            if (you.TryFind("FirstFractal", out ModItem firstFractal))
+            if (ModLoader.TryGetMod("YouBoss", out Mod you))
             {
-                fractalID = firstFractal.Type;
+                if (you.TryFind("FirstFractal", out ModItem firstFractal))
+                {
+                    fractalID = firstFractal.Type;
+                }
             }
 
             CanUseItemEvent += ModifyFirstFractalUseConditions;

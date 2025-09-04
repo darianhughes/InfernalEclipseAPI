@@ -18,34 +18,21 @@ using Terraria.ModLoader;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.GreatSandShark;
 using GreatSandSharkNPC = CalamityMod.NPCs.GreatSandShark.GreatSandShark;
-using YouBoss.Content.NPCs.Bosses.TerraBlade;
-using CalamityMod.Sounds;
 using CalamityMod.NPCs.SupremeCalamitas;
-using InfernumMode.Content.BossIntroScreens.InfernumScreens;
 using CalamityMod;
-using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 using CalamityMod.Events;
 using static CalamityMod.Events.BossRushEvent;
-using static InfernumMode.Core.GlobalInstances.Systems.BossRushChangesSystem;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Enums;
 using CalamityMod.Systems;
-using InfernalEclipseAPI.Core;
 using CalamityMod.NPCs.ProfanedGuardians;
-using CalamityMod.CalPlayer;
 using CalamityMod.Projectiles.Typeless;
-using System.Security.Policy;
 using System.IO;
 using InfernalEclipseAPI.Core.Players;
 using System.Reflection;
-using MonoMod.Cil;
-using Mono.Cecil.Cil;
-using MonoMod.RuntimeDetour;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Core.World;
 using CalamityMod.NPCs.Polterghast;
-using InfernumMode.Core.GlobalInstances.Players;
-using InfernumMode.Content.Achievements;
 
 namespace InfernalEclipseAPI
 {
@@ -462,21 +449,21 @@ namespace InfernalEclipseAPI
                 }
             }
 
-            if (InfernalConfig.Instance.TerraBladeBossInBossRush)
+            if (InfernalConfig.Instance.TerraBladeBossInBossRush && ModLoader.TryGetMod("YouBoss", out Mod you))
             {
                 int[] TerraMinionIDs = { };
-                int[] TerraID = { ModContent.NPCType<TerraBladeBoss>() };
+                int[] TerraID = { you.Find<ModNPC>("TerraBladeBoss").Type };
 
                 Action<int> prTerra = delegate (int npc)
                 {
-                    SoundStyle roar = YouBoss.Assets.SoundsRegistry.TerraBlade.DashSound;
+                    SoundStyle roar = new SoundStyle("InfernalEclipseAPI/Assets/Sounds/Custom/TerraBlade/Dash");
                     int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
                     Player player = Main.player[whomst];
                     SoundEngine.PlaySound(roar, player.Center);
-                    NPC.SpawnOnPlayer(whomst, ModContent.NPCType<TerraBladeBoss>());
+                    NPC.SpawnOnPlayer(whomst, you.Find<ModNPC>("TerraBladeBoss").Type);
                 };
 
-                brEntries.Insert(TerraInsertID - 1, (ModContent.NPCType<TerraBladeBoss>(), -1, prTerra, 180, true, 0f, TerraMinionIDs, TerraID));
+                brEntries.Insert(TerraInsertID - 1, (you.Find<ModNPC>("TerraBladeBoss").Type, -1, prTerra, 180, true, 0f, TerraMinionIDs, TerraID));
             }
 
             //Old Duke (CalamityMod) - Reinserts Old Duke into Boss Rush if he has been removed by other mod (i.e. CalamityHunt)

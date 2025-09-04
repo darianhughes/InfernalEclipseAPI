@@ -104,8 +104,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCra
                     {
                         if (recipe.HasResult(CSE.Find<ModItem>("BardSoul").Type))
                         {
-                            recipe.RemoveIngredient(ThoriumRework.Find<ModItem>("FanDonations").Type);
-                            recipe.AddIngredient(SOTSBardHealer.Find<ModItem>("TesseractTuner").Type);
+                            if (SOTSBardHealer.TryFind("TesseractTuner", out ModItem tuner))
+                            {
+                                recipe.RemoveIngredient(ThoriumRework.Find<ModItem>("FanDonations").Type);
+                                recipe.AddIngredient(tuner.Type);
+                            }
                         }
                     }
                 }

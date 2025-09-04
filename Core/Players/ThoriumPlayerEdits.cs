@@ -20,114 +20,101 @@ namespace InfernalEclipseAPI.Core.Players
     [ExtendsFromMod("ThoriumMod")]
     public class ThoriumPlayerEdits : ModPlayer
     {
-        public int radiantDamageCooldown;
-        public int currentHealBonus;
+        public const int PenaltyDuration = 60 * 10; // 10s
+        public int switchToHealerPenaltyTimer;
 
         public override void ResetEffects()
         {
-            if (radiantDamageCooldown > 0)
-                radiantDamageCooldown--;
+            if (switchToHealerPenaltyTimer > 0)
+                switchToHealerPenaltyTimer--;
         }
 
+        // === Helpers ===
+        private static bool IsHealerDamage(Item item) => item.CountsAsClass<HealerDamage>();
+        private static bool IsHealerDamage(Projectile proj) => proj.CountsAsClass<HealerDamage>();
+
+        // Treat these custom tools as "Healer usage"
+        private static bool IsHealerToolOrHybrid(Item item)
+        {
+            var mi = item?.ModItem;
+            if (mi is null) return false;
+
+            // If you can reference the types directly, prefer:
+            // return mi is HealerTool || mi is HealerToolDamageHybrid;
+
+            // Fallback by name to avoid hard refs if needed:
+            string typeName = mi.GetType().Name;
+            return typeName == "HealerTool" || typeName == "HealerToolDamageHybrid";
+        }
+
+        private static bool IsHealerWeaponOrTool(Item item) =>
+            IsHealerDamage(item) || IsHealerToolOrHybrid(item);
+
+        private static bool IsCombatWeapon(Item item)
+            => item is not null
+               && item.type != ItemID.None
+               && item.useStyle != ItemUseStyleID.None
+               && !item.accessory
+               && item.ammo == AmmoID.None
+               && item.pick <= 0 && item.axe <= 0 && item.hammer <= 0;
+
+        // === Item hits (melee/direct) ===
         public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
         {
-            Player player = Main.LocalPlayer;
-            var CalPlayer = player.GetModPlayer<CalamityPlayer>();
-            var ThorPlayer = player.GetModPlayer<ThoriumPlayer>();
+            if (!InfernalConfig.Instance.NerfThoriumMulticlass) return;
 
-            if (radiantDamageCooldown > 0)
+            if (Player.HasBuff<BrokenOath>())
             {
-                Item heldItem = Player.ActiveItem();
+                modifiers.FinalDamage *= 0.5f;
+            }
 
-                //Don't grant penalty when having all the Gems Active
-                bool gemTechAllGem = CalPlayer.GemTechSet && CalPlayer.GemTechState.IsYellowGemActive &&
-                                                             CalPlayer.GemTechState.IsGreenGemActive &&
-                                                             CalPlayer.GemTechState.IsPurpleGemActive &&
-                                                             CalPlayer.GemTechState.IsBlueGemActive &&
-                                                             CalPlayer.GemTechState.IsRedGemActive &&
-                                                             CalPlayer.GemTechState.IsPinkGemActive; // wow this is ugly
+            if (IsCombatWeapon(item) && !IsHealerWeaponOrTool(item))
+            {
+                // Any non-healer weapon hit starts/refreshes the "recently non-healer" window
+                switchToHealerPenaltyTimer = PenaltyDuration;
+                return;
+            }
 
-                bool crossClassNerfDisabled = gemTechAllGem || DD2Event.Ongoing; //dont do it during Old Ones Army because your expected to be cross-class with summoner
-
-                if (!crossClassNerfDisabled)
-                {
-                    bool heldItemIsClassedWeapon = !heldItem.CountsAsClass<HealerDamage>() && (
-                        heldItem.CountsAsClass<MeleeDamageClass>() ||
-                        heldItem.CountsAsClass<RangedDamageClass>() ||
-                        heldItem.CountsAsClass<MagicDamageClass>() ||
-                        heldItem.CountsAsClass<SummonDamageClass>() ||
-                        heldItem.CountsAsClass<RogueDamageClass>() ||
-                        heldItem.CountsAsClass<ThrowingDamageClass>() ||
-                        heldItem.CountsAsClass<BardDamage>()
-                    //|| heldItem.CountsAsClass<TrueDamage>()
-                    );
-
-                    bool heldItemIsTool = heldItem.pick > 0 || heldItem.axe > 0 || heldItem.hammer > 0;
-                    bool heldItemCanBeUsed = heldItem.useStyle != ItemUseStyleID.None;
-                    bool heldItemIsAccessoryOrAmmo = heldItem.accessory || heldItem.ammo != AmmoID.None;
-
-                    if (heldItemIsClassedWeapon && heldItemCanBeUsed && !heldItemIsTool && !heldItemIsAccessoryOrAmmo && radiantDamageCooldown > 0 && !player.HasBuff(ModContent.BuffType<BrokenOath>()))
-                    {
-                        player.AddBuff(ModContent.BuffType<BrokenOath>(), 900);
-                    }
-                }
+            if (IsHealerWeaponOrTool(item) && switchToHealerPenaltyTimer > 0)
+            {
+                Player.AddBuff(ModContent.BuffType<BrokenOath>(), switchToHealerPenaltyTimer);
             }
         }
 
+        // === Projectile hits ===
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
         {
-            Player player = Main.player[proj.owner];
-            var CalPlayer = player.GetModPlayer<CalamityPlayer>();
-            var ThorPlayer = player.GetModPlayer<ThoriumPlayer>();
+            if (!InfernalConfig.Instance.NerfThoriumMulticlass) return;
 
-            currentHealBonus = ThorPlayer.healBonus;
-
-            bool isRadiant = proj.CountsAsClass<HealerDamage>();
-            if (!isRadiant && radiantDamageCooldown > 0)
+            if (Player.HasBuff<BrokenOath>())
             {
-                Item heldItem = Player.ActiveItem();
-
-                //Don't grant penalty when having all the Gems Active
-                bool gemTechAllGem = CalPlayer.GemTechSet && CalPlayer.GemTechState.IsYellowGemActive && 
-                                                             CalPlayer.GemTechState.IsGreenGemActive && 
-                                                             CalPlayer.GemTechState.IsPurpleGemActive && 
-                                                             CalPlayer.GemTechState.IsBlueGemActive &&
-                                                             CalPlayer.GemTechState.IsRedGemActive &&
-                                                             CalPlayer.GemTechState.IsPinkGemActive; // wow this is ugly
-
-                bool crossClassNerfDisabled = gemTechAllGem || DD2Event.Ongoing; //dont do it during Old Ones Army because your expected to be cross-class with summoner
-
-                if (!isRadiant && !crossClassNerfDisabled)
-                {
-                    bool heldItemIsClassedWeapon = !heldItem.CountsAsClass<HealerDamage>() && (
-                        heldItem.CountsAsClass<MeleeDamageClass>() ||
-                        heldItem.CountsAsClass<RangedDamageClass>() ||
-                        heldItem.CountsAsClass<MagicDamageClass>() ||
-                        heldItem.CountsAsClass<SummonDamageClass>() ||
-                        heldItem.CountsAsClass<RogueDamageClass>() ||
-                        heldItem.CountsAsClass<ThrowingDamageClass>() ||
-                        heldItem.CountsAsClass<BardDamage>()
-                        //|| heldItem.CountsAsClass<TrueDamage>()
-                    );
-
-                    bool heldItemIsTool = heldItem.pick > 0 || heldItem.axe > 0 || heldItem.hammer > 0;
-                    bool heldItemCanBeUsed = heldItem.useStyle != ItemUseStyleID.None;
-                    bool heldItemIsAccessoryOrAmmo = heldItem.accessory || heldItem.ammo != AmmoID.None;
-
-                    if (heldItemIsClassedWeapon &&  heldItemCanBeUsed && !heldItemIsTool && !heldItemIsAccessoryOrAmmo && radiantDamageCooldown > 0 && !player.HasBuff(ModContent.BuffType<BrokenOath>())) 
-                    {
-                        player.AddBuff(ModContent.BuffType<BrokenOath>(), 900);
-                    }
-                }
+                modifiers.FinalDamage *= 0.5f;
             }
-            else if (isRadiant)
+
+            if (proj.owner != Player.whoAmI)
+                return;
+
+            bool healerAttack = IsHealerDamage(proj);
+
+            // If projectile isn't flagged healer, but we're actively using a HealerTool/Hybrid, treat it as healer usage too.
+            if (!healerAttack)
             {
-                if (player.HasBuff(ModContent.BuffType<BrokenOath>()))
-                {
-                    modifiers.FinalDamage *= 0.5f;
-                    ThorPlayer.healBonus -= 10;
-                }
-                radiantDamageCooldown = 900;
+                var held = Player.HeldItem;
+                if (IsHealerWeaponOrTool(held))
+                    healerAttack = true;
+            }
+
+            if (!healerAttack)
+            {
+                // Non-healer projectile => refresh window
+                switchToHealerPenaltyTimer = PenaltyDuration;
+                return;
+            }
+
+            // Healer projectile while window active => penalty
+            if (switchToHealerPenaltyTimer > 0)
+            {
+                Player.AddBuff(ModContent.BuffType<BrokenOath>(), switchToHealerPenaltyTimer);
             }
         }
     }

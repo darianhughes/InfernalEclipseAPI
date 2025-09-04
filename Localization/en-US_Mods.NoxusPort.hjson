@@ -1,0 +1,6 @@
+Items: {
+	EntropicBar: {
+		DisplayName: Entropic Bar
+		Tooltip: An awesome looking bar forged from pure entropy.
+	}
+}

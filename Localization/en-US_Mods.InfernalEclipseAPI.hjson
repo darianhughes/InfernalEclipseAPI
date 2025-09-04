@@ -1,4 +1,4 @@
-﻿UI: {
+UI: {
 	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
 	NoRespawn2: Respawn prevented: Only {0} respawns per boss in {1} multiplayer!
 	NoRespawn3: Respawn prevented: No respawns during bosses in {0} multiplayer!
@@ -395,11 +395,7 @@ Items: {
 
 	Swordofthe14thGlitch: {
 		DisplayName: Sword of the Zenith
-		Tooltip:
-			'''
-			'The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi'
-			- WIP: Currently just uses the First Fractal AI from YouBoss. -
-			'''
+		Tooltip: The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi
 	}
 
 	BossRushTier6MusicBox: {
@@ -853,6 +849,11 @@ Items: {
 		DisplayName: Chaos Blaster
 		Tooltip: ""
 	}
+
+	NovaBomb: {
+		DisplayName: Nova Bomb
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -872,6 +873,11 @@ Projectiles: {
 	FriendlyBrimstoneGigablast.DisplayName: Friendly Brimstone Gigablast
 	BeamChargeUp.DisplayName: Beam Charge Up
 	ChaosBlasterBeam.DisplayName: Chaos Blaster Beam
+	HomingTerraBeam.DisplayName: Homing Terra Beam
+	PlayerShadowClone.DisplayName: Player Shadow Clone
+	TerraSlash.DisplayName: Terra Slash
+	NovaBombBlackHoleProj.DisplayName: Nova Bomb Black Hole Proj
+	NovaBombProj.DisplayName: Nova Bomb Proj
 }
 
 DiaryTooltip:
@@ -1084,6 +1090,11 @@ Configs: {
 
 		MultiplayerRespawnsAllowed: {
 			Label: Multiplayer Respawns Allowed
+			Tooltip: ""
+		}
+
+		NerfThoriumMulticlass: {
+			Label: Nerf Thorium Multiclass
 			Tooltip: ""
 		}
 	}
