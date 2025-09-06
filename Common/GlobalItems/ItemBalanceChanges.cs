@@ -15,6 +15,9 @@ using CalamityMod.Items.Weapons.DraedonsArsenal;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Items.Weapons.Summon;
+using RevengeancePlus;
+using CalamityMod.Items;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -282,6 +285,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 30;
                 }
+
+                if (item.type == ModContent.ItemType<PulseRifle>())
+                {
+                    item.DamageType = ModContent.GetInstance<MythicRanged>();
+                }
                 #endregion
 
                 #region Mage
@@ -319,6 +327,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(cal, "PlantationStaff", item))
                 {
                     item.damage = 82;
+                }
+
+                if (item.type == ModContent.ItemType<Vigilance>())
+                {
+                    item.damage = 325;
+                }
+
+                if (item.type == ModContent.ItemType<CosmicImmaterializer>())
+                {
+                    item.damage = 1020;
                 }
                 #endregion
 
@@ -639,6 +657,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 item.DamageType = ModContent.GetInstance<MythicMelee>();
             }
             #endregion
+
+            if (ModLoader.TryGetMod("NoxusPort", out Mod noxusPort))
+            {
+                if(UnsafeGetItem(noxusPort, "EntropicBar", item))
+                {
+                    item.value = CalamityGlobalItem.RarityVioletBuyPrice;
+                }
+            }
 
             #region Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
@@ -2827,6 +2853,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     #region Healer
                     #region Pre-Hardmode
+                    if (GetItem(thorium, "CrimsonScythe", item))
+                    {
+                        item.damage = 13;
+                    }
+
+                    if (GetItem(thorium, "DarkScythe", item))
+                    {
+                        item.damage = 13;
+                    }
+
                     //Wooden Baton
                     if (item.type == thorium.Find<ModItem>("WoodenBaton").Type)
                     {
@@ -2853,7 +2889,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 17;
                         item.useAnimation = 26;
                         item.shootSpeed = 26;
-                        item.healLife = 1;
 
                         item.scale *= 1.5f;
                     }
@@ -2902,7 +2937,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 16;
                         item.useAnimation = 16;
-                        item.healLife = 1;
                         item.damage = 20;
 
                         item.scale *= 1.25f;
@@ -3047,6 +3081,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #endregion
 
                     #region Hardmode
+                    if (GetItem(thorium, "BalanceBloom", item))
+                    {
+                        item.damage = 45;
+                        item.shootSpeed = 18;
+                    }
+
                     //Bone Baton
                     if (GetItem(thorium, "BoneBaton", item))
                     {

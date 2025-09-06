@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using ThoriumMod;
-using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Players.ThoriumMulticlassNerf;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -19,7 +19,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             if (!InfernalConfig.Instance.NerfThoriumMulticlass) return base.UseItem(item, player);
             if (item is null || item.type == ItemID.None) return base.UseItem(item, player);
 
-            var anti = player.GetModPlayer<ThoriumPlayerEdits>();
+            var anti = player.GetModPlayer<ThoriumMulticlassPlayerNerfs>();
             bool healerUse = IsHealerWeaponOrTool(item);
 
             // Using a healer weapon/tool during penalty window => apply debuff (keeps -10 healing active)
@@ -28,7 +28,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
             // Using a non-healer combat item refreshes the window even if no hit connects
             if (!healerUse && IsCombatWeapon(item))
-                anti.switchToHealerPenaltyTimer = ThoriumPlayerEdits.PenaltyDuration;
+                anti.switchToHealerPenaltyTimer = ThoriumMulticlassPlayerNerfs.PenaltyDuration;
 
             return base.UseItem(item, player);
         }

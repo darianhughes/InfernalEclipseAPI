@@ -208,6 +208,7 @@ namespace InfernalEclipseAPI.Core.Systems
 
                 coloredDamageTypes.Call("AddDamageType", MythicMelee.Instance, mythicColor, mythicColor, mythicCritColor);
                 coloredDamageTypes.Call("AddDamageType", MythicMagic.Instance, mythicColor, mythicColor, mythicCritColor);
+                coloredDamageTypes.Call("AddDamageType", MythicRanged.Instance, mythicColor, mythicColor, mythicCritColor);
             }
         }
     }

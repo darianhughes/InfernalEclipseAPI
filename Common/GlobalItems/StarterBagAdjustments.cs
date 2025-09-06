@@ -54,7 +54,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
-                if (player.active && player.name == "Galactica")
+                if (player.active && (player.name == "Galactica" || player.name.ToLower().Contains("radiant")))
                     return true;
             }
             return false;

@@ -10,6 +10,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst;
+using InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 {
@@ -64,6 +66,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
                 noxus.TryFind("NamelessDeityRarity", out r);
                 Item.rare = r.Type;
             }
+            Item.value = CalamityGlobalItem.RarityHotPinkBuyPrice;
 
             Item.Infernum_Tooltips().DeveloperItem = true;
         }
@@ -72,9 +75,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
         {
             if (player.mount.Active && player.altFunctionUse == 2)
                 player.mount.Dismount(player);
-
-            if (Item.type != ItemID.FirstFractal)
-                return true;
 
             return player.ownedProjectileCounts[Item.shoot] <= 0;
         }
@@ -112,6 +112,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
+            recipe.AddIngredient<Swordofthe1stGlitch>();
+            recipe.AddIngredient<Swordofthe13thGlitch>();
             recipe.AddIngredient(ItemID.Zenith);
             if (ModLoader.TryGetMod("YouBoss", out Mod you)) recipe.AddIngredient(you.Find<ModItem>("FirstFractal").Type);
             recipe.AddIngredient<ArkoftheCosmos>();

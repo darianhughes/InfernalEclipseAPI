@@ -236,15 +236,16 @@ namespace InfernalEclipseAPI.Core.Players
             ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod);
 
             // Ragnarok
-            TryAdd(ragnarokMod, "ScoriaDualscythePro");
-            TryAdd(ragnarokMod, "ProfanedScythePro");
+            //TryAdd(ragnarokMod, "ScoriaDualscythePro");
+            //TryAdd(ragnarokMod, "ProfanedScythePro");
             TryAdd(ragnarokMod, "MarbleScythePro");
 
             // Thorium
             string[] thoriumProjs = {
                 "AquaiteScythePro", "MoltenThresherPro", "BatScythePro", "BoneReaperPro", "BloodHarvestPro", "FallingTwilightPro",
                 "HallowedScythePro", "TrueHallowedScythePro", "TitanScythePro", "MorningDewPro",
-                "DreadTearerPro", "TheBlackScythePro", "LustrousBatonPro"
+                "DreadTearerPro", //"TheBlackScythePro", 
+                "LustrousBatonPro"
             };
 
             foreach (string name in thoriumProjs)

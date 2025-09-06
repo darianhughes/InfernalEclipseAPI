@@ -34,11 +34,41 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     target.AddBuff(144, 180); // Electrified
                 }
+
+                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("LifeQuartzClaymore")?.Type)
+                {
+                    HealPlayer(player, 2);
+                    return;
+                }
+
+                // Thorium HereticBreaker (additive: does NOT remove original effects)
+                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("HereticBreaker")?.Type)
+                {
+                    HealPlayer(player, 3);
+                }
             }
 
             if (item.type == ItemID.LucyTheAxe && InfernalConfig.Instance.VanillaBalanceChanges)
             {
                 target.AddBuff(ModContent.BuffType<Crumbling>(), 180);
+            }
+        }
+
+        private void HealPlayer(Player player, int healAmount)
+        {
+            player.statLife += healAmount;
+            player.HealEffect(healAmount, true); // true = play heal effect number popup
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("LifeQuartzClaymore")?.Type)
+            {
+                // Remove the existing tooltip
+                tooltips.RemoveAll(t => t.Text.Contains("Steals 1 life"));
+
+                // Add your custom tooltip
+                tooltips.Add(new TooltipLine(Mod, "CustomTooltip", "Steals 3 life"));
             }
         }
     }

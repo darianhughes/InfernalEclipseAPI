@@ -25,11 +25,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                 if (mod1.TryFind("MarbleScythe", out modItem1))
                     scytheTypes.Add(modItem1.Type);
                 ModItem modItem2;
-                if (mod1.TryFind("ScoriaDualscythe", out modItem2))
-                    scytheTypes.Add(modItem2.Type);
-                ModItem modItem3;
-                if (mod1.TryFind("ProfanedScythe", out modItem3))
-                    scytheTypes.Add(modItem3.Type);
+                //if (mod1.TryFind("ScoriaDualscythe", out modItem2))
+                //    scytheTypes.Add(modItem2.Type);
+                //ModItem modItem3;
+                //if (mod1.TryFind("ProfanedScythe", out modItem3))
+                //    scytheTypes.Add(modItem3.Type);
             }
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
             {
@@ -56,8 +56,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                     scytheTypes.Add(scythe11.Type);
                 if (thoriumMod.TryFind("DreadTearer", out ModItem scythe12))
                     scytheTypes.Add(scythe12.Type);
-                if (thoriumMod.TryFind("TheBlackScythe", out ModItem scythe13))
-                    scytheTypes.Add(scythe13.Type);
+                //if (thoriumMod.TryFind("TheBlackScythe", out ModItem scythe13))
+                //    scytheTypes.Add(scythe13.Type);
                 if (thoriumMod.TryFind("LustrousBaton", out ModItem scythe16))
                     scytheTypes.Add(scythe16.Type);
             }

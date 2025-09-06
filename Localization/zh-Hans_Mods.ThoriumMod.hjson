@@ -20,6 +20,11 @@ Items: {
 		Tooltip: “可恶生物的精华”
 	}
 
+	HereticBreaker: {
+		DisplayName: Heretic Breaker
+		Tooltip: Steals 3 life
+	}
+
 	NinjaEmblem.DisplayName: 英雄徽章
 
 	TerrariumHelmet: {

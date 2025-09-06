@@ -19,8 +19,9 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                 return;
 
             int pro1Type = calamity.Find<ModProjectile>("AcidGunStream")?.Type ?? -1;
+            int pro2Type = calamity.Find<ModProjectile>("WaterLeechProj")?.Type ?? -1;
 
-            if (projectile.type == pro1Type)
+            if (projectile.type == pro1Type || projectile.type == pro2Type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;

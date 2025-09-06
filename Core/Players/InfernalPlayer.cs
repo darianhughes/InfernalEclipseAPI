@@ -1,27 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod;
+﻿using CalamityMod;
 using InfernumMode.Core.GlobalInstances.Systems;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Content.Buffs;
 using Terraria.ID;
 using Terraria.DataStructures;
-using CalamityMod.NPCs.AquaticScourge;
-using CalamityMod.NPCs.BrimstoneElemental;
 using InfernalEclipseAPI.Core.World;
-using Terraria.Chat;
 using Terraria.Localization;
-using CalamityMod.CalPlayer;
 using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
 using CalamityMod.Buffs.StatDebuffs;
+using CalamityMod.Projectiles.Rogue;
+using CalamityMod.NPCs.SupremeCalamitas;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -116,6 +108,7 @@ namespace InfernalEclipseAPI.Core.Players
         private int horrifiedTimer = 0;
         private int jamTimer = 0;
         public int namelessDialogueCooldown;
+        public int CloverCharmCooldown;
         public override void ResetEffects()
         {
             if (!Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
@@ -126,6 +119,9 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (namelessDialogueCooldown > 0)
                 namelessDialogueCooldown--;
+
+            if (CloverCharmCooldown > 0)
+                CloverCharmCooldown--;
 
             if (namelessDialogueCooldown <= 0)
                 InfernalWorld.namelessDeveloperDiagloguePlayed = false;
@@ -226,6 +222,13 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     target.AddBuff(ModContent.BuffType<Crumbling>(), 180);
                 }
+            }
+
+            if ((proj.type == ModContent.ProjectileType<CelestusProj>() || proj.type == ModContent.ProjectileType<CelestusMiniScythe>()) && 
+                (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()) && 
+                InfernalConfig.Instance.PreventBossCheese)
+            {
+                hit.Damage -= (int)(hit.Damage * 0.2);
             }
         }
 

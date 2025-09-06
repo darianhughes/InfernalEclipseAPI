@@ -20,6 +20,11 @@ Items: {
 		Tooltip: "'The essence of damned creatures'"
 	}
 
+	HereticBreaker: {
+		DisplayName: Heretic Breaker
+		Tooltip: Steals 3 life
+	}
+
 	NinjaEmblem.DisplayName: Hero Emblem
 
 	TerrariumHelmet: {

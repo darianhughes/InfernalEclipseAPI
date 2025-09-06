@@ -81,7 +81,7 @@ namespace InfernalEclipseAPI.Core.Systems
                 num += 60;
                 num2 = 0.5f;
 
-                string text = "";
+                string text;
                 int respawnsAllowed = InfernalConfig.Instance.MultiplayerRespawnsAllowed;
                 Difficulty diff = InfernalConfig.Instance.MinimumDifficultyToPreventRespawns;
 
@@ -100,7 +100,7 @@ namespace InfernalEclipseAPI.Core.Systems
                         text = Language.GetTextValue("Mods.InfernalEclipseAPI.UI.NoRespawn6", respawnsAllowed);
                     }
                 }
-                else 
+                else
                 {
                     if (respawnsAllowed == 0)
                     {
@@ -118,7 +118,7 @@ namespace InfernalEclipseAPI.Core.Systems
 
                 DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, FontAssets.DeathText.Value, text,
                     new Vector2((float)(Main.screenWidth / 2) - FontAssets.DeathText.Value.MeasureString(text).X * num2 / 2, (float)(Main.screenHeight / 2) + num),
-                    Main.LocalPlayer.GetDeathAlpha(Microsoft.Xna.Framework.Color.Transparent), 0f, default, num2, SpriteEffects.None, 0f);
+                    Main.LocalPlayer.GetDeathAlpha(Color.White), 0f, default, num2, SpriteEffects.None, 0f);
             }
         }
     }

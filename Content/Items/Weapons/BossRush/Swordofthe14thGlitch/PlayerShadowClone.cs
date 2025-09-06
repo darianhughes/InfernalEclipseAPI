@@ -11,11 +11,23 @@ using InfernalEclipseAPI.Core.Utils;
 using Luminance.Common.Utilities;
 using static Microsoft.Xna.Framework.MathHelper;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 {
     public class PlayerShadowClone : ModProjectile
     {
+        private const string Tex14 = "InfernalEclipseAPI/Content/Items/Weapons/BossRush/Swordofthe14thGlitch/Swordofthe14thGlitch";
+        private const string Tex13 = "InfernalEclipseAPI/Content/Items/Weapons/Melee/SwordoftheCorrupted/Swordofthe13thGlitch";
+
+        private Asset<Texture2D> GetBladeTexture()
+        {
+            // If ai2 == 1, use the 13th; otherwise use the 14th.
+            string path = Projectile.ai[2] == 1f ? Tex13 : Tex14;
+            return ModContent.Request<Texture2D>(path);
+        }
+
         /// <summary>
         /// Whether the clone has played its summoning sound yet or not.
         /// </summary>
@@ -97,6 +109,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 
         public void DrawClone()
         {
+            //if (Projectile.localAI[2] == 1) "InfernalEclipseAPI/Content/Items/Weapons/Melee/SwordoftheCorrupted/Swordofthe13thGlitch"
             Main.spriteBatch.PrepareForShaders();
 
             int owner = Projectile.owner;
@@ -128,8 +141,40 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
         public override bool PreDraw(ref Color lightColor)
         {
             DrawClone();
-            InfernalUtilities.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Type], Color.White, positionClumpInterpolant: 0.56f);
-            return false;
+
+            // Choose the texture based on ai2
+            Texture2D tex = GetBladeTexture().Value;
+            Vector2 origin = new(tex.Width * 0.5f, tex.Height * 0.5f);
+
+            // Manual afterimages so we can use the chosen texture
+            int trailLen = ProjectileID.Sets.TrailCacheLength[Type];
+            trailLen = Math.Min(trailLen, Projectile.oldPos.Length);
+
+            for (int i = 1; i <= trailLen; i++)
+            {
+                int idx = i - 1;
+                Vector2 pos = Projectile.oldPos[idx] + Projectile.Size * 0.5f - Main.screenPosition;
+                float fade = (trailLen - idx) / (float)trailLen;
+                Color col = Color.White * Projectile.Opacity * (0.6f * fade);
+                float rot = (idx < Projectile.oldRot.Length && Projectile.oldRot[idx] != 0f) ? Projectile.oldRot[idx] : Projectile.rotation;
+
+                Main.EntitySpriteDraw(tex, pos, null, col, rot, origin, Projectile.scale, SpriteEffects.None, 0);
+            }
+
+            // Current frame
+            Main.EntitySpriteDraw(
+                tex,
+                Projectile.Center - Main.screenPosition,
+                null,
+                Color.White * Projectile.Opacity,
+                Projectile.rotation,
+                origin,
+                Projectile.scale,
+                SpriteEffects.None,
+                0
+            );
+
+            return false; // skip vanilla draw
         }
     }
 }

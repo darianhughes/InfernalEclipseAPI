@@ -17,8 +17,6 @@ namespace InfernalEclipseAPI.Core.Players
     {
         public int Respawns;
 
-        private bool appliedThisDeath;
-
         public static bool AnyBosses()
         {
             foreach (NPC npc in Main.npc)
@@ -31,20 +29,20 @@ namespace InfernalEclipseAPI.Core.Players
             return false;
         }
 
+        private bool appliedThisDeath;
+
         public override void ResetEffects()
         {
-            if (!AnyBosses())
+            if (!AnyBosses() & !Player.dead)
+            {
+                appliedThisDeath = false;
                 Respawns = 0;
+            }
         }
 
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
-            appliedThisDeath = false;
-
-            if (WorldSaveSystem.InfernumModeEnabled && Player.whoAmI == Main.myPlayer)
-            {
-                if (AnyBosses()) Respawns++;
-            }
+            if (AnyBosses()) Respawns++;
         }
 
         private bool GetCalDifficulty(string diff)
@@ -115,20 +113,22 @@ namespace InfernalEclipseAPI.Core.Players
         public bool PreventRespawn() => isMinimumDiffToPreventRespawn() && AnyBosses() && Respawns > InfernalConfig.Instance.MultiplayerRespawnsAllowed;
         public override void UpdateDead()
         {
+            base.UpdateDead();
+
             ResetEffects();
 
             if (PreventRespawn()) Player.respawnTimer = 60 * 5;
-            else 
+            else
             {
-                if (Main.netMode == NetmodeID.SinglePlayer || !Player.dead || appliedThisDeath) return;
-
-                if (AnyBosses())
+                int respawnTimerSet = AnyBosses() ? (60 * InfernalConfig.Instance.MultiplayerBossRespawnTimer) : 180;
+                if (Player.respawnTimer < respawnTimerSet || Player.respawnTimer > respawnTimerSet)
                 {
-                    int MPRespawnTimer = 60 * InfernalConfig.Instance.MultiplayerBossRespawnTimer;
-                    if (Player.respawnTimer < MPRespawnTimer) Player.respawnTimer = MPRespawnTimer;
+                    if (!appliedThisDeath)
+                    {
+                        Player.respawnTimer = respawnTimerSet;
+                        appliedThisDeath = true;
+                    }
                 }
-
-                appliedThisDeath = true;
             }
         }
 

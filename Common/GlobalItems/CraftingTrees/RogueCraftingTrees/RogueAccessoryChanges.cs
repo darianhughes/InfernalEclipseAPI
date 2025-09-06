@@ -153,16 +153,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                             magnetoGrip.UpdateAccessory(player, hideVisual);
                         }
                     }
-
-                    if (SSM != null)
-                    {
-                        if (item.type == SSM.Find<ModItem>("GtTETFinal").Type)
-                        {
-                            scutterGem.UpdateAccessory(player, hideVisual);
-                            ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
-                            magnetoGrip.UpdateAccessory(player, hideVisual);
-                        }
-                    }
                 }
             }
         }

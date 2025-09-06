@@ -358,6 +358,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
             scaled = true;
         }
 
+        public void EnsureScaled(Projectile projectile)
+        {
+            if (!scaled)
+                ApplyScaling(projectile);
+        }
+
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
             if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))

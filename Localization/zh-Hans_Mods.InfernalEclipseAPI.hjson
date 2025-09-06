@@ -40,6 +40,11 @@ ItemTooltip: {
 	Contributor: -贡献者物品-
 	// SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
 	// SFlight: Holding right click grants fast, unlimited flight
+	/* ScytheThrow:
+		'''
+		Right Click to throw the Scythe, which will curve on it's way back
+		Thrown Scythes will deal 20% reduced damage
+		''' */
 	SandstonePortalDeviceInfo:
 		'''
 		将你传送到失落竞技场
@@ -210,6 +215,7 @@ ItemTooltip: {
 		OmniIns: 最大灵感值增加5
 		OmniEmp: 每拥有一种咒音增幅使移动速度增加2%，音波演奏速度增加1%
 		// ShinobiNerf: This effect has a cooldowwn of 2 seconds
+		// CloverNerf: Life steal has a 0.5 second cooldown
 	}
 
 	AmmoConversion.Mycelium: 发射真菌弹幕
@@ -282,7 +288,7 @@ Lore: {
 		'''
 		The oldest and strongest of the eternal siblings.
 		While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
-		He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift, 
+		He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift.
 		Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
 		Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
 		He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
@@ -396,7 +402,11 @@ Items: {
 
 	Swordofthe14thGlitch: {
 		// DisplayName: Sword of the Zenith
-		// Tooltip: The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi
+		/* Tooltip:
+			'''
+			Right click to dash towards the cursor, doing a spin attack at the end of the dash that spawns multiple homing sword beams
+			The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi
+			''' */
 	}
 
 	BossRushTier6MusicBox: {
@@ -404,18 +414,14 @@ Items: {
 		DisplayName: 音乐盒 (Boss Rush第六阶段)
 	}
 
-	Weapons: {
-		Rogue: {
-			NovaBomb: {
-				Tooltip:
-					'''
-					发射一团极炽的紫色新星，带来末日般的毁灭风潮
-					“放心吧维洛，我一个人搞定。”
-					— 开发中：目前仅使用灾厄模组的超新星AI —
-					'''
-				DisplayName: 紫辰星核
-			}
-		}
+	NovaBomb: {
+		// DisplayName: Nova Bomb
+		/* Tooltip:
+			'''
+			Channel some of the Traveler's most mysterious forces and unleash them in an explosive, large area-of-effect attack
+			Right click to collapse the black hole early
+			'Don't worry Willow, I can solo it.'
+			''' */
 	}
 
 	BossRushTierNamelessMusicBox: {
@@ -851,9 +857,39 @@ Items: {
 		// Tooltip: ""
 	}
 
-	NovaBomb: {
-		// DisplayName: Nova Bomb
-		// Tooltip: ""
+	Swordofthe1stGlitch: {
+		// DisplayName: Sword of the First
+		/* Tooltip:
+			'''
+			Right click to dash towards the cursor
+			The first form of the Crystal of the Glitch, weilded by Zelcor Guritchi
+			''' */
+	}
+
+	Swordofthe13thGlitch: {
+		// DisplayName: Sword of the Corrupted
+		/* Tooltip:
+			'''
+			Right click to fire a burst of sword beams
+			While holding Rage will be automatically activated when the meter is full
+			While Rage is active, you spawn clones of yourselft that attack at your cursor
+			The thirteenth form of the Crystal of the Glitch, wielded by Nahu Guritchi
+			'I will end our curse once and for all, Zane!'
+			''' */
+	}
+
+	Weapons: {
+		Rogue: {
+			NovaBomb: {
+				/* Tooltip:
+					'''
+					Launches a blazing purple nova of destruction
+					'Don't worry Willow, I can solo it.'
+					- WIP: Currently just uses the Supernova AI from CalamityMod. -
+					''' */
+				// DisplayName: Nova Bomb
+			}
+		}
 	}
 }
 
@@ -874,11 +910,13 @@ Projectiles: {
 	// FriendlyBrimstoneGigablast.DisplayName: Friendly Brimstone Gigablast
 	// BeamChargeUp.DisplayName: Beam Charge Up
 	// ChaosBlasterBeam.DisplayName: Chaos Blaster Beam
-	// HomingTerraBeam.DisplayName: Homing Terra Beam
-	// PlayerShadowClone.DisplayName: Player Shadow Clone
+	// HomingTerraBeam.DisplayName: Terra Beam
+	// PlayerShadowClone.DisplayName: Shadow Clone
 	// TerraSlash.DisplayName: Terra Slash
-	// NovaBombBlackHoleProj.DisplayName: Nova Bomb Black Hole Proj
-	// NovaBombProj.DisplayName: Nova Bomb Proj
+	// NovaBombBlackHoleProj.DisplayName: Black Hole
+	// NovaBombProj.DisplayName: Nova Bomb
+	// FirstSwordHoldoutCombo.DisplayName: Sword of the First
+	// _13thGltichCombo.DisplayName: _13th Gltich Combo
 }
 
 DiaryTooltip:
@@ -1117,7 +1155,8 @@ DamageClasses: {
 	LegendaryMelee.DisplayName: 传说近战伤害
 	LegendaryRanged.DisplayName: 传说远程伤害
 	// MythicMelee.DisplayName: mythic melee damage
-	// MythicMagic.DisplayName: Mythic Magic
+	// MythicMagic.DisplayName: mythic magic damage
+	// MythicRanged.DisplayName: mythic ranged damage
 }
 
 BossRushIntroText1:

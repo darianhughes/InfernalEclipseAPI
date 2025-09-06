@@ -23,16 +23,17 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
         }
         public override bool PreAI(NPC npc)
         {
-            if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active || npc.type != ModContent.NPCType<SupremeCalamitas>()) return base.PreAI(npc);
-
             Player target = Main.player[npc.target];
-            if (target.mount?.Type == MountID.PogoStick)
-                target.mount.Dismount(target);
             if (clamity != null)
             {
                 if (target.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)
                     target.mount.Dismount(target);
             }
+
+            if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active || npc.type != ModContent.NPCType<SupremeCalamitas>()) return base.PreAI(npc);
+           
+            if (target.mount?.Type == MountID.PogoStick)
+                target.mount.Dismount(target);
 
             return base.PreAI(npc);
         }

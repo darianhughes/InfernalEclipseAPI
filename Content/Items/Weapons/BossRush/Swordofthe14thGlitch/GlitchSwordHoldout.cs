@@ -151,24 +151,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             Rotation = new(x, y, z, w);
         }
 
-        public override void OnSpawn(IEntitySource source)
-        {
-            // Right click at the moment of spawn -> Dash
-            //Mode = (Owner?.altFunctionUse == 2) ? AttackMode.Dash : AttackMode.Slashes;
-        }
-
-        public override bool PreAI()
-        {
-            Player player = Main.player[Projectile.owner];
-
-            if (player.mount.Active)
-            {
-                player.mount.Dismount(player);
-            }
-
-            return base.PreAI();
-        }
-
         public override void AI()
         {
             if (HorizontalDirection == 0f)
@@ -460,24 +442,21 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             // Spawn beams during spin
             if (AnimationCompletion >= 0.20f && Time % 3 == 0)
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient) // server/host spawns
-                {
-                    // make them fan around the sword as it spins
-                    float swirl = MathHelper.TwoPi * Utilities.InverseLerp(0.20f, 1f, AnimationCompletion) * MathF.Sign(HorizontalDirection);
-                    float shootAngle = StartingRotation + swirl - MathF.PI / 4f;
-                    Vector2 dir = shootAngle.ToRotationVector2();
+                // make them fan around the sword as it spins
+                float swirl = MathHelper.TwoPi * Utilities.InverseLerp(0.20f, 1f, AnimationCompletion) * MathF.Sign(HorizontalDirection);
+                float shootAngle = StartingRotation + swirl - MathF.PI / 4f;
+                Vector2 dir = shootAngle.ToRotationVector2();
 
-                    Vector2 vel = dir * Swordofthe14thGlitch.HomingBeamStartingSpeed;
-                    int damage = (int)(Projectile.damage * Swordofthe14thGlitch.HomingBeamDamageFactor);
+                Vector2 vel = dir * Swordofthe14thGlitch.HomingBeamStartingSpeed;
+                int damage = (int)(Projectile.damage * Swordofthe14thGlitch.HomingBeamDamageFactor);
 
-                    Projectile.NewProjectile(
-                        Projectile.GetSource_FromThis(),
-                        Projectile.Center,
-                        vel,
-                        ModContent.ProjectileType<HomingTerraBeam>(),
-                        damage, 0f, Projectile.owner
-                    );
-                }
+                Projectile.NewProjectile(
+                    Projectile.GetSource_FromThis(),
+                    Projectile.Center,
+                    vel,
+                    ModContent.ProjectileType<HomingTerraBeam>(),
+                    damage, 0f, Projectile.owner
+                );
             }
         }
 

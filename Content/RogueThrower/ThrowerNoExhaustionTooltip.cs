@@ -27,9 +27,6 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             ModItem modItem2;
             if (ModContent.TryFind("ThoriumMod/ThrowingGuideVolume3", out modItem2))
                 intList.Add(modItem2.Type);
-            ModItem modItem3;
-            if (ModContent.TryFind("ssm/GtTETFinal", out modItem3))
-                intList.Add(modItem3.Type);
             ModItem modItem4;
             if (ModContent.TryFind("FargowiltasCrossmod/VagabondsSoul", out modItem4))
                 intList.Add(modItem4.Type);

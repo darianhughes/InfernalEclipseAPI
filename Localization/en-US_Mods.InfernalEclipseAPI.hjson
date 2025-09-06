@@ -40,6 +40,11 @@ ItemTooltip: {
 	Contributor: - Contributor Item -
 	SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
 	SFlight: Holding right click grants fast, unlimited flight
+	ScytheThrow:
+		'''
+		Right Click to throw the Scythe, which will curve on it's way back
+		Thrown Scythes will deal 20% reduced damage
+		'''
 	SandstonePortalDeviceInfo:
 		'''
 		Transports you to the Lost Colosseum
@@ -209,6 +214,7 @@ ItemTooltip: {
 		OmniIns: Increase maximum inspiration by 5
 		OmniEmp: Each unique empowerment you have increases movement speed by 2% and playing speed by 1%
 		ShinobiNerf: This effect has a cooldowwn of 2 seconds
+		CloverNerf: Life steal has a 0.5 second cooldown
 	}
 
 	AmmoConversion.Mycelium: Fires barrages of Mycelium
@@ -281,7 +287,7 @@ Lore: {
 		'''
 		The oldest and strongest of the eternal siblings.
 		While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
-		He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift, 
+		He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift.
 		Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
 		Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
 		He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
@@ -305,7 +311,7 @@ Lore: {
 
 		“Who the hell am I, that I still get to live a life?”
 
-		The rest of the pages are blank…
+		The rest of the pages are blank...
 
 		[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]
 
@@ -315,12 +321,9 @@ Lore: {
 		'''
 		I dreamt of peace once. I don't know why I did.
 		Ever since I received word that there was something beyond this world,
-		I've seen that odd woman appearing in my peripheral vision every now and again.
-		Whenever I notice her, she disappears again, with a single word ringing in my skull.
-		Promise.
-		And nothing else.
-		What would Thorne want with them? Who knows.
-		But I'm sure you will make the right call, Terrarian.
+		I've have felt that womans presence in our world every now and again.
+		Now what Thorne wanted from her? Who knows.
+		But all the power is in your hands now, Terrarian.
 		'''
 	Mirror:
 		'''
@@ -334,13 +337,13 @@ Lore: {
 		There lies tales of mysterious serpent‑like beings that roam the manifold between dimensions.
 		Many say that they are too dangerous to face alone,
 		and that they could kill anyone within an instant with the void energy they possess.
-		This one, however… is clearly juvenile.
+		This one, however... is clearly juvenile.
 		'''
 	Polaris:
 		'''
 		When I had initially brought Draedon onto my army, he had immediately began work on a supposed  "secret project" that he refused to elaborate on.
 		Soon after, he presented his first grim death machine.
-		I knew it was fit for my army, however, his prowess shown was… promising. Very much so.
+		I knew it was fit for my army, however, his prowess shown was... promising. Very much so.
 		'''
 	Putrid:
 		'''
@@ -374,7 +377,7 @@ Lore: {
 	Glowmoth:
 		'''
 		This moth‑like creature is interesting, as it makes its homes within the same glowing, mushroom‑infested caves as another similar beast.
-		It seems to emit some sort of bioluminescent glow, reminiscent of the void…
+		It seems to emit some sort of bioluminescent glow, reminiscent of the void...
 		perhaps it resides in these caves for their latent void energy?
 		Whatever the case may be, it is beyond me.
 		'''
@@ -395,7 +398,11 @@ Items: {
 
 	Swordofthe14thGlitch: {
 		DisplayName: Sword of the Zenith
-		Tooltip: The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi
+		Tooltip:
+			'''
+			Right click to dash towards the cursor, doing a spin attack at the end of the dash that spawns multiple homing sword beams
+			The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi
+			'''
 	}
 
 	BossRushTier6MusicBox: {
@@ -403,18 +410,14 @@ Items: {
 		DisplayName: Music Box (Boss Rush - Tier 6)
 	}
 
-	Weapons: {
-		Rogue: {
-			NovaBomb: {
-				Tooltip:
-					'''
-					Launches a blazing purple nova of destruction
-					'Don't worry Willow, I can solo it.'
-					- WIP: Currently just uses the Supernova AI from CalamityMod. -
-					'''
-				DisplayName: Nova Bomb
-			}
-		}
+	NovaBomb: {
+		DisplayName: Nova Bomb
+		Tooltip:
+			'''
+			Channel some of the Traveler's most mysterious forces and unleash them in an explosive, large area-of-effect attack
+			Right click to collapse the black hole early
+			'Don't worry Willow, I can solo it.'
+			'''
 	}
 
 	BossRushTierNamelessMusicBox: {
@@ -476,6 +479,7 @@ Items: {
 			Increases critical strike chance by 25%
 			Critical strikes deal 40 more damage, release a burst of damaging sparks, and may detonate enemies for 100% damage
 			Critical strikes steal life, regenerate void, and recover mana
+			Life steal has a 0.5 second cooldown
 			Immunity to bleeding and poisoned debuffs, & grants night vision
 			'''
 		DefaultTooltip:
@@ -497,7 +501,7 @@ Items: {
 		LorePharaoh.DisplayName: Pharaoh's Curse
 		LorePutrid.DisplayName: Putrid Pinky
 		LoreSerpent.DisplayName: Subspace Serpent
-		LoreProvi.DisplayName: Galactica
+		LoreProvi.DisplayName: The Radiant One
 		LoreMirror.DisplayName: The Mirror
 		LoreDylan.DisplayName: Dylan
 		LoreAbominationn.DisplayName: The Abominationn
@@ -850,9 +854,39 @@ Items: {
 		Tooltip: ""
 	}
 
-	NovaBomb: {
-		DisplayName: Nova Bomb
-		Tooltip: ""
+	Swordofthe1stGlitch: {
+		DisplayName: Sword of the First
+		Tooltip:
+			'''
+			Right click to dash towards the cursor
+			The first form of the Crystal of the Glitch, weilded by Zelcor Guritchi
+			'''
+	}
+
+	Swordofthe13thGlitch: {
+		DisplayName: Sword of the Corrupted
+		Tooltip:
+			'''
+			Right click to fire a burst of sword beams
+			While holding Rage will be automatically activated when the meter is full
+			While Rage is active, you spawn clones of yourselft that attack at your cursor
+			The thirteenth form of the Crystal of the Glitch, wielded by Nahu Guritchi
+			'I will end our curse once and for all, Zane!'
+			'''
+	}
+
+	Weapons: {
+		Rogue: {
+			NovaBomb: {
+				Tooltip:
+					'''
+					Launches a blazing purple nova of destruction
+					'Don't worry Willow, I can solo it.'
+					- WIP: Currently just uses the Supernova AI from CalamityMod. -
+					'''
+				DisplayName: Nova Bomb
+			}
+		}
 	}
 }
 
@@ -873,16 +907,18 @@ Projectiles: {
 	FriendlyBrimstoneGigablast.DisplayName: Friendly Brimstone Gigablast
 	BeamChargeUp.DisplayName: Beam Charge Up
 	ChaosBlasterBeam.DisplayName: Chaos Blaster Beam
-	HomingTerraBeam.DisplayName: Homing Terra Beam
-	PlayerShadowClone.DisplayName: Player Shadow Clone
+	HomingTerraBeam.DisplayName: Terra Beam
+	PlayerShadowClone.DisplayName: Shadow Clone
 	TerraSlash.DisplayName: Terra Slash
-	NovaBombBlackHoleProj.DisplayName: Nova Bomb Black Hole Proj
-	NovaBombProj.DisplayName: Nova Bomb Proj
+	NovaBombBlackHoleProj.DisplayName: Black Hole
+	NovaBombProj.DisplayName: Nova Bomb
+	FirstSwordHoldoutCombo.DisplayName: Sword of the First
+	_13thGltichCombo.DisplayName: _13th Gltich Combo
 }
 
 DiaryTooltip:
 	'''
-	[c/E3AF40:A mysterious diary signed "Galactica"...]
+	[c/E3AF40:A mysterious diary which has been left unsigned...]
 	[c/BEBEBE:Press "Left Shift" to open the diary]
 	'''
 
@@ -1124,7 +1160,8 @@ DamageClasses: {
 	LegendaryMelee.DisplayName: legendary melee damage
 	LegendaryRanged.DisplayName: legendary ranged damage
 	MythicMelee.DisplayName: mythic melee damage
-	MythicMagic.DisplayName: Mythic Magic
+	MythicMagic.DisplayName: mythic magic damage
+	MythicRanged.DisplayName: mythic ranged damage
 }
 
 BossRushIntroText1:

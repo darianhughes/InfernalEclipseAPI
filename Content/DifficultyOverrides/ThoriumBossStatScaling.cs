@@ -94,6 +94,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 {
                     npc.lifeMax += (int)(0.75 * npc.lifeMax);
                 }
+                string name = npc.ModNPC?.Name ?? "";
+                if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
+                    npc.lifeMax += (int)(0.15 * npc.lifeMax);
 
                 npc.lifeMax += (int)(0.35 * npc.lifeMax);
             }
@@ -151,7 +154,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             float damageMod = 0;
 
             if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
-                damageMod += 0.25f;
+                damageMod += 0.35f;
 
             if (IsWorldLegendary())
             {

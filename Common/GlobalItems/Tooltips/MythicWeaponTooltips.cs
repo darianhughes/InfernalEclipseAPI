@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using YouBoss.Content.Items.ItemReworks;
+using CalamityMod.Items.Weapons.DraedonsArsenal;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 {
@@ -33,6 +34,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                         canAddTooltip = true;
                         importantName = "Your";
                     }
+                }
+
+                if (item.type == ModContent.ItemType<PulseRifle>())
+                {
+                    canAddTooltip = true;
+                    importantName = "Draedon's";
                 }
 
                 if (canAddTooltip)

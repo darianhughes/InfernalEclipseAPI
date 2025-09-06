@@ -33,13 +33,15 @@ using System.Reflection;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Core.World;
 using CalamityMod.NPCs.Polterghast;
+using InfernalEclipseAPI.Core.Players.ThoriumMulticlassNerf;
 
 namespace InfernalEclipseAPI
 {
     public enum InfernalEclipseMessageType : byte
     {
-        SyncDownedBosses,
-        TriggerScytheCharge
+        SyncDownedBosses = 1,
+        TriggerScytheCharge = 2,
+        ThoriumEmpowerment = 3
     }
     public class InfernalEclipseAPI : Mod
 	{
@@ -158,6 +160,38 @@ namespace InfernalEclipseAPI
                         Main.player[index].GetModPlayer<HealerPlayer>().TriggerScytheCharge(true);
                     }
                     break;
+
+                case InfernalEclipseMessageType.ThoriumEmpowerment: // NEW BRANCH
+                    {
+                        if (!ModLoader.TryGetMod("ThoriumMod", out _))
+                            break;
+
+                        ThoriumEmpowermentMsg sub = (ThoriumEmpowermentMsg)reader.ReadByte();
+                        switch (sub)
+                        {
+                            case ThoriumEmpowermentMsg.ClearEmpowerments:
+                                {
+                                    int plr = reader.ReadByte();
+                                    if (plr >= 0 && plr < Main.maxPlayers)
+                                    {
+                                        Player target = Main.player[plr];
+                                        ThoriumHelpers.ClearAllEmpowerments(target);
+
+                                        // relay to others if server
+                                        if (Main.netMode == NetmodeID.Server)
+                                        {
+                                            ModPacket p = GetPacket();
+                                            p.Write((byte)InfernalEclipseMessageType.ThoriumEmpowerment);
+                                            p.Write((byte)ThoriumEmpowermentMsg.ClearEmpowerments);
+                                            p.Write((byte)plr);
+                                            p.Send(-1, whoAmI);
+                                        }
+                                    }
+                                    break;
+                                }
+                        }
+                        break;
+                    }
             }
 
             //int npcIndex = reader.ReadInt32();

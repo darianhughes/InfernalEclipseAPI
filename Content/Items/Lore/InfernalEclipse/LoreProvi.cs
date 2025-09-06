@@ -23,7 +23,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse
             Item.height = 26;
             Item.rare = ModContent.RarityType<HotPink>();
             Item.consumable = false;
-            Item.Calamity().devItem = true;
+            //Item.Calamity().devItem = true;
         }
         
         public override void AddRecipes()

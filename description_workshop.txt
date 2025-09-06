@@ -62,10 +62,10 @@ Very special thanks to the Bereft Souls & Community Souls Expansion teams, as we
 Created by the Infernal Eclipse of Ragnarok Team:
 Developers: Akira, Wardrobe Hummus, Advantaje
 Designers: Wardrobe Hummus, Yob, trembler
-Story: Akira, Yob, Suu
+Story: Akira, Yob
 Coordinators: ZaKami, TheRogueX
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan
-Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat
+Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat, Suu
 Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
