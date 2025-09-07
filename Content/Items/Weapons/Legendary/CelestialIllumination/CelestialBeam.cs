@@ -3,12 +3,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 using Terraria;
-using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using Luminance.Core.Graphics;
-using FargowiltasSouls.Assets.ExtraTextures;
 using CalamityMod;
 using InfernalEclipseAPI.Core.World;
 using CalamityMod.Buffs.DamageOverTime;
+using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIllumination
 {
@@ -33,9 +31,9 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
-            Projectile.DamageType = ModContent.GetInstance<MythicMagic>();
+            Projectile.DamageType = ModContent.GetInstance<LegendaryMagic>();
             Projectile.friendly = true;
-            Projectile.damage = InfernalDownedBossSystem.DownedSentinels() ? 400 : 300;
+            Projectile.damage = ModContent.GetInstance<InfernalDownedBossSystem>().DownedSentinels() ? 400 : 300;
             Projectile.hostile = false;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = Cooldown;

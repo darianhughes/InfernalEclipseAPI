@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using CalamityMod;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -12,11 +8,12 @@ namespace InfernalEclipseAPI.Core.World
 {
     public class InfernalDownedBossSystem : ModSystem
     {
-        private static bool _downedDreadNautilus;
         public bool DownedSentinels()
         {
             return CalamityConditions.DownedCeaselessVoid.IsMet() && CalamityConditions.DownedStormWeaver.IsMet() && CalamityConditions.DownedSignus.IsMet();
         }
+        
+        private static bool _downedDreadNautilus;
         public static bool downedDreadNautilus
         {
             get => _downedDreadNautilus;

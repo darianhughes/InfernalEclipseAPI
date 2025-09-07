@@ -761,7 +761,7 @@ Items: {
 				'''
 			Full: The Celestial Illumination is fully awaked, and its maximum power is unleashed!
 		}
-		
+
 		Lore: The power of the cosmos is contained within this book...
 	}
 
@@ -950,6 +950,8 @@ Projectiles: {
 	NovaBombProj.DisplayName: Nova Bomb
 	FirstSwordHoldoutCombo.DisplayName: Sword of the First
 	_13thGltichCombo.DisplayName: _13th Gltich Combo
+	CelestialBeam.DisplayName: Celestial Beam
+	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 }
 
 DiaryTooltip:

@@ -733,40 +733,41 @@ Items: {
 	}
 
 	CelestialIllumination: {
-		DisplayName: Celestial Illumination
+		DisplayName: 天界启明
 		Tooltip: ""
 
 		Progression: {
 			Deus:
 				'''
-				Defeat the eldritch horror to gain more power...
-				No extra power has been gained...
+				击败古神的邪异残躯以获得更多力量……
+            			尚未获得额外的力量……
 				'''
 			MoonLord:
 				'''
-				With the defeat of the Moon Lord, you fire more stars
-				Defeat the guardians of the profaned flame to gain more power...
+				随着你击败月亮领主，你发射的星辰会更多
+            			击败亵渎之炎的守护者以获得更多力量……
 				'''
 			ProfanedGuardians:
 				'''
-				With the defeat of the Profaned Guardians, you can fire a celestial beam
-				Defeat the Goddess of Flame to gain more power...
+				随着你击败亵渎守卫，你可以发射一道天体光束
+            			击败圣炎女神以获得更多力量……
 				'''
 			Providence:
 				'''
-				With the defeat of Providence, the celestial beam is stronger
-				Defeat the sentinels of the scourge to gain more power...
+				随着你击败亵渎天神，天体光束会更为强大
+            			击败灾厄之哨兵以获得更多力量……
 				'''
 			Sentinels:
 				'''
-				With the defeat of the Sentinels, the celestial beam lasts longer
-				Defeat the Devourer of Gods to gain more power...
+				随着你击败星宇护卫，天体光束的持续时间更长
+            			击败噬神凶灵以获得更多力量……
 				'''
-			Full: The Celestial Illumination is fully awaked, and its maximum power is unleashed!
+			Full: 天界启明已苏醒，最大威能解禁！
 		}
 		
-		Lore: The power of the cosmos is contained within this book...
+		Lore: 寰宇之威封存于此书之中……
 	}
+
 
 	Genesis: {
 		// DisplayName: Genesis
@@ -953,6 +954,8 @@ Projectiles: {
 	// NovaBombProj.DisplayName: Nova Bomb
 	// FirstSwordHoldoutCombo.DisplayName: Sword of the First
 	// _13thGltichCombo.DisplayName: _13th Gltich Combo
+	// CelestialBeam.DisplayName: Celestial Beam
+	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 }
 
 DiaryTooltip:
