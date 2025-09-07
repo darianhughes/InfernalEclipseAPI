@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CalamityMod;
 using CalamityMod.Items;
 using CalamityMod.Sounds;
-using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
+using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Content.Rarities.InfernumRarities;
@@ -26,7 +26,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
             Item.height = 34;
             Item.useTime = 25;
             Item.useAnimation = 25;
-            Item.DamageType = ModContent.GetInstance<MythicMagic>();
+            Item.DamageType = ModContent.GetInstance<LegendaryMagic>();
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.autoReuse = true;
             Item.noMelee = true;
@@ -161,6 +161,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
             TooltipLine line = new(Mod, "Progression", GetProgressionTooltip());
             TooltipLine ContributorItem = new(Mod, "Progression", GetContributorItemTooltip());
             line.OverrideColor = lerpedColor;
+            ContributorItem.OverrideColor = new Color(50, 205, 50);
             tooltips.Add(line);
             tooltips.Add(ContributorItem);
         }

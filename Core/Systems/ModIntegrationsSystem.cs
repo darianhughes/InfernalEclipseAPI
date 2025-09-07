@@ -200,6 +200,7 @@ namespace InfernalEclipseAPI.Core.Systems
 
                 coloredDamageTypes.Call("AddDamageType", LegendaryMelee.Instance, legendaryColor, legendaryColor, legendaryCritColor);
                 coloredDamageTypes.Call("AddDamageType", LegendaryRanged.Instance, legendaryColor, legendaryColor, legendaryCritColor);
+                coloredDamageTypes.Call("AddDamageType", LegendaryMagic.Instance, legendaryColor, legendaryColor, legendaryCritColor);
 
                 Color mythicColor = Color.Cyan;
                 Vector3 hslVector2 = Main.rgbToHsl(mythicColor);
