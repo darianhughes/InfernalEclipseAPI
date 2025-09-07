@@ -729,6 +729,42 @@ Items: {
 		Lore: "'What are you gonna do? Kill me?'"
 	}
 
+	CelestialIllumination: {
+		DisplayName: Celestial Illumination
+		Tooltip: ""
+
+		Progression: {
+			Deus:
+				'''
+				Defeat the eldritch horror to gain more power...
+				No extra power has been gained...
+				'''
+			MoonLord:
+				'''
+				With the defeat of the Moon Lord, you fire more stars
+				Defeat the guardians of the profaned flame to gain more power...
+				'''
+			ProfanedGuardians:
+				'''
+				With the defeat of the Profaned Guardians, you can fire a celestial beam
+				Defeat the Goddess of Flame to gain more power...
+				'''
+			Providence:
+				'''
+				With the defeat of Providence, the celestial beam is stronger
+				Defeat the sentinels of the scourge to gain more power...
+				'''
+			Sentinels:
+				'''
+				With the defeat of the Sentinels, the celestial beam lasts longer
+				Defeat the Devourer of Gods to gain more power...
+				'''
+			Full: The Celestial Illumination is fully awaked, and its maximum power is unleashed!
+		}
+		
+		Lore: The power of the cosmos is contained within this book...
+	}
+
 	Genesis: {
 		DisplayName: Genesis
 		Tooltip: ""
