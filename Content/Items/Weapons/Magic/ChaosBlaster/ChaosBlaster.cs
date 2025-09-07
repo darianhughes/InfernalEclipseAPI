@@ -77,7 +77,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
             // If not flying, fire a beam toward the mouse
             if (!modPlayer.IsFlying)
             {
-                const int projDamage = 900;
+                const int projDamage = 1750;
                 const float projKnockback = 6f;
 
                 Vector2 dir = (Main.MouseWorld - player.Center).SafeNormalize(Vector2.UnitX);
