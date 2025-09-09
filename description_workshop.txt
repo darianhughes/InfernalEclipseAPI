@@ -53,9 +53,14 @@ If you have any other issues please report them in the [url=https://discord.gg/t
 
 You can also check out the official wiki for our mod: https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok
 
-If you want to support the development team, see our pateron page: 
+If you want to support the development team, see our pateron page: https://www.patreon.com/c/InfernalEclipseofRagnarokTeam
 
-Also check out [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url] mod, as most of the item balance changes in this mod came from that mod and were created by him!
+Check out some of our other offical DLC & commpatability mods:
+[list]
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010] Infernal Eclipse of Ragnarok: Weapons DLC[/url], an official DLC that adds new weapons to the mod.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnaork] Homeward Ragnaork[/url], an official DLC that adds support for Homeward Journey.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url], a Calamity/Thorium balancing mod that this mod gets most of its balance changes from.
+[/list]
 
 Very special thanks to the Bereft Souls & Community Souls Expansion teams, as well as each of the individuals for each mod in the mod pack for making this possible.
 

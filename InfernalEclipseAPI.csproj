@@ -37,6 +37,9 @@
 		<Reference Include="Consolaria">
 		<HintPath>..\..\ModReader\Consolaria\Consolaria.dll</HintPath>
 		</Reference>
+		<Reference Include="Daybreak">
+		  <HintPath>..\ModAssemblies\Daybreak_v1.6.1.dll</HintPath>
+		</Reference>
 		<Reference Include="FargowiltasSouls">
 		<HintPath>..\ModAssemblies\FargowiltasSouls_v1.7.2.14.dll</HintPath>
 		</Reference>
