@@ -274,6 +274,7 @@ Lore: {
 		他的武器能分裂灵魂，也能操纵一切超自然之力。
 		幸好，他出于对突变体的敬重并未动用天象之术——否则，你的胜利恐怕无从谈起。
 		'''
+
 	Devi:
 		'''
 		她是永恒兄妹中最年幼、也最弱小的一个。
@@ -885,12 +886,12 @@ Items: {
 	}
 
 	ChaosBlaster: {
-		DisplayName: 灾耀星陨
+		DisplayName: 灾耀星芒
 		Tooltip: ""
 	}
 
 	Swordofthe1stGlitch: {
-		DisplayName: 始元剑启
+		DisplayName: 始元剑创
 		Tooltip:
 			'''
 			右键朝光标方向突进
@@ -946,31 +947,31 @@ Items: {
 }
 
 Projectiles: {
-	// GlitchSwordHoldout.DisplayName: Glitch Sword Holdout
-	// Rogue.NovaBombProj.DisplayName: Nova Bomb Proj
-	// StellarStar.DisplayName: Stellar Star
-	// BossRushTier6Animation.DisplayName: Boss Rush Tier6 Animation
-	// RogueSpectreBlast.DisplayName: Rogue Spectre Blast
-	// BountifulHarvestStinger.DisplayName: Bountiful Harvest Stinger
-	// FriendlyBrimstoneBarrage.DisplayName: Friendly Brimstone Barrage
-	// FriendlyBrimstoneFireblast.DisplayName: Friendly Brimstone Fireblast
-	// RadioMicPro.DisplayName: Radio Mic Pro
-	// RadioMicShadowBurst.DisplayName: Radio Mic Shadow Burst
-	// TidalWaveWhirlpool.DisplayName: Tidal Wave Whirlpool
-	// FireAxeStealthPro.DisplayName: Fire Axe Stealth Pro
-	// GalaxyRainController.DisplayName: Galaxy Rain Controller
-	// FriendlyBrimstoneGigablast.DisplayName: Friendly Brimstone Gigablast
-	// BeamChargeUp.DisplayName: Beam Charge Up
-	// ChaosBlasterBeam.DisplayName: Chaos Blaster Beam
-	// HomingTerraBeam.DisplayName: Terra Beam
-	// PlayerShadowClone.DisplayName: Shadow Clone
-	// TerraSlash.DisplayName: Terra Slash
-	// NovaBombBlackHoleProj.DisplayName: Black Hole
-	// NovaBombProj.DisplayName: Nova Bomb
-	// FirstSwordHoldoutCombo.DisplayName: Sword of the First
-	// _13thGltichCombo.DisplayName: _13th Gltich Combo
-	// CelestialBeam.DisplayName: Celestial Beam
-	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
+	GlitchSwordHoldout.DisplayName: 故障剑形
+	Rogue.NovaBombProj.DisplayName: 奇点残秽
+	StellarStar.DisplayName: 星耀飞芒
+	BossRushTier6Animation.DisplayName: Boss Rush第六阶段动画
+	RogueSpectreBlast.DisplayName: 幽影冲击
+	BountifulHarvestStinger.DisplayName: 丰收尖刺
+	FriendlyBrimstoneBarrage.DisplayName: 硫火弹幕
+	FriendlyBrimstoneFireblast.DisplayName: 硫火爆焰
+	RadioMicPro.DisplayName: 无线麦克风音律
+	RadioMicShadowBurst.DisplayName: 无线麦克风暗影爆发
+	TidalWaveWhirlpool.DisplayName: 海潮涡流
+	FireAxeStealthPro.DisplayName: 消防斧绝赞潜伏中
+	GalaxyRainController.DisplayName: 星河之雨控制器
+	FriendlyBrimstoneGigablast.DisplayName: 巨型硫火爆焰
+	BeamChargeUp.DisplayName: 光束充能
+	ChaosBlasterBeam.DisplayName: 灾耀星芒光束
+	HomingTerraBeam.DisplayName: 泰拉光束
+	PlayerShadowClone.DisplayName: 暗影分身
+	TerraSlash.DisplayName: 泰拉斩切
+	NovaBombBlackHoleProj.DisplayName: 黑洞
+	NovaBombProj.DisplayName: 新星炸弹
+	FirstSwordHoldoutCombo.DisplayName: 剑一
+	_13thGltichCombo.DisplayName: 故障XIII
+	CelestialBeam.DisplayName: 天界光束
+	CelestialIlluminationStar.DisplayName: 星界陨辉
 }
 
 DiaryTooltip:
@@ -982,7 +983,7 @@ DiaryTooltip:
 Configs: {
 	InfernalConfig: {
 		WrathoftheGodsBossesInBossRush: {
-			Tooltip: 为Boss Rush添加XG-07玛尔斯、虚无化身和无名光神
+			Tooltip: 为Boss Rush添加XG-07 玛尔斯、虚无化身和无名光神
 			Label: Boss Rush添加众神之怒Boss
 		}
 
@@ -1000,7 +1001,7 @@ Configs: {
 			BossRushChanges: Boss Rush调整
 			BalanceChanges: 模组平衡修改
 			Miscellaneous: 融合
-			// MultiplayerAdjustments: Multiplayer Adjustments
+			MultiplayerAdjustments: 多人游戏调整
 		}
 
 		ThoriumBalanceChangess: {
@@ -1014,7 +1015,11 @@ Configs: {
 		}
 
 		CalamityBalanceChanges: {
-			Tooltip: 将大部分灾厄对原版内容的修改恢复原版数值
+			Tooltip:
+				'''
+				对部分数值过低或过高的灾厄物品进行调整  
+				同时修改部分跨模组的合成配方以保持平衡
+				'''
 			Label: 灾厄平衡修改
 		}
 
@@ -1090,7 +1095,7 @@ Configs: {
 		}
 
 		AdditonalVanillaBossAdjustments: {
-			Label: A额外原版Boss调整
+			Label: 额外原版Boss调整
 			Tooltip:
 				'''
 				小幅度调整了部分原版Boss的数值，让它们变得更有挑战性
@@ -1150,7 +1155,11 @@ Configs: {
 
 		EnableInterlude4: {
 			Label: 启用插曲4
-			Tooltip: 启用/禁用在击败至尊灾厄后播放的第四插曲
+			Tooltip:
+				'''
+				启用/禁用第四插曲的播放（在击败星流巨械与至尊灾厄后触发）  
+				该曲目播放时会覆盖“Their Fabricator”与“Acceptance”两首插曲
+				'''
 		}
 
 		AdjustAdvisorSpawnConditions: {
@@ -1164,47 +1173,47 @@ Configs: {
 		}
 
 		MultiplayerBossRespawnTimer: {
-			// Label: Multiplayer Boss Respawn Timer
-			// Tooltip: ""
+			Label: 多人游戏Boss战复活计时器
+			Tooltip: ""
 		}
 
 		MinimumDifficultyToPreventRespawns: {
-			// Label: Minimum Difficulty To Prevent Respawns
-			// Tooltip: ""
+			Label: 限制复活的最低难度
+			Tooltip: ""
 		}
 
 		MultiplayerRespawnsAllowed: {
-			// Label: Multiplayer Respawns Allowed
-			// Tooltip: ""
+			Label: 多人游戏允许复活
+			Tooltip: ""
 		}
 
 		NerfThoriumMulticlass: {
-			// Label: Nerf Thorium Multiclass
-			// Tooltip: ""
+			Label: 削弱瑟银的多职业物品
+			Tooltip: ""
 		}
 
 		ColoredRelics: {
-			// Label: Colored Relics
-			// Tooltip: ""
+			Label: 圣物上色
+			Tooltip: ""
 		}
 	}
 
 	Difficulty: {
-		// Tooltip: ""
-		// AlwaysOff.Label: Always Off
-		// AlwaysOn.Label: Always On
-		// Expert.Label: Expert
-		// Master.Label: Master
-		// Legendary.Label: Legendary
-		// Revengence.Label: Revengence
-		// MasterRevengence.Label: Master Revengence
-		// LegendaryRevengence.Label: Legendary Revengence
-		// Death.Label: Death
-		// MasterDeath.Label: Master Death
-		// LegendaryDeath.Label: Legendary Death
-		// Infernum.Label: Infernum
-		// MasterInfernum.Label: Master Infernum
-		// LegendaryInfernum.Label: Legendary Infernum
+		Tooltip: ""
+		AlwaysOff.Label: 保持关闭
+		AlwaysOn.Label: 保持开启
+		Expert.Label: 专家
+		Master.Label: 大师
+		Legendary.Label: 传奇
+		Revengence.Label: 复仇
+		MasterRevengence.Label: 大师复仇
+		LegendaryRevengence.Label: 传奇复仇
+		Death.Label: 死亡
+		MasterDeath.Label: 大师死亡
+		LegendaryDeath.Label: 传奇死亡
+		Infernum.Label: 炼狱
+		MasterInfernum.Label: 大师炼狱
+		LegendaryInfernum.Label: 传奇炼狱
 	}
 }
 
@@ -1213,10 +1222,10 @@ DamageClasses: {
 	MergedThrowerRogue.DisplayName: 盗贼伤害
 	LegendaryMelee.DisplayName: 传说近战伤害
 	LegendaryRanged.DisplayName: 传说远程伤害
-	// MythicMelee.DisplayName: mythic melee damage
-	// MythicMagic.DisplayName: mythic magic damage
-	// MythicRanged.DisplayName: mythic ranged damage
-	// LegendaryMagic.DisplayName: Legendary Magic
+	MythicMelee.DisplayName: 神话近战伤害
+	MythicMagic.DisplayName: 神话魔法伤害
+	MythicRanged.DisplayName: 神话远程伤害
+	LegendaryMagic.DisplayName: 传说魔法伤害
 }
 
 BossRushIntroText1:
@@ -1226,21 +1235,21 @@ BossRushIntroText1:
 	'''
 
 InfernumIntegration: {
-	/* Astrageldon:
+	Astrageldon:
 		'''
-		Multiversal Terror
-		Astrageldon
-		''' */
-	/* Clamitas:
+		诸界惊骇
+		末世星史莱姆
 		'''
-		Supreme Clam
-		Clamitas
-		''' */
-	/* You:
+	Clamitas:
 		'''
-		Dark Reflection
-		You
-		''' */
+		至尊巨蛤
+		蛤拉弥塔斯
+		'''
+	You:
+		'''
+		黑暗倒映
+		你
+		'''
 	Polaris:
 		'''
 		冰封的战争机器
@@ -1338,7 +1347,7 @@ InfernumIntegration: {
 		'''
 	MutantEX:
 		'''
-		The Champion of the Omniverse
+		万界孤王
 		魔神
 		'''
 }
@@ -1361,7 +1370,7 @@ Buffs: {
 
 	BrokenOath: {
 		DisplayName: 破碎之誓
-		Description: Primum non nocere - 希波克拉底誓言
+		Description: “首先，不要伤害” - 希波克拉底誓言
 	}
 
 	BubbleShock: {
@@ -1376,10 +1385,10 @@ SpawnInfo: {
 }
 
 Tiles: {
-	// CatastrophicFabricationsMusicBoxTile.MapEntry: Catastrophic Fabrications Music Box Tile
-	// EyeMusicBoxTile.MapEntry: Eye Music Box Tile
-	// BeeMusicBoxTile.MapEntry: Bee Music Box Tile
-	// CultistMusicBoxTile.MapEntry: Cultist Music Box Tile
-	// GolemMusicBoxTile.MapEntry: Golem Music Box Tile
-	// ProphecyMusicBoxTile.MapEntry: Prophecy Music Box Tile
+	CatastrophicFabricationsMusicBoxTile.MapEntry: 铸灾神械音乐盒
+	EyeMusicBoxTile.MapEntry: 克苏鲁之眼音乐盒
+	BeeMusicBoxTile.MapEntry: 蜂后音乐盒
+	CultistMusicBoxTile.MapEntry: 拜月教邪教徒音乐盒
+	GolemMusicBoxTile.MapEntry: 石巨人音乐盒
+	ProphecyMusicBoxTile.MapEntry: 预言音乐盒
 }
