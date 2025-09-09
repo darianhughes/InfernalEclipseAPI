@@ -65,7 +65,7 @@ Designers: Wardrobe Hummus, Yob, trembler
 Story: Akira, Yob
 Coordinators: ZaKami, TheRogueX
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan
-Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat, Suu
+Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat, Suu, Pudd1ng
 Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
