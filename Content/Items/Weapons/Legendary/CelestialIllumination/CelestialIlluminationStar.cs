@@ -1,9 +1,6 @@
 using CalamityMod.Buffs.DamageOverTime;
-using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIllumination
@@ -18,7 +15,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
             Projectile.penetrate = 20;
             Projectile.tileCollide = false;
             Projectile.timeLeft = 300;
-            Projectile.DamageType = ModContent.GetInstance<MythicMagic>();
+            Projectile.DamageType = ModContent.GetInstance<LegendaryMagic>();
             Projectile.ignoreWater = true;
             Projectile.damage = 400;
             Projectile.friendly = true;

@@ -87,7 +87,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted
             recipe.AddIngredient(ItemID.LunarBar, ModLoader.TryGetMod("ThoriumMod", out Mod thorium) ? 9 : 12);
             if (thorium != null) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
             if (ModLoader.TryGetMod("SOTS", out Mod sots)) recipe.AddIngredient(sots.Find<ModItem>("RubyKeystone").Type);
-            else recipe.AddIngredient(ItemID.Ruby, 5);
+            else recipe.AddIngredient(ItemID.LargeRuby);
             recipe.AddIngredient<DarkPlasma>(3);
             recipe.AddIngredient<TwistingNether>(3);
             recipe.AddIngredient<RuinousSoul>(3);

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod;
+﻿using CalamityMod;
 using InfernalEclipseAPI.Content.Items.Lore.Other;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics;
+using InfernalEclipseAPI.Content.Items.Placeables.Trophies;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using YouBoss.Content.NPCs.Bosses.TerraBlade;
 using YouBoss.Core;
@@ -21,8 +19,10 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
             {
                 bool firstTerraBladeKill() => !WorldSaveSystem.HasDefeatedYourself;
                 npcLoot.AddConditionalPerPlayer(firstTerraBladeKill, ModContent.ItemType<LoreMirror>(), desc: DropHelper.FirstKillText);
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TerraBladeTrophy>(), 10, 1, 1));
+                npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TerraBladeRelic>()));
+                npcLoot.Add(ItemDropRule.ByCondition(new RevengenceMode(), ModContent.ItemType<TerraBladeRelic>(), 1, 1, 1, 1));
             }
-           
         }
     }
 }

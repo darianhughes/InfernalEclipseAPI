@@ -146,6 +146,10 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         public bool EnableInterlude4 { get; set; }
 
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool ColoredRelics { get; set; }
+
         #endregion
     }
 

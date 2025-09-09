@@ -136,7 +136,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst
             recipe.AddIngredient(ItemID.AdamantiteBar, ModLoader.TryGetMod("ThoriumMod", out Mod thorium) ? 9 : 12);
             if (thorium != null) recipe.AddIngredient(thorium.Find<ModItem>("TitanicBar"), 3);
             if (ModLoader.TryGetMod("SOTS", out Mod sots)) recipe.AddIngredient(sots.Find<ModItem>("RubyKeystone").Type);
-            else recipe.AddIngredient(ItemID.Ruby, 5);
+            else recipe.AddIngredient(ItemID.LargeRuby);
             if (thorium != null) recipe.AddIngredient(thorium.Find<ModItem>("CursedCloth"), 3);
             else recipe.AddIngredient(ItemID.RedBanner);
             recipe.AddIngredient(ItemID.DarkShard);

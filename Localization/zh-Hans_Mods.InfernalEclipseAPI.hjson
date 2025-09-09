@@ -764,7 +764,7 @@ Items: {
 				'''
 			Full: The Celestial Illumination is fully awaked, and its maximum power is unleashed!
 		}
-		
+
 		Lore: The power of the cosmos is contained within this book...
 	}
 
@@ -927,6 +927,26 @@ Items: {
 			}
 		}
 	}
+
+	DreadnautilusRelic: {
+		// DisplayName: Dreadnautilus Relic
+		// Tooltip: ""
+	}
+
+	HypnosRelic: {
+		// DisplayName: Hypnos Relic
+		// Tooltip: ""
+	}
+
+	TerraBladeRelic: {
+		// DisplayName: Terra Blade Relic
+		// Tooltip: ""
+	}
+
+	TerraBladeTrophy: {
+		// DisplayName: Terra Blade Trophy
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -953,6 +973,8 @@ Projectiles: {
 	// NovaBombProj.DisplayName: Nova Bomb
 	// FirstSwordHoldoutCombo.DisplayName: Sword of the First
 	// _13thGltichCombo.DisplayName: _13th Gltich Combo
+	// CelestialBeam.DisplayName: Celestial Beam
+	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 }
 
 DiaryTooltip:
@@ -1164,6 +1186,11 @@ Configs: {
 			// Label: Nerf Thorium Multiclass
 			// Tooltip: ""
 		}
+
+		ColoredRelics: {
+			// Label: Colored Relics
+			// Tooltip: ""
+		}
 	}
 
 	Difficulty: {
@@ -1193,6 +1220,7 @@ DamageClasses: {
 	// MythicMelee.DisplayName: mythic melee damage
 	// MythicMagic.DisplayName: mythic magic damage
 	// MythicRanged.DisplayName: mythic ranged damage
+	// LegendaryMagic.DisplayName: Legendary Magic
 }
 
 BossRushIntroText1:
@@ -1202,6 +1230,21 @@ BossRushIntroText1:
 	'''
 
 InfernumIntegration: {
+	/* Astrageldon:
+		'''
+		Multiversal Terror
+		Astrageldon
+		''' */
+	/* Clamitas:
+		'''
+		Supreme Clam
+		Clamitas
+		''' */
+	/* You:
+		'''
+		Dark Reflection
+		You
+		''' */
 	Polaris:
 		'''
 		冰封的战争机器

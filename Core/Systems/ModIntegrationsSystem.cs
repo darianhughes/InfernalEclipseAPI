@@ -149,6 +149,64 @@ namespace InfernalEclipseAPI.Core.Systems
                     MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
                 }
             }
+            if (ModLoader.TryGetMod("YouBoss", out Mod you))
+            {
+                MakeCard(you.Find<ModNPC>("TerraBladeBoss").Type, (horz, anim) => Color.Lerp(Color.LimeGreen, Color.Green, anim), "You", SoundID.MenuTick, new SoundStyle("InfernalEclipseAPI/Assets/Sounds/Custom/TerraBlade/Split"));
+            }
+            if (ModLoader.TryGetMod("Clamity", out Mod clam))
+            {
+                MakeCard(clam.Find<ModNPC>("ClamitasBoss").Type, (horz, anim) => Color.Lerp(Color.RosyBrown, Color.Red, anim), "Clamitas", SoundID.Item100, new SoundStyle("CalamityMod/Sounds/Custom/Providence/ProvidenceSpawn"));
+            }
+            if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst) && !ModLoader.TryGetMod("CnI", out _))
+            {
+                int astrageldonType = catalyst.Find<ModNPC>("Astrageldon").Type;
+                string textKey = "Mods.InfernalEclipseAPI.InfernumIntegration.Astrageldon";
+                LocalizedText introText = Language.GetOrRegister(textKey);
+
+                // Initialize the intro screen
+                object intro = Infernum.Call(
+                    "InitializeIntroScreen",
+                    introText,
+                    150,                            // display time
+                    true,                           // center text?
+                    (Func<bool>)(() => NPC.AnyNPCs(astrageldonType)),
+                    (Func<float, float, Color>)((completionRatio, _) =>
+                    {
+                        // Base gradient between purple and pink
+                        Color baseColor = Color.Lerp(Color.MediumPurple, Color.HotPink, completionRatio);
+
+                        // Pulsing yellow emphasis near the end
+                        float pulse = MathF.Sin(completionRatio * MathF.PI * 4f + Main.GlobalTimeWrappedHourly * 5f) * 0.5f + 0.5f;
+                        float t = Terraria.Utils.GetLerpValue(0.8f, 1f, pulse, true);
+
+                        return Color.Lerp(baseColor, Color.Yellow, t);
+                    })
+                );
+
+                // Scale, sounds, and behavior
+                Infernum.Call("SetupTextScale", intro, 1.15f);
+
+                var spawn = new SoundStyle($"{catalyst.Name}/Assets/Sounds/AstrageldonSpawn", SoundType.Sound)
+                {
+                    Volume = 1.5f,
+                    PitchVariance = 0.05f,
+                    MaxInstances = 1
+                };
+
+                Infernum.Call(
+                    "SetupMainSound",
+                    intro,
+                    (Func<int, int, float, float, bool>)((t, _, __, ___) => t == 0),
+                    (Func<SoundStyle>)(() => spawn)
+                );
+
+                Infernum.Call("SetupLetterAdditionSound", intro, (Func<SoundStyle>)(() => SoundID.MenuTick));
+                Infernum.Call("SetupLetterDisplayCompletionRatio", intro, (Func<int, float>)(count => count / 10f));
+
+                // Register and optional completion effects
+                Infernum.Call("RegisterIntroScreen", intro);
+                Infernum.Call("SetupCompletionEffects", intro, (Action)(() => { }));
+            }
         }
         internal void MakeCard(int type, Func<float, float, Color> color, string title, SoundStyle tickSound, SoundStyle endSound, int time = 300, float size = 1f)
         {

@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst;
 using InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 {
@@ -123,7 +124,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
             if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient(wotg.Find<ModItem>("MetallicChunk").Type);
             recipe.AddIngredient<Rock>();
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile<SCalAltar>();
             recipe.Register();
         }
     }
