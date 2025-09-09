@@ -770,144 +770,144 @@ Items: {
 	}
 
 	ClamitasRelic: {
-		// DisplayName: Infernal Clamitas Relic
-		// Tooltip: ""
+		DisplayName: 至尊巨蛤，蛤拉弥塔斯炼狱圣物
+		Tooltip: ""
 	}
 
 	PyrogenRelic: {
-		// DisplayName: Infernal Pyrogen Relic
-		// Tooltip: ""
+		DisplayName: 热源之灵炼狱圣物
+		Tooltip: ""
 	}
 
 	WallofBronzeRelic: {
-		// DisplayName: Infernal Wall of Bronze Relic
-		// Tooltip: ""
+		DisplayName: 青铜之墙炼狱圣物
+		Tooltip: ""
 	}
 
 	NoxusRelic: {
-		// DisplayName: Infernal Noxus Relic
-		// Tooltip: ""
+		DisplayName: 虚无化身炼狱圣物
+		Tooltip: ""
 	}
 
 	AbominationnRelic: {
-		// DisplayName: Infernal Abominationn Relic
-		// Tooltip: ""
+		DisplayName: 憎恶炼狱圣物
+		Tooltip: ""
 	}
 
 	BanishedBaronRelic: {
-		// DisplayName: Infernal Banished Baron Relic
-		// Tooltip: ""
+		DisplayName: 放逐遗爵炼狱圣物
+		Tooltip: ""
 	}
 
 	CursedCoffinRelic: {
-		// DisplayName: Infernal Cursed Coffin Relic
-		// Tooltip: ""
+		DisplayName: 咒缚灵棺炼狱圣物
+		Tooltip: ""
 	}
 
 	DeathChampionRelic: {
-		// DisplayName: Infernal Champion of Death Relic
-		// Tooltip: ""
+		DisplayName: 死亡英灵炼狱圣物
+		Tooltip: ""
 	}
 
 	DevianttRelic: {
-		// DisplayName: Infernal Deviantt Relic
-		// Tooltip: ""
+		DisplayName: 戴薇安炼狱圣物
+		Tooltip: ""
 	}
 
 	EarthChampionRelic: {
-		// DisplayName: Infernal Champion of Earth Relic
-		// Tooltip: ""
+		DisplayName: 大地英灵炼狱圣物
+		Tooltip: ""
 	}
 
 	EridanusRelic: {
-		// DisplayName: Infernal Eridanus, Champion of Cosmos Relic
-		// Tooltip: ""
+		DisplayName: 厄里达诺斯，宇宙英灵炼狱圣物
+		Tooltip: ""
 	}
 
 	LifeChampionRelic: {
-		// DisplayName: Infernal Champion of Life Relic
-		// Tooltip: ""
+		DisplayName: 生命英灵炼狱圣物
+		Tooltip: ""
 	}
 
 	LifelightRelic: {
-		// DisplayName: Infernal Lifelight Relic
-		// Tooltip: ""
+		DisplayName: 飘渺游光炼狱圣物
+		Tooltip: ""
 	}
 
 	MutantRelic: {
-		// DisplayName: Infernal Mutant Relic
-		// Tooltip: ""
+		DisplayName: 突变体炼狱圣物
+		Tooltip: ""
 	}
 
 	NatureChampionRelic: {
-		// DisplayName: Infernal Champion of Nature Relic
-		// Tooltip: ""
+		DisplayName: 自然英灵炼狱圣物
+		Tooltip: ""
 	}
 
 	SpiritChampionRelic: {
-		// DisplayName: Infernal Champion of Spirit Relic
-		// Tooltip: ""
+		DisplayName: 心灵英灵炼狱圣物
+		Tooltip: ""
 	}
 
 	TerraChampionRelic: {
-		// DisplayName: Infernal Champion of Terra Relic
-		// Tooltip: ""
+		DisplayName: 泰拉英灵炼狱圣物
+		Tooltip: ""
 	}
 
 	TrojanSquirrelRelic: {
-		// DisplayName: Infernal Trojan Squirrel Relic
-		// Tooltip: ""
+		DisplayName: 特洛伊松鼠炼狱圣物
+		Tooltip: ""
 	}
 
 	WillChampionRelic: {
-		// DisplayName: Infernal Champion of Will Relic
-		// Tooltip: ""
+		DisplayName: 意志英灵炼狱圣物
+		Tooltip: ""
 	}
 
 	LuxRelic: {
-		// DisplayName: Infernal Lux Relic
-		// Tooltip: ""
+		DisplayName: 辉光圣魂炼狱圣物
+		Tooltip: ""
 	}
 
 	PharohsCurseRelic: {
-		// DisplayName: Infernal Pharaoh's Curse Relic
-		// Tooltip: ""
+		DisplayName: 法老咒魔炼狱圣物
+		Tooltip: ""
 	}
 
 	CatalyzedCrystal: {
-		// DisplayName: Catalyzed Crystal
-		/* Tooltip:
+		DisplayName: 催化结晶
+		Tooltip:
 			'''
-			A crystal created after the explosion of the Catalyst Bomb
-			Summons the Subspace Serpent when used in Hell
-			Not consumable
-			''' */
+			催化炸弹爆炸后形成的结晶
+			在地狱使用以召唤亚空骇蟒
+			不消耗
+			'''
 	}
 
 	ChaosBlaster: {
-		// DisplayName: Chaos Blaster
-		// Tooltip: ""
+		DisplayName: 灾耀星陨
+		Tooltip: ""
 	}
 
 	Swordofthe1stGlitch: {
-		// DisplayName: Sword of the First
-		/* Tooltip:
+		DisplayName: 始元剑启
+		Tooltip:
 			'''
-			Right click to dash towards the cursor
-			The first form of the Crystal of the Glitch, weilded by Zelcor Guritchi
-			''' */
+			右键朝光标方向突进
+			故障水晶的第一形态，由泽尔科·古里奇所执
+			'''
 	}
 
 	Swordofthe13thGlitch: {
-		// DisplayName: Sword of the Corrupted
-		/* Tooltip:
+		DisplayName: 腐痕剑殇
+		Tooltip:
 			'''
-			Right click to fire a burst of sword beams
-			While holding Rage will be automatically activated when the meter is full
-			While Rage is active, you spawn clones of yourselft that attack at your cursor
-			The thirteenth form of the Crystal of the Glitch, wielded by Nahu Guritchi
-			'I will end our curse once and for all, Zane!'
-			''' */
+			右键释放一阵剑气
+			持有时，当怒气槽充满会自动激活怒气模式
+			怒气状态下会在光标处生成分身发动攻击
+			故障水晶的第十三形态，由纳胡·古里奇所执
+			“我会彻底终结我们的诅咒，赞恩！”
+			'''
 	}
 
 	Weapons: {
