@@ -736,27 +736,27 @@ Items: {
 			Deus:
 				'''
 				击败古神的邪异残躯以获得更多力量……
-				        	尚未获得额外的力量……
+				尚未获得额外的力量……
 				'''
 			MoonLord:
 				'''
 				随着你击败月亮领主，你发射的星辰会更多
-				        	击败亵渎之炎的守护者以获得更多力量……
+				击败亵渎之炎的守护者以获得更多力量……
 				'''
 			ProfanedGuardians:
 				'''
 				随着你击败亵渎守卫，你可以发射一道星体光束
-				        	击败圣炎女神以获得更多力量……
+				击败圣炎女神以获得更多力量……
 				'''
 			Providence:
 				'''
 				随着你击败亵渎天神，星体光束会更为强大
-				        	击败灾虫护卫以获得更多力量……
+				击败灾虫护卫以获得更多力量……
 				'''
 			Sentinels:
 				'''
 				随着你击败星宇护卫，星体光束的持续时间更长
-				        	击败噬神凶灵以获得更多力量……
+				击败噬神凶灵以获得更多力量……
 				'''
 			Full: 星界启明已苏醒，最大威能解禁！
 		}
@@ -913,35 +913,35 @@ Items: {
 	Weapons: {
 		Rogue: {
 			NovaBomb: {
-				/* Tooltip:
+				Tooltip:
 					'''
-					Launches a blazing purple nova of destruction
-					'Don't worry Willow, I can solo it.'
-					- WIP: Currently just uses the Supernova AI from CalamityMod. -
-					''' */
-				// DisplayName: Nova Bomb
+					发射出一枚炽烈的紫色毁灭新星
+					“放心吧维洛，我一个人就能搞定。”
+					- 开发中：当前使用灾厄的超新星AI -
+					'''
+				DisplayName: 新星涡流
 			}
 		}
 	}
 
 	DreadnautilusRelic: {
-		// DisplayName: Dreadnautilus Relic
-		// Tooltip: ""
+		DisplayName: 恐惧鹦鹉螺圣物
+		Tooltip: ""
 	}
 
 	HypnosRelic: {
-		// DisplayName: Hypnos Relic
-		// Tooltip: ""
+		DisplayName: 修普诺斯圣物
+		Tooltip: ""
 	}
 
 	TerraBladeRelic: {
-		// DisplayName: Terra Blade Relic
-		// Tooltip: ""
+		DisplayName: 泰拉刃圣物
+		Tooltip: ""
 	}
 
 	TerraBladeTrophy: {
-		// DisplayName: Terra Blade Trophy
-		// Tooltip: ""
+		DisplayName: 泰拉刃纪念章
+		Tooltip: ""
 	}
 }
 
