@@ -28,7 +28,7 @@ namespace InfernalEclipseAPI.Core.Systems
         }
         public static class Catalyst
         {
-            public const string Name = "Catalyst";
+            public const string Name = "CatalystMod";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
@@ -177,7 +177,7 @@ namespace InfernalEclipseAPI.Core.Systems
         }
         public static class CatalyzedInferno
         {
-            public const string Name = "CatalyzedInferno";
+            public const string Name = "CnI";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
