@@ -46,6 +46,9 @@
 		<Reference Include="InfernumMode">
 		<HintPath>..\ModAssemblies\InfernumMode_v2.0.1.19.dll</HintPath>
 		</Reference>
+		<Reference Include="Luminance">
+		  <HintPath>..\ModAssemblies\Luminance_v1.0.9.dll</HintPath>
+		</Reference>
 		<Reference Include="MMHOOK_CalamityMod_v2.0.5">
 		  <HintPath>lib\MMHOOK_CalamityMod_v2.0.5.dll</HintPath>
 		</Reference>
