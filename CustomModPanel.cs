@@ -81,6 +81,9 @@ namespace InfernalEclipseAPI
             private const float Circle2ScaleMultiplier = 0.185f;
             private const float Circle3ScaleMultiplier = 0.15f;
             private const float AnkhScaleMultiplier = 1.0f;
+            private const float AnkhPulseScaleMultiplier = 0.5f;
+            private const float AnkhPulseSpeed = 1.5f;
+            private const float AnkhPulseColorIntensity = 0.8f;
             private const float CircleRotationSpeed = 0.3f;
             private const float ParticleSpawnInterval = 0.1f;
             private const float ParticleDistance = 40f;
@@ -194,7 +197,26 @@ namespace InfernalEclipseAPI
                     0f
                 );
                 
-                // 3. Draw floating particles (on top)
+                // 3. Draw pulsing ankh effect (expanding pulse)
+                float pulseTime = Main.GlobalTimeWrappedHourly / AnkhPulseSpeed % 1f;
+                float pulseScale = ankhScale * (1.0f + pulseTime * AnkhPulseScaleMultiplier);
+                float transparency = AnkhPulseColorIntensity * MathF.Sin(pulseTime * MathHelper.Pi);
+                
+                var pulseColor = AnkhColor * transparency;
+                
+                spriteBatch.Draw(
+                    ankhTexture,
+                    center,
+                    ankhTexture.Frame(),
+                    pulseColor,
+                    rotation,
+                    ankhTexture.Size() / 2,
+                    pulseScale,
+                    SpriteEffects.None,
+                    0f
+                );
+                
+                // 4. Draw floating particles (on top)
                 DrawParticles(spriteBatch, sparkleTexture, ankhTexture);
             }
             
