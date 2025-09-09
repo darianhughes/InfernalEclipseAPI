@@ -1,22 +1,22 @@
 UI: {
-	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
-	NoRespawn2: Respawn prevented: Only {0} respawns per boss in {1} multiplayer!
-	NoRespawn3: Respawn prevented: No respawns during bosses in {0} multiplayer!
-	NoRespawn4: Respawn prevented: No respawns during bosses in multiplayer!
-	NoRespawn5: Respawn prevented: Only one respawn per boss in multiplayer!
-	NoRespawn6: Respawn prevented: Only {0} respawns per boss in multiplayer!
-	Expert: Expert Mode
-	Master: Master Mode
-	Legendary: Legendary Mode
-	Revengence: Revengence Mode
-	MRevengence: Master-Revengence Mode
-	LRevengence: Legendary-Revengence Mode
-	Death: Death Mode
-	MDeath: Master-Death Mode
-	LDeath: Legendary-Death Mode
-	Infernum: Infernum Mode
-	MInfernum: Master-Infernum Mode
-	LInfernum: Legendary-Infernum Mode
+	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
+	NoRespawn2: 复活受限：在 {1} 人联机时，每场 Boss 战中每位玩家只有 {0} 次重生机会！
+	NoRespawn3: 复活受限：在 {0} 人联机时，Boss 战期间不允许复活！
+	NoRespawn4: 复活受限：多人联机时，Boss 战期间不允许复活！
+	NoRespawn5: 复活受限：多人联机时，每场 Boss 战中每位玩家只有一次复活机会！
+	NoRespawn6: 复活受限：多人联机时，每场 Boss 战中每位玩家只有 {0} 次复活机会！
+	Expert: 专家模式
+	Master: 大师模式
+	Legendary: 传奇模式
+	Revengence: 复仇模式
+	MRevengence: 大师-复仇模式
+	LRevengence: 传奇-复仇模式
+	Death: 死亡模式
+	MDeath: 大师-死亡模式
+	LDeath: 传奇-死亡模式
+	Infernum: 炼狱模式
+	MInfernum: 大师-炼狱模式
+	LInfernum: 传奇-炼狱模式
 	Primordial: Primodrial Mode
 	LPrimoridal: Legendary-Primordial Mode
 }
@@ -38,13 +38,13 @@ WelcomeMessage: {
 ItemTooltip: {
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
-	// SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
-	// SFlight: Holding right click grants fast, unlimited flight
-	/* ScytheThrow:
+	SBeamUsage: 长按左键，发射神话魔法伤害的光束
+	SFlight: 长按右键获得快速无限飞行能力
+	ScytheThrow:
 		'''
-		Right Click to throw the Scythe, which will curve on it's way back
-		Thrown Scythes will deal 20% reduced damage
-		''' */
+		右键投掷镰刀，它会以弧线轨迹返回
+		投掷镰刀的伤害降低 20%
+		'''
 	SandstonePortalDeviceInfo:
 		'''
 		将你传送到失落竞技场
@@ -53,7 +53,7 @@ ItemTooltip: {
 	SandstonePortalDeviceInfoMP: 在激活通往失落竞技场的门户后，召唤无邦封臣 <- currently unsued in API
 
 	MergedCraftingTreeTooltip: {
-		// Gilded: Effects of the Gilded Blade Wings
+		Gilded: 耀刃之翼效果
 		TPS:
 			'''
 			允许飞行、急速奔跑，并在冰面上获得额外机动能力
@@ -105,7 +105,6 @@ ItemTooltip: {
 			穿透性弦乐器攻击每次击中后速度增加20%
 			打击乐器攻击时，会在敌人身上掷出一个锤子
 			电子乐器的弹幕速度大幅提升
-			"引导听觉上限之外的音波之力！"
 			'''
 		Tuner2:
 			'''
@@ -121,8 +120,8 @@ ItemTooltip: {
 			手持虚空吟游诗人武器时，拾取灵感音符将恢复虚空值
 			灵感值耗尽后，消耗25点虚空值填满
 			'''
-		// HypersonicTooltip: '''"Channel the power of sounds beyond hearing range!"'''
-		// 4DTooltip: '''"Sound that can create wormholes to other worlds"'''
+		HypersonicTooltip: '''"引导听觉上限之外的音波之力！"'''
+		4DTooltip: '''"足以开辟通往异界虫洞的音律"'''
 		CrystalScorpian:
 			'''
 			仆从和哨兵攻击有15%概率产生一只水晶蝎
@@ -130,7 +129,7 @@ ItemTooltip: {
 			'''
 		Skull: 仆从和哨兵在击杀敌人后短暂地多造成2点伤害
 		CyanPearl: 减半哨兵受到的召唤伤害惩罚
-		Watch: 的哨兵会永久存在，并在两分钟内增加最多15%伤害
+		Watch: 你的哨兵会永久存在，并在两分钟内增加最多15%伤害
 		Fortress:
 			'''
 			在你的左右生成4个平台
@@ -183,8 +182,8 @@ ItemTooltip: {
 		TerraDefend: 当生命值低于25%时，你将迅速恢复生命并获得额外防御力
 		ScytheScale: 持续增强直到吞噬者陨落
 		ScytheSummon: 当存在召唤物时，造成的伤害减少
-		ScytheSummonOn: Damage reduced while summons are active
-		OneirophobiaSummon: 按住右键召唤顽皮的乐器为你而战
+		ScytheSummonOn: 当存在召唤物时，造成的伤害减少
+		OneirophobiaSummon: 按住右键召唤顽皮乐器为你而战
 		SoulEssence: 极快速获得灵魂精华
 		Magneto: 增加地面上盗贼物品的拾取范围
 		Bone:
@@ -214,8 +213,8 @@ ItemTooltip: {
 			'''
 		OmniIns: 最大灵感值增加5
 		OmniEmp: 每拥有一种咒音增幅使移动速度增加2%，音波演奏速度增加1%
-		// ShinobiNerf: This effect has a cooldowwn of 2 seconds
-		// CloverNerf: Life steal has a 0.5 second cooldown
+		ShinobiNerf: 这个效果有2秒冷却时间
+		CloverNerf: 吸血效果有0.5秒冷却时间
 	}
 
 	AmmoConversion.Mycelium: 发射真菌弹幕
@@ -238,61 +237,61 @@ ItemTooltip: {
 		总有一天，这份运气将耗尽。
 		'''
 	NamelessRelic: 你通过了试炼。
-	// NoxusRelic: So did you cheat this item in or do you actually have my super obscure mod that is not on the workshop anymore installed? Either way, congrats I guess.
-	/* DeviRelic:
+	NoxusRelic: 所以你是作弊弄到这个道具的，还是说你真的装了我那个早就不在创意工坊上的冷门模组？不管怎样，恭喜吧。
+	DeviRelic:
 		'''
-		The youngest of the three siblings.
-		Quite chaotic, especially this early in the game, however, you overcame her with confidence.
-		Enjoy the loot upgrades and power boost while you can...
-		''' */
-	/* AbomRelic:
+		她是那三兄妹中最年幼的一个。
+		混乱而又莽撞，正如这世界初始的模样。然而你依旧自信地战胜了她。
+		尽情享受那些战利品的提升与力量的增长吧……趁它们尚未从你手中溜走。
 		'''
-		The second of the three siblings.
-		It has been a while since you fought their sister, but this battle was extreme step up from that.
-		Are you brave enough to challenge the oldest sibling?
-		''' */
-	/* MutantRelic:
+	AbomRelic:
 		'''
-		The oldest of the three siblings, as well as the strongest.
-		You have beat what is known as one of the hardest modded bosses, and with all of eternity in your hands surely nothing will stop you now.
-		What will you seek out now?
-		''' */
-	/* EridanusRelic:
+		那是三兄妹中的第二个。
+		自你与他的妹妹交锋，已过去一段时日……而这一战，比那时艰难得多。
+		如今，你是否仍有勇气，去面对那最年长的一位？
 		'''
-		Your almost to the finish line.
-		The godseeker's army is all that stands in between you and eternity.
-		Make the fullest of your new crafting station...
-		''' */
+	MutantRelic:
+		'''
+		他是三兄妹中最年长的，也是最强的。
+		你已击败公认最难的敌人之一。永恒之力灌注你的双拳，已经没有什么能阻挡你了。
+		那么，现在，你将追寻什么？
+		'''
+	EridanusRelic:
+		'''
+		你已接近终点。
+		唯有寻神者的大军，仍横亘在你与永恒之间。
+		好好利用这座新的制作台吧……
+		'''
 	AstralCommunicatorInfernum1: 在星辉瘟疫环境中召唤末世星史莱姆
 	AstralCommunicatorInfernum2: 来自异界的史莱姆依旧饥渴不止……
 }
 
+
 Lore: {
-	/* Abom:
+	Abom:
 		'''
-		The middle child of the eternal siblings, and one of the laziest people I've ever seen.
-		While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
-		he truly is super lazy, going to the point of even fusing his weapons to his hands.
-		His weapon has the ability to divide the soul itself, and has the ability to use all supernatural phenomena. 
-		Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
-		''' */
-	/* Devi:
+		他是永恒兄妹中的次子，也是我所见过最懒散的人之一。
+		即使憎恶能够掌控风雨、驱逐来犯之敌，他却懒到将武器直接与双手融为一体。
+		他的武器能分裂灵魂，也能操纵一切超自然之力。
+		幸好，他出于对突变体的敬重并未动用天象之术——否则，你的胜利恐怕无从谈起。
 		'''
-		The youngest of the eternal siblings, and also the weakest.
-		She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
-		However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
-		The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while using a living axe made of evil.
-		Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
-		''' */
-	/* Mutant:
+	Devi:
 		'''
-		The oldest and strongest of the eternal siblings.
-		While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
-		He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift.
-		Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
-		Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
-		He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
-		''' */
+		她是永恒兄妹中最年幼、也最弱小的一个。
+		在旅途中，她收集了许多稀怪之物，兴致好时会将它们售与他人。
+		可若心情不在，她便会毫不掩饰那病态迷恋的残忍。
+		戴薇安能以始源之光与纯粹之爱施展法术，手中挥舞的却是一柄由邪恶孕育的活斧。
+		纵然你在战斗中击败了她，她似乎并不惧死——这是我第一次见她全力以赴。
+		'''
+	Mutant:
+		'''
+		他是永恒兄妹中最年长、也最强大的一位。
+		虽被其余兄妹称作兄长，他本人却始终拒绝确认性别。
+		他是永恒的守护者，化身终极之力，据说源自那维度裂隙之外的世界。
+		除你之外，他是这片泰拉大陆上最强的存在，精通一切战斗之道。
+		然而，纵有如此力量，他更愿旁观世间之战，而非亲自出手。
+		他常说自己在寻找值得一战之人……看来，如今他已找到了。
+		'''
 	DylanLore:
 		'''
 		嗯……你居然还知道他，真令人惊讶。
@@ -308,8 +307,10 @@ Lore: {
 		'''
 	MysteriousDiary:
 		'''
-		翻到第一页，你只看到几行文字。
+		翻开首页，你只看到几行文字：
+
 		“我究竟是谁，我为何还活着？”
+
 		余下的页面一片空白……
 
 		[c/E3AF40:此书洋溢着异界气息……或许在亚利姆甚至诸神之外，还潜藏着更宏伟的存在。]
@@ -318,14 +319,10 @@ Lore: {
 		'''
 	Provi:
 		'''
-		我曾一度梦见和平，却不知道为什么。
+		我曾一度梦见和平……至于为何，我不得而知。
 		自从我得知天地之外另有天地，
-		我便时常在余光中瞥见那个古怪女子。
-		每当我凝视她，她便凭空隐去，
-		唯留下一个词语在我脑海回响——
-		“承诺。”
-		除此之外，再无任何她存在过的痕迹。
-		仁想从她们那里获得什么？无人知晓。
+		我便时常感受到那名女子的气息，若隐若现地徘徊在我们的世界。
+		仁想从她那里获得什么？无人知晓。
 		但我相信，你会做出正确的抉择，泰拉人。
 		'''
 	Mirror:
@@ -346,8 +343,7 @@ Lore: {
 		'''
 		当初将嘉登招入麾下之时，他便立刻着手于一个“秘密计划”，关于内容他却拒绝多言。
 		不久之后，他便展现了那第一台阴森的死亡机械。
-		我立刻意识到它已足以在我的军队中服役，而他的天赋……真是令人期待。
-		非常，令我期待。
+		我立刻意识到它已足以在我的军队中服役，而他的天赋……更是令人期待。
 		'''
 	Putrid:
 		'''
@@ -392,7 +388,7 @@ LegendaryTooltip.Base: 随着你击败强敌，此武器的力量可能不断增
 Items: {
 	SandstonePortalDevice: {
 		DisplayName: 砂岩传送装置
-		// Tooltip: ""
+		Tooltip: ""
 	}
 
 	ChromaticMassInABottle: {
@@ -401,12 +397,12 @@ Items: {
 	}
 
 	Swordofthe14thGlitch: {
-		// DisplayName: Sword of the Zenith
-		/* Tooltip:
+		DisplayName: 终焉剑极
+		Tooltip:
 			'''
-			Right click to dash towards the cursor, doing a spin attack at the end of the dash that spawns multiple homing sword beams
-			The fourteenth form of the Crystal of the Glitch, weilded by Zane Guritchi
-			''' */
+			右键朝光标方向突进，在终点施展旋转斩击，并迸发多道追踪的剑光
+			水晶之瑕的第十四形态，由赞恩·古里奇所执
+			'''
 	}
 
 	BossRushTier6MusicBox: {
@@ -415,13 +411,13 @@ Items: {
 	}
 
 	NovaBomb: {
-		// DisplayName: Nova Bomb
-		/* Tooltip:
+		DisplayName: 新星涡流
+		Tooltip:
 			'''
-			Channel some of the Traveler's most mysterious forces and unleash them in an explosive, large area-of-effect attack
-			Right click to collapse the black hole early
-			'Don't worry Willow, I can solo it.'
-			''' */
+			引导旅者的秘力，释放造成大范围的爆炸
+			右键可提前坍缩黑洞
+			“放心吧维洛，我一个人就能搞定。”
+			'''
 	}
 
 	BossRushTierNamelessMusicBox: {
@@ -435,39 +431,39 @@ Items: {
 	}
 
 	StellarSabre: {
-		DisplayName: 星火弯刀
+		DisplayName: 星火军刀
 		Tooltip: ""
 
 		Progression: {
 			WoF:
 				'''
 				击败地狱守护者以获得更多力量……
-							尚未获得额外力量……
+				尚未获得额外力量……
 				'''
 			Mechs:
 				'''
 				随着血肉墙被击败，此剑可发射额外的星辰
-							击败机械巨兽以获得更多力量……
+				击败机械造物以获得更多力量……
 				'''
 			Plantera:
 				'''
 				击败嘉登的机械装置后，它现在会附加破晓减益
-							击败丛林守护者以获得更多力量……
+				击败丛林守护者以获得更多力量……
 				'''
 			Golem:
 				'''
 				击败世纪之花后，星辰在命中时会分裂
-							击败神庙的蜥蜴造物以获得更多力量……
+				击败神庙的蜥蜴造物以获得更多力量……
 				'''
 			Cultist:
 				'''
 				击败石巨人后，星辰会自动追踪敌人
-							击败古代邪教领袖以获得更多力量……
+				击败古代邪教领袖以获得更多力量……
 				'''
 			MoonLord:
 				'''
 				击败拜月教邪教徒后，星辰在命中时爆炸
-							击败古神的邪异残躯以获得更多力量……
+				击败古神的邪异残躯以获得更多力量……
 				'''
 			Full: 星火军刀已苏醒，最大威能解禁！
 		}
@@ -483,6 +479,7 @@ Items: {
 			暴击率提高25%
 			暴击额外多造成40点伤害，释放毁灭性火花，并有概率引爆敌人，造成100%额外伤害
 			暴击汲取生命，恢复虚空值并回复法力
+			吸血效果有0.5秒冷却时间
 			免疫流血与中毒效果，并给予你夜视能力
 			'''
 		DefaultTooltip:
@@ -506,10 +503,10 @@ Items: {
 		LoreSerpent.DisplayName: 亚空骇蟒
 		LoreProvi.DisplayName: 星河
 		LoreMirror.DisplayName: 镜像
-		LoreDylan.DisplayName: Dylan
-		// LoreAbominationn.DisplayName: The Abominationn
-		// LoreDeviantt.DisplayName: The Deviantt
-		// LoreMutant.DisplayName: The Mutant
+		LoreDylan.DisplayName: 狄伦
+		LoreAbominationn.DisplayName: 憎恶
+		LoreDeviantt.DisplayName: 戴薇安
+		LoreMutant.DisplayName: 突变体
 	}
 
 	CatastrophicFabricationsMusicBox: {
@@ -699,32 +696,32 @@ Items: {
 			WoF:
 				'''
 				击败地狱守护者以获得更多力量……
-				    		尚未获得额外力量……
+				尚未获得额外力量……
 				'''
 			Mechs:
 				'''
 				随着血肉墙被击败，该武器发射的子弹可造成碎甲效果
-				    		击败机械巨兽以获得更多力量……
+				击败机械造物以获得更多力量……
 				'''
 			Plantera:
 				'''
 				击败嘉登的机器装置后，该武器将普通子弹转换为高速子弹
-				    		击败丛林守护者以获得更多力量……
+				击败丛林守护者以获得更多力量……
 				'''
 			Golem:
 				'''
 				击败世纪之花后，你的怒火使该武器射速大幅增加
-				    		击败神庙的蜥蜴造物以获得更多力量……
+				击败神庙的蜥蜴造物以获得更多力量……
 				'''
 			Cultist:
 				'''
 				击败石巨人后，你开启肾上腺素时将一定会暴击
-				    		击败古代邪教领袖以获得更多力量……
+				击败古代邪教领袖以获得更多力量……
 				'''
 			MoonLord:
 				'''
 				击败拜月教邪教徒后，该武器现在有概率触发超级暴击
-				    		击败古神的邪异残躯以获得更多力量……
+				击败古神的邪异残躯以获得更多力量……
 				'''
 			Full: 鬃岩狼妖已苏醒，最大威能解禁！
 		}
@@ -733,44 +730,44 @@ Items: {
 	}
 
 	CelestialIllumination: {
-		DisplayName: Celestial Illumination
+		DisplayName: 星界启明
 		Tooltip: ""
 
 		Progression: {
 			Deus:
 				'''
-				Defeat the eldritch horror to gain more power...
-				No extra power has been gained...
+				击败古神的邪异残躯以获得更多力量……
+            	尚未获得额外的力量……
 				'''
 			MoonLord:
 				'''
-				With the defeat of the Moon Lord, you fire more stars
-				Defeat the guardians of the profaned flame to gain more power...
+				随着你击败月亮领主，你发射的星辰会更多
+            	击败亵渎之炎的守护者以获得更多力量……
 				'''
 			ProfanedGuardians:
 				'''
-				With the defeat of the Profaned Guardians, you can fire a celestial beam
-				Defeat the Goddess of Flame to gain more power...
+				随着你击败亵渎守卫，你可以发射一道星体光束
+            	击败圣炎女神以获得更多力量……
 				'''
 			Providence:
 				'''
-				With the defeat of Providence, the celestial beam is stronger
-				Defeat the sentinels of the scourge to gain more power...
+				随着你击败亵渎天神，星体光束会更为强大
+            	击败灾虫护卫以获得更多力量……
 				'''
 			Sentinels:
 				'''
-				With the defeat of the Sentinels, the celestial beam lasts longer
-				Defeat the Devourer of Gods to gain more power...
+				随着你击败星宇护卫，星体光束的持续时间更长
+            	击败噬神凶灵以获得更多力量……
 				'''
-			Full: The Celestial Illumination is fully awaked, and its maximum power is unleashed!
+			Full: 星界启明已苏醒，最大威能解禁！
 		}
-
-		Lore: The power of the cosmos is contained within this book...
+		
+		Lore: 寰宇之威封存于此书……
 	}
 
 	Genesis: {
-		// DisplayName: Genesis
-		// Tooltip: ""
+		DisplayName: 创世纪
+		Tooltip: ""
 	}
 
 	ClamitasRelic: {
