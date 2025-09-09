@@ -41,7 +41,7 @@
 		<HintPath>..\ModAssemblies\FargowiltasSouls_v1.7.2.14.dll</HintPath>
 		</Reference>
 		<Reference Include="Luminance">
-		<HintPath>..\ModAssemblies\Luminance_v1.0.9.dll</HintPath>
+		<HintPath>..\ModAssemblies\Luminance_v1.0.12.dll</HintPath>
 		</Reference>
 		<Reference Include="InfernumMode">
 		<HintPath>..\ModAssemblies\InfernumMode_v2.0.1.19.dll</HintPath>

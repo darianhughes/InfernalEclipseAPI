@@ -8,11 +8,12 @@ namespace InfernalEclipseAPI.Core.World
 {
     public class InfernalDownedBossSystem : ModSystem
     {
-        private static bool _downedDreadNautilus;
-        public static bool DownedSentinels()
+        public bool DownedSentinels()
         {
             return CalamityConditions.DownedCeaselessVoid.IsMet() && CalamityConditions.DownedStormWeaver.IsMet() && CalamityConditions.DownedSignus.IsMet();
         }
+        
+        private static bool _downedDreadNautilus;
         public static bool downedDreadNautilus
         {
             get => _downedDreadNautilus;
