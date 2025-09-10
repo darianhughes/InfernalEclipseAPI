@@ -770,7 +770,7 @@ Items: {
 	}
 
 	ClamitasRelic: {
-		DisplayName: 至尊巨蛤，蛤拉弥塔斯炼狱圣物
+		DisplayName: 至尊巨蛤，蛤拉米塔斯炼狱圣物
 		Tooltip: ""
 	}
 
@@ -785,7 +785,7 @@ Items: {
 	}
 
 	NoxusRelic: {
-		DisplayName: 虚无化身炼狱圣物
+		DisplayName: 诺克萨斯炼狱圣物
 		Tooltip: ""
 	}
 
@@ -1242,7 +1242,7 @@ InfernumIntegration: {
 	Clamitas:
 		'''
 		至尊巨蛤
-		蛤拉弥塔斯
+		蛤拉米塔斯
 		'''
 	You:
 		'''
