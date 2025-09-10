@@ -1,6 +1,6 @@
 Items: {
 	EntropicBar: {
-		// DisplayName: Entropic Bar
-		// Tooltip: An awesome looking bar forged from pure entropy.
+		DisplayName: 熵铸晶锭
+		Tooltip: 由纯粹熵锻造而成的奇异结晶
 	}
 }
