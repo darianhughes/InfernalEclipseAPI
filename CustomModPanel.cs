@@ -349,7 +349,9 @@ namespace InfernalEclipseAPI
             var dims = element.GetDimensions();
             
             panelHoverIntensity = MathHelper.Lerp(panelHoverIntensity, element.IsMouseHovering ? 1f : 0f, 0.15f);
-            
+
+            var panelRect = new Rectangle((int)dims.X, (int)dims.Y, (int)dims.Width, (int)dims.Height);
+
             sb.End(out var ss);
             sb.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, 
                 DepthStencilState.None, ss.RasterizerState, panelShader, Main.UIScaleMatrix);
