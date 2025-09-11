@@ -13,7 +13,12 @@ namespace InfernalEclipseAPI.Content.Items.Lore.FargosSouls
 {
     public class LoreAbominationn : LoreItem
     {
-        public override bool IsLoadingEnabled(Mod mod) => !ModLoader.TryGetMod("ssm", out _) && ModLoader.TryGetMod("FargowiltasSouls", out _);
+        public override bool IsLoadingEnabled(Mod mod)
+        { 
+            if (!ModLoader.TryGetMod("FargowiltasSouls", out _)) return false;
+            bool hasCSE = ModLoader.TryGetMod("ssm", out Mod cse) && cse.Version > Version.Parse("1.1.4.2");
+            return !hasCSE;
+        }
 
         public override void SetDefaults()
         {

@@ -35,14 +35,11 @@
 		<Reference Include="FargowiltasSouls">
 		<HintPath>..\ModAssemblies\FargowiltasSouls_v1.7.2.14.dll</HintPath>
 		</Reference>
-		<Reference Include="Luminance">
-		<HintPath>..\ModAssemblies\Luminance_v1.0.12.dll</HintPath>
-		</Reference>
 		<Reference Include="InfernumMode">
 		<HintPath>..\ModAssemblies\InfernumMode_v2.0.1.19.dll</HintPath>
 		</Reference>
 		<Reference Include="Luminance">
-		  <HintPath>..\ModAssemblies\Luminance_v1.0.9.dll</HintPath>
+		  <HintPath>..\ModAssemblies\Luminance_v1.0.12.dll</HintPath>
 		</Reference>
 		<Reference Include="MMHOOK_CalamityMod_v2.0.5">
 		  <HintPath>lib\MMHOOK_CalamityMod_v2.0.5.dll</HintPath>
@@ -66,7 +63,7 @@
 		<HintPath>..\ModAssemblies\SOTS_v0.24.1.4.dll</HintPath>
 		</Reference>
 		<Reference Include="SubworldLibrary">
-		  <HintPath>..\ModAssemblies\SubworldLibrary_v2.2.3.1.dll</HintPath>
+		  <HintPath>..\ModAssemblies\SubworldLibrary_v2.2.3.2.dll</HintPath>
 		</Reference>
 		<Reference Include="ThoriumMod">
 		<HintPath>..\ModAssemblies\ThoriumMod_v1.7.2.4.dll</HintPath>

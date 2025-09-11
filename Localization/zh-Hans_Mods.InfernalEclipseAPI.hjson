@@ -33,7 +33,7 @@ WelcomeMessage: {
 	InfernumActive: 身负异兆之人归来，再度直面炼狱蚀光……
 	MPConnect: 一位异兆之人再度降临炼狱……
 	InfernumForced: 炼狱能量已注入此界……
-	RagnarokBalance: 注意：为确保武器平衡按预期生效，请在 Ragnarok 的模组配置中将“Generic Weapon Tweaks”选项关闭，否则改动会叠加，使武器强度远超预期。  
+	RagnarokBalance: 注意：为确保武器平衡按预期生效，请在 Ragnarok 的模组配置中将“Generic Weapon Tweaks”选项关闭，否则改动会叠加，使武器强度远超预期。
 	RagnarokRework: 提示：检测到你同时启用了 Ragnarok 模组和 Thorium Bosses Reworked。为获得预期的游戏体验，请在 Ragnarok 模组配置中将所有 Boss 选项切换到 Thorium Bosses Reworked。
 }
 
@@ -237,7 +237,7 @@ ItemTooltip: {
 			飞升有40秒冷却时间
 			'''
 		GildedVoid: 激活时的虚空消耗值增加 3
-		CalSoaringNerf: [灾厄]：不再允许无限飞行
+		CalSoaringNerf: "[灾厄]：不再允许无限飞行"
 	}
 
 	AmmoConversion.Mycelium: 发射真菌弹幕

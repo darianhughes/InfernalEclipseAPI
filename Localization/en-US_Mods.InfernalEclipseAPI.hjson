@@ -237,7 +237,7 @@ ItemTooltip: {
 			Ascension has a 40 second cooldown
 			'''
 		GildedVoid: Increases void drain by 3 while active
-		CalSoaringNerf: [Calamity]: No longer allows infinite flight
+		CalSoaringNerf: "[Calamity]: No longer allows infinite flight"
 	}
 
 	AmmoConversion.Mycelium: Fires barrages of Mycelium
