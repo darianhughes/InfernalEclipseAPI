@@ -103,7 +103,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
             }
         }
 
-        public void AddTooltip(List<TooltipLine> tooltips, string stealthTooltip, bool InfernalRedActive = false)
+        public void AddTooltip(List<TooltipLine> tooltips, string stealthTooltip, bool InfernalRedActive = false, bool CalNerf = false)
         {
             Color InfernalRed = Color.Lerp(
                Color.White,
@@ -134,6 +134,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                 TooltipLine customLine = new TooltipLine(Mod, "StealthTooltip", stealthTooltip);
                 if (InfernalRedActive)
                     customLine.OverrideColor = InfernalRed;
+                if (CalNerf)
+                    customLine.OverrideColor = Color.Red;
 
                 tooltips.Insert(insertIndex, customLine);
             }
@@ -149,11 +151,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                new Color(255, 80, 0), // Infernal red/orange
                (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
-            string spirtInfo1 = "Increases void gain by 1 and void regeneration speed by 25%";
-            string spirtInfo2 = "Doubles damage done to non-Lux spirit enemies";
-            string accendInfo1 = "Increases movement and jump speed by 10% and acceleration by 1.1x";
-            string accendInfo2 = "Pressing the Ascendant Insignia keybind will give you the power of ascension, providing infinite flight time for 4 seconds";
-            string accendInfo3 = "Ascension has a 40 second cooldown";
+            string spirtInfo1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SpiritInsignia");
+            string accendInfo1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.AscendantInsignia");
 
             string gildedInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Gilded");
 
@@ -170,38 +169,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
 
             if (item.type == ModContent.ItemType<AscendantInsignia>())
             {
-                tooltips.Add(new TooltipLine(Mod, "SpiritInfo", spirtInfo1)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
-                tooltips.Add(new TooltipLine(Mod, "SpiritInfo2", spirtInfo2)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
+                AddTooltip(tooltips, spirtInfo1, true);
             }
 
             if (item.type == sots.Find<ModItem>("GildedBladeWings").Type)
             {
-                tooltips.Add(new TooltipLine(Mod, "VoidDrain", "Increases void drain by 3 while active")
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
-                tooltips.Add(new TooltipLine(Mod, "AInfo", accendInfo1)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
-                tooltips.Add(new TooltipLine(Mod, "AInfo2", accendInfo2)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
-                tooltips.Add(new TooltipLine(Mod, "AInfo3", accendInfo3)
-                {
-                    OverrideColor = new Color?(InfernalRed)
-                });
-                tooltips.Add(new TooltipLine(Mod, "CalamityNerf", "[Calamity]: No longer allows infinite flight")
-                {
-                    OverrideColor = Color.Red
-                });
+                AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.GildedVoid"), true);
+                AddTooltip(tooltips, accendInfo1, true);
+                AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CalSoaringNerf"), CalNerf: true);
             }
 
             if (calFargo != null)

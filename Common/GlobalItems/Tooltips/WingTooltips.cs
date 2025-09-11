@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 {
@@ -24,14 +25,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 
             if (item.type == subspaceWings.Type)
             {
-                tooltips.Add(new TooltipLine(Mod, "WingInfo", "Also increases life regen by 5")
+                tooltips.Add(new TooltipLine(Mod, "WingInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.WingInfo.5"))
                 {
                     OverrideColor = Color.White
                 });
             }
             else if (item.type == terrariumWings.Type)
             {
-                tooltips.Add(new TooltipLine(Mod, "WingInfo", "Also increases life regen by 10")
+                tooltips.Add(new TooltipLine(Mod, "WingInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.WingInfo.10"))
                 {
                     OverrideColor = Color.White
                 });
@@ -41,9 +42,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
             {
                 Color color = Color.White;
 
-                string str = "Allows for Ivory Flares to proc twice as fast while wearing the White Dwarf Armor";
+                string str = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.WingInfo.FasterIvory");
 
-                tooltips.Add(new TooltipLine(Mod, "MjolnirInfo", str)
+                tooltips.Add(new TooltipLine(Mod, "WingInfo", str)
                 {
                     OverrideColor = color
                 });

@@ -33,9 +33,13 @@ WelcomeMessage: {
 	InfernumActive: 身负异兆之人归来，再度直面炼狱蚀光……
 	MPConnect: 一位异兆之人再度降临炼狱……
 	InfernumForced: 炼狱能量已注入此界……
+	RagnarokBalance: 注意：为确保武器平衡按预期生效，请在 Ragnarok 的模组配置中将“Generic Weapon Tweaks”选项关闭，否则改动会叠加，使武器强度远超预期。  
+	RagnarokRework: 提示：检测到你同时启用了 Ragnarok 模组和 Thorium Bosses Reworked。为获得预期的游戏体验，请在 Ragnarok 模组配置中将所有 Boss 选项切换到 Thorium Bosses Reworked。
 }
 
 ItemTooltip: {
+	BasicDamage: 基本伤害
+	OmniShield: -至高神盾-
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
 	SBeamUsage: 长按左键，发射神话魔法伤害的光束
@@ -214,10 +218,43 @@ ItemTooltip: {
 		OmniIns: 最大灵感值增加5
 		OmniEmp: 每拥有一种咒音增幅使移动速度增加2%，音波演奏速度增加1%
 		ShinobiNerf: 这个效果有2秒冷却时间
+		ShinobiEffect:
+			'''
+			投掷暴击率提高 6%
+			连续两次投掷暴击将释放暗影闪电，并短暂提升投掷速度
+			这个效果有 2 秒冷却时间
+			'''
 		CloverNerf: 吸血效果有0.5秒冷却时间
+		SpiritInsignia:
+			'''
+			增加1点虚空恢复量，并增加25%虚空恢复速度
+			对除了辉光圣魂以外的灵魂敌怪造成双倍伤害
+			'''
+		AscendantInsignia:
+			'''
+			移动和跳跃速度提高10%，加速度提高至1.1倍
+			按下进升证章按键会给予你飞升之力，提供4秒的无限飞行时间
+			飞升有40秒冷却时间
+			'''
+		GildedVoid: 激活时的虚空消耗值增加 3
+		CalSoaringNerf: [灾厄]：不再允许无限飞行
 	}
 
 	AmmoConversion.Mycelium: 发射真菌弹幕
+
+	WingInfo: {
+		5: +5HP/s生命再生
+		10: +10HP/s生命再生
+		FasterIvory: 在装备白矮星护甲时，象牙状火焰的触发速度提升至两倍
+	}
+
+	MythicTooltips: {
+		// Base: -{0} Signature Weapon-
+		// Argus: Argus'
+		// Your: Your
+		// Draedon: Draedon's
+		// Solyn: Solyn's
+	}
 
 	AstrageldonRelic: {
 		Line1: 你为自己选择了巨大的苦难。

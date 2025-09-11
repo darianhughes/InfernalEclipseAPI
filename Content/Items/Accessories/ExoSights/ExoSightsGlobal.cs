@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
+﻿using System.Collections.Generic;
+using Terraria.Localization;
 using ThoriumMod;
 using ThoriumMod.Utilities;
 
@@ -29,7 +24,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
            {
                 int index = tooltips.FindIndex((Predicate<TooltipLine>)(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Tooltip0")));
                 if (index != -1)
-                    tooltips.Insert(index, new TooltipLine(Mod, "AccessoryDamage", "15% basic damage"));
+                    tooltips.Insert(index, new TooltipLine(Mod, "AccessoryDamage", $"15% {Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.BasicDamage")}"));
            }
         }
     }

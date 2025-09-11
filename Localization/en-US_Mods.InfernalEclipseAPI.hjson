@@ -33,9 +33,13 @@ WelcomeMessage: {
 	InfernumActive: The prodigy has returned to face the Infernal Eclipse...
 	MPConnect: A prodigy has returned to help face the Infernal Eclipse...
 	InfernumForced: Infernal energy has been infused into this world...
+	RagnarokBalance: NOTICE: For the Balancing of weapons to be as intended, set the Ragnarok mod config of 'Generic Weapon Tweaks' to OFF, as otherwise the changes will stack and weapons will be far stronger than intended.
+	RagnarokRework: NOTICE: It is detected that you have both the Ragnarok mod and Thorium Bosses Reworked enabled. For the intended experience, turn all the boss toggles in the Ragnarok Boss Config to Thorium Bosses Reworked.
 }
 
 ItemTooltip: {
+	BasicDamage: basic damage
+	OmniShield: -Omni Shield-
 	Playtester: - Playtester Item -
 	Contributor: - Contributor Item -
 	SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
@@ -214,10 +218,43 @@ ItemTooltip: {
 		OmniIns: Increase maximum inspiration by 5
 		OmniEmp: Each unique empowerment you have increases movement speed by 2% and playing speed by 1%
 		ShinobiNerf: This effect has a cooldowwn of 2 seconds
+		ShinobiEffect:
+			'''
+			6% increased throwing critical strike chance
+			Dealing two consecutive throwing critical strikes will discharge dark lightning and increase throwing speed briefly
+			This effect has a cooldown of 2 seconds.
+			'''
 		CloverNerf: Life steal has a 0.5 second cooldown
+		SpiritInsignia:
+			'''
+			Increases void gain by 1 and void regeneration speed by 25%
+			Doubles damage done to non-Lux spirit enemies
+			'''
+		AscendantInsignia:
+			'''
+			Increases movement and jump speed by 10% and acceleration by 1.1x
+			Pressing the Ascendant Insignia keybind will give you the power of ascension, providing infinite flight time for 4 seconds
+			Ascension has a 40 second cooldown
+			'''
+		GildedVoid: Increases void drain by 3 while active
+		CalSoaringNerf: [Calamity]: No longer allows infinite flight
 	}
 
 	AmmoConversion.Mycelium: Fires barrages of Mycelium
+
+	WingInfo: {
+		5: Also increases life regen by 5
+		10: Also increases life regen by 10
+		FasterIvory: Allows for Ivory Flares to activate twice as fast while wearing the White Dwarf Armor
+	}
+
+	MythicTooltips: {
+		Base: -{0} Signature Weapon-
+		Argus: Argus'
+		Your: Your
+		Draedon: Draedon's
+		Solyn: Solyn's
+	}
 
 	AstrageldonRelic: {
 		Line1: You have chosen great suffering for yourself.
@@ -1225,7 +1262,7 @@ DamageClasses: {
 	MythicMelee.DisplayName: mythic melee damage
 	MythicMagic.DisplayName: mythic magic damage
 	MythicRanged.DisplayName: mythic ranged damage
-	LegendaryMagic.DisplayName: Legendary Magic
+	LegendaryMagic.DisplayName: legendary magic damage
 }
 
 BossRushIntroText1:

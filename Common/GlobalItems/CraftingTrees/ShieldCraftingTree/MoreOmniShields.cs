@@ -9,6 +9,7 @@ using ThoriumMod.Items;
 using System.Reflection;
 using CalamityMod.Items.Accessories;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {
@@ -93,13 +94,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            
             if (souls != null)
             {
                 if (item.type == souls.Find<ModItem>("ColossusSoul").Type)
                 {
                     int index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
                     if (index != -1)
-                        tooltips.Insert(index + 1, new TooltipLine(Mod, "AccessoryWarning", "-Omni Shield-")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "AccessoryWarning", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.OmniShield"))
                         {
                             OverrideColor = new Color?(new Color(102, byte.MaxValue, byte.MaxValue))
                         });
@@ -111,7 +113,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 {
                     int index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
                     if (index != -1)
-                        tooltips.Insert(index + 1, new TooltipLine(((ModType)this).Mod, "AccessoryWarning", "-Omni Shield-")
+                        tooltips.Insert(index + 1, new TooltipLine(((ModType)this).Mod, "AccessoryWarning", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.OmniShield"))
                         {
                             OverrideColor = new Color?(new Color(102, (int)byte.MaxValue, (int)byte.MaxValue))
                         });
@@ -123,7 +125,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 {
                     int index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
                     if (index != -1)
-                        tooltips.Insert(index + 1, new TooltipLine(((ModType)this).Mod, "AccessoryWarning", "-Omni Shield-")
+                        tooltips.Insert(index + 1, new TooltipLine(((ModType)this).Mod, "AccessoryWarning", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.OmniShield"))
                         {
                             OverrideColor = new Color?(new Color(102, (int)byte.MaxValue, (int)byte.MaxValue))
                         });
@@ -133,7 +135,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             {
                 int index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
                 if (index != -1)
-                    tooltips.Insert(index + 1, new TooltipLine(((ModType)this).Mod, "AccessoryWarning", "-Omni Shield-")
+                    tooltips.Insert(index + 1, new TooltipLine(((ModType)this).Mod, "AccessoryWarning", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.OmniShield"))
                     {
                         OverrideColor = new Color?(new Color(102, (int)byte.MaxValue, (int)byte.MaxValue))
                     });

@@ -18,6 +18,7 @@ using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
 using RevengeancePlus;
 using CalamityMod.Items;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -3835,7 +3836,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Shinobi Sigil
                     if (UnsafeGetItem(thorium, "ShinobiSigil", item))
                     {
-                        TrySetAccessoryDamage(item, "25% basic damage");
+                        TrySetAccessoryDamage(item, $"25% {Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.BasicDamage")}");
                     }
                     #endregion
 

@@ -148,7 +148,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
             int index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
             if (index != -1)
             {
-                tooltips.Insert(index + 1, new TooltipLine(Mod, "SignatureWeapon", $"-Solyn's Signature Weapon-")
+                tooltips.Insert(index + 1, new TooltipLine(Mod, "SignatureWeapon", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MythicTooltips.Base", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MythicTooltips.Solyn")))
                 {
                     OverrideColor = Color.Cyan
                 });

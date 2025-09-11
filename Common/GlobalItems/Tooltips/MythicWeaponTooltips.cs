@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using YouBoss.Content.Items.ItemReworks;
 using CalamityMod.Items.Weapons.DraedonsArsenal;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 {
@@ -24,7 +25,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                 if (item.type == ModContent.ItemType<Myrindael>())
                 {
                     canAddTooltip = true;
-                    importantName = "Argus'";
+                    importantName = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MythicTooltips.Argus");
                 }
 
                 if (ModLoader.TryGetMod("YouBoss", out Mod you))
@@ -32,19 +33,19 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                     if (item.type == you.Find<ModItem>("FirstFractal").Type)
                     {
                         canAddTooltip = true;
-                        importantName = "Your";
+                        importantName = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MythicTooltips.Your");
                     }
                 }
 
                 if (item.type == ModContent.ItemType<PulseRifle>())
                 {
                     canAddTooltip = true;
-                    importantName = "Draedon's";
+                    importantName = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MythicTooltips.Draedon");
                 }
 
                 if (canAddTooltip)
                 {
-                    tooltips.Insert(index + 1, new TooltipLine(Mod, "SignatureWeapon", $"-{importantName} Signature Weapon-")
+                    tooltips.Insert(index + 1, new TooltipLine(Mod, "SignatureWeapon", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MythicTooltips.Base", importantName))
                     {
                         OverrideColor = Color.Cyan
                     });

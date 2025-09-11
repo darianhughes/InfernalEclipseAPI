@@ -12,6 +12,7 @@ using InfernalEclipseAPI.Core.Players.ThoriumMulticlassNerf;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
+    [ExtendsFromMod("ThoriumMod")]
     public class AntiHealerMulticlassCheck : GlobalItem
     {
         public override bool? UseItem(Item item, Player player)

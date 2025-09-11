@@ -28,6 +28,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 
         public override void PreUpdate()
         {
+            if (Player.HeldItem.type != ModContent.ItemType<ChaosBlaster>()) return;
+
             bool flag = Main.mouseRight && Player.HeldItem.type == ModContent.ItemType<ChaosBlaster>();
             if (flag && !wasRightClickHeld && !IsFlying) StartFlying();
             if (!flag && wasRightClickHeld && IsFlying) StopFlying();
@@ -60,6 +62,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 
         private void UpdateFlight()
         {
+            if (Player.HeldItem.type != ModContent.ItemType<ChaosBlaster>()) return;
+
             // Shift trail positions
             for (int i = OldPositions.Length - 1; i > 0; --i)
                 OldPositions[i] = OldPositions[i - 1];
@@ -122,6 +126,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 
         public override void PostUpdate()
         {
+            if (Player.HeldItem.type != ModContent.ItemType<ChaosBlaster>()) return;
+
             if (!IsFlying)
                 return;
 
