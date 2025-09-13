@@ -34,7 +34,7 @@ WelcomeMessage: {
 	MPConnect: 一位异兆之人再度降临炼狱……
 	InfernumForced: 炼狱能量已注入此界……
 	RagnarokBalance: 注意：为确保武器平衡按预期生效，请在 Ragnarok 的模组配置中将“Generic Weapon Tweaks”选项关闭，否则改动会叠加，使武器强度远超预期。
-	RagnarokRework: 提示：检测到你同时启用了 Ragnarok 模组和 Thorium Bosses Reworked。为获得预期的游戏体验，请在 Ragnarok 模组配置中将所有 Boss 选项切换到 Thorium Bosses Reworked。
+	RagnarokRework: 注意：检测到你同时启用了 Ragnarok 模组和 Thorium Bosses Reworked。为获得预期的游戏体验，请在 Ragnarok 模组配置中将所有 Boss 选项切换到 Thorium Bosses Reworked。
 }
 
 ItemTooltip: {
@@ -249,11 +249,11 @@ ItemTooltip: {
 	}
 
 	MythicTooltips: {
-		// Base: -{0} Signature Weapon-
-		// Argus: Argus'
-		// Your: Your
-		// Draedon: Draedon's
-		// Solyn: Solyn's
+		Base: -{0}的本命武器-
+		Argus: 阿尔戈斯
+		Your: 你
+		Draedon: 嘉登
+		Solyn: 索琳
 	}
 
 	AstrageldonRelic: {
@@ -437,7 +437,7 @@ Items: {
 		Tooltip:
 			'''
 			右键朝光标方向突进，在终点施展旋转斩击，并迸发多道追踪的剑光
-			水晶之瑕的第十四形态，由赞恩·古里奇所执
+			故障水晶的第十四形态，由赞恩·古里奇所执
 			'''
 	}
 
@@ -802,7 +802,7 @@ Items: {
 	}
 
 	Genesis: {
-		DisplayName: 创世纪
+		DisplayName: 创 世 纪
 		Tooltip: ""
 	}
 
