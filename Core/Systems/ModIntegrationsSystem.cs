@@ -153,9 +153,118 @@ namespace InfernalEclipseAPI.Core.Systems
             {
                 MakeCard(you.Find<ModNPC>("TerraBladeBoss").Type, (horz, anim) => Color.Lerp(Color.LimeGreen, Color.Green, anim), "You", SoundID.MenuTick, new SoundStyle("InfernalEclipseAPI/Assets/Sounds/Custom/TerraBlade/Split"));
             }
+            if (ModLoader.TryGetMod("NoxusBoss", out Mod noxus))
+            {
+                int marsType = noxus.Find<ModNPC>("MarsBody").Type;
+                string textKey = "Mods.InfernalEclipseAPI.InfernumIntegration.Mars";
+                LocalizedText introText = Language.GetOrRegister(textKey);
+                
+                // Initialize the intro screen
+                object intro = Infernum.Call(
+                    "InitializeIntroScreen",
+                    introText,
+                    150,                            // display time
+                    true,                           // center text?
+                    (Func<bool>)(() => NPC.AnyNPCs(marsType)),
+                    (Func<float, float, Color>)((completionRatio, _) =>
+                    {
+                        // Base gradient between pink and yellow
+                        Color baseColor = Color.Lerp(Color.HotPink, Color.Yellow, completionRatio);
+
+                        // Pulsing white shine emphasis near the end
+                        float pulse = MathF.Sin(completionRatio * MathF.PI * 4f + Main.GlobalTimeWrappedHourly * 5f) * 0.5f + 0.5f;
+                        float t = Terraria.Utils.GetLerpValue(0.8f, 1f, pulse, true);
+
+                        return Color.Lerp(baseColor, Color.White, t);
+                    })
+                );
+
+                // Scale, sounds, and behavior
+                Infernum.Call("SetupTextScale", intro, 1.15f);
+
+                var spawn = new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition", SoundType.Sound)
+                {
+                    Volume = 1.5f,
+                    PitchVariance = 0.05f,
+                    MaxInstances = 1
+                };
+
+                Infernum.Call(
+                    "SetupMainSound",
+                    intro,
+                    (Func<int, int, float, float, bool>)((t, _, __, ___) => true),
+                    (Func<SoundStyle>)(() => spawn)
+                );
+
+                Infernum.Call("SetupLetterAdditionSound", intro, (Func<SoundStyle>)(() => SoundID.NPCHit4));
+                Infernum.Call("SetupLetterDisplayCompletionRatio", intro, (Func<int, float>)(count => count / 10f));
+                
+                // Register and optional completion effects
+                Infernum.Call("RegisterIntroScreen", intro);
+                Infernum.Call("SetupCompletionEffects", intro, (Action)(() => { }));
+
+                // Add Avatar of Emptiness card
+                int avatarType = noxus.Find<ModNPC>("AvatarOfEmptiness").Type;
+                string avatarTextKey = "Mods.InfernalEclipseAPI.InfernumIntegration.AvatarOfEmptiness";
+                LocalizedText avatarIntroText = Language.GetOrRegister(avatarTextKey);
+
+                // Initialize the intro screen
+                object avatarIntro = Infernum.Call(
+                    "InitializeIntroScreen",
+                    avatarIntroText,
+                    900,                            // display time (700 delay + 200 text)
+                    true,                           // center text?
+                    (Func<bool>)(() => NPC.AnyNPCs(avatarType)),
+                    (Func<float, float, Color>)((completionRatio, _) =>
+                    {
+                        // Base gradient from blood maroon red to dark purple blue
+                        Color baseColor = Color.Lerp(Color.Maroon, Color.DarkSlateBlue, completionRatio);
+
+                        // Flash to black effect
+                        float flashPulse = MathF.Sin(completionRatio * MathF.PI * 4f + Main.GlobalTimeWrappedHourly * 8f) * 0.5f + 0.5f;
+                        float flashIntensity = MathF.Pow(flashPulse, 4f) * 0.7f;
+
+                        return Color.Lerp(baseColor, Color.Gray, flashIntensity);
+                    })
+                );
+
+                // Scale, sounds, and behavior
+                Infernum.Call("SetupTextScale", avatarIntro, 1.15f);
+
+                var avatarSpawn = new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition", SoundType.Sound)
+                {
+                    Volume = 1.5f,
+                    PitchVariance = 0.05f,
+                    MaxInstances = 1
+                };
+
+                Infernum.Call(
+                    "SetupMainSound",
+                    avatarIntro,
+                    (Func<int, int, float, float, bool>)((t, _, __, ___) => t == 0),
+                    (Func<SoundStyle>)(() => avatarSpawn)
+                );
+
+                Infernum.Call("SetupLetterAdditionSound", avatarIntro, (Func<SoundStyle>)(() => SoundID.NPCHit4));
+                Infernum.Call("SetupLetterDisplayCompletionRatio", avatarIntro, (Func<int, float>)(animationTimer =>
+                {
+                    // Wait 750 frames before starting text display
+                    if (animationTimer < 700) return 0f;
+
+                    return (animationTimer - 700) / 10f;
+                }));
+
+                // Register and optional completion effects
+                Infernum.Call("RegisterIntroScreen", avatarIntro);
+                Infernum.Call("SetupCompletionEffects", avatarIntro, (Action)(() => { }));
+            }
             if (ModLoader.TryGetMod("Clamity", out Mod clam))
             {
                 MakeCard(clam.Find<ModNPC>("ClamitasBoss").Type, (horz, anim) => Color.Lerp(Color.RosyBrown, Color.Red, anim), "Clamitas", SoundID.Item100, new SoundStyle("CalamityMod/Sounds/Custom/Providence/ProvidenceSpawn"));
+            }
+            if (ModLoader.TryGetMod("HypnosMod", out Mod hypnos))
+            {
+                MakeCard(hypnos.Find<ModNPC>("HypnosBoss").Type, (horz, anim) => Color.Lerp(Color.DeepPink, Color.MistyRose, anim), "HypnosBoss", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"), 240);
             }
             if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst) && !ModLoader.TryGetMod("CnI", out _))
             {
@@ -217,23 +326,23 @@ namespace InfernalEclipseAPI.Core.Systems
             // Initialize the base instance for the intro card. Alternative effects may be added separately.
             Func<float, float, Color> textColorSelectionDelegate = color;
             object instance = Infernum.Call("InitializeIntroScreen", Mod.GetLocalization("InfernumIntegration." + title), time, true, condition, textColorSelectionDelegate);
-            Infernum.Call("IntroScreenSetupLetterDisplayCompletionRatio", instance, new Func<int, float>(animationTimer => MathHelper.Clamp(animationTimer / (float)time * 1.36f, 0f, 1f)));
+            Infernum.Call("SetupLetterDisplayCompletionRatio", instance, new Func<int, float>(animationTimer => MathHelper.Clamp(animationTimer / (float)time * 1.36f, 0f, 1f)));
 
             // dnc but needed or else it errors
             Action onCompletionDelegate = () => { };
-            Infernum.Call("IntroScreenSetupCompletionEffects", instance, onCompletionDelegate);
+            Infernum.Call("SetupCompletionEffects", instance, onCompletionDelegate);
 
             // Letter addition sound.
             Func<SoundStyle> chooseLetterSoundDelegate = () => tickSound;
-            Infernum.Call("IntroScreenSetupLetterAdditionSound", instance, chooseLetterSoundDelegate);
+            Infernum.Call("SetupLetterAdditionSound", instance, chooseLetterSoundDelegate);
 
             // Main sound.
             Func<SoundStyle> chooseMainSoundDelegate = () => endSound;
             Func<int, int, float, float, bool> why = (_, _2, _3, _4) => true;
-            Infernum.Call("IntroScreenSetupMainSound", instance, why, chooseMainSoundDelegate);
+            Infernum.Call("SetupMainSound", instance, why, chooseMainSoundDelegate);
 
             // Text scale.
-            Infernum.Call("IntroScreenSetupTextScale", instance, size);
+            Infernum.Call("SetupTextScale", instance, size);
 
             // Register the intro card.
             Infernum.Call("RegisterIntroScreen", instance);
