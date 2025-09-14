@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using ThoriumMod;
-using Terraria.ID;
+﻿using ThoriumMod;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
@@ -37,10 +34,6 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumMulticlassNerf
             var mi = item?.ModItem;
             if (mi is null) return false;
 
-            // If you can reference the types directly, prefer:
-            // return mi is HealerTool || mi is HealerToolDamageHybrid;
-
-            // Fallback by name to avoid hard refs if needed:
             string typeName = mi.GetType().Name;
             return typeName == "HealerTool" || typeName == "HealerToolDamageHybrid";
         }
@@ -154,6 +147,19 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumMulticlassNerf
             // Healer projectile during active window -> apply debuff
             if (switchToHealerPenaltyTimer > 0)
                 Player.AddBuff(ModContent.BuffType<BrokenOath>(), switchToHealerPenaltyTimer);
+        }
+
+        public override void PostUpdateMiscEffects()
+        {
+            InfernalPlayer infernalPlayer = Player.GetModPlayer<InfernalPlayer>();
+            if (infernalPlayer.soltanBullying)
+            {
+                float emptySummonSlots = Player.maxMinions - Player.slotsMinions;
+                ref StatModifier melee = ref Player.GetDamage(ThoriumDamageBase<BardDamage>.Instance);
+                melee += (float)(0.02 * emptySummonSlots);
+                ref StatModifier ranged = ref Player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance);
+                ranged += (float)(0.02 * emptySummonSlots);
+            }
         }
     }
 }

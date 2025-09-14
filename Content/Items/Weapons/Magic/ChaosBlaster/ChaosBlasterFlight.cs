@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 {
+    [ExtendsFromMod("NoxusBoss")]
     public class ChaosBlasterFlight : ModPlayer, IPixelatedPrimitiveRenderer
     {
         private const float FlightSpeed = 21f;

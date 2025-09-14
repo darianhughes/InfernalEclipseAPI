@@ -14,6 +14,7 @@ using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Projectiles.Rogue;
 using CalamityMod.NPCs.SupremeCalamitas;
+using InfernalEclipseAPI.Core.DamageClasses;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -125,6 +126,18 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (namelessDialogueCooldown <= 0)
                 InfernalWorld.namelessDeveloperDiagloguePlayed = false;
+
+            soltanBullying = false;
+            HarvestMoonBuff = false;
+        }
+
+        public override void PreUpdate()
+        {
+            if (Player.ZoneLihzhardTemple && !NPC.downedPlantBoss)
+            {
+                Player.statLife -= 1;
+                Player.AddBuff(BuffID.PotionSickness, 60);
+            }
         }
 
         public override void PostUpdate()
@@ -206,6 +219,57 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
+        public bool soltanBullying = false;
+        public bool HarvestMoonBuff = false;
+
+        public override void PostUpdateMiscEffects()
+        {
+            if (soltanBullying)
+            {
+                float emptySummonSlots = Player.maxMinions - Player.slotsMinions;
+                ref StatModifier melee = ref Player.GetDamage(DamageClass.Melee);
+                melee += (float)(0.02 * emptySummonSlots);
+                ref StatModifier ranged = ref Player.GetDamage(DamageClass.Ranged);
+                ranged += (float)(0.02 * emptySummonSlots);
+                ref StatModifier magic = ref Player.GetDamage(DamageClass.Magic);
+                magic += (float)(0.02 * emptySummonSlots);
+                ref StatModifier throwing = ref Player.GetDamage(DamageClass.Throwing);
+                throwing += (float)(0.02 * emptySummonSlots);
+
+                ref StatModifier summon = ref Player.GetDamage(DamageClass.Summon);
+                summon -= (float)(0.1 * Player.slotsMinions);
+            }
+        }
+
+        public void ConvertSummonMeleeToMelee(Player player, Item item, ref StatModifier damage)
+        {
+            if (item.DamageType == ModContent.GetInstance<MeleeWhip>())
+                item.DamageType = DamageClass.SummonMeleeSpeed;
+
+            if (!soltanBullying || item is null || item.IsAir)
+                return;
+
+            var summonMeleeSpeed = ModContent.GetInstance<SummonMeleeSpeedDamageClass>();
+            if (!item.CountsAsClass(summonMeleeSpeed))
+                return;
+
+            // Replace the item's damage scaling with Melee scaling:
+            /*
+            float meleeScale = player.GetTotalDamage(DamageClass.Melee).ApplyTo(1f);
+            float sourceScale = player.GetTotalDamage(summonMeleeSpeed).ApplyTo(1f);
+            float ratio = meleeScale / MathF.Max(sourceScale, 1e-6f);
+            */
+            item.DamageType = ModContent.GetInstance<MeleeWhip>();
+
+            //damage *= ratio;       // mimic Melee scaling
+            damage *= 1.10f;       // extra 10% while SoltanBullying
+        }
+
+        public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
+        {
+            ConvertSummonMeleeToMelee(Player, item, ref damage);
+        }
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Player.whoAmI != Main.myPlayer) return;
@@ -231,13 +295,29 @@ namespace InfernalEclipseAPI.Core.Players
                 hit.Damage -= (int)(hit.Damage * 0.2);
             }
         }
+    }
 
-        public override void PreUpdate()
+    public class SoltanGlobalProjectile : GlobalProjectile
+    {
+        public override bool InstancePerEntity => true;
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (Player.ZoneLihzhardTemple && !NPC.downedPlantBoss)
+            int owner = projectile.owner;
+            if (owner < 0 || owner >= Main.maxPlayers)
+                return;
+
+            Player p = Main.player[owner];
+            var mp = p.GetModPlayer<InfernalPlayer>();
+            if (!mp.soltanBullying)
+                return;
+
+            var summonMeleeSpeed = ModContent.GetInstance<SummonMeleeSpeedDamageClass>();
+            if (projectile.DamageType == summonMeleeSpeed)
             {
-                Player.statLife -= 1;
-                Player.AddBuff(BuffID.PotionSickness, 60);
+                // Make the projectile actually "be" Melee so Melee-only effects can see it.
+                projectile.DamageType = DamageClass.Melee;
+                projectile.netUpdate = true;
             }
         }
     }

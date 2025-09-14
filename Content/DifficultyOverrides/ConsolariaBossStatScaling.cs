@@ -57,7 +57,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     npc.lifeMax += (int)(((double).25 * (double)npc.lifeMax));
                 }
 
-                npc.lifeMax += (int)(0.35 * npc.lifeMax);
+                npc.lifeMax += (int)(0.30 * npc.lifeMax);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                         npc.lifeMax += (int)(((double).2 * (double)npc.lifeMax));
                     }
 
-                    npc.lifeMax += (int)(0.25 * npc.lifeMax);
+                    npc.lifeMax += (int)(0.20 * npc.lifeMax);
                 }
                 else if (GetCalDifficulty("death"))
                 {
@@ -79,7 +79,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                         npc.lifeMax += (int)(((double).15 * (double)npc.lifeMax));
                     }
 
-                    npc.lifeMax += (int)(0.2 * npc.lifeMax);
+                    npc.lifeMax += (int)(0.15 * npc.lifeMax);
                 }
                 else if (GetCalDifficulty("revengeance"))
                 {
@@ -89,7 +89,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                         npc.lifeMax += (int)(((double).1 * (double)npc.lifeMax));
                     }
 
-                    npc.lifeMax += (int)(0.1 * npc.lifeMax);
+                    npc.lifeMax += (int)(0.05 * npc.lifeMax);
                 }
             }
         }
@@ -98,21 +98,21 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                modifiers.SourceDamage *= 1.35f;
+                modifiers.SourceDamage *= 1.25f;
             }
             else
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    modifiers.SourceDamage *= 1.25f;
+                    modifiers.SourceDamage *= 1.20f;
                 }
                 else if (GetCalDifficulty("death"))
                 {
-                    modifiers.SourceDamage *= 1.2f;
+                    modifiers.SourceDamage *= 1.15f;
                 }
                 else if (GetCalDifficulty("revengeance"))
                 {
-                    modifiers.SourceDamage *= 1.1f;
+                    modifiers.SourceDamage *= 1.05f;
                 }
             }
         }

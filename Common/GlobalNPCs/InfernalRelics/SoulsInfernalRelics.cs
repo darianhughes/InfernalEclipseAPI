@@ -13,8 +13,10 @@ using FargowiltasSouls.Content.Bosses.CursedCoffin;
 using FargowiltasSouls.Content.Bosses.DeviBoss;
 using FargowiltasSouls.Content.Bosses.MutantBoss;
 using FargowiltasSouls.Content.Bosses.TrojanSquirrel;
+using InfernalEclipseAPI.Content.Items.Accessories;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.FargosSouls;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
@@ -85,6 +87,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (npc.type == ModContent.NPCType<WillChampion>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<WillChampionRelic>());
+            }
+
+            if (ModLoader.TryGetMod("ssm", out Mod CSE))
+            {
+                if (npc.type == CSE.Find<ModNPC>("MutantEX").Type)
+                {
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoltanBullyingSlip>()));
+                }
             }
         }
     }

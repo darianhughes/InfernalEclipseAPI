@@ -151,7 +151,7 @@ namespace InfernalEclipseAPI
                     }
                     break;
 
-                case InfernalEclipseMessageType.ThoriumEmpowerment: // NEW BRANCH
+                case InfernalEclipseMessageType.ThoriumEmpowerment:
                     {
                         if (!ModLoader.TryGetMod("ThoriumMod", out _))
                             break;

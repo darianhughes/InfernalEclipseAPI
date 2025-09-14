@@ -39,6 +39,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
             Item.channel = true;
             Item.consumable = false;
             Item.maxStack = 1;
+            Item.useTurn = true;
         }
 
         public override bool AltFunctionUse(Player player)

@@ -3,12 +3,14 @@ using CatalystMod.NPCs.Boss.Astrageldon;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Bosses.WoB.NPCs;
+using InfernalEclipseAPI.Content.Items.Accessories;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.Clamity;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.SecondPhaseForm;
 using NoxusBoss.Content.NPCs.Bosses.NamelessDeity;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
@@ -55,6 +57,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (npc.type == ModContent.NPCType<NamelessDeityBoss>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<NamelessDeityRelic>());
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoltanBullyingSlip>(), 1));
             }
         }
     }

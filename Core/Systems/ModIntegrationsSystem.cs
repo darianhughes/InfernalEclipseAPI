@@ -3,6 +3,7 @@ using CalamityMod.Items.Placeables.FurnitureAuric;
 using CalamityMod.NPCs.CalClone;
 using CalamityMod.NPCs.PrimordialWyrm;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
+using InfernalEclipseAPI.Core.DamageClasses;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using InfernalEclipseAPI.Core.World;
@@ -250,6 +251,8 @@ namespace InfernalEclipseAPI.Core.Systems
                 //Color mergedThrowerCritColor = Main.hslToRgb(hslVector);
 
                 //coloredDamageTypes.Call("AddDamageType", MergedThrowerRogue.Instance, mergedThrowerColor, mergedThrowerColor, mergedThrowerCritColor);
+
+                //coloredDamageTypes.Call("AddDamageType", MeleeWhip.Instance, new Color(170, 0, 0), new Color(170, 0, 0), new Color(255, 10, 50));
 
                 Color legendaryColor = new Color(255, 215, 0); // Gold
                 Vector3 hslVector = Main.rgbToHsl(legendaryColor);

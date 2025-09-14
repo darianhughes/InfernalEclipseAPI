@@ -153,7 +153,8 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
         public override void PostUpdateEquips()
         {
-            Mod thorium = ModLoader.GetMod("ThoriumMod");
+            Mod thorium; 
+            ModLoader.TryGetMod("ThoriumMod", out thorium);
             if (thorium == null) return;
 
             int whiteDwarfHelm = thorium.Find<ModItem>("WhiteDwarfMask").Type;

@@ -337,10 +337,23 @@ Lore: {
 		His ideas had helped increase my army's power by a lot, but he never fought himself.
 
 		One day when I went to his room, but nothing was there expect from a note.
-		We couldn't translate his writing but from the pictures it was some sort of ring. 
-		Knowing you, I'm sure you'll figure out how to make it.
+		We couldn't translate his writing but from the pictures it was some sort of ring,
+		with one of the key ingredients appering to be a "Dark Sun Ring."
+		Perhaps that "Guide" could help you further decipher this note.
+		Regardless, I'm sure you'll figure out how to make it.
 
 		–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
+		'''
+	DylanSoltan:
+		'''
+		Whoever is reading this note, be aware:
+		I foresee a person who goes by the name of Soltan to emerge in the future.
+		Many will think he is annoying, so I designed this chipnote to be of use to you.
+		To combat his annoying nature, the mircochip attached to this note will convert all
+		local summoning power into power for other sources.
+		In addition, it gives you full permission to bully Soltan.
+		I have only made two of these, and gave them to the two most powerful beings I could find.
+		If you are one of those people, or someone else, use this device wisely...
 		'''
 	MysteriousDiary:
 		'''
@@ -544,6 +557,7 @@ Items: {
 		LoreAbominationn.DisplayName: The Abominationn
 		LoreDeviantt.DisplayName: The Deviantt
 		LoreMutant.DisplayName: The Mutant
+		SoltanBullyingSlip.DisplayName: Dylan's Anti-Soltan Chipnote
 	}
 
 	CatastrophicFabricationsMusicBox: {
@@ -981,6 +995,80 @@ Items: {
 		DisplayName: Terra Blade Trophy
 		Tooltip: ""
 	}
+
+	RingofTix: {
+		DisplayName: Ring of Tix
+		Tooltip: ""
+		SOTSTooltip: Right click while favorited to invert the currently selected gem, disabling the effect of the gem and enabling the inverted effect
+		G0: Chain together blocks when mining, breaking up to 50 blocks at once
+		G1: Killing enemies grants a random buff for 30 seconds
+		G2: Generate coins when void is gained
+		G3: Enemies have a 14.3% chance to drop double the loot
+		G4:
+			'''
+			Killed enemies have a 50% chance to drop additional hearts
+			This chance increases to 100% with critical strikes
+			Collecting hearts lengthens the duration of active buffs, up to double the original duration
+			'''
+		G5:
+			'''
+			Increase damage based on defense, then decreases defense by a third of the damage buff
+			Increases damage by {0}%
+			Decreases defense by {1}
+			'''
+		G6: Getting hit grants a random buff for 30 seconds
+		# Opposite of Sloth, Diligence
+		I0:
+			'''
+			Increases block and wall placement speed by 20% and placement range by 3
+			Increases movement speed by 20%
+			'''
+		# Opposite of Wrath, Patience
+		I1: Receive a random buff for 30 seconds every 20 seconds
+		# Opposite of Greed, Charity
+		I2:
+			'''
+			When hurt, 10% of damage taken is converted into void
+			When using void, 10% of the void used is converted into life
+			'''
+		# Opposite of Envy, Kindness
+		I3:
+			'''
+			Reduce damage taken by 15%
+			Reduce damage dealt by 15%
+			'''
+		# Opposite of Gluttony, Temperance
+		I4:
+			'''
+			Grants permanent Well Fed
+			Void consumables refill 75% less void
+			'''
+		# Opposite of Pride, Humility
+		I5:
+			'''
+			You can no longer critically strike
+			Increases received to critical strike chance are converted into multiplicative increases to damage
+			'''
+		# Opposite of Lust, Chastity
+		I6:
+			'''
+			Buffs do not decay while above 90% life
+			Getting hit while below 90% life causes all buff durations to halve
+			'''
+		NormalTooltip:
+			'''
+			18% increase to damage
+			+3.5 HP/s life regen and +2 max minions
+			Increased minion knockback
+			Increases all damage by 4
+			Increases armor penetration by 5
+			Increases critical strike chance by 4%
+			Increases coin drops and magic damage.
+			During the day, grants +2 HP/s life regen
+			During the night, grants +20 defense
+			During an eclipse, grants +1 HP/s life regen and +10 defense
+			'''
+	}
 }
 
 Projectiles: {
@@ -1015,6 +1103,15 @@ DiaryTooltip:
 	'''
 	[c/E3AF40:A mysterious diary which has been left unsigned...]
 	[c/BEBEBE:Press "Left Shift" to open the diary]
+	'''
+BullyingTooltip:
+	'''
+	Increases most non-summon damage by 2% for each unused minion slot.
+	Reduces summon damage by 10% for each used minion slot.
+	Whips now scale with your melee bonuses instead of summoner bonuses
+	Increases whip damage by 10%
+	[c/E3AF40:A paper note with a microchip on it, designed by Dylan]
+	[c/BEBEBE:Press "Left Shift" to read the writing on the back of the note]
 	'''
 
 Configs: {
@@ -1263,6 +1360,7 @@ DamageClasses: {
 	MythicMagic.DisplayName: mythic magic damage
 	MythicRanged.DisplayName: mythic ranged damage
 	LegendaryMagic.DisplayName: legendary magic damage
+	MeleeWhip.DisplayName: melee whip damage
 }
 
 BossRushIntroText1:
