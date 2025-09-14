@@ -1485,6 +1485,21 @@ InfernumIntegration: {
 		The Champion of the Omniverse
 		Monstrosity
 		'''
+	Mars:
+		'''
+		Otherworldly Machination
+		XG-07 Mars
+		'''
+	HypnosBoss:
+		'''
+		Cerebral Erratum
+		XP-00 Hypnos
+		'''
+	AvatarOfEmptiness:
+		'''
+		Eldritch Nightmare
+		Avatar of Emptiness
+		'''
 }
 
 Buffs: {
