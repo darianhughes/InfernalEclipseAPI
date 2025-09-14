@@ -68,12 +68,15 @@ namespace InfernalEclipseAPI.Core.Systems
         
             if (ModLoader.TryGetMod("YouBoss", out _))
             {
-                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "FINAL FRACTAL", "ENNWAY!", "You");
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "FINAL FRACTAL", "ENNWAY", "You");
             }
 
             if (ModLoader.TryGetMod("NoxusBoss", out _))
             {
-
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/Mars"), "RAMifications", "moonburn", "Calamity: Wrath of the Gods");
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/AvatarOfEmptinessP2"), "PARADISE PARASITE (Avatar)", "ENNWAY", "Calamity: Wrath of the Gods");
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/AvatarOfEmptinessP3"), "PARADISE PARASITE (Paradise)", "ENNWAY", "Calamity: Wrath of the Gods");
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/NamelessDeity"), "TWISTED GARDEN", "ENNWAY ft. HeartPlusUp!", "Calamity: Wrath of the Gods");
             }
         }
 
