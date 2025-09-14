@@ -1386,21 +1386,21 @@ InfernumIntegration: {
 		万界孤王
 		魔神
 		'''
-	/* Mars:
+	Mars:
 		'''
-		Otherworldly Machination
-		XG-07 Mars
-		''' */
-	/* HypnosBoss:
+		异界玄构
+		XG-07 玛尔斯
 		'''
-		Cerebral Erratum
-		XP-00 Hypnos
-		''' */
-	/* AvatarOfEmptiness:
+	HypnosBoss:
 		'''
-		Eldritch Nightmare
-		Avatar of Emptiness
-		''' */
+		脑域失序  
+		XP-00 修普诺斯
+		'''
+	AvatarOfEmptiness:
+		'''
+		孽梦魇形
+		虚无化身
+		'''
 }
 
 Buffs: {
