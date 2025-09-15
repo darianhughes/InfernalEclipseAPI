@@ -341,17 +341,19 @@ Lore: {
 
 		–敬请期待《诸神黄昏：炼狱蚀光》的未来篇章！–
 		'''
-	/* DylanSoltan:
+	DylanSoltan:
 		'''
-		Whoever is reading this note, be aware:
-		I foresee a person who goes by the name of Soltan to emerge in the future.
-		Many will think he is annoying, so I designed this chipnote to be of use to you.
-		To combat his annoying nature, the mircochip attached to this note will convert all
-		local summoning power into power for other sources.
-		In addition, it gives you full permission to bully Soltan.
-		I have only made two of these, and gave them to the two most powerful beings I could find.
-		If you are one of those people, or someone else, use this device wisely...
-		''' */
+		无论是谁读到这张便笺，请务必谨记——
+		我预见到未来会出现一个名为索坦的存在。
+		他强大却顽劣不驯，所以我特意制作了这张便笺来助你一臂之力。
+
+		便笺上附带的芯片，会将周围的召唤力量转化为其他能量，从而削弱他的优势。
+		此外，它还授予你完全的权限去欺负索坦。
+
+		我只做了两张这样的便笺，并将它们交给了我所能找到的两位最强存在。
+		如果你正是其中之一，或者只是意外得到它的人，请谨慎使用这枚装置……
+		'''
+
 	MysteriousDiary:
 		'''
 		翻开首页，你只看到几行文字：
@@ -554,7 +556,7 @@ Items: {
 		LoreAbominationn.DisplayName: 憎恶
 		LoreDeviantt.DisplayName: 戴薇安
 		LoreMutant.DisplayName: 突变体
-		// SoltanBullyingSlip.DisplayName: Dylan's Anti-Soltan Chipnote
+		SoltanBullyingSlip.DisplayName: 迪伦的反索坦芯片便笺
 	}
 
 	CatastrophicFabricationsMusicBox: {
@@ -994,77 +996,77 @@ Items: {
 	}
 
 	RingofTix: {
-		// DisplayName: Ring of Tix
-		// Tooltip: ""
-		// SOTSTooltip: Right click while favorited to invert the currently selected gem, disabling the effect of the gem and enabling the inverted effect
-		// G0: Chain together blocks when mining, breaking up to 50 blocks at once
-		// G1: Killing enemies grants a random buff for 30 seconds
-		// G2: Generate coins when void is gained
-		// G3: Enemies have a 14.3% chance to drop double the loot
-		/* G4:
+		DisplayName: 提克斯秘戒
+		Tooltip: ""
+		SOTSTooltip: 在收藏状态下右键，可反转当前选中的宝石，关闭宝石原有效果并启用其反转效果
+		G0: 连锁挖掘方块，一次性破坏最多50个方块
+		G1: 击杀敌人后获得一个随机增益，持续30秒
+		G2: 获得虚空值时生成金币
+		G3: 敌怪有14.3%几率掉落双倍战利品
+		G4:
 			'''
-			Killed enemies have a 50% chance to drop additional hearts
-			This chance increases to 100% with critical strikes
-			Collecting hearts lengthens the duration of active buffs, up to double the original duration
-			''' */
-		/* G5:
+			被击杀的敌人有50%几率额外掉落生命恢复心
+    		暴击时该几率提升至100%
+    		收集生命恢复心会延长已有增益的持续时间，最长可达原持续时间的两倍
 			'''
-			Increase damage based on defense, then decreases defense by a third of the damage buff
-			Increases damage by {0}%
-			Decreases defense by {1}
-			''' */
-		// G6: Getting hit grants a random buff for 30 seconds
-		# Opposite of Sloth, Diligence
-		/* I0:
+		G5:
 			'''
-			Increases block and wall placement speed by 20% and placement range by 3
-			Increases movement speed by 20%
-			''' */
-		# Opposite of Wrath, Patience
-		// I1: Receive a random buff for 30 seconds every 20 seconds
-		# Opposite of Greed, Charity
-		/* I2:
+			根据防御提升伤害，同时防御值会减少相当于增伤三分之一的数值
+    		伤害提升{0}%
+    		防御降低{1}
 			'''
-			When hurt, 10% of damage taken is converted into void
-			When using void, 10% of the void used is converted into life
-			''' */
-		# Opposite of Envy, Kindness
-		/* I3:
+		G6: 受到攻击时获得一个随机增益，持续30秒
+		# 懒惰 对应 勤勉
+		I0:
 			'''
-			Reduce damage taken by 15%
-			Reduce damage dealt by 15%
-			''' */
-		# Opposite of Gluttony, Temperance
-		/* I4:
+			方块和墙壁的放置速度提升20%，放置范围增加3
+    		移动速度提升20%
 			'''
-			Grants permanent Well Fed
-			Void consumables refill 75% less void
-			''' */
-		# Opposite of Pride, Humility
-		/* I5:
+		# 愤怒 对应 耐心
+		I1: 每20秒获得一个随机增益，持续30秒
+		# 贪婪 对应 仁慈
+		I2:
 			'''
-			You can no longer critically strike
-			Increases received to critical strike chance are converted into multiplicative increases to damage
-			''' */
-		# Opposite of Lust, Chastity
-		/* I6:
+			受到伤害时，所受伤害的10%会转化为虚空值
+    		使用虚空时，消耗虚空值的10%会转化为生命值
 			'''
-			Buffs do not decay while above 90% life
-			Getting hit while below 90% life causes all buff durations to halve
-			''' */
-		/* NormalTooltip:
+		# 嫉妒 对应 善良
+		I3:
 			'''
-			18% increase to damage
-			+3.5 HP/s life regen and +2 max minions
-			Increased minion knockback
-			Increases all damage by 4
-			Increases armor penetration by 5
-			Increases critical strike chance by 4%
-			Increases coin drops and magic damage.
-			During the day, grants +2 HP/s life regen
-			During the night, grants +20 defense
-			During an eclipse, grants +1 HP/s life regen and +10 defense
-			''' */
+			所受的伤害减少15%
+    		造成的伤害减少15%
+			'''
+		# 暴食 对应 节制
+		I4:
+			'''
+			永久获得“吃得好”增益
+    		虚空类消耗品回复的虚空值减少75%
+			'''
+		# 傲慢 对应 谦卑
+		I5:
+			'''
+			你将无法再造成暴击
+    		所有获得的暴击几率提升将改为乘算增伤
+			'''
+		# 色欲 对应 贞洁
+		I6:
+			'''
+			生命值高于90%时，增益不会衰减
+    		生命值低于90%时受击会使所有增益的持续时间减半
+			'''
+		NormalTooltip:
+			'''
+			增加18%伤害
+    		+3.5HP/s生命再生和2格最大仆从栏位
+    		增加仆从击退
+    		+4所有伤害额外
+    		增加5点护甲穿透
+    		增加4%暴击率
+    		增加金币掉落和魔法伤害
+    		在白天时+2 HP/s生命再生
+    		在夜晚时增加20点防御
+    		在日食时+1HP/s生命再生和10点防御
+			'''
 	}
 }
 
@@ -1101,15 +1103,15 @@ DiaryTooltip:
 	[c/E3AF40:一本落款“星河”的神秘日记……]
 	[c/BEBEBE:长按“左Shift”键以阅读日记]
 	'''
-/* BullyingTooltip:
+BullyingTooltip:
 	'''
-	Increases most non-summon damage by 2% for each unused minion slot.
-	Reduces summon damage by 10% for each used minion slot.
-	Whips now scale with your melee bonuses instead of summoner bonuses
-	Increases whip damage by 10%
-	[c/E3AF40:A paper note with a microchip on it, designed by Dylan]
-	[c/BEBEBE:Press "Left Shift" to read the writing on the back of the note]
-	''' */
+	每有一个未使用的召唤栏，非召唤伤害提升2%
+	每有一个已使用的召唤栏，召唤伤害降低10%
+	鞭子现在将受益于近战伤害加成，而不是召唤伤害加成
+	鞭子伤害提升10%
+	[c/E3AF40:一张附带芯片的纸条，由迪伦设计]
+	[c/BEBEBE:按住"左Shift"以阅读便笺背面的文字]
+	'''
 
 Configs: {
 	InfernalConfig: {
@@ -1357,7 +1359,7 @@ DamageClasses: {
 	MythicMagic.DisplayName: 神话魔法伤害
 	MythicRanged.DisplayName: 神话远程伤害
 	LegendaryMagic.DisplayName: 传说魔法伤害
-	// MeleeWhip.DisplayName: melee whip damage
+	MeleeWhip.DisplayName: 近战鞭子伤害
 }
 
 BossRushIntroText1:
@@ -1484,7 +1486,7 @@ InfernumIntegration: {
 		'''
 	Mars:
 		'''
-		RAMified Machination
+		擎天智械先驱
 		XG-07 玛尔斯
 		'''
 	HypnosBoss:
@@ -1494,7 +1496,7 @@ InfernumIntegration: {
 		'''
 	AvatarOfEmptiness:
 		'''
-		Paradise Parasite
+		圣境孽生
 		虚无化身
 		'''
 	/* RealMutantEX:
