@@ -24,11 +24,17 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
         {
             if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active || npc.type != ModContent.NPCType<DevourerofGodsHead>()) return base.PreAI(npc);
 
-            Player target = Main.player[npc.target];
             if (clamity != null)
             {
-                if (target.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)
-                    target.mount.Dismount(target);
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    Player player = Main.player[i];
+                    if (player.active && !player.dead)
+                    {
+                        if (player.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)
+                            player.mount.Dismount(player);
+                    }
+                }
             }
 
             return base.PreAI(npc);

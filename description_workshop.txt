@@ -62,7 +62,9 @@ Check out some of our other offical DLC & commpatability mods:
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url], a Calamity/Thorium balancing mod that this mod gets most of its balance changes from.
 [/list]
 
-Very special thanks to the Bereft Souls & Community Souls Expansion teams, as well as each of the individuals for each mod in the mod pack for making this possible.
+Very special thanks to the Calamity Mod, Fargo's Souls, Bereft Souls, & Community Souls Expansion teams, our donors, as well as each of the individuals for each mod in the mod pack for making this possible.
+
+Scythe throwing code provided by [url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen[/url]
 
 Created by the Infernal Eclipse of Ragnarok Team:
 Developers: Akira, Wardrobe Hummus, Advantaje

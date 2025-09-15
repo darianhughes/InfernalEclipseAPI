@@ -1069,6 +1069,11 @@ Items: {
 			During an eclipse, grants +1 HP/s life regen and +10 defense
 			'''
 	}
+
+	InfernalTerraBladeRelic: {
+		DisplayName: Infernal Terra Blade Relic
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

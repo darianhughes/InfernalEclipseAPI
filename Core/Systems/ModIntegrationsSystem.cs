@@ -284,7 +284,7 @@ namespace InfernalEclipseAPI.Core.Systems
                     // Wait 750 frames before starting text display
                     if (animationTimer < 750) return 0f;
 
-                    return (animationTimer - 750) / 5f;
+                    return (animationTimer - 750) / 10f;
                 }));
 
                 // Register and optional completion effects

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using YouBoss.Content.NPCs.Bosses.TerraBlade;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
 {
@@ -11,9 +12,15 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
         {
             if (!InfernalConfig.Instance.PreventBossCheese || !npc.active || npc.type != ModContent.NPCType<Yharon>()) return base.PreAI(npc);
 
-            Player target = Main.player[npc.target];
-            if (target.mount?.Type == MountID.GolfCartSomebodySaveMe)
-                target.mount.Dismount(target);
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.active && !player.dead)
+                {
+                    if (player.mount?.Type == MountID.GolfCartSomebodySaveMe)
+                        player.mount.Dismount(player);
+                }
+            }
 
             return base.PreAI(npc);
         }
