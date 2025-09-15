@@ -2,6 +2,7 @@
 using CalamityMod.Items.Placeables.FurnitureAuric;
 using CalamityMod.NPCs.CalClone;
 using CalamityMod.NPCs.PrimordialWyrm;
+using FargowiltasSouls.Core.ItemDropRules.Conditions;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 using InfernalEclipseAPI.Core.DamageClasses;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
@@ -148,15 +149,43 @@ namespace InfernalEclipseAPI.Core.Systems
             }
             if (Starlight != null)
             {
-                if (Starlight.TryFind("MutantEX", out ModNPC monster))
+                if (Starlight.Version <= Version.Parse("1.1.4.2"))
                 {
-                    MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
+                    if (Starlight.TryFind("MutantEX", out ModNPC monster))
+                    {
+                        MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
+                    }
+                }
+                else
+                {
+                    if (Starlight.TryFind("RealMutantEX", out ModNPC mutantEX))
+                    {
+                        MakeCard(mutantEX.Type, (horz, anim) => Color.Lerp(Color.LightBlue, Color.Cyan, anim), "RealMutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream); ;
+                    }
+                    if (Starlight.TryFind("MonstrosityBoss", out ModNPC monster))
+                    {
+                        MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
+                    }
+                }
+                if (Starlight.TryFind("Guntera", out ModNPC guntera))
+                {
+                    MakeCard(guntera.Type, (horz, anim) => Color.Lerp(new(96, 148, 14), Color.LightSlateGray, anim), "Guntera", SoundID.Item17, SoundID.Item36);
+                }
+                if (Starlight.TryFind("Echdeath", out ModNPC echdeath))
+                {
+                    MakeCard(echdeath.Type, (horz, anim) => Color.Lerp(Color.White, Color.Tan, anim), "Echdeath", SoundID.NPCHit4, SoundID.Item14);
+                }
+                if (Starlight.TryFind("CeilingOfMoonlord", out ModNPC moonRoof)) 
+                {
+                    MakeCard(moonRoof.Type, (horz, anim) => Color.Lerp(Color.Turquoise, Color.Gray, anim), "CeilingOfMoonlord", SoundID.MenuTick, new SoundStyle("InfernumMode/Assets/Sounds/Custom/MoonLord/MoonLordIntro"));
                 }
             }
+
             if (ModLoader.TryGetMod("YouBoss", out Mod you))
             {
                 MakeCard(you.Find<ModNPC>("TerraBladeBoss").Type, (horz, anim) => Color.Lerp(Color.LimeGreen, Color.Green, anim), "You", SoundID.MenuTick, new SoundStyle("InfernalEclipseAPI/Assets/Sounds/Custom/TerraBlade/Split"));
             }
+
             if (ModLoader.TryGetMod("NoxusBoss", out Mod noxus))
             {
                 int marsType = noxus.Find<ModNPC>("MarsBody").Type;
@@ -253,9 +282,9 @@ namespace InfernalEclipseAPI.Core.Systems
                 Infernum.Call("SetupLetterDisplayCompletionRatio", avatarIntro, (Func<int, float>)(animationTimer =>
                 {
                     // Wait 750 frames before starting text display
-                    if (animationTimer < 700) return 0f;
+                    if (animationTimer < 750) return 0f;
 
-                    return (animationTimer - 700) / 10f;
+                    return (animationTimer - 750) / 5f;
                 }));
 
                 // Register and optional completion effects

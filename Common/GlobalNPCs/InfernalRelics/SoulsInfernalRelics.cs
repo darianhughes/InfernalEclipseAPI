@@ -91,9 +91,12 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 
             if (ModLoader.TryGetMod("ssm", out Mod CSE))
             {
-                if (npc.type == CSE.Find<ModNPC>("MutantEX").Type)
+                if (CSE.TryFind("RealMutantEX", out ModNPC mutantEX))
                 {
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoltanBullyingSlip>()));
+                    if (npc.type == mutantEX.Type)
+                    {
+                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoltanBullyingSlip>()));
+                    }
                 }
             }
         }

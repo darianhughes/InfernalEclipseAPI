@@ -1497,6 +1497,26 @@ InfernumIntegration: {
 		Paradise Parasite
 		虚无化身
 		'''
+	/* RealMutantEX:
+		'''
+		The Extreme Rematch
+		Mutant EX
+		''' */
+	/* Guntera:
+		'''
+		The Republican Overgrowth
+		Guntera
+		''' */
+	/* Echdeath:
+		'''
+		Kitty Cat
+		Echdeath
+		''' */
+	/* CeilingOfMoonlord:
+		'''
+		Eldritch Roof
+		Ceiling of Moon Lord
+		''' */
 }
 
 Buffs: {
