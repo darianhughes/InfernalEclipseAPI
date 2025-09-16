@@ -17,8 +17,8 @@ UI: {
 	Infernum: 炼狱模式
 	MInfernum: 大师-炼狱模式
 	LInfernum: 传奇-炼狱模式
-	Primordial: Primodrial Mode
-	LPrimoridal: Legendary-Primordial Mode
+	Primordial: 始源模式
+	LPrimoridal: 传奇-始源模式
 }
 
 WelcomeMessage: {
@@ -815,7 +815,7 @@ Items: {
 	}
 
 	Genesis: {
-		DisplayName: 创世终端
+		DisplayName: 便携创世终端
 		Tooltip: ""
 	}
 
@@ -1506,12 +1506,12 @@ InfernumIntegration: {
 	RealMutantEX:
 		'''
 		极境再临
-		Mutant EX
+		真突变EX
 		'''
 	Guntera:
 		'''
 		共生蔓潮
-		Guntera
+		世纪枪花
 		'''
 	Echdeath:
 		'''
@@ -1521,7 +1521,7 @@ InfernumIntegration: {
 	CeilingOfMoonlord:
 		'''
 		邪异穹顶
-		Ceiling of Moon Lord
+		月亮穹顶
 		'''
 }
 
