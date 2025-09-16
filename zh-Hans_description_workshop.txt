@@ -59,7 +59,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 [list]
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010]诸神黄昏：炼狱蚀光[/url]，一个为本模组添加大量额外物品的DLC扩展
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnaork]旅人归途&诸神黄昏：炼狱蚀光 兼容[/url]，一个为本模组添加旅人归途兼容的DLC扩展
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡模组[/url]，本扩展中大部分物品平衡调整均出自该模组并由其作者设计！
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡模组[/url]，本扩展中大部分物品平衡调整出自该模组并由其作者设计！
 [/list]
 
 特别感谢[b]灾厄[/b]、[b]Fargo魂[/b]、[b]Bereft Souls[/b]以及[b]社区魂石拓展[/b]团队，以及所有捐助者，还有整合包中每一个模组的开发者们，正是你们让这一切成为可能。
