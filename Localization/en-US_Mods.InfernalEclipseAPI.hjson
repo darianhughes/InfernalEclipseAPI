@@ -1525,6 +1525,11 @@ InfernumIntegration: {
 		Eldritch Roof
 		Ceiling of Moon Lord
 		'''
+	LittleCat:
+		'''
+		Chaos Incarnate
+		Demonic Little Grey Cat
+		'''
 }
 
 Buffs: {
@@ -1566,4 +1571,11 @@ Tiles: {
 	CultistMusicBoxTile.MapEntry: Cultist Music Box Tile
 	GolemMusicBoxTile.MapEntry: Golem Music Box Tile
 	ProphecyMusicBoxTile.MapEntry: Prophecy Music Box Tile
+}
+
+NPCs: {
+	LittleCat: {
+		Bestiary: Not much is known about this cat.
+		Name: Demonic Little Grey Cat
+	}
 }

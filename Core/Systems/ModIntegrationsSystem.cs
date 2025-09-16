@@ -4,6 +4,7 @@ using CalamityMod.NPCs.CalClone;
 using CalamityMod.NPCs.PrimordialWyrm;
 using FargowiltasSouls.Core.ItemDropRules.Conditions;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
+using InfernalEclipseAPI.Content.NPCs.LittleCat;
 using InfernalEclipseAPI.Core.DamageClasses;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
@@ -66,7 +67,7 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
             //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok"); <- Ported to YharimEX
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Interlude04"), "Calamity before the cynosure", "theforge129", "Infernal Eclipse of Ragnarok");
-        
+
             if (ModLoader.TryGetMod("YouBoss", out _))
             {
                 musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "FINAL FRACTAL", "ENNWAY", "You");
@@ -123,6 +124,8 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (Infernum is null) return;
 
+            //MakeCard(ModContent.NPCType<LittleCat>(), (horz, anim) => Color.Lerp(Color.MediumPurple, Color.DarkViolet, anim), "LittleCat", SoundID.NPCHit4, SoundID.ScaryScream);
+
             if (SOTS != null)
             {
                 MakeCard(SOTS.Find<ModNPC>("Polaris").Type, (horz, anim) => Color.Lerp(Color.Aquamarine, Color.Red, anim), "Polaris", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"));
@@ -175,7 +178,7 @@ namespace InfernalEclipseAPI.Core.Systems
                 {
                     MakeCard(echdeath.Type, (horz, anim) => Color.Lerp(Color.White, Color.Tan, anim), "Echdeath", SoundID.NPCHit4, SoundID.Item14);
                 }
-                if (Starlight.TryFind("CeilingOfMoonlord", out ModNPC moonRoof)) 
+                if (Starlight.TryFind("CeilingOfMoonlord", out ModNPC moonRoof))
                 {
                     MakeCard(moonRoof.Type, (horz, anim) => Color.Lerp(Color.Turquoise, Color.Gray, anim), "CeilingOfMoonlord", SoundID.MenuTick, new SoundStyle("InfernumMode/Assets/Sounds/Custom/MoonLord/MoonLordIntro"));
                 }
@@ -191,7 +194,7 @@ namespace InfernalEclipseAPI.Core.Systems
                 int marsType = noxus.Find<ModNPC>("MarsBody").Type;
                 string textKey = "Mods.InfernalEclipseAPI.InfernumIntegration.Mars";
                 LocalizedText introText = Language.GetOrRegister(textKey);
-                
+
                 // Initialize the intro screen
                 object intro = Infernum.Call(
                     "InitializeIntroScreen",
@@ -231,7 +234,7 @@ namespace InfernalEclipseAPI.Core.Systems
 
                 Infernum.Call("SetupLetterAdditionSound", intro, (Func<SoundStyle>)(() => SoundID.NPCHit4));
                 Infernum.Call("SetupLetterDisplayCompletionRatio", intro, (Func<int, float>)(count => count / 10f));
-                
+
                 // Register and optional completion effects
                 Infernum.Call("RegisterIntroScreen", intro);
                 Infernum.Call("SetupCompletionEffects", intro, (Action)(() => { }));
@@ -428,7 +431,7 @@ namespace InfernalEclipseAPI.Core.Systems
             if (mod.Name == "InfernalEclipseAPI")
             {
                 if (InternalName != null)
-                { 
+                {
                     if (InternalName == "Dreadnautilus")
                     {
                         Action<SpriteBatch, Rectangle, Color> action = (Action<SpriteBatch, Rectangle, Color>)((sb, rect, color) =>
@@ -444,7 +447,7 @@ namespace InfernalEclipseAPI.Core.Systems
                         });
                         dictionary.Add("customPortrait", action);
                         dictionary.Add("displayName", Language.GetText("NPCName.BloodNautilus"));
-                        dictionary.Add("overrideHeadTextures", "InfernalEclipseAPI/Assets/Textures/BossChecklist/DreadnautilusIcon");       
+                        dictionary.Add("overrideHeadTextures", "InfernalEclipseAPI/Assets/Textures/BossChecklist/DreadnautilusIcon");
                     }
                 }
             }
