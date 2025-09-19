@@ -49,21 +49,22 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
 整体模组包设计已考虑多人模式兼容性，但因仍在持续测试与开发中，无法完全保证稳定运行
 
-如遇其他问题，欢迎前往[url=https://discord.gg/Qu4eN5PZry] 官方Discord 服务器 [/url]反馈
+如遇其他问题，欢迎前往[url=https://discord.gg/Qu4eN5PZry] 官方Discord服务器 [/url]反馈
 
 同时欢迎查阅本模组的[url=https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok] 官方英文Wiki [/url]
 
-若您希望支持开发团队，可以查看我们的 Patreon 页面：
-https://www.patreon.com/c/InfernalEclipseofRagnarokTeam
+若您希望支持开发团队，可以查看我们的[url=https://www.patreon.com/c/InfernalEclipseofRagnarokTeam] Patreon页面 [/url]
 
 欢迎查看我们发布的其他官方 DLC 和兼容模组：
 [list]
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010]诸神黄昏：炼狱蚀光[/url]，一个为本模组添加大量额外物品的DLC扩展
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnaork]旅人归途&诸神黄昏：炼狱蚀光 兼容[/url]，一个为本模组添加旅人归途兼容的DLC扩展
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡模组[/url]，本扩展中大部分物品平衡调整均出自该模组并由其作者设计！
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡模组[/url]，本扩展中大部分物品平衡调整出自该模组并由其作者设计！
 [/list]
 
-特别感谢 Bereft Souls 以及 Community Souls Expansion 团队，以及关联模组包中每位创作者的贡献
+特别感谢[b]灾厄[/b]、[b]Fargo魂[/b]、[b]Bereft Souls[/b]以及[b]社区魂石拓展[/b]团队，以及所有捐助者，还有整合包中每一个模组的开发者们，正是你们让这一切成为可能。
+
+镰刀投掷代码由[url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen [/url]提供。
 
 诸神黄昏：炼狱蚀光团队成员
 [list]
