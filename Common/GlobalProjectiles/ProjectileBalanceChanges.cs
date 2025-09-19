@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using CalamityMod;
+using InfernalEclipseAPI.Core.DamageClasses;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -285,6 +286,35 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     {
                         entity.idStaticNPCHitCooldown = -1;
                     }
+                }
+            }
+
+            if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (GetProj(entity, sots, "BetrayersSlash"))
+                {
+                    entity.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (GetProj(entity, sots, "SootBall"))
+                {
+                    entity.usesIDStaticNPCImmunity = false;
+
+                    entity.localNPCHitCooldown = entity.idStaticNPCHitCooldown;
+                    entity.usesLocalNPCImmunity = true;
+                }
+            }
+
+            if (ModLoader.TryGetMod("SOTSBardHealer", out Mod sotsBH) && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (GetProj(entity, sotsBH, "DualStylophonePro"))
+                {
+                    entity.penetrate = 3;
+                }
+
+                if (GetProj(entity, sotsBH, "GoopwoodSplit"))
+                {
+                    if (InfernalConfig.Instance.SOTSThrowerToRogue) entity.DamageType = ModContent.GetInstance<VoidRogue>();
                 }
             }
         }

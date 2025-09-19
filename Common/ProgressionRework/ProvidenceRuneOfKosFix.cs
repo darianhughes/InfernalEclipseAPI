@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod.Items.SummonItems;
-using Terraria;
+﻿using CalamityMod.Items.SummonItems;
+using CalamityMod.NPCs.Providence;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.ProgressionRework
 {
@@ -16,7 +10,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             //Ensures Providence drops the Rune of Kos
-            if (npc.type == ModContent.NPCType<CalamityMod.NPCs.Providence.Providence>())
+            if (npc.type == ModContent.NPCType<Providence>())
             {
                 bool hasRuneDrop = false;
                 foreach (var rule in npcLoot.Get(false))

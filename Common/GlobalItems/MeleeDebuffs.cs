@@ -48,6 +48,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
 
+            if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (item.type == sots.Find<ModItem>("BlazingClub").Type)
+                {
+                    target.AddBuff(BuffID.OnFire, 180);
+                }
+            }
+
             if (item.type == ItemID.LucyTheAxe && InfernalConfig.Instance.VanillaBalanceChanges)
             {
                 target.AddBuff(ModContent.BuffType<Crumbling>(), 180);

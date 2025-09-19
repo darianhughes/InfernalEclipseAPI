@@ -34,12 +34,6 @@ namespace InfernalEclipseAPI.Common.Balance.SOTS
                 if ((item.type == SOTSBardHealer.Find<ModItem>("ForbiddenMaelstrom").Type) || (item.type == SOTSBardHealer.Find<ModItem>("GoopwoodSplit").Type))
                 {
                     item.DamageType = ModContent.GetInstance<VoidRogue>();
-                    if (InfernalConfig.Instance.SOTSBalanceChanges)
-                        item.damage = 30;
-                }
-                if (item.type == SOTSBardHealer.Find<ModItem>("GoopwoodSplit").Type)
-                {
-                    item.DamageType = ModContent.GetInstance<VoidRogue>();
                 }
             }
 

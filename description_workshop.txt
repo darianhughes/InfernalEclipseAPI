@@ -21,18 +21,18 @@ As well minor support for these content mods & add-ons:
 	[*] Community Souls Expansion
 [/list]
 
-The only mods required for this API to run are Calamity Mod, Infernum Mode, Revengence+, Thrower Unification, You, and any dependency included with those mods.
+The only mods required for this API to run are Calamity Mod, Infernum Mode, Revengence+, Thrower Unification, Infernum Sanctuary WorldGen Adjuster, and any dependency included with those mods.
 
 This API currently adds the following:
 [list]
-	[*] Toggleable balance changes to many of the included mods to help the experience flow together better.
-	[*] Merged crafting trees for many accessories
-	[*]	Some cross-mod Infernum intros.
+	[*] Over 500+ Toggleable balance changes to many of the weapons and items from the included mods in the main pack to help the experience flow together better.
+	[*] Merged crafting trees for many accessories trees.
+	[*]	Cross-mod Infernum intros for any bosses that didn't already have one.
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
 	[*] Boss Rush support for all included bosses, as well as a custom "tier 6."
 	[*] New music for certain points of the game.
 	[*] World Generation changes to help prevent overlap between mods.
-	[*] Some fixes to help Infernum more multiplayer compatible.
+	[*] Some bugfixes to help make Infernum more multiplayer compatible.
 	[*] Some minor cross-mod improvements for other mods outside main mod pack.
 [/list]
 

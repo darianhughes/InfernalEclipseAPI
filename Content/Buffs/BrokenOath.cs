@@ -16,7 +16,7 @@ namespace InfernalEclipseAPI.Content.Buffs
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = false;
-            // BuffID.Sets.NurseCannotRemoveDebuff[Type] = true; // optional
+            BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)

@@ -286,11 +286,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 30;
                 }
-
-                if (item.type == ModContent.ItemType<PulseRifle>())
-                {
-                    item.DamageType = ModContent.GetInstance<MythicRanged>();
-                }
                 #endregion
 
                 #region Mage
@@ -649,13 +644,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.value = 0;
                 }
-            }
-            #endregion
-
-            #region Infernum
-            if (item.type == ModContent.ItemType<Myrindael>())
-            {
-                item.DamageType = ModContent.GetInstance<MythicMelee>();
             }
             #endregion
 
@@ -4432,6 +4420,122 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 50;
                 }
                 #endregion
+            }
+            #endregion
+
+            #region Secrets of the Shadows
+            if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+
+                #region Melee
+                //Spore Club
+                if (GetItem(sots, "SporeClub", item))
+                {
+                    item.shootSpeed = 8;
+                }
+
+                //Crab Claw
+                if (GetItem(sots, "CrabClaw", item))
+                {
+                    item.damage = 36;
+                }
+
+                //Spiked Club
+                if (GetItem(sots, "SpikedClub", item))
+                {
+                    item.shootSpeed = 5;
+                    item.damage = 15;
+                }
+
+                if (GetItem(sots, "MinersSword", item))
+                {
+                    item.scale *= 1.5f;
+                }
+
+                if (GetItem(sots, "AncientSteelSword", item))
+                {
+                    item.scale *= 1.5f;
+                }
+
+                if (GetItem(sots, "AncientSteelHalberd", item))
+                {
+                    item.damage = 18;
+                    item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (GetItem(sots, "PlatinumScythe", item))
+                {
+                    item.scale *= 1.5f;
+                }
+
+                if (GetItem(sots, "ShatterBlade", item))
+                {
+                    item.crit = 6;
+                    item.damage = 17;
+                    item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (GetItem(sots, "Shattershine", item))
+                {
+                    item.damage = 28;
+                }
+
+                if (GetItem(sots, "SoulEater", item))
+                {
+                    item.damage = 34;
+                }
+
+                if (GetItem(sots, "CardiacCollapse", item))
+                {
+                    item.damage = 48;
+                }
+
+                if (GetItem(sots, "OlympianAxe", item))
+                {
+                    item.damage = 42;
+                    item.shootSpeed = 13;
+                }
+
+                if (GetItem(sots, "BetrayersKnife", item))
+                {
+                    item.damage = 30;
+                    item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (GetItem(sots, "MantisGrip", item))
+                {
+                    item.damage = 17;
+                }
+
+                if (GetItem(sots, "BlazingClub", item))
+                {
+                    item.damage = 25;
+                    item.useTime = 30;
+                    item.useAnimation = 30;
+                    item.shootSpeed = 12;
+                }
+                #endregion
+
+                #region Ranged
+                #endregion
+            }
+            #endregion
+
+            #region SOTS Bard, Thrower, & Healer Balance Changes
+            if (ModLoader.TryGetMod("SOTSBardHealer", out Mod sotsBH) && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (GetItem(sotsBH, "VibrantTomahawk", item))
+                {
+                    item.damage = 50;
+                }
+
+                if (GetItem(sotsBH, "GoopwoodWiggle", item))
+                {
+                    item.shootSpeed = 8;
+                    item.damage = 19;
+                }
+
+
             }
             #endregion
 

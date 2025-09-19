@@ -254,6 +254,10 @@ ItemTooltip: {
 		Your: Your
 		Draedon: Draedon's
 		Solyn: Solyn's
+		Anahita: Anahita's
+		Amidias: Amidias'
+		CalClone: Shadow of Calamitas'
+		Cultist: The Lunatic Cultist's
 	}
 
 	AstrageldonRelic: {
@@ -1366,6 +1370,7 @@ DamageClasses: {
 	MythicRanged.DisplayName: mythic ranged damage
 	LegendaryMagic.DisplayName: legendary magic damage
 	MeleeWhip.DisplayName: melee whip damage
+	MythicSummon.DisplayName: mythic summon damage
 }
 
 BossRushIntroText1:

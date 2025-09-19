@@ -109,6 +109,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes.CrossModArmorChanges
                     forward.AddCondition(Condition.InGraveyard);
                     if (originalTile != TileID.Anvils)
                         forward.AddTile(originalTile);
+                    forward.DisableDecraft();
                     forward.Register();
 
                     // Reverse: CalamityBH -> Ragnarok
@@ -117,6 +118,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes.CrossModArmorChanges
                     reverse.AddCondition(Condition.InGraveyard);
                     if (originalTile != TileID.Anvils)
                         reverse.AddTile(originalTile);
+                    reverse.DisableDecraft();
                     reverse.Register();
                 }
             }
