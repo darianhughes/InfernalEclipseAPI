@@ -254,10 +254,10 @@ ItemTooltip: {
 		Your: 你
 		Draedon: 嘉登
 		Solyn: 索琳
-		// Anahita: Anahita's
-		// Amidias: Amidias'
-		// CalClone: Shadow of Calamitas'
-		// Cultist: The Lunatic Cultist's
+		Anahita: 阿娜希塔
+		Amidias: 阿米迪亚斯
+		CalClone: 灾厄之影
+		Cultist: 拜月教邪教徒
 	}
 
 	AstrageldonRelic: {
@@ -1369,7 +1369,7 @@ DamageClasses: {
 	MythicRanged.DisplayName: 神话远程伤害
 	LegendaryMagic.DisplayName: 传说魔法伤害
 	MeleeWhip.DisplayName: 近战鞭子伤害
-	// MythicSummon.DisplayName: mythic summon damage
+	MythicSummon.DisplayName: 神话召唤伤害
 }
 
 BossRushIntroText1:
