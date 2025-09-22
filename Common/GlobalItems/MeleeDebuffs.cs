@@ -70,13 +70,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("LifeQuartzClaymore")?.Type)
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
-                // Remove the existing tooltip
-                tooltips.RemoveAll(t => t.Text.Contains("Steals 1 life"));
+                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("LifeQuartzClaymore")?.Type)
+                {
+                    // Remove the existing tooltip
+                    tooltips.RemoveAll(t => t.Text.Contains("Steals 1 life"));
 
-                // Add your custom tooltip
-                tooltips.Add(new TooltipLine(Mod, "CustomTooltip", "Steals 3 life"));
+                    // Add your custom tooltip
+                    tooltips.Add(new TooltipLine(Mod, "CustomTooltip", "Steals 3 life"));
+                }
             }
         }
     }
