@@ -1078,6 +1078,16 @@ Items: {
 		DisplayName: Infernal Terra Blade Relic
 		Tooltip: ""
 	}
+
+	DemonicTome: {
+		DisplayName: Demonic Tome
+		Tooltip: ""
+	}
+
+	EmptyDemonicTome: {
+		DisplayName: Empty Demonic Tome
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1106,6 +1116,7 @@ Projectiles: {
 	_13thGltichCombo.DisplayName: _13th Gltich Combo
 	CelestialBeam.DisplayName: Celestial Beam
 	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
+	DemonicRune.DisplayName: Demonic Little Grey Cat Rune
 }
 
 DiaryTooltip:
@@ -1580,7 +1591,8 @@ Tiles: {
 
 NPCs: {
 	LittleCat: {
-		Bestiary: Not much is known about this cat.
+		Bestiary: You forgot to feed him, now face the wrath of the Demonic Little Grey Cat.
 		Name: Demonic Little Grey Cat
+		DisplayName: Demonic Little Grey Cat
 	}
 }

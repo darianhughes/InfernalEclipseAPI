@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod.Buffs.StatDebuffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CalamityMod.Buffs.StatDebuffs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
-    //Wardrobe Hummus
+    // Wardrobe Hummus
     public class MeleeDebuffs : GlobalItem
     {
         public override bool IsLoadingEnabled(Mod mod)
@@ -20,12 +17,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
         public override bool InstancePerEntity => true;
 
-        public override void OnHitNPC(
-            Item item,
-            Player player,
-            NPC target,
-            NPC.HitInfo hit,
-            int damageDone)
+        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
@@ -35,14 +27,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     target.AddBuff(144, 180); // Electrified
                 }
 
-                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("LifeQuartzClaymore")?.Type)
+                var lifeQuartz = thoriumMod.Find<ModItem>("LifeQuartzClaymore");
+                if (lifeQuartz != null && item.type == lifeQuartz.Type)
                 {
                     HealPlayer(player, 2);
                     return;
                 }
 
-                // Thorium HereticBreaker (additive: does NOT remove original effects)
-                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("HereticBreaker")?.Type)
+                var hereticBreaker = thoriumMod.Find<ModItem>("HereticBreaker");
+                if (hereticBreaker != null && item.type == hereticBreaker.Type)
                 {
                     HealPlayer(player, 3);
                 }
@@ -50,7 +43,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
             if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
             {
-                if (item.type == sots.Find<ModItem>("BlazingClub").Type)
+                var blazingClub = sots.Find<ModItem>("BlazingClub");
+                if (blazingClub != null && item.type == blazingClub.Type)
                 {
                     target.AddBuff(BuffID.OnFire, 180);
                 }
@@ -72,7 +66,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
-                if (item.type == ModLoader.GetMod("ThoriumMod")?.Find<ModItem>("LifeQuartzClaymore")?.Type)
+                var lifeQuartz = thoriumMod.Find<ModItem>("LifeQuartzClaymore");
+                if (lifeQuartz != null && item.type == lifeQuartz.Type)
                 {
                     // Remove the existing tooltip
                     tooltips.RemoveAll(t => t.Text.Contains("Steals 1 life"));
