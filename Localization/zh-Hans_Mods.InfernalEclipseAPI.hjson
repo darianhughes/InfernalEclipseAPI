@@ -1079,13 +1079,13 @@ Items: {
 	}
 
 	DemonicTome: {
-		// DisplayName: Demonic Tome
-		// Tooltip: ""
+		DisplayName: 恶魔秘典
+		Tooltip: ""
 	}
 
 	EmptyDemonicTome: {
-		// DisplayName: Empty Demonic Tome
-		// Tooltip: ""
+		DisplayName: 空白的恶魔秘典
+		Tooltip: ""
 	}
 }
 
@@ -1115,7 +1115,7 @@ Projectiles: {
 	_13thGltichCombo.DisplayName: 故障XIII
 	CelestialBeam.DisplayName: 天界光束
 	CelestialIlluminationStar.DisplayName: 星界陨辉
-	// DemonicRune.DisplayName: Demonic Little Grey Cat Rune
+	DemonicRune.DisplayName: 恶魔小灰猫符文
 }
 
 DiaryTooltip:
@@ -1592,6 +1592,6 @@ NPCs: {
 	LittleCat: {
 		Bestiary: 关于这只猫，人们所知甚少。
 		Name: 恶魔小灰猫
-		// DisplayName: Demonic Little Grey Cat
+		DisplayName: 恶魔小灰猫
 	}
 }
