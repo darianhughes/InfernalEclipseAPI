@@ -930,10 +930,10 @@ Items: {
 	}
 
 	CatalyzedCrystal: {
-		DisplayName: 催化结晶
+		DisplayName: 灾劫水晶
 		Tooltip:
 			'''
-			催化炸弹爆炸后形成的结晶
+			灾劫炸弹爆炸后形成的结晶
 			在地狱使用以召唤亚空骇蟒
 			不消耗
 			'''
