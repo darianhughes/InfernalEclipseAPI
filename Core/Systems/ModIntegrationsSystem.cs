@@ -67,7 +67,7 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
             //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok"); <- Ported to YharimEX
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Interlude04"), "Calamity before the cynosure", "theforge129", "Infernal Eclipse of Ragnarok");
-
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LittleCatTheme"), "Demonic Little Grey Cat Theme Song", "vivivivivi", "Infernal Eclipse of Ragnarok");
             if (ModLoader.TryGetMod("YouBoss", out _))
             {
                 musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "FINAL FRACTAL", "ENNWAY", "You");
@@ -124,7 +124,7 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (Infernum is null) return;
 
-            //MakeCard(ModContent.NPCType<LittleCat>(), (horz, anim) => Color.Lerp(Color.MediumPurple, Color.DarkViolet, anim), "LittleCat", SoundID.NPCHit4, SoundID.ScaryScream);
+            MakeCard(ModContent.NPCType<LittleCat>(), (horz, anim) => Color.Lerp(Color.MediumPurple, Color.DarkViolet, anim), "LittleCat", SoundID.NPCHit4, SoundID.ScaryScream);
 
             if (SOTS != null)
             {
