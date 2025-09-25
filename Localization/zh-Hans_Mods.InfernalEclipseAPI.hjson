@@ -1105,6 +1105,7 @@ Projectiles: {
 	_13thGltichCombo.DisplayName: 故障XIII
 	CelestialBeam.DisplayName: 天界光束
 	CelestialIlluminationStar.DisplayName: 星界陨辉
+	// DemonicRune.DisplayName: Demonic Rune
 }
 
 DiaryTooltip:
@@ -1581,5 +1582,6 @@ NPCs: {
 	LittleCat: {
 		Bestiary: 关于这只猫，人们所知甚少。
 		Name: 恶魔小灰猫
+		// DisplayName: Little Cat
 	}
 }

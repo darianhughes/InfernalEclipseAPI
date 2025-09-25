@@ -1106,6 +1106,7 @@ Projectiles: {
 	_13thGltichCombo.DisplayName: _13th Gltich Combo
 	CelestialBeam.DisplayName: Celestial Beam
 	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
+	DemonicRune.DisplayName: Demonic Rune
 }
 
 DiaryTooltip:
@@ -1582,5 +1583,6 @@ NPCs: {
 	LittleCat: {
 		Bestiary: Not much is known about this cat.
 		Name: Demonic Little Grey Cat
+		DisplayName: Little Cat
 	}
 }
