@@ -98,7 +98,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted
         public ref float HorizontalDirection => ref Projectile.ai[1];
         public ref float StartingRotation => ref Projectile.ai[2];
 
-        new public static int MaxUpdates => 5;
+        public static int MaxUpdates => 5;
         public static int AnimeVisualsDuration => Utilities.SecondsToFrames(0.05f);
         public static float BaseScale => 1.2f;
         public static VertexPositionColorTexture[] SwordQuad { get; private set; }

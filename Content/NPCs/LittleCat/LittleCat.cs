@@ -16,6 +16,11 @@ namespace InfernalEclipseAPI.Content.NPCs.LittleCat
         // NPC.AI[0] is the phase
         // NPC.AI[1] is the current attack
         // NPC.AI[2] is a timer
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public override string Texture => "Terraria/Images/TownNPCs/Cat_Silver";
         public override string HeadTexture => "Terraria/Images/TownNPCs/NPC_Head_80";
         Player Target => Main.player[NPC.target];

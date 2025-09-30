@@ -97,7 +97,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         if (ModLoader.TryGetMod("ssm", out _))
                         {
                             recipe.RemoveIngredient(thorium.Find<ModItem>("TerrariumDefender").Type);
-                            recipe.AddIngredient(ModContent.ItemType<AsgardsValor>());
+                            if (!recipe.HasIngredient(ModContent.ItemType<AsgardsValor>()))
+                                recipe.AddIngredient(ModContent.ItemType<AsgardsValor>());
                         }
                         if (plasmaGen != null)
                         {

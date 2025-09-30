@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod.NPCs.ExoMechs.Ares;
-using CalamityMod.NPCs.ExoMechs.Artemis;
-using InfernalEclipseAPI.Content.Buffs;
+﻿using InfernalEclipseAPI.Content.Buffs;
 using NoxusBoss.Content.NPCs.Bosses.Draedon;
-using Terraria;
-using Terraria.ModLoader;
-using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs.ExoMechs

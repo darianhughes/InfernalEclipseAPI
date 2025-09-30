@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod.Items.Mounts;
+﻿using CalamityMod.Items.Mounts;
 using CatalystMod.NPCs.Boss.Astrageldon;
-using Clamity.Content.Items.Mounts;
 using InfernalEclipseAPI.Content.Buffs;
-using Terraria;
-using Terraria.ModLoader;
-using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs

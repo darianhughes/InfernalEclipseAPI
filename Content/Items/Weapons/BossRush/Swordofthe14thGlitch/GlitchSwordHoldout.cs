@@ -76,7 +76,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
         public ref float HorizontalDirection => ref base.Projectile.ai[1];
 
         public ref float StartingRotation => ref base.Projectile.ai[2];
-        new public static int MaxUpdates => 5;
+        public static int MaxUpdates => 5;
         public static int AnimeVisualsDuration => Utilities.SecondsToFrames(0.05f);
         public static float BaseScale => 1.2f;
         public static VertexPositionColorTexture[] SwordQuad { get; private set; }

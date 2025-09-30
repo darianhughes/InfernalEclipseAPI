@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Mono.Cecil.Cil;
+﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
-using SOTSBardHealer;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
 {

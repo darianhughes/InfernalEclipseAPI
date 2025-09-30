@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CalamityMod;
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.NPCs.Perforator;
+using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.SlimeGod;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -20,6 +21,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
         public override void SetDefaults(NPC npc)
         {
             int oozed = ModContent.BuffType<Oozed>();
+            int stunned = ModContent.BuffType<Stunned>();
 
             // Perforator worms
             if (npc.type == ModContent.NPCType<PerforatorHeadSmall>() ||
@@ -39,10 +41,16 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 npc.type == ModContent.NPCType<EbonianPaladin>() ||
 
                 npc.type == ModContent.NPCType<SplitCrimulanPaladin>() ||
-                npc.type == ModContent.NPCType<SplitEbonianPaladin>()
+                npc.type == ModContent.NPCType<SplitEbonianPaladin>() ||
+
+                //Profaned Guardians
+                npc.type == ModContent.NPCType<ProfanedGuardianCommander>() ||
+                npc.type == ModContent.NPCType<ProfanedGuardianDefender>() ||
+                npc.type == ModContent.NPCType<ProfanedGuardianHealer>()
                 )
             {
                 npc.buffImmune[oozed] = true;
+                npc.buffImmune[stunned] = true;
             }
         }
 

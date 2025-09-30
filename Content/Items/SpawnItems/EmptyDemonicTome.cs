@@ -2,6 +2,10 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
 {
     public class EmptyDemonicTome : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = 13;

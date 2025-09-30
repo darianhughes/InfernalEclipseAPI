@@ -24,7 +24,7 @@
 		<HintPath>..\ModAssemblies\CatalystMod_v1.1.2.3.dll</HintPath>
 		</Reference>
 		<Reference Include="Clamity">
-		<HintPath>..\ModAssemblies\Clamity_v1.0.3.11.dll</HintPath>
+		  <HintPath>..\ModAssemblies\Clamity_v1.0.3.11.dll</HintPath>
 		</Reference>
 		<Reference Include="Consolaria">
 		<HintPath>..\ModAssemblies\Consolaria_v2.1.3.2.dll</HintPath>
@@ -48,7 +48,7 @@
 		  <HintPath>lib\MMHOOK_InfernumMode_v2.0.1.19.dll</HintPath>
 		</Reference>
 		<Reference Include="NoxusBoss">
-		<HintPath>..\ModAssemblies\NoxusBoss_v1.2.25.dll</HintPath>
+		  <HintPath>..\ModAssemblies\NoxusBoss_v1.2.25.dll</HintPath>
 		</Reference>
 		<Reference Include="RagnarokMod">
 		  <HintPath>..\ModAssemblies\RagnarokMod_v1.4.4.3.dll</HintPath>
@@ -56,11 +56,11 @@
 		<Reference Include="RevengeancePlus">
 		<HintPath>..\ModAssemblies\RevengeancePlus_v0.4.4.dll</HintPath>
 		</Reference>
-		<Reference Include="SOTSBardHealer">
-		<HintPath>..\ModAssemblies\SOTSBardHealer_v0.2.5.dll</HintPath>
-		</Reference>
 		<Reference Include="SOTS">
 		<HintPath>..\ModAssemblies\SOTS_v0.25.0.4.dll</HintPath>
+		</Reference>
+		<Reference Include="SOTSBardHealer">
+		  <HintPath>..\ModAssemblies\SOTSBardHealer_v0.2.6.dll</HintPath>
 		</Reference>
 		<Reference Include="SubworldLibrary">
 		  <HintPath>..\ModAssemblies\SubworldLibrary_v2.2.3.2.dll</HintPath>

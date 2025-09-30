@@ -47,7 +47,7 @@ ItemTooltip: {
 	ScytheThrow:
 		'''
 		Right Click to throw the Scythe, which will curve on it's way back
-		Thrown Scythes will deal 20% reduced damage
+		Thrown Scythes will deal 10% reduced damage
 		'''
 	SandstonePortalDeviceInfo:
 		'''

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using ThoriumMod;
+﻿using ThoriumMod;
 
 namespace InfernalEclipseAPI.Content.Projectiles
 {
@@ -24,6 +16,10 @@ namespace InfernalEclipseAPI.Content.Projectiles
             Projectile.penetrate = 2;
             Projectile.timeLeft = 600;
             AIType = ProjectileID.Stinger;
+
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 30;
+            Projectile.usesIDStaticNPCImmunity = false;
 
             Projectile.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
         }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Common.Projectiles;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 using ThoriumMod.Projectiles.Scythe;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks.ThrowableScythes

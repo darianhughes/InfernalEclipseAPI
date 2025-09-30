@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CalamityMod.Items;
 using Microsoft.Xna.Framework;
 using NoxusBoss.Content.Rarities;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 {

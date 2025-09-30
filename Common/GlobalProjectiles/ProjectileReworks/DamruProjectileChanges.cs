@@ -55,7 +55,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             }
         }
 
-        public override void Kill(Projectile projectile, int timeLeft)
+        public override void OnKill(Projectile projectile, int timeLeft)
         {
             if (projectile.ModProjectile != null &&
                 projectile.ModProjectile.Mod.Name == "RagnarokMod" &&

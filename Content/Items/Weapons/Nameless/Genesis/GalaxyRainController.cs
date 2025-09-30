@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using NoxusBoss.Content.NPCs.Bosses.NamelessDeity.Projectiles;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using ThoriumMod.Projectiles.Bard;
 using ThoriumMod;
 using InfernalEclipseAPI.Content.Items.Weapons.Nameless.Genesis.RandomSong;
 

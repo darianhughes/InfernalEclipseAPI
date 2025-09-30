@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks.ThrowableScythes
 {
@@ -64,9 +61,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks.ThrowableScythes
             {
                 if (item.type == thorium.Find<ModItem>("BatScythe").Type) ThrowDistance = 125f;
                 if (item.type == thorium.Find<ModItem>("TitanScythe").Type) ThrowDistance = 150f;
-                if (item.type == thorium.Find<ModItem>("IceShaver").Type) ThrowDistance = 40f;
-                if (item.type == thorium.Find<ModItem>("DarkScythe").Type) ThrowDistance = 60f;
-                if (item.type == thorium.Find<ModItem>("CrimsonScythe").Type) ThrowDistance = 60f;
+                if (item.type == thorium.Find<ModItem>("IceShaver").Type) ThrowDistance = 45f;
+                if (item.type == thorium.Find<ModItem>("DarkScythe").Type) ThrowDistance = 80f;
+                if (item.type == thorium.Find<ModItem>("CrimsonScythe").Type) ThrowDistance = 65f;
                 if (item.type == thorium.Find<ModItem>("FallingTwilight").Type) ThrowDistance = 80f;
                 if (item.type == thorium.Find<ModItem>("BloodHarvest").Type) ThrowDistance = 80f;
 

@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod.Projectiles.Typeless;
+﻿using CalamityMod.Projectiles.Typeless;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.ID;
 using CalamityMod;
 using InfernalEclipseAPI.Core.DamageClasses;
 
@@ -152,6 +144,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     titanScytheType = thorium.Find<ModProjectile>("TitanScythePro")?.Type ?? -1;
                     boneBatonType = thorium.Find<ModProjectile>("BoneBatonPro")?.Type ?? -1;
                     trueHallowedType = thorium.Find<ModProjectile>("TrueHallowedScythePro")?.Type ?? -1;
+                    crimsonType = thorium.Find<ModProjectile>("CrimtaneScythePro")?.Type ?? -1;
+                    iceType = thorium.Find<ModProjectile>("IceShaverPro")?.Type ?? -1;
+                    darkType = thorium.Find<ModProjectile>("DemoniteScythePro")?.Type ?? -1;
                 }
             } 
 
@@ -229,6 +224,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
+                if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                {
+                    whirlwindType = calBardHeal.Find<ModProjectile>("Whirlwind")?.Type ?? -1;
+                }
+
                 if (entity.type == calBardHeal.Find<ModProjectile>("ExoSound").Type)
                 {
                     if (entity.usesLocalNPCImmunity)
@@ -347,6 +347,10 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int boneBatonType = -1;
         private static int trueHallowedType = -1;
         private static int windSlashType = -1;
+        private static int crimsonType = -1;
+        private static int iceType = -1;
+        private static int darkType = -1;
+        private static int whirlwindType = -1;
 
         private bool scaled = false;
 
@@ -363,19 +367,25 @@ namespace InfernalEclipseAPI.Common.Projectiles
             var t when t == titanScytheType => 2f,
             var t when t == trueHallowedType => 1.3f,
             var t when t == boneBatonType => 2f,
-            var t when t == windSlashType => 2f,
+            var t when t == windSlashType => 3f,
+            var t when t == crimsonType => 1.2f,
+            var t when t == iceType => 1.2f,
+            var t when t == darkType => 1.1f,
+            var t when t == whirlwindType => 1.5f,
             _ => 1f,
         };
 
         public override void AI(Projectile projectile)
         {
-            if (!scaled) ApplyScaling(projectile);
+            ApplyScaling(projectile);
         }
 
         private void ApplyScaling(Projectile projectile)
         {
             float scale = GetScaleForProjectile(projectile.type);
             if (scale == 1f) return;
+
+            if (projectile.localAI[2] == 1f) return;
 
             Vector2 originalSize = new Vector2(projectile.width, projectile.height);
             Vector2 oldCenter = projectile.Center;
@@ -385,13 +395,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
             projectile.height = (int)(originalSize.Y * scale);
             projectile.Center = oldCenter;
 
-            scaled = true;
+            projectile.localAI[2] = 1f;
         }
 
         public void EnsureScaled(Projectile projectile)
         {
-            if (!scaled)
-                ApplyScaling(projectile);
+            ApplyScaling(projectile);
         }
 
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
@@ -403,7 +412,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 moltenThresherType, batScytheType, batScytheType2,
                 fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
                 trueBloodHarvestType, theBlackScytheType, titanScytheType,
-                boneBatonType, windSlashType, trueHallowedType
+                boneBatonType, windSlashType, trueHallowedType,
+                crimsonType, iceType, darkType,
             };
 
                 if (!Array.Exists(staticProjectiles, t => t == projectile.type))
@@ -414,10 +424,19 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 Rectangle sourceRectangle = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight);
                 Vector2 origin = sourceRectangle.Size() / 2f;
                 Vector2 drawPos = projectile.Center - Main.screenPosition;
-                SpriteEffects effects = Main.player[projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                SpriteEffects effects = projectile.type == windSlashType
+                    ? SpriteEffects.None
+                    : (Main.player[projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
 
-                // Draw base projectile
-                Main.EntitySpriteDraw(texture, drawPos, sourceRectangle, lightColor, projectile.rotation, origin, projectile.scale, effects, 0);
+                Color drawColor = lightColor;
+                if (projectile.type == windSlashType)
+                {
+                    int fadeDuration = 30;
+                    if (projectile.timeLeft < fadeDuration)
+                        drawColor *= projectile.timeLeft / (float)fadeDuration;
+                }
+
+                Main.EntitySpriteDraw(texture, drawPos, sourceRectangle, drawColor, projectile.rotation, origin, projectile.scale, effects, 0);
 
                 // Draw glowmask for known Thorium projectiles
                 string glowPath = projectile.type switch
@@ -439,7 +458,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
                 }
 
-                return false; // prevent default draw
+                return false;
             }
             return true;
         }

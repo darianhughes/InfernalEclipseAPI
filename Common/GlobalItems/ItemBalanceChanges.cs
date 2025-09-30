@@ -16,7 +16,6 @@ using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
-using RevengeancePlus;
 using CalamityMod.Items;
 using Terraria.Localization;
 
@@ -231,7 +230,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(cal, "Archerfish", item))
                 {
-                    item.damage = 25;
+                    item.damage = 21;
                     item.useTime = 10;
                     item.useAnimation = 10;
                 }
@@ -978,7 +977,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "DragonTooth", item))
                     {
                         item.crit = 0;
-
+                        item.damage = 94;
                     }
 
                     if (GetItem(thorium, "DoomFireAxe", item))
@@ -2844,7 +2843,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #region Pre-Hardmode
                     if (GetItem(thorium, "CrimsonScythe", item))
                     {
-                        item.damage = 13;
+                        item.damage = 14;
                     }
 
                     if (GetItem(thorium, "DarkScythe", item))
@@ -2891,7 +2890,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Ice Shaver
                     if (item.type == thorium.Find<ModItem>("IceShaver").Type)
                     {
-                        item.damage = 10;
+                        item.damage = 11;
                     }
 
                     //Poison Prickler
@@ -3851,6 +3850,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 21;
                 }
 
+                if(UnsafeGetItem(calBardHeal, "HyphaeBaton", item))
+                {
+                    item.damage = 16;
+                }
+
+                if(UnsafeGetItem(calBardHeal, "TheWindmill", item))
+                {
+                    item.damage = 20;
+                }
+
                 #region Healer
                 #region Pre-Hardmode
                 //Wulfrum Weed Wacker
@@ -3962,7 +3971,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Death Adder
                 if (GetItem(calBardHeal, "DeathAdder", item))
                 {
-                    item.damage = 200;
+                    item.damage = 180;
                 }
 
                 //Purgatorium Pandemonium
@@ -4244,6 +4253,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 150;
                 }
+
+                if (UnsafeGetItem(ragnarok, "PhantasmalEdge", item))
+                {
+                    item.damage = 320;
+                }
+
                 #region Healer
                 //Prisma
                 if (item.type == ragnarok.Find<ModItem>("Prisma").Type)
@@ -4262,8 +4277,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (item.type == ragnarok.Find<ModItem>("WindReaver").Type)
                 {
                     item.damage = 26;
-                    item.useTime = 8;
-                    item.useAnimation = 8;
+                    item.useTime = 22;
+                    item.useAnimation = 22;
                 }
 
                 //Marble Scythe
@@ -4290,7 +4305,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.useTime = 8;
                     item.useAnimation = 8;
-                    item.damage = 200;
+                    item.damage = 150;
                 }
 
                 //Profaned Scythe
@@ -4298,7 +4313,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.useTime = 12;
                     item.useAnimation = 12;
-                    item.damage = 120;
+                    item.damage = 240;
                 }
 
                 //Verdurant Bloom
@@ -4338,6 +4353,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(ragnarok, "CosmicInjector", item))
                 {
                     item.damage = 150;
+                }
+
+                if (GetItem(ragnarok, "ExecutionerMark05", item))
+                {
+                    item.damage = 270;
                 }
 
                 #endregion
@@ -4426,7 +4446,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #region Secrets of the Shadows
             if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
             {
-
+                #region Pre-Hardmode
                 #region Melee
                 //Spore Club
                 if (GetItem(sots, "SporeClub", item))
@@ -4480,6 +4500,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 28;
                 }
 
+
+                if (GetItem(sots, "VesperaNanDao", item))
+                {
+                    item.damage = 21;
+                }
+
                 if (GetItem(sots, "SoulEater", item))
                 {
                     item.damage = 34;
@@ -4507,6 +4533,21 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 17;
                 }
 
+                if (GetItem(sots, "IlluminantAxe", item))
+                {
+                    item.damage = 30;
+                }
+
+                if (GetItem(sots, "ToothAche", item))
+                {
+                    item.damage = 20;
+                }
+
+                if (GetItem(sots, "Vertebraeker", item))
+                {
+                    item.damage = 22;
+                }
+
                 if (GetItem(sots, "BlazingClub", item))
                 {
                     item.damage = 25;
@@ -4514,9 +4555,72 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 30;
                     item.shootSpeed = 12;
                 }
+
+                if (GetItem(sots, "Hellbreaker", item))
+                {
+                    item.damage = 70;
+                }
+
+                if (GetItem(sots, "ObsidianEruption", item))
+                {
+                    item.damage = 21;
+                }
+
+                if (GetItem(sots, "ZephyrousZeppelin", item))
+                {
+                    item.damage = 24;
+                }
+
+                if (GetItem(sots, "Aten", item))
+                {
+                    item.damage = 34;
+                }
+
+                if (GetItem(sots, "WormWoodCollapse", item))
+                {
+                    item.damage = 64;
+                }
+
+                if (GetItem(sots, "CursedImpale", item))
+                {
+                    item.shootSpeed = 8;
+                    item.useTime = 12;
+                    item.useAnimation = 12;
+                }
+
+                if (GetItem(sots, "CursedGauntlet", item))
+                {
+                    item.damage = 46;
+                }
+
+                if (GetItem(sots, "BoneClapper", item))
+                {
+                    item.damage = 70;
+                }
+
+                if (GetItem(sots, "EarthGrinder", item))
+                {
+                    item.damage = 34;
+                }
+
+                if (GetItem(sots, "GuardianGreatsword", item))
+                {
+                    item.damage = 32;
+                }
+
+                if (GetItem(sots, "SupernovaHammer", item))
+                {
+                    item.crit = 6;
+                }
+
+                if (GetItem(sots, "DigitalDaito", item))
+                {
+                    item.damage = 27;
+                }
                 #endregion
 
                 #region Ranged
+                #endregion
                 #endregion
             }
             #endregion

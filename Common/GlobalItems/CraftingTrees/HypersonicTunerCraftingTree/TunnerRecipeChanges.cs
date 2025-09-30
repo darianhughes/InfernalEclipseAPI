@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod.Items.Materials;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using static NoxusBoss.Assets.GennedAssets.Sounds;
-
-namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCraftingTree
+﻿namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCraftingTree
 {
     public class TunnerRecipeChanges : ModSystem
     {

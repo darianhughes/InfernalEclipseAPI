@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.Tiles.Ores;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using CalamityMod.Tiles.DraedonStructures;
-using NoxusBoss.Core.Graphics.UI.Bestiary;
 
 namespace InfernalEclipseAPI.Common.Balance
 {

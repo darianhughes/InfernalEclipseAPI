@@ -1,18 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Text;
 using Daybreak.Common.Features.ModPanel;
 using Daybreak.Common.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.ModLoader.UI;
 using Terraria.UI;
-using Terraria.UI.Chat;
 using Terraria.Utilities;
 
 namespace InfernalEclipseAPI

@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
+﻿using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using Luminance.Assets;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NoxusBoss.Assets;
 using ReLogic.Utilities;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 {

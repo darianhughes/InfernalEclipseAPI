@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using CalamityMod;
 using CalamityMod.Events;
-using CalamityMod.Systems;
-using Terraria;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using InfernalEclipseAPI.Common;
-using Terraria.ID;
 
 namespace InfernalEclipseAPI.Core.Systems
 {

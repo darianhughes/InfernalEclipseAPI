@@ -1,26 +1,14 @@
-﻿using CalamityMod;
-using CalamityMod.Items.Placeables.FurnitureAuric;
-using CalamityMod.NPCs.CalClone;
-using CalamityMod.NPCs.PrimordialWyrm;
-using FargowiltasSouls.Core.ItemDropRules.Conditions;
-using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
+﻿using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 using InfernalEclipseAPI.Content.NPCs.LittleCat;
-using InfernalEclipseAPI.Core.DamageClasses;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using InfernalEclipseAPI.Core.World;
-using InfernumMode.Content.Items.SummonItems;
-using Microsoft.Build.Exceptions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Core.Systems
 {

@@ -2,13 +2,16 @@
 using CalamityMod.Events;
 using InfernalEclipseAPI.Content.NPCs.LittleCat;
 using Terraria.Audio;
-using CalamityMod.UI.CalamitasEnchants;
-using Terraria.ID;
 
 namespace InfernalEclipseAPI.Content.Items.SpawnItems
 {
     public class DemonicTome : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = 13;

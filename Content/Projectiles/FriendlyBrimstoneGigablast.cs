@@ -1,16 +1,9 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent;
 using ThoriumMod;
-using Terraria.DataStructures;
 using Terraria.Audio;
 using CalamityMod.Buffs.DamageOverTime;
 using ThoriumMod.Projectiles.Bard;
-using ReLogic.Content;
 namespace InfernalEclipseAPI.Content.Projectiles
 {
     [ExtendsFromMod("ThoriumMod")]
@@ -119,7 +112,7 @@ namespace InfernalEclipseAPI.Content.Projectiles
             return false;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             // Spawn explosion dust and play sound as before
             for (int i = 0; i < 14; i++)
