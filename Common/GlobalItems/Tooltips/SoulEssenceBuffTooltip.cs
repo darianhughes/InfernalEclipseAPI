@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
@@ -24,7 +18,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
                 ModItem modItem1;
                 if (mod1.TryFind("MarbleScythe", out modItem1))
                     scytheTypes.Add(modItem1.Type);
-                ModItem modItem2;
+                //ModItem modItem2;
                 //if (mod1.TryFind("ScoriaDualscythe", out modItem2))
                 //    scytheTypes.Add(modItem2.Type);
                 //ModItem modItem3;

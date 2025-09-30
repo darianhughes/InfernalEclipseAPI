@@ -716,6 +716,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             }
                         }
 
+                        if (recipe.HasResult(sots.Find<ModItem>("PurpleJellyfishStaff")))
+                        {
+                            recipe.RemoveTile(TileID.MythrilAnvil);
+                            recipe.AddTile(TileID.Anvils);
+                        }
+
                         if (recipe.HasResult<AuricQuantumCoolingCell>())
                         {
                             recipe.AddIngredient(sots.Find<ModItem>("DissolvingAurora"));

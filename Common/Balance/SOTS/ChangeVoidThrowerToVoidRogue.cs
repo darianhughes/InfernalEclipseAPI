@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
-using ThoriumMod.Items;
-using CalamityMod;
+﻿using CalamityMod;
 using InfernalEclipseAPI.Core.DamageClasses;
 
 namespace InfernalEclipseAPI.Common.Balance.SOTS
@@ -31,7 +27,7 @@ namespace InfernalEclipseAPI.Common.Balance.SOTS
         {
             if (SOTSBardHealer != null && InfernalConfig.Instance.SOTSThrowerToRogue)
             {
-                if ((item.type == SOTSBardHealer.Find<ModItem>("ForbiddenMaelstrom").Type) || (item.type == SOTSBardHealer.Find<ModItem>("GoopwoodSplit").Type))
+                if ((item.type == SOTSBardHealer.Find<ModItem>("ForbiddenMaelstrom").Type) || (item.type == SOTSBardHealer.Find<ModItem>("GoopwoodSplit").Type) || (item.type == SOTSBardHealer.Find<ModItem>("Serpentbite").Type))
                 {
                     item.DamageType = ModContent.GetInstance<VoidRogue>();
                 }

@@ -48,6 +48,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     target.AddBuff(BuffID.OnFire, 180);
                 }
+
+                if (item.type == sots.Find<ModItem>("IrradiatedChainReactor").Type)
+                {
+                    target.AddBuff(ModContent.BuffType<Irradiated>(), 60 * 3);
+                }
             }
 
             if (item.type == ItemID.LucyTheAxe && InfernalConfig.Instance.VanillaBalanceChanges)

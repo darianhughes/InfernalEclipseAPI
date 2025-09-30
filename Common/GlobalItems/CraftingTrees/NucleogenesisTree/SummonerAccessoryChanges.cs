@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using CalamityMod.Items.Accessories;
-using ThoriumMod.Items.BossMini;
-using ThoriumMod.Items.SummonItems;
-using SOTS.Items;
-using ThoriumMod.Items.Donate;
-using InfernumMode.Common.InverseKinematics;
-using Terraria.GameContent.UI;
 using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
@@ -315,13 +302,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
             );
 
-            string scryInfo = "Pressing the 'Accessory Ability' key will toggle an increased range of view";
+            //string scryInfo = "Pressing the 'Accessory Ability' key will toggle an increased range of view";
             string skullInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull");
             string scorpionInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CrystalScorpian");
             string fortressInfoNoThor = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressNoThor");
             string fortressInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Fortress");
             string watchInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Watch");
-            string yumasInfo = "Taking damage releases a ghostly protector";
+            //string yumasInfo = "Taking damage releases a ghostly protector";
 
             string twoMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.TwoSentry");
             string threeMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ThreeSentry");

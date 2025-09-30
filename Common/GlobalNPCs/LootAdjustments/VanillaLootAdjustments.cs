@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InfernalEclipseAPI.Content.Items.Placeables.Relics;
-using Terraria;
+﻿using InfernalEclipseAPI.Content.Items.Placeables.Relics;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
@@ -39,7 +31,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 
         public RevengenceMode()
         {
-            if (RevengenceMode.Description != null)
+            if (Description != null)
                 return;
         }
 

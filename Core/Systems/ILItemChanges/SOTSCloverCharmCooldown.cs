@@ -87,7 +87,7 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
             if (_getSotsPlayer is null || _critLifestealField is null)
                 return 0;
 
-            object? sotsPlayer = _getSotsPlayer.Invoke(null, new object[] { player });
+            object sotsPlayer = _getSotsPlayer.Invoke(null, new object[] { player });
             return sotsPlayer is null ? 0 : (int)(_critLifestealField.GetValue(sotsPlayer) ?? 0);
         }
     }

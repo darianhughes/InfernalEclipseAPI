@@ -312,7 +312,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.penetrate = 3;
                 }
 
-                if (GetProj(entity, sotsBH, "GoopwoodSplit"))
+                if (GetProj(entity, sotsBH, "GoopwoodSplit") || GetProj(entity, sotsBH, "ForbiddenMaelstrom") || GetProj(entity, sotsBH, "Serpentbite"))
                 {
                     if (InfernalConfig.Instance.SOTSThrowerToRogue) entity.DamageType = ModContent.GetInstance<VoidRogue>();
                 }
@@ -351,8 +351,6 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int iceType = -1;
         private static int darkType = -1;
         private static int whirlwindType = -1;
-
-        private bool scaled = false;
 
         private float GetScaleForProjectile(int type) => type switch
         {

@@ -54,7 +54,7 @@
 		  <HintPath>..\ModAssemblies\RagnarokMod_v1.4.4.3.dll</HintPath>
 		</Reference>
 		<Reference Include="RevengeancePlus">
-		<HintPath>..\ModAssemblies\RevengeancePlus_v0.4.4.dll</HintPath>
+		  <HintPath>..\ModAssemblies\RevengeancePlus_v0.4.6.dll</HintPath>
 		</Reference>
 		<Reference Include="SOTS">
 		<HintPath>..\ModAssemblies\SOTS_v0.25.0.4.dll</HintPath>

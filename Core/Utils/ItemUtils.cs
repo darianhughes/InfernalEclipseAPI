@@ -1,9 +1,5 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Utilities;
+﻿using Terraria.Utilities;
 using ThoriumMod;
-using ThoriumMod.Items.HealerItems;
 
 namespace InfernalEclipseAPI.Core.Utils
 {

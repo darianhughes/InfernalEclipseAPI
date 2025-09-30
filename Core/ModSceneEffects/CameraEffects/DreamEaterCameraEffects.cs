@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Core.ModSceneEffects.CameraEffects
 {
@@ -9,7 +6,6 @@ namespace InfernalEclipseAPI.Core.ModSceneEffects.CameraEffects
     {
         public override bool InstancePerEntity => true;
         private bool _finaleFocusStarted;
-        private int introDuration;
 
         // Resolve Dream Eater's type without compile-time Thorium reference
         private static int DreamEaterType

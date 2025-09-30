@@ -18,6 +18,7 @@ using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Items;
 using Terraria.Localization;
+using System.Data;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -138,7 +139,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #endregion
 
             #region You
-            if (ModLoader.TryGetMod("YouBoss", out Mod youBoss)) 
+            if (ModLoader.TryGetMod("YouBoss", out Mod youBoss))
             {
                 //First Fractal
                 if (GetItem(youBoss, "FirstFractal", item))
@@ -648,7 +649,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
             if (ModLoader.TryGetMod("NoxusPort", out Mod noxusPort))
             {
-                if(UnsafeGetItem(noxusPort, "EntropicBar", item))
+                if (UnsafeGetItem(noxusPort, "EntropicBar", item))
                 {
                     item.value = CalamityGlobalItem.RarityVioletBuyPrice;
                 }
@@ -3167,7 +3168,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.damage = 139;
                     }
-                    
+
                     if (GetItem(thorium, "MindMelter", item))
                     {
                         item.damage = 125;
@@ -3678,7 +3679,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 154;
                         item.crit = 21;
                     }
- 
+
                     if (GetItem(thorium, "BetsysBellow", item))
                     {
                         item.damage = 94;
@@ -3845,17 +3846,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #region Unofficial Calamity Bard & Healler
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && (ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess || ModContent.GetInstance<InfernalConfig>().CalamityBalanceChanges))
             {
-                if(UnsafeGetItem(calBardHeal, "InfestedCastanet", item))
+                if (UnsafeGetItem(calBardHeal, "InfestedCastanet", item))
                 {
                     item.damage = 21;
                 }
 
-                if(UnsafeGetItem(calBardHeal, "HyphaeBaton", item))
+                if (UnsafeGetItem(calBardHeal, "HyphaeBaton", item))
                 {
                     item.damage = 16;
                 }
 
-                if(UnsafeGetItem(calBardHeal, "TheWindmill", item))
+                if (UnsafeGetItem(calBardHeal, "TheWindmill", item))
                 {
                     item.damage = 20;
                 }
@@ -4072,7 +4073,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 33;
                     item.shootSpeed = 8;
                 }
-            #endregion
+                #endregion
 
                 #region Hardmode
                 //Song of the Elements
@@ -4588,7 +4589,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 12;
                 }
 
-                if (GetItem(sots, "CursedGauntlet", item))
+                if (GetItem(sots, "JeweledGauntlet", item))
                 {
                     item.damage = 46;
                 }
@@ -4620,6 +4621,454 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 #endregion
 
                 #region Ranged
+                if (GetItem(sots, "PlatinumDart", item))
+                {
+                    item.damage = 25;
+                }
+
+                if (GetItem(sots, "AncientSteelLongbow", item))
+                {
+                    item.damage = 21;
+                    item.useTime = 40;
+                    item.useAnimation = 40;
+                }
+
+                if (GetItem(sots, "GlazeBow", item))
+                {
+                    item.damage = 18;
+                }
+
+                if (GetItem(sots, "EchoDisk", item))
+                {
+                    item.damage = 14;
+                }
+
+                if (GetItem(sots, "VibrantPistol", item))
+                {
+                    item.damage = 21;
+                }
+
+                if (GetItem(sots, "CryoCannon", item))
+                {
+                    item.damage = 12;
+                }
+
+                if (GetItem(sots, "ExplosiveKnife", item))
+                {
+                    item.damage = 7;
+                }
+
+                if (GetItem(sots, "MineralSpewer", item))
+                {
+
+                }
+
+                if (GetItem(sots, "ThundershockShortbow", item))
+                {
+                    item.damage = 40;
+                }
+
+                if (GetItem(sots, "SharkPog", item))
+                {
+                    item.damage = 7;
+                }
+
+                if (GetItem(sots, "Icebreaker", item))
+                {
+                    item.damage = 15;
+                }
+
+                if (GetItem(sots, "SandstormPouch", item))
+                {
+                    item.damage = 16;
+                }
+
+                if (GetItem(sots, "IlluminantBow", item))
+                {
+                    item.damage = 12;
+                }
+
+                if (GetItem(sots, "RoyalMagnum", item))
+                {
+                    item.damage = 7;
+                }
+
+                if (GetItem(sots, "WormWoodHelix", item))
+                {
+                    item.useTime = 21;
+                    item.useAnimation = 21;
+                }
+
+                if (GetItem(sots, "Sharanga", item))
+                {
+                    item.damage = 35;
+                }
+
+                if (GetItem(sots, "FortressCrasher", item))
+                {
+                    item.useTime = 26;
+                    item.useAnimation = 26;
+                }
+
+                if (GetItem(sots, "FlareDetonator", item))
+                {
+                    item.damage = 27;
+                }
+
+                if (GetItem(sots, "ArclightOrbs", item))
+                {
+                    item.damage = 15;
+                }
+
+                if (GetItem(sots, "SkywardBlades", item))
+                {
+                    item.damage = 28;
+                    item.crit = 0;
+                }
+
+                if (GetItem(sots, "CataclysmDisc", item))
+                {
+                    item.damage = 16;
+                }
+                #endregion
+
+                #region Magic
+                if (GetItem(sots, "VibrantStaff", item))
+                {
+                    item.useTime = 18;
+                    item.useAnimation = 18;
+                    item.damage = 18;
+                }
+
+                if (GetItem(sots, "ShardStaff", item))
+                {
+                    item.damage = 18;
+                }
+
+                if (GetItem(sots, "StormSpell", item))
+                {
+                    item.damage = 16;
+                }
+
+                if (GetItem(sots, "PlatinumSoulStaff", item))
+                {
+                    item.damage = 12;
+                }
+
+                if (GetItem(sots, "PinkJellyfishStaff", item))
+                {
+                    item.damage = 13;
+                }
+
+                if (GetItem(sots, "DreamLamp", item))
+                {
+                    item.damage = 68;
+                }
+
+                if (GetItem(sots, "IlluminantStaff", item))
+                {
+                    item.damage = 13;
+                }
+
+                if (GetItem(sots, "PhotonGeyser", item))
+                {
+                    item.damage = 16;
+                }
+
+                if (GetItem(sots, "WormWoodStaff", item))
+                {
+                    item.damage = 24;
+                }
+
+                if (GetItem(sots, "CurseballTome", item))
+                {
+                    item.damage = 26;
+                }
+
+                if (GetItem(sots, "CrescentStaff", item))
+                {
+                    item.damage = 26;
+                }
+
+                if (GetItem(sots, "ArcStaffMk2", item))
+                {
+                    item.damage = 80;
+                }
+                #endregion
+
+                #region Summon
+                if (GetItem(sots, "JarOfPineapple", item))
+                {
+                    item.damage = 13;
+                }
+
+                if (GetItem(sots, "NightIlluminator", item))
+                {
+                    item.damage = 14;
+                }
+
+                if (GetItem(sots, "CursedBlade", item))
+                {
+                    item.damage = 25;
+                }
+
+                if (GetItem(sots, "OtherworldlySpiritStaff", item))
+                {
+                    item.damage = 30;
+                }
+                #endregion
+                #endregion
+
+                #region Hardmode
+                #region Melee
+                if (GetItem(sots, "Colossus", item))
+                {
+                    item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (GetItem(sots, "AquaticEclipse", item))
+                {
+                    item.damage = 102;
+                }
+
+                if (GetItem(sots, "AbyssalFury", item))
+                {
+                    item.damage = 21;
+                }
+
+                if (GetItem(sots, "Pulverizer", item))
+                {
+                    item.damage = 25;
+                }
+
+                if (GetItem(sots, "IrradiatedChainReactor", item))
+                {
+                    item.damage = 80;
+                }
+
+                if (GetItem(sots, "Sawflake", item))
+                {
+                    item.damage = 90;
+                }
+
+                if (GetItem(sots, "Helios", item))
+                {
+                    item.damage = 80;
+                }
+
+                if (GetItem(sots, "DuneSplicer", item))
+                {
+                    item.damage = 30;
+                }
+
+                if (GetItem(sots, "KingBlade", item))
+                {
+                    item.damage = 31;
+                }
+
+                if (GetItem(sots, "SkipScythe", item))
+                {
+                    item.crit = 0;
+                    item.damage = 85;
+                }
+
+                if (GetItem(sots, "RealityShatter", item))
+                {
+                    item.useTime = 12;
+                    item.useAmmo = 12;
+                    item.damage = 125;
+                    item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (GetItem(sots, "SubspaceScissors", item))
+                {
+                    item.damage = 220;
+                }
+                #endregion
+
+                #region Ranged
+                if (GetItem(sots, "TorchGunMk2", item))
+                {
+                    item.damage = 10;
+                    item.useTime = 100;
+                    item.useAnimation = 100;
+                }
+
+                if (GetItem(sots, "GhoulBlaster", item))
+                {
+                    item.damage = 22;
+                }
+
+                if (GetItem(sots, "HypericeClusterCannon", item))
+                {
+                    item.damage = 28;
+                }
+
+                if (GetItem(sots, "PBow", item))
+                {
+                    item.damage = 38;
+                }
+
+                if (GetItem(sots, "AccretionDisc", item))
+                {
+                    item.damage = 16;
+                    item.useTime = 60;
+                    item.useAnimation = 60;
+                }
+
+                if (GetItem(sots, "Traingun", item))
+                {
+                    item.damage = 80;
+                }
+
+                if (GetItem(sots, "RebarRifle", item))
+                {
+                    item.useTime = 26;
+                    item.useAnimation = 26;
+                }
+
+                if (GetItem(sots, "PathogenRegurgitator", item))
+                {
+                    item.damage = 55;
+                }
+
+                if (GetItem(sots, "TheBlaspha", item))
+                {
+                    item.damage = 35;
+                }
+
+                if (GetItem(sots, "SpectreSpiritStorm", item))
+                {
+                    item.damage = 50;
+                }
+
+                if (GetItem(sots, "SupernovaScatter", item))
+                {
+                    item.useTime = 90;
+                    item.useAnimation = 90;
+                    item.damage = 27;
+                }
+
+                if (GetItem(sots, "IcicleImpale", item))
+                {
+                    item.damage = 55;
+                }
+
+                if (GetItem(sots, "ChaosChamber", item))
+                {
+                    item.damage = 55;
+                }
+
+                if (GetItem(sots, "RoseBow", item))
+                {
+                    item.damage = 72;
+                }
+
+                if (GetItem(sots, "StellarSerpentLauncher", item))
+                {
+                    item.damage = 30;
+                }
+
+                if (GetItem(sots, "CataclysmSpheres", item))
+                {
+                    item.damage = 35;
+                }
+
+                if (GetItem(sots, "DimensionShredder", item))
+                {
+                    item.useTime = 5;
+                    item.useAnimation = 5;
+                    item.damage = 32;
+                }
+                #endregion
+
+                #region Magic
+                if (GetItem(sots, "PurpleJellyfishStaff", item))
+                {
+                    item.damage = 22;
+                }
+
+                if (GetItem(sots, "TomeOfTheReaper", item))
+                {
+                    item.damage = 66;
+                }
+
+                if (GetItem(sots, "BiomassBarrage", item))
+                {
+                    item.damage = 38;
+                }
+
+                if (GetItem(sots, "BrachialLance", item))
+                {
+                    item.damage = 76;
+                }
+
+                if (GetItem(sots, "TangleStaff", item))
+                {
+                    item.damage = 120;
+                }
+
+                if (GetItem(sots, "Revolution", item))
+                {
+                    item.damage = 78;
+                }
+
+                if (GetItem(sots, "HyperlightGeyser", item))
+                {
+                    item.damage = 35;
+                }
+
+                if (GetItem(sots, "SupernovaStorm", item))
+                {
+                    item.damage = 52;
+                }
+
+                if (GetItem(sots, "DanceOfDeath", item))
+                {
+                    item.damage = 33;
+                }
+
+                if (GetItem(sots, "Apocalypse", item))
+                {
+                    item.damage = 180;
+                }
+                #endregion
+
+                #region Summon
+                if (GetItem(sots, "TidalSpiritStaff", item))
+                {
+                    item.damage = 70;
+                }
+
+                if (GetItem(sots, "EvilSpiritStaff", item))
+                {
+                    item.damage = 46;
+                }
+
+                if (GetItem(sots, "CruiseCaller", item))
+                {
+                    item.damage = 50;
+                }
+
+                if (GetItem(sots, "StarcallerStaff", item))
+                {
+                    item.damage = 86;
+                }
+
+                if (GetItem(sots, "ChaosSpiritStaff", item))
+                {
+                    item.damage = 20;
+                }
+
+                if (GetItem(sots, "EtherealScepter", item))
+                {
+                    item.damage = 96;
+                }
+
+                if (GetItem(sots, "Lemegeton", item))
+                {
+                    item.damage = 46;
+                }
                 #endregion
                 #endregion
             }
@@ -4639,7 +5088,72 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 19;
                 }
 
+                if (GetItem(sotsBH, "GoopwoodSplit", item))
+                {
+                    item.damage = 52;
+                }
 
+                if (GetItem(sotsBH, "GoopwoodReap", item))
+                {
+                    item.damage = 33;
+                }
+
+                if (GetItem(sotsBH, "AncientHarp", item))
+                {
+                    item.shootSpeed = 8;
+                    item.damage = 34;
+                }
+
+                if (GetItem(sotsBH, "ForbiddenMaelstrom", item))
+                {
+                    item.damage = 58;
+                }
+
+                if (GetItem(sotsBH, "CursedAnkhStaff", item))
+                {
+                    item.damage = 45;
+                }
+
+                if (GetItem(sotsBH, "BladedSnowflake", item))
+                {
+                    item.damage = 57;
+                }
+
+                if (GetItem(sotsBH, "TurboSlicer", item))
+                {
+                    item.damage = 104;
+                }
+
+                if (GetItem(sotsBH, "UltrasonicBassBooster", item))
+                {
+                    item.damage = 52;
+                }
+
+                if (GetItem(sotsBH, "TwilightAscendance", item))
+                {
+                    item.damage = 175;
+                }
+
+                if (GetItem(sotsBH, "SerpentCharmerofSage", item))
+                {
+                    item.damage = 27;
+                }
+
+                if (GetItem(sotsBH, "Serpentbite", item))
+                {
+                    item.crit = 6;
+                    item.damage = 54;
+                }
+
+                if (GetItem(sotsBH, "ChoirofOne", item))
+                {
+                    item.damage = 160;
+                }
+
+                if (GetItem(sotsBH, "PromiseofDemise", item))
+                {
+                    item.damage = 402;
+                }
             }
             #endregion
 

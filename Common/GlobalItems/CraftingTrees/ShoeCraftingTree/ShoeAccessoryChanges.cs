@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CalamityMod;
 using CalamityMod.CalPlayer;
 using CalamityMod.Items.Accessories.Wings;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
 {
