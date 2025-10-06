@@ -3,7 +3,8 @@ using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Core
 {
-    // Disables vanilla parallax background rendering so we can draw everything manually
+    // Thanks to Nycro#0001 <@!262663471189983242> for this null background which cleanly ignores vanilla's parallax mechanics
+    // taken from CalamityMod source
     internal class NullSurfaceBackground : ModSurfaceBackgroundStyle
     {
         public override void ModifyFarFades(float[] fades, float transitionSpeed)
@@ -14,27 +15,26 @@ namespace InfernalEclipseAPI.Core
                 {
                     fades[i] += transitionSpeed;
                     if (fades[i] > 1f)
+                    {
                         fades[i] = 1f;
+                    }
                 }
                 else
                 {
                     fades[i] -= transitionSpeed;
                     if (fades[i] < 0f)
+                    {
                         fades[i] = 0f;
+                    }
                 }
             }
         }
 
-        // Return blank pixel for all background layers
-        private static readonly string BlankPath = "InfernalEclipseAPI/Assets/Textures/Pixel";
-
-        // Return 0 (vanilla background) - won't render anyway due to PreDrawCloseBackground
-        public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b) => 0;
-
-        public override int ChooseFarTexture() => 0;
-
-        public override int ChooseMiddleTexture() => 0;
-
+        private static readonly string TexPath = "InfernalEclipseAPI/Assets/Textures/Backgrounds/BlankPixel";
+        public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b) => BackgroundTextureLoader.GetBackgroundSlot(TexPath);
+        public override int ChooseFarTexture() => BackgroundTextureLoader.GetBackgroundSlot(TexPath);
+        public override int ChooseMiddleTexture() => BackgroundTextureLoader.GetBackgroundSlot(TexPath);
         public override bool PreDrawCloseBackground(SpriteBatch spriteBatch) => false;
     }
 }
+

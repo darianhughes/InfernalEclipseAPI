@@ -46,7 +46,7 @@ namespace InfernalEclipseAPI.Core
             ieorText = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRText");
         }
 
-        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{MenuAssetPath}/Pixel");
+        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRLogoFull");
 
         public override Asset<Texture2D> SunTexture => ModContent.Request<Texture2D>($"{MenuAssetPath}/Pixel");
 
@@ -86,7 +86,7 @@ namespace InfernalEclipseAPI.Core
             drawColor = Color.White;
 
             // Draw sky background (static, full screen)
-            DrawLayer(spriteBatch, menuSkyTinted.Value, drawOffset, scale, Color.White, BlendState.AlphaBlend);
+            DrawLayer(spriteBatch, menuSkyTinted.Value, drawOffset, scale, Color.White, BlendState.NonPremultiplied);
 
             // Eclipse elements are also 1920x1080 canvases with pre-positioned content
             // Draw them with the same offset as sky, just different scales
@@ -95,13 +95,13 @@ namespace InfernalEclipseAPI.Core
             Vector2 eclipseOffset = drawOffset + new Vector2(BaseWidth * (0.5f * scale) / 2f, 0f);
 
             // Draw eclipse glow (1920x1080 canvas, no additional scaling, additive blend)
-            DrawLayer(spriteBatch, menuEclipseGlow.Value, eclipseOffset, scale, Color.White, BlendState.Additive);
+            DrawLayer(spriteBatch, menuEclipseGlow.Value, eclipseOffset, scale, Color.White, BlendState.NonPremultiplied);
 
             // Draw eclipse (1920x1080 canvas, scaled down 2x)
-            DrawLayer(spriteBatch, menuEclipse.Value, eclipseOffset, scale * 0.5f, Color.White, BlendState.AlphaBlend);
+            DrawLayer(spriteBatch, menuEclipse.Value, eclipseOffset, scale * 0.5f, Color.White, BlendState.NonPremultiplied);
 
             // Draw eclipse glare (1920x1080 canvas, no additional scaling, additive blend)
-            DrawLayer(spriteBatch, menuEclipseGlare.Value, eclipseOffset, scale, Color.White, BlendState.Additive);
+            DrawLayer(spriteBatch, menuEclipseGlare.Value, eclipseOffset, scale, Color.White, BlendState.NonPremultiplied);
 
             // Draw parallax layers with horizontal tiling
             DrawParallaxLayer(spriteBatch, menuCloudsTinted.Value, scale, 0.15f, Color.White);
@@ -122,7 +122,10 @@ namespace InfernalEclipseAPI.Core
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
 
-            return false; // Don't draw the default logo
+            logoScale *= 0.55f;
+            logoDrawCenter += new Vector2(6, -2);
+
+            return true; // Don't draw the default logo
         }
 
         private void DrawLayer(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset, float scale, Color color, BlendState blendState)
