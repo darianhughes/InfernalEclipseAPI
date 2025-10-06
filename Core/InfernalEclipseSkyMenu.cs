@@ -14,12 +14,16 @@ namespace InfernalEclipseAPI.Core
 
         // Texture assets
         private Asset<Texture2D> menuSky;
+        private Asset<Texture2D> menuSkyTinted;
         private Asset<Texture2D> menuEclipseGlow;
         private Asset<Texture2D> menuEclipse;
         private Asset<Texture2D> menuEclipseGlare;
         private Asset<Texture2D> menuClouds;
+        private Asset<Texture2D> menuCloudsTinted;
         private Asset<Texture2D> menuMountains;
+        private Asset<Texture2D> menuMountainsTinted;
         private Asset<Texture2D> menuHills;
+        private Asset<Texture2D> menuHillsTinted;
         private Asset<Texture2D> ieorAnkh;
         private Asset<Texture2D> ieorText;
 
@@ -28,12 +32,16 @@ namespace InfernalEclipseAPI.Core
         public override void Load()
         {
             menuSky = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuSky");
+            menuSkyTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuSkyTinted");
             menuEclipseGlow = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipseGlow");
             menuEclipse = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipse");
             menuEclipseGlare = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipseGlare");
             menuClouds = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuClouds");
+            menuCloudsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuCloudsTinted");
             menuMountains = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuMountains");
+            menuMountainsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuMountainsTinted");
             menuHills = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuHills");
+            menuHillsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuHillsTinted");
             ieorAnkh = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRAnhk");
             ieorText = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRText");
         }
@@ -78,7 +86,7 @@ namespace InfernalEclipseAPI.Core
             drawColor = Color.White;
 
             // Draw sky background (static, full screen)
-            DrawLayer(spriteBatch, menuSky.Value, drawOffset, scale, Color.White, BlendState.AlphaBlend);
+            DrawLayer(spriteBatch, menuSkyTinted.Value, drawOffset, scale, Color.White, BlendState.AlphaBlend);
 
             // Eclipse elements are also 1920x1080 canvases with pre-positioned content
             // Draw them with the same offset as sky, just different scales
@@ -96,9 +104,9 @@ namespace InfernalEclipseAPI.Core
             DrawLayer(spriteBatch, menuEclipseGlare.Value, eclipseOffset, scale, Color.White, BlendState.Additive);
 
             // Draw parallax layers with horizontal tiling
-            DrawParallaxLayer(spriteBatch, menuClouds.Value, scale, 0.15f, Color.White);
-            DrawParallaxLayer(spriteBatch, menuMountains.Value, scale, 0.25f, Color.White);
-            DrawParallaxLayer(spriteBatch, menuHills.Value, scale, 0.4f, Color.White);
+            DrawParallaxLayer(spriteBatch, menuCloudsTinted.Value, scale, 0.15f, Color.White);
+            DrawParallaxLayer(spriteBatch, menuMountainsTinted.Value, scale, 0.25f, Color.White);
+            DrawParallaxLayer(spriteBatch, menuHillsTinted.Value, scale, 0.4f, Color.White);
 
             // End current batch to switch to NonPremultiplied for text
             spriteBatch.End();
