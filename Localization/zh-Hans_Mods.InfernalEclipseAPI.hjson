@@ -47,7 +47,7 @@ ItemTooltip: {
 	ScytheThrow:
 		'''
 		右键投掷镰刀，它会以弧线轨迹返回
-		投掷镰刀的伤害降低 20%
+		投掷镰刀的伤害降低20%
 		'''
 	SandstonePortalDeviceInfo:
 		'''
