@@ -4236,6 +4236,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 140;
                 }
+
+                if (GetItem(rethorium, "PickShapedPebble", item))
+                {
+                    item.defense = 0;
+                }
                 #endregion
 
                 #region True

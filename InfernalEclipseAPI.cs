@@ -49,7 +49,6 @@ namespace InfernalEclipseAPI
         public InfernalEclipseAPI() => Instance = this;
 
         public static int WhiteFlareType = 0;
-        private Type thoriumThrowerClass;
         private bool _hijackInteraction;
 
         public override void Load()
@@ -62,8 +61,6 @@ namespace InfernalEclipseAPI
                 if (thorium.TryFind<ModProjectile>("WhiteFlare", out var whiteFlare))
                     WhiteFlareType = whiteFlare.Type;
 
-                thoriumThrowerClass = thorium.Code.GetType("ThoriumMod.ThrowerDamageClass");
-
                 if (ModLoader.TryGetMod("CellphonePylon", out _))
                 {
                     On_Player.IsTileTypeInInteractionRange += On_Player_IsTileTypeInInteractionRange;
@@ -72,6 +69,10 @@ namespace InfernalEclipseAPI
             }
 
             AchievementUpdateHandler = typeof(InfernumMode.Core.GlobalInstances.Players.AchievementPlayer).GetMethod("ExtraUpdateHandler", BindingFlags.Static | BindingFlags.NonPublic);
+
+            BackgroundTextureLoader.AddBackgroundTexture(this, "InfernalEclipseAPI/Assets/Textures/Menu/MenuClouds");
+            BackgroundTextureLoader.AddBackgroundTexture(this, "InfernalEclipseAPI/Assets/Textures/Menu/MenuMountains");
+            BackgroundTextureLoader.AddBackgroundTexture(this, "InfernalEclipseAPI/Assets/Textures/Menu/MenuHills");
         }
 
         public override void Unload()
