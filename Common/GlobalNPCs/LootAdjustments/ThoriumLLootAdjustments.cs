@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using InfernalEclipseAPI.Content.Items.Lore;
-using Terraria.ModLoader;
-using Terraria;
-using YouBoss.Content.NPCs.Bosses.TerraBlade;
-using CalamityMod.Items.Materials;
+﻿using CalamityMod.Items.Materials;
 using CalamityMod;
 using ThoriumMod.NPCs.Depths;
-using System.Security.Policy;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
 using ThoriumMod.NPCs.BossThePrimordials;
 using CalamityMod.Items.Potions;
 using MonoMod.Cil;
 using System.Reflection;
 using Mono.Cecil.Cil;
+using ThoriumMod.Items.Depths;
+using ThoriumMod.NPCs.BossFallenBeholder;
+using ThoriumMod.Items.Misc;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
@@ -29,6 +20,22 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
             if (npc.type == ModContent.NPCType<GigaClam>())
             {
                 npcLoot.AddIf(() => Main.hardMode, ModContent.ItemType<MolluskHusk>(), 2, 1, 1);
+            }
+
+            //Biome Key Drops
+            if (npc.type == ModContent.NPCType<CalamityMod.NPCs.Leviathan.Leviathan>())
+            {
+                npcLoot.Add(ModContent.ItemType<AquaticDepthsBiomeKey>());
+            }
+
+            if (npc.type == ModContent.NPCType<FallenBeholder2>() || npc.type == ModContent.NPCType<FallenBeholder2>())
+            {
+                npcLoot.Add(ModContent.ItemType<UnderworldBiomeKey>());
+            }
+
+            if (npc.type == NPCID.SandElemental)
+            {
+                npcLoot.Add(ModContent.ItemType<DesertBiomeKey>());
             }
         }
     }

@@ -155,6 +155,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                 {
                     windSlashType = ragnarok.Find<ModProjectile>("WindSlashPro")?.Type ?? -1;
+                    marbleType = ragnarok.Find<ModProjectile>("MarbleScythePro")?.Type ?? -1;
                 }
                 
                 if (entity.type == ragnarok.Find<ModProjectile>("GelScythePro2").Type)
@@ -351,6 +352,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int iceType = -1;
         private static int darkType = -1;
         private static int whirlwindType = -1;
+        private static int marbleType = -1;
 
         private float GetScaleForProjectile(int type) => type switch
         {
@@ -370,6 +372,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             var t when t == iceType => 1.2f,
             var t when t == darkType => 1.1f,
             var t when t == whirlwindType => 1.5f,
+            var t when t == marbleType => 1.75f,
             _ => 1f,
         };
 
@@ -406,13 +409,13 @@ namespace InfernalEclipseAPI.Common.Projectiles
             if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
             {
                 int[] staticProjectiles = new int[]
-            {
-                moltenThresherType, batScytheType, batScytheType2,
-                fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
-                trueBloodHarvestType, theBlackScytheType, titanScytheType,
-                boneBatonType, windSlashType, trueHallowedType,
-                crimsonType, iceType, darkType,
-            };
+                {
+                    moltenThresherType, batScytheType, batScytheType2,
+                    fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
+                    trueBloodHarvestType, theBlackScytheType, titanScytheType,
+                    boneBatonType, windSlashType, trueHallowedType,
+                    crimsonType, iceType, darkType, marbleType,
+                };
 
                 if (!Array.Exists(staticProjectiles, t => t == projectile.type))
                     return true;

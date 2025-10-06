@@ -1,0 +1,8 @@
+﻿VisionAmuletTextList2: {
+	3:
+		'''
+
+		Provides access to Work Bench, Furnace, and Anvil crafting stations
+		Increases max mana and mana received from potions by 40
+		'''
+}

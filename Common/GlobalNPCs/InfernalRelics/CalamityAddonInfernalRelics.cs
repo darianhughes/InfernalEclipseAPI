@@ -4,6 +4,7 @@ using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Bosses.WoB.NPCs;
 using InfernalEclipseAPI.Content.Items.Accessories;
+using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.Clamity;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG;
@@ -58,6 +59,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<NamelessDeityRelic>());
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoltanBullyingSlip>(), 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrimordialOrchid>(), 1, 5, 10));
             }
         }
     }

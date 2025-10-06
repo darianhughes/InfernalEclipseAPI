@@ -49,6 +49,16 @@ ItemTooltip: {
 		Right Click to throw the Scythe, which will curve on it's way back
 		Thrown Scythes will deal 10% reduced damage
 		'''
+	PhoenixStaff:
+		'''
+		Right click to spew a stream of flames that inflict 'Holy Glare'
+		All damage done against holy glared enemies is increased by 15%
+		'''
+	HolyGlare:
+		'''
+		Enemies hit with the scythe will be inflicted with 'Holy Glare'
+		All damage done against holy glared enemies is increased by 15%
+		'''
 	SandstonePortalDeviceInfo:
 		'''
 		Transports you to the Lost Colosseum
@@ -246,6 +256,7 @@ ItemTooltip: {
 		5: Also increases life regen by 5
 		10: Also increases life regen by 10
 		FasterIvory: Allows for Ivory Flares to activate twice as fast while wearing the White Dwarf Armor
+		GelDash: Allows the ability to dash and enhances other dashes
 	}
 
 	MythicTooltips: {

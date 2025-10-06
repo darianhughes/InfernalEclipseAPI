@@ -300,6 +300,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(ItemID.JunglePants))
                             recipe.AddIngredient<SulphuricScale>(4);
 
+                        if (recipe.HasResult(thorium.Find<ModItem>("NecroticSkull")))
+                        {
+                            recipe.AddIngredient(ItemID.SoulofFright, 3);
+                            recipe.RemoveTile(TileID.DemonAltar);
+                            recipe.AddTile(TileID.MythrilAnvil);
+                        }
+
                         if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                         {
                             if (thorium.TryFind("ThrowingGuideVolume2", out ModItem rogue101v2))

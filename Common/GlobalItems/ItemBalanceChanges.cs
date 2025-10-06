@@ -19,6 +19,7 @@ using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Items;
 using Terraria.Localization;
 using System.Data;
+using InfernalEclipseAPI.Core.Players;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -109,6 +110,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (item.type == ItemID.BreakerBlade)
                 {
                     item.scale *= 1.5f;
+                }
+
+                if (item.type == ItemID.StaffoftheFrostHydra)
+                {
+                    item.damage = 300;
+                }
+
+                if (item.type == ItemID.StormTigerStaff)
+                {
+                    item.damage = 60;
                 }
             }
 
@@ -3795,10 +3806,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #endregion
 
                     #region Accessories
+                    //Obsidian Scale
+                    if (GetItem(thorium, "ObsidianScale", item))
+                    {
+                        item.defense = 4;
+                    }
+
                     //Champion's Wings
                     if (item.type == thorium.Find<ModItem>("ChampionWing").Type)
                     {
-                        item.defense = 7;
+                        //item.defense = 7;
                     }
 
                     //Dragon Wings
@@ -5215,6 +5232,18 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
             #endregion
+        }
+
+        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        {
+            //SOTS
+            if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (GetItem(sots, "GelWings", item))
+                {
+                    player.GetModPlayer<GelWingsDashPlayer>().Active = true;
+                }
+            }
         }
 
         public static int FindItem(Mod mod, string name)

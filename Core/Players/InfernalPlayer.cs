@@ -20,6 +20,8 @@ namespace InfernalEclipseAPI.Core.Players
 {
     public class InfernalPlayer : ModPlayer
     {
+        private const int AdjRadius = 4;
+
         public override void PlayerConnect()
         {
             if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
@@ -241,6 +243,21 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
+        public override void PostUpdateEquips()
+        {
+            //Why why why why SOTS
+            bool nearRealAlchemyTable = IsNearTile(TileID.AlchemyTable, AdjRadius);
+
+            if (!nearRealAlchemyTable)
+            {
+                if (Player.adjTile[TileID.AlchemyTable]) // 355
+                    Player.adjTile[TileID.AlchemyTable] = false;
+
+                if (Player.alchemyTable)
+                    Player.alchemyTable = false;
+            }
+        }
+
         public void ConvertSummonMeleeToMelee(Player player, Item item, ref StatModifier damage)
         {
             if (item.DamageType == ModContent.GetInstance<MeleeWhip>())
@@ -294,6 +311,25 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 hit.Damage -= (int)(hit.Damage * 0.2);
             }
+        }
+
+        private bool IsNearTile(ushort tileType, int radius)
+        {
+            int px = (int)(Player.Center.X / 16f);
+            int py = (int)(Player.Center.Y / 16f);
+
+            for (int x = px - radius; x <= px + radius; x++)
+            {
+                if (x < 0 || x >= Main.maxTilesX) continue;
+                for (int y = py - radius; y <= py + radius; y++)
+                {
+                    if (y < 0 || y >= Main.maxTilesY) continue;
+                    Tile t = Main.tile[x, y];
+                    if (t != null && t.HasTile && t.TileType == tileType)
+                        return true;
+                }
+            }
+            return false;
         }
     }
 

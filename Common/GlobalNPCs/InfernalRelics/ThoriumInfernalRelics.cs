@@ -67,7 +67,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<BoreanStriderRelic>());
             }
-            if (npc.type == ModContent.NPCType<FallenBeholder>())
+            if (npc.type == ModContent.NPCType<FallenBeholder>() || npc.type == ModContent.NPCType<FallenBeholder2>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<FallenBeholderRelic>());
             }

@@ -246,6 +246,7 @@ ItemTooltip: {
 		5: +5HP/s生命再生
 		10: +10HP/s生命再生
 		FasterIvory: 在装备白矮星护甲时，象牙状火焰的触发速度提升至两倍
+		// GelDash: Allows the ability to dash and enhances other dashes
 	}
 
 	MythicTooltips: {
