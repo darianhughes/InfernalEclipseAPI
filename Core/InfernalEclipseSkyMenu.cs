@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -8,9 +9,32 @@ namespace InfernalEclipseAPI.Core
 {
     public class InfernalEclipseSkyMenu : ModMenu
     {
+        public class TwinklingStar
+        {
+            public int Time;
+            public int Lifetime;
+            public float BaseScale;
+            public float TwinkleOffset;
+            public float RotationSpeed;
+            public Vector2 Position;
+            public Color BaseColor;
+
+            public TwinklingStar(int lifetime, float scale, Vector2 position, Color color, float twinkleOffset, float rotationSpeed)
+            {
+                Lifetime = lifetime;
+                BaseScale = scale;
+                Position = position;
+                BaseColor = color;
+                TwinkleOffset = twinkleOffset;
+                RotationSpeed = rotationSpeed;
+            }
+        }
+
         private const string MenuAssetPath = "InfernalEclipseAPI/Assets/Textures/Menu";
         private const int BaseWidth = 1920;
         private const int BaseHeight = 1080;
+
+        public static List<TwinklingStar> Stars { get; internal set; } = [];
 
         // Texture assets
         private Asset<Texture2D> menuSky;
@@ -26,24 +50,33 @@ namespace InfernalEclipseAPI.Core
         private Asset<Texture2D> menuHillsTinted;
         private Asset<Texture2D> ieorAnkh;
         private Asset<Texture2D> ieorText;
+        private Asset<Texture2D> ieorLogoTinted;
+        private Asset<Texture2D> menuVortexTinted;
 
         public override string DisplayName => "Infernal Eclipse Sky";
 
         public override void Load()
         {
             menuSky = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuSky");
-            menuSkyTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuSkyTinted");
+            menuSkyTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuSkyRedV2");
             menuEclipseGlow = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipseGlow");
             menuEclipse = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipse");
             menuEclipseGlare = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipseGlare");
             menuClouds = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuClouds");
-            menuCloudsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuCloudsTinted");
+            menuCloudsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuCloudsRedV2");
             menuMountains = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuMountains");
-            menuMountainsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuMountainsTinted");
+            menuMountainsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuMountainsRedV2");
             menuHills = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuHills");
-            menuHillsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuHillsTinted");
+            menuHillsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuHillsRedV2");
             ieorAnkh = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRAnhk");
             ieorText = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRText");
+            ieorLogoTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRLogoRedV2");
+            menuVortexTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuVortexRedV2");
+        }
+
+        public override void OnDeselected()
+        {
+            Stars?.Clear();
         }
 
         public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRLogoFull");
@@ -77,72 +110,52 @@ namespace InfernalEclipseAPI.Core
                 }
             }
 
-            // Logo elements are scaled relative to base
-            float logoScaleP = scale * 1f;
-
             // Force time to noon
             Main.time = 27000;
             Main.dayTime = true;
             drawColor = Color.White;
 
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+
             // Draw sky background (static, full screen)
             DrawLayer(spriteBatch, menuSkyTinted.Value, drawOffset, scale, Color.White, BlendState.NonPremultiplied);
+
+            // Draw twinkling stars immediately in front of sky
+            HandleTwinklingStars(spriteBatch);
 
             // Eclipse elements are also 1920x1080 canvases with pre-positioned content
             // Draw them with the same offset as sky, just different scales
 
-            // Need to offset X to center the smaller canvas: shift by half the width difference
-            Vector2 eclipseOffset = drawOffset + new Vector2(BaseWidth * (0.5f * scale) / 2f, 0f);
-
-            // Draw eclipse glow (1920x1080 canvas, no additional scaling, additive blend)
-            DrawLayer(spriteBatch, menuEclipseGlow.Value, eclipseOffset, scale, Color.White, BlendState.NonPremultiplied);
-
-            // Draw eclipse (1920x1080 canvas, scaled down 2x)
-            DrawLayer(spriteBatch, menuEclipse.Value, eclipseOffset, scale * 0.5f, Color.White, BlendState.NonPremultiplied);
-
-            // Draw eclipse glare (1920x1080 canvas, no additional scaling, additive blend)
-            DrawLayer(spriteBatch, menuEclipseGlare.Value, eclipseOffset, scale, Color.White, BlendState.NonPremultiplied);
+            // Draw vortex with custom positioning and rotation
+            Vector2 vortexPosition = new Vector2(Main.screenWidth / 2f, Main.screenHeight * 0.125f);
+            Vector2 vortexOrigin = new Vector2(menuVortexTinted.Value.Width / 2f, menuVortexTinted.Value.Height / 2f);
+            float vortexRotation = Main.GlobalTimeWrappedHourly * 0.1f;
+            spriteBatch.Draw(menuVortexTinted.Value, vortexPosition, null, Color.White, vortexRotation, vortexOrigin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(menuVortexTinted.Value, vortexPosition, null, Color.White, vortexRotation, vortexOrigin, 0.75f * scale, SpriteEffects.None, 0f);
 
             // Draw parallax layers with horizontal tiling
             DrawParallaxLayer(spriteBatch, menuCloudsTinted.Value, scale, 0.15f, Color.White);
             DrawParallaxLayer(spriteBatch, menuMountainsTinted.Value, scale, 0.25f, Color.White);
             DrawParallaxLayer(spriteBatch, menuHillsTinted.Value, scale, 0.4f, Color.White);
 
-            // End current batch to switch to NonPremultiplied for text
-            spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
-
-            //// Draw ankh logo
-            //DrawLayer(spriteBatch, ieorAnkh.Value, drawOffset, logoScaleP, Color.White, null);
-
-            //// Draw text logo
-            //DrawLayer(spriteBatch, ieorText.Value, drawOffset, logoScaleP, Color.White, null);
+            // Draw logo (aligned with vortex center) with pulsing animation
+            Vector2 logoPosition = new Vector2(Main.screenWidth / 2f, Main.screenHeight * 0.125f);
+            Vector2 logoOrigin = new Vector2(ieorLogoTinted.Value.Width / 2f, ieorLogoTinted.Value.Height / 2f);
+            float pulseInterpolant = (1f + (float)System.Math.Sin(Main.GlobalTimeWrappedHourly * 0.4f)) * 0.5f;
+            float logoScalePulse = scale * MathHelper.Lerp(0.93f, 1.07f, pulseInterpolant);
+            spriteBatch.Draw(ieorLogoTinted.Value, logoPosition, null, Color.White, 0f, logoOrigin, logoScalePulse, SpriteEffects.None, 0f);
 
             // Restart spritebatch with normal blend mode
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
 
-            logoScale *= 0.55f;
-            logoDrawCenter += new Vector2(6, -2);
-
-            return true; // Don't draw the default logo
+            return false; // Don't draw the default logo
         }
 
         private void DrawLayer(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset, float scale, Color color, BlendState blendState)
         {
-            if (blendState != null)
-            {
-                spriteBatch.End();
-                spriteBatch.Begin(SpriteSortMode.Deferred, blendState, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
-            }
-
             spriteBatch.Draw(texture, offset, null, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-
-            if (blendState != null)
-            {
-                spriteBatch.End();
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
-            }
         }
 
         private void DrawParallaxLayer(SpriteBatch spriteBatch, Texture2D texture, float scale, float parallaxSpeed, Color color)
@@ -159,6 +172,121 @@ namespace InfernalEclipseAPI.Core
             {
                 Vector2 position = new Vector2(screenCenterX - xOffset + texture.Width * k * scale, screenCenterY);
                 spriteBatch.Draw(texture, position, null, color, 0f, new Vector2(texture.Width / 2f, texture.Height / 2f), scale, SpriteEffects.None, 0f);
+            }
+        }
+
+        private void InitializeStars()
+        {
+            Stars.Clear();
+            int maxStars = 4000;
+
+            for (int i = 0; i < maxStars; i++)
+            {
+                Vector2 position = new Vector2(
+                    Main.rand.Next(0, Main.screenWidth),
+                    Main.rand.Next(0, (int)(Main.screenHeight * 0.9f))
+                );
+                int lifetime = Main.rand.Next(300, 600);
+                float scale = Main.rand.NextFloat(0.3f, 2.5f);
+                float twinkleOffset = Main.rand.NextFloat(0f, MathHelper.TwoPi);
+                float rotationSpeed = Main.rand.NextFloat(-2.5f, 2.5f);
+
+                // Color continuum: Orange -> Yellow -> White
+                float colorProgress = Main.rand.NextFloat();
+                Color color;
+                if (colorProgress < 0.5f)
+                {
+                    // Lerp from Orange to Yellow
+                    color = Color.Lerp(Color.Orange, Color.Yellow, colorProgress * 2f);
+                }
+                else
+                {
+                    // Lerp from Yellow to White
+                    color = Color.Lerp(Color.Yellow, Color.White, (colorProgress - 0.5f) * 2f);
+                }
+
+                var star = new TwinklingStar(lifetime, scale, position, color, twinkleOffset, rotationSpeed);
+                // Set random initial time so stars appear at different lifecycle stages
+                star.Time = Main.rand.Next(0, lifetime);
+                Stars.Add(star);
+            }
+        }
+
+        private void HandleTwinklingStars(SpriteBatch spriteBatch)
+        {
+            // Initialize stars on first frame
+            if (Stars.Count == 0)
+            {
+                InitializeStars();
+            }
+
+            // Remove dead stars
+            Stars.RemoveAll(s => s.Time >= s.Lifetime);
+
+            // Spawn new stars to replace dead ones
+            int maxStars = 4000;
+            for (int i = 0; i < 20; i++)
+            {
+                if (Stars.Count < maxStars && Main.rand.NextBool(2))
+                {
+                    Vector2 position = new Vector2(
+                        Main.rand.Next(0, Main.screenWidth),
+                        Main.rand.Next(0, (int)(Main.screenHeight * 0.9f))
+                    );
+                    int lifetime = Main.rand.Next(300, 600);
+                    float scale = Main.rand.NextFloat(0.3f, 2.5f);
+                    float twinkleOffset = Main.rand.NextFloat(0f, MathHelper.TwoPi);
+                    float rotationSpeed = Main.rand.NextFloat(-2.5f, 2.5f);
+
+                    // Color continuum: Orange -> Yellow -> White
+                    float colorProgress = Main.rand.NextFloat();
+                    Color color;
+                    if (colorProgress < 0.5f)
+                    {
+                        // Lerp from Orange to Yellow
+                        color = Color.Lerp(Color.Orange, Color.Yellow, colorProgress * 2f);
+                    }
+                    else
+                    {
+                        // Lerp from Yellow to White
+                        color = Color.Lerp(Color.Yellow, Color.White, (colorProgress - 0.5f) * 2f);
+                    }
+
+                    Stars.Add(new TwinklingStar(lifetime, scale, position, color, twinkleOffset, rotationSpeed));
+                }
+            }
+
+            // Update and draw stars
+            Texture2D starTexture = ModContent.Request<Texture2D>($"{MenuAssetPath}/Pixel").Value;
+            foreach (var star in Stars)
+            {
+                star.Time++;
+
+                // Calculate twinkle opacity (sine wave for smooth pulsing)
+                float lifetimeProgress = (float)star.Time / star.Lifetime;
+                float fadeIn = MathHelper.Clamp(lifetimeProgress * 3f, 0f, 1f);
+                float fadeOut = MathHelper.Clamp((1f - lifetimeProgress) * 3f, 0f, 1f);
+                float fade = System.Math.Min(fadeIn, fadeOut);
+
+                float twinkle = (float)System.Math.Sin(Main.GlobalTimeWrappedHourly * 1.8f + star.TwinkleOffset) * 0.5f + 0.5f;
+                float opacity = fade * MathHelper.Lerp(0.3f, 1f, twinkle);
+
+                // Calculate rotation
+                float rotation = Main.GlobalTimeWrappedHourly * star.RotationSpeed;
+
+                // Draw star
+                Color drawColor = star.BaseColor * opacity;
+                spriteBatch.Draw(
+                    starTexture,
+                    star.Position,
+                    null,
+                    drawColor,
+                    rotation,
+                    Vector2.One * 0.5f,
+                    star.BaseScale,
+                    SpriteEffects.None,
+                    0f
+                );
             }
         }
     }
