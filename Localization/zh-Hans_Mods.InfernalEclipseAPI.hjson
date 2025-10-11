@@ -187,7 +187,7 @@ ItemTooltip: {
 		ScytheScale: 持续增强直到吞噬者陨落
 		ScytheSummon: 当存在召唤物时，造成的伤害减少
 		ScytheSummonOn: 当存在召唤物时，造成的伤害减少
-		OneirophobiaSummon: 按住右键召唤顽皮乐器为你而战
+		OneirophobiaSummon: 按住右键召唤残梦乐器为你而战
 		SoulEssence: 极快速获得灵魂精华
 		Magneto: 增加地面上盗贼物品的拾取范围
 		Bone:
@@ -246,7 +246,7 @@ ItemTooltip: {
 		5: +5HP/s生命再生
 		10: +10HP/s生命再生
 		FasterIvory: 在装备白矮星护甲时，象牙状火焰的触发速度提升至两倍
-		// GelDash: Allows the ability to dash and enhances other dashes
+		GelDash: 允许玩家冲刺，并增强其他的冲刺效果
 	}
 
 	MythicTooltips: {
@@ -744,7 +744,7 @@ Items: {
 	}
 
 	Lycanroc: {
-		DisplayName: 鬃岩狼妖
+		DisplayName: 寒语夜啸
 		Tooltip: ""
 
 		Progression: {
@@ -778,7 +778,7 @@ Items: {
 				击败拜月教邪教徒后，该武器现在有概率触发超级暴击
 				击败古神的邪异残躯以获得更多力量……
 				'''
-			Full: 鬃岩狼妖已苏醒，最大威能解禁！
+			Full: 寒语夜啸已苏醒，最大威能解禁！
 		}
 
 		Lore: “你打算做什么？杀了我？”
