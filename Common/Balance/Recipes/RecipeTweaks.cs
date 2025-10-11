@@ -285,7 +285,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasIngredient(thorium.Find<ModItem>("MoltenKnife")))
                         {
                             recipe.RemoveIngredient(thorium.Find<ModItem>("MoltenKnife").Type);
-                            recipe.AddIngredient<InfernalKris>();
+                            recipe.AddIngredient<InfernalKris>(500);
                         }
                     }
 

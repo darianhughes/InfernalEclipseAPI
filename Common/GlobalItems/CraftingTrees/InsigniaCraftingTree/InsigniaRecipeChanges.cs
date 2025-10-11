@@ -70,7 +70,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                     if (recipe.HasResult(sots.Find<ModItem>("GildedBladeWings")))
                     {
                         recipe.RemoveIngredient(sots.Find<ModItem>("SpiritInsignia").Type);
-                        recipe.AddIngredient<AscendantInsignia>(1);
+                        if (!recipe.HasIngredient(ModContent.ItemType<AscendantInsignia>()))
+                            recipe.AddIngredient<AscendantInsignia>();
                         recipe.AddIngredient<AscendantSpiritEssence>(3);
                     }
 
