@@ -122,14 +122,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 60;
                 }
             }
-
-            if (InfernalConfig.Instance.ChanageWeaponClasses)
-            {
-                if (item.type == ItemID.Shuriken)
-                {
-                    item.DamageType = ModContent.GetInstance<RogueDamageClass>();
-                }
-            }
             #endregion
 
             #region Zenith Toilet

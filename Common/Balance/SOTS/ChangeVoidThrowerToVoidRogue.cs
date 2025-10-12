@@ -32,14 +32,6 @@ namespace InfernalEclipseAPI.Common.Balance.SOTS
                     item.DamageType = ModContent.GetInstance<VoidRogue>();
                 }
             }
-
-            if (SOTS != null)
-            {
-                if (item.type == SOTS.Find<ModItem>("GelAxe").Type)
-                {
-                    item.DamageType = ModContent.GetInstance<RogueDamageClass>();
-                }
-            }
         }
     }
 }

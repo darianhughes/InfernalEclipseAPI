@@ -174,7 +174,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 }
 
                 //Moon Lord
-                if (recipe.HasResult(3601))
+                if (recipe.HasResult(ItemID.CelestialSigil))
                     recipe.AddIngredient(ModContent.ItemType<MeldConstruct>(), 12);
                 Mod mod1;
 

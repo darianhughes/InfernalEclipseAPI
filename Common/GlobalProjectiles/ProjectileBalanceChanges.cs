@@ -11,11 +11,6 @@ namespace InfernalEclipseAPI.Common.Projectiles
     {
         public override void SetDefaults(Projectile entity)
         {
-            if (entity.type == ProjectileID.Shuriken && InfernalConfig.Instance.ChanageWeaponClasses)
-            {
-                entity.DamageType = ModContent.GetInstance<RogueDamageClass>();
-            }
-
             if (entity.type == ProjectileID.PewMaticHornShot && InfernalConfig.Instance.VanillaBalanceChanges)
             {
                 entity.penetrate = 2;
