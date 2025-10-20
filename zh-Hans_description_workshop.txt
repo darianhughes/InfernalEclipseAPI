@@ -1,8 +1,7 @@
 [h1]诸神黄昏：炼狱蚀光[/h1]
 [h3]基于[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3459129920] 灾厄炼狱模式 [/url]的大型扩展[/h3]
 
-[b]查看关联的模组整合包：[/b]
-https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
+查看关联的[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757]模组整合包[/url]
 
 诸神黄昏：炼狱蚀光是一款基于灾厄炼狱模式的大型扩展，目前主要支持整合包内的以下核心模组：
 [list]
@@ -12,22 +11,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 	[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2864843929]Consolaria[/url]
 [/list]
 
-并对以下模组与附加包提供次要支持：
-[list]
-	[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2833852432]惊惧[/url]
-	[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3358668348]非官方惊惧吟游诗人、牧师和投手[/url]
-	[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2815540735]Fargo魂[/url]
-	[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3044249615]灾厄-Fargo魂DLC[/url]
-	[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3329620648]社区魂石拓展[/url]
-[/list]
-
 运行本API必需的模组为灾厄、炼狱模式、Revengeance+、You、跨模组投手融合以及它们的所有依赖项
 
 本API当前新增功能包括：
 [list]
-	[*] 针对多款已集成模组的可开关平衡性调整，使不同模组内容更好地协同
+	[*] 超过500+项可选用的跨模组平衡性调整，使不同模组内容更好地协同
 	[*] 合并多种饰品的制作树
-	[*] 一些跨模组的炼狱风格调整
+	[*] 为整合包内的所有 Boss 添加炼狱风格的出场介绍文字
 	[*] 为炼狱模式下的 Boss 调整属性，以保持一致的挑战难度
 	[*] 支持所有已包含 Boss 的 Boss Rush 模式，并新增自定义的“第六阶段”
 	[*] 为游戏特定场景引入全新音乐
@@ -51,7 +41,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
 如遇其他问题，欢迎前往[url=https://discord.gg/Qu4eN5PZry] 官方Discord服务器 [/url]反馈
 
-同时欢迎查阅本模组的[url=https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok] 官方英文Wiki [/url]
+同时欢迎查阅本模组的[url=https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok/zh] 官方中文Wiki [/url]（是的，我们有中文Wiki了！！）
+
+如果汉化出现错漏，请订阅[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3588408051] 诸神黄昏：炼狱蚀光-汉化补丁 [/url]以获得最新汉化。如果问题未得到解决，请在汉化评论区反馈。
 
 若您希望支持开发团队，可以查看我们的[url=https://www.patreon.com/c/InfernalEclipseofRagnarokTeam] Patreon页面 [/url]
 
@@ -59,7 +51,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 [list]
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010]诸神黄昏：炼狱蚀光[/url]，一个为本模组添加大量额外物品的DLC扩展
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnaork]旅人归途&诸神黄昏：炼狱蚀光 兼容[/url]，一个为本模组添加旅人归途兼容的DLC扩展
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡模组[/url]，本扩展中大部分物品平衡调整出自该模组并由其作者设计！
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡[/url]，本扩展中大部分物品平衡调整出自该模组并由其作者设计！
 [/list]
 
 特别感谢[b]灾厄[/b]、[b]Fargo魂[/b]、[b]Bereft Souls[/b]以及[b]社区魂石拓展[/b]团队，以及所有捐助者，还有整合包中每一个模组的开发者们，正是你们让这一切成为可能。
@@ -78,7 +70,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 	[*]本地化：Pudd1ng（简体中文），Aizen522（俄语）
 [/list]
 
-感谢以下作者的配乐
+感谢以下作者的音乐
 [list]
 	[*]CDMusic：《Ensemble of Fools (Encore Mix)》
 	[*]Kuudray：《TWISTED GARDEN [Remix]》
