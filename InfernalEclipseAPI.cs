@@ -24,6 +24,7 @@ using InfernalEclipseAPI.Content.Projectiles;
 using InfernalEclipseAPI.Core.World;
 using CalamityMod.NPCs.Polterghast;
 using InfernalEclipseAPI.Core.Players.ThoriumMulticlassNerf;
+using InfernalEclipseAPI.Core;
 
 namespace InfernalEclipseAPI
 {
@@ -117,6 +118,38 @@ namespace InfernalEclipseAPI
             {
                 BossRushInjection(calamity);
             }
+
+            if (InfernalConfig.Instance.ForceMenu)
+            {
+                try
+                {
+                    if (typeof(MenuLoader).GetField("LastSelectedModMenu", BindingFlags.Static | BindingFlags.NonPublic) is null)
+                        return;
+                    ModMenu menu = ModContent.GetInstance<InfernalEclipseSkyMenu>();
+                    if (menu is null)
+                        return;
+                    MenuLoader(menu);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
+                    Console.WriteLine("CalRemixMenu");
+                    Console.WriteLine(e.ToString());
+                    Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
+                }
+            }
+        }
+
+        public static void MenuLoader(ModMenu menu)
+        {
+            if (menu.FullName is null)
+                return;
+            typeof(MenuLoader).GetField("LastSelectedModMenu", BindingFlags.Static | BindingFlags.NonPublic).SetValue(null, menu.FullName);
+
+            if ((ModMenu)typeof(MenuLoader).GetField("switchToMenu", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) is null || menu is null)
+                return;
+            if (((ModMenu)typeof(MenuLoader).GetField("switchToMenu", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null)).FullName is null || menu.FullName is null)
+                return;
         }
 
         MethodInfo AchievementUpdateHandler;

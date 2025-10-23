@@ -6,6 +6,7 @@ using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.World;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
+using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -15,6 +16,21 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             if (item.type == ModContent.ItemType<StarterBag>())
             {
+                if (!ModLoader.TryGetMod("ThoriumMod", out var thoriumMod) || ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                {
+                    if (thoriumMod.TryFind("Tambourine", out ModItem tambourineItem))
+                    {
+                        itemLoot.Add(ItemDropRule.Common(tambourineItem.Type));
+                    }
+
+                    if (thoriumMod.TryFind("Pill", out ModItem pillsItem))
+                    {
+                        itemLoot.Add(ItemDropRule.Common(pillsItem.Type, 1, 200, 200));
+                    }
+                }
+
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MenuMusicBox>()));
+
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<LoreProvi>()));
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<MysteriousDiary>()));
 
@@ -23,23 +39,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 itemLoot.Add(ItemDropRule.ByCondition(new CheesePlayerCondition(), ModContent.ItemType<DeathWhistle>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new devListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
-            }
-
-            if (!ModLoader.TryGetMod("ThoriumMod", out var thoriumMod) ||
-                ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
-                return;
-
-            if (item.type == ModContent.ItemType<StarterBag>())
-            {
-                if (thoriumMod.TryFind("Tambourine", out ModItem tambourineItem))
-                {
-                    itemLoot.Add(ItemDropRule.Common(tambourineItem.Type));
-                }
-
-                if (thoriumMod.TryFind("Pill", out ModItem pillsItem))
-                {
-                    itemLoot.Add(ItemDropRule.Common(pillsItem.Type, 1, 200, 200));
-                }
             }
         }
 

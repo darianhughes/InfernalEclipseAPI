@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod.Items.Materials;
+﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items;
-using Terraria.ID;
-using Terraria.ModLoader;
 using InfernalEclipseAPI.Content.Tiles.MusicBoxes;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
@@ -22,6 +15,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
         public override void SetDefaults()
         {
             Item.DefaultToMusicBox(ModContent.TileType<BossRushEncoreMusicBoxTile>(), 0);
+            Item.rare = ItemRarityID.LightRed;
         }
 
         public override void AddRecipes()

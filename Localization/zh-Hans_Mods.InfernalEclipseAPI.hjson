@@ -1124,7 +1124,7 @@ Items: {
 
 	AbandonedWorkshop: {
 		DisplayName: 废弃的作坊
-		Tooltip:  哥布林工匠的作坊残骸。也许他可以帮助你修复它？
+		Tooltip: 哥布林工匠的作坊残骸。也许他可以帮助你修复它？
 	}
 
 	PrimordialOrchid: {
@@ -1150,6 +1150,11 @@ Items: {
 	ExoDisintegrator: {
 		DisplayName: 星流解离炮
 		Tooltip: ""
+	}
+
+	MenuMusicBox: {
+		// DisplayName: Music Box (Infernal Eclipse of Ragnarok Title)
+		// Tooltip: Plays 'Teardrops of Dragonfire' by PFungi
 	}
 }
 
@@ -1224,6 +1229,7 @@ Configs: {
 			BalanceChanges: 模组平衡修改
 			Miscellaneous: 融合
 			MultiplayerAdjustments: 多人游戏调整
+			// Main: Main
 		}
 
 		ThoriumBalanceChangess: {
@@ -1417,6 +1423,11 @@ Configs: {
 		ColoredRelics: {
 			Label: 圣物上色
 			Tooltip: ""
+		}
+
+		ForceMenu: {
+			// Label: Force Menu Theme
+			// Tooltip: Forces the Infernal Eclipse of Ragnarok Menu theme to be selected on mod load.
 		}
 	}
 
@@ -1655,6 +1666,7 @@ Tiles: {
 	CultistMusicBoxTile.MapEntry: 拜月教邪教徒音乐盒
 	GolemMusicBoxTile.MapEntry: 石巨人音乐盒
 	ProphecyMusicBoxTile.MapEntry: 预言音乐盒
+	// MenuMusicBoxTile.MapEntry: Menu Music Box Tile
 }
 
 NPCs: {

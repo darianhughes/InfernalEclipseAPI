@@ -1154,6 +1154,11 @@ Items: {
 		DisplayName: Exo Disintegrator
 		Tooltip: ""
 	}
+
+	MenuMusicBox: {
+		DisplayName: Music Box (Infernal Eclipse of Ragnarok Title)
+		Tooltip: Plays 'Teardrops of Dragonfire' by PFungi
+	}
 }
 
 Projectiles: {
@@ -1227,6 +1232,7 @@ Configs: {
 			BalanceChanges: Mod Balance Changes
 			Miscellaneous: Miscellaneous
 			MultiplayerAdjustments: Multiplayer Adjustments
+			Main: Main
 		}
 
 		ThoriumBalanceChangess: {
@@ -1382,8 +1388,9 @@ Configs: {
 			Label: Enable Interlude 4
 			Tooltip:
 				'''
-				Enables/Disables the 4th Interlude theme will play after both the Exo Mechs & Supreme Calamitas have been defeated.
-				This song will override Their Fabricator & Acceptance when it plays
+				Enables/Disables the 4th Interlude theme. 
+				This interlude will play after both the Exo Mechs & Supreme Calamitas have been defeated.
+				This song will override Their Fabricator & Acceptance when it plays.
 				'''
 		}
 
@@ -1399,27 +1406,32 @@ Configs: {
 
 		MultiplayerBossRespawnTimer: {
 			Label: Multiplayer Boss Respawn Timer
-			Tooltip: ""
+			Tooltip: How long it takes to respawn during a boss fight.
 		}
 
 		MinimumDifficultyToPreventRespawns: {
 			Label: Minimum Difficulty To Prevent Respawns
-			Tooltip: ""
+			Tooltip: The minmum difficulty to apply the respawn prevention system.
 		}
 
 		MultiplayerRespawnsAllowed: {
 			Label: Multiplayer Respawns Allowed
-			Tooltip: ""
+			Tooltip: The number of respawns allowed during boss fights.
 		}
 
 		NerfThoriumMulticlass: {
 			Label: Nerf Thorium Multiclass
-			Tooltip: ""
+			Tooltip: Adds some systems to prevent Bard & Healer from multiclassing and getting too strong.
 		}
 
 		ColoredRelics: {
 			Label: Colored Relics
-			Tooltip: ""
+			Tooltip: Toggles this mod's colored relics.
+		}
+
+		ForceMenu: {
+			Label: Force Menu Theme
+			Tooltip: Forces the Infernal Eclipse of Ragnarok Menu theme to be selected on mod load.
 		}
 	}
 
@@ -1658,6 +1670,7 @@ Tiles: {
 	CultistMusicBoxTile.MapEntry: Cultist Music Box Tile
 	GolemMusicBoxTile.MapEntry: Golem Music Box Tile
 	ProphecyMusicBoxTile.MapEntry: Prophecy Music Box Tile
+	MenuMusicBoxTile.MapEntry: Menu Music Box Tile
 }
 
 NPCs: {

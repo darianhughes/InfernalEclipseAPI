@@ -42,7 +42,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.createTile = ModContent.TileType<CultistMusicBoxTile>();
             Item.width = 32;
             Item.height = 32;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.LightRed;
             Item.value = 100000;
             Item.accessory = true;
         }

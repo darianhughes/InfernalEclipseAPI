@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using InfernumMode.Content.Items.Relics;
-using InfernalEclipseAPI.Content.Tiles.MusicBoxes;
+﻿using InfernalEclipseAPI.Content.Tiles.MusicBoxes;
+using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
 {
-    public class GolemMusicBox : ModItem
+    public class MenuMusicBox : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ModLoader.TryGetMod("InfernumModeMusic", out _);
-        }
-
         public override string Texture => "InfernalEclipseAPI/Assets/Textures/Items/PlaceholderInfernumMusicBox";
 
         public override void SetStaticDefaults()
@@ -27,8 +14,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.CanGetPrefixes[Type] = false;
             ItemID.Sets.ShimmerTransformToItem[Type] = 576;
-            ModLoader.TryGetMod("InfernumModeMusic", out Mod InfernumMusic);
-            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(InfernumMusic, "Sounds/Music/Golem"), ModContent.ItemType<GolemMusicBox>(), ModContent.TileType<GolemMusicBoxTile>(), 0);
+            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), ModContent.ItemType<MenuMusicBox>(), ModContent.TileType<MenuMusicBoxTile>(), 0);
         }
 
         public override void SetDefaults()
@@ -39,7 +25,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.useTime = 10;
             Item.autoReuse = true;
             Item.consumable = true;
-            Item.createTile = ModContent.TileType<GolemMusicBoxTile>();
+            Item.createTile = ModContent.TileType<MenuMusicBoxTile>();
             Item.width = 32;
             Item.height = 32;
             Item.rare = ItemRarityID.LightRed;
@@ -50,8 +36,8 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GolemRelic>(1)
                 .AddIngredient(ItemID.MusicBox)
+                .AddIngredient<InfernalTwilight>()
                 .AddTile(TileID.HeavyWorkBench)
                 .Register();
         }

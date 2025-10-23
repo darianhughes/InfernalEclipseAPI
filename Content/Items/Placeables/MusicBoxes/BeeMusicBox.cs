@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using InfernumMode.Content.Items.Relics;
+﻿using InfernumMode.Content.Items.Relics;
 using InfernalEclipseAPI.Content.Tiles.MusicBoxes;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
@@ -42,7 +34,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.createTile = ModContent.TileType<BeeMusicBoxTile>();
             Item.width = 32;
             Item.height = 32;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.LightRed;
             Item.value = 100000;
             Item.accessory = true;
         }
