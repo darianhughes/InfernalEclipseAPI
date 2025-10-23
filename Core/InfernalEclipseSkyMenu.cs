@@ -46,7 +46,7 @@ namespace InfernalEclipseAPI.Core
         private Asset<Texture2D> purpleLogoText;
         private Asset<Texture2D> purpleVortex;
 
-        public override string DisplayName => "Infernal Eclipse";
+        public override string DisplayName => "Infernal Eclipse of Ragnarok";
 
         public override void Load()
         {
