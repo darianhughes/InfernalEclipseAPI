@@ -6,6 +6,8 @@ using CalamityMod.Events;
 
 namespace InfernalEclipseAPI.Core.Systems.ILBossChanges
 {
+    [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
+    [ExtendsFromMod(InfernalCrossmod.SOTS.Name)]
     public class PreventExcavatorDespawnLogicDuringBossRush : ModSystem
     {
         private static Hook _hook;
