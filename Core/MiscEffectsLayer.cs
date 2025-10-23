@@ -1,9 +1,6 @@
-﻿using System;
-using InfernalEclipseAPI.Core.Players;
+﻿using InfernalEclipseAPI.Core.Players;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Core
