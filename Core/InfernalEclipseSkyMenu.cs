@@ -34,44 +34,29 @@ namespace InfernalEclipseAPI.Core
         private const int BaseWidth = 1920;
         private const int BaseHeight = 1080;
 
+        private const float LogoOffsetPixels = 20f;
         public static List<TwinklingStar> Stars { get; internal set; } = [];
 
         // Texture assets
-        private Asset<Texture2D> menuSky;
-        private Asset<Texture2D> menuSkyTinted;
-        private Asset<Texture2D> menuEclipseGlow;
-        private Asset<Texture2D> menuEclipse;
-        private Asset<Texture2D> menuEclipseGlare;
-        private Asset<Texture2D> menuClouds;
-        private Asset<Texture2D> menuCloudsTinted;
-        private Asset<Texture2D> menuMountains;
-        private Asset<Texture2D> menuMountainsTinted;
-        private Asset<Texture2D> menuHills;
-        private Asset<Texture2D> menuHillsTinted;
-        private Asset<Texture2D> ieorAnkh;
-        private Asset<Texture2D> ieorText;
-        private Asset<Texture2D> ieorLogoTinted;
-        private Asset<Texture2D> menuVortexTinted;
+        private Asset<Texture2D> purpleSky;
+        private Asset<Texture2D> purpleEclipse;
+        private Asset<Texture2D> purpleClouds;
+        private Asset<Texture2D> purpleMountains;
+        private Asset<Texture2D> purpleHills;
+        private Asset<Texture2D> purpleLogoText;
+        private Asset<Texture2D> purpleVortex;
 
-        public override string DisplayName => "Infernal Eclipse Sky";
+        public override string DisplayName => "Infernal Eclipse";
 
         public override void Load()
         {
-            menuSky = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuSky");
-            menuSkyTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuSkyRedV2");
-            menuEclipseGlow = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipseGlow");
-            menuEclipse = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipse");
-            menuEclipseGlare = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuEclipseGlare");
-            menuClouds = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuClouds");
-            menuCloudsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuCloudsRedV2");
-            menuMountains = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuMountains");
-            menuMountainsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuMountainsRedV2");
-            menuHills = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuHills");
-            menuHillsTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuHillsRedV2");
-            ieorAnkh = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRAnhk");
-            ieorText = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRText");
-            ieorLogoTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRLogoRedV2");
-            menuVortexTinted = ModContent.Request<Texture2D>($"{MenuAssetPath}/MenuVortexRedV2");
+            purpleSky = ModContent.Request<Texture2D>($"{MenuAssetPath}/PurpleSky");
+            purpleEclipse = ModContent.Request<Texture2D>($"{MenuAssetPath}/PurpleEclipse");
+            purpleClouds = ModContent.Request<Texture2D>($"{MenuAssetPath}/PurpleClouds");
+            purpleMountains = ModContent.Request<Texture2D>($"{MenuAssetPath}/PurpleMountains");
+            purpleHills = ModContent.Request<Texture2D>($"{MenuAssetPath}/PurpleHills");
+            purpleLogoText = ModContent.Request<Texture2D>($"{MenuAssetPath}/PurpleLogoText");
+            purpleVortex = ModContent.Request<Texture2D>($"{MenuAssetPath}/PurpleVortex");
         }
 
         public override void OnDeselected()
@@ -79,7 +64,7 @@ namespace InfernalEclipseAPI.Core
             Stars?.Clear();
         }
 
-        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{MenuAssetPath}/IEoRLogoFull");
+        public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{MenuAssetPath}/PurpleLogoText");
 
         public override Asset<Texture2D> SunTexture => ModContent.Request<Texture2D>($"{MenuAssetPath}/Pixel");
 
@@ -87,7 +72,7 @@ namespace InfernalEclipseAPI.Core
 
         public override ModSurfaceBackgroundStyle MenuBackgroundStyle => ModContent.GetInstance<NullSurfaceBackground>();
 
-        public override int Music => MusicLoader.GetMusicSlot("CalamityModMusic/Sounds/Music/BrimstoneCrags");
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/TeardropsofDragonfire");
 
         public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor)
         {
@@ -110,7 +95,6 @@ namespace InfernalEclipseAPI.Core
                 }
             }
 
-            // Force time to noon
             Main.time = 27000;
             Main.dayTime = true;
             drawColor = Color.White;
@@ -119,38 +103,40 @@ namespace InfernalEclipseAPI.Core
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
 
             // Draw sky background (static, full screen)
-            DrawLayer(spriteBatch, menuSkyTinted.Value, drawOffset, scale, Color.White, BlendState.NonPremultiplied);
+            DrawLayer(spriteBatch, purpleSky.Value, drawOffset, scale, Color.White, BlendState.NonPremultiplied);
 
             // Draw twinkling stars immediately in front of sky
             HandleTwinklingStars(spriteBatch);
 
-            // Eclipse elements are also 1920x1080 canvases with pre-positioned content
-            // Draw them with the same offset as sky, just different scales
-
             // Draw vortex with custom positioning and rotation
-            Vector2 vortexPosition = new Vector2(Main.screenWidth / 2f, Main.screenHeight * 0.125f);
-            Vector2 vortexOrigin = new Vector2(menuVortexTinted.Value.Width / 2f, menuVortexTinted.Value.Height / 2f);
+            Vector2 vortexPosition = new Vector2(Main.screenWidth / 2f, drawOffset.Y);
+            Vector2 vortexOrigin = new Vector2(purpleVortex.Value.Width / 2f, purpleVortex.Value.Height / 2f);
             float vortexRotation = Main.GlobalTimeWrappedHourly * 0.1f;
-            spriteBatch.Draw(menuVortexTinted.Value, vortexPosition, null, Color.White, vortexRotation, vortexOrigin, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(menuVortexTinted.Value, vortexPosition, null, Color.White, vortexRotation, vortexOrigin, 0.75f * scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(purpleVortex.Value, vortexPosition, null, Color.White * 0.9f, vortexRotation, vortexOrigin, scale, SpriteEffects.None, 0f);
+
+            // Draw eclipse
+            Vector2 eclipseCenter = new Vector2(Main.screenWidth / 2f, drawOffset.Y);
+            Vector2 eclipseOrigin = new Vector2(purpleEclipse.Value.Width / 2f, purpleEclipse.Value.Height / 2f);
+            spriteBatch.Draw(purpleEclipse.Value, eclipseCenter, null, Color.White, 0f, eclipseOrigin, scale, SpriteEffects.None, 0f);
 
             // Draw parallax layers with horizontal tiling
-            DrawParallaxLayer(spriteBatch, menuCloudsTinted.Value, scale, 0.15f, Color.White);
-            DrawParallaxLayer(spriteBatch, menuMountainsTinted.Value, scale, 0.25f, Color.White);
-            DrawParallaxLayer(spriteBatch, menuHillsTinted.Value, scale, 0.4f, Color.White);
+            DrawParallaxLayer(spriteBatch, purpleClouds.Value, scale, 0.1f, Color.White);
+            DrawParallaxLayer(spriteBatch, purpleMountains.Value, scale, 0.2f, Color.White);
+            DrawParallaxLayer(spriteBatch, purpleHills.Value, scale, 0.3f, Color.White);
 
             // Draw logo (aligned with vortex center) with pulsing animation
             Vector2 logoPosition = new Vector2(Main.screenWidth / 2f, Main.screenHeight * 0.125f);
-            Vector2 logoOrigin = new Vector2(ieorLogoTinted.Value.Width / 2f, ieorLogoTinted.Value.Height / 2f);
+            logoPosition.X += LogoOffsetPixels * scale;
+            Vector2 logoOrigin = new Vector2(purpleLogoText.Value.Width / 2f, purpleLogoText.Value.Height / 2f);
             float pulseInterpolant = (1f + (float)System.Math.Sin(Main.GlobalTimeWrappedHourly * 0.4f)) * 0.5f;
             float logoScalePulse = scale * MathHelper.Lerp(0.93f, 1.07f, pulseInterpolant);
-            spriteBatch.Draw(ieorLogoTinted.Value, logoPosition, null, Color.White, 0f, logoOrigin, logoScalePulse, SpriteEffects.None, 0f);
+            spriteBatch.Draw(purpleLogoText.Value, logoPosition, null, Color.White, 0f, logoOrigin, logoScalePulse, SpriteEffects.None, 0f);
 
             // Restart spritebatch with normal blend mode
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
 
-            return false; // Don't draw the default logo
+            return false;
         }
 
         private void DrawLayer(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset, float scale, Color color, BlendState blendState)
@@ -236,7 +222,7 @@ namespace InfernalEclipseAPI.Core
                     int lifetime = Main.rand.Next(300, 600);
                     float scale = Main.rand.NextFloat(0.3f, 2.5f);
                     float twinkleOffset = Main.rand.NextFloat(0f, MathHelper.TwoPi);
-                    float rotationSpeed = Main.rand.NextFloat(-2.5f, 2.5f);
+                    float rotationSpeed = 0f;
 
                     // Color continuum: Orange -> Yellow -> White
                     float colorProgress = Main.rand.NextFloat();
