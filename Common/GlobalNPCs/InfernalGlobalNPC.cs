@@ -5,10 +5,22 @@ using CalamityMod.NPCs.Yharon;
 using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using Terraria.GameContent.ItemDropRules;
+using InfernalEclipseAPI.Core.Systems;
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
-    public class NPCCheck : GlobalNPC
+    public class InfernalGlobalNPC : GlobalNPC
     {
+        public override void SetDefaults(NPC entity)
+        {
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                if (entity.buffImmune[BuffID.Confused])
+                {
+                    entity.buffImmune[InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Stunned").Type] = true;
+                }
+            }
+        }
+
         public override void OnKill(NPC npc)
         {
             if (npc.type == NPCID.TheDestroyer)
