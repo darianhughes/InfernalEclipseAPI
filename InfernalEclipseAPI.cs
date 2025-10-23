@@ -69,10 +69,6 @@ namespace InfernalEclipseAPI
             }
 
             AchievementUpdateHandler = typeof(InfernumMode.Core.GlobalInstances.Players.AchievementPlayer).GetMethod("ExtraUpdateHandler", BindingFlags.Static | BindingFlags.NonPublic);
-
-            BackgroundTextureLoader.AddBackgroundTexture(this, "InfernalEclipseAPI/Assets/Textures/Menu/MenuClouds");
-            BackgroundTextureLoader.AddBackgroundTexture(this, "InfernalEclipseAPI/Assets/Textures/Menu/MenuMountains");
-            BackgroundTextureLoader.AddBackgroundTexture(this, "InfernalEclipseAPI/Assets/Textures/Menu/MenuHills");
         }
 
         public override void Unload()
