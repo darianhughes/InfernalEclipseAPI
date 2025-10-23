@@ -16,7 +16,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             if (item.type == ModContent.ItemType<StarterBag>())
             {
-                if (!ModLoader.TryGetMod("ThoriumMod", out var thoriumMod) || ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                if (ModLoader.TryGetMod("ThoriumMod", out var thoriumMod) && !ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                 {
                     if (thoriumMod.TryFind("Tambourine", out ModItem tambourineItem))
                     {

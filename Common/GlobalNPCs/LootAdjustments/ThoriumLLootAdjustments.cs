@@ -73,7 +73,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
     {
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
-            if (item.type == ModContent.ItemType<StarScouterTreasureBag>())
+            if (item.type == ModContent.ItemType<StarScouterTreasureBag>() && ModLoader.HasMod("SOTS"))
             {
                 itemLoot.Add(ModLoader.GetMod("SOTS").Find<ModItem>("TwilightShard").Type, 1, 7, 14);
             }
