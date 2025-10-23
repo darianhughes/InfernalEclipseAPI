@@ -21,13 +21,13 @@ Items: {
 	}
 
 	SoulofPlightinaBottle: {
-		// DisplayName: Soul of Spite in a Bottle
-		// Tooltip: ""
+		DisplayName: 瓶中恶意之魂
+		Tooltip: ""
 	}
 
 	KeyofPlight: {
-		// DisplayName: Key of Spite
-		// Tooltip: "'Charged with the essence of many souls'"
+		DisplayName: 恶意钥匙
+		Tooltip: "“充满许多灵魂的精华”"
 	}
 
 	HereticBreaker: {
