@@ -1153,8 +1153,8 @@ Items: {
 	}
 
 	MenuMusicBox: {
-		// DisplayName: Music Box (Infernal Eclipse of Ragnarok Title)
-		// Tooltip: Plays 'Teardrops of Dragonfire' by PFungi
+		DisplayName: 音乐盒 (诸神黄昏：炼狱蚀光主题曲)
+		Tooltip: 播放“Teardrops of Dragonfir” 作者：PFungi
 	}
 }
 
@@ -1229,7 +1229,7 @@ Configs: {
 			BalanceChanges: 模组平衡修改
 			Miscellaneous: 融合
 			MultiplayerAdjustments: 多人游戏调整
-			// Main: Main
+			Main: 主要
 		}
 
 		ThoriumBalanceChangess: {
@@ -1426,8 +1426,8 @@ Configs: {
 		}
 
 		ForceMenu: {
-			// Label: Force Menu Theme
-			// Tooltip: Forces the Infernal Eclipse of Ragnarok Menu theme to be selected on mod load.
+			Label: 锁定标题页
+			Tooltip: 将诸神黄昏：炼狱蚀光标题页设为默认主题
 		}
 	}
 
@@ -1666,7 +1666,7 @@ Tiles: {
 	CultistMusicBoxTile.MapEntry: 拜月教邪教徒音乐盒
 	GolemMusicBoxTile.MapEntry: 石巨人音乐盒
 	ProphecyMusicBoxTile.MapEntry: 预言音乐盒
-	// MenuMusicBoxTile.MapEntry: Menu Music Box Tile
+	MenuMusicBoxTile.MapEntry: 主题曲音乐盒
 }
 
 NPCs: {
