@@ -65,6 +65,7 @@ Coordinators: ZaKami, TheRogueX
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan
 Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat, Suu, Pudd1ng
 Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler
+Composers: PFungi
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
 And special thanks to the following creators for the music in this mod:
