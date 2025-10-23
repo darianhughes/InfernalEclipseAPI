@@ -43,25 +43,25 @@ ItemTooltip: {
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
 	SBeamUsage: 长按左键，发射神话魔法伤害的光束
-	// NBeamUsage: Hold Left-Click to release a Nebula Gigabam that deals mythic magic damage
-	// MBeamUsage: Hold Left-Click to release a Exo Disintegrator beam that deals mythic ranged damage
+	NBeamUsage: 长按左键，发射寰宇死光，造成神话魔法伤害
+	MBeamUsage: 长按左键，发射星流解离炮，造成神话远程伤害
 	SFlight: 长按右键获得快速无限飞行能力
-	// StarlitForgeExtra: Even more curiously, it can even duplicate some items
+	StarlitForgeExtra: 更令人称奇的是，它甚至可以复制某些物品
 	ScytheThrow:
 		'''
 		右键投掷镰刀，它会以弧线轨迹返回
-		投掷镰刀的伤害降低20%
+		投掷镰刀的伤害降低10%
 		'''
-	/* PhoenixStaff:
+	PhoenixStaff:
 		'''
-		Right click to spew a stream of flames that inflict 'Holy Glare'
-		All damage done against holy glared enemies is increased by 15%
-		''' */
-	/* HolyGlare:
+		右键喷射火焰流，对敌怪造成神圣之怒减益
+		受影响的敌怪在减益持续时间内受到的伤害增加15%
 		'''
-		Enemies hit with the scythe will be inflicted with 'Holy Glare'
-		All damage done against holy glared enemies is increased by 15%
-		''' */
+	HolyGlare:
+		'''
+		被镰刀命中的敌人会受到神圣之怒减益
+		受影响的敌怪在减益持续时间内受到的伤害增加15%
+		'''
 	SandstonePortalDeviceInfo:
 		'''
 		将你传送到失落竞技场
@@ -251,13 +251,13 @@ ItemTooltip: {
 			'''
 		GildedVoid: 激活时的虚空消耗值增加3
 		CalSoaringNerf: "[灾厄]：不再允许无限飞行"
-		// MonsterCharm: While in combat, your armor penetration, defense, and life recovery increase over time
-		/* GreedierRing:
+		MonsterCharm: 战斗中你的盔甲穿透，防御和生命恢复会随时间增加
+		GreedierRing:
 			'''
-			Increases mining speed by 5% and critical strike chance by 5%
-			Generate coins when hurt or when void is gained and don't lose coins upon death
-			Mining blocks has a chance to drop bonus resources, such as coins and silt
-			''' */
+			增加5%采矿速度和5%暴击率
+			受伤时会产生钱币，并且在死亡时不会丢失钱币
+			开采方块时有概率掉落奖励资源，如钱币和泥沙
+			'''
 	}
 
 	AmmoConversion.Mycelium: 发射真菌弹幕
@@ -279,8 +279,8 @@ ItemTooltip: {
 		Amidias: 阿米迪亚斯
 		CalClone: 灾厄之影
 		Cultist: 拜月教邪教徒
-		// ND: The Deity's
-		// Mars: Mars'
+		ND: 无名之神
+		Mars: 玛尔斯
 	}
 
 	AstrageldonRelic: {
@@ -1112,44 +1112,44 @@ Items: {
 	}
 
 	InfernalTwilight: {
-		// DisplayName: Infernal Twilight
-		/* Tooltip:
+		DisplayName: 炼狱暮光
+		Tooltip:
 			'''
-			Thanks to the entire team, all of our contributors, our playtesters, everyone who supported,
-			the people who inspired us, and those who all play the mod and keep it alive!
-			The confines of this painting is not enough to fit the entire team
-			Hold SHIFT to see the full list of credits
-			''' */
+			感谢整个团队，所有贡献者，测试员，支持我们的每一个人，
+			启发我们的伙伴，以及游玩本模组并让它延续下去的所有玩家！
+			这幅画的空间不足以容纳整个团队
+			长按SHIFT键以查看完整致谢名单
+			'''
 	}
 
 	AbandonedWorkshop: {
-		// DisplayName: Abandoned Workshop
-		// Tooltip: The remains of the Goblin Tinker's workshop. Perhaps he can help you repair it?
+		DisplayName: 废弃的作坊
+		Tooltip:  哥布林工匠的作坊残骸。也许他可以帮助你修复它？
 	}
 
 	PrimordialOrchid: {
-		// DisplayName: Primordial Orchid
-		// Tooltip: An orchid infused with the Primordial Light, found growing in the Eternal Garden
+		DisplayName: 起源之兰
+		Tooltip: 一株融入原初之光的兰花，生长于永恒花园
 	}
 
 	TinkerersRepairBlueprints: {
-		// DisplayName: Tinkerers Repair Blueprints
-		/* Tooltip:
+		DisplayName: 工匠的修复蓝图
+		Tooltip:
 			'''
-			When I was tied up the other goblins seem to have lost my workshop, 
-			and I now fear that one of the beasts of Cthulhu has it...
-			If you manage to slay one and get my ruined workshop, this will help you repair it!
-			''' */
+			当我被绑起来时，其他哥布林似乎弄丢了我的工坊，
+			我现在担心某个克苏鲁怪兽已经占有了它……
+			如果你能将其击杀并取回我被毁的工坊，这个东西会帮助你修复它！
+			'''
 	}
 
 	NebulaGigabeam: {
-		// DisplayName: Nebula Gigabeam
-		// Tooltip: ""
+		DisplayName: 寰宇死光
+		Tooltip: ""
 	}
 
 	ExoDisintegrator: {
-		// DisplayName: Exo Disintegrator
-		// Tooltip: ""
+		DisplayName: 星流解离炮
+		Tooltip: ""
 	}
 }
 
@@ -1180,11 +1180,11 @@ Projectiles: {
 	CelestialBeam.DisplayName: 天界光束
 	CelestialIlluminationStar.DisplayName: 星界陨辉
 	DemonicRune.DisplayName: 恶魔小灰猫符文
-	// ThoriumHeavyScytheSpark.DisplayName: Thorium Heavy Scythe Spark
-	// NebulaBeam.DisplayName: Nebula Beam
-	// NebulaChargeUp.DisplayName: Nebula Charge Up
-	// DisintegratorBeam.DisplayName: Disintegrator Beam
-	// DisintegratorChargeUp.DisplayName: Disintegrator Charge Up
+	ThoriumHeavyScytheSpark.DisplayName: 瑟银重镰火花
+	NebulaBeam.DisplayName: 寰宇死光
+	NebulaChargeUp.DisplayName: 寰宇充能
+	DisintegratorBeam.DisplayName: 解离炮
+	DisintegratorChargeUp.DisplayName: 解离炮充能
 }
 
 DiaryTooltip:
