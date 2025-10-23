@@ -16,7 +16,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks.ThrowableScythes
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
                 if (entity.type == thorium.Find<ModProjectile>("BatScythePro").Type) return true;
-                if (entity.type == thorium.Find<ModProjectile>("TitanScythePro").Type) return true;
+                //if (entity.type == thorium.Find<ModProjectile>("TitanScythePro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("IceShaverPro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("DemoniteScythePro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("CrimtaneScythePro").Type) return true;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
+﻿using Terraria.ModLoader.IO;
 using System.IO;
 
 namespace InfernalEclipseAPI.Core.World
@@ -20,6 +14,7 @@ namespace InfernalEclipseAPI.Core.World
         public static bool yharonDischarge = false;
         public static bool yharonSmasher = false;
         public static bool namelessDeveloperDiagloguePlayed = false;
+        public static bool craftedWorkshop = false;
 
         public static void ResetFlags()
         {
@@ -32,6 +27,7 @@ namespace InfernalEclipseAPI.Core.World
             yharonDischarge =false;
             yharonSmasher=false;
             namelessDeveloperDiagloguePlayed = false;
+            craftedWorkshop = false;
         }
 
         public override void OnWorldLoad()
@@ -55,6 +51,7 @@ namespace InfernalEclipseAPI.Core.World
             tag["yharonDischarge"] = yharonDischarge;
             tag["yharonSmasher"] = yharonSmasher;
             tag["namelessDeveloperDiagloguePlayed"] = namelessDeveloperDiagloguePlayed;
+            tag["craftedWorkshop"] = craftedWorkshop;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -68,6 +65,7 @@ namespace InfernalEclipseAPI.Core.World
             GetData(ref yharonDischarge, "yharonDischarge", tag);
             GetData(ref yharonSmasher, "yharonSmasher", tag);
             GetData(ref namelessDeveloperDiagloguePlayed, "namelessDeveloperDiagloguePlayed", tag);
+            GetData(ref craftedWorkshop, "craftedWorkshop", tag);
         }
 
         public static void GetData(ref bool baseVar, string path, TagCompound tag)
@@ -86,6 +84,7 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(yharonDischarge);
             writer.Write(yharonSmasher);
             writer.Write(namelessDeveloperDiagloguePlayed);
+            writer.Write(craftedWorkshop);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -99,6 +98,7 @@ namespace InfernalEclipseAPI.Core.World
             yharonSmasher = reader.ReadBoolean();
             yharonDischarge = reader.ReadBoolean();
             namelessDeveloperDiagloguePlayed = reader.ReadBoolean();
+            craftedWorkshop = reader.ReadBoolean();
         }
     }
 }

@@ -124,7 +124,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             recipe.RemoveIngredient(ItemID.FrozenTurtleShell);
                             recipe.AddIngredient(sots.Find<ModItem>("ChiseledBarrier").Type, 1);
                             recipe.AddIngredient(sots.Find<ModItem>("OlympianAegis").Type, 1);
-                            recipe.AddIngredient(ItemID.FrozenShield, 1);
+                            if (!recipe.HasIngredient(ItemID.FrozenShield)) recipe.AddIngredient(ItemID.FrozenShield);
                             recipe.AddIngredient(sots.Find<ModItem>("TerminalCluster").Type, 1);
 
                         }
@@ -133,8 +133,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             recipe.RemoveIngredient(ItemID.AnkhShield);
                             recipe.RemoveIngredient(thorium.Find<ModItem>("HolyAegis").Type);
                             recipe.RemoveIngredient(ItemID.FrozenTurtleShell);
-                            recipe.AddIngredient(ItemID.FrozenShield, 1);
-                            recipe.AddIngredient(thorium.Find<ModItem>("LifeQuartzShield").Type, 1);
+                            if(!recipe.HasIngredient(ItemID.FrozenShield)) recipe.AddIngredient(ItemID.FrozenShield);
+                            if (!recipe.HasIngredient(thorium.Find<ModItem>("LifeQuartzShield").Type)) recipe.AddIngredient(thorium.Find<ModItem>("LifeQuartzShield").Type);
                         }
                     }
                 }

@@ -9,6 +9,10 @@ using Mono.Cecil.Cil;
 using ThoriumMod.Items.Depths;
 using ThoriumMod.NPCs.BossFallenBeholder;
 using ThoriumMod.Items.Misc;
+using ThoriumMod.NPCs;
+using ThoriumMod.NPCs.BossStarScouter;
+using Terraria.GameContent.ItemDropRules;
+using ThoriumMod.Items.BossStarScouter;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
@@ -36,6 +40,42 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
             if (npc.type == NPCID.SandElemental)
             {
                 npcLoot.Add(ModContent.ItemType<DesertBiomeKey>());
+            }
+
+            int[] meteoriteEnemies =
+            {
+                ModContent.NPCType<UFO>(),
+                ModContent.NPCType<MartianScout>(),
+                ModContent.NPCType<MartianSentry>(),
+            };
+
+            if (ModLoader.HasMod("SOTS"))
+            {
+                foreach (int npcID in meteoriteEnemies)
+                {
+                    if (npc.type == npcID)
+                    {
+                        npcLoot.Add(ModLoader.GetMod("SOTS").Find<ModItem>("TwilightShard").Type, 3);
+                    }
+                }
+
+                if (npc.type == ModContent.NPCType<StarScouter>())
+                {
+                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModLoader.GetMod("SOTS").Find<ModItem>("TwilightShard").Type, 1, 5, 10));
+                }
+            }
+
+        }
+    }
+
+    [ExtendsFromMod("ThoriumMod")]
+    public class ThoriumLootBagAdjustments : GlobalItem
+    {
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            if (item.type == ModContent.ItemType<StarScouterTreasureBag>())
+            {
+                itemLoot.Add(ModLoader.GetMod("SOTS").Find<ModItem>("TwilightShard").Type, 1, 7, 14);
             }
         }
     }

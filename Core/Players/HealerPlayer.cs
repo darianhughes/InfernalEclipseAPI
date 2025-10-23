@@ -21,14 +21,14 @@ namespace InfernalEclipseAPI.Core.Players
         private bool initialized;
         public HashSet<int> fifthScytheTypes = new();
 
-        public bool accessoryEquipped = false;
+        //public bool accessoryEquipped = false;
 
-        private int contractCooldownTimer = 0;
-        private bool restoreContractAfterCooldown = false;
+        //private int contractCooldownTimer = 0;
+        //private bool restoreContractAfterCooldown = false;
 
-        private int executionersContract = -1;
-        private int sealedContract = -1;
-        private bool ContractInitialized = false;
+        //private int executionersContract = -1;
+        //private int sealedContract = -1;
+        //private bool ContractInitialized = false;
 
         public int renewCooldown;
         public int starBirthCooldown;
@@ -66,6 +66,7 @@ namespace InfernalEclipseAPI.Core.Players
             initialized = false;
         }
 
+        /*
         private void EnsureInitialized()
         {
             if (ContractInitialized) return;
@@ -82,11 +83,13 @@ namespace InfernalEclipseAPI.Core.Players
 
             ContractInitialized = true;
         }
+        */
 
 
         public override void PostUpdate()
         {
-            EnsureInitialized();
+            //EnsureInitialized();
+
             if (!initialized)
             {
                 initialized = true;
@@ -126,6 +129,7 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
+            /*
             if (accessoryEquipped)
             {
                 if (contractCooldownTimer > 0)
@@ -142,10 +146,12 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 SetContract(false);
             }
+            */
         }
 
         public void OnProjectileHit()
         {
+            /*
             if (accessoryEquipped)
             {
                 bool contractNow = GetContract();
@@ -161,9 +167,11 @@ namespace InfernalEclipseAPI.Core.Players
                     SetContract(false);
                 }
             }
+            */
         }
         public override void UpdateEquips()
         {
+            /*
             EnsureInitialized();
 
             accessoryEquipped = false;
@@ -185,8 +193,10 @@ namespace InfernalEclipseAPI.Core.Players
                     break;
                 }
             }
+            */
         }
 
+        /*
         private bool GetContract()
         {
             object thoriumPlayer = GetThoriumPlayer();
@@ -209,6 +219,7 @@ namespace InfernalEclipseAPI.Core.Players
             var contractField = thoriumPlayer.GetType().GetField("contract", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             contractField?.SetValue(thoriumPlayer, value);
         }
+        */
 
         private object GetThoriumPlayer()
         {

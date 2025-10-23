@@ -20,6 +20,16 @@ Items: {
 		Tooltip: "'The essence of damned creatures'"
 	}
 
+	SoulofPlightinaBottle: {
+		DisplayName: Soul of Spite in a Bottle
+		Tooltip: ""
+	}
+
+	KeyofPlight: {
+		DisplayName: Key of Spite
+		Tooltip: "'Charged with the essence of many souls'"
+	}
+
 	HereticBreaker: {
 		DisplayName: Heretic Breaker
 		Tooltip: Steals 3 life

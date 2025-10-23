@@ -3,10 +3,6 @@ using System.IO;
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using Terraria.Graphics.Effects;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Assets.Effects
 {

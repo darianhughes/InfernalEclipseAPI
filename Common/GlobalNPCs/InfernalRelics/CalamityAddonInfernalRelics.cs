@@ -8,6 +8,7 @@ using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.Clamity;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG;
+using NoxusBoss.Content.Items;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.SecondPhaseForm;
 using NoxusBoss.Content.NPCs.Bosses.NamelessDeity;
 using Terraria;
@@ -54,13 +55,27 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (npc.type == ModContent.NPCType<AvatarOfEmptiness>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<AvatarOfEmptinessRelic>());
+                npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<MetallicChunk>(), 1, 4, 9));
             }
             if (npc.type == ModContent.NPCType<NamelessDeityBoss>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<NamelessDeityRelic>());
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoltanBullyingSlip>(), 1));
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PrimordialOrchid>(), 1, 5, 10));
+                npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<PrimordialOrchid>(), 1, 10, 15));
             }
+        }
+    }
+
+    [ExtendsFromMod("NoxusBoss")]
+    public class WrathTreasureBags : GlobalItem
+    {
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            Mod noxusBoss = ModLoader.GetMod("NoxusBoss");
+            if (item.type == noxusBoss.Find<ModItem>("AvatarTreasureBag").Type)
+                itemLoot.Add(ModContent.ItemType<MetallicChunk>(), 1, 4, 9);
+            if (item.type == noxusBoss.Find<ModItem>("NamelessDeityTreasureBag").Type)
+                itemLoot.Add(ModContent.ItemType<PrimordialOrchid>(), 1, 10, 15);
         }
     }
 

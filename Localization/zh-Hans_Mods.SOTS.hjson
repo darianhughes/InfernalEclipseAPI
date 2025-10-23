@@ -1,8 +1,7 @@
-﻿VisionAmuletTextList2: {
-	3:
-		'''
+VisionAmuletTextList2.3:
+	'''
 
-		可访问工作台，熔炉，和铁砧制作站
-		增加40点最大魔力值和从药水恢复的魔力值
-		'''
-}
+	可访问工作台，熔炉，和铁砧制作站
+	增加40点最大魔力值和从药水恢复的魔力值
+	'''
+// NPCs.CorpseBloom.DisplayName: Rotbloom

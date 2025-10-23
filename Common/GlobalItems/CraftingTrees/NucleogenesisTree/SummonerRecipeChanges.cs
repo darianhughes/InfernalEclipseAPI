@@ -129,7 +129,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                         //recipe.RemoveIngredient(ItemID.SummonerEmblem);
                         //recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
                         //recipe.AddIngredient(ItemID.BeetleHusk, 3);
-                        recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
+                        if (!recipe.HasIngredient(thorium.Find<ModItem>("NecroticSkull"))) recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
                         recipe.AddIngredient(thorium.Find<ModItem>("CrystalScorpion"));
                         //recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
                         //recipe.AddIngredient(thorium.Find<ModItem>("ScryingGlass"));

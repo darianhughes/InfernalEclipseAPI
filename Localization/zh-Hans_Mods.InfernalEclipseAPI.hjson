@@ -43,12 +43,25 @@ ItemTooltip: {
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
 	SBeamUsage: 长按左键，发射神话魔法伤害的光束
+	// NBeamUsage: Hold Left-Click to release a Nebula Gigabam that deals mythic magic damage
+	// MBeamUsage: Hold Left-Click to release a Exo Disintegrator beam that deals mythic ranged damage
 	SFlight: 长按右键获得快速无限飞行能力
+	// StarlitForgeExtra: Even more curiously, it can even duplicate some items
 	ScytheThrow:
 		'''
 		右键投掷镰刀，它会以弧线轨迹返回
 		投掷镰刀的伤害降低20%
 		'''
+	/* PhoenixStaff:
+		'''
+		Right click to spew a stream of flames that inflict 'Holy Glare'
+		All damage done against holy glared enemies is increased by 15%
+		''' */
+	/* HolyGlare:
+		'''
+		Enemies hit with the scythe will be inflicted with 'Holy Glare'
+		All damage done against holy glared enemies is increased by 15%
+		''' */
 	SandstonePortalDeviceInfo:
 		'''
 		将你传送到失落竞技场
@@ -238,6 +251,13 @@ ItemTooltip: {
 			'''
 		GildedVoid: 激活时的虚空消耗值增加3
 		CalSoaringNerf: "[灾厄]：不再允许无限飞行"
+		// MonsterCharm: While in combat, your armor penetration, defense, and life recovery increase over time
+		/* GreedierRing:
+			'''
+			Increases mining speed by 5% and critical strike chance by 5%
+			Generate coins when hurt or when void is gained and don't lose coins upon death
+			Mining blocks has a chance to drop bonus resources, such as coins and silt
+			''' */
 	}
 
 	AmmoConversion.Mycelium: 发射真菌弹幕
@@ -259,6 +279,8 @@ ItemTooltip: {
 		Amidias: 阿米迪亚斯
 		CalClone: 灾厄之影
 		Cultist: 拜月教邪教徒
+		// ND: The Deity's
+		// Mars: Mars'
 	}
 
 	AstrageldonRelic: {
@@ -1088,6 +1110,47 @@ Items: {
 		DisplayName: 空白的恶魔秘典
 		Tooltip: ""
 	}
+
+	InfernalTwilight: {
+		// DisplayName: Infernal Twilight
+		/* Tooltip:
+			'''
+			Thanks to the entire team, all of our contributors, our playtesters, everyone who supported,
+			the people who inspired us, and those who all play the mod and keep it alive!
+			The confines of this painting is not enough to fit the entire team
+			Hold SHIFT to see the full list of credits
+			''' */
+	}
+
+	AbandonedWorkshop: {
+		// DisplayName: Abandoned Workshop
+		// Tooltip: The remains of the Goblin Tinker's workshop. Perhaps he can help you repair it?
+	}
+
+	PrimordialOrchid: {
+		// DisplayName: Primordial Orchid
+		// Tooltip: An orchid infused with the Primordial Light, found growing in the Eternal Garden
+	}
+
+	TinkerersRepairBlueprints: {
+		// DisplayName: Tinkerers Repair Blueprints
+		/* Tooltip:
+			'''
+			When I was tied up the other goblins seem to have lost my workshop, 
+			and I now fear that one of the beasts of Cthulhu has it...
+			If you manage to slay one and get my ruined workshop, this will help you repair it!
+			''' */
+	}
+
+	NebulaGigabeam: {
+		// DisplayName: Nebula Gigabeam
+		// Tooltip: ""
+	}
+
+	ExoDisintegrator: {
+		// DisplayName: Exo Disintegrator
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1117,6 +1180,11 @@ Projectiles: {
 	CelestialBeam.DisplayName: 天界光束
 	CelestialIlluminationStar.DisplayName: 星界陨辉
 	DemonicRune.DisplayName: 恶魔小灰猫符文
+	// ThoriumHeavyScytheSpark.DisplayName: Thorium Heavy Scythe Spark
+	// NebulaBeam.DisplayName: Nebula Beam
+	// NebulaChargeUp.DisplayName: Nebula Charge Up
+	// DisintegratorBeam.DisplayName: Disintegrator Beam
+	// DisintegratorChargeUp.DisplayName: Disintegrator Charge Up
 }
 
 DiaryTooltip:

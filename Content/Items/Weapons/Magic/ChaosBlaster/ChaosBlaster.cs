@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Items;
+using InfernalEclipseAPI.Content.Items.Materials;
 using Microsoft.Xna.Framework;
+using NoxusBoss.Content.Items;
 using NoxusBoss.Content.Rarities;
+using NoxusBoss.Content.Tiles;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
@@ -149,6 +152,19 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 
             tooltips.Add(new TooltipLine(Mod, "SolynUsage", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SBeamUsage")));
             tooltips.Add(new TooltipLine(Mod, "SolynFlight", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SFlight")));
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe(2)
+                .AddIngredient<ChaosBlaster>()
+                .AddIngredient(ItemID.FallenStar, 30)
+                .AddIngredient<MetallicChunk>()
+                .AddIngredient<PrimordialOrchid>()
+                .AddIngredient<Rock>()
+                .AddTile<StarlitForgeTile>()
+                .DisableDecraft()
+                .Register();
         }
     }
 }

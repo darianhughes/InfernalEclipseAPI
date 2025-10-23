@@ -14,7 +14,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks.ThrowableScythes
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
                 if (entity.type == thorium.Find<ModItem>("BatScythe").Type) return true;
-                if (entity.type == thorium.Find<ModItem>("TitanScythe").Type) return true;
+                //if (entity.type == thorium.Find<ModItem>("TitanScythe").Type) return true;
                 if (entity.type == thorium.Find<ModItem>("IceShaver").Type) return true;
                 if (entity.type == thorium.Find<ModItem>("DarkScythe").Type) return true;
                 if (entity.type == thorium.Find<ModItem>("CrimsonScythe").Type) return true;
@@ -60,7 +60,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks.ThrowableScythes
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
                 if (item.type == thorium.Find<ModItem>("BatScythe").Type) ThrowDistance = 125f;
-                if (item.type == thorium.Find<ModItem>("TitanScythe").Type) ThrowDistance = 150f;
+                //if (item.type == thorium.Find<ModItem>("TitanScythe").Type) ThrowDistance = 150f;
                 if (item.type == thorium.Find<ModItem>("IceShaver").Type) ThrowDistance = 45f;
                 if (item.type == thorium.Find<ModItem>("DarkScythe").Type) ThrowDistance = 80f;
                 if (item.type == thorium.Find<ModItem>("CrimsonScythe").Type) ThrowDistance = 65f;
@@ -150,7 +150,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks.ThrowableScythes
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
                 if (item.type == thorium.Find<ModItem>("BatScythe").Type) isThrowableScythe = true;
-                if (item.type == thorium.Find<ModItem>("TitanScythe").Type) isThrowableScythe = true;
+                //if (item.type == thorium.Find<ModItem>("TitanScythe").Type) isThrowableScythe = true;
                 if (item.type == thorium.Find<ModItem>("IceShaver").Type) isThrowableScythe = true;
                 if (item.type == thorium.Find<ModItem>("DarkScythe").Type) isThrowableScythe = true;
                 if (item.type == thorium.Find<ModItem>("CrimsonScythe").Type) isThrowableScythe = true;

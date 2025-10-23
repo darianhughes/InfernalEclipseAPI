@@ -13,6 +13,7 @@ namespace InfernalEclipseAPI.Content.Items.Materials
             Item.width = Item.height = 60;
             Item.rare = ModContent.RarityType<NamelessDeityRarity>();
             Item.value = CalamityGlobalItem.RarityHotPinkBuyPrice;
+            Item.maxStack = 9999;
         }
     }
 }

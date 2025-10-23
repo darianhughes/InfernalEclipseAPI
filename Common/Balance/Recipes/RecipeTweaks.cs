@@ -21,6 +21,7 @@ using CalamityMod.Items.DraedonMisc;
 using CalamityMod.Items.Placeables;
 using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
 using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
+using InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -160,6 +161,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddIngredient(ModContent.ItemType<NovaBomb>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<Kevin>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<ChaosBlaster>());
+                            recipe.AddIngredient(ModContent.ItemType<NebulaGigabeam>());
                             recipe.AddIngredient(ModContent.ItemType<ChromaticMassInABottle>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
                         }
@@ -199,6 +201,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult(thorium.Find<ModItem>("AquaiteBar")))
                     {
                         recipe.AddIngredient<SeaPrism>(5);
+                    }
+
+                    if (recipe.HasResult<BloodstoneCore>())
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("BloodCell"));
                     }
 
                     if (InfernalConfig.Instance.DisableDuplicateContent)

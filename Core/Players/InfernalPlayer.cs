@@ -15,6 +15,7 @@ using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Projectiles.Rogue;
 using CalamityMod.NPCs.SupremeCalamitas;
 using InfernalEclipseAPI.Core.DamageClasses;
+using Terraria.ModLoader.IO;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -24,6 +25,11 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PlayerConnect()
         {
+            if (!InfernalWorld.craftedWorkshop && workshopHasBeenOwned)
+            {
+                InfernalWorld.craftedWorkshop = true;
+            }
+
             if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
             Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.MPConnect"), 95, 06, 06);
 
@@ -40,6 +46,11 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void OnEnterWorld()
         {
+            if (!InfernalWorld.craftedWorkshop && workshopHasBeenOwned)
+            {
+                InfernalWorld.craftedWorkshop = true;
+            }
+
             if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
 
             Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.Welcome"), 95, 06, 06);
@@ -112,6 +123,26 @@ namespace InfernalEclipseAPI.Core.Players
         private int jamTimer = 0;
         public int namelessDialogueCooldown;
         public int CloverCharmCooldown;
+        public bool workshopHasBeenOwned;
+
+        public override void Initialize()
+        {
+            workshopHasBeenOwned = false;
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            if (workshopHasBeenOwned)
+            {
+                tag.Add("workshopHasBeenOwned", true);
+            }
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            workshopHasBeenOwned = tag.Get<bool>("workshopHasBeenOwned");
+        }
+
         public override void ResetEffects()
         {
             if (!Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
@@ -245,6 +276,7 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PostUpdateEquips()
         {
+            /*
             //Why why why why SOTS
             bool nearRealAlchemyTable = IsNearTile(TileID.AlchemyTable, AdjRadius);
 
@@ -256,6 +288,7 @@ namespace InfernalEclipseAPI.Core.Players
                 if (Player.alchemyTable)
                     Player.alchemyTable = false;
             }
+            */
         }
 
         public void ConvertSummonMeleeToMelee(Player player, Item item, ref StatModifier damage)

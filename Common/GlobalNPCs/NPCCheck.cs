@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
-using InfernalEclipseAPI.Core.World;
-using CalamityMod.Projectiles.Boss;
+﻿using InfernalEclipseAPI.Core.World;
 using CalamityMod.NPCs.BrimstoneElemental;
 using CalamityMod.NPCs.AquaticScourge;
 using CalamityMod.NPCs.Yharon;
+using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
+using CalamityMod.Items.Placeables.Furniture.DevPaintings;
+using Terraria.GameContent.ItemDropRules;
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
     public class NPCCheck : GlobalNPC
@@ -50,6 +43,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     packet.Write((byte)InfernalEclipseMessageType.SyncDownedBosses);
                     packet.Send();
                 }
+            }
+        }
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if (npc.boss) //anything that is considered a boss will have a 1/100 chance to drop our dev painting directly
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTwilight>(), ThankYouPainting.DropInt));
             }
         }
 

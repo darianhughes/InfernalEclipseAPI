@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Items.LoreItems;
+﻿using Terraria.GameContent.ItemDropRules;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using CalamityMod.Items.SummonItems;
 using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
+using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.World;
+using Terraria.DataStructures;
+using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
-    public class StarterBagAdjustments : GlobalItem
+    public class InfernalGlobalItem : GlobalItem
     {
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
@@ -25,6 +21,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 itemLoot.Add(ItemDropRule.ByCondition(new SoltanPlayerCondition(), ModContent.ItemType<LoreDylan>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new CheesePlayerCondition(), ModContent.ItemType<DeathWhistle>()));
+
+                itemLoot.Add(ItemDropRule.ByCondition(new devListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
             }
 
             if (!ModLoader.TryGetMod("ThoriumMod", out var thoriumMod) ||
@@ -44,6 +42,48 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
         }
+
+        public override void OnCreated(Item item, ItemCreationContext context)
+        {
+            if (item.type == ItemID.TinkerersWorkshop)
+            {
+                InfernalWorld.craftedWorkshop = true;
+            }
+
+            base.OnCreated(item, context);
+        }
+
+        public override bool OnPickup(Item item, Player player)
+        {
+            if (item.type == ItemID.TinkerersWorkshop)
+            {
+                player.GetModPlayer<InfernalPlayer>().workshopHasBeenOwned = true;
+                InfernalWorld.craftedWorkshop = true;
+            }
+
+            return base.OnPickup(item, player);
+        }
+    }
+
+    public class devListPlayerCondition : IItemDropRuleCondition
+    {
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            // Loop through all players in the world
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                foreach (string name in InfernalTwilight.devList)
+                {
+                    if (player.active && (player.name.ToLower().Contains(name)))
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CanShowItemDropInUI() => false;
+        public string GetConditionDescription() => "A certain person must be present...";
     }
 
     public class ProviPlayerCondition : IItemDropRuleCondition

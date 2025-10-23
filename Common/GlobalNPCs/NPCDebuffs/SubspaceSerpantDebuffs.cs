@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalamityMod.Items.Mounts;
-using CatalystMod.NPCs.Boss.Astrageldon;
+﻿using CalamityMod.Items.Mounts;
+using InfernumMode;
 using SOTS.NPCs.Boss;
-using Terraria;
-using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
 {
@@ -29,23 +23,18 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
-                if (player.active && !player.dead)
+                if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
+                    continue;
+
+                if (player.mount?.Type == ModContent.MountType<DraedonGamerChairMount>())
+                        player.mount.Dismount(player);
+                if (clamity != null)
                 {
-                    if (player.mount?.Type == ModContent.MountType<DraedonGamerChairMount>())
+                    if (player.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)
                         player.mount.Dismount(player);
                 }
-            }
-            if (clamity != null)
-            {
-                for (int i = 0; i < Main.maxPlayers; i++)
-                {
-                    Player player = Main.player[i];
-                    if (player.active && !player.dead)
-                    {
-                        if (player.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)
-                            player.mount.Dismount(player);
-                    }
-                }
+
+                player.DoInfiniteFlightCheck(Color.LimeGreen);
             }
 
             return base.PreAI(npc);

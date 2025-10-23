@@ -19,16 +19,21 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             {
                 if (recipe.HasResult(ItemID.DrillContainmentUnit))
                 {
+                    ModLoader.TryGetMod("ThoriumMod", out Mod thorium);
+                    bool hasThorium = thorium != null;
+                    ModLoader.TryGetMod("SOTS", out Mod sots);
+                    bool hasSOTS = sots != null;
+
                     //Uses our stack size instead of any other mods
+                    recipe.RemoveIngredient(ItemID.LunarBar);
+                    recipe.RemoveIngredient(ItemID.ShroomiteBar);
                     recipe.RemoveIngredient(ModContent.ItemType<AstralBar>());
                     recipe.RemoveIngredient(ModContent.ItemType<LifeAlloy>());
                     recipe.RemoveIngredient(ModContent.ItemType<AerialiteBar>());
 
-                    recipe.AddIngredient<AstralBar>(40);
-                    recipe.AddIngredient<LifeAlloy>(40);
-                    recipe.AddIngredient<AerialiteBar>(40);
-
-                    if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+                    recipe.AddIngredient(ItemID.LunarBar, 20);
+                    recipe.AddIngredient<AstralBar>(20);
+                    if (hasThorium)
                     {
                         //Included in Terrarium Core
                         recipe.RemoveIngredient(ItemID.ChlorophyteBar);
@@ -36,32 +41,44 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.RemoveIngredient(ItemID.HellstoneBar);
                         recipe.RemoveIngredient(ItemID.MeteoriteBar);
 
+                        //Use our stack size
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("TerrariumCore").Type);
+
+                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 20);
+
                         //Included in Life Alloy
                         thorium.TryFind("TitanicBar", out ModItem titanBar);
                         recipe.RemoveIngredient(titanBar.Type);
-
+                    }
+                    if (hasSOTS) recipe.AddIngredient(sots.Find<ModItem>("PhaseBar"), 20);
+                    recipe.AddIngredient<LifeAlloy>(20);
+                    recipe.AddIngredient(ItemID.ShroomiteBar, 20);
+                    if (thorium != null)
+                    {
                         //Use our stack size
-                        recipe.RemoveIngredient(thorium.Find<ModItem>("TerrariumCore").Type);
                         recipe.RemoveIngredient(thorium.Find<ModItem>("IllumiteIngot").Type);
                         recipe.RemoveIngredient(thorium.Find<ModItem>("LodeStoneIngot").Type);
                         recipe.RemoveIngredient(thorium.Find<ModItem>("ValadiumIngot").Type);
                         recipe.RemoveIngredient(thorium.Find<ModItem>("aDarksteelAlloy").Type);
                         recipe.RemoveIngredient(thorium.Find<ModItem>("AquaiteBar").Type);
+
+                        recipe.AddIngredient(thorium.Find<ModItem>("IllumiteIngot"), 20);
+                        recipe.AddIngredient(thorium.Find<ModItem>("LodeStoneIngot"), 20);
+                        recipe.AddIngredient(thorium.Find<ModItem>("ValadiumIngot"), 20);
+                        recipe.AddIngredient(thorium.Find<ModItem>("aDarksteelAlloy"), 20);
+                        recipe.AddIngredient(thorium.Find<ModItem>("AquaiteBar"), 20);
+                    }
+                    recipe.AddIngredient<AerialiteBar>(20);
+                    if (hasThorium)
+                    {
+                        //Use our stack size
                         recipe.RemoveIngredient(thorium.Find<ModItem>("SandstoneIngot").Type);
 
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 40);
-                        recipe.AddIngredient(thorium.Find<ModItem>("IllumiteIngot"), 40);
-                        recipe.AddIngredient(thorium.Find<ModItem>("LodeStoneIngot"), 40);
-                        recipe.AddIngredient(thorium.Find<ModItem>("ValadiumIngot"), 40);
-                        recipe.AddIngredient(thorium.Find<ModItem>("aDarksteelAlloy"), 40);
-                        recipe.AddIngredient(thorium.Find<ModItem>("AquaiteBar"), 40);
-                        recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 40);
+                        recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 20);
                     }
-
-                    if (ModLoader.TryGetMod("SOTS", out Mod sots))
+                    if (hasSOTS)
                     {
-                        recipe.AddIngredient(sots.Find<ModItem>("PhaseBar"), 40);
-                        recipe.AddIngredient(sots.Find<ModItem>("FrigidBar"), 40);
+                        recipe.AddIngredient(sots.Find<ModItem>("FrigidBar"), 20);
                     }
                 }
             }

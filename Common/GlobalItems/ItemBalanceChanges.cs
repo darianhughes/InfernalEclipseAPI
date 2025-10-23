@@ -1114,7 +1114,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TitanBoomerang", item))
                     {
-                        item.damage = 115;
+                        item.damage = 36;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "TitanSword", item))
@@ -1140,7 +1141,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 20;
                         item.useAnimation = 20;
-                        item.damage = 177;
+                        item.damage = 155;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "DemonBloodSword", item))
@@ -1148,7 +1150,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useTime = 12;
                         item.useAnimation = 12;
                         item.crit = 0;
-                        item.damage = 70;
+                        item.damage = 60;
                     }
 
                     if (GetItem(thorium, "IllumiteBlade", item))
@@ -1171,7 +1173,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "DreadFork", item))
                     {
                         item.crit = 0;
-                        item.damage = 143;
+                        item.damage = 130;
                     }
 
                     if (GetItem(thorium, "DemonBloodSpear", item))
@@ -1473,7 +1475,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "DragonsGaze", item))
                     {
-                        item.damage = 70;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "BloodBelcher", item))
@@ -1489,8 +1491,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "VegaPhaser", item))
                     {
-                        item.useTime = 20;
-                        item.useAnimation = 20;
+                        item.useTime = 28;
+                        item.useAnimation = 28;
+                        item.damage = 26;
                     }
 
                     if (GetItem(thorium, "BulletStorm", item))
@@ -1506,7 +1509,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "ShusWrath", item))
                     {
-                        item.damage = 47;
+                        item.damage = 80;
                     }
 
                     if (GetItem(thorium, "TommyGun", item))
@@ -1540,6 +1543,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "LodeStoneBow", item))
                     {
                         item.damage = 30;
+                        item.useTime = 20;
+                        item.useAnimation = 20;
                     }
 
                     if (GetItem(thorium, "LodeStoneQuickDraw", item))
@@ -1550,11 +1555,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "ValadiumBow", item))
                     {
                         item.damage = 35;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "ValadiumFoeBlaster", item))
                     {
                         item.damage = 26;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "OrichalcumPelter", item))
@@ -1844,7 +1851,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Bloody Wand
                     if (item.type == thorium.Find<ModItem>("BloodyWand").Type)
                     {
-                        item.damage = 18;
+                        item.damage = 15;
                     }
 
                     //Energy Projector
@@ -1966,7 +1973,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Lodestone Staff
                     if (GetItem(thorium, "LodeStoneStaff", item))
                     {
-                        item.damage = 38;
+                        item.damage = 34;
                     }
 
                     if (GetItem(thorium, "ValadiumStaff", item))
@@ -2039,7 +2046,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "DemonBloodStaff", item))
                     {
-                        item.damage = 43;
+                        item.damage = 62;
+                        item.useTime = 10;
+                        item.useAnimation = 10;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "DarkGrip", item))
@@ -2071,7 +2081,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "DreadBlaster", item))
                     {
-                        item.damage = 64;
+                        item.damage = 24;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "PLG", item))
@@ -3073,6 +3084,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #endregion
 
                     #region Hardmode
+                    if (GetItem(thorium, "DemonBloodRipper", item))
+                    {
+                        item.damage = 36;
+                        item.crit = 0;
+                    }
+
                     if (GetItem(thorium, "BalanceBloom", item))
                     {
                         item.damage = 45;
@@ -3138,7 +3155,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TitanScythe", item))
                     {
-                        item.crit = 16;
+                        item.crit = 0;
+                        item.damage = 49;
                     }
 
                     if (GetItem(thorium, "MorningDew", item))
@@ -3181,7 +3199,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "DreadTearer", item))
                     {
-                        item.damage = 92;
+                        item.damage = 58;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "IllumiteScythe", item))
@@ -3439,8 +3458,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Dragon's Wail
                     if (GetItem(thorium, "DragonsWail", item))
                     {
-                        item.shootSpeed = 14;
-                        item.damage = 70;
+                        item.crit = 0;
                     }
 
                     if (GetItem(thorium, "FleshHorn", item))
@@ -3814,6 +3832,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "DragonWings", item))
                     {
                         item.defense = 10;
+                    }
+
+                    //Abyssal Shell
+                    if (GetItem(thorium, "AbyssalShell", item))
+                    {
+                        item.defense = 0;
                     }
 
                     //Subspace Wings
@@ -4223,7 +4247,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Pocket Energy Storm
                 if (GetItem(rethorium, "PocketEnergyStorm", item))
                 {
-                    //item.damage = 13;
+                    item.damage = 28;
+                    item.crit = 0;
                 }
                 #endregion
 
@@ -4258,6 +4283,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 1000;
                 }
                 #endregion
+
+                if (GetItem(rethorium, "FanDonations", item))
+                {
+                    item.defense = 0;
+                }
             }
             #endregion
 
@@ -5233,7 +5263,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 if (GetItem(sots, "GelWings", item))
                 {
-                    player.GetModPlayer<GelWingsDashPlayer>().Active = true;
+                    //player.GetModPlayer<GelWingsDashPlayer>().Active = true;
                 }
             }
         }

@@ -20,6 +20,16 @@ Items: {
 		Tooltip: “可恶生物的精华”
 	}
 
+	SoulofPlightinaBottle: {
+		// DisplayName: Soul of Spite in a Bottle
+		// Tooltip: ""
+	}
+
+	KeyofPlight: {
+		// DisplayName: Key of Spite
+		// Tooltip: "'Charged with the essence of many souls'"
+	}
+
 	HereticBreaker: {
 		DisplayName: 异教毁灭者
 		Tooltip: 吸取3生命值

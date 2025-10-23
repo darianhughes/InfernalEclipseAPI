@@ -182,7 +182,10 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 if (ModLoader.TryGetMod("InfernumMode", out mod1))
                 {
                     if (recipe.HasResult(mod1.Find<ModItem>("RedBait")))
+                    {
                         recipe.AddIngredient(ItemID.ChumBucket, 10);
+                        if (hasThorium) recipe.AddIngredient(thorium.Find<ModItem>("BloodCell"), 5);
+                    }
                     if (recipe.HasResult(mod1.Find<ModItem>("RadiantCrystal")))
                     {
                         recipe.AddIngredient(ItemID.EmpressButterfly, 5);

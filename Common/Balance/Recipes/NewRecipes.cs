@@ -4,10 +4,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using InfernalEclipseAPI.Common.GlobalItems;
-using SOTS;
-using CalamityMod.Items.Weapons.Summon;
-using CalamityMod.Items.Placeables;
-using CalamityMod.Tiles.Furniture.CraftingStations;
+using InfernalEclipseAPI.Content.Items.Materials;
+using CalamityMod.Items;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -27,18 +25,37 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
         public override void AddRecipes()
         {
             Recipe.Create(ItemID.Terragrim)
-            .AddIngredient(ItemID.EnchantedSword, 1)
-            .AddIngredient(ItemID.JungleSpores, 5)
-            .AddRecipeGroup(EvilBarRecipeGroup, 5)
-            .AddIngredient(ItemID.Obsidian, 3)
-            .AddIngredient(ItemID.FossilOre, 3)
-            .AddTile(TileID.Anvils)
-            .Register();
+                .AddIngredient(ItemID.EnchantedSword, 1)
+                .AddIngredient(ItemID.JungleSpores, 5)
+                .AddRecipeGroup(EvilBarRecipeGroup, 5)
+                .AddIngredient(ItemID.Obsidian, 3)
+                .AddIngredient(ItemID.FossilOre, 3)
+                .AddTile(TileID.Anvils)
+                .Register();
 
-            Recipe recipe12 = Recipe.Create(4672, 1);
+            Recipe.Create(ItemID.TinkerersWorkshop)
+                .AddIngredient<AbandonedWorkshop>()
+                .AddIngredient<TinkerersRepairBlueprints>()
+                .AddTile(TileID.HeavyWorkBench)
+                .Register();
+
+            Recipe recipe12 = Recipe.Create(ItemID.BlandWhip, 1);
             recipe12.AddIngredient(ItemID.Leather, 8);
             recipe12.AddTile(TileID.Loom);
             recipe12.Register();
+
+            if (ModLoader.TryGetMod("NoxusBoss", out Mod noxus))
+            {
+                Recipe.Create(ModContent.ItemType<Rock>(), 2)
+                    .AddIngredient<Rock>()
+                    .AddIngredient(ItemID.StoneBlock, 30)
+                    .AddIngredient<YharonSoulFragment>(5)
+                    .AddIngredient(noxus.Find<ModItem>("MetallicChunk"))
+                    .AddIngredient<PrimordialOrchid>()
+                    .AddTile(noxus.Find<ModTile>("StarlitForgeTile"))
+                    .DisableDecraft()
+                    .Register();
+            }
 
             if (ModLoader.TryGetMod("AlchemistNPCLite", out Mod AlchNPC))
             {
