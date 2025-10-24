@@ -475,21 +475,5 @@ namespace InfernalEclipseAPI.Common.Projectiles
             }
             return false;
         }
-
-        public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)
-        {
-            if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
-            {
-                float scale = GetScaleForProjectile(projectile.type);
-                if (scale != 1f)
-                {
-                    Vector2 center = hitbox.Center.ToVector2();
-                    hitbox.Width = (int)(hitbox.Width * scale);
-                    hitbox.Height = (int)(hitbox.Height * scale);
-                    hitbox.X = (int)(center.X - hitbox.Width / 2);
-                    hitbox.Y = (int)(center.Y - hitbox.Height / 2);
-                }
-            }
-        }
     }
 }
