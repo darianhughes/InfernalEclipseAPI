@@ -4,6 +4,9 @@
 [b]Check out the associated mod pack here:[/b]
 https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
+[b]Alternatively, you can enable the mod below which will automatically enable all the mods in the associated mod pack:[/b]
+https://steamcommunity.com/sharedfiles/filedetails/?id=3592359591
+
 Infernal Eclipse of Ragnarok is an ultra-modded Infernum Mode addon which currently includes major support for these content mods included in the associated mod pack:
 [list]
 	[*] Calamity Mod (obviously)
@@ -65,7 +68,7 @@ Coordinators: ZaKami, TheRogueX
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan
 Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat, Suu, Pudd1ng
 Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler
-Composers: PFungi
+Composers: Peter Fung
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
 And special thanks to the following creators for the music in this mod:
