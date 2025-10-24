@@ -1,6 +1,6 @@
 displayName = Infernal Eclipse of Ragnarok
 author = Akira & the Infernal Eclipse of Ragnarok Team
-version = 0.9.3.3
+version = 0.9.3.4
 dllReferences = MMHOOK_InfernumMode_v2.0.1.19, MMHOOK_CalamityMod_v2.0.5
 modReferences = CalamityMod, InfernumMode, SubworldLibrary, RevengeancePlus, ThrowerUnification, InfernumSOTSSanctuaryAdjuster, Luminance
 weakReferences = NoxusBoss, SOTS, CalamityHunt, CatalystMod, CalamityAmmo, ThoriumMod@1.7.2.3, Clamity, CalamityModMusic, Consolaria, NoxusPort, SOTSBardHealer@0.2.1, YouBoss, Daybreak

@@ -67,7 +67,7 @@ Story: Akira, Yob
 Coordinators: ZaKami, TheRogueX
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan
 Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat, Suu, Pudd1ng
-Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler
+Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler, JuJiao
 Composers: Peter Fung
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 

@@ -106,6 +106,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Aizen522",
             "Suu",
             "fiend",
+            "JuJiao",
 
             //Playtesters
             "Tencvin",

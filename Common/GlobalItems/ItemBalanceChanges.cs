@@ -4919,7 +4919,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(sots, "RealityShatter", item))
                 {
                     item.useTime = 12;
-                    item.useAmmo = 12;
+                    item.useAnimation = 12;
                     item.damage = 125;
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }

@@ -316,6 +316,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                         {
+                            if (recipe.HasResult(thorium.Find<ModItem>("Nocturnal")) || recipe.HasResult(thorium.Find<ModItem>("Sanguine")))
+                            {
+                                recipe.AddIngredient<PurifiedGel>(5);
+                            }
+
                             if (thorium.TryFind("ThrowingGuideVolume2", out ModItem rogue101v2))
                             {
                                 if (recipe.HasResult(rogue101v2))
