@@ -92,7 +92,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Dandel",
             "ma3allim",
             "Nobody",
-            "PFungi",
+            "Peter Fung",
             "Pudd1ng",
 
             //Other
@@ -106,6 +106,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Aizen522",
             "Suu",
             "fiend",
+            "JuJiao",
 
             //Playtesters
             "Tencvin",

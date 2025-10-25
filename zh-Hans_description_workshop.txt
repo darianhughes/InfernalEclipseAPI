@@ -67,6 +67,7 @@
 	[*]Wiki编写：Akira，Wardrobe Hummus，Soltan
 	[*]贡献者：cheesenuggets，ma3allium，Yelmut，StarlightCat，Suu，Pudd1ng
 	[*]美术：Prime，Pixus，Yelmut，ma3allium，konte1m，Pil，trembler
+	[*]作曲：Peter Fung
 	[*]本地化：Pudd1ng（简体中文），Aizen522（俄语）
 [/list]
 

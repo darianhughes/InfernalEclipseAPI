@@ -83,21 +83,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTree
 
             if (ThoriumRework != null)
             {
-                if (item.type == ThoriumRework.Find<ModItem>("SealedContract").Type)
+                if (ThoriumRework.TryFind("SealedContract", out ModItem sc))
                 {
-                    thorium.Call(new object[3]
+                    if (item.type == sc.Type)
                     {
+                        thorium.Call(new object[3]
+                        {
                         "BonusHealerHealBonus",
                         player,
                         -3
-                    });
-                    player.statLifeMax2 -= 60;
+                        });
+                        player.statLifeMax2 -= 60;
 
-                    if (SOTSBardHealer != null)
-                    {
-                        ModItem serpentsTongue = SOTSBardHealer.Find<ModItem>("SerpentsTongue");
+                        if (SOTSBardHealer != null)
+                        {
+                            ModItem serpentsTongue = SOTSBardHealer.Find<ModItem>("SerpentsTongue");
 
-                        serpentsTongue.UpdateAccessory(player, hideVisual);
+                            serpentsTongue.UpdateAccessory(player, hideVisual);
+                        }
                     }
                 }
             }
