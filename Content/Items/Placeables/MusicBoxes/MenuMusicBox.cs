@@ -29,7 +29,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.width = 32;
             Item.height = 32;
             Item.rare = ItemRarityID.LightRed;
-            Item.value = 0;
+            Item.value = Terraria.Item.sellPrice(silver: 20);
             Item.accessory = true;
         }
 
