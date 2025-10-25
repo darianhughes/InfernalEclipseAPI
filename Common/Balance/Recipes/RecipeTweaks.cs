@@ -75,6 +75,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     recipe.AddIngredient(ModContent.ItemType<DepthCells>(), 3);
                 }
 
+                if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))
+                {
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("HardTack")))
+                    {
+                        recipe.DisableDecraft();
+                    }
+                }
+
                 if (InfernalConfig.Instance.CalamityRecipeTweaks)
                 {
                     //Cosmilite post-DoG - Maybe add its own config?
