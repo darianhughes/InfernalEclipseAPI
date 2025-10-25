@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-using Terraria;
-using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
+﻿using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 using System.Reflection;
 using Terraria.DataStructures;
 
@@ -146,35 +144,27 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
-            //Crossmod intagration for WHummus code (remove the comments)
-            //only load if InfernalEclipseAPI isn't active for no overlaps
-            //if (ModLoader.TryGetMod("InfernalEclipseAPI", out _)
-            //return;
             string name = npc.ModNPC?.Name ?? "";
             float damageMod = 0;
 
             if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
-                damageMod += 0.35f;
+                damageMod += 0.40f;
 
             if (IsWorldLegendary())
             {
-                damageMod += 1.1f;
+                damageMod += 1.05f;
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                damageMod += 1.35f;
+                damageMod += 1.275f;
             }
             else
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    damageMod += 1.25f;
-                }
-                else if (GetCalDifficulty("death"))
-                {
                     damageMod += 1.2f;
                 }
-                else if (GetCalDifficulty("revengeance"))
+                else if (GetCalDifficulty("death"))
                 {
                     damageMod += 1.1f;
                 }
@@ -185,38 +175,29 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public override void PostAI(NPC npc)
         {
-            //Crossmod intagration for WHummus code (remove the comments)
-            //only load if InfernalEclipseAPI isn't active for no overlaps
-            //if (ModLoader.TryGetMod("InfernalEclipseAPI", out _)
-            //return;
-
             //messing with the borean striders speed causes it to phase through the ground.
-            if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
+            if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true || npc.ModNPC?.Name?.Contains("FallenBeholder") == true)
             {
                 return;
             }
 
             if (IsWorldLegendary())
             {
-                npc.position += npc.velocity * 0.1f;
+                npc.position += npc.velocity * 0.5f;
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                npc.position += npc.velocity * 0.35f;
+                npc.position += npc.velocity * 0.20f;
             }
             else
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    npc.position += npc.velocity * 0.25f;
+                    npc.position += npc.velocity * 0.10f;
                 }
                 else if (GetCalDifficulty("death"))
                 {
-                    npc.position += npc.velocity * 0.2f;
-                }
-                else if (GetCalDifficulty("revengeance"))
-                {
-                    npc.position += npc.velocity * 0.1f;
+                    npc.position += npc.velocity * 0.05f;
                 }
             }
         }
