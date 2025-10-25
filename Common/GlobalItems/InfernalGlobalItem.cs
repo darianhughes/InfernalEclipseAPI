@@ -74,9 +74,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 Player player = Main.player[i];
                 foreach (string name in InfernalTwilight.devList)
                 {
-                    if (player.active && (player.name.ToLower().Contains(name)))
+                    if (player.active && player.name.ToLower().Contains(name))
                         return true;
                 }
+                if (player.active && (player.name.ToLower().Contains("nuggets") || player.name.ToLower().Contains("hummus")))
+                    return true;
             }
             return false;
         }
