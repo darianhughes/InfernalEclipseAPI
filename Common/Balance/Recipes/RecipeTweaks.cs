@@ -787,6 +787,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         if (thorium != null)
                         {
+                            if (recipe.HasIngredient(sots.Find<ModItem>("VibrantBar")) && recipe.HasTile(TileID.Anvils))
+                            {
+                                recipe.RemoveTile(TileID.Anvils);
+                                recipe.AddTile(thorium.Find<ModTile>("ThoriumAnvil"));
+                            }
+
                             if (recipe.HasResult(thorium.Find<ModItem>("SubspaceWings")))
                                 recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 5);
 
