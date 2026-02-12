@@ -24,6 +24,11 @@ using Terraria.ModLoader;
 using InfernalEclipseAPI.Core.Players;
 using Microsoft.Xna.Framework;
 using System.Security.Policy;
+using System.Text;
+using Terraria.DataStructures;
+using SOTS.Items.Slime;
+using System.Linq;
+using CalamityMod.Items;
 
 
 
@@ -133,6 +138,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
         public override void SetDefaults(Item item)
         {
+            if (item.type == ItemType<GelWings>())
+            {
+                item.rare = ItemRarityID.LightRed;
+                item.value = CalamityGlobalItem.RarityLightRedBuyPrice;
+            }
+
             if (InfernalConfig.Instance.SOTSBalanceChanges)
             {
                 if (item.type == ItemType<FrostArtifactHelmet>())
@@ -294,6 +305,41 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<SyntheticLiver>())
                 {
                     InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SyntheticLiver"));
+                }
+
+                if (item.type == ItemType<GelWings>())
+                {
+                    if (item.wingSlot == -1) return;
+                    WingStats stats = ArmorIDs.Wing.Sets.Stats[item.wingSlot];
+                    int time = stats.FlyTime;
+                    float run = stats.AccRunSpeedOverride;
+                    float rAcc = stats.AccRunAccelerationMult * 0.08f;
+                    bool hover = stats.HasDownHoverStats;
+                    float hSpeed = stats.DownHoverSpeedOverride;
+                    float hAcc = stats.DownHoverAccelerationMult * 0.08f;
+                    float baseJumpSpeed = (CalamityServerConfig.Instance.FasterJumpSpeed ? 5.71f : 5.01f) + 1f;
+                    StringBuilder sb = new StringBuilder(512);
+                    sb.Append('\n');
+                    sb.Append(CalamityUtils.GetText($"Common.WingStats").Format(time.FramesToSeconds(), run.ToMph(), (1.35f * baseJumpSpeed).ToMph()));
+                    sb.Append('\n');
+                    if (Main.keyState.PressingShift())
+                    {
+                        sb.Append(CalamityUtils.GetText($"Common.WingStatsAcceleration").Format(rAcc.ToMphps(), 0.195f.ToMphps(),
+                        (0.1f + 0.15f).ToMphps(), (1 * baseJumpSpeed).ToMph(),
+                        (0.195f + 0.85f).ToMphps()));
+                        if (hover)
+                        {
+                            sb.Append('\n');
+                            sb.Append(CalamityUtils.GetText($"Common.WingStatsHover").Format(hSpeed.ToMph(), hAcc.ToMphps()));
+                        }
+                    }
+                    else
+                        sb.Append($"[c/B8B8B8:{CalamityUtils.GetTextValue("UI.HoldShiftTooltipExtensionIndicator")}]");
+
+                    // Add stats below the common "Allows flight" line
+                    var wingTooltip = tooltips.FirstOrDefault(x => x.Name == "Tooltip0" && x.Mod == "Terraria");
+                    if (wingTooltip != null)
+                        wingTooltip.Text += sb.ToString();
                 }
             }
         }

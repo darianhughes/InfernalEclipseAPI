@@ -2,7 +2,6 @@
 using CalamityMod.Items.Accessories;
 using Terraria.Localization;
 using System.Collections.Generic;
-using rail;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {
@@ -142,15 +141,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 {
                     //scryingGlass.UpdateAccessory(player, hideVisual);
                     //--player.maxTurrets;
-                    necroticSkull.UpdateAccessory(player, hideVisual);
-                    --player.maxMinions;
+                    //necroticSkull.UpdateAccessory(player, hideVisual);
+                    //--player.maxMinions;
                     cystralScorpion.UpdateAccessory(player, hideVisual);
-                    fortressGenerator.UpdateAccessory(player, hideVisual);
-                    player.lifeRegen -= 2;
-                    player.hasPaladinShield = false;
-                    --player.maxMinions;
-                    ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
-                    local -= 0.1f;
+                    //fortressGenerator.UpdateAccessory(player, hideVisual);
+                    //player.lifeRegen -= 2;
+                    //player.hasPaladinShield = false;
+                    //--player.maxMinions;
+                    //ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
+                    //local -= 0.1f;
                     steamkeeperWatch.UpdateAccessory(player, hideVisual);
                     ref StatModifier local2 = ref player.GetDamage(DamageClass.Summon);
                     local2 -= 0.1f;
@@ -159,6 +158,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //local3 -= 0.1f;
                     //--player.maxMinions;
 
+                    /*
                     if (clamity != null)
                     {
                         ModItem cyanPearl = clamity.Find<ModItem>("CyanPearl");
@@ -168,6 +168,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     }
 
                     ++player.maxTurrets;
+                    */
                 }
             }
             else if (thorium != null)
@@ -229,6 +230,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //local3 -= 0.1f;
                     //--player.maxMinions;
 
+                    /*
                     if (clamity != null)
                     {
                         ModItem cyanPearl = clamity.Find<ModItem>("CyanPearl");
@@ -238,6 +240,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     }
 
                     ++player.maxTurrets;
+                    */
                 }
             }
             else if (sots != null)
@@ -263,13 +266,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
-                    fortressGenerator.UpdateAccessory(player, hideVisual);
-                    player.hasPaladinShield = false;
-                    --player.maxMinions;
-                    ++player.maxTurrets;
-                    ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
-                    local -= 0.1f;
+                    //fortressGenerator.UpdateAccessory(player, hideVisual);
+                    //player.hasPaladinShield = false;
+                    //--player.maxMinions;
+                    //++player.maxTurrets;
+                    //ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
+                    //local -= 0.1f;
 
+                    /*
                     if (clamity != null)
                     {
                         ModItem cyanPearl = clamity.Find<ModItem>("CyanPearl");
@@ -279,6 +283,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     }
 
                     ++player.maxTurrets;
+                    */
                 }
             }
         }
@@ -441,20 +446,20 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
-                    AddTooltip(tooltips, threeMoreSentries, InfernalRed);
+                    //AddTooltip(tooltips, twoMoreSentries, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
                     AddTooltip(tooltips, skullInfo, InfernalRed);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
-                    AddTooltip(tooltips, fortressInfo, InfernalRed);
+                    //AddTooltip(tooltips, fortressInfo, InfernalRed);
                     AddTooltip(tooltips, watchInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "yuma", yumasInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
+                    //AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
                 }
             }
             else if (thorium != null)
@@ -512,7 +517,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
+                    //AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
                 }
             }
             else if (sots != null)
@@ -547,9 +552,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
+                    /*
                     AddTooltip(tooltips, threeMoreSentries, InfernalRed);
                     AddTooltip(tooltips, fortressInfoNoThor, NoThorYellow);
-                    AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
+
+
+                    if (InfernalCrossmod.Clamity.Loaded)
+                        AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
+                    */
                 }
             }
         }

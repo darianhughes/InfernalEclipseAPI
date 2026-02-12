@@ -8,9 +8,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
     [ExtendsFromMod("YouBoss")]
     public class TerraBladeDebuff : GlobalNPC
     {
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
+        {
+            return entity.type == ModContent.NPCType<TerraBladeBoss>();
+        }
+
         public override void PostAI(NPC npc)
         {
-            if (!npc.active || npc.type != ModContent.NPCType<TerraBladeBoss>() || !InfernumSaveSystem.InfernumModeEnabled)
+            if (!npc.active || !InfernumSaveSystem.InfernumModeEnabled)
                 return;
 
             for (int i = 0; i < Main.maxPlayers; i++)

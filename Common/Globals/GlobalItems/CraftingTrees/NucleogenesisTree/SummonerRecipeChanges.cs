@@ -69,8 +69,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     if (recipe.HasResult(ModContent.ItemType<StatisCurse>()))
                         recipe.AddIngredient(ModContent.ItemType<Necroplasm>(), 4);
 
+                    /*
                     if (recipe.HasResult(ModContent.ItemType<Nucleogenesis>()))
                         recipe.AddIngredient(sots.Find<ModItem>("FortressGenerator"));
+                    */
 
                     if (recipe.HasResult(sots.Find<ModItem>("FortressGenerator")))
                     {
