@@ -516,7 +516,7 @@ ItemTooltip: {
 		Cultist: 拜月教邪教徒
 		ND: 无名光神
 		Mars: 玛尔斯
-		// EoL: The Empress of Light's
+		EoL: 光之女皇
 	}
 
 	AstrageldonRelic: {
@@ -862,52 +862,52 @@ Items: {
 
 		LorePolaris: {
 			DisplayName: 极北灾星
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreAdvisor: {
 			DisplayName: 启示异械
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreGlowmoth: {
 			DisplayName: 荧灯蛾
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreLux: {
 			DisplayName: 辉光圣魂
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LorePharaoh: {
 			DisplayName: 法老咒魔
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LorePutrid: {
 			DisplayName: 腐蚀之粉
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreSerpent: {
 			DisplayName: 亚空骇蟒
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreProvi: {
 			DisplayName: 星河
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreMirror: {
 			DisplayName: 镜像
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreDylan: {
 			DisplayName: 迪伦
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreAbominationn.DisplayName: 憎恶
@@ -917,22 +917,22 @@ Items: {
 
 		LoreMjolnir: {
 			DisplayName: 雷神之锤
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LorePrimordials: {
 			DisplayName: 始源诸神
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreThunderBird: {
 			DisplayName: 惊雷王鹰
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreRagnarok: {
 			DisplayName: 诸神黄昏
-			// Tooltip: ""
+			Tooltip: ""
 		}
 	}
 
@@ -1828,33 +1828,33 @@ Configs: {
 		}
 
 		AutomaticallyReforgeThoriumRogueItems: {
-			// Label: Automatically Reforge Thorium Rogue Items
-			/* Tooltip:
+			Label: 自动重铸瑟银盗贼武器
+			Tooltip:
 				'''
-				Automatically adds the stat bonuses of the "Flawless" prefix onto all non-consumable Thorium Rogue Items. 
-				Can help Thorium items catch up to Calamity items with prefixes as Throium Rogue items can't be reforged.
-				Only works when Ragnarok or Unofficial Calamity Bard & Healer are enabled.
-				This setting does nothing if Merge Thrower Into Rogue is enabled.
-				''' */
+				自动将“化境”修饰语的属性加成附加到所有非消耗瑟银盗贼物品上
+				可帮助瑟银物品在拥有前缀时追赶灾厄物品的强度，因为瑟银盗贼物品无法重铸
+				仅在启用诸神的黄昏或非官方灾厄吟游诗人&牧师生效
+				若启用融合盗贼和投手则此设置无效
+				'''
 		}
 
 		UseAprilFoolsMutant: {
-			// Label: Use April Fools Mutant
-			/* Tooltip:
+			Label: 使用愚人节突变体变种
+			Tooltip:
 				'''
-				Converts the Mutant from Fargo's Souls to Yharim.
-				This setting doesn't do anything if Fargo's Souls isn't enabled.
-				''' */
+				将Fargo魂的突变体转化为亚利姆
+				若未启用Fargo魂则此设置无效
+				'''
 		}
 
 		MergeThrowerIntoRogue: {
-			// Label: Merge Thrower Into Rogue
-			/* Tooltip:
+			Label: 融合盗贼和投手
+			Tooltip:
 				'''
-				Merges the Thrower & Rogue class into one refined class. 
-				Allows converted thrower weapons to still recieve thier orginal reforges.
-				Also keeps the stealth bar damage scaling intact.
-				''' */
+				将投手与盗贼职业合并为一个更加完善的职业
+				允许转换后的投手武器仍然获得其原有重铸效果
+				同时保留潜行值条的伤害加成机制
+				'''
 		}
 	}
 
