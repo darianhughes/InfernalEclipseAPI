@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using InfernalEclipseAPI.Core.Systems;
 using Terraria.DataStructures;
@@ -39,7 +40,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (npc.boss && npc.type != ModContent.NPCType<PyrogenBoss>() && npc.type != ModContent.NPCType<PyrogenShield>())
             {
-                npc.lifeMax += npc.lifeMax;
+                if (npc.type != ModContent.NPCType<ClamitasBoss>())
+                {
+                    npc.lifeMax += npc.lifeMax;
+                }
 
                 if (IsWorldLegendary())
                 {
