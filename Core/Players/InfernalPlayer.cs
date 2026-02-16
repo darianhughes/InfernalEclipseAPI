@@ -190,8 +190,11 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override bool CanUseItem(Item item)
         {
-            if (Player.HasBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Bubbled").Type))
-                return false;
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                if (Player.HasBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Bubbled").Type))
+                    return false;
+            }
 
             if (ModLoader.TryGetMod("XDContentMod", out Mod heartbeat))
             {

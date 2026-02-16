@@ -10,22 +10,8 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 {
     public class ChangeUseConditions : GlobalItem
     {
-        //public override void UpdateAccessory(Item item, Player player, bool hideVisual)
-        //{
-        //    if (!ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) || !(InfernalConfig.Instance.CalamityBalanceChanges))
-        //        return;
-
-        //    int slagsplitterType = calamityMod.Find<ModItem>("SlagsplitterPauldron").Type;
-
-        //    if (item.type == slagsplitterType && InfernalPlayer.BlockSlagsplitterEffects)
-        //    {
-        //        // Prevent effects: do nothing
-        //        return;
-        //    }
-        //}
-
         private static int CurseID;
-        private static int ShockerID;
+        //private static int ShockerID;
         private static int DischargeID;
         private static int SmasherID;
         private static int lsStaffID;

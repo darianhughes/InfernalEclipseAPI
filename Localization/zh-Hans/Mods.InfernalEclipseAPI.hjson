@@ -10,16 +10,10 @@ UI: {
 	Master: 大师模式
 	Legendary: 传奇模式
 	Revengence: 复仇模式
-	MRevengence: 大师-复仇模式
-	LRevengence: 传奇-复仇模式
 	Death: 死亡模式
-	MDeath: 大师-死亡模式
 	LDeath: 传奇-死亡模式
 	Infernum: 炼狱模式
 	MInfernum: 大师-炼狱模式
-	LInfernum: 传奇-炼狱模式
-	Primordial: 始源模式
-	LPrimoridal: 传奇-始源模式
 }
 
 DifficultyUI: {
@@ -152,6 +146,7 @@ ItemTooltip: {
 		增加50点最大虚空值，但会降低40点从药水治疗的生命值
 		'''
 	EyeOfChaos: 增加12%暴击率，无法与下位饰品叠加
+	// EyeOfChaosThorium: Critical strikes deal 15 more damage
 	SnakeEyes: 增加3%暴击率
 	ChaosBadge: 增加5%暴击率
 	FocusReticle:
@@ -484,6 +479,19 @@ ItemTooltip: {
 			对火块免疫，并对岩浆免疫10秒
 			在地面上按下{0}键可向前方进行爆裂冲刺，提供更快的的速度和加速度
 			'''
+
+		MaskoftheCrystalEye: {
+			/* Thorium:
+				'''
+				8% increased critical strike chance
+				15% increased critical strike damage
+				''' */
+			/* SOTS:
+				'''
+				8% increased critical strike chance
+				Critical strikes deal 15 more damage
+				''' */
+		}
 	}
 
 	AmmoConversion: {
@@ -1891,28 +1899,8 @@ Configs: {
 			Tooltip: ""
 		}
 
-		MasterRevengence: {
-			Label: 大师复仇
-			Tooltip: ""
-		}
-
-		LegendaryRevengence: {
-			Label: 传奇复仇
-			Tooltip: ""
-		}
-
 		Death: {
 			Label: 死亡
-			Tooltip: ""
-		}
-
-		MasterDeath: {
-			Label: 大师死亡
-			Tooltip: ""
-		}
-
-		LegendaryDeath: {
-			Label: 传奇死亡
 			Tooltip: ""
 		}
 
@@ -1921,14 +1909,9 @@ Configs: {
 			Tooltip: ""
 		}
 
-		MasterInfernum: {
-			Label: 大师炼狱
-			Tooltip: ""
-		}
-
-		LegendaryInfernum: {
-			Label: 传奇炼狱
-			Tooltip: ""
+		Ragnarok: {
+			// Label: Ragnarok
+			// Tooltip: ""
 		}
 	}
 }

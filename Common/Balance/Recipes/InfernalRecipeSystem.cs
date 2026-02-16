@@ -655,7 +655,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             }
                         }
  
-                        if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                        if (!ModLoader.HasMod("WHummusMultiModBalancing"))
                         {
                             if (recipe.HasResult(thorium.Find<ModItem>("Nocturnal")) || recipe.HasResult(thorium.Find<ModItem>("Sanguine")))
                             {
@@ -862,6 +862,24 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 {
                                     recipe.RemoveIngredient(ModContent.ItemType<AscendantSpiritEssence>());
                                     recipe.AddIngredient(ModContent.ItemType<AuricBar>());
+                                }
+                            }
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("MyceliumGattlingGun")))
+                            {
+                                int funggatType = thorium.Find<ModItem>("Funggat")?.Type ?? 0;
+                                if (funggatType > 0 && !recipe.HasIngredient(funggatType))
+                                {
+                                    recipe.AddIngredient(funggatType);
+                                }
+
+                                if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
+                                {
+                                    int fungicideType = calamity.Find<ModItem>("Fungicide")?.Type ?? 0;
+                                    if (fungicideType > 0 && !recipe.HasIngredient(fungicideType))
+                                    {
+                                        recipe.AddIngredient(fungicideType);
+                                    }
                                 }
                             }
 
@@ -1154,6 +1172,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         if (recipe.HasResult(sots.Find<ModItem>("EyeOfChaos")))
                         {
+                            if (InfernalCrossmod.Thorium.Loaded)
+                            {
+                                recipe.RemoveIngredient(ItemID.EyeoftheGolem);
+                                recipe.AddIngredient(InfernalCrossmod.Thorium.Mod.Find<ModItem>("MaskoftheCrystalEye").Type);
+                            }
                             recipe.AddIngredient(sots.Find<ModItem>("PhaseBar"), 3);
                         }
 

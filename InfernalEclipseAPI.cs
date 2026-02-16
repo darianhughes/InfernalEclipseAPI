@@ -35,7 +35,7 @@ namespace InfernalEclipseAPI
         ToggleRagnarok = 4,
         SyncRagnarokState = 5
     }
-    public class InfernalEclipseAPI : Mod
+    public partial class InfernalEclipseAPI : Mod
 	{
         public static ModKeybind SubpaceBoostHotkey;
         public static ModKeybind ItemAbility;
@@ -97,6 +97,8 @@ namespace InfernalEclipseAPI
             ItemAbility = KeybindLoader.RegisterKeybind(this, Language.GetOrRegister("Mods.InfernalEclipseAPI.KeyBindName.ItemAbility").ToString(), "C");
 
             AchievementUpdateHandler = typeof(InfernumMode.Core.GlobalInstances.Players.AchievementPlayer).GetMethod("ExtraUpdateHandler", BindingFlags.Static | BindingFlags.NonPublic);
+
+            LoadDetours();
         }
 
         public override void Unload()
@@ -105,6 +107,8 @@ namespace InfernalEclipseAPI
             WhiteFlareType = 0; // Clean up on unload
             On_Player.IsTileTypeInInteractionRange -= On_Player_IsTileTypeInInteractionRange;
             On_Player.InInteractionRange -= On_Player_InInteractionRange;
+
+            UnloadDetours();
         }
 
         private bool On_Player_IsTileTypeInInteractionRange(

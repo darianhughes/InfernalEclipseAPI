@@ -41,6 +41,12 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void PreUpdateWorld()
         {
+            if (InfernalCrossmod.FargosSouls.Loaded || Main.getGoodWorld)
+            {
+                RagnarokModeEnabled = false;
+                WorldSaveSystem.InfernumModeEnabled = false;
+            }
+
             if (RagnarokModeEnabled)
                 WorldSaveSystem.InfernumModeEnabled = true;
 

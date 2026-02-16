@@ -9,31 +9,33 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
     [ExtendsFromMod(InfernalCrossmod.SOTS.Name)]
     public class VoidSicknessDetour : ModSystem
     {
-        private static Hook voidSicknessDebuffDetour = null;
+        private static Hook onConsumeHook;
 
-        public override void OnModLoad()
+        public override void Load()
         {
-            if (InfernalCrossmod.SOTS.Loaded)
-            {
-                Mod sots = InfernalCrossmod.SOTS.Mod;
+            if (!InfernalCrossmod.SOTS.Loaded)
+                return;
 
-                Type voidConsumable = sots.Code.GetType("SOTS.Items.Void.VoidConsumable");
-                MethodInfo orig = voidConsumable.GetMethod("RefillEffect", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            MethodInfo m = typeof(VoidConsumable).GetMethod("OnConsumeItem", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
-                voidSicknessDebuffDetour = new Hook(orig, RefillEffectDetour);
-            }
+            if (m is null)
+                throw new MissingMethodException("SOTS.Items.Void.VoidConsumable.OnConsumeItem(Player) not found.");
+
+            onConsumeHook = new Hook(m, OnConsumeItem_Detour);
         }
 
-        public override void OnModUnload()
+        public override void Unload()
         {
-            voidSicknessDebuffDetour?.Dispose();
+            onConsumeHook?.Dispose();
+            onConsumeHook = null;
         }
 
-        private static void RefillEffectDetour(Action<VoidConsumable, Player, int> orig, VoidConsumable self, Player player, int amt)
+        private static void OnConsumeItem_Detour(Action<VoidConsumable, Player> orig, VoidConsumable self, Player player)
         {
-            orig(self, player, amt);
+            orig(self, player);
 
-            player.AddBuff(ModContent.BuffType<VoidSickness2>(), 300);
+            if (player?.active == true)
+                player.AddBuff(ModContent.BuffType<VoidSickness2>(), 300);
         }
     }
 }

@@ -6,10 +6,10 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Players;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI
 {
     //Credit: Fargo's Souls Team
-    public class InfernalEclipseAPIDetours : ICustomDetourProvider
+    public partial class InfernalEclipseAPI : ICustomDetourProvider
     {
         public void LoadDetours()
         {
@@ -39,22 +39,12 @@ namespace InfernalEclipseAPI.Core.Systems
                     return Language.GetTextValue(basePath + "Legendary");
                 case Difficulty.Revengence:
                     return Language.GetTextValue(basePath + "Revengence");
-                case Difficulty.MasterRevengence:
-                    return Language.GetTextValue(basePath + "MRevengence");
-                case Difficulty.LegendaryRevengence:
-                    return Language.GetTextValue(basePath + "LRevengence");
                 case Difficulty.Death:
                     return Language.GetTextValue(basePath + "Death");
-                case Difficulty.MasterDeath:
-                    return Language.GetTextValue(basePath + "MDeath");
-                case Difficulty.LegendaryDeath:
-                    return Language.GetTextValue(basePath + "LDeath");
                 case Difficulty.Infernum:
                     return Language.GetTextValue(basePath + "Infernum");
-                case Difficulty.MasterInfernum:
+                case Difficulty.Ragnarok:
                     return Language.GetTextValue(basePath + "MInfernum");
-                case Difficulty.LegendaryInfernum:
-                    return Language.GetTextValue(basePath + "LInfernum");
                 default:
                     return "the current difficulty in";
             }

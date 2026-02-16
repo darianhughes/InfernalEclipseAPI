@@ -167,13 +167,8 @@ namespace InfernalEclipseAPI
         Master,
         Legendary,
         Revengence,
-        MasterRevengence,
-        LegendaryRevengence,
         Death,
-        MasterDeath,
-        LegendaryDeath,
         Infernum,
-        MasterInfernum,
-        LegendaryInfernum,
+        Ragnarok,
     }
 }

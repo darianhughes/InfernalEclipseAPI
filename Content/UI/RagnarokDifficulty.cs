@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Systems;
 using CalamityMod.World;
+using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.UI;
 using InfernumMode.Core.GlobalInstances.Systems;

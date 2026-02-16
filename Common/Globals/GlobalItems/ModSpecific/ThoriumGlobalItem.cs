@@ -1,8 +1,13 @@
-﻿using CalamityMod;
+﻿using System.Collections.Generic;
+using CalamityMod;
 using CalamityMod.Items.Weapons.Melee;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Utils;
+using Terraria.Localization;
+using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.Items.ArcaneArmor;
+using ThoriumMod.Items.BasicAccessories;
 using ThoriumMod.Items.BossFallenBeholder;
 using ThoriumMod.Items.BossForgottenOne;
 using ThoriumMod.Items.BossGraniteEnergyStorm;
@@ -21,6 +26,7 @@ using ThoriumMod.Items.Sandstone;
 using ThoriumMod.Items.Thorium;
 using ThoriumMod.Items.ThrownItems;
 using ThoriumMod.Items.Valadium;
+using ThoriumMod.Utilities;
 using static Terraria.ModLoader.ModContent;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
@@ -119,6 +125,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 }
             }
         }
+
+        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        {
+            if (item.type == ItemID.EyeoftheGolem)
+                player.Calamity().critDamage -= 0.15f;
+
+            if (item.type == ItemType<MaskoftheCrystalEye>())
+            {
+                player.GetThoriumPlayer().bonusCritDamage -= 0.12f;
+                if (!InfernalCrossmod.SOTS.Loaded)
+                    player.Calamity().critDamage += 0.15f;
+            }
+        }
+
         public override void UpdateEquip(Item item, Player player)
         {
             if (InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)
@@ -387,6 +407,28 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         player.GetCritChance(ThoriumDamageBase<HealerDamage>.Instance) -= 7f;
                     }
                 }
+            }
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (item.type == ItemID.EyeoftheGolem) {
+                foreach (var line in tooltips)
+                {
+                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.Text = Language.GetTextValue("ItemTooltip.EyeoftheGolem");
+                        break;
+                    }
+                }
+            }
+
+            if (item.type == ItemType<MaskoftheCrystalEye>()) 
+            {
+                if (InfernalCrossmod.SOTS.Loaded)
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MaskoftheCrystalEye.SOTS"));
+                else
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MaskoftheCrystalEye.Thorium"));
             }
         }
     }

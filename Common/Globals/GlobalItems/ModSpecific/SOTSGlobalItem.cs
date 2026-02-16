@@ -74,10 +74,21 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
                 }
 
+                if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.MergeCraftingTrees)
+                {
+                    if (item.type == InfernalCrossmod.Thorium.Mod.Find<ModItem>("MaskoftheCrystalEye").Type)
+                    {
+                        sotsPlayer.CritBonusDamage += 15;
+                    }
+                }
+
                 if (item.type == ModContent.ItemType<EyeOfChaos>())
                 {
                     player.GetCritChance(DamageClass.Generic) -= 18f;
                     modPlayer.eyeOfChaos = true;
+
+                    if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.MergeCraftingTrees)
+                        sotsPlayer.CritBonusDamage += 15;
                 }
 
                 if (item.type == ModContent.ItemType<SnakeEyes>())
@@ -259,7 +270,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ModContent.ItemType<EyeOfChaos>())
                 {
-                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.EyeOfChaos"));
+                    if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.MergeCraftingTrees)
+                        InfernalUtilities.FullTooltipOveride(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.EyeOfChaos")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.EyeOfChaosThorium")}");
+                    else
+                        InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.EyeOfChaos"));
                 }
 
                 if (item.type == ModContent.ItemType<SnakeEyes>())

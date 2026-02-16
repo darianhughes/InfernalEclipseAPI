@@ -10,16 +10,10 @@ UI: {
 	Master: Мастер
 	Legendary: Легенда
 	Revengence: Месть
-	MRevengence: Мастер+Месть
-	LRevengence: Легенда+Месть
 	Death: Смерть
-	MDeath: Мастер+Смерть
 	LDeath: Легенда+Смерть
 	Infernum: Инфернум
 	MInfernum: Мастер+Инфернум
-	LInfernum: Легенда+Инфернум
-	Primordial: Первородный
-	LPrimoridal: Легенда+Первородный
 }
 
 DifficultyUI: {
@@ -149,6 +143,7 @@ ItemTooltip: {
 		Увеличивает максимальный запас пустоты на 50, но снижает эффективность лечебных зелий на 40
 		'''
 	EyeOfChaos: Увеличивает шанс критического удара на 12%, не складывается с предыдущими улучшениями
+	// EyeOfChaosThorium: Critical strikes deal 15 more damage
 	SnakeEyes: Увеличивает шанс критического удара на 3%
 	ChaosBadge: Увеличивает шанс критического удара на 5%
 	FocusReticle:
@@ -472,6 +467,19 @@ ItemTooltip: {
 			Дает невосприимчивость к огненным блокам и 10 секунд невосприимчивости к лаве
 			Нажмите {0} на поверхности, чтобы совершить рывок вперёд, увеличив скорость и ускорение
 			'''
+
+		MaskoftheCrystalEye: {
+			/* Thorium:
+				'''
+				8% increased critical strike chance
+				15% increased critical strike damage
+				''' */
+			/* SOTS:
+				'''
+				8% increased critical strike chance
+				Critical strikes deal 15 more damage
+				''' */
+		}
 	}
 
 	AmmoConversion: {
@@ -1880,28 +1888,8 @@ Configs: {
 			Tooltip: ""
 		}
 
-		MasterRevengence: {
-			Label: Мастер+Месть
-			Tooltip: ""
-		}
-
-		LegendaryRevengence: {
-			Label: Легенда+Месть
-			Tooltip: ""
-		}
-
 		Death: {
 			Label: Смерть
-			Tooltip: ""
-		}
-
-		MasterDeath: {
-			Label: Местер+Смерть
-			Tooltip: ""
-		}
-
-		LegendaryDeath: {
-			Label: Легенда+Смерть
 			Tooltip: ""
 		}
 
@@ -1910,14 +1898,9 @@ Configs: {
 			Tooltip: ""
 		}
 
-		MasterInfernum: {
-			Label: Мастер+Инфернум
-			Tooltip: ""
-		}
-
-		LegendaryInfernum: {
-			Label: Легенда+Инфернум
-			Tooltip: ""
+		Ragnarok: {
+			// Label: Ragnarok
+			// Tooltip: ""
 		}
 	}
 }

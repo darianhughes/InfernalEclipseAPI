@@ -10,16 +10,10 @@ UI: {
 	Master: Master Mode
 	Legendary: Legendary Mode
 	Revengence: Revengence Mode
-	MRevengence: Master-Revengence Mode
-	LRevengence: Legendary-Revengence Mode
 	Death: Death Mode
-	MDeath: Master-Death Mode
-	LDeath: Legendary-Death Mode
+	LDeath: Malice Mode
 	Infernum: Infernum Mode
-	MInfernum: Master-Infernum Mode
-	LInfernum: Legendary-Infernum Mode
-	Primordial: Primodrial Mode
-	LPrimoridal: Legendary-Primordial Mode
+	MInfernum: Ragnarok Mode
 }
 
 DifficultyUI: {
@@ -152,6 +146,7 @@ ItemTooltip: {
 		Increases max void by 50, but reduces healing received from potions by 40
 		'''
 	EyeOfChaos: Increases critical strike chance by 12%, does not stack with downgrades
+	EyeOfChaosThorium: Critical strikes deal 15 more damage
 	SnakeEyes: Increases critical strike chance by 3%
 	ChaosBadge: Increases critical strike chance by 5%
 	FocusReticle:
@@ -484,6 +479,19 @@ ItemTooltip: {
 			Grants immunity to fire blocks and 10 seconds of immunity to lava
 			Press {0} while on the ground to blast forward, granting higher speed and acceleration
 			'''
+
+		MaskoftheCrystalEye: {
+			Thorium:
+				'''
+				8% increased critical strike chance
+				15% increased critical strike damage
+				'''
+			SOTS:
+				'''
+				8% increased critical strike chance
+				Critical strikes deal 15 more damage
+				'''
+		}
 	}
 
 	AmmoConversion: {
@@ -1636,7 +1644,7 @@ Configs: {
 			BossRushChanges: Boss Rush Toggles
 			BalanceChanges: Balance Changes
 			Miscellaneous: Miscellaneous
-			MultiplayerAdjustments: Multiplayer Adjustments
+			MultiplayerAdjustments: Multiplayer Adjustments & Utilities
 			Main: Main
 		}
 
@@ -1894,28 +1902,8 @@ Configs: {
 			Tooltip: ""
 		}
 
-		MasterRevengence: {
-			Label: Master Revengence
-			Tooltip: ""
-		}
-
-		LegendaryRevengence: {
-			Label: Legendary Revengence
-			Tooltip: ""
-		}
-
 		Death: {
 			Label: Death
-			Tooltip: ""
-		}
-
-		MasterDeath: {
-			Label: Master Death
-			Tooltip: ""
-		}
-
-		LegendaryDeath: {
-			Label: Legendary Death
 			Tooltip: ""
 		}
 
@@ -1924,13 +1912,8 @@ Configs: {
 			Tooltip: ""
 		}
 
-		MasterInfernum: {
-			Label: Master Infernum
-			Tooltip: ""
-		}
-
-		LegendaryInfernum: {
-			Label: Legendary Infernum
+		Ragnarok: {
+			Label: Ragnarok
 			Tooltip: ""
 		}
 	}

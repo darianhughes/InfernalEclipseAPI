@@ -456,13 +456,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             AddTooltip(tooltips, tdInfo, true);
 
                             AddTooltip(tooltips, motpInfo, true);
+                            
+                            AddTooltip(tooltips, chiseledHiddenInfo, true);
                             AddTooltip(tooltips, chiseledBarrierInfo, true);
                             AddTooltip(tooltips, olympianAegisInfo, true);
-                            AddTooltip(tooltips, chiseledHiddenInfo, true);
 
                             AddTooltip(tooltips, cotsInfo, true);
-                            AddTooltip(tooltips, sweetInfo1, true);
-                            AddTooltip(tooltips, sweetInfo2, true);
+                            //AddTooltip(tooltips, sweetInfo1, true);
+                            //AddTooltip(tooltips, sweetInfo2, true);
                         }
                     }
                     if (item.type == ModContent.ItemType<RampartofDeities>())
@@ -470,9 +471,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         AddTooltip(tooltips, tdInfo, true);
 
                         AddTooltip(tooltips, motpInfo, true);
+
+                        AddTooltip(tooltips, chiseledHiddenInfo, true);
                         AddTooltip(tooltips, chiseledBarrierInfo, true);
                         AddTooltip(tooltips, olympianAegisInfo, true);
-                        AddTooltip(tooltips, chiseledHiddenInfo, true);
 
                         AddTooltip(tooltips, cotsInfo, true);
                         AddTooltip(tooltips, sweetInfo1, true);
@@ -544,16 +546,18 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
                     {
                         AddTooltip(tooltips, shsInfo, true);
+                        
+                        AddTooltip(tooltips, chiseledHiddenInfo, true);
                         AddTooltip(tooltips, chiseledBarrierInfo, true);
                         AddTooltip(tooltips, olympianAegisInfo, true);
-                        AddTooltip(tooltips, chiseledHiddenInfo, true);
                     }
                 }
                 if (item.type == ModContent.ItemType<RampartofDeities>())
                 {
+                    AddTooltip(tooltips, chiseledHiddenInfo, true);
                     AddTooltip(tooltips, chiseledBarrierInfo, true);
                     AddTooltip(tooltips, olympianAegisInfo, true);
-                    AddTooltip(tooltips, chiseledHiddenInfo, true);
+
                 }
             }
         }

@@ -1,6 +1,7 @@
 ﻿using InfernumMode.Core.GlobalInstances.Systems;
 using Terraria.DataStructures;
 using System.Reflection;
+using InfernalEclipseAPI.Core.World;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -37,34 +38,24 @@ namespace InfernalEclipseAPI.Core.Players
             if (AnyBosses()) Respawns++;
         }
 
-        private bool GetCalDifficulty(string diff)
+        private static bool GetCalDifficulty(string diff)
         {
             return ModLoader.TryGetMod("CalamityMod", out Mod calamity) &&
                    calamity.Call("GetDifficultyActive", diff) is bool b && b;
         }
 
-        private bool IsInfernumActive()
+        private static bool IsInfernumActive()
         {
             return WorldSaveSystem.InfernumModeEnabled;
         }
-
-        private bool GetFargoDifficullty(string diff)
-        {
-            if (!ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls))
-            {
-                return false;
-            }
-
-            return fargoSouls.Call(diff) is bool active && active;
-        }
-        private bool IsWorldLegendary()
+        private static bool IsWorldLegendary()
         {
             FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
             GameModeData data = (GameModeData)findInfo.GetValue(null);
             return (Main.getGoodWorld && data.IsMasterMode);
         }
 
-        public bool isMinimumDiffToPreventRespawn()
+        public static bool isMinimumDiffToPreventRespawn()
         {
             Difficulty diff = InfernalConfig.Instance.MinimumDifficultyToPreventRespawns;
             switch (diff)
@@ -80,23 +71,13 @@ namespace InfernalEclipseAPI.Core.Players
                 case Difficulty.Legendary:
                     return IsWorldLegendary();
                 case Difficulty.Revengence:
-                    return GetCalDifficulty("death") || GetCalDifficulty("revengeance");
-                case Difficulty.MasterRevengence:
-                    return Main.masterMode && (GetCalDifficulty("death") || GetCalDifficulty("revengeance"));
-                case Difficulty.LegendaryRevengence:
-                    return IsWorldLegendary() && (GetCalDifficulty("death") || GetCalDifficulty("revengeance"));
+                    return GetCalDifficulty("death") || GetCalDifficulty("revengeance") || IsInfernumActive();
                 case Difficulty.Death:
                     return GetCalDifficulty("death") || IsInfernumActive();
-                case Difficulty.MasterDeath:
-                    return Main.masterMode && (GetCalDifficulty("death"));
-                case Difficulty.LegendaryDeath:
-                    return IsWorldLegendary() && (GetCalDifficulty("death"));
                 case Difficulty.Infernum:
                     return IsInfernumActive();
-                case Difficulty.MasterInfernum:
-                    return Main.masterMode && IsInfernumActive();
-                case Difficulty.LegendaryInfernum:
-                    return IsWorldLegendary() && IsInfernumActive();
+                case Difficulty.Ragnarok:
+                    return InfernalWorld.RagnarokModeEnabled;
                 default:
                     return false;
             }

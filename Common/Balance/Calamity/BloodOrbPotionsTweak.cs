@@ -136,7 +136,7 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
             {
                 Recipe recipe = Recipe.Create(num, 2);
                 recipe.AddIngredient(num, 1);
-                recipe.AddIngredient(ModContent.ItemType<BloodOrb>(), 10);
+                recipe.AddIngredient<BloodOrb>(10);
                 recipe.AddTile(TileID.AlchemyTable);
                 recipe.AddCondition(Condition.DownedSkeletron);
                 recipe.Register();
@@ -147,12 +147,17 @@ namespace InfernalEclipseAPI.Common.Balance.Calamity
                 recipe.AddIngredient(num, 1);
                 if (num == ModContent.ItemType<PhotosynthesisPotion>())
                 {
-                    recipe.AddIngredient(ModContent.ItemType<BloodOrb>(), 40);
-                    recipe.AddIngredient(ModContent.ItemType<EssenceofSunlight>(), 1);
+                    recipe.AddIngredient<BloodOrb>(40);
+                    recipe.AddIngredient<EssenceofSunlight>();
+                }
+                else if (num == ModContent.ItemType<GravityNormalizerPotion>())
+                {
+                    recipe.AddIngredient<BloodOrb>(10);
+                    recipe.AddIngredient<AureusCell>();
                 }
                 else
                 {
-                    recipe.AddIngredient(ModContent.ItemType<BloodOrb>(), 10);
+                    recipe.AddIngredient<BloodOrb>(10);
                 }
 
                 recipe.AddTile(TileID.AlchemyTable);
