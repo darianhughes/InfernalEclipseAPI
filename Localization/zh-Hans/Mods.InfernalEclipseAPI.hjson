@@ -41,6 +41,7 @@ WelcomeMessage: {
 	RagWarning: 警告：检测到未启用 Ragnarok！若未启用此模组，瑟银与灾厄可能无法良好协同。强烈建议启用此模组，以获得更完整、更平衡的游戏体验。
 	EventTrophyNotice: 注意：检测到您未启用更多圣物和纪念章和传颂之物！  如果缺少此模组，任何非原版、灾厄或炼狱模式的 Boss 可能缺失传颂之物或炼狱开场动画。强烈建议您启用此模组，以获得更完整、更平滑的游戏体验。
 	SoulsWarning: 警告：检测到您已启用 Fargo’s Souls Mod！请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
+	// OverhaulWarning: WARNING: It is detected that you have the Calamity Overhaul enabled! This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
 	CalMinusNotice: 注意：检测到您已启用 Calamity Minus 模组！在《诸神黄昏：炼狱蚀光》配置中开启 “灾厄平衡修改” 后，该模组的所有功能已经被包含在内。
 	CalBalNotice: 注意：检测到您已启用 Calamity Balance Changes 模组！在《诸神黄昏：炼狱蚀光》配置中开启 “灾厄平衡修改” 后，该模组已包含其创意工坊页面上列出的绝大多数功能。此外，Calamity Balance Changes 还添加了大量未列出的改动，可能会使您的游戏体验比预期更差。
 	InfernumActive: 身负异兆之人归来，再度直面炼狱蚀光……

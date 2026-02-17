@@ -113,9 +113,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
 
                     if (thorium != null)
                     {
-                        ModItem terrariumShoe = thorium.Find<ModItem>("TerrariumParticleSprinters");
-
-                        terrariumShoe.UpdateAccessory(player, hideVisual);
+                        thorium.Find<ModItem>("TerrariumParticleSprinters").UpdateAccessory(player, hideVisual);
                     }
                 }
             }

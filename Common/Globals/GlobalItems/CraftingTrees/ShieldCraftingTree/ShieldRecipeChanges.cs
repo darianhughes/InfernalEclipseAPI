@@ -45,11 +45,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     {
                         recipe.AddIngredient(sots.Find<ModItem>("ShatterHeartShield"));
                     }
-
-                    if (recipe.HasResult(sots.Find<ModItem>("BulwarkOfTheAncients")))
-                    {
-                        recipe.DisableRecipe();
-                    }
                 }
 
                 if (thorium != null) 
@@ -60,6 +55,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     if (recipe.HasResult(ModContent.ItemType<DeificAmulet>()) && recipe.HasIngredient(ItemID.StarVeil))
                     {
                         recipe.RemoveIngredient(ItemID.StarVeil);
+                        recipe.RemoveIngredient(ItemID.SweetheartNecklace);
                         recipe.AddIngredient(ItemID.FragmentStardust, 5);
                         recipe.AddIngredient(thorium.Find<ModItem>("SweetVengeance"), 1);
                     }
@@ -69,7 +65,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.RemoveIngredient(ItemID.Silk);
                         recipe.RemoveIngredient(ItemID.CrossNecklace);
                         recipe.AddIngredient(thorium.Find<ModItem>("CapeoftheSurvivor"));
-                        recipe.AddIngredient<DeificAmulet>(1);
+                        recipe.AddIngredient<DeificAmulet>();
                         recipe.AddIngredient<EffulgentFeather>(5);
                         recipe.RemoveTile(TileID.TinkerersWorkbench);
                         recipe.AddTile(TileID.LunarCraftingStation);
@@ -107,10 +103,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             recipe.RemoveIngredient(ItemID.AnkhShield);
                             recipe.RemoveIngredient(thorium.Find<ModItem>("HolyAegis").Type);
                             recipe.RemoveIngredient(ItemID.FrozenTurtleShell);
-                            recipe.AddIngredient(sots.Find<ModItem>("ChiseledBarrier").Type, 1);
-                            recipe.AddIngredient(sots.Find<ModItem>("OlympianAegis").Type, 1);
+                            recipe.AddIngredient(sots.Find<ModItem>("BulwarkOfTheAncients").Type);
                             if (!recipe.HasIngredient(ItemID.FrozenShield)) recipe.AddIngredient(ItemID.FrozenShield);
-                            recipe.AddIngredient(sots.Find<ModItem>("TerminalCluster").Type, 1);
 
                         }
                         else
@@ -131,15 +125,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.RemoveIngredient(ItemID.FrozenShield);
                         recipe.RemoveIngredient(ModContent.ItemType<DeificAmulet>());
                         recipe.AddIngredient(ModContent.ItemType<ExoPrism>(), 5);
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumDefender"), 1);
-                        recipe.AddIngredient(thorium.Find<ModItem>("MantleoftheProtector"), 1);
+                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumDefender"));
+                        recipe.AddIngredient(thorium.Find<ModItem>("MantleoftheProtector"));
                     }
                     else if (sots != null)
                     {
                         recipe.AddIngredient(ModContent.ItemType<ExoPrism>(), 5);
-                        recipe.AddIngredient(sots.Find<ModItem>("ChiseledBarrier").Type, 1);
-                        recipe.AddIngredient(sots.Find<ModItem>("OlympianAegis").Type, 1);
-                        recipe.AddIngredient(sots.Find<ModItem>("TerminalCluster").Type, 1);
+                        recipe.AddIngredient(sots.Find<ModItem>("BulwarkOfTheAncients").Type);
                     }
 
                     if (clam != null)

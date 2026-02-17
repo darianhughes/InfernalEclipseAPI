@@ -66,6 +66,11 @@ namespace InfernalEclipseAPI.Core.Players
                 Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning"), 255, 0, 0);
             }
 
+            if (ModLoader.HasMod("CWRMod"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.OverhaulWarning"), 255, 0, 0);
+            }
+
             if (InfernalWorld.RagnarokModeEnabled)
             {
                 if (InfernalConfig.Instance.DisplayWorldEntryMessages)
