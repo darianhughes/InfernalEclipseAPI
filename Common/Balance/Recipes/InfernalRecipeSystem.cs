@@ -29,6 +29,7 @@ using InfernalEclipseAPI.Content.Items.Consumables;
 using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Tiles.FurnitureStatigel;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -645,6 +646,15 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(ModContent.ItemType<ChaliceOfTheBloodGod>()) || recipe.HasResult(ModContent.ItemType<AsgardianAegis>()))
                         {
                             recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence").Type, 3);
+                        }
+
+                        if (InfernalCrossmod.SOTS.Loaded)
+                        {
+                            if (recipe.HasResult(InfernalCrossmod.SOTS.Mod.Find<ModItem>("PutridCoin")) || recipe.HasResult(InfernalCrossmod.SOTS.Mod.Find<ModItem>("BloodstainedCoin")))
+                            {
+                                recipe.RemoveTile(TileID.Anvils); ;
+                                recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
+                            }
                         }
 
                         if (InfernalCrossmod.Clamity.Loaded)

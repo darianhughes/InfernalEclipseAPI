@@ -13,7 +13,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
         private static int CurseID;
         //private static int ShockerID;
         private static int DischargeID;
-        private static int SmasherID;
+        //private static int SmasherID;
         private static int lsStaffID;
         private static int renewID;
         private static int starBirthID;
@@ -64,10 +64,12 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 
                 CanUseItemEvent += ModifyCosmicDischargeUseConditions;
 
+                /*
                 if (cal.TryFind("GalaxySmasher", out ModItem smahser))
                     SmasherID = smahser.Type;
 
                 CanUseItemEvent += ModifyGalaxySmasherUseConditions;
+                */
 
                 if (ModLoader.TryGetMod("ThoriumMod", out Mod thor))
                 {
@@ -166,7 +168,6 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             }
             return true;
         }
-
         private bool ModifyCosmicDischargeUseConditions(Item item, Player player)
         {
             if (item.type == DischargeID)
@@ -187,6 +188,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             return true;
         }
 
+        /*
         private bool ModifyGalaxySmasherUseConditions(Item item, Player player)
         {
             if (item.type == SmasherID)
@@ -206,6 +208,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             }
             return true;
         }
+        */
 
         private bool ModifyRenewUseConditions(Item item, Player player)
         {

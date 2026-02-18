@@ -16,6 +16,8 @@ using CalamityMod.NPCs.AstrumDeus;
 using System.Collections.Generic;
 using CalamityMod.Events;
 using Terraria.GameInput;
+using CalamityMod.NPCs.Yharon;
+using CalamityMod.Projectiles.Melee;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -732,6 +734,11 @@ namespace InfernalEclipseAPI.Core.Players
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
             {
                 hit.Damage -= (int)(hit.Damage * 0.8);
+            }
+
+            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()))
+            {
+                hit.Damage /= 2;
             }
         }
 

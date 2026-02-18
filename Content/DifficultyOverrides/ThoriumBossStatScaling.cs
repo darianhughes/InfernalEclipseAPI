@@ -11,6 +11,7 @@ using InfernalEclipseAPI.Content.Buffs;
 using ThoriumMod.Projectiles.Enemy;
 using ThoriumMod.NPCs.BossQueenJellyfish;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
+using ThoriumMod.NPCs.BossViscount;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
@@ -56,7 +57,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             ModContent.NPCType<BoreanMyte>(),
             ModContent.NPCType<DistractingJellyfish>(),
             ModContent.NPCType<SpittingJellyfish>(),
-            ModContent.NPCType<ZealousJellyfish>()
+            ModContent.NPCType<ZealousJellyfish>(),
+            ModContent.NPCType<ThoriumMod.NPCs.BossViscount.BiteyBaby>(),
         ];
 
         public static bool IsReworkNPC(NPC npc)
@@ -89,10 +91,18 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
             }
 
-            if (InfernalCrossmod.SOTS.Loaded && entity.type == ModContent.NPCType<DreamEater>())
+            if (InfernalCrossmod.SOTS.Loaded)
             {
-                entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
-                entity.GetGlobalNPC<SOTSGlobalNPC>().strongVoidDamge = true;
+                if (entity.type == ModContent.NPCType<Viscount>() || entity.type == ModContent.NPCType<ThoriumMod.NPCs.BossViscount.BiteyBaby>())
+                {
+                    entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
+                }
+
+                if (entity.type == ModContent.NPCType<DreamEater>())
+                {
+                    entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
+                    entity.GetGlobalNPC<SOTSGlobalNPC>().strongVoidDamge = true;
+                }
             }
         }
 
@@ -216,8 +226,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             string name = npc.ModNPC?.Name ?? "";
             float damageMod = 0;
 
-            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater") || name.Contains("BoreanStrider") || name.Contains("QueenJellyfish"))
+            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater") || name.Contains("BoreanStrider") || name.Contains("QueenJellyfish") || name.Contains("Viscount"))
                 damageMod += 0.6f;
+            else if (name.Contains("BiteyBaby"))
+                damageMod += 1f;
 
             if (IsWorldLegendary())
             {
@@ -323,6 +335,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 ModContent.ProjectileType<BubbleColumn>(),
                 ModContent.ProjectileType<JammingJellyfish>(),
                 ModContent.ProjectileType<JellyfishShock>(),
+
+                ModContent.ProjectileType<ThoriumRework.Projectiles.BiteyBaby>()
             ];
 
             foreach (int type in reworkType)
@@ -377,6 +391,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 //Queen Jellyfish
                 ModContent.ProjectileType<BubblePulse>(),
                 ModContent.ProjectileType<ThoriumMod.Projectiles.Boss.BubbleBomb>(),
+
+                //Viscount
+                ModContent.ProjectileType<ViscountBlood>(),
+                ModContent.ProjectileType<ViscountRipple>(),
+                ModContent.ProjectileType<ViscountRipple2>(),
+                ModContent.ProjectileType<ViscountRipple3>(),
+                ModContent.ProjectileType<ViscountRockFall>(),
+                ModContent.ProjectileType<ViscountRockSummon>(),
+                ModContent.ProjectileType<ViscountRockSummon>(),
+                ModContent.ProjectileType<ViscountStomp>(),
+                ModContent.ProjectileType<ViscountStomp2>(),             
             ];
 
             foreach (int type in types)
@@ -416,16 +441,28 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public override void SetDefaults(Projectile entity)
         {
-            if (InfernalCrossmod.SOTS.Loaded && entity.ModProjectile.Name.Contains("Lucid"))
+            if (InfernalCrossmod.SOTS.Loaded)
             {
-                entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
-                entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
+                if (entity.ModProjectile.Name.Contains("Blood") || entity.ModProjectile.Name.Contains("BiteyBaby"))
+                {
+                    entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+                }
+                if (entity.ModProjectile.Name.Contains("Lucid"))
+                {
+                    entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+                    entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
+                }
             }
         }
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
             float damageMod = 1f;
+
+            if (projectile.ModProjectile.Name.Contains("BiteyBaby"))
+            {
+                damageMod += 0.25f;
+            }
 
             if (IsWorldLegendary())
             {

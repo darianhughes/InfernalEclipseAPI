@@ -10,16 +10,10 @@ using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.World;
 using CalamityMod.NPCs.Crags;
 using CalamityMod.Items.Fishing.FishingRods;
-using CalamityMod;
 using System.Linq;
-using CalamityMod.NPCs.ProfanedGuardians;
-using CalamityMod.Items;
-using CalamityMod.Items.Weapons.Typeless;
-using CalamityMod.Items.Accessories;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Players;
 using CalamityMod.Items.Placeables.Furniture.Paintings;
-using CalamityMod.Items.Tools;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -103,6 +97,26 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     }
                 }
             }
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if (!InfernalConfig.Instance.VanillaBalanceChanges || !npc.active || (npc.type != NPCID.HallowBoss)) return base.PreAI(npc);
+
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
+                    continue;
+
+                if (InfernalCrossmod.Clamity.Loaded)
+                {
+                    if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
+                        player.mount.Dismount(player);
+                }
+            }
+
+            return base.PreAI(npc);
         }
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
