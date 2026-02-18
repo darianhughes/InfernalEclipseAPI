@@ -1,4 +1,12 @@
-﻿namespace InfernalEclipseAPI.Content.DifficultyOverrides
+﻿using CalamityMod.World;
+using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
+using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Utils;
+using InfernumMode.Core.GlobalInstances.Systems;
+using System.Reflection;
+using Terraria.DataStructures;
+
+namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
     public class VanillaBossStatScaling : GlobalNPC
     {
@@ -63,6 +71,63 @@
                 else
                     npc.lifeMax *= 2;
             }
+        }
+    }
+
+    public class VanillaStatScaling : GlobalProjectile
+    {
+        public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
+        {
+            int[] types =
+            [
+                ProjectileID.BloodShot
+            ];
+
+            foreach (int type in types)
+            {
+                if (entity.type == type)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public override void SetDefaults(Projectile entity)
+        {
+            if (InfernalCrossmod.SOTS.Loaded)
+            {
+                if (entity.type == ProjectileID.BloodShot)
+                {
+                    entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+                }
+            }
+        }
+
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
+        {
+            /*
+            float damageMod = 1f;
+
+            if (InfernalUtilities.IsWorldLegendary())
+            {
+                damageMod *= 1.35f;
+            }
+
+            if (WorldSaveSystem.InfernumModeEnabled || InfernalUtilities.GetFargoDifficullty("MasochistMode"))
+            {
+                damageMod *= 2.2f;
+            }
+            else if (InfernalUtilities.GetFargoDifficullty("EternityMode"))
+            {
+                damageMod *= 1.675f;
+            }
+            else if (CalamityWorld.death)
+            {
+                damageMod *= 1.5f;
+            }
+
+            modifiers.SourceDamage *= damageMod;
+            */
         }
     }
 }
