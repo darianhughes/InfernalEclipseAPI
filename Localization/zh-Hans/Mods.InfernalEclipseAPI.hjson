@@ -40,8 +40,8 @@ WelcomeMessage: {
 	TBRWarning: 警告：检测到未启用 Thorium Bosses Reworked！我们强烈建议您启用该模组，它重新平衡了瑟银模组的Boss，使其机制更贴合炼狱模式及灾厄模组的整体进程。
 	RagWarning: 警告：检测到未启用 Ragnarok！若未启用此模组，瑟银与灾厄可能无法良好协同。强烈建议启用此模组，以获得更完整、更平衡的游戏体验。
 	EventTrophyNotice: 注意：检测到您未启用更多圣物和纪念章和传颂之物！  如果缺少此模组，任何非原版、灾厄或炼狱模式的 Boss 可能缺失传颂之物或炼狱开场动画。强烈建议您启用此模组，以获得更完整、更平滑的游戏体验。
-	SoulsWarning: 警告：检测到您已启用 Fargo’s Souls Mod！请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
-	// OverhaulWarning: WARNING: It is detected that you have the Calamity Overhaul enabled! This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
+	SoulsWarning: 警告：检测到您已启用 Fargo魂石模组！请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
+	OverhaulWarning: 警告：检测到您已启用灾厄大修模组！此模组有较多漏洞且会发生多种错误。我们强烈建议您关闭此模组。
 	CalMinusNotice: 注意：检测到您已启用 Calamity Minus 模组！在《诸神黄昏：炼狱蚀光》配置中开启 “灾厄平衡修改” 后，该模组的所有功能已经被包含在内。
 	CalBalNotice: 注意：检测到您已启用 Calamity Balance Changes 模组！在《诸神黄昏：炼狱蚀光》配置中开启 “灾厄平衡修改” 后，该模组已包含其创意工坊页面上列出的绝大多数功能。此外，Calamity Balance Changes 还添加了大量未列出的改动，可能会使您的游戏体验比预期更差。
 	InfernumActive: 身负异兆之人归来，再度直面炼狱蚀光……
@@ -147,7 +147,7 @@ ItemTooltip: {
 		增加50点最大虚空值，但会降低40点从药水治疗的生命值
 		'''
 	EyeOfChaos: 增加12%暴击率，无法与下位饰品叠加
-	// EyeOfChaosThorium: Critical strikes deal 15 more damage
+	EyeOfChaosThorium: 暴击会造成15点额外伤害
 	SnakeEyes: 增加3%暴击率
 	ChaosBadge: 增加5%暴击率
 	FocusReticle:
@@ -482,16 +482,16 @@ ItemTooltip: {
 			'''
 
 		MaskoftheCrystalEye: {
-			/* Thorium:
+			Thorium:
 				'''
-				8% increased critical strike chance
-				15% increased critical strike damage
-				''' */
-			/* SOTS:
+				增加8%暴击率
+				暴击多造成15%伤害
 				'''
-				8% increased critical strike chance
-				Critical strikes deal 15 more damage
-				''' */
+			SOTS:
+				'''
+				增加8%暴击率
+				暴击会造成15点额外伤害
+				'''
 		}
 	}
 
