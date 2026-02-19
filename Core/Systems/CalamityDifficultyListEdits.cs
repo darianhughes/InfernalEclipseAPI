@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Systems;
 using InfernalEclipseAPI.Content.UI;
+using InfernumMasterPatch;
 using InfernumMode.Content.UI;
 
 namespace InfernalEclipseAPI.Core.Systems
@@ -15,6 +16,9 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (DifficultyModeSystem.Difficulties is null)
                 return;
+
+            if (ModLoader.HasMod("InfernumMasterPatch"))
+                MasterPatchDifficultyRemover.ApplyMasterPatchRemoval();
 
             if (!ShouldHideCustomDifficulties())
                 return;
@@ -37,6 +41,17 @@ namespace InfernalEclipseAPI.Core.Systems
                 return true;
 
             return false;
+        }
+    }
+
+    [JITWhenModsEnabled("InfernumMasterPatch")]
+    [ExtendsFromMod("InfernumMasterPatch")]
+    internal static class MasterPatchDifficultyRemover
+    {
+        public static void ApplyMasterPatchRemoval()
+        {
+            DifficultyModeSystem.Difficulties.RemoveAll(d =>
+                d is MasterPatchDifficulty);
         }
     }
 }

@@ -42,6 +42,9 @@
 		<Reference Include="FargowiltasSouls">
 			<HintPath>..\ModAssemblies\FargowiltasSouls_v1.7.3.5.dll</HintPath>
 		</Reference>
+		<Reference Include="InfernumMasterPatch">
+		  <HintPath>lib\Assemblies\InfernumMasterPatch.dll</HintPath>
+		</Reference>
 		<Reference Include="InfernumMode">
 		  <HintPath>..\ModAssemblies\InfernumMode_v2.0.1.22.dll</HintPath>
 		</Reference>

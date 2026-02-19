@@ -73,6 +73,21 @@ namespace InfernalEclipseAPI.Core.Players
                 Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.OverhaulWarning"), 255, 0, 0);
             }
 
+            if (ModLoader.HasMod("CalamityMinus"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalMinus"), 255, 255, 06);
+            }
+
+            if (ModLoader.HasMod("CalBalChange"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalBalNotice"), 255, 255, 06);
+            }
+
+            if (ModLoader.HasMod("InfernumMasterPatch"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.MasterPatchNotice"), 255, 255, 06);
+            }
+
             if (InfernalWorld.RagnarokModeEnabled)
             {
                 if (InfernalConfig.Instance.DisplayWorldEntryMessages)
@@ -107,7 +122,7 @@ namespace InfernalEclipseAPI.Core.Players
                 //This message should always popup upon entering a world if they are playing the mod pack.
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod rework))
                 {
-                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.TBRNotice"), 255, 255, 0);
+                    //Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.TBRNotice"), 255, 255, 0);
                 }
                 else
                 {
@@ -127,16 +142,6 @@ namespace InfernalEclipseAPI.Core.Players
                         Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokRework"), 255, 255, 0);
                     }
                 }
-            }
-
-            if (ModLoader.HasMod("CalamityMinus"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalMinus"), 255, 255, 06);
-            }
-
-            if (ModLoader.HasMod("CalBalChange"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalBalNotice"), 255, 255, 06);
             }
         }
 
