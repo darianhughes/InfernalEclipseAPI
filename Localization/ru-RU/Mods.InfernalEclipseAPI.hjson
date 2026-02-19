@@ -1,5 +1,5 @@
 UI: {
-	// RagnarokIconText: Ragnarok Mode is enabled
+	RagnarokIconText: Режим Рагнарёка включён
 	NoRespawn: Возрождение предотвращено: Только одно возрождение в битве с боссом в {0} мультиплеере!
 	NoRespawn2: Возрождение предотвращено: Только {0} {^0:возрождение;возрождения;возрождений} в битве с боссом в {1} мультиплеере!
 	NoRespawn3: Возрождение предотвращено: Нет возрождений во время битвы с боссом в {0} мультиплеере!
@@ -11,9 +11,9 @@ UI: {
 	Legendary: Легенда
 	Revengence: Месть
 	Death: Смерть
-	LDeath: Легенда+Смерть
+	LDeath: Злоба
 	Infernum: Инфернум
-	MInfernum: Мастер+Инфернум
+	MInfernum: Рагнарёк
 }
 
 DifficultyUI: {
@@ -25,13 +25,12 @@ DifficultyUI: {
 		'''
 	ExpandedDescription:
 		'''
-		[c/B32E81:Устанавливает мир в режим Мастера и включает режим Инфернум.]
-		[c/B32E81:После включения, режим Мастера нельзя отключить с помощью переключения сложности Calamity.]
+		[c/B32E81:Гармонично объединяет как режим Смерть, так и режим Инфернум.]
 		[c/B32E81:Враги и боссы обладают большими характеристиками и более агрессивным масштабированием в мультиплеере.]
 		[c/FF0055:Сможешь ли ты осилить «Infernal Eclipse of Ragnarok»?]
 		'''
-	// Activation: The Infernal Eclipse has risen...
-	// Deactivation: Another unworthy challenger has walked away.
+	Activation: Инфернальное затмение наступило...
+	Deactivation: Ещё один недостойный претендент сбился с пути.
 	MasterToggle: Режим Мастера включён!
 }
 
@@ -42,8 +41,9 @@ WelcomeMessage: {
 	RagWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас отключён «Ragnarok»! Без этого мода Thorium и Calamity могут плохо взаимодействовать. Настоятельно рекомендуется включить его для более полного и сбалансированного игрового опыта.
 	EventTrophyNotice: ВНИМАНИЕ: Обнаружено, что у вас отключён «More Trophies and Relics»! Без этого мода у боссов, не из ванильной игры, Calamity или Infernum, могут отсутствовать лор Calamity и интро Инфернума. Настоятельно рекомендуется включить его для более полного и целостного опыта.
 	SoulsWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Fargo's Souls Mod»! Учтите, что режим Инфернум несовместим с режимом Вечность, и при одновременном включении обоих могут возникнуть серьёзные ошибки.
-	// OverhaulWarning: WARNING: It is detected that you have the Calamity Overhaul enabled! This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
-	CalMinusNotice: ВНИМАНИЕ: Обнаружено, что у вас включён  «Calamity Minus»! Данный модпак уже включает все функции этого мода, если у вас включены 'Изменения баланса Calamity' в конфигурации «Infernal Eclipse of Ragnarok».
+	OverhaulWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Calamity Overhaul»! Этот мод очень багованный и вызовет множество проблем. Настоятельно рекомендуется отключить его.
+	MasterPatchNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Infernum Master Patch». Этот мод излишен с этим модом и может быть отключён.
+	CalMinusNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Minus»! Данный модпак уже включает все функции этого мода, если у вас включены 'Изменения баланса Calamity' в конфигурации «Infernal Eclipse of Ragnarok».
 	CalBalNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Balance Changes»! Данный модпак уже включает большинство функций этого мода, перечисленных на странице в мастерской Steam, если у вас включены 'Изменения баланса Calamity' в конфигурации «Infernal Eclipse of Ragnarok». «Calamity Balance Changes» также вносит ряд неназванных изменений, которые могут сделать ваше прохождение хуже, чем задумывалось
 	InfernumActive: Избранный вернулся, чтобы встретить Инфернальное затмение...
 	MPConnect: Избранный вернулся, чтобы помочь встретить Инфернальное затмение...
@@ -65,9 +65,9 @@ TimeFreezePrevention: {
 }
 
 BossCheesePrevention: {
-	TheDestroyer: I shall not let you destroy my machine so easily.
-	Plantera: Ancient forces prevent you from using this item right now...
-	Yharon: Ancient forces prevent you from using this item right now...
+	TheDestroyer: Я не позволю тебе так легко уничтожить мою машину.
+	Plantera: Древние силы не позволяют тебе использовать этот предмет сейчас...
+	Yharon: Древние силы не позволяют тебе использовать этот предмет сейчас...
 }
 
 ItemTooltip: {
@@ -83,28 +83,28 @@ ItemTooltip: {
 	BladecrestNerf: Злая сила истощает часть силы этого оружия...
 	EclipseFang: "[IEoR]: Усиление оружия активно всегда."
 	ScytheThrow: Нажмите ПКМ, чтобы бросить косу, которая изогнётся при возвращении
-	ThorsHammerPro: Inflcts electrified for 3 seconds on hits.
-	BountifulHarvest: Fires piercing stingers in an alternating pattern
+	ThorsHammerPro: Накладывает дебафф [cbuff:Electrified] на 3 секунды.
+	BountifulHarvest: Стреляет пронзающими жалами в чередующейся последовательности
 
 	SoulAnchor: {
-		OrigTooltip1: Anchors your soul and health to your current position
-		Replace1: Anchors your soul and health to your current position for 20 seconds
-		OrigTooltip2: Right click to return to your soul, reverting health to its original value
-		Replace2: Within that period, right click to return to your soul, reverting health to half its original value
-		OrigTooltip3: Can only be used once every 5 minutes and saps your soul upon returning
+		OrigTooltip1: Привязывает вашу душу и здоровье к текущей позиции
+		Replace1: Привязывает вашу душу и здоровье к текущей позиции на 20 секунд
+		OrigTooltip2: Нажмите ПКМ, чтобы вернуться к своей душе, восстанавливая здоровье до изначального значения
+		Replace2: В течение этого времени нажмите ПКМ, чтобы вернуться к душе, восстанавливая здоровье до половины от изначального значения
+		OrigTooltip3: Можно использовать раз в 5 минут; после использования душа будет истощена
 		Replace3:
 			'''
-			Saps your soul upon returning and grants Potion Sickness
-			Can only be used once every 5 minutes
+			При возвращении истощает вашу душу и накладывает дебафф [cbuff:PotionSickness]
+			Можно использовать только раз в 5 минут
 			'''
-		Player1: Your Soul Anchor has faded.
-		Player2: Soul Anchor set. You have 20 seconds to return.
+		Player1: Ваш Якорь души рассеялся.
+		Player2: Якорь души установлен. У вас есть 20 секунд, чтобы вернуться.
 	}
 
 	WhiteDwarfSetBonus:
 		'''
 
-		Ivory flares spawn on a 2 second cooldown
+		Изумрудные вспышки появляются с перезарядкой 2 секунды
 		'''
 	PhoenixStaff:
 		'''
@@ -128,12 +128,12 @@ ItemTooltip: {
 	BloodstainedCoin:
 		'''
 		Критические удары с 50% шансом нанесут на 20 ед. урона больше
-		При получении урона с 75% шансом вы получите дебафф «{$BuffName.Bleeding}»
+		При получении урона с 75% шансом вы получите дебафф [cbuff:Bleeding]
 		'''
 	PutridCoin:
 		'''
 		Критические удары с 50% шансом нанесут на 20 ед. урона больше
-		При получении урона с 75% шансом вы получите дебафф «{$BuffName.Poisoned}»
+		При получении урона с 75% шансом вы получите дебафф [cbuff:Poisoned]
 		'''
 	SubspaceLocket:
 		'''
@@ -144,14 +144,14 @@ ItemTooltip: {
 		Увеличивает максимальный запас пустоты на 50, но снижает эффективность лечебных зелий на 40
 		'''
 	EyeOfChaos: Увеличивает шанс критического удара на 12%, не складывается с предыдущими улучшениями
-	// EyeOfChaosThorium: Critical strikes deal 15 more damage
+	EyeOfChaosThorium: Критические удары наносят на 15 ед. урона больше
 	SnakeEyes: Увеличивает шанс критического удара на 3%
 	ChaosBadge: Увеличивает шанс критического удара на 5%
 	FocusReticle:
 		'''
 		Увеличивает шанс критического удара на 15%, не складывается с предыдущими улучшениями
 		Критические удары будут наносить на 40 ед. больше урона
-		Даёт невосприимчивость к дебаффам «{$BuffName.Bleeding}» и «{$BuffName.Poisoned}»
+		Даёт невосприимчивость к дебаффам [cbuff:Bleeding] и [cbuff:Poisoned]
 		'''
 	Starbelt:
 		'''
@@ -216,7 +216,7 @@ ItemTooltip: {
 			'''
 
 		BagOfAmmoConsume: {
-			ElementalQuiver: Grants a 20% chance to not consume arrows
+			ElementalQuiver: Даёт 20% шанс не использовать стрелы
 			ReplaceTooltip: Даёт 20% шанс не использовать боеприпасы
 		}
 
@@ -240,11 +240,11 @@ ItemTooltip: {
 			'''
 
 		SealedContract: {
-			OrigTooltip1: Maximum life increased by 60
-			OrigTooltip2: Healing spells grant an additional 5 life
+			OrigTooltip1: Увеличивает максимальный запас здоровья на 60
+			OrigTooltip2: Исцеляющие заклинания восстанавливают дополнительно 5 единиц здоровья
 		}
 
-		ContractNerf: Исцеляющие заклинания дополнительно восстанавливают 2 ед. здоровья
+		ContractNerf: Исцеляющие заклинания дополнительно восстанавливают 2 единицы здоровья
 		Tuner1:
 			'''
 			Эффекты этого аксессуара зависят от его видимости
@@ -291,9 +291,9 @@ ItemTooltip: {
 		Watch: Призванные стражи существуют бесконечно и увеличивает их урон на 15% в течение 2 минут
 
 		FortressGenerator: {
-			OrigTooltip1: Increases damage by 10% and life regeneration by 2
-			Replace: Increases summon damage by 10%
-			OrigTooltip2: Absorbs 25% of damage done to players on your team when above 25% life and grants immunity to knockback
+			OrigTooltip1: Увеличивает урон на 10% и регенерацию здоровья 2 ед./сек
+			Replace: Увеличивает урон призывателя на 10%
+			OrigTooltip2: Поглощает 25% урона, нанесённого игрокам вашей команды, если здоровье владельца выше 25%, и даёт невосприимчивость к отбрасыванию
 		}
 
 		Fortress:
@@ -348,9 +348,9 @@ ItemTooltip: {
 		TerraDefend: Когда здоровье ниже 25%, значительно ускоряет регенерацию здоровья и увеличивает защиту
 
 		TerrariumDefender: {
-			lifeUP: Maximum life increased by 20
-			invincibility: Prolonges after hit invincibility
-			immunity: Grants immunity to most status debuffs, knockback, and fire blocks
+			lifeUP: Увеличивает максимальный запас здоровья на 20
+			invincibility: Увеличивает длительность неуязвимости после получения урона
+			immunity: Даёт невосприимчивость к большинству дебаффов, отбрасыванию и огненным блокам
 		}
 
 		ScytheScale: Увеличивает свою силу до победы над Пожирателем
@@ -370,20 +370,20 @@ ItemTooltip: {
 
 		ToothNecklace: {
 			SandShark: {
-				OrigTooltip: Increases armor penetration by 10
-				CommonReplace: Increases armor penetration by 12
-				SOTSReplace: Increases armor penetration by 12, critical strike chance by 5%, and max life by 40
-				ThoriumReplace: Increases armor penetration by 12
+				OrigTooltip: Увеличивает пробивание брони на 10
+				CommonReplace: Увеличивает пробивание брони на 12
+				SOTSReplace: Увеличивает пробивание брони на 12, шанс критического удара на 5% и максимальный запас здоровья 40
+				ThoriumReplace: Увеличивает пробивание брони на 12
 			}
 
 			Prismarine: {
-				OrigTooltip: Increases armor penetration by 8 and max life by 20
-				CommonReplace: Increases armor penetration by 5 and max life by 20
+				OrigTooltip: Увеличивает пробивание брони на 8 and max life by 20
+				CommonReplace: Увеличивает пробивание брони на 5 and max life by 20
 			}
 
 			Reaper: {
-				OrigTooltip: Increases armor penetration by 15
-				SOTSReplace: Increases armor penetration by 15, critical strike chance by 5%, and max life by 40
+				OrigTooltip: Увеличивает пробивание брони на 15
+				SOTSReplace: Увеличивает пробивание брони на 15, шанс критического удара на 5% и максимальный запас здоровья 40
 			}
 		}
 
@@ -394,16 +394,16 @@ ItemTooltip: {
 		Midnight2: Имеет 6 секунд перезарядки
 
 		lifeQuartzShield: {
-			CommoTooltip: Increases the rate at which you regenerate life
+			CommoTooltip: Увеличивает скорость регенерации здоровья
 			Under25HP1:
 				'''
-				Receiving damage below 25% life surrounds you in a protective bubble
-				While in the bubble, you will recover life equal to your bonus healing every second
+				Если ваше здоровье опускается ниже 25% после получения урона, вы обретаете защитный пузырь
+				Внутри этого пузыря каждую секунду вы восполняете здоровье, равное вашему бонусному исцелению
 				'''
 			Under25HP2:
 				'''
-				Additionally, damage taken will be reduced by 10%
-				This effect needs to recharge for 30 seconds after triggering
+				Кроме того, данный эффект снижает получаемый урон на 10%
+				Этот эффект имеет 30 секунд перезарядки после срабатывания
 				'''
 		}
 
@@ -412,11 +412,11 @@ ItemTooltip: {
 		PlasmaGen: "{$ThoriumMod.Items.PlasmaGenerator.Tooltip}"
 
 		Omni: {
-			OrigTooltip: 15% increased symphonic damage, playing speed, and critical strike chance
+			OrigTooltip: Увеличивает симфонический урон, скорость игры на инструменте и шанс критического удара на 15%
 			Replace:
 				'''
-				15% increased symphonic damage
-				8% increased playing speed, critical strike chance, and inspiration regeneration rate
+				Увеличивает симфонический урон на 15%
+				Увеличивает скорость игры на инструменте, шанс критического удара и скорость восстановления вдохновения на 8%
 				'''
 		}
 
@@ -434,8 +434,8 @@ ItemTooltip: {
 		RingofRestNerf: Восстановление вдохновения имеет 1 секунду перезарядки
 
 		SpiritInsignia: {
-			OrigTooltip: Grants infinite wing and rocket boot flight
-			Replace: Increases wing flight time by 25%
+			OrigTooltip: Позволяет бесконечно летать на крыльях и реактивных сапогах
+			Replace: Увеличивает время полёта на 25%
 		}
 
 		AscendantInsignia:
@@ -470,27 +470,27 @@ ItemTooltip: {
 			'''
 
 		MaskoftheCrystalEye: {
-			/* Thorium:
+			Thorium:
 				'''
-				8% increased critical strike chance
-				15% increased critical strike damage
-				''' */
-			/* SOTS:
+				Увеличивает шанс критического удара на 8%
+				Увеличивает критический урон на 15%
 				'''
-				8% increased critical strike chance
-				Critical strikes deal 15 more damage
-				''' */
+			SOTS:
+				'''
+				Увеличивает шанс критического удара на 8%
+				Критические удары наносят на 15 ед. урона больше
+				'''
 		}
 	}
 
 	AmmoConversion: {
-		FrostFury: Converts Wooden Arrows into Frostburn Arrows
-		StreamSting: Converts Wooden Arrows into Bone Arrows
-		CometCrossfire: Converts Wooden Arrows into Jester Arrows
-		Steel: Converts Wooden Arrows into Steel Arrows
-		SandStone: Converts Wooden Arrows into Talon Arrows
-		Durasteel: Converts Wooden Arrows into Durasteel Arrows
-		Trigun: Converts Musket balls into Hallow-point rounds
+		FrostFury: Превращает деревянные стрелы в стрелы обжигающего холода
+		StreamSting: Превращает деревянные стрелы в костяные стрелы
+		CometCrossfire: Превращает деревянные стрелы в шутовские стрелы
+		Steel: Превращает деревянные стрелы в стальные стрелы
+		SandStone: Превращает деревянные стрелы в когтистые стрелы
+		Durasteel: Превращает деревянные стрелы в дюрастальные стрелы
+		Trigun: Превращает мушкетные пулы в патроны со святым наконечником
 		Mycelium: Выпускает залпы мицелия
 	}
 
@@ -513,7 +513,7 @@ ItemTooltip: {
 		Cultist: Культиста-лунатика
 		ND: Божества
 		Mars: Марса
-		// EoL: The Empress of Light's
+		EoL: Императрицы света
 	}
 
 	AstrageldonRelic: {
@@ -836,7 +836,7 @@ Items: {
 			Критические удары наносят на 40 ед. больше урона, вызывают вспышку разрушительных искр и могут подрывать врагов, нанося 100% урона
 			Критические удары крадут здоровье, восстанавливают пустоту, ману и возвращают вдохновение
 			Вампиризм и восстановление вдохновения имеет 1 секунду перезарядки
-			Даёт невосприимчивость к дебаффам «{$BuffName.Poisoned}» и «{$BuffName.Bleeding}», а также ночное зрение
+			Даёт невосприимчивость к дебаффам [cbuff:Poisoned] и [cbuff:Bleeding], а также ночное зрение
 			'''
 		ThoriumTooltip:
 			'''
@@ -844,14 +844,14 @@ Items: {
 			Критические удары наносят на 40 ед. больше урона, вызывают вспышку разрушительных искр и могут подрывать врагов, нанося 100% урона
 			Критические удары крадут здоровье, восстанавливают пустоту и ману
 			Вампиризм имеет полсекунды перезарядки
-			Даёт невосприимчивость к дебаффам «{$BuffName.Poisoned}» и «{$BuffName.Bleeding}», а также ночное зрение
+			Даёт невосприимчивость к дебаффам [cbuff:Poisoned] и [cbuff:Bleeding], а также ночное зрение
 			'''
 		DefaultTooltip:
 			'''
 			Увеличивает шанс критического удара на 15%, не складывается с предыдущими улучшениями
 			Критические удары наносят на 40 ед. больше урона и могут подрывать врагов, нанося 100% урона
 			Критические удары крадут здоровье, восстанавливают пустоту и ману
-			Даёт невосприимчивость к дебаффам «{$BuffName.Poisoned}» и «{$BuffName.Bleeding}», а также ночное зрение
+			Даёт невосприимчивость к дебаффам [cbuff:Poisoned] и [cbuff:Bleeding], а также ночное зрение
 			'''
 		Lore: После того как Эрелиан получил экзо-призму от Дрэйдона, у него наконец-то было всё, чтобы усовершенствовать духовный ИИ своего костюма — и теперь тиран наконец оказался на прицеле.
 	}
@@ -861,52 +861,52 @@ Items: {
 
 		LorePolaris: {
 			DisplayName: Полярис
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreAdvisor: {
 			DisplayName: Аналитик
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreGlowmoth: {
 			DisplayName: Светомотылёк
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreLux: {
 			DisplayName: Люкс
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LorePharaoh: {
 			DisplayName: Проклятие Фараона
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LorePutrid: {
 			DisplayName: Гнилостный пинки
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreSerpent: {
 			DisplayName: Субпространственный змей
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreProvi: {
 			DisplayName: Галактика
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreMirror: {
 			DisplayName: Проклятое зеркало
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreDylan: {
 			DisplayName: Дилан
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreAbominationn.DisplayName: Мерзостть
@@ -916,33 +916,33 @@ Items: {
 
 		LoreMjolnir: {
 			DisplayName: Мьёльнир
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LorePrimordials: {
 			DisplayName: Первородные
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreThunderBird: {
 			DisplayName: Великая громовая птица
-			// Tooltip: ""
+			Tooltip: ""
 		}
 
 		LoreRagnarok: {
 			DisplayName: Рагнарёк
-			// Tooltip: ""
+			Tooltip: ""
 		}
 	}
 
 	CatastrophicFabricationsMusicBox: {
 		DisplayName: Музыкальная шкатулка (Экзо-механизмы - Infernum Mode)
-		Tooltip: Композитор: PinpinNeon - 'Catastrophic Fabrications'
+		Tooltip: Проигрывает «Catastrophic Fabrications» за авторством PinpinNeon
 	}
 
 	EyeMusicBox: {
 		DisplayName: Музыкальная шкатулка (Глаз Ктулху - Infernum Mode)
-		Tooltip: Композитор: PinpinNeon - 'Seer of the Night'
+		Tooltip: Проигрывает «Seer of the Night» за авторством PinpinNeon
 	}
 
 	InfectedMothwingSpore: {
@@ -1632,7 +1632,7 @@ Configs: {
 			BossRushChanges: Настройки босс-раша
 			BalanceChanges: Изменения баланса
 			Miscellaneous: Разное
-			MultiplayerAdjustments: Изменения мультиплеера
+			MultiplayerAdjustments: Настройки и утилиты для мультиплеера
 			Main: Главное
 		}
 
@@ -1900,8 +1900,8 @@ Configs: {
 		}
 
 		Ragnarok: {
-			// Label: Ragnarok
-			// Tooltip: ""
+			Label: Рагнарёк
+			Tooltip: ""
 		}
 	}
 }

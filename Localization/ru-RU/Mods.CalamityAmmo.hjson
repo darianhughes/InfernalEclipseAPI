@@ -1,10 +1,10 @@
 Items: {
 	WulfrumCoil: {
-		// DisplayName: Wulfrum Coil
-		/* Tooltip:
+		DisplayName: Вульфрумовая катушка
+		Tooltip:
 			'''
-			5% increased ranged damage
-			Slightly increases the velocity of ranged projectiles
-			''' */
+			Увеличивает стрелковый урон на 5%
+			Немного увеличивает скорость стрелковых снарядов
+			'''
 	}
 }
