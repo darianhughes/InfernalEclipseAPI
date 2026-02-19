@@ -43,13 +43,13 @@ WelcomeMessage: {
 	SoulsWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Fargo's Souls Mod»! Учтите, что режим Инфернум несовместим с режимом Вечность, и при одновременном включении обоих могут возникнуть серьёзные ошибки.
 	OverhaulWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Calamity Overhaul»! Этот мод очень багованный и вызовет множество проблем. Настоятельно рекомендуется отключить его.
 	MasterPatchNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Infernum Master Patch». Этот мод излишен с этим модом и может быть отключён.
-	CalMinusNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Minus»! Данный модпак уже включает все функции этого мода, если у вас включены 'Изменения баланса Calamity' в конфигурации «Infernal Eclipse of Ragnarok».
-	CalBalNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Balance Changes»! Данный модпак уже включает большинство функций этого мода, перечисленных на странице в мастерской Steam, если у вас включены 'Изменения баланса Calamity' в конфигурации «Infernal Eclipse of Ragnarok». «Calamity Balance Changes» также вносит ряд неназванных изменений, которые могут сделать ваше прохождение хуже, чем задумывалось
+	CalMinusNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Minus»! Данный модпак уже включает все функции этого мода, если у вас включены «Изменения баланса Calamity» в конфигурации «Infernal Eclipse of Ragnarok».
+	CalBalNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Balance Changes»! Данный модпак уже включает большинство функций этого мода, перечисленных на странице в мастерской Steam, если у вас включены «Изменения баланса Calamity» в конфигурации «Infernal Eclipse of Ragnarok». «Calamity Balance Changes» также вносит ряд неназванных изменений, которые могут сделать ваше прохождение хуже, чем задумывалось
 	InfernumActive: Избранный вернулся, чтобы встретить Инфернальное затмение...
 	MPConnect: Избранный вернулся, чтобы помочь встретить Инфернальное затмение...
 	InfernumForced: Инфернальная энергия проникла в этот мир...
-	RagnarokBalance: ВНИМАНИЕ: Для корректной работы балансировки оружия установите в конфиге мода «Ragnarok» параметр 'Общие настройки оружия' в значение 'Выключено'. В противном случае изменения будут накладываться, и оружие станет значительно сильнее задуманного.
-	RagnarokRework: ВНИМАНИЕ: Обнаружено, что у вас одновременно включены «Ragnarok» и «Thorium Helheim». Для получения задуманного опыта переключите все переключатели боссов в конфиге Ragnarok на Thorium Bosses Reworked.
+	RagnarokBalance: ВНИМАНИЕ: Для корректной работы балансировки оружия установите в конфиге мода «Ragnarok» параметр «Общие настройки оружия» в значение «Выключено». В противном случае изменения будут накладываться, и оружие станет значительно сильнее задуманного.
+	RagnarokRework: ВНИМАНИЕ: Обнаружено, что у вас одновременно включены «Ragnarok» и «Thorium Helheim». Для получения задуманного опыта переключите все переключатели боссов в конфиге с «Ragnarok» на «Thorium Helheim».
 	GulaVaultMessage: Хранилище отказывается открываться. Сперва необходимо победить более сильное зло...
 }
 
@@ -212,7 +212,7 @@ ItemTooltip: {
 		Hellfire:
 			'''
 			Увеличивает урон от всех накладываемых игроком огненных дебаффов на 50%, не суммируется с предыдущими улучшениями
-			Все атаки накладывают дебафф «{$BuffName.OnFire3}»
+			Все атаки накладывают дебафф [cbuff:OnFire3]
 			'''
 
 		BagOfAmmoConsume: {
@@ -304,7 +304,7 @@ ItemTooltip: {
 			'''
 		FortressNoThor:
 			'''
-			Увеличивает регенерацию здоровья на 2
+			Увеличивает регенерацию здоровья на 2 ед./сек
 			Создаёт 4 платформы слева и справа от вас
 			Удерживайте ПКМ по платформе, чтобы переместить её. Платформа с другой стороны будут симметрично перемещена
 			На этих платформах можно призывать стражей
@@ -327,7 +327,7 @@ ItemTooltip: {
 		ChiseledHidden: Отключает снаряды, если видимость аксессуара отключена
 		Olympian:
 			'''
-			Увеличивает получаемое количество пустоты на 2 и регенерацию здоровья на 2
+			Увеличивает получаемое количество пустоты и регенерацию здоровья на 2 ед./сек
 			Увеличивает сопротивление урону на 7% и шанс критического удара на 4%
 			'''
 		Sweet1: Увеличивает скорость передвижения и длительность неуязвимости после получения урона
@@ -495,8 +495,8 @@ ItemTooltip: {
 	}
 
 	WingInfo: {
-		5: Также увеличивает регенерацию здоровья на 5
-		10: Также увеличивает регенерацию здоровья на 10
+		5: Также увеличивает регенерацию здоровья на 5 ед./сек
+		10: Также увеличивает регенерацию здоровья на 10 ед./сек
 		FasterIvory: Позволяет в два раза быстрее высвобождать изумрудные вспышки, если надет комплект белого карлика
 		GelDash: Позволяет совершать рывок и усиливает другие рывки
 	}
@@ -632,7 +632,7 @@ Lore: {
 		С тех пор как до меня дошли слухи, что существует нечто за пределами этого мира,
 		Я постоянно ощущал присутствие этой женщины в нашем мире.
 		Что Торну от неё нужно? Кто знает.
-		Но теперь вся сила в твоих руках, Террарианец.
+		Но теперь вся сила в твоих руках, Террариец.
 		'''
 	Mirror:
 		'''
@@ -712,7 +712,7 @@ Lore: {
 		Теперь тебя считают героем этих земель,
 		и возможно ты обретёшь покой в новой эре, которую создал сам.
 		Однако, берегись, ибо за каждым концом следует новое начало...
-		[c/7C0A02:Не испытывай свою удачу дальше, Террарианец.]
+		[c/7C0A02:Не испытывай свою удачу дальше, Террариец.]
 		'''
 	Primordials:
 		'''
@@ -757,7 +757,7 @@ Items: {
 	}
 
 	BossRushTier6MusicBox: {
-		Tooltip: Композитор: psykomatic - 'Descent Of Divinities'
+		Tooltip: Проигрывает «Descent Of Divinities» за авторством psykomatic
 		DisplayName: Музыкальная шкатулка (Босс-раш - ранг 6)
 	}
 
@@ -772,12 +772,12 @@ Items: {
 	}
 
 	BossRushTierNamelessMusicBox: {
-		Tooltip: Композитор: Kuudray - 'TWISTED GARDEN [Remix]'
+		Tooltip: Проигрывает «TWISTED GARDEN [Remix]» за авторством Kuudray
 		DisplayName: Музыкальная шкатулка (Босс-раш - ранг ???)
 	}
 
 	BossRushEncoreMusicBox: {
-		Tooltip: Композитор: CDMusic - 'Ensemble of Fools (Encore Mix)'
+		Tooltip: Проигрывает «Ensemble of Fools (Encore Mix)» за авторством CDMusic
 		DisplayName: Музыкальная шкатулка (Босс-раш - На бис)
 	}
 
@@ -798,7 +798,7 @@ Items: {
 				'''
 			Plantera:
 				'''
-				С победой над машинами Дрэйдона она теперь накладывает дебафф «{$CalamityMod.Buffs.AstralInfectionDebuff.DisplayName}»
+				С победой над машинами Дрэйдона она теперь накладывает дебафф [cbuff:CalamityMod/AstralInfectionDebuff]
 				Победи хранительницу джунглей, чтобы обрести большую силу...
 				'''
 			Golem:
@@ -936,12 +936,12 @@ Items: {
 	}
 
 	CatastrophicFabricationsMusicBox: {
-		DisplayName: Музыкальная шкатулка (Экзо-механизмы - Infernum Mode)
+		DisplayName: Музыкальная шкатулка (Экзо-механизмы - Инфернум)
 		Tooltip: Проигрывает «Catastrophic Fabrications» за авторством PinpinNeon
 	}
 
 	EyeMusicBox: {
-		DisplayName: Музыкальная шкатулка (Глаз Ктулху - Infernum Mode)
+		DisplayName: Музыкальная шкатулка (Глаз Ктулху - Инфернум)
 		Tooltip: Проигрывает «Seer of the Night» за авторством PinpinNeon
 	}
 
@@ -951,18 +951,18 @@ Items: {
 	}
 
 	BeeMusicBox: {
-		DisplayName: Музыкальная шкатулка (Королева пчёл - Infernum Mode)
-		Tooltip: Композитор: PinpinNeon - 'Royal Retaliation'
+		DisplayName: Музыкальная шкатулка (Королева пчёл - Инфернум)
+		Tooltip: Проигрывает «Royal Retaliation» за авторством PinpinNeon
 	}
 
 	CultistMusicBox: {
-		DisplayName: Музыкальная шкатулка (Культист-лунатик - Infernum Mode)
-		Tooltip: Композитор: PinpinNeon - 'Eidolic Ancestry ~ Ancient Doomsayer'
+		DisplayName: Музыкальная шкатулка (Культист-лунатик - Инфернум)
+		Tooltip: Проигрывает «Eidolic Ancestry ~ Ancient Doomsayer» за авторством PinpinNeon
 	}
 
 	GolemMusicBox: {
-		DisplayName: Музыкальная шкатулка (Голем - Infernum Mode)
-		Tooltip: Композитор: PinpinNeon - 'Icon of the Sun'
+		DisplayName: Музыкальная шкатулка (Голем - Инфернум)
+		Tooltip: Проигрывает «Icon of the Sun» за авторством PinpinNeon
 	}
 
 	GrandThunderBirdRelic: {
@@ -987,7 +987,7 @@ Items: {
 
 	ProphecyMusicBox: {
 		DisplayName: Музыкальная шкатулка (Пророчество)
-		Tooltip: Композитор: theforge129 - 'Reality of the Prophecy'
+		Tooltip: Проигрывает «Reality of the Prophecy» за авторством theforge129
 	}
 
 	SuspiciousLookingPumpkin: {
@@ -1126,7 +1126,7 @@ Items: {
 				'''
 			Mechs:
 				'''
-				С победой над Стеной Плоти пули, выпущенные этим оружием, накладывают дебафф «{$CalamityMod.Buffs.Crumbling.DisplayName}»
+				С победой над Стеной Плоти пули, выпущенные этим оружием, накладывают дебафф [cbuff:CalamityMod/Crumbling]
 				Победи механических чудовищ, чтобы обрести большую силу...
 				'''
 			Plantera:
@@ -1444,7 +1444,7 @@ Items: {
 			Днём увеличивает регенерацию здоровья на 2 ОЗ/сек
 			Ночью увеличивает защиту на 20
 			Во время затмения увеличивает регенерацию здоровья на 1 ОЗ/сек и защиту на 10 ед.
-			Критические удары от стрел ненадолго накладывают дебафф «{$Buffs.ShadowFlame}»
+			Критические удары от стрел ненадолго накладывают дебафф [cbuff:CalamityMod/Shadowflame]
 			Увеличивает максимальное время полёта на 20%
 			'За пламенем и искрами, если заглянуть достаточно глубоко, можно увидеть своё прошлое и будущее'
 			'''
@@ -1470,9 +1470,9 @@ Items: {
 		Tooltip:
 			'''
 			Спасибо всей команде, всем нашим участникам, тестировщикам, всем, кто нас поддерживал,
-			людям, которые нас вдохновляли, и всем, кто играет в мод и поддерживает его!
-			Эта картина не вмещает всю команду
-			Удерживайте 'Левый Shift', чтобы увидеть полный список участников
+			людям, которые нас вдохновляли, и всем, кто играет в этот мод и поддерживает его!
+			Эта картина слишком мала, чтобы вместить всю команду
+			Удерживайте Shift, чтобы увидеть полный список участников
 			'''
 	}
 
@@ -1508,7 +1508,7 @@ Items: {
 
 	MenuMusicBox: {
 		DisplayName: Музыкальная шкатулка (Заглавная тема Infernal Eclipse of Ragnarok)
-		Tooltip: Композитор: Peter Fung - 'Teardrops of Dragonfire'
+		Tooltip: Проигрывает «Teardrops of Dragonfire» за авторством Peter Fung 
 	}
 
 	Streetsign: {
@@ -1529,7 +1529,7 @@ Items: {
 		DynamicTooltip:
 			'''
 			{0}{1} увеличение всех характеристик
-			Мгновенно активирует ярость и накладывает дебафф «{$BuffName.PotionSickness}»
+			Мгновенно активирует ярость и накладывает дебафф [cbuff:PotionSickness]
 			'品尝我的怒火……和布丁！'
 			'''
 		VoidTooltip: Восполняет 100 ед. пустоты
@@ -1547,23 +1547,23 @@ Items: {
 	}
 
 	PhantomMask: {
-		DisplayName: Phantom Mask
+		DisplayName: Маска фантома
 		Tooltip: ""
 	}
 
 	PhantomSuitCoat: {
-		DisplayName: Phantom Suit Coat
+		DisplayName: Пиджак фантома
 		Tooltip: ""
 	}
 
 	PhantomSuitPants: {
-		DisplayName: Phantom Suit Pants
+		DisplayName: Штаны фантома
 		Tooltip: ""
 	}
 }
 
 Projectiles: {
-	GlitchSwordHoldout.DisplayName: Меч глитча
+	GlitchSwordHoldout.DisplayName: Меч глича
 	Rogue.NovaBombProj.DisplayName: Нова-бомба снаряд
 	StellarStar.DisplayName: Звёздная звезда
 	BossRushTier6Animation.DisplayName: Анимация 6-го ранга Босс-раша
@@ -1576,7 +1576,7 @@ Projectiles: {
 	TidalWaveWhirlpool.DisplayName: Водоворот приливных волн
 	FireAxeStealthPro.DisplayName: Скрытный снаряд огненного топора
 	GalaxyRainController.DisplayName: Галактический контроллер дождя
-	FriendlyBrimstoneGigablast.DisplayName: Дружелюбный серные мегавзрыв
+	FriendlyBrimstoneGigablast.DisplayName: Дружелюбный серный мегавзрыв
 	BeamChargeUp.DisplayName: Заряд луча
 	ChaosBlasterBeam.DisplayName: Луч бластера хаоса
 	HomingTerraBeam.DisplayName: Терра-луч
@@ -1585,7 +1585,7 @@ Projectiles: {
 	NovaBombBlackHoleProj.DisplayName: Чёрная дыра
 	NovaBombProj.DisplayName: Нова-бомба
 	FirstSwordHoldoutCombo.DisplayName: Меч первого
-	_13thGltichCombo.DisplayName: Комбо _13-го глитча
+	_13thGltichCombo.DisplayName: Комбо _13-го глича
 	CelestialBeam.DisplayName: Неземной луч
 	CelestialIlluminationStar.DisplayName: Неземная освящённая звезда
 	DemonicRune.DisplayName: Руна маленького демонического серого кота
@@ -1599,7 +1599,7 @@ Projectiles: {
 DiaryTooltip:
 	'''
 	[c/E3AF40:Таинственный дневник, оставленный без подписи...]
-	[c/BEBEBE:Удерживайте 'Левый Shift', чтобы открыть дневник]
+	[c/BEBEBE:Удерживайте Shift, чтобы открыть дневник]
 	'''
 BullyingTooltip:
 	'''
@@ -1608,7 +1608,7 @@ BullyingTooltip:
 	Хлысты теперь используют бонусы ближнего боя вместо бонусов призывателя
 	Увеличивает урон хлыстов на 10%
 	[c/E3AF40:Бумажная записка с микрочипом, созданная Диланом]
-	[c/BEBEBE:Удерживайте 'Левый Shift', чтобы прочитать надпись на обороте записки]
+	[c/BEBEBE:Удерживайте Shift, чтобы прочитать надпись на обороте записки]
 	'''
 
 Configs: {
@@ -1826,33 +1826,33 @@ Configs: {
 		}
 
 		AutomaticallyReforgeThoriumRogueItems: {
-			// Label: Automatically Reforge Thorium Rogue Items
-			/* Tooltip:
+			Label: Автоматическая перековка предметов разбойника из Thorium
+			Tooltip:
 				'''
-				Automatically adds the stat bonuses of the "Flawless" prefix onto all non-consumable Thorium Rogue Items. 
-				Can help Thorium items catch up to Calamity items with prefixes as Throium Rogue items can't be reforged.
-				Only works when Ragnarok or Unofficial Calamity Bard & Healer are enabled.
-				This setting does nothing if Merge Thrower Into Rogue is enabled.
-				''' */
+				Автоматически добавляет бонусы характеристик перековки «Безупречный» ко всем нерасходуемым предметам класса разбойника из Thorium. 
+				Помогает предметам из Thorium догнать по силе предметы из Calamity с перековками, так как вещи разбойника из Thorium нельзя перековать.
+				Работает только при включённом «Ragnarok» или «Unofficial Calamity Bard & Healer».
+				Эта настройка ничего не делает, если включено «Объединение метателя с разбойником».
+				'''
 		}
 
 		UseAprilFoolsMutant: {
-			// Label: Use April Fools Mutant
-			/* Tooltip:
+			Label: Использовать первоапрельского Мутанта
+			Tooltip:
 				'''
-				Converts the Mutant from Fargo's Souls to Yharim.
-				This setting doesn't do anything if Fargo's Souls isn't enabled.
-				''' */
+				Заменяет Мутанта из «Fargo's Souls» на Ярима.
+				Эта Настройка ничего не делает, если «Fargo's Souls» не включён.
+				'''
 		}
 
 		MergeThrowerIntoRogue: {
-			// Label: Merge Thrower Into Rogue
-			/* Tooltip:
+			Label: Объединить метателя с разбойником
+			Tooltip:
 				'''
-				Merges the Thrower & Rogue class into one refined class. 
-				Allows converted thrower weapons to still recieve thier orginal reforges.
-				Also keeps the stealth bar damage scaling intact.
-				''' */
+				Объединяет классы метателя и разбойника в единый класс. 
+				Позволяет конвертированному метательному оружию сохранять свои оригинальные перековки.
+				Также сохраняет без изменений множитель урона от шкалы скрытности.
+				'''
 		}
 	}
 
@@ -2115,7 +2115,7 @@ Buffs: {
 	}
 
 	LowGround: {
-		DisplayName: Низменность
+		DisplayName: Низина
 		Description: Ваше передвижение значительно ограничено!
 	}
 
@@ -2166,7 +2166,7 @@ Keybinds: {
 
 Events: {
 	//Sequential text at the end of Boss Rush Tier 5
-	BossRushTierFiveEndText_1: Мы достигли финала, Террарианец.
+	BossRushTierFiveEndText_1: Мы достигли финала, Террариец.
 	BossRushTierFiveEndText_2: Всё, что стоит между вами и окончанием этого испытания, - это те, кто есть и те, когда-то были богами этого мира.
 	BossRushTierFiveEndText_3: Покажи мне силу того, кому сейчас нечего терять. Не время колебаться.
 }
