@@ -39,8 +39,8 @@ Items: {
 		'''
 }
 
-/* ArmorSetBonus.IntergelacticRanged:
+ArmorSetBonus.IntergelacticRanged:
 	'''
-	Ranged weapons summon stars for 10% damage
-	You are immune to the Astral Blight and your attacks inflict it
-	''' */
+	Стрелковое оружие призывает звёзды, наносящие 10% урона
+	 Даёт невосприимчивость к дебаффу «{$Buffs.AstralBlight.DisplayName}», а ваши атаки накладывают его
+	'''
