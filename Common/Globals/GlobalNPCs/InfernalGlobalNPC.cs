@@ -121,7 +121,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.boss) //anything that is considered a boss will have a 1/100 chance to drop our dev painting directly
+            if (npc.boss && npc.type != NPCID.TorchGod) //anything that is considered a boss will have a 1/100 chance to drop our dev painting directly
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTwilight>(), ThankYouPainting.DropInt));
             }
