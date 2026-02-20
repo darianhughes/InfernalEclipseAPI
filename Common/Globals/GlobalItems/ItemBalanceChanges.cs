@@ -5029,7 +5029,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sots, "IlluminantAxe", item))
                 {
-                    item.damage = 30;
+                    item.damage = 26;
                 }
 
                 if (GetItem(sots, "ToothAche", item))
@@ -5144,6 +5144,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(sots, "VibrantPistol", item))
                 {
                     item.damage = 21;
+                }
+
+                if (GetItem(sots, "VibrantCannon", item))
+                {
+                    item.damage = 15;
+                    item.useTime = 70;
+                    item.useAnimation = 70;
                 }
 
                 if (GetItem(sots, "CryoCannon", item))
