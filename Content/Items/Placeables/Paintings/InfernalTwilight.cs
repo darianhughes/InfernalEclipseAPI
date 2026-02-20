@@ -121,6 +121,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             //Playtesters
             "Tencvin",
             "Jillyfish",
+            "Arkangel",
 
             //Donors
             "bryce27",
@@ -137,6 +138,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "rocket",
             "joshuwham",
             "KappaGrr",
+            "Lucy",
 
             //Helpers
             "fjiown",

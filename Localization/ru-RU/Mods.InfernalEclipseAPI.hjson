@@ -51,6 +51,7 @@ WelcomeMessage: {
 	RagnarokBalance: ВНИМАНИЕ: Для корректной работы балансировки оружия установите в конфиге мода «Ragnarok» параметр 'Общие настройки оружия' в значение 'Выключено'. В противном случае изменения будут накладываться, и оружие станет значительно сильнее задуманного.
 	RagnarokRework: ВНИМАНИЕ: Обнаружено, что у вас одновременно включены «Ragnarok» и «Thorium Helheim». Для получения задуманного опыта переключите все переключатели боссов в конфиге Ragnarok на Thorium Bosses Reworked.
 	GulaVaultMessage: Хранилище отказывается открываться. Сперва необходимо победить более сильное зло...
+	// MasterPatchNotice: NOTICE: It is detected that you have the Infernum Master Patch mod enabled. This mod is redunant with this mod and can be disabled.
 }
 
 TimeFreezePrevention: {
