@@ -225,6 +225,16 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                         target.AddBuff(buffType, 240, false);
                     }
                 }
+
+                if (projectile.type == (bardhealer.Find<ModProjectile>("InfestedCastanet")?.Type ?? -1) && ModLoader.TryGetMod("ThoriumMod", out Mod thorium3))
+                {
+                    // Apply Calamity debuff
+                    int buffType = thorium3.Find<ModBuff>("FungalGrowth")?.Type ?? 0;
+                    if (buffType > 0)
+                    {
+                        target.AddBuff(buffType, 180, false);
+                    }
+                }
             }
 
             if (ModLoader.TryGetMod("CatalystMod", out Mod catalysyt))

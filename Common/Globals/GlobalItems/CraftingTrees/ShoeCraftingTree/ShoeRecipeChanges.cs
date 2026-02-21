@@ -1,6 +1,7 @@
 ﻿using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Accessories.Wings;
 using CalamityMod.Items.Materials;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
 {
@@ -39,24 +40,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
             {
                 ModLoader.TryGetMod("FargowiltasCrossmod", out Mod fargoCrossmod);
                 return fargoCrossmod;
-            }
-        }
-
-        private Mod Ragnarok
-        {
-            get
-            {
-                ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
-                return ragnarok;
-            }
-        }
-
-        private Mod CalBardHealer
-        {
-            get
-            {
-                ModLoader.TryGetMod("CalamityBardHealer", out Mod calbh);
-                return calbh;
             }
         }
 
@@ -140,6 +123,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShoeCraftingTree
                         recipe.RemoveIngredient(ModContent.ItemType<AngelTreads>());
                         recipe.AddIngredient(ItemID.HellfireTreads);
                         recipe.AddIngredient<AshesofCalamity>(4);
+
+                        if (InfernalCrossmod.Clamity.Loaded)
+                        {
+                            recipe.AddIngredient(InfernalCrossmod.Clamity.Mod.Find<ModItem>("HuskOfCalamity"), 3);
+                        }
                     }
 
                     if (recipe.HasResult(sots.Find<ModItem>("SubspaceBoosters")))

@@ -4,11 +4,8 @@ using Terraria.GameContent;
 using Microsoft.Xna.Framework;
 using CalamityMod;
 using InfernalEclipseAPI.Core.DamageClasses;
-using Terraria;
-using ThoriumMod;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.Projectiles.Melee.Yoyos;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Core.Systems;
 
@@ -29,12 +26,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int batScytheType2 = -1;
         private static int boneBatonType = -1;
         private static int trueHallowedType = -1;
-        private static int windSlashType = -1;
+        //private static int windSlashType = -1;
         private static int crimsonType = -1;
         private static int iceType = -1;
         private static int darkType = -1;
         private static int whirlwindType = -1;
-        private static int marbleType = -1;
+        //private static int marbleType = -1;
         private static int terraType = -1;
 
         public override void SetStaticDefaults()
@@ -62,8 +59,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
                 {
-                    windSlashType = ragnarok.Find<ModProjectile>("WindSlashPro")?.Type ?? -1;
-                    marbleType = ragnarok.Find<ModProjectile>("MarbleScythePro")?.Type ?? -1;
+                    //windSlashType = ragnarok.Find<ModProjectile>("WindSlashPro")?.Type ?? -1;
+                    //marbleType = ragnarok.Find<ModProjectile>("MarbleScythePro")?.Type ?? -1;
                 }
 
                 if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal))
@@ -86,12 +83,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
             var t when t == titanScytheType => 2f,
             var t when t == trueHallowedType => 1.3f,
             var t when t == boneBatonType => 2f,
-            var t when t == windSlashType => 3f,
+            //var t when t == windSlashType => 3f,
             var t when t == crimsonType => 1.2f,
             var t when t == iceType => 1.2f,
             var t when t == darkType => 1.1f,
             var t when t == whirlwindType => 1.5f,
-            var t when t == marbleType => 1.75f,
+            //var t when t == marbleType => 1.75f,
             var t when t == terraType => 1.6f,
             _ => 1f,
         };
@@ -131,8 +128,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     moltenThresherType, batScytheType, batScytheType2,
                     fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
                     trueBloodHarvestType, theBlackScytheType, titanScytheType,
-                    boneBatonType, windSlashType, trueHallowedType,
-                    crimsonType, iceType, darkType, marbleType, terraType
+                    boneBatonType, trueHallowedType,
+                    crimsonType, iceType, darkType, terraType
                 };
 
             if (!Array.Exists(staticProjectiles, t => t == projectile.type))
@@ -143,6 +140,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             Rectangle sourceRectangle = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight);
             Vector2 origin = sourceRectangle.Size() / 2f;
             Vector2 drawPos = projectile.Center - Main.screenPosition;
+            /*
             SpriteEffects effects = projectile.type == windSlashType
                 ? SpriteEffects.None
                 : (Main.player[projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
@@ -156,6 +154,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             }
 
             Main.EntitySpriteDraw(texture, drawPos, sourceRectangle, drawColor, projectile.rotation, origin, projectile.scale, effects, 0);
+            */
 
             // Draw glowmask for known Thorium projectiles
             string glowPath = projectile.type switch
@@ -171,7 +170,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
 
-                Main.EntitySpriteDraw(glowTexture, drawPos, sourceRectangle, Color.White, projectile.rotation, origin, projectile.scale, effects, 0);
+                Main.EntitySpriteDraw(glowTexture, drawPos, sourceRectangle, Color.White, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0);
 
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
@@ -300,6 +299,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 }
             } 
 
+            /*
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
                 if (entity.type == ragnarok.Find<ModProjectile>("GelScythePro2").Type)
@@ -366,6 +366,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.penetrate = 6;
                 }
             }
+            */
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {

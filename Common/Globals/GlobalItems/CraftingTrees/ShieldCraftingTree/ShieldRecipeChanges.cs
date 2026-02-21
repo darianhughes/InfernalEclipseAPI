@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items.Accessories;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {
@@ -44,6 +45,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     if (recipe.HasResult<OrnateShield>())
                     {
                         recipe.AddIngredient(sots.Find<ModItem>("ShatterHeartShield"));
+                    }
+                }
+
+                if (clam != null)
+                {
+                    if (recipe.HasResult<AsgardsValor>())
+                    {
+                        recipe.AddIngredient(clam.Find<ModItem>("HuskOfCalamity"), 3);
                     }
                 }
 

@@ -1,4 +1,5 @@
-﻿using CalamityMod;
+﻿using System.Security.Policy;
+using CalamityMod;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
 using CalamityMod.Items.Placeables.Abyss;
@@ -44,13 +45,25 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                         recipe.AddIngredient<InfectedMothwingSpore>();
                 }
 
-                // Slime God
-                if (hasRagnarok)
+                // Skeletron's spawn item is locked behind Putrid Pinky, forcing the player to wait to refight him (unless they have other QoL)
+                if (recipe.HasResult(ModContent.ItemType<DungeonsCurse>()))
                 {
-                    if (recipe.HasResult<OverloadedSludge>() && recipe.HasIngredient(ragnarok.Find<ModItem>("EnchantedMarble")) && recipe.HasIngredient(ragnarok.Find<ModItem>("EmpoweredGranite")))
+                    if (hasSOTS)
+                        recipe.AddIngredient(sots.Find<ModItem>("CorrosiveGel"), 8);
+                }
+
+                // Slime God
+                if (recipe.HasResult<OverloadedSludge>())
+                {
+                    if (hasRagnarok && recipe.HasIngredient(ragnarok.Find<ModItem>("EnchantedMarble")) && recipe.HasIngredient(ragnarok.Find<ModItem>("EmpoweredGranite")))
                     {
                         recipe.ChangeIngredientStack(ragnarok.Find<ModItem>("EnchantedMarble").Type, 1);
                         recipe.ChangeIngredientStack(ragnarok.Find<ModItem>("EmpoweredGranite").Type, 1);
+                    }
+
+                    if (hasSOTS)
+                    {
+                        recipe.AddIngredient(sots.Find<ModItem>("CorrosiveGel"), 20);
                     }
                 }
 
@@ -72,6 +85,20 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                         recipe.AddIngredient(sots.Find<ModItem>("OtherworldlyAlloy"), 3);
                         recipe.AddIngredient(sots.Find<ModItem>("StarlightAlloy"), 3);
                         recipe.AddIngredient(sots.Find<ModItem>("HardlightAlloy"), 3);
+                    }
+                }
+
+                // Polaris
+                if (hasSOTS)
+                {
+                    if (recipe.HasResult(sots.Find<ModItem>("FrostedKey")))
+                    {
+                        recipe.AddIngredient<CryonicBar>(5);
+
+                        if (InfernalCrossmod.Clamity.Loaded)
+                        {
+                            recipe.AddIngredient<EssenceOfFlame>();
+                        }
                     }
                 }
 

@@ -12,14 +12,13 @@ Infernal Eclipse of Ragnarok is an ultra-modded Infernum Mode addon which curren
 	[*] Consolaria
 [/list]
 
-The only mods required for this API to run are Calamity Mod, Infernum Mode, Revengence+, Thrower Unification, Infernum Sanctuary WorldGen Adjuster, and any dependency included with those mods.
-
 This API currently adds the following:
 [list]
 	[*] Over 500+ Toggleable balance changes to many of the weapons and items from the included mods in the main pack to help the experience flow together better.
 	[*] Merged crafting trees for many accessories trees.
 	[*]	Cross-mod Infernum intros for any bosses that didn't already have one.
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
+	[*] A new difficulty: Ragnarok Mode.
 	[*] An slightly overhauled Boss Rush with support for every boss in the mod pack, as well as a custom "tier 6."
 	[*] New music for certain points of the game.
 	[*] World Generation changes to help prevent overlap between mods.
@@ -30,11 +29,9 @@ This API currently adds the following:
 It also includes some built-in systems such as:
 [list]
 	[*] A new rogue/thrower class merge system with custom stealth strikes for crossmod thrower weapons using [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535746309] Thrower Unification[/url].
-	[*] A new highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
-	[*] A difficulty toggle that allows Infernum Mode to be played in Master Mode worlds.
+	[*] A highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
 	[*] A system that allows you to lock the Calamity difficulty.
 	[*] A system that allows Astrageldon to be spawned even if Moon Lord has already been defeated.
-	[*] A system that allows Infernum Mode to be played in Master Mode and Legendary Mode worlds.
 [/list]
 
 In the future, this will be a content mod that has its own story, including each of the mods in the mod pack in the future, with a functional reworked boss progression using the QuestBookUI & tPackBuilder.

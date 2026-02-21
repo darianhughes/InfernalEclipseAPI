@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -3676,6 +3677,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.damage = 75;
                     }
+
+                    //Life and Death
+                    if (GetItem(thorium, "LifeAndDeath", item))
+                    {
+                        item.damage = 140;
+                    }
                     #endregion
 
                     #region Tools
@@ -4288,7 +4295,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 if (UnsafeGetItem(calBardHeal, "InfestedCastanet", item))
                 {
-                    item.damage = 21;
+                    item.damage = 22;
+                    item.useTime = 7;
+                    item.useAnimation = 7;
                 }
 
                 if (UnsafeGetItem(calBardHeal, "HyphaeBaton", item))
@@ -4749,6 +4758,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #endregion
 
             #region Ragnarok
+            /*
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
                 if (UnsafeGetItem(ragnarok, "GraspofVoid", item))
@@ -4941,6 +4951,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
                 #endregion
             }
+            */
             #endregion
 
             #region Secrets of the Shadows

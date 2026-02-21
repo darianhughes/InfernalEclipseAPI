@@ -235,13 +235,13 @@ namespace InfernalEclipseAPI.Core.Players
                     fifthScytheTypes.Add(proj.Type);
             }
 
-            ModLoader.TryGetMod("RagnarokMod", out Mod ragnarokMod);
+            //ModLoader.TryGetMod("RagnarokMod", out Mod ragnarokMod);
             ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod);
 
             // Ragnarok
             //TryAdd(ragnarokMod, "ScoriaDualscythePro");
             //TryAdd(ragnarokMod, "ProfanedScythePro");
-            TryAdd(ragnarokMod, "MarbleScythePro");
+            //TryAdd(ragnarokMod, "MarbleScythePro");
 
             // Thorium
             string[] thoriumProjs = {

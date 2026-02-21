@@ -73,6 +73,11 @@ namespace InfernalEclipseAPI.Core.Players
                 Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.OverhaulWarning"), 255, 0, 0);
             }
 
+            if (ModLoader.HasMod("Remnants"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RemnantsWarning"), 255, 255, 06);
+            }
+
             if (ModLoader.HasMod("CalamityMinus"))
             {
                 Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalMinus"), 255, 255, 06);
@@ -706,6 +711,34 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
+        public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
+            {
+                modifiers.FinalDamage *= 0.2f;
+            }
+        }
+
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if ((proj.type == ModContent.ProjectileType<CelestusProj>() || proj.type == ModContent.ProjectileType<CelestusMiniScythe>()) &&
+                (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()) &&
+                InfernalConfig.Instance.PreventBossCheese)
+            {
+                modifiers.FinalDamage *= 0.2f;
+            }
+
+            if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
+            {
+                modifiers.FinalDamage *= 0.8f;
+            }
+
+            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()))
+            {
+                modifiers.FinalDamage /= 2;
+            }
+        }
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Player.whoAmI != Main.myPlayer) return;
@@ -726,33 +759,6 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (tixThumbRing && proj.arrow && hit.Crit)
                 target.AddBuff(BuffID.ShadowFlame, 60, false);
-
-            //NPC DAMAGE RESISTANCE: KEEP AT END OF THIS METHOD
-
-            if ((proj.type == ModContent.ProjectileType<CelestusProj>() || proj.type == ModContent.ProjectileType<CelestusMiniScythe>()) &&
-                (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()) &&
-                InfernalConfig.Instance.PreventBossCheese)
-            {
-                hit.Damage -= (int)(hit.Damage * 0.2);
-            }
-
-            if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
-            {
-                hit.Damage -= (int)(hit.Damage * 0.8);
-            }
-
-            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()))
-            {
-                hit.Damage /= 2;
-            }
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
-            {
-                hit.Damage -= (int)(hit.Damage * 0.8);
-            }
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
