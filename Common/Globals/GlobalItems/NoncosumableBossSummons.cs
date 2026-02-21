@@ -126,46 +126,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     }
                 }
             }
-
-            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
-            {
-                int[] nightFallen =
-                {
-                GetItemID("NightfallenBreastplate", ragnarok),
-                GetItemID("NightfallenGreaves", ragnarok),
-                GetItemID("NightfallenHelmet", ragnarok)
-                };
-
-                //foreach (int itemID in nightFallen)
-                //{
-                //    foreach (TooltipLine tooltip in tooltips)
-                //    {
-                //        if (itemID == item.type && !tooltips[^1].Text.Contains("This item is unfinshed and may be inconsistent with other items"))
-                //        {
-                //            tooltips[^1].Text += "\nThis item is unfinshed and may be inconsistent with other items";
-                //        }
-                //    }
-                //}
-
-                foreach (int num in nightFallen)
-                {
-                    if ((num == item.type))
-                    {
-                        tooltips.Add(new TooltipLine(Mod, "NightFallenInfo", "This item is unfinshed and may be inconsistent with other items")
-                        {
-                            OverrideColor = Color.Red
-                        });
-                    }
-                }
-            }
-        }
-
-        private int GetItemID(string name, Mod mod)
-        {
-
-            if (mod.TryFind(name, out ModItem item))
-                return item.Type;
-            return 0;
         }
     }
 }

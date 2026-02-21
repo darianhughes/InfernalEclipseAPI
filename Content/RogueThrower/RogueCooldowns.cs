@@ -19,6 +19,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             var thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             var cdPlayer = player.GetModPlayer<RogueThrowerPlayer>();
 
+            /*
             if (thoriumPlayer.setWhiteDwarf && hit.Crit)
             {
                 if (cdPlayer.whiteDwarfCooldown > 0)
@@ -29,7 +30,6 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 {
                     int cooldown = 120; // Default cooldown
 
-                    /*
                     // Check if White Dwarf Thrusters accessory is equipped
                     if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
                         thorium.TryFind<ModItem>("WhiteDwarfThrusters", out var thrusterItem))
@@ -47,11 +47,12 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                             }
                         }
                     }
-                    */
 
                     cdPlayer.whiteDwarfCooldown = cooldown;
                 }
             }
+            */
+
             if (thoriumPlayer.accShinobiSigil)
             {
                 thoriumPlayer.accShinobiSigil = false;

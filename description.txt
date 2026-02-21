@@ -1,8 +1,7 @@
 Infernal Eclipse of Ragnarok
 An Ultramodded Infernum Add-on
 
-Check out the associated mod pack here:
-https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
+Check out the associated mod pack here: https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
 Infernal Eclipse of Ragnarok is a ultra modded Infernum Mode addon which currently includes major support for these content mods included in the associated mod pack:
 	- Calamity Mod & many of its addons
@@ -15,6 +14,7 @@ This API currently adds the following:
 	- Merged crafting trees for many accessories trees.
 	- Cross-mod Infernum intros for any bosses that didn't already have one.
 	- Boss stat adjustments for Infernum mode to keep the difficulty consistent.
+	- A new difficulty: Ragnarok Mode.
 	- An slightly overhauled Boss Rush with support for every boss in the mod pack, as well as a custom "tier 6."
 	- New music for certain points of the game.
 	- World Generation changes to help prevent overlap between mods.
@@ -23,17 +23,16 @@ This API currently adds the following:
 
 It also includes some built-in systems such as:
 	- A new rogue/thrower class merge system with custom stealth strikes for crossmod thrower weapons using Thrower Unification.
-	- A new highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
-	- A difficulty toggle that allows Infernum Mode to be played in Master Mode worlds.
+	- A highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
 	- A system that allows you to lock the Calamity difficulty.
 	- A system that allows Astrageldon to be spawned even if Moon Lord has already been defeated.
 
-In the future, this will be a content mod that has it's own story including each of the mods in the associated mod pack in the future, with a functional Quest Book & Boss progression using tPackBuilder & the tools provided by the Bereft Souls team.
+In the future, this will be a content mod that has it's own story including each of the mods in the associated mod pack in the future, with a functional Quest Book.
 
-The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as we am still testing and developing it.
+The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as we are still testing and developing it.
 
 If you have any other issues please report them in the discord (https://discord.gg/RXdTXbKY). 
 
-Very special thanks to the Bereft Souls & Community Souls Expansion teams, our donors, each of our contributors, and each of the individuals for each mod in the associated mod pack for making this possible!
+Very special thanks to the Calamity Mod, Fargo's Souls, Bereft Souls, & Community Souls Expansion teams, our donors, as well as each of the individuals for each mod in the mod pack for making this possible!
 
 Created by the Infernal Eclipse of Ragnarok Team

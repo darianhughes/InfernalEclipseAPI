@@ -28,8 +28,6 @@ using Terraria.Localization;
 using InfernalEclipseAPI.Content.Items.Consumables;
 using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
-using CalamityMod.Tiles.FurnitureStatigel;
-using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -406,6 +404,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     recipe.DecraftConditions.Add(Condition.Hardmode);
                 }
 
+                if (recipe.HasResult(ModContent.ItemType<VoidofExtinction>()))
+                {
+                    if (InfernalCrossmod.Clamity.Loaded)
+                    {
+                        recipe.AddIngredient(InfernalCrossmod.Clamity.Mod.Find<ModItem>("HuskOfCalamity"), 5);
+                    }
+                }
+
                 if (InfernalConfig.Instance.CalamityRecipeTweaks)
                 {
                     if (recipe.HasResult<VampiricTalisman>() & !recipe.HasIngredient(ItemID.AvengerEmblem) & !InfernalConfig.Instance.MergeCraftingTrees)
@@ -451,10 +457,10 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 }
                             }
                             recipe.AddIngredient<ThePointer>();
-                            recipe.AddIngredient<AscendantSpiritEssence>(3);
+                            recipe.AddIngredient<MiracleMatter>();
                             recipe.RemoveIngredient(ModContent.ItemType<PlasmaDriveCore>());
                             recipe.requiredTile.Clear();
-                            recipe.AddTile(ModContent.TileType<CosmicAnvil>());
+                            recipe.AddTile(ModContent.TileType<DraedonsForge>());
                         }
                     }
                 }
@@ -1023,6 +1029,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #region Ragnarok
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragCal))
                 {
+                    /*
                     ragCal.TryFind("JellySlicer", out ModItem gelSlicer);
 
                     if (recipe.HasResult(gelSlicer) && !ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
@@ -1030,6 +1037,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.RemoveTile(TileID.Anvils);
                         recipe.AddTile(ModContent.TileType<StaticRefiner>());
                     }
+                    */
 
                     ragCal.TryFind("ExecutionerMark05", out ModItem exMark5);
                     ragCal.TryFind("ElementalReaper", out ModItem elementalReaper);

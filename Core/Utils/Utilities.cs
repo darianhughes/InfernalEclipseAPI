@@ -24,6 +24,38 @@ namespace InfernalEclipseAPI.Core.Utils
             return (destination - entity.Center).SafeNormalize(Vector2.Zero);
         }
 
+        public static bool HasAccessoryEquipped<T>(Player player, bool includeVanity = false)
+            where T : ModItem
+        {
+            return HasAccessoryEquipped(player, ModContent.ItemType<T>(), includeVanity);
+        }
+
+        public static bool HasAccessoryEquipped(Player player, int accessoryType, bool includeVanity = false)
+        {
+            // Functional accessory slots
+            for (int i = 3; i < 10 + player.extraAccessorySlots; i++)
+            {
+                Item item = player.armor[i];
+
+                if (!item.IsAir && item.type == accessoryType && item.accessory)
+                    return true;
+            }
+
+            if (includeVanity)
+            {
+                // Vanity accessory slots (13–20 normally)
+                for (int i = 13; i < 20 + player.extraAccessorySlots; i++)
+                {
+                    Item item = player.armor[i];
+
+                    if (!item.IsAir && item.type == accessoryType && item.accessory)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
         #region Math Utilities
         public static int INonZeroSign(this float x) => x >= 0f ? 1 : -1;
 

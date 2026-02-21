@@ -9,16 +9,27 @@ using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
 using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Content.Items.Lore.Thorium;
-using CalamityMod.Items.TreasureBags;
-using CalamityMod.Items.Accessories;
-using CalamityMod;
-using CalamityMod.Items.Accessories.Wings;
 using InfernalEclipseAPI.Content.Items.Armor.Vanity;
+using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Utils;
+using Terraria.Localization;
+using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
     public class InfernalGlobalItem : GlobalItem
     {
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (InfernalCrossmod.FargosMutant.Loaded)
+            {
+                if (item.type == InfernalCrossmod.FargosMutant.Mod.Find<ModItem>("SuspiciousSkull").Type && !NPC.downedBoss3)
+                    return false;
+            }
+
+            return base.CanUseItem(item, player);
+        }
+
         public override bool? UseItem(Item item, Player player)
         {
             if (ModLoader.TryGetMod("YouBoss", out Mod you))
@@ -183,6 +194,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             }
 
             return base.OnPickup(item, player);
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (InfernalCrossmod.FargosMutant.Loaded)
+            {
+                if (item.type == InfernalCrossmod.FargosMutant.Mod.Find<ModItem>("SuspiciousSkull").Type && !NPC.downedBoss3)
+                    InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MutantSkeletron"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftingTree
 {
@@ -38,6 +39,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
 
                 if (Ragnarok != null && CalBardHealer != null)
                 {
+                    if (recipe.HasResult(Ragnarok.Find<ModItem>("SigilOfACruelWorld")))
+                    {
+                        if (InfernalCrossmod.Clamity.Loaded)
+                        {
+                            recipe.AddIngredient(InfernalCrossmod.Clamity.Mod.Find<ModItem>("HuskOfCalamity"), 5);
+                        }
+                    }
+
                     if (recipe.HasResult(Ragnarok.Find<ModItem>("UniversalHeadset")))
                     {
                         recipe.RemoveIngredient(ModContent.ItemType<AscendantSpiritEssence>());
