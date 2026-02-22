@@ -36,8 +36,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
             {
-                if (entity.type == ragnarok.Find<ModProjectile>("ProfanedScythePro").Type) return true;
-                if (entity.type == ragnarok.Find<ModProjectile>("ScoriaDualscythePro").Type) return true;
+                //if (entity.type == ragnarok.Find<ModProjectile>("ProfanedScythePro").Type) return true;
+                //if (entity.type == ragnarok.Find<ModProjectile>("ScoriaDualscythePro").Type) return true;
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calbardhealer))

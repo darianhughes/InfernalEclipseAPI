@@ -5,6 +5,7 @@ using System.Reflection;
 using Terraria.DataStructures;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
+using InfernalEclipseAPI.Content.Items.Materials;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -57,6 +58,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 180);
             if (hurtInfo.Damage > 400 && !BossRushEvent.BossRushActive)
                 hurtInfo.Damage = 400;
+        }
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if (npc.type != ModContent.NPCType<PyrogenBoss>())
+                return;
+
+            npcLoot.Add(Terraria.GameContent.ItemDropRules.ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), minimumDropped: 3, maximumDropped: 5));
         }
 
         private static bool IsWorldLegendary()

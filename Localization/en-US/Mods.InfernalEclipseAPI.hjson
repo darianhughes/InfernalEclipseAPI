@@ -42,6 +42,7 @@ WelcomeMessage: {
 	EventTrophyNotice: NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience.
 	SoulsWarning: WARNING: It is detected that you have the Fargo's Souls Mod enabled! Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.
 	OverhaulWarning: WARNING: It is detected that you have the Calamity Overhaul enabled! This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
+	RemnantsWarning: WARNING: It is detected that you have the Remnants mod enabled! This mod is NOT compatible with Infernum If this world was generated with the mod, please regenerate it with this mod off, or otherwise do not report bugs about world generation.
 	MasterPatchNotice: NOTICE: It is detected that you have the Infernum Master Patch mod enabled. This mod is redunant with this mod and can be disabled.
 	CalMinusNotice: NOTICE: It is detected that you have the Calamity Minus Mod enabled! This mod already includes all of the mods features while you have Calamaity Balance Changes on in the Infernal Eclipse of Raganrok config.
 	CalBalNotice: NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled! This mod already includes most of the mods features that are listed on their Steam Workshop page, while you have Calamaity Balance Changes on in the Infernal Eclipse of Ragnarok config. Calamity Balance Changes also adds a bunch of unlisted changes which might make your playthough worse than intended.
@@ -182,6 +183,7 @@ ItemTooltip: {
 		Increases void received from food by 25%
 		Receiving the same buff multiple times will increase buff duration instead of resetting it, up to double the original duration
 		'''
+	MutantSkeletron: "[IEoR] Item is unusable until Skeletron has been defeated at least once. Use the Infernum spawn item instead."
 	DedTo: - Dedicated to {0} -
 
 	Dedicated: {
@@ -1573,6 +1575,13 @@ Items: {
 	PhantomSuitPants: {
 		DisplayName: Phantom Suit Pants
 		Tooltip: ""
+	}
+
+	Materials: {
+		EssenceOfFlame: {
+			DisplayName: Essence Of Ignus
+			Tooltip: "'The essence of the Brimstone Furnace'"
+		}
 	}
 }
 

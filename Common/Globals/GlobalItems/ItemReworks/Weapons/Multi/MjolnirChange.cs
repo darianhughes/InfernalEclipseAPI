@@ -7,7 +7,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Mult
     //Provided by Wardrobe Hummus
     public class MjolnirChange : GlobalItem
     {
-        private const int MjolnirBaseDamage = 600;
+        private const int MjolnirBaseDamage = 1000;
 
         public override void UpdateInventory(Item item, Player player)
         {
@@ -15,7 +15,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Mult
             ModItem modItem;
             if (!ModLoader.TryGetMod("ThoriumMod", out mod) || !mod.TryFind("Mjolnir", out modItem) || item.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
-            item.damage = player.slotsMinions > 0.0 ? 200 : 600;
+            item.damage = player.slotsMinions > 0 ? MjolnirBaseDamage / 3 : MjolnirBaseDamage;
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

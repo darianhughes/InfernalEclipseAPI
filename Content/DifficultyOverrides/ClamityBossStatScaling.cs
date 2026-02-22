@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Security.Policy;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using InfernalEclipseAPI.Core.Systems;
@@ -36,6 +37,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             return ((ModType)npc.ModNPC)?.Mod.Name == "Clamity";
         }
 
+        public override void SetDefaults(NPC npc)
+        {
+            if (npc.type == ModContent.NPCType<ClamitasBoss>() && npc.defense == 9999)
+                npc.defense = 50;
+        }
+
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
             if (npc.boss && npc.type != ModContent.NPCType<PyrogenBoss>() && npc.type != ModContent.NPCType<PyrogenShield>())
@@ -43,6 +50,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 if (npc.type != ModContent.NPCType<ClamitasBoss>())
                 {
                     npc.lifeMax += npc.lifeMax;
+                }
+                else if (npc.type == ModContent.NPCType<ClamitasBoss>())
+                {
+                    npc.lifeMax -= (int)(npc.lifeMax * 0.66);
                 }
 
                 if (IsWorldLegendary())
@@ -81,6 +92,18 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 {
                     modifiers.SourceDamage *= 1.25f;
                 }
+            }
+        }
+
+        public override void AI(NPC npc)
+        {
+            if (npc.type == ModContent.NPCType<ClamitasBoss>())
+            {
+                if (npc.defense == 9999)
+                    npc.defense = 50;
+
+                if (npc.defense == 35)
+                    npc.defense = 25;
             }
         }
 

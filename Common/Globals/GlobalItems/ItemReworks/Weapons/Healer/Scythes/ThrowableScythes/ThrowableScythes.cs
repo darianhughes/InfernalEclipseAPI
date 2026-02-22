@@ -34,8 +34,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
             {
-                if (entity.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) return true;
-                if (entity.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) return true;
+                //if (entity.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) return true;
+                //if (entity.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) return true;
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calbardhealer))
@@ -80,8 +80,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
             {
-                if (item.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) ThrowDistance = 250f;
-                if (item.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) ThrowDistance = 75f;
+                //if (item.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) ThrowDistance = 250f;
+                //if (item.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) ThrowDistance = 75f;
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calbardhealer))
@@ -170,8 +170,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
             {
-                if (item.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) isThrowableScythe = true;
-                if (item.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) isThrowableScythe = true;
+                //if (item.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) isThrowableScythe = true;
+                //if (item.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) isThrowableScythe = true;
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calbardhealer))

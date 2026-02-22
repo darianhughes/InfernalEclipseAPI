@@ -7,7 +7,7 @@
         {
             ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
             ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHealer);
-
+            /*
             if (ragnarok != null && InfernalConfig.Instance.DisableUnfinisedContent)
             {
                 int[] nightFallen =
@@ -28,8 +28,9 @@
                     }
                 }
             }
+            */
 
-                if (ragnarok != null && calBardHealer != null)
+            if (ragnarok != null && calBardHealer != null)
             {
                 int[] ragnarokArmor =
                 {

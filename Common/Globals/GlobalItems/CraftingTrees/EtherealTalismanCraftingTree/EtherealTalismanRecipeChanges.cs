@@ -2,6 +2,7 @@
 using Terraria.Localization;
 using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using InfernalEclipseAPI.Core.Systems;
 
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCraftingTree
@@ -68,6 +69,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                 if (recipe.HasResult(ModContent.ItemType<SigilofCalamitas>()))
                 {
                     recipe.AddIngredient(thorium.Find<ModItem>("MurkyCatalyst"), 1);
+
+                    if (InfernalCrossmod.Clamity.Loaded)
+                    {
+                        recipe.AddIngredient(InfernalCrossmod.Clamity.Mod.Find<ModItem>("HuskOfCalamity"), 5);
+                    }
                 }
 
                 if (recipe.HasResult(ModContent.ItemType<EtherealTalisman>()) && recipe.HasIngredient(ItemID.LunarBar))
