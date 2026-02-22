@@ -123,16 +123,16 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
-            int[] staticProjectiles = new int[]
-                {
-                    moltenThresherType, batScytheType, batScytheType2,
-                    fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
-                    trueBloodHarvestType, theBlackScytheType, titanScytheType,
-                    boneBatonType, trueHallowedType,
-                    crimsonType, iceType, darkType, terraType
-                };
+            int[] customDrawProjectiles = new int[]
+            {
+                moltenThresherType, batScytheType, batScytheType2,
+                fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
+                trueBloodHarvestType, theBlackScytheType, titanScytheType,
+                boneBatonType, trueHallowedType,
+                crimsonType, iceType, darkType, terraType,
+            };
 
-            if (!Array.Exists(staticProjectiles, t => t == projectile.type))
+            if (!Array.Exists(customDrawProjectiles, t => t == projectile.type))
                 return true;
 
             Texture2D texture = TextureAssets.Projectile[projectile.type].Value;
@@ -140,23 +140,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
             Rectangle sourceRectangle = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight);
             Vector2 origin = sourceRectangle.Size() / 2f;
             Vector2 drawPos = projectile.Center - Main.screenPosition;
-            /*
-            SpriteEffects effects = projectile.type == windSlashType
-                ? SpriteEffects.None
-                : (Main.player[projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
 
-            Color drawColor = lightColor;
-            if (projectile.type == windSlashType)
-            {
-                int fadeDuration = 30;
-                if (projectile.timeLeft < fadeDuration)
-                    drawColor *= projectile.timeLeft / (float)fadeDuration;
-            }
 
-            Main.EntitySpriteDraw(texture, drawPos, sourceRectangle, drawColor, projectile.rotation, origin, projectile.scale, effects, 0);
-            */
+            SpriteEffects effects = Main.player[projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            // Draw glowmask for known Thorium projectiles
+            Main.EntitySpriteDraw(texture, drawPos, sourceRectangle, Color.White, projectile.rotation, origin, projectile.scale, effects, 0);
+
+
+            // Example glowmask
             string glowPath = projectile.type switch
             {
                 var t when t == moltenThresherType => "ThoriumMod/Projectiles/Scythe/MoltenThresherPro_Glowmask",
@@ -168,12 +159,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 Texture2D glowTexture = ModContent.Request<Texture2D>(glowPath).Value;
 
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState,
+                    DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
 
-                Main.EntitySpriteDraw(glowTexture, drawPos, sourceRectangle, Color.White, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(glowTexture, drawPos, sourceRectangle, Color.White, projectile.rotation, origin, projectile.scale, effects, 0);
 
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState,
+                    DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
             }
 
             return false;
@@ -470,6 +463,10 @@ namespace InfernalEclipseAPI.Common.Projectiles
             if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "ThoriumMod" && projectile.ModProjectile.Name == "TideDagger" && InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)
             {
                 projectile.damage /= 10;
+            }
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "ThoriumMod" && projectile.ModProjectile.Name == "InfernoLordsFocusPro" && InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)
+            {
+                projectile.damage /= 3;
             }
         }
 

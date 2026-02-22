@@ -1563,11 +1563,6 @@ Items: {
 		Tooltip: ""
 	}
 
-	EssenceOfFlame: {
-		DisplayName: Эссенция Игниса
-		Tooltip: Эссенция серной печи
-	}
-
 	Materials: {
 		EssenceOfFlame: {
 			DisplayName: Эссенция пламени

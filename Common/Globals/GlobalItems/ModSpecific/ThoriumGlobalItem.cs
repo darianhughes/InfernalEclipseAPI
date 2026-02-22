@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using CalamityMod;
 using CalamityMod.Items.Weapons.Melee;
 using InfernalEclipseAPI.Core.Systems;
@@ -429,6 +430,34 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MaskoftheCrystalEye.SOTS"));
                 else
                     InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MaskoftheCrystalEye.Thorium"));
+            }
+        }
+    }
+
+    public class InfernoLordsFocusAccDamageEdit : GlobalItem
+    {
+        public override bool AppliesToEntity(Item item, bool lateInstantiation)
+        {
+            return item.ModItem?.Mod.Name == "ThoriumMod"
+                && item.ModItem.Name == "InfernoLordsFocus";
+        }
+
+        public override void SetDefaults(Item entity)
+        {
+            if (entity.ModItem == null)
+                return;
+
+            object modItem = entity.ModItem;
+
+            // Look for field named "accDamage"
+            FieldInfo field = modItem.GetType().GetField(
+                "accDamage",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+            );
+
+            if (field != null)
+            {
+                field.SetValue(modItem, "5% basic damage");
             }
         }
     }

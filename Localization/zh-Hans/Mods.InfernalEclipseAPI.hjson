@@ -1577,15 +1577,10 @@ Items: {
 		Tooltip: ""
 	}
 
-	EssenceOfFlame: {
-		// DisplayName: Essence of Ignis
-		// Tooltip: The essence of the Brimstone Furnace
-	}
-
 	Materials: {
 		EssenceOfFlame: {
-			// DisplayName: Essence Of Flame
-			// Tooltip: ""
+			// DisplayName: Essence Of Ignus
+			// Tooltip: "'The essence of the Brimstone Furnace'"
 		}
 	}
 }
