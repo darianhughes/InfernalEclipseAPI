@@ -466,7 +466,13 @@ namespace InfernalEclipseAPI.Common.Projectiles
             }
             if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "ThoriumMod" && projectile.ModProjectile.Name == "InfernoLordsFocusPro" && InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)
             {
-                projectile.damage /= 3;
+                if (projectile.owner == Main.myPlayer && Main.LocalPlayer.ownedProjectileCounts[projectile.type] >= 7)
+                {
+                    projectile.damage = 0;
+                    projectile.active = false;
+                }
+                else
+                    projectile.damage /= 3;
             }
         }
 

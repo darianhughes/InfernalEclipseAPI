@@ -4502,6 +4502,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 #endregion
 
                 #region Bard
+                if (GetItem(calBardHeal, "BigBangCymbals", item))
+                {
+                    item.damage = 222;
+                }
+
                 #region Pre-Hardmode
                 //Wullfrum Megaphone
                 if (UnsafeGetItem(calBardHeal, "WulfrumMegaphone", item))
@@ -4602,12 +4607,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(calBardHeal, "ChristmasCarol", item))
                 {
-                    item.damage = 150;
+                    item.damage = 250;
                 }
 
                 if (GetItem(calBardHeal, "SpookyMonth", item))
                 {
-                    item.damage = 155;
+                    item.damage = 655;
+                    item.useTime = 4;
+                    item.useAnimation = 16;
                 }
 
                 if (GetItem(calBardHeal, "DoomsdayCatharsis", item))

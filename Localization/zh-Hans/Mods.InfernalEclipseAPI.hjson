@@ -1580,7 +1580,7 @@ Items: {
 	Materials: {
 		EssenceOfFlame: {
 			DisplayName: 炽炎精华
-			Tooltip: "“源自硫火熔炉的炽热精粹”" 
+			Tooltip: “源自硫火熔炉的炽热精粹”
 		}
 	}
 }
