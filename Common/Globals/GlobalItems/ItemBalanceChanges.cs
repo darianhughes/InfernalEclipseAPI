@@ -4607,7 +4607,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(calBardHeal, "ChristmasCarol", item))
                 {
-                    item.damage = 150;
+                    item.damage = 250;
                 }
 
                 if (GetItem(calBardHeal, "SpookyMonth", item))
