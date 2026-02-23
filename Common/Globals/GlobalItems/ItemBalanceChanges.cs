@@ -175,10 +175,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 ModLoader.TryGetMod("CalamityMod", out Mod cal);
 
                 #region Melee
+                /*
                 if (item.type == ModContent.ItemType<Auger>())
                 {
                     item.damage = 76;
                 }
+                /*
 
                 /*
                 if (GetItem(cal, "SubmarineShocker", item))
@@ -2097,7 +2099,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "OmniBow", item))
                     {
-                        item.damage = 220;
+                        item.damage = 140;
                     }
 
                     if (GetItem(thorium, "OmniCannon", item))
@@ -5101,8 +5103,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(sots, "CursedImpale", item))
                 {
                     item.shootSpeed = 8;
-                    item.useTime = 12;
-                    item.useAnimation = 12;
+                    item.useTime = 17;
+                    item.useAnimation = 17;
                 }
 
                 if (GetItem(sots, "JeweledGauntlet", item))
