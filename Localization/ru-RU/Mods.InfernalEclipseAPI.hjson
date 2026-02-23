@@ -1566,7 +1566,7 @@ Items: {
 	Materials: {
 		EssenceOfFlame: {
 			DisplayName: Эссенция пламени
-			Tooltip: ""
+			// Tooltip: "'The essence of the Brimstone Furnace'"
 		}
 	}
 }
