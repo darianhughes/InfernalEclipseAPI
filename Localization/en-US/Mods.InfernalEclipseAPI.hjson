@@ -449,6 +449,11 @@ ItemTooltip: {
 		RingofRestNerf: Inspiration regeneration has a 1 second cooldown
 
 		SpiritInsignia: {
+			Effect:
+				'''
+				Increases void gain by 1 and void regeneration speed by 25%
+				Doubles damage done to non-Lux spirit enemies
+				'''
 			OrigTooltip: Grants infinite wing and rocket boot flight
 			Replace: Increases wing flight time by 25%
 		}

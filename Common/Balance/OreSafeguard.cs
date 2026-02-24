@@ -1,4 +1,5 @@
-﻿using CalamityMod.Tiles.Ores;
+﻿using System.Security.Policy;
+using CalamityMod.Tiles.Ores;
 using InfernalEclipseAPI.Core.Systems;
 using Terraria;
 using Terraria.ObjectData;
@@ -135,6 +136,9 @@ namespace InfernalEclipseAPI.Common.Balance
 
         private static bool IsBelowStrangeKeystone(int x, int y)
         {
+            if (!InfernalCrossmod.SOTS.Loaded)
+                return false;
+
             int aboveY = y - 1;
             if (aboveY < 0 || x < 0 || x >= Main.maxTilesX || y < 0 || y >= Main.maxTilesY)
                 return false;

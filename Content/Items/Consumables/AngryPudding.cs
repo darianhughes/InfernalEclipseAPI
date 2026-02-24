@@ -3,7 +3,6 @@ using CalamityMod;
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
-using Daybreak.Common.Features.Hooks;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
