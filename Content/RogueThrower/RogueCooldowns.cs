@@ -19,6 +19,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             var thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             var cdPlayer = player.GetModPlayer<RogueThrowerPlayer>();
 
+            /*
             if (thoriumPlayer.setWhiteDwarf && hit.Crit)
             {
                 if (cdPlayer.whiteDwarfCooldown > 0)
@@ -50,6 +51,8 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                     cdPlayer.whiteDwarfCooldown = cooldown;
                 }
             }
+            */
+
             if (thoriumPlayer.accShinobiSigil)
             {
                 thoriumPlayer.accShinobiSigil = false;

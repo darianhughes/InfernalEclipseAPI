@@ -11,6 +11,8 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Players;
+using CalamityMod;
+using Microsoft.Xna.Framework.Input;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
 {
@@ -21,6 +23,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
         {
             // Register vertical animation: 10 frames, 5 ticks per frame (adjust as desired)
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 10));
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -122,10 +125,18 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
 
             //tooltips.Add(new TooltipLine(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.Lore")) { OverrideColor = Color.MediumPurple });
 
-            tooltips.Add(new TooltipLine(Mod, "DedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor"))
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
             {
-                OverrideColor = new Microsoft.Xna.Framework.Color(50, 205, 50)
-            });
+                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.cheese"))}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor")}");
+                line5.OverrideColor = new(50, 205, 50);
+                tooltips.Add(line5);
+            }
+            else
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor"));
+                line5.OverrideColor = new(50, 205, 50);
+                tooltips.Add(line5);
+            }
         }
 
         public override void AddRecipes()

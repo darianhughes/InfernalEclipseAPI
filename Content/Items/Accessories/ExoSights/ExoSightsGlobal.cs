@@ -30,7 +30,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
            {
                 int index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
                 if (index != -1)
-                    tooltips.Insert(index, new TooltipLine(Mod, "AccessoryDamage", $"15% {Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.BasicDamage")}"));
+                    tooltips.Insert(index, new TooltipLine(Mod, "AccessoryDamage", $"5% {Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.BasicDamage")}"));
            }
         }
     }

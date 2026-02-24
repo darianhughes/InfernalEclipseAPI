@@ -22,7 +22,7 @@
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)
         {
             if (damageClass == Ranged || damageClass == Generic) return StatInheritanceData.Full;
-            else return new StatInheritanceData(0.25f, 0.25f, 0.25f, 0.25f, 0.25f);
+            else return new StatInheritanceData(0.5f, 0.5f, 0.5f, 0.5f, 0.5f);
         }
 
         public override bool GetEffectInheritance(DamageClass damageClass)

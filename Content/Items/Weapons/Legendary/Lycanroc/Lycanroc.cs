@@ -10,6 +10,7 @@ using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernumMode;
 using InfernumMode.Content.Rarities.InfernumRarities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
@@ -108,7 +109,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc
             if (NPC.downedAncientCultist)
             {
                 int superCrit = Main.rand.Next(1, 20);
-                if (superCrit == 20 || (NPC.downedMoonlord && superCrit >= 15))
+                if (superCrit == 20 || NPC.downedMoonlord && superCrit >= 15)
                 {
                     cgp.supercritHits = -1;
                 }
@@ -173,6 +174,15 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc
             TooltipLine line = new(Mod, "Progression", GetProgressionTooltip());
             line.OverrideColor = lerpedColor;
             tooltips.Add(line);
+
+            Color color = CalamityUtils.ColorSwap(Color.OrangeRed, Color.DarkRed, 2f);
+
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Yob"))}");
+                line5.OverrideColor = color;
+                tooltips.Add(line5);
+            }
         }
 
         private string GetProgressionTooltip()

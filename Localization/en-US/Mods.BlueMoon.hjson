@@ -1,0 +1,49 @@
+Items: {
+	EmeraldRing: {
+		DisplayName: Ring of the Mint Moon
+		Tooltip:
+			'''
+			Gives the Minty Freshness Buff
+			Increasing damage and movement speed by 7%
+			'''
+	}
+
+	AmethystRing: {
+		DisplayName: Ring of the Cherry Moon
+		Tooltip:
+			'''
+			Gives the Floral Blessing Buff
+			Granting +2HP/s life regeneration
+			'''
+	}
+
+	SapphireRing: {
+		DisplayName: Ring of the Blue Moon
+		Tooltip:
+			'''
+			Gives the Lunar Empowerment Buff
+			Increasing the luck of the wearer, moreso in hardmode
+			'''
+	}
+
+	TopazRing: {
+		DisplayName: Ring of the Harvest Moon
+		Tooltip:
+			'''
+			Gives the Bountiful Harvest Buff
+			Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode
+			'''
+	}
+
+	MoonsRing: {
+		DisplayName: Ring of the Enchanted Moons
+		Tooltip:
+			'''
+			You are blessed by the power of all enchanted moons
+			Increasing damage and movement speed by 7%
+			Granting +2HP/s life regeneration
+			Increasing the luck of the wearer, moreso in hardmode
+			Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode
+			'''
+	}
+}

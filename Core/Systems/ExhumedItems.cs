@@ -1,5 +1,6 @@
 using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
 using InfernalEclipseAPI.Content.Items.SpawnItems;
+using InfernalEclipseAPI.Content.Items.Weapons.Donor;
 
 namespace InfernalEclipseAPI.Core.Systems;
 
@@ -11,6 +12,7 @@ public class ExhumedItems : ModSystem
         {
             calamity.Call(["MakeItemExhumable", ModContent.ItemType<LoreProvi>(), ModContent.ItemType<MysteriousDiary>()]);
             calamity.Call(["MakeItemExhumable", ModContent.ItemType<EmptyDemonicTome>(), ModContent.ItemType<DemonicTome>()]);
+            calamity.Call(["MakeItemExhumable", ItemID.Sign, ModContent.ItemType<Streetsign>()]);
         }
     }
 }

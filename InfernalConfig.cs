@@ -3,7 +3,7 @@ using Terraria.ModLoader.Config;
 
 namespace InfernalEclipseAPI
 {
-    internal class InfernalConfig : ModConfig
+    public class InfernalConfig : ModConfig
     {
         public static InfernalConfig Instance;
 
@@ -13,9 +13,6 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         [ReloadRequired]
         public bool AutomatedConfigSetup { get; set; }
-
-        [DefaultValue(false)]
-        public bool InfernumModeForced { get; set; }
 
         [DefaultValue(true)]
         public bool DisplayWorldEntryMessages { get; set; }
@@ -123,6 +120,9 @@ namespace InfernalEclipseAPI
 
         #region Multiplayer Adjustments
         [Header("MultiplayerAdjustments")]
+        [DefaultValue(false)]
+        public bool InfernumModeForced { get; set; }
+
         [DefaultValue(60)]
         public int MultiplayerBossRespawnTimer {  get; set; }
 
@@ -167,13 +167,8 @@ namespace InfernalEclipseAPI
         Master,
         Legendary,
         Revengence,
-        MasterRevengence,
-        LegendaryRevengence,
         Death,
-        MasterDeath,
-        LegendaryDeath,
         Infernum,
-        MasterInfernum,
-        LegendaryInfernum,
+        Ragnarok,
     }
 }

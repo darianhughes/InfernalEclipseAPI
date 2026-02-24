@@ -3,7 +3,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.OcramOverridess
 {
     public class OcramBehavior : GlobalNPC
     {
-        public static Mod console;
+        private static Mod console;
+        private static bool bloodmoonStartedByOcram = false;
         public static bool ConsolariaActive
         {
             get
@@ -25,6 +26,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.OcramOverridess
                 if (!Main.bloodMoon)
                 {
                     Main.bloodMoon = true;
+                    bloodmoonStartedByOcram = true;
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendData(MessageID.WorldData); // sync the blood moon
                 }
@@ -52,7 +54,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.OcramOverridess
 
         private static void DisableBloodMoon()
         {
-            if (Main.bloodMoon)
+            if (Main.bloodMoon && bloodmoonStartedByOcram)
             {
                 Main.bloodMoon = false;
 

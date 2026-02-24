@@ -1,0 +1,46 @@
+Items: {
+	CoralCrusher.Tooltip:
+		'''
+		4% summon tag damage
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		Hitting an enemy with the tip embeds a coral shard
+		Minion attacks can shatter the coral shard, stopping their movement and triggering 6% summon tag damage 
+		'''
+	ResonantStriker.Tooltip:
+		'''
+		8% summon tag damage
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		Releases homing orbs of electricity on hit
+		Your minions stun non-boss enemies on hit
+		'''
+	BlossomsBlessing.Tooltip:
+		'''
+		12% summon tag damage
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		Carries blossoms upon the wind
+		Touch the largest petal to receive a blessing to regeneration, damage, and thorns.
+		'It blooms, it blooms, it withers and droops.'
+		'''
+	UnrelentingTorment.Tooltip:
+		'''
+		10% summon tag damage
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		Releases a cascade of otherworldly claws to tear at foes
+		'''
+	Catharsis.Tooltip:
+		'''
+		12% summon tag damage
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		Swinging the whip costs health
+		Hitting enemies stores a blood charge. Up to 20 charges may be stored
+		Right Clicking activates the charges, temporarily empowering Catharsis and restoring the health lost
+		[c/c61b40:The purifying light, forsaken and consumed by pain,]
+		[c/c61b40:Returned to this realm as obliterating shadow.]
+		'''
+}
+
+ArmorSetBonus.IntergelacticRanged:
+	'''
+	Ranged weapons summon stars for 10% damage
+	You are immune to the Astral Blight and your attacks inflict it
+	'''

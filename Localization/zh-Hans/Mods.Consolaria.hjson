@@ -1,0 +1,11 @@
+Items: {
+	OstaraHat: {
+		DisplayName: 奥丝塔拉之帽
+		Tooltip: 提升7%移动速度
+		SetBonus:
+			'''
+			允许自动跳跃并免疫摔落伤害
+			跳跃时会向外发射5把穿透飞刀
+			'''
+	}
+}

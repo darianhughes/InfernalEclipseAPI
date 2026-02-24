@@ -1,9 +1,20 @@
 ﻿using CalamityMod.Items;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Content.Items.Materials
 {
     public class InfectedMothwingSpore : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return InfernalCrossmod.SOTS.Loaded;
+        }
+
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 42;

@@ -1,0 +1,403 @@
+﻿using CalamityMod;
+using InfernalEclipseAPI.Core.Systems;
+using SOTS;
+using SOTS.Items.AbandonedVillage;
+using SOTS.Items.ChestItems;
+using SOTS.Items.Earth;
+using SOTS.Items.Tide;
+using SOTS.Items.Permafrost;
+using SOTS.Items.Chaos;
+using SOTS.Items.Celestial;
+using static Terraria.ModLoader.ModContent;
+using SOTS.Items.Planetarium.FromChests;
+using InfernalEclipseAPI.Core.Utils;
+using System.Collections.Generic;
+using Terraria.Localization;
+using SOTS.Buffs.MinionBuffs;
+using SOTS.FakePlayer;
+using Terraria;
+using SOTS.Items.CritBonus;
+using SOTS.Items.Earth.Glowmoth;
+using SOTS.Items.Pyramid;
+using SOTS.Items;
+using Terraria.ModLoader;
+using InfernalEclipseAPI.Core.Players;
+using Microsoft.Xna.Framework;
+using System.Security.Policy;
+using System.Text;
+using Terraria.DataStructures;
+using SOTS.Items.Slime;
+using System.Linq;
+using CalamityMod.Items;
+
+
+
+namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
+{
+    [JITWhenModsEnabled("SOTS")]
+    [ExtendsFromMod("SOTS")]
+    public class SOTSGlobalItem : GlobalItem
+    {
+        public override void UpdateAccessory(Item item, Player player, bool hidevisual)
+        {
+            InfernalPlayer modPlayer = player.GetModPlayer<InfernalPlayer>();
+            SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(player);
+
+            if (InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (item.type == ModContent.ItemType<HarvestersScythe>())
+                {
+                    sotsPlayer.CritBonusMultiplier -= 0.15f;
+                }
+
+                if (item.type == ModContent.ItemType<RockCandy>())
+                {
+                    sotsPlayer.bonusPickaxePower -= 1;
+                }
+
+                if (item.type == ItemType<EarthDrive>())
+                {
+                    sotsPlayer.Earthdrive = false;
+                    modPlayer.Earthdrive = true;
+                }
+
+                if (item.type == ModContent.ItemType<HydrokineticAntennae>())
+                {
+                    sotsPlayer.StatShareMeleeAndSummon = false;
+                    player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
+                }
+
+                if (item.type == ModContent.ItemType<SubspaceLocket>())
+                {
+                    ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
+                    local *= 0.675f;
+                    player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
+                }
+
+                if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.MergeCraftingTrees)
+                {
+                    if (item.type == InfernalCrossmod.Thorium.Mod.Find<ModItem>("MaskoftheCrystalEye").Type)
+                    {
+                        sotsPlayer.CritBonusDamage += 15;
+                    }
+                }
+
+                if (item.type == ModContent.ItemType<EyeOfChaos>())
+                {
+                    player.GetCritChance(DamageClass.Generic) -= 18f;
+                    modPlayer.eyeOfChaos = true;
+
+                    if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.MergeCraftingTrees)
+                        sotsPlayer.CritBonusDamage += 15;
+                }
+
+                if (item.type == ModContent.ItemType<SnakeEyes>())
+                {
+                    player.GetCritChance(DamageClass.Generic) -= 7f;
+                    modPlayer.snakeEyes = true;
+                }
+
+                if (item.type == ModContent.ItemType<ChaosBadge>())
+                {
+                    player.GetCritChance(DamageClass.Generic) -= 9f;
+                    modPlayer.chaosBadge = true;
+                }
+
+                if (item.type == ModContent.ItemType<FocusReticle>())
+                {
+                    player.GetCritChance(DamageClass.Generic) -= 20f;
+                    modPlayer.focusReticle = true;
+                }
+
+                if (item.type == ModContent.ItemType<Starbelt>())
+                {
+                    player.GetCritChance(DamageClass.Magic) -= 5f;
+                }
+
+                if (item.type == ModContent.ItemType<GlowSpores>())
+                {
+                    player.GetCritChance(DamageClass.Magic) -= 3f;
+                }
+
+                if (item.type == ModContent.ItemType<SpiritGlove>())
+                {
+                    player.GetCritChance(DamageClass.Melee) -= 4f;
+                }
+
+                if (item.type == ModContent.ItemType<SwallowedPenny>())
+                {
+                    player.GetCritChance(DamageClass.Generic) -= 2f;
+                }
+
+                if (item.type == ItemType<SyntheticLiver>())
+                {
+                    sotsPlayer.DrainDebuffs = false;
+                }
+
+                if (InfernalCrossmod.SOTSBardHealer.Loaded)
+                {
+                    Mod sBH = InfernalCrossmod.SOTSBardHealer.Mod;
+                    int FindItem(string name) => sBH.Find<ModItem>(name).Type;
+
+                    if (item.type == FindItem("SerpentsTongue"))
+                    {
+                        SOTSPlayer.ModPlayer(player).CritBonusMultiplier -= 0.1f;
+                    }
+                }
+            }
+        }
+
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ItemType<GelWings>())
+            {
+                item.rare = ItemRarityID.LightRed;
+                item.value = CalamityGlobalItem.RarityLightRedBuyPrice;
+            }
+
+            if (InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (item.type == ItemType<FrostArtifactHelmet>())
+                {
+                    item.defense = 13;
+                }
+
+                if (item.type == ItemType<FrostArtifactChestplate>())
+                {
+                    item.defense = 21;
+                }
+
+                if (item.type == ItemType<FrostArtifactTrousers>())
+                {
+                    item.defense = 13;
+                }
+
+
+                if (item.type == ItemType<TwilightAssassinsCirclet>())
+                {
+                    item.defense = 7;
+                }
+
+                if (item.type == ItemType<TwilightAssassinsChestplate>())
+                {
+                    item.defense = 9;
+                }
+
+                if (item.type == ItemType<TwilightAssassinsLeggings>())
+                {
+                    item.defense = 8;
+                }
+
+
+                if (item.type == ItemType<ElementalHelmet>())
+                {
+                    item.defense = 13;
+                }
+
+                if (item.type == ItemType<ElementalBreastplate>())
+                {
+                    item.defense = 19;
+                }
+
+                if (item.type == ItemType<ElementalLeggings>())
+                {
+                    item.defense = 13;
+                }
+
+
+                if (item.type == ItemType<VoidspaceMask>())
+                {
+                    item.defense = 9;
+                }
+
+                if (item.type == ItemType<VoidspaceBreastplate>())
+                {
+                    item.defense = 16;
+                }
+
+                if (item.type == ItemType<VoidspaceLeggings>())
+                {
+                    item.defense = 13;
+                }
+            }
+        }
+
+        public override void UpdateEquip(Item item, Player player)
+        {
+            if (InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (item.type == ItemType<FrostArtifactHelmet>())
+                {
+                    player.GetDamage(DamageClass.Melee) -= 0.05f;
+                    player.GetDamage(DamageClass.Ranged) -= 0.05f;
+                }
+
+                if (item.type == ItemType<FrostArtifactChestplate>())
+                {
+                    player.GetCritChance(DamageClass.Melee) -= 5f;
+                    player.GetCritChance(DamageClass.Ranged) -= 5f;
+                }
+
+
+                if (item.type == ItemType<TwilightAssassinsCirclet>())
+                {
+                    player.maxMinions -= 1;
+                }
+
+
+                if (item.type == ItemType<ElementalBreastplate>())
+                {
+                    player.GetDamage(DamageClass.Melee) -= 0.2f;
+                    player.GetDamage(DamageClass.Summon) -= 0.2f;
+                }
+            }
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                Color InfernalRed = Color.Lerp(
+                  Color.White,
+                  new Color(255, 80, 0), // Infernal red/orange
+                  (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+                );
+
+                if (item.type == ModContent.ItemType<SubspaceLocket>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SubspaceLocket"));
+                }
+
+                if (item.type == ModContent.ItemType<EyeOfChaos>())
+                {
+                    if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.MergeCraftingTrees)
+                        InfernalUtilities.FullTooltipOveride(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.EyeOfChaos")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.EyeOfChaosThorium")}");
+                    else
+                        InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.EyeOfChaos"));
+                }
+
+                if (item.type == ModContent.ItemType<SnakeEyes>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SnakeEyes"));
+                }
+
+                if (item.type == ModContent.ItemType<ChaosBadge>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ChaosBadge"));
+                }
+
+                if (item.type == ModContent.ItemType<FocusReticle>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FocusReticle"));
+                }
+
+                if (item.type == ModContent.ItemType<Starbelt>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Starbelt"));
+                }
+
+                if (item.type == ModContent.ItemType<GlowSpores>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GlowSpores"));
+                }
+
+                if (item.type == ModContent.ItemType<SpiritGlove>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SpiritGlove"));
+                }
+
+                if (item.type == ModContent.ItemType<SwallowedPenny>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SwallowedPenny"));
+                }
+
+                if (item.type == ItemType<EarthDrive>())
+                {
+                    InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.EarthDrive"), InfernalRed);
+                }
+
+                if (item.type == ItemType<SyntheticLiver>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SyntheticLiver"));
+                }
+
+                if (item.type == ItemType<GelWings>())
+                {
+                    if (item.wingSlot == -1) return;
+                    WingStats stats = ArmorIDs.Wing.Sets.Stats[item.wingSlot];
+                    int time = stats.FlyTime;
+                    float run = stats.AccRunSpeedOverride;
+                    float rAcc = stats.AccRunAccelerationMult * 0.08f;
+                    bool hover = stats.HasDownHoverStats;
+                    float hSpeed = stats.DownHoverSpeedOverride;
+                    float hAcc = stats.DownHoverAccelerationMult * 0.08f;
+                    float baseJumpSpeed = (CalamityServerConfig.Instance.FasterJumpSpeed ? 5.71f : 5.01f) + 1f;
+                    StringBuilder sb = new StringBuilder(512);
+                    sb.Append('\n');
+                    sb.Append(CalamityUtils.GetText($"Common.WingStats").Format(time.FramesToSeconds(), run.ToMph(), (1.35f * baseJumpSpeed).ToMph()));
+                    sb.Append('\n');
+                    if (Main.keyState.PressingShift())
+                    {
+                        sb.Append(CalamityUtils.GetText($"Common.WingStatsAcceleration").Format(rAcc.ToMphps(), 0.195f.ToMphps(),
+                        (0.1f + 0.15f).ToMphps(), (1 * baseJumpSpeed).ToMph(),
+                        (0.195f + 0.85f).ToMphps()));
+                        if (hover)
+                        {
+                            sb.Append('\n');
+                            sb.Append(CalamityUtils.GetText($"Common.WingStatsHover").Format(hSpeed.ToMph(), hAcc.ToMphps()));
+                        }
+                    }
+                    else
+                        sb.Append($"[c/B8B8B8:{CalamityUtils.GetTextValue("UI.HoldShiftTooltipExtensionIndicator")}]");
+
+                    // Add stats below the common "Allows flight" line
+                    var wingTooltip = tooltips.FirstOrDefault(x => x.Name == "Tooltip0" && x.Mod == "Terraria");
+                    if (wingTooltip != null)
+                        wingTooltip.Text += sb.ToString();
+                }
+            }
+        }
+    }
+
+    [JITWhenModsEnabled("SOTS")]
+    [ExtendsFromMod("SOTS")]
+    public class SOTSModPlayer : ModPlayer
+    {
+        public override void PostUpdateEquips()
+        {
+            if (!InfernalConfig.Instance.SOTSBalanceChanges)
+                return;
+
+            Item head = Player.armor[0];
+            Item body = Player.armor[1];
+            Item legs = Player.armor[2];
+
+            bool wearingEarthen =
+                head.type == ModContent.ItemType<EarthenHelmet>() &&
+                body.type == ModContent.ItemType<EarthenChestplate>() &&
+                legs.type == ModContent.ItemType<EarthenLeggings>();
+
+            if (wearingEarthen)
+            {
+                Player.GetAttackSpeed(DamageClass.Generic) -= 0.10f;
+            }
+        }
+
+        public override void PostUpdate()
+        {
+            if (FakeModPlayer.ModPlayer(Player).servantActive == true)
+            {
+                Player.Calamity().rogueStealthMax = 0;
+                Player.Calamity().wearingRogueArmor = false;
+            }
+
+            if (Player.HasBuff<TesseractBuff>())
+            {
+                Player.Calamity().rogueStealthMax = 0;
+                Player.Calamity().wearingRogueArmor = false;
+                Player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
+            }
+        }
+    }
+
+}

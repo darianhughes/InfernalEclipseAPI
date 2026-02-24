@@ -21,7 +21,7 @@
 
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)
         {
-            return damageClass == Ranged || damageClass == Generic ? StatInheritanceData.Full : new StatInheritanceData(0.5f, 0.5f, 0.5f, 0.5f, 0.5f);
+            return damageClass == Ranged || damageClass == Generic ? StatInheritanceData.Full : new StatInheritanceData(0.75f, 0.75f, 0.75f, 0.75f, 0.75f);
         }
 
         public override bool GetEffectInheritance(DamageClass damageClass)

@@ -1,0 +1,77 @@
+[h1]Infernal Eclipse of Ragnarok[/h1]
+[h3] Ультра-модифицированный аддон для Infernum Mode[/h3]
+
+[b]Ознакомьтесь с соответствующим модпаком здесь:[/b]
+https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
+
+«Infernal Eclipse of Ragnarok» — это ультра-модифицированный аддон для режима сложности Инфернум, который в настоящее время включает в себя расширенную поддержку следующих модов из ассоциированного модпака:
+[list]
+	[*] Calamity Mod (разумеется)
+	[*] Thorium Mod
+	[*] Secrets of the Shadows
+	[*] Consolaria
+[/list]
+
+В данный момент этот API добавляет следующее:
+[list]
+	[*] Более 500 настраиваемых изменений баланса для множества оружия и предметов из включённых модов, чтобы улучшить целостность игрового опыта.
+	[*] Объединённые древа крафтов для многих аксессуаров.
+	[*] Кросс-модовые интро Инфернума для тех боссов, у которых их ещё не было.
+	[*] Корректировка характеристик боссов под режим Инфернум для поддержания постоянной сложности.
+	[*] Новая сложность: Рагнарёк.
+	[*] Поддержка босс-раша для всех включённых боссов, а также индивидуальный «6 ранг».
+	[*] Новая музыка для определённых этапов игры.
+	[*] Изменения в генерации мира для предотвращения конфликтов между модами.
+	[*] Исправления ошибок для улучшения совместимости режима Инфернум с мультиплеером.
+	[*] Незначительные кросс-модовые улучшения для модов вне основного модпака.
+[/list]
+
+Также он включает в себя некоторые встроенные системы:
+[list]
+	[*] Новую систему объединения классов разбойника/метателя с уникальными скрытными атаками для кросс-модового метательного оружия с использованием [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535746309] Thrower Unification[/url].
+	[*] настраиваемая система возрождения для нескольких игроков, которая позволяет задать количество возрождений для каждого игрока во время битвы с боссом (по умолчанию в режиме Инфернум у каждого игрока одно возрождение).
+	[*] Систему, позволяющую зафиксировать выбранную сложность Calamity.
+	[*] Систему, позволяющую призвать Астрагельдона, даже если Лунный лорд уже побеждён.
+[/list]
+
+В будущем это станет контент-модом с собственной историей, включающей каждый из модов в модпаке, с полностью переработанной прогрессией боссов с использованием QuestBookUI и tPackBuilder.
+
+Модпак создавался с учётом совместимости с мультиплеером, но мы пока не можем гарантировать его полную работоспособность, так как всё ещё тестируем и разрабатываем его.
+
+Если у вас возникли проблемы, пожалуйста, сообщите о них на нашем [url=https://discord.gg/ieor] дискорд сервере[/url].
+
+Вы также можете ознакомиться с официальной вики по нашему моду: https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok
+
+Если вы хотите поддержать команду разработчиков, посетите нашу страницу на Patreon: https://www.patreon.com/c/InfernalEclipseofRagnarokTeam
+
+Ознакомьтесь с некоторыми другими нашими официальными DLC и модами совместимости:
+[list]
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010] Infernal Eclipse of Ragnarok: Weapons DLC[/url] — официальное DLC, добавляющее новое оружие.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnarok] Homeward Ragnarok[/url] — официальное DLC, добавляющее поддержку мода Homeward Journey.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url] — мод балансировки для Calamity и Thorium, из которого наш мод заимствует большинство изменений баланса.
+[/list]
+
+Отдельная благодарность командам Calamity Mod, Fargo's Souls, Bereft Souls и Community Souls Expansion, нашим спонсорам, а также авторам каждого мода в модпаке за то, что сделали этот проект возможным.
+
+Код для метания кос предоставил [url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen[/url]
+
+Создано командой «Infernal Eclipse of Ragnarok»:
+Разработчики: Akira, Wardrobe Hummus, Advantaje
+Дизайнеры: Wardrobe Hummus, Yob, trembler
+Сюжет: Akira, Yob
+Координаторы: ZaKami, TheRogueX
+Модераторы вики: Akira, Wardrobe Hummus, Soltan
+Участники: cheesenuggets, ma3allim, Yelmut, StarlightCat, Suu, Pudd1ng, Pixus
+Художники: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler, JuJiao
+Композиторы: Peter Fung
+Переводчики: Pudd1ng (китайский упрощённый), Aizen522 (русский)
+
+И особая благодарность следующим композиторам за музыку в этом моде:
+[list]
+	[*] CDMusic: «Ensemble of Fools (Encore Mix)»
+	[*] Kuudray: «TWISTED GARDEN [Remix]»
+	[*] Peter Fung: «Teardrops of Dragonfire»
+	[*] psykomatic: «Descent Of Divinities»
+	[*] theforge128: «Calamity Before the Cynosure»
+	[*] TheTrester: «Omiscience Of Gods»
+[/list]

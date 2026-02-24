@@ -40,7 +40,7 @@
 
 整体模组包设计已考虑多人模式兼容性，但因仍在持续测试与开发中，无法完全保证稳定运行
 
-如遇其他问题，欢迎前往[url=https://discord.gg/Qu4eN5PZry] 官方Discord服务器 [/url]反馈
+如遇其他问题，欢迎前往[url=https://discord.gg/ieor] 官方Discord服务器 [/url]反馈
 
 同时欢迎查阅本模组的[url=https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok/zh] 官方中文Wiki [/url]（是的，我们有中文Wiki了！！）
 

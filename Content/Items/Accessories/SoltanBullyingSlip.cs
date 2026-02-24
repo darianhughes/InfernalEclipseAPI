@@ -13,6 +13,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[Item.type] = false;
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {

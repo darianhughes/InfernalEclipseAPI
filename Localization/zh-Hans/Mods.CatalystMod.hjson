@@ -1,0 +1,46 @@
+Items: {
+	CoralCrusher.Tooltip:
+		'''
+		施加4%召唤标记伤害
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		鞭梢的珊瑚碎片会嵌入击中的敌人
+		召唤物的攻击可以击碎珊瑚碎片，使其停止移动并增加6%召唤标记伤害
+		'''
+	ResonantStriker.Tooltip:
+		'''
+		施加8%召唤标记伤害
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		击中敌人时释放出追踪电球
+		召唤物攻击非Boss敌人时会使其晕眩
+		'''
+	BlossomsBlessing.Tooltip:
+		'''
+		施加12%召唤标记伤害
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		送叶携花
+		触摸最大的花瓣后你会获得祝福，提高生命恢复、攻击力并获得荆棘效果
+		“花而后荣，枯而垂落。”
+		'''
+	UnrelentingTorment.Tooltip:
+		'''
+		施加10%召唤标记伤害
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		释放出一连串异世鬼爪撕裂敌人
+		'''
+	Catharsis.Tooltip:
+		'''
+		施加12%召唤标记伤害
+		{$Mods.CatalystMod.Tooltips.WhipTooltip}
+		挥鞭会消耗你的生命值
+		击中敌人时获得鲜血充能，至多能维持20层充能
+		右键以消耗充能，暂时强化武器，同时恢复失去的生命值
+		[c/c61b40:被痛苦遗弃、吞噬的净化之光，]
+		[c/c61b40:化作毁灭之影，重返这个世界]
+		'''
+}
+
+ArmorSetBonus.IntergelacticRanged:
+	'''
+	造成远程伤害会召唤10%伤害的星辰
+	你的攻击会造成星辉凋亡减益，并使你免疫该减益
+	'''

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Systems;
 using CalamityMod.World;
+using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.UI;
 using InfernumMode.Core.GlobalInstances.Systems;
@@ -12,6 +13,7 @@ using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.Localization;
 using static CalamityMod.Systems.DifficultyModeSystem;
+using static Terraria.GameContent.Creative.CreativePowers;
 
 namespace InfernalEclipseAPI.Content.UI
 {

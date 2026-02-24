@@ -1,0 +1,416 @@
+Items: {
+	CapeoftheSurvivor: {
+		DisplayName: 生存者披风
+		Tooltip:
+			'''
+			“这款披风的结构旨在引导你度过艰难的日子”
+			你随时间快速地获取至多15%伤害减免
+			受击时会短暂地将此加成变为-10%伤害减免
+			当此加成高于0%时，你会获得至多2点生命恢复
+			'''
+	}
+
+	/*
+	ScryingGlass: {
+	DisplayName: Scrying Glass
+	Tooltip: Pressing the '{$Keybinds.AccessoryAbility.DisplayName}' key will toggle an increased range of view
+	}
+	*/
+	
+	ShootingStarHat.SetBonus:
+		'''
+		使咒音增幅持续时间延长6秒
+		玩家拥有的每个独特的咒音增幅会增加2.5%音波伤害
+		你所拥有的每一种独特的能力都可以让灵感回复率提高2%
+		'''
+
+	SoulofPlight: {
+		DisplayName: 恶意之魂
+		Tooltip: “可恶生物的精华”
+	}
+
+	SoulofPlightinaBottle: {
+		DisplayName: 瓶中恶意之魂
+		Tooltip: ""
+	}
+
+	KeyofPlight: {
+		DisplayName: 恶意钥匙
+		Tooltip: “充满许多灵魂的精华”
+	}
+
+	BlackMIDI: {
+		DisplayName: 乌檀电琴
+		Tooltip:
+			'''
+			快速向你的光标位置释放巨量噪声
+			黄色噪声会治疗使用者造成伤害0.5%的生命值
+			'''
+	}
+
+	HereticBreaker: {
+		DisplayName: 异教毁灭者
+		Tooltip: 吸取3生命值
+	}
+
+	NinjaEmblem: {
+		DisplayName: 英雄徽章
+		Tooltip:
+			'''
+			增加5%伤害
+			增加2%暴击率
+			增加5%攻击速度
+			'''
+	}
+
+	CrystalHoney: {
+		DisplayName: 蜂蜜水晶
+		Tooltip:
+			'''
+			“蜂蜜的奇怪特性不容易被提取”
+			最大生命值增加20
+			增加5%光辉伤害
+			增加5%光辉暴击率
+			'''
+	}
+
+	DarkGlaze: {
+		DisplayName: 暗元液
+		Tooltip:
+			'''
+			“甜蜜至极”
+			用暗能量增幅一些光辉攻击
+			最大生命值增加20
+			增加10%光辉伤害
+			增加5%光辉暴击率
+			'''
+	}
+
+	DemonTongue: {
+		DisplayName: 恶魔之舌
+		Tooltip:
+			'''
+			用暗能量增幅一些光辉攻击
+			增加10%光辉伤害
+			光辉法术的生命消耗减半，不包括生命转移效果
+			'''
+	}
+
+	ArchDemonCurse: {
+		DisplayName: 大恶魔之咒
+		Tooltip:
+			'''
+			用暗能量增幅一些光辉攻击
+			最大生命值增加20
+			增加10%光辉施法速度
+			增加12%光辉伤害
+			增加5%光辉暴击率
+			'''
+	}
+
+	FlightMask.Tooltip:
+		'''
+		增加2%投掷伤害
+		增加5%投掷暴击率
+		“天空是你的飞行场地”
+		'''
+	FlightMail.Tooltip:
+		'''
+		“天空是你的飞行场地”
+		增加5%投掷伤害
+		'''
+
+	BronzeHelmet: {
+		DisplayName: 青铜头盔
+		Tooltip:
+			'''
+			增加6%投掷暴击率
+			增加10%投掷弹幕速度
+			'''
+	}
+
+	BronzeBreastplate: {
+		DisplayName: 青铜胸甲
+		Tooltip: 增加10%投掷伤害
+	}
+
+	PlagueDoctorsMask: {
+		DisplayName: 瘟疫医生面具
+		Tooltip:
+			'''
+			“你在酿什么恶心的混合物？”
+			增加5%投掷伤害
+			33%概率不消耗投掷物品
+			最大技巧值增加1
+			'''
+	}
+
+	PlagueDoctorsGarb: {
+		DisplayName: 瘟疫医生外衣
+		Tooltip:
+			'''
+			“你在酿什么恶心的混合物？”
+			增加15%投掷伤害
+			增加10%投掷弹幕速度
+			'''
+	}
+
+	PlagueDoctorsLeggings: {
+		DisplayName: 瘟疫医生裤
+		Tooltip:
+			'''
+			“你在酿什么恶心的混合物？”
+			增加10%投掷伤害
+			增加10%投掷暴击率
+			'''
+	}
+
+	FungusHat: {
+		DisplayName: 真菌帽
+		Tooltip:
+			'''
+			增加5%投掷伤害
+			33%概率不消耗投掷物品
+			最大技巧值增加1
+			'''
+	}
+
+	FungusGuard: {
+		DisplayName: 真菌胸甲
+		Tooltip:
+			'''
+			增加10%投掷伤害
+			增加5%投掷速度
+			'''
+	}
+
+	ShadeMasterMask: {
+		DisplayName: 暗影大师面具
+		Tooltip:
+			'''
+			“生活在暗影中并精确打击”
+			增加10%投掷伤害
+			33%概率不消耗投掷物品
+			最大技巧值增加2
+			'''
+	}
+
+	ShadeMasterTreads: {
+		DisplayName: 暗影大师足具
+		Tooltip:
+			'''
+			“生活在暗影中并精确打击”
+			增加10%投掷伤害
+			增加20%投掷暴击率
+			增加15%移动速度
+			'''
+	}
+
+	WhiteDwarfMask: {
+		DisplayName: 白矮星面具
+		Tooltip:
+			'''
+			增加10%投掷伤害
+			33%概率不消耗投掷物品
+			最大技巧值增加2
+			'''
+	}
+
+	WhiteDwarfGuard: {
+		DisplayName: 白矮星胸甲
+		Tooltip:
+			'''
+			增加10%投掷伤害
+			增加15%投掷速度
+			增加30%投掷弹幕速度
+			'''
+	}
+
+	WhiteDwarfGreaves: {
+		DisplayName: 白矮星护胫
+		Tooltip:
+			'''
+			增加10%投掷伤害
+			增加20%投掷暴击率
+			增加20%移动速度
+			'''
+	}
+
+	IridescentHelmet: {
+		DisplayName: 光耀头盔
+		Tooltip: 增加5%光辉伤害
+	}
+
+	IridescentMail: {
+		DisplayName: 光耀胸甲
+		Tooltip:
+			'''
+			增加10%光辉伤害
+			增加2%光辉暴击率
+			治疗法术会额外治疗1点生命值
+			'''
+	}
+
+	IridescentGreaves: {
+		DisplayName: 光耀护胫
+		Tooltip:
+			'''
+			增加5%光辉伤害
+			增加8%移动速度
+			治疗法术会额外治疗1点生命值
+			'''
+	}
+
+	BloomingTabard: {
+		DisplayName: 绽花战袍
+		Tooltip:
+			'''
+			降低10%非光辉伤害
+			增加5%光辉伤害
+			适度增加魔力再生
+			治疗法术会额外治疗2点生命值
+			'''
+	}
+
+	BioTechGarment: {
+		DisplayName: 生物工程服
+		Tooltip:
+			'''
+			降低25%非光辉伤害
+			增加25%光辉伤害
+			增加魔力再生
+			降低10%魔力消耗
+			治疗法术会额外治疗3点生命值
+			'''
+	}
+
+	WarlockHood: {
+		DisplayName: 术士兜帽
+		Tooltip:
+			'''
+			用暗能量增幅一些光辉攻击
+			降低10%非光辉伤害
+			增加10%光辉伤害
+			增加7%光辉暴击率
+			最大魔力值增加20
+			治疗法术会额外治疗1点生命值
+			'''
+	}
+
+	WarlockGarb: {
+		DisplayName: 术士法袍
+		Tooltip:
+			'''
+			降低15%非光辉伤害
+			增加15%光辉伤害
+			增加7%光辉暴击率
+			治疗法术会额外治疗2点生命值
+			'''
+	}
+
+	WarlockLeggings: {
+		DisplayName: 术士护胫
+		Tooltip:
+			'''
+			降低12%非光辉伤害
+			增加12%光辉伤害
+			降低15%魔力消耗
+			治疗法术会额外治疗1点生命值
+			'''
+	}
+
+	FallenPaladinFaceguard: {
+		DisplayName: 堕落圣骑士面盔
+		Tooltip:
+			'''
+			降低10%非光辉伤害
+			增加10%光辉伤害
+			增加3%光辉暴击率
+			生命再生速率增加
+			'''
+	}
+
+	FallenPaladinCuirass: {
+		DisplayName: 堕落圣骑士胸甲
+		Tooltip:
+			'''
+			降低20%非光辉伤害
+			增加20%光辉伤害
+			增加8%光辉暴击率
+			增加15%伤害减免
+			治疗法术会额外治疗2点生命值
+			'''
+	}
+
+	FallenPaladinGreaves: {
+		DisplayName: 堕落圣骑士护胫
+		Tooltip:
+			'''
+			降低15%非光辉伤害
+			增加15%光辉伤害
+			增加4%光辉暴击率
+			降低15%魔力消耗
+			增加20%移动速度
+			治疗法术会额外治疗1点生命值
+			'''
+	}
+
+	WhisperingHood: {
+		DisplayName: 低语者兜帽
+		Tooltip:
+			'''
+			污染你的光辉力量
+			降低20%非光辉伤害
+			增加20%光辉伤害
+			增加10%光辉暴击率
+			最大魔力值增加40
+			治疗法术会额外治疗1点生命值
+			[c/70DB93:获取方式：击败遗忘之主/遗忘之主宝藏袋获得]
+			[c/B8860B:职业划分：牧师]
+			'''
+	}
+
+	WhisperingTabard: {
+		DisplayName: 低语者法袍
+		Tooltip:
+			'''
+			降低25%非光辉伤害
+			增加25%光辉伤害
+			增加8%光辉暴击率
+			治疗法术会额外治疗2点生命值
+			[c/70DB93:获取方式：击败遗忘之主/遗忘之主宝藏袋获得]
+			[c/B8860B:职业划分：牧师]
+			'''
+	}
+
+	WhisperingLeggings: {
+		DisplayName: 低语者长裤
+		Tooltip:
+			'''
+			降低15%非光辉伤害
+			增加15%光辉伤害
+			降低15%魔力消耗
+			治疗法术会额外治疗1点生命值
+			[c/70DB93:获取方式：击败遗忘之主/遗忘之主宝藏袋获得]
+			[c/B8860B:职业划分：牧师]
+			'''
+	}
+
+	TideTurnerGreaves: {
+		DisplayName: 洪流逆潮者足具
+		Tooltip:
+			'''
+			增加10%近战和投掷伤害
+			增加20%近战击退和投掷弹幕速度
+			增加30%移动速度
+			'''
+	}
+
+	MagmaSeersMask.Tooltip:
+		'''
+		“指挥一支经熔岩强化的军队”
+		增加50%召唤伤害
+		最大仆从数量和哨兵数量增加2
+		增加仆从击退
+		'''
+}

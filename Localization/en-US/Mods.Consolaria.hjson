@@ -1,0 +1,11 @@
+Items: {
+	OstaraHat: {
+		DisplayName: Hat of Ostara
+		Tooltip: 7% increased movement speed
+		SetBonus:
+			'''
+			Allows auto-jump and negates fall damage
+			Jumping will fire 5 piercing knives outwards
+			'''
+	}
+}

@@ -1,0 +1,85 @@
+Items: {
+	TarragonParagonCrown: {
+		DisplayName: Tarragon Paragon Crown
+		Tooltip:
+			'''
+			10% increased radiant damage
+			30% decreased non-radiant damage
+			5% increased radiant critical strike chance
+			5% increased damage reduction
+			+20 max life
+			Slightly increased life regeneration
+			Healing spells heal an additional 6 life
+			'''
+	}
+
+	BloodflareRitualistMask: {
+		DisplayName: Bloodflare Ritualist Mask
+		Tooltip:
+			'''
+			15% increased radiant damage and critical strike chance
+			25% decreased non-radiant damage
+			+80 max life
+			Moderately increased life regeneration
+			Healing spells heal an additional 8 life
+			'''
+	}
+
+	SilvaGuardianHelmet: {
+		DisplayName: Silva Guardian's Helmet
+		Tooltip:
+			'''
+			12% increased radiant damage and critical strike chance
+			30% decreased non-radiant damage
+			+100 max life
+			Moderately increased life regeneration
+			Healing spells heal an additional 10 life
+			'''
+	}
+
+	AuricTeslaValkyrieVisage: {
+		DisplayName: Auric Tesla Valkyrie Visage
+		Tooltip:
+			'''
+			15% increased radiant damage
+			35% decreased non-radiant damage
+			10% increased radiant critical strike chance
+			45% decreased mana cost
+			+200 max life
+			+100 max mana
+			Healing spells heal an additional 10 life
+			'''
+	}
+
+	AugmentedAuricTeslaValkyrieVisage.Tooltip:
+		'''
+		15% increased radiant damage
+		35% decreased non-radiant damage
+		10% increased radiant critical strike chance
+		45% decreased mana cost
+		+200 max life
+		+100 max mana
+		Healing spells heal an additional 10 life
+		'''
+	ElementalBloom.Tooltip:
+		'''
+		Maximum life increased by 40
+		Maximum mana increased by 20
+		15% increased healing speed
+		15% increased radiant damage
+		10% increased radiant casting speed
+		5% increased radiant critical strike chance
+		Healing spells will heal an additional 2 life
+		Empowers certain radiant attacks with elemental energy
+		Increases the strength of damage over time effects by 66%
+		"When light and dark clash, they harmonize to a final shape"
+		'''
+	SymphonicFabrications.Tooltip:
+		'''
+		Shoots a barrage of colorful missiles that shreds targets
+		While holding the weapon, two giant Exo speakers hover beside you and aid in combat
+		These attack alongside you by shooting homing sound waves that deal 150% damage
+		Sound waves heal you for 0.5% of the damage dealt and have a 33% chance to heal 1 inspiration
+		"Now you're listening to... Exo-FM!"
+		'''
+}

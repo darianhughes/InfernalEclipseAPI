@@ -25,7 +25,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 ModNPC modNPC14 = npc.ModNPC;
                 if ((modNPC14 != null ? (modNPC14.Name.Contains("BereftVassal") ? 1 : 0) : 0) != 0)
                 {
-                    npc.lifeMax *= 7;
+                    npc.lifeMax *= 5;
                 }
                 else
                 {

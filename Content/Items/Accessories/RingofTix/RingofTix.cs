@@ -9,11 +9,18 @@ using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
 using InfernalEclipseAPI.Core.Players;
 using Terraria.Localization;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
 {
     public class RingofTix : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 32;
@@ -29,7 +36,15 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             CalamityPlayer modPlayer = player.Calamity();
+            InfernalPlayer infernalPlayer = player.GetModPlayer<InfernalPlayer>();
+
+            modPlayer.harpyRing = true;
+            player.moveSpeed += 0.1f;
+
             modPlayer.darkSunRing = true;
+
+            player.arrowDamage += 0.05f;
+            infernalPlayer.tixThumbRing = true;
 
             player.GetDamage(DamageClass.Generic).Flat += 4;
             player.GetArmorPenetration(DamageClass.Generic) += 5;
@@ -56,14 +71,27 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             if (ModLoader.TryGetMod("SOTS", out _))
                 tooltips.Add(new TooltipLine(Mod, "SOTSTip",
                     Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.SOTSTooltip")));
+
+            Color color = CalamityUtils.ColorSwap(Color.OrangeRed, Color.DarkRed, 2f);
+
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Soltan"))}");
+                line5.OverrideColor = color;
+                tooltips.Add(line5);
+            }
         }
 
         public override void AddRecipes()
         {
             Recipe tixRing = Recipe.Create(ModContent.ItemType<RingofTix>());
+            tixRing.AddIngredient<HarpyRing>();
             tixRing.AddIngredient<DarkSunRing>();
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            {
+                tixRing.AddIngredient(thorium.Find<ModItem>("ThumbRing"));
                 tixRing.AddIngredient(thorium.Find<ModItem>("TheRing"));
+            }
             if (ModLoader.TryGetMod("BlueMoon", out Mod moons))
                 tixRing.AddIngredient(moons.Find<ModItem>("MoonsRing"));
             if (ModLoader.TryGetMod("SOTS", out Mod sots))

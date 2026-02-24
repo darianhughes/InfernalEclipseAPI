@@ -1,4 +1,5 @@
-﻿using CalamityMod.Items;
+﻿using System.Collections.Generic;
+using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
 using CalamityMod.Items.Placeables.Abyss;
@@ -6,6 +7,10 @@ using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernumMode;
 using Terraria.Audio;
+using Terraria.Localization;
+using Microsoft.Xna.Framework;
+using CalamityMod;
+using Microsoft.Xna.Framework.Input;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
 {
@@ -60,6 +65,18 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
                 Projectile p = Main.projectile[i];
                 if (p.active && p.owner == player.whoAmI && p.type == bhType)
                     p.Kill();
+            }
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Color color = CalamityUtils.ColorSwap(Color.OrangeRed, Color.DarkRed, 2f);
+
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Yob"))}");
+                line5.OverrideColor = color;
+                tooltips.Add(line5);
             }
         }
 

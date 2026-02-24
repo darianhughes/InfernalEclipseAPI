@@ -1,43 +1,89 @@
-﻿using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
+﻿using System.Linq;
+using System.Reflection;
+using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss;
+using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss.Projectiles;
+using CalamityMod.Events;
+using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
+using InfernalEclipseAPI.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using Terraria.DataStructures;
+using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
+    [JITWhenModsEnabled("CalamityHunt")]
+    [ExtendsFromMod("CalamityHunt")]
     public class CalHuntBossStatScaling : GlobalNPC
     {
+        public override bool InstancePerEntity => true;
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation)
         {
-            return npc.boss && ((ModType)npc.ModNPC)?.Mod.Name == "CalamityHunt";
+            int[] validNPCs =
+            {
+                ModContent.NPCType<CrimulanGlopstrosity>(),
+                ModContent.NPCType<DivineGargooptuar>(),
+                ModContent.NPCType<EbonianBehemuck>(),
+                ModContent.NPCType<Goozma>(),
+                ModContent.NPCType<Goozmite>(),
+                ModContent.NPCType<StellarGeliath>()
+            };
+
+            return validNPCs.Contains(npc.type);
         }
 
+        public override void SetDefaults(NPC entity)
+        {
+            if (InfernalCrossmod.SOTS.Loaded)
+            {
+                entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
+                entity.GetGlobalNPC<SOTSGlobalNPC>().strongVoidDamge = true;
+            }
+        }
+
+        /*
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
-            Mod mod;
-            bool flag = false;
-            int num1 = 0, num2 = 0;
 
-            if (ModLoader.TryGetMod("CalamityMod", out mod))
+        }
+        */
+
+        private bool scaled = false;
+
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.type != ModContent.NPCType<Goozmite>() && !scaled)
             {
-                object result = mod.Call("GetDifficultyActive", "BossRush");
+                bool flag = false;
+                int num1 = 0, num2 = 0;
+
+                object result = InfernalCrossmod.Calamity.Mod.Call("GetDifficultyActive", "BossRush");
                 if (result is bool b)
                 {
                     flag = b;
                     num1 = 1;
                 }
-            }
-            num2 = flag ? 1 : 0;
-            if ((num1 & num2) != 0)
-            {
-                ModNPC modNPC14 = npc.ModNPC;
-                if ((modNPC14 != null ? (modNPC14.Name.Contains("Goozma") ? 1 : 0) : 0) != 0)
-                {
-                    npc.lifeMax *= 10;
-                }
-            }
 
-            if (InfernumActive.InfernumActive)
-            {
-                npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                num2 = flag ? 1 : 0;
+                if ((num1 & num2) != 0)
+                {
+                    ModNPC modNPC14 = npc.ModNPC;
+                    if ((modNPC14 != null ? (modNPC14.Name.Contains("Goozma") ? 1 : 0) : 0) != 0)
+                    {
+                        npc.lifeMax *= 10;
+                    }
+                }
+
+                if (InfernumActive.InfernumActive)
+                {
+                    npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                }
+
+                npc.life = npc.lifeMax;
+                scaled = true;
             }
+            return base.PreAI(npc);
         }
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
@@ -54,6 +100,204 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             {
                 npc.position += npc.velocity * 0.35f;
             }
+        }
+    }
+
+    [JITWhenModsEnabled("CalamityHunt")]
+    [ExtendsFromMod("CalamityHunt")]
+    public class HuntBossProjStatScaling : GlobalProjectile
+    {
+        public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
+        {
+            int[] types =
+            [
+                ModContent.ProjectileType<BloatedBlast>(),
+                ModContent.ProjectileType<ConstellationLine>(),
+                ModContent.ProjectileType<ConstellationStar>(),
+                ModContent.ProjectileType<CrimulanShockwave>(),
+                ModContent.ProjectileType<CrimulanSmasher>(),
+                ModContent.ProjectileType<EbonianBehemuckClone>(),
+                ModContent.ProjectileType<EbonstonePillar>(),
+                ModContent.ProjectileType<EbonstoneTooth>(),
+                ModContent.ProjectileType<FoulSlime>(),
+                ModContent.ProjectileType<FusionRay>(),
+                ModContent.ProjectileType<GelCrystalShard>(),
+                ModContent.ProjectileType<GooLightning>(),
+                ModContent.ProjectileType<HolyExplosion>(),
+                ModContent.ProjectileType<InterstellarFlame>(),
+                ModContent.ProjectileType<PixieBall>(),
+                ModContent.ProjectileType<PrismDestroyer>(),
+                ModContent.ProjectileType<RainbowBall>(),
+                ModContent.ProjectileType<RainbowLaser>(),
+                ModContent.ProjectileType<SlimeBomb>(),
+                ModContent.ProjectileType<SlimeShot>(),
+                ModContent.ProjectileType<StellarBlackHole>(),
+                ModContent.ProjectileType<StellarDebris>(),
+                ModContent.ProjectileType<StellarGelatine>(),
+                ModContent.ProjectileType<ThrowableChunk>(),
+                ModContent.ProjectileType<ToxicSludge>()
+            ];
+
+            foreach (int type in types)
+            {
+                if (entity.type == type)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static bool IsInfernumActive()
+        {
+            return WorldSaveSystem.InfernumModeEnabled;
+        }
+
+        private static bool GetFargoDifficullty(string diff)
+        {
+            if (!ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls))
+            {
+                return false;
+            }
+
+            return fargoSouls.Call(diff) is bool active && active;
+        }
+        private static bool IsWorldLegendary()
+        {
+            FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
+            GameModeData data = (GameModeData)findInfo.GetValue(null);
+            return (Main.getGoodWorld && data.IsMasterMode);
+        }
+
+        public override void SetDefaults(Projectile entity)
+        {
+            if (InfernalCrossmod.SOTS.Loaded)
+            {
+                entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+                entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
+            }
+        }
+
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
+        {
+            float damageMod = 1f;
+
+            if (IsWorldLegendary())
+            {
+                damageMod *= 1.35f;
+            }
+
+            if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
+            {
+                damageMod *= 1.35f;
+            }
+
+            modifiers.SourceDamage *= damageMod;
+        }
+    }
+
+    [JITWhenModsEnabled("CalamityHunt")]
+    [ExtendsFromMod("CalamityHunt")]
+    public class GoozmaP2PatchSystem : ModSystem
+    {
+        public override void Load()
+        {
+            if (!ModLoader.TryGetMod("CalamityHunt", out Mod hunt))
+                return;
+
+            GoozmaP2LifeMaxMultiplier.PatchAllP2LifeMaxReads(hunt.Code);
+        }
+    }
+
+    [JITWhenModsEnabled("CalamityHunt")]
+    [ExtendsFromMod("CalamityHunt")]
+    public static class GoozmaP2LifeMaxMultiplier
+    {
+        public static void PatchAllP2LifeMaxReads(Assembly huntAsm)
+        {
+            PatchAllInstanceFieldReads(
+                huntAsm,
+                "CalamityHunt.Content.NPCs.Bosses.GoozmaBoss.Goozma",
+                "P2LifeMax"
+            );
+        }
+
+        private static void PatchAllInstanceFieldReads(Assembly asm, string declaringTypeFullName, string fieldName)
+        {
+            Type declaringType = asm.GetType(declaringTypeFullName);
+            if (declaringType == null)
+                return;
+
+            FieldInfo field = declaringType.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+            if (field == null)
+                return;
+
+            int fieldToken = field.MetadataToken;
+
+            foreach (Type t in asm.GetTypes())
+                foreach (MethodInfo m in t.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+                {
+                    if (m.IsAbstract || m.GetMethodBody() == null)
+                        continue;
+                    if (m.ContainsGenericParameters || m.IsGenericMethodDefinition)
+                        continue;
+
+                    if (!MethodReadsInstanceField(m, fieldToken))
+                        continue;
+
+                    MonoModHooks.Modify(m, il =>
+                    {
+                        var c = new ILCursor(il);
+
+                        // Replace every:
+                        //   ldfld int32 Goozma::P2LifeMax
+                        // with:
+                        //   ldfld int32 Goozma::P2LifeMax
+                        //   call AdjustP2(int) -> int   (via delegate emit)
+                        while (c.TryGotoNext(i => i.MatchLdfld(field)))
+                        {
+                            c.Index++; // move AFTER ldfld (stack: [baseP2:int])
+
+                            c.EmitDelegate<Func<int, int>>(AdjustP2LifeMax);
+                        }
+                    });
+                }
+        }
+
+        private static int AdjustP2LifeMax(int baseP2LifeMax)
+        {
+            // Preserve original behavior if something is already odd.
+            if (baseP2LifeMax <= 0)
+                return 1;
+
+            float mult = BossRushEvent.BossRushActive ? 10f : 1.35f;
+
+            // Clamp so we never end up at 0 due to rounding or weirdness.
+            int result = (int)MathF.Round(baseP2LifeMax * mult);
+            return result < 1 ? 1 : result;
+        }
+
+        private static bool MethodReadsInstanceField(MethodInfo m, int fieldMetadataToken)
+        {
+            try
+            {
+                byte[] il = m.GetMethodBody()?.GetILAsByteArray();
+                if (il == null || il.Length < 5)
+                    return false;
+
+                for (int i = 0; i <= il.Length - 5; i++)
+                {
+                    // ldfld (0x7B)
+                    if (il[i] != 0x7B)
+                        continue;
+
+                    int token = il[i + 1] | (il[i + 2] << 8) | (il[i + 3] << 16) | (il[i + 4] << 24);
+                    if (token == fieldMetadataToken)
+                        return true;
+                }
+            }
+            catch { }
+
+            return false;
         }
     }
 }

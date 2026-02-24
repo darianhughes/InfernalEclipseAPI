@@ -1,16 +1,23 @@
 ﻿using Terraria.DataStructures;
 using InfernumMode;
 using CalamityMod.Rarities;
+using CalamityMod;
+using Microsoft.Xna.Framework;
+using Terraria.Localization;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.ChromaticMassInABottle
 {
-    internal class ChromaticMassInABottle : ModItem
+    public class ChromaticMassInABottle : ModItem
     {
         public override void SetStaticDefaults()
         {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(6, 5));
             ItemID.Sets.AnimatesAsSoul[Type] = true;
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+
         public override void SetDefaults()
         {
             Item.width = 16;
@@ -23,6 +30,18 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ChromaticMassInABottle
             Item.accessory = true;
 
             Item.Infernum_Tooltips().DeveloperItem = true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            Color color = CalamityUtils.ColorSwap(Color.OrangeRed, Color.DarkRed, 2f);
+
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Yob"))}");
+                line5.OverrideColor = color;
+                tooltips.Add(line5);
+            }
         }
 
         public override void AddRecipes()

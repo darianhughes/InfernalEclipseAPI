@@ -121,12 +121,15 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             //Playtesters
             "Tencvin",
             "Jillyfish",
+            "Arkangel",
 
             //Donors
             "bryce27",
             "Bomberr",
             "Goldsockz2",
+            "Minesky",
             "rosé",
+            "TechQueen22",
 
             //Supporters
             "Lylittle",
@@ -134,6 +137,8 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Louhii",
             "rocket",
             "joshuwham",
+            "KappaGrr",
+            "Lucy",
 
             //Helpers
             "fjiown",

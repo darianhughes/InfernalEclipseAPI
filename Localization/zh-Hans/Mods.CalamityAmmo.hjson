@@ -1,0 +1,10 @@
+Items: {
+	WulfrumCoil: {
+		DisplayName: 钨钢线圈
+		Tooltip:
+			'''
+			增加5%远程伤害
+			略微提升远程弹幕的速度
+			'''
+	}
+}

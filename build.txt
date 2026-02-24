@@ -1,12 +1,12 @@
 displayName = Infernal Eclipse of Ragnarok
 author = Akira & the Infernal Eclipse of Ragnarok Team
-version = 0.9.7.6
+version = 0.10.0.1
 dllReferences = MMHOOK_InfernumMode_v2.0.1.19, MMHOOK_CalamityMod_v2.0.5
 modReferences = CalamityMod, InfernumMode, SubworldLibrary, RevengeancePlus, ThrowerUnification, InfernumSOTSSanctuaryAdjuster, Luminance
-weakReferences = NoxusBoss, SOTS, CalamityHunt, CatalystMod, CalamityAmmo, ThoriumMod@1.7.2.3, Clamity, CalamityModMusic, Consolaria, NoxusPort, SOTSBardHealer@0.2.1, YouBoss, Daybreak, RagnarokMod
+weakReferences = NoxusBoss, SOTS, CalamityHunt, CatalystMod, CalamityAmmo, ThoriumMod@1.7.2.3, Clamity, CalamityModMusic, Consolaria, NoxusPort, SOTSBardHealer, YouBoss, Daybreak, RagnarokMod, ThoriumRework, InfernumMasterPatch
 sortBefore = RagnarokMod, ThrowerUnification
-sortAfter = CalamityMod, InfernumMode, NoxusBoss, CalamityHunt, ThoriumMod, ThoriumRework, YouBoss, FargowiltasSouls, FargowiltasCrossmod, Clamity, CatalystMod, InfernumMode, RevengeancePlus, CalamityMinus, ZenithToilet, Consolaria, SOTS, NoxusPort, SOTSBardHealer, CalamityBardHealer, ssm, CalamityAmmo, DraedonExpansion, SpookyBardHealer, Spooky
+sortAfter = CalamityMod, InfernumMode, NoxusBoss, CalamityHunt, ThoriumMod, ThoriumRework, YouBoss, Fargowiltas, FargowiltasSouls, FargowiltasCrossmod, Clamity, CatalystMod, InfernumMode, RevengeancePlus, CalamityMinus, ZenithToilet, Consolaria, SOTS, NoxusPort, SOTSBardHealer, CalamityBardHealer, ssm, CalamityAmmo, DraedonExpansion, SpookyBardHealer, Spooky, CalamityExpert, HuntExpert, CatalystExpert, CalValEX, HypnosMod, InfernumMasterPatch
 hideCode = true
 hideResources = true
-buildIgnore = .vs\*, Properties\*, *.csproj, *.user, obj\*, bin\*, *.config, .git\*, .github\*, LICENSE, README.md, .editorconfig, .gitignore, .gitattributes
-homepage = https://discord.gg/RXdTXbKY
+buildIgnore = .vs\*, Properties\*, *.csproj, *.user, obj\*, bin\*, *.config, .git\*, .github\*, LICENSE, README.md, .editorconfig, .gitignore, .gitattributes, lib/Assemblies\*
+homepage = https://discord.gg/ieor

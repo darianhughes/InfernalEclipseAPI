@@ -37,7 +37,7 @@ namespace InfernalEclipseAPI.Core.Systems.MultiplayerFixes
                 if (tbBoss != null && !tbBoss.PerformingStartAnimation)
                     bossActive = true;
             }
-            return bossActive || BossRushEvent.BossRushActive;
+            return bossActive && !BossRushEvent.BossRushActive;
         }
     }
 }

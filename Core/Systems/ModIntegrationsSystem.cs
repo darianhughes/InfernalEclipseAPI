@@ -3,10 +3,14 @@ using InfernalEclipseAPI.Content.NPCs.LittleCat;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using SOTS.Void;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.Localization;
 using ThoriumMod.Scenes;
+using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
 
 namespace InfernalEclipseAPI.Core.Systems
 {
@@ -362,6 +366,11 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (ModLoader.TryGetMod("ColoredDamageTypes", out Mod coloredDamageTypes))
             {
+                if (InfernalCrossmod.SOTS.Loaded)
+                {
+                    SOTSIntegrationsSystem.VoidColoredDamageTypes(coloredDamageTypes);
+                }
+
                 Color legendaryColor = new Color(255, 215, 0); // Gold
                 Vector3 hslVector = Main.rgbToHsl(legendaryColor);
                 hslVector.Y = MathHelper.Lerp(hslVector.Y, 1f, 0.6f);
@@ -417,6 +426,19 @@ namespace InfernalEclipseAPI.Core.Systems
                 newMiniBoss(findSOTSNPC("TidalConstruct"));
                 newMiniBoss(findSOTSNPC("TidalSpirit"));
             }
+        }
+    }
+
+    [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
+    [ExtendsFromMod(InfernalCrossmod.SOTS.Name)]
+    public static class SOTSIntegrationsSystem
+    {
+        public static void VoidColoredDamageTypes(Mod cDT)
+        {
+            cDT.Call("AddDamageType", ModContent.GetInstance<VoidGeneric>(), new Color(255, 255, 255), new Color(255, 255, 255), new Color(205, 205, 205));
+            cDT.Call("AddDamageType", ModContent.GetInstance<VoidMelee>(), new Color(70, 0, 0), new Color(30, 0, 0), new Color(70, 0, 0));
+            cDT.Call("AddDamageType", ModContent.GetInstance<VoidRanged>(), new Color(0, 70, 0), new Color(0, 30, 0), new Color(0, 70, 0));
+            cDT.Call("AddDamageType", ModContent.GetInstance<VoidMagic>(), new Color(0, 0, 70), new Color(0, 0, 30), new Color(0, 0, 70));
         }
     }
 }

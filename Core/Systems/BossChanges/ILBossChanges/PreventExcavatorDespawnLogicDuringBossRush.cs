@@ -14,7 +14,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossChanges.ILBossChanges
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return !ModLoader.HasMod("FargoSoulsSOTS");
+            return !ModLoader.HasMod("SecretsOfTheSouls");
         }
 
         public override void Load()

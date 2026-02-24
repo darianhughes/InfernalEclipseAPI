@@ -6,13 +6,11 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3456508757
 
 Infernal Eclipse of Ragnarok is an ultra-modded Infernum Mode addon which currently includes major support for these content mods included in the associated mod pack:
 [list]
-	[*] Calamity Mod (obviously)
+	[*] Calamity Mod & many of its addons
 	[*] Thorium Mod
 	[*] Secrets of the Shadows
 	[*] Consolaria
 [/list]
-
-The only mods required for this API to run are Calamity Mod, Infernum Mode, Revengence+, Thrower Unification, Infernum Sanctuary WorldGen Adjuster, and any dependency included with those mods.
 
 This API currently adds the following:
 [list]
@@ -20,7 +18,8 @@ This API currently adds the following:
 	[*] Merged crafting trees for many accessories trees.
 	[*]	Cross-mod Infernum intros for any bosses that didn't already have one.
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
-	[*] Boss Rush support for all included bosses, as well as a custom "tier 6."
+	[*] A new difficulty: Ragnarok Mode.
+	[*] An slightly overhauled Boss Rush with support for every boss in the mod pack, as well as a custom "tier 6."
 	[*] New music for certain points of the game.
 	[*] World Generation changes to help prevent overlap between mods.
 	[*] Some bugfixes to help make Infernum more multiplayer compatible.
@@ -30,17 +29,16 @@ This API currently adds the following:
 It also includes some built-in systems such as:
 [list]
 	[*] A new rogue/thrower class merge system with custom stealth strikes for crossmod thrower weapons using [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535746309] Thrower Unification[/url].
-	[*] A new highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
+	[*] A highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
 	[*] A system that allows you to lock the Calamity difficulty.
 	[*] A system that allows Astrageldon to be spawned even if Moon Lord has already been defeated.
-	[*] A system that allows Infernum Mode to be played in Master Mode and Legendary Mode worlds.
 [/list]
 
 In the future, this will be a content mod that has its own story, including each of the mods in the mod pack in the future, with a functional reworked boss progression using the QuestBookUI & tPackBuilder.
 
 The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
 
-If you have any other issues please report them in the [url=https://discord.gg/tc5nZdRvaU] Discord server[/url]. 
+If you have any other issues please report them in the [url=https://discord.gg/ieor] Discord server[/url]. 
 
 You can also check out the official wiki for our mod: https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok
 
@@ -61,9 +59,8 @@ Created by the Infernal Eclipse of Ragnarok Team:
 Developers: Akira, Wardrobe Hummus, Advantaje
 Designers: Wardrobe Hummus, Yob, trembler
 Story: Akira, Yob
-Coordinators: ZaKami, TheRogueX
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan
-Contributors: cheesenuggets, ma3allim, Yelmut, StarlightCat, Suu, Pudd1ng, Pixus
+Contributors: cheesenuggets, ma3allim, Yelmut, Pudd1ng, Pixus
 Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler, JuJiao
 Composers: Peter Fung
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)

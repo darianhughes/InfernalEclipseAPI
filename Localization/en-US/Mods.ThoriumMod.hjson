@@ -1,0 +1,409 @@
+Items: {
+	CapeoftheSurvivor: {
+		DisplayName: Cape of the Survivor
+		Tooltip:
+			'''
+			'The very fabric of this cape has been designed to guide you through the toughest days'
+			You quickly gain up to 15% damage reduction over time
+			Getting hit briefly reduces this bonus to -10% damage reduction
+			While this bonus is above 0%, you gain up to 2 life recovery
+			'''
+	}
+
+	/*
+	ScryingGlass: {
+	DisplayName: Scrying Glass
+	Tooltip: Pressing the '{$Keybinds.AccessoryAbility.DisplayName}' key will toggle an increased range of view
+	}
+	*/
+	
+	ShootingStarHat.SetBonus:
+		'''
+		Symphonic empowerments last 6 seconds longer
+		Each unique empowerment you have increases your symphonic damage by 2.5%
+		Each unique empowerment you have increases your inspiration regeneration by 2%
+		'''
+
+	SoulofPlight: {
+		DisplayName: Soul of Spite
+		Tooltip: "'The essence of damned creatures'"
+	}
+
+	SoulofPlightinaBottle: {
+		DisplayName: Soul of Spite in a Bottle
+		Tooltip: ""
+	}
+
+	KeyofPlight: {
+		DisplayName: Key of Spite
+		Tooltip: "'Charged with the essence of many souls'"
+	}
+
+	BlackMIDI: {
+		DisplayName: Black MIDI
+		Tooltip:
+			'''
+			Rapidly releases an ocean of noise towards your cursor
+			Yellow noise heals the user for 0.5% of the damage dealt
+			'''
+	}
+
+	HereticBreaker: {
+		DisplayName: Heretic Breaker
+		Tooltip: Steals 3 life
+	}
+
+	NinjaEmblem: {
+		DisplayName: Hero Emblem
+		Tooltip:
+			'''
+			5% increased damage
+			2% increased critical strike chance
+			5% increased attack speed
+			'''
+	}
+
+	CrystalHoney: {
+		DisplayName: Crystal Honey
+		Tooltip:
+			'''
+			Maximum life increased by 20
+			5% increased radiant damage
+			5% increased radiant critical strike chance
+			'''
+	}
+
+	DarkGlaze: {
+		DisplayName: Dark Glaze
+		Tooltip:
+			'''
+			'Devilishly sweet'
+			Empowers certain radiant attacks with dark energy
+			Maximum life increased by 20
+			10% increased radiant damage
+			5% increased radiant critical strike chance
+			'''
+	}
+
+	DemonTongue: {
+		DisplayName: Demon Tongue
+		Tooltip:
+			'''
+			Empowers certain radiant attacks with dark energy
+			10% increased radiant damage
+			Halves radiant life costs but not its life transferring effect
+			'''
+	}
+
+	ArchDemonCurse: {
+		DisplayName: Archdemon's Curse
+		Tooltip:
+			'''
+			Empowers certain radiant attacks with dark energy
+			Maximum life increased by 20
+			10% increased radiant casting speed
+			12% increased radiant damage
+			5% increased radiant critical strike chance
+			'''
+	}
+
+	FlightMask.Tooltip:
+		'''
+		2% increased throwing damage
+		5% increased throwing critical strike chance
+		'The sky is your playing field'
+		'''
+	FlightMail.Tooltip:
+		'''
+		3% increased throwing damage
+		'The sky is your playing field'
+		'''
+
+	BronzeHelmet: {
+		DisplayName: Bronze Helmet
+		Tooltip:
+			'''
+			6% increased throwing critical strike chance
+			10% increased throwing weapon velocity
+			'''
+	}
+
+	BronzeBreastplate: {
+		DisplayName: Bronze Breastplate
+		Tooltip: 10% increased throwing damage
+	}
+
+	PlagueDoctorsMask: {
+		DisplayName: Plague Doctor's Mask
+		Tooltip:
+			'''
+			'What nasty concoction could you be brewing?'
+			5% increased throwing damage
+			33% chance to not consume throwing items
+			Increases your maximum technique points by 1
+			'''
+	}
+
+	PlagueDoctorsGarb: {
+		DisplayName: Plague Doctor's Garb
+		Tooltip:
+			'''
+			'What nasty concoction could you be brewing?'
+			15% increased throwing damage
+			10% increased throwing weapon velocity
+			'''
+	}
+
+	PlagueDoctorsLeggings: {
+		DisplayName: Plague Doctor's Leggings
+		Tooltip:
+			'''
+			'What nasty concoction could you be brewing?'
+			10% increased throwing damage
+			10% increased throwing weapon critical strike chance
+			'''
+	}
+
+	FungusHat: {
+		DisplayName: Fungus Cap
+		Tooltip:
+			'''
+			5% increased throwing damage
+			33% chance to not consume throwing items
+			Increases your maximum technique points by 1
+			'''
+	}
+
+	FungusGuard: {
+		DisplayName: Fungus Guard
+		Tooltip:
+			'''
+			10% increased throwing damage
+			5% increased throwing weapon speed
+			'''
+	}
+
+	ShadeMasterMask: {
+		DisplayName: Shade Master's Mask
+		Tooltip:
+			'''
+			'Live in the shadows and strike with precision'
+			10% increased throwing damage
+			33% chance to not consume throwing items
+			Increases your maximum technique points by 2
+			'''
+	}
+
+	ShadeMasterTreads: {
+		DisplayName: Shade Master's Treads
+		Tooltip:
+			'''
+			'Live in the shadows and strike with precision'
+			10% increased throwing damage
+			20% increased throwing weapon critical strike chance
+			15% increased movement speed
+			'''
+	}
+
+	WhiteDwarfMask: {
+		DisplayName: White Dwarf Mask
+		Tooltip:
+			'''
+			10% increased throwing damage
+			33% chance to not consume throwing items
+			Increases your maximum technique points by 2
+			'''
+	}
+
+	WhiteDwarfGuard: {
+		DisplayName: White Dwarf Guard
+		Tooltip:
+			'''
+			10% increased throwing damage
+			15% increased throwing weapon speed
+			30% increased throwing weapon velocity
+			'''
+	}
+
+	WhiteDwarfGreaves: {
+		DisplayName: White Dwarf Greaves
+		Tooltip:
+			'''
+			10% increased throwing damage
+			20% increased throwing weapon critical strike chance
+			20% increased movement speed
+			'''
+	}
+
+	IridescentHelmet: {
+		DisplayName: Iridescent Helmet
+		Tooltip: 5% increased radiant damage
+	}
+
+	IridescentMail: {
+		DisplayName: Iridescent Mail
+		Tooltip:
+			'''
+			10% increased radiant damage
+			2% increased radiant critical strike chance
+			Healing Spells will heal an additional 1 life
+			'''
+	}
+
+	IridescentGreaves: {
+		DisplayName: Iridescent Greaves
+		Tooltip:
+			'''
+			5% increased radiant damage
+			8% increased movement speed
+			Healing Spells will heal an additional 1 life
+			'''
+	}
+
+	BloomingTabard: {
+		DisplayName: Blooming Tabard
+		Tooltip:
+			'''
+			10% decreased non-radiant damage
+			5% increased radiant damage
+			Moderately increased mana regeneration
+			Healing Spells will heal an additional 2 life
+			'''
+	}
+
+	BioTechGarment: {
+		DisplayName: Biotech Garment
+		Tooltip:
+			'''
+			25% decreased non-radiant damage
+			25% increased radiant damage
+			Increased mana regeneration
+			10% decreased mana cost
+			Healing spells will heal an additional 3 life
+			'''
+	}
+
+	WarlockHood: {
+		DisplayName: Warlock Hood
+		Tooltip:
+			'''
+			Corrupts your radiant powers
+			10% decreased non-radiant damage
+			10% increased radiant damage
+			7% increased radiant critical strike chance
+			Maximum mana increased by 20
+			Healing spells will heal an additional 1 life
+			'''
+	}
+
+	WarlockGarb: {
+		DisplayName: Warlock Garb
+		Tooltip:
+			'''
+			15% decreased non-radiant damage
+			15% increased radiant damage
+			7% increased radiant critical strike chance
+			Healing spells will heal an additional 2 life
+			'''
+	}
+
+	WarlockLeggings: {
+		DisplayName: Warlock Leggings
+		Tooltip:
+			'''
+			12% decreased non-radiant damage
+			12% increased radiant damage
+			15% decreased mana cost
+			Healing spells will heal an additional 1 life
+			'''
+	}
+
+	FallenPaladinFaceguard: {
+		DisplayName: Fallen Paladin's Faceguard
+		Tooltip:
+			'''
+			10% decreased non-radiant damage
+			10% increased radiant damage
+			3% increased radiant critical strike chance
+			Life regeneration rate increased
+			'''
+	}
+
+	FallenPaladinCuirass: {
+		DisplayName: Fallen Paladin's Cuirass
+		Tooltip:
+			'''
+			20% decreased non-radiant damage
+			20% increased radiant damage
+			8% increased radiant critical strike chance
+			15% increased damage reduction
+			Healing spells will heal an additional 2 life
+			'''
+	}
+
+	FallenPaladinGreaves: {
+		DisplayName: Fallen Paladin's Greaves
+		Tooltip:
+			'''
+			15% decreased non-radiant damage
+			15% increased radiant damage
+			4% increased radiant critical strike chance
+			15% decreased mana cost
+			20% increased movement speed
+			Healing spells will heal an additional 1 life
+			'''
+	}
+
+	WhisperingHood: {
+		DisplayName: Whispering Hood
+		Tooltip:
+			'''
+			Corrupts your radiant powers
+			20% decreased non-radiant damage
+			20% increased radiant damage
+			10% increased radiant critical strike chance
+			Maximum mana increased by 40
+			Healing spells will heal an additional 1 life
+			'''
+	}
+
+	WhisperingTabard: {
+		DisplayName: Whispering Tabard
+		Tooltip:
+			'''
+			25% decreased non-radiant damage
+			25% increased radiant damage
+			8% increased radiant critical strike chance
+			Healing spells will heal an additional 2 life
+			'''
+	}
+
+	WhisperingLeggings: {
+		DisplayName: Whispering Leggings
+		Tooltip:
+			'''
+			15% decreased non-radiant damage
+			15% increased radiant damage
+			15% decreased mana cost
+			Healing spells will heal an additional 1 life
+			'''
+	}
+
+	TideTurnerGreaves: {
+		DisplayName: Tide Turner's Depth-Walkers
+		Tooltip:
+			'''
+			10% increased melee & throwing damage
+			20% increased melee knockback & throwing velocity
+			30% increased movement speed
+			'''
+	}
+
+	MagmaSeersMask.Tooltip:
+		'''
+		'Command a magma fortified army'
+		50% increased summon damage
+		Increases your max number of minions and sentries by 2
+		Increases minion knockback
+		'''
+}

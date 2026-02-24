@@ -21,6 +21,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             ItemID.Sets.ShimmerTransformToItem[Type] = 576;
             ModLoader.TryGetMod("InfernumModeMusic", out Mod InfernumMusic);
             MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(InfernumMusic, "Sounds/Music/QueenBee"), ModContent.ItemType<BeeMusicBox>(), ModContent.TileType<BeeMusicBoxTile>(), 0);
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

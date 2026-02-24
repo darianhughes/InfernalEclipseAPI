@@ -8,6 +8,10 @@ namespace InfernalEclipseAPI.Content.Items.Materials
     [ExtendsFromMod(InfernalCrossmod.NoxusBoss.Name)]
     public class PrimordialOrchid : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
+        }
         public override void SetDefaults()
         {
             Item.width = Item.height = 60;

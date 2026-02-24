@@ -16,12 +16,14 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Assets\Sounds\Custom\TerraBlade\" />
-		<Folder Include="Assets\Textures\BossChecklist\" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="MonoMod" Version="22.7.31.1" />
 	</ItemGroup>
 	<ItemGroup>
+		<Reference Include="CalamityHunt">
+		  <HintPath>..\ModAssemblies\CalamityHunt_v1.1.7.dll</HintPath>
+		</Reference>
 		<Reference Include="CalamityMod">
 		  <HintPath>..\ModAssemblies\CalamityMod_v2.1.dll</HintPath>
 		</Reference>
@@ -29,7 +31,7 @@
 		  <HintPath>..\ModAssemblies\CatalystMod_v1.1.4.dll</HintPath>
 		</Reference>
 		<Reference Include="Clamity">
-		  <HintPath>..\ModAssemblies\Clamity_v1.0.3.12.dll</HintPath>
+		  <HintPath>..\ModAssemblies\Clamity_v1.0.3.13.dll</HintPath>
 		</Reference>
 		<Reference Include="Consolaria">
 			<HintPath>..\ModAssemblies\Consolaria_v2.1.3.2.dll</HintPath>
@@ -39,6 +41,9 @@
 		</Reference>
 		<Reference Include="FargowiltasSouls">
 			<HintPath>..\ModAssemblies\FargowiltasSouls_v1.7.3.5.dll</HintPath>
+		</Reference>
+		<Reference Include="InfernumMasterPatch">
+		  <HintPath>lib\Assemblies\InfernumMasterPatch.dll</HintPath>
 		</Reference>
 		<Reference Include="InfernumMode">
 		  <HintPath>..\ModAssemblies\InfernumMode_v2.0.1.22.dll</HintPath>
@@ -72,6 +77,9 @@
 		</Reference>
 		<Reference Include="ThoriumMod">
 			<HintPath>..\ModAssemblies\ThoriumMod_v1.7.2.5.dll</HintPath>
+		</Reference>
+		<Reference Include="ThoriumRework">
+		  <HintPath>..\ModAssemblies\ThoriumRework_v1.2.1.dll</HintPath>
 		</Reference>
 		<Reference Include="YouBoss">
 			<HintPath>..\ModAssemblies\YouBoss_v1.0.14.dll</HintPath>

@@ -1,25 +1,34 @@
 ﻿using CalamityMod;
-using InfernumMode.Core.GlobalInstances.Systems;
 using Terraria.Audio;
-using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Content.Buffs;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Core.World;
 using Terraria.Localization;
-using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Projectiles.Rogue;
 using CalamityMod.NPCs.SupremeCalamitas;
 using InfernalEclipseAPI.Core.DamageClasses;
 using Terraria.ModLoader.IO;
-using CalamityMod.Items.Weapons.DraedonsArsenal;
-using System.Security.Policy;
+using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
+using InfernalEclipseAPI.Core.Systems;
+using CalamityMod.NPCs.AstrumDeus;
+using System.Collections.Generic;
+using CalamityMod.Events;
+using Terraria.GameInput;
+using CalamityMod.NPCs.Yharon;
+using CalamityMod.Projectiles.Melee;
 
 namespace InfernalEclipseAPI.Core.Players
 {
     public class InfernalPlayer : ModPlayer
     {
+        public bool LazyCrafterAmulet;
+        public bool statShareAll;
+        public bool scalingArmorPenetration;
+        public bool flightArmor;
+        public bool Earthdrive;
+
         private const int AdjRadius = 4;
 
         public override void PlayerConnect()
@@ -29,10 +38,12 @@ namespace InfernalEclipseAPI.Core.Players
                 InfernalWorld.craftedWorkshop = true;
             }
 
+            /*
             if (InfernalConfig.Instance.InfernumModeForced && WorldSaveSystem.InfernumModeEnabled == false)
             {
                 WorldSaveSystem.InfernumModeEnabled = true;
             }
+            */
 
             if (InfernalConfig.Instance.ForceFullXerocDialogue)
             {
@@ -57,7 +68,32 @@ namespace InfernalEclipseAPI.Core.Players
                 Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning"), 255, 0, 0);
             }
 
-            if (InfernumActive.InfernumActive)
+            if (ModLoader.HasMod("CWRMod"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.OverhaulWarning"), 255, 0, 0);
+            }
+
+            if (ModLoader.HasMod("Remnants"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RemnantsWarning"), 255, 255, 06);
+            }
+
+            if (ModLoader.HasMod("CalamityMinus"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalMinus"), 255, 255, 06);
+            }
+
+            if (ModLoader.HasMod("CalBalChange"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalBalNotice"), 255, 255, 06);
+            }
+
+            if (ModLoader.HasMod("InfernumMasterPatch"))
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.MasterPatchNotice"), 255, 255, 06);
+            }
+
+            if (InfernalWorld.RagnarokModeEnabled)
             {
                 if (InfernalConfig.Instance.DisplayWorldEntryMessages)
                 {
@@ -65,6 +101,7 @@ namespace InfernalEclipseAPI.Core.Players
                     SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
                 }
             }
+            /*
             else if (InfernalConfig.Instance.InfernumModeForced)
             {
                 if (InfernalConfig.Instance.DisplayWorldEntryMessages)
@@ -74,6 +111,7 @@ namespace InfernalEclipseAPI.Core.Players
                 }
                 WorldSaveSystem.InfernumModeEnabled = true;
             }
+            */
 
             if (InfernalConfig.Instance.ForceFullXerocDialogue)
             {
@@ -89,7 +127,7 @@ namespace InfernalEclipseAPI.Core.Players
                 //This message should always popup upon entering a world if they are playing the mod pack.
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod rework))
                 {
-                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.TBRNotice"), 255, 255, 0);
+                    //Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.TBRNotice"), 255, 255, 0);
                 }
                 else
                 {
@@ -100,25 +138,15 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagWarning"), 255, 0, 0);
                 }
-                else if (ragnarok != null)
+                else if (ragnarok != null && !InfernalConfig.Instance.AutomatedConfigSetup)
                 {
                     Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokBalance"), 255, 255, 0);
 
-                    if (rework != null)
+                    if (rework != null && !InfernalConfig.Instance.AutomatedConfigSetup)
                     {
                         Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokRework"), 255, 255, 0);
                     }
                 }
-            }
-
-            if (ModLoader.HasMod("CalamityMinus"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalMinus"), 255, 255, 06);
-            }
-
-            if (ModLoader.HasMod("CalBalChange"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalBalNotice"), 255, 255, 06);
             }
         }
 
@@ -129,10 +157,14 @@ namespace InfernalEclipseAPI.Core.Players
         private int batCoinTimer = 0;
 
         public int resonatorTimer = 0;
+        public int incubatorTextTime = 0;
         public int namelessDialogueCooldown;
+        public int voidMagePrevention;
+
         public int CloverCharmCooldown;
         public bool workshopHasBeenOwned;
         public bool batPoop;
+        public bool tixThumbRing;
         public bool bloodstainedCoin;
         public bool putridCoin;
         public bool eyeOfChaos;
@@ -140,10 +172,17 @@ namespace InfernalEclipseAPI.Core.Players
         public bool chaosBadge;
         public bool focusReticle;
         public bool exoSights;
+        public int BoostPressTimer;
+        public int BoostDirection;
+        public int boostCooldownTime;
+        public int RingofRestCooldown;
+
+        public bool singularityCore;
 
         public override void Initialize()
         {
             workshopHasBeenOwned = false;
+            singularityCore = false;
         }
 
         public override void SaveData(TagCompound tag)
@@ -152,11 +191,40 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 tag.Add("workshopHasBeenOwned", true);
             }
+            var boost = new List<string>();
+            boost.AddWithCondition("singularityCore", singularityCore);
+
+            tag["IEORboost"] = boost;
         }
 
         public override void LoadData(TagCompound tag)
         {
             workshopHasBeenOwned = tag.Get<bool>("workshopHasBeenOwned");
+
+            var boost = tag.GetList<string>("IEORboost");
+            singularityCore = boost.Contains("singularityCore");
+        }
+
+        public override bool CanUseItem(Item item)
+        {
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                if (Player.HasBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Bubbled").Type))
+                    return false;
+            }
+
+            if (ModLoader.TryGetMod("XDContentMod", out Mod heartbeat))
+            {
+                if (Player.mount.Active)
+                {
+                    if (Player.mount?.Type == heartbeat.Find<ModMount>("TapTapMinivan").Type || Player.mount?.Type == heartbeat.Find<ModMount>("LuxuryConvertible").Type || Player.mount?.Type == heartbeat.Find<ModMount>("DiDiCar").Type || Player.mount?.Type == heartbeat.Find<ModMount>("DiDiBike").Type || Player.mount?.Type == heartbeat.Find<ModMount>("KFCDeliveryScooter").Type)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return base.CanUseItem(item);
         }
 
         public override void ResetEffects()
@@ -172,6 +240,15 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (CloverCharmCooldown > 0)
                 CloverCharmCooldown--;
+
+            if (incubatorTextTime > 0)
+                incubatorTextTime--;
+
+            if (voidMagePrevention > 0)
+                voidMagePrevention--;
+
+            if (boostCooldownTime > 0)
+                boostCooldownTime--;
 
             if (batPoop)
             {
@@ -205,6 +282,9 @@ namespace InfernalEclipseAPI.Core.Players
 
             soltanBullying = false;
             HarvestMoonBuff = false;
+            scalingArmorPenetration = false;
+            statShareAll = false;
+            LazyCrafterAmulet = false;
             batPoop = false;
             bloodstainedCoin = false;
             putridCoin = false;
@@ -213,16 +293,32 @@ namespace InfernalEclipseAPI.Core.Players
             chaosBadge = false;
             focusReticle = false;
             exoSights = false;
+            flightArmor = false;
         }
 
         public override void PreUpdate()
         {
+            if (BoostPressTimer > 0)
+                BoostPressTimer--;
+
             if (Player.ZoneLihzhardTemple && !NPC.downedPlantBoss)
             {
                 Player.statLife -= 1;
                 if (Player.statLife == 0)
                     Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} fell to the jungles curse..."), 0, 0);
                 Player.AddBuff(BuffID.PotionSickness, 60);
+            }
+
+            if (InfernalCrossmod.Thorium.Loaded) 
+            {
+                if (Player.IsUnderwater() && NPC.AnyNPCs(InfernalCrossmod.Thorium.Mod.Find<ModNPC>("QueenJellyfish").Type))
+                {
+                    Player.AddBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Bubbled").Type, 60);
+                    Player.AddBuff(BuffID.Electrified, 60);
+                }
+
+                if (Player.HasBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("RealityBearer").Type) && BossRushEvent.BossRushActive)
+                    Player.ClearBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("RealityBearer").Type);
             }
         }
 
@@ -303,6 +399,12 @@ namespace InfernalEclipseAPI.Core.Players
                 previousPos = Player.position;
                 wasUsingItem = Player.itemAnimation > 0;
             }
+
+            if (!NPC.downedBoss3 && InfernalConfig.Instance.BossKillCheckOnOres && Player.HasBuff(BuffID.Bewitched))
+                Player.ClearBuff(BuffID.Bewitched);
+
+            if (RingofRestCooldown > 0)
+                RingofRestCooldown--;
         }
 
         public bool soltanBullying = false;
@@ -329,7 +431,7 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PostUpdateEquips()
         {
-            if (exoSights ||focusReticle)
+            if (exoSights || focusReticle)
             {
                 Player.GetCritChance(DamageClass.Generic) += 15f;
             }
@@ -348,6 +450,227 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     Player.GetCritChance(DamageClass.Generic) += 5f;
                 }
+            }
+
+            if (LazyCrafterAmulet)
+            {
+                Player.adjTile[TileID.WorkBenches] = true;
+                Player.adjTile[TileID.Furnaces] = true;
+                Player.adjTile[TileID.Anvils] = true;
+                Player.adjTile[TileID.Bottles] = true;
+                Player.adjTile[TileID.Tables] = true;
+            }
+
+            if (statShareAll)
+            {
+                var meleeDamage = Player.GetDamage(DamageClass.Melee);
+                float meleeAdd = (meleeDamage.Additive - 1f) * 0.1f;
+                float meleeFlat = meleeDamage.Flat * 0.1f;
+                float meleeMult = ((meleeDamage.Multiplicative - 1f) * 0.1f) + 1f;
+                float meleeBase = meleeDamage.Base * 0.1f;
+
+                var rangedDamage = Player.GetDamage(DamageClass.Ranged);
+                float rangedAdd = (rangedDamage.Additive - 1f) * 0.1f;
+                float rangedFlat = rangedDamage.Flat * 0.1f;
+                float rangedMult = ((rangedDamage.Multiplicative - 1f) * 0.1f) + 1f;
+                float rangedBase = rangedDamage.Base * 0.1f;
+
+                var magicDamage = Player.GetDamage(DamageClass.Magic);
+                float magicAdd = (magicDamage.Additive - 1f) * 0.1f;
+                float magicFlat = magicDamage.Flat * 0.1f;
+                float magicMult = ((magicDamage.Multiplicative - 1f) * 0.1f) + 1f;
+                float magicBase = magicDamage.Base * 0.1f;
+
+                var summonDamage = Player.GetDamage(DamageClass.Summon);
+                float summonAdd = (summonDamage.Additive - 1f) * 0.1f;
+                float summonFlat = summonDamage.Flat * 0.1f;
+                float summonMult = ((summonDamage.Multiplicative - 1f) * 0.1f) + 1f;
+                float summonBase = summonDamage.Base * 0.1f;
+
+                if (meleeAdd > 0f)
+                {
+                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                    ref var melee = ref Player.GetDamage(DamageClass.Melee);
+                    generic += meleeAdd;
+                    melee -= meleeAdd;
+                }
+
+                if (meleeFlat > 0f)
+                {
+                    Player.GetDamage(DamageClass.Generic).Flat += meleeFlat;
+                    Player.GetDamage(DamageClass.Melee).Flat -= meleeFlat;
+                }
+
+                if (meleeMult > 1f)
+                {
+                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                    ref var melee = ref Player.GetDamage(DamageClass.Melee);
+                    generic *= meleeMult;
+                    melee /= meleeMult;
+                }
+
+                if (meleeBase > 0f)
+                {
+                    Player.GetDamage(DamageClass.Generic).Base += meleeBase;
+                    Player.GetDamage(DamageClass.Melee).Base -= meleeBase;
+                }
+
+                if (rangedAdd > 0f)
+                {
+                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                    ref var ranged = ref Player.GetDamage(DamageClass.Ranged);
+                    generic += rangedAdd;
+                    ranged -= rangedAdd;
+                }
+
+                if (rangedFlat > 0f)
+                {
+                    Player.GetDamage(DamageClass.Generic).Flat += rangedFlat;
+                    Player.GetDamage(DamageClass.Ranged).Flat -= rangedFlat;
+                }
+
+                if (rangedMult > 1f)
+                {
+                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                    ref var ranged = ref Player.GetDamage(DamageClass.Ranged);
+                    generic *= rangedMult;
+                    ranged /= rangedMult;
+                }
+
+                if (rangedBase > 0f)
+                {
+                    Player.GetDamage(DamageClass.Generic).Base += rangedBase;
+                    Player.GetDamage(DamageClass.Ranged).Base -= rangedBase;
+                }
+
+                if (magicAdd > 0f)
+                {
+                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                    ref var magic = ref Player.GetDamage(DamageClass.Magic);
+                    generic += magicAdd;
+                    magic -= magicAdd;
+                }
+
+                if (magicFlat > 0f)
+                {
+                    Player.GetDamage(DamageClass.Generic).Flat += magicFlat;
+                    Player.GetDamage(DamageClass.Magic).Flat -= magicFlat;
+                }
+
+                if (magicMult > 1f)
+                {
+                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                    ref var magic = ref Player.GetDamage(DamageClass.Magic);
+                    generic *= magicMult;
+                    magic /= magicMult;
+                }
+
+                if (magicBase > 0f)
+                {
+                    Player.GetDamage(DamageClass.Generic).Base += magicBase;
+                    Player.GetDamage(DamageClass.Magic).Base -= magicBase;
+                }
+
+                if (summonAdd > 0f)
+                {
+                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                    ref var summon = ref Player.GetDamage(DamageClass.Summon);
+                    generic += summonAdd;
+                    summon -= summonAdd;
+                }
+
+                if (summonFlat > 0f)
+                {
+                    Player.GetDamage(DamageClass.Generic).Flat += summonFlat;
+                    Player.GetDamage(DamageClass.Summon).Flat -= summonFlat;
+                }
+
+                if (summonMult > 1f)
+                {
+                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                    ref var summon = ref Player.GetDamage(DamageClass.Summon);
+                    generic *= summonMult;
+                    summon /= summonMult;
+                }
+
+                if (summonBase > 0f)
+                {
+                    Player.GetDamage(DamageClass.Generic).Base += summonBase;
+                    Player.GetDamage(DamageClass.Summon).Base -= summonBase;
+                }
+            }
+
+            if (Earthdrive)
+            {
+                float meleeSpeedBonus = Player.GetAttackSpeed(DamageClass.Melee) - 1f;
+                float miningSpeedBonus = 1f - Player.pickSpeed;
+                if (meleeSpeedBonus > 0.0)
+                    Player.pickSpeed -= meleeSpeedBonus;
+                if (miningSpeedBonus > 0.0)
+                {
+                    if (miningSpeedBonus > 0.1f)
+                        miningSpeedBonus = 0.1f;
+                    Player.GetAttackSpeed(DamageClass.Melee) += miningSpeedBonus;
+                }
+            }
+            Earthdrive = false;
+        }
+
+        private bool oceanBufferModified = false;
+        public override void PostUpdateBuffs()
+        {
+            if (InfernalCrossmod.SOTS.Loaded)
+            {
+                int idx = Player.FindBuffIndex(ModContent.BuffType<VoidSickness2>());
+                if (idx == -1)
+                    return;
+
+                float time = Player.buffTime[idx];
+
+                ref StatModifier local = ref Player.GetDamage(InfernalCrossmod.SOTS.Mod.Find<DamageClass>("VoidGeneric"));
+                local -= (float)(0.25 * (time / 300f));
+            }
+
+            if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)
+            {
+                if (ModContent.TryFind<ModBuff>("ThoriumMod", "OceansBufferExhaust", out var buff))
+                {
+                    for (int i = 0; i < Player.buffType.Length; i++)
+                    {
+                        if (Player.buffType[i] == buff.Type && Player.buffTime[i] > 0)
+                        {
+                            if (!oceanBufferModified)
+                            {
+                                Player.buffTime[i] = (int)(Player.buffTime[i] * 2.5f);
+                                oceanBufferModified = true;
+                            }
+                            break; // stop looping once we found the buff
+                        }
+                    }
+                }
+                else
+                {
+                    oceanBufferModified = false; // reset if buff is gone
+                }
+            }
+        }
+
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (InfernalEclipseAPI.SubpaceBoostHotkey.JustPressed && boostCooldownTime <= 15)
+            {
+                //Main.NewText("SubspaceBoostHotkeyPressed");
+
+                BoostPressTimer = 2; // survive ordering differences
+                BoostDirection =
+                    Player.controlRight ? 1 :
+                    Player.controlLeft ? -1 :
+                    Player.direction;
+
+                if (boostCooldownTime >= 5)
+                    boostCooldownTime = 225;
+                else
+                    boostCooldownTime = 135;
             }
         }
 
@@ -380,6 +703,42 @@ namespace InfernalEclipseAPI.Core.Players
             ConvertSummonMeleeToMelee(Player, item, ref damage);
         }
 
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if (scalingArmorPenetration)
+            {
+                modifiers.DefenseEffectiveness *= Main.hardMode ? 0.25f : 0.2f;
+            }
+        }
+
+        public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
+            {
+                modifiers.FinalDamage *= 0.2f;
+            }
+        }
+
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if ((proj.type == ModContent.ProjectileType<CelestusProj>() || proj.type == ModContent.ProjectileType<CelestusMiniScythe>()) &&
+                (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()) &&
+                InfernalConfig.Instance.PreventBossCheese)
+            {
+                modifiers.FinalDamage *= 0.2f;
+            }
+
+            if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
+            {
+                modifiers.FinalDamage *= 0.8f;
+            }
+
+            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()))
+            {
+                modifiers.FinalDamage /= 2;
+            }
+        }
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Player.whoAmI != Main.myPlayer) return;
@@ -398,12 +757,8 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
-            if ((proj.type == ModContent.ProjectileType<CelestusProj>() || proj.type == ModContent.ProjectileType<CelestusMiniScythe>()) && 
-                (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()) && 
-                InfernalConfig.Instance.PreventBossCheese)
-            {
-                hit.Damage -= (int)(hit.Damage * 0.2);
-            }
+            if (tixThumbRing && proj.arrow && hit.Crit)
+                target.AddBuff(BuffID.ShadowFlame, 60, false);
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
@@ -415,7 +770,6 @@ namespace InfernalEclipseAPI.Core.Players
         {
             TryCoinDebuff();
         }
-
         private void TryCoinDebuff()
         {
             if (bloodstainedCoin || putridCoin)

@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent;
 using CalamityMod;
 using System.Collections.Generic;
+using System.Reflection;
+using Terraria.DataStructures;
+using InfernumMode.Core.GlobalInstances.Systems;
 
 namespace InfernalEclipseAPI.Core.Utils
 {
@@ -21,6 +24,39 @@ namespace InfernalEclipseAPI.Core.Utils
             return (destination - entity.Center).SafeNormalize(Vector2.Zero);
         }
 
+        public static bool HasAccessoryEquipped<T>(Player player, bool includeVanity = false)
+            where T : ModItem
+        {
+            return HasAccessoryEquipped(player, ModContent.ItemType<T>(), includeVanity);
+        }
+
+        public static bool HasAccessoryEquipped(Player player, int accessoryType, bool includeVanity = false)
+        {
+            // Functional accessory slots
+            for (int i = 3; i < 10 + player.extraAccessorySlots; i++)
+            {
+                Item item = player.armor[i];
+
+                if (!item.IsAir && item.type == accessoryType && item.accessory)
+                    return true;
+            }
+
+            if (includeVanity)
+            {
+                // Vanity accessory slots (13–20 normally)
+                for (int i = 13; i < 20 + player.extraAccessorySlots; i++)
+                {
+                    Item item = player.armor[i];
+
+                    if (!item.IsAir && item.type == accessoryType && item.accessory)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        #region Math Utilities
         public static int INonZeroSign(this float x) => x >= 0f ? 1 : -1;
 
         public static int AngleToXDirection(float angle) => MathF.Cos(angle).INonZeroSign();
@@ -47,7 +83,9 @@ namespace InfernalEclipseAPI.Core.Utils
         {
             return InverseLerp(start1, start2, x) * InverseLerp(end2, end1, x);
         }
+        #endregion
 
+        #region Drawing Utilities
         public static void DrawAfterimagesCentered(Projectile proj, int mode, Color lightColor, int typeOneIncrement = 1, int? afterimageCountOverride = null, float minScale = 1f, float positionClumpInterpolant = 0f, Texture2D texture = null, bool drawCentered = true)
         {
             // Use the projectile's default texture if nothing is explicitly supplied.
@@ -167,6 +205,42 @@ namespace InfernalEclipseAPI.Core.Utils
                 return cullOnlyScreen;
             }
         }
+        #endregion
+
+        #region Colors
+        public static readonly Color InfernalRed = Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
+        #endregion
+
+        #region Tooltip Utilities
+        public static void AddTooltip(List<TooltipLine> tooltips, string newTooltip, Color overrideColor = default)
+        {
+            int maxTooltipIndex = -1;
+            int maxNumber = -1;
+
+            // Find the TooltipLine with the highest TooltipX name
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name.StartsWith("Tooltip"))
+                {
+                    if (int.TryParse(tooltips[i].Name.Substring(7), out int num) && num > maxNumber)
+                    {
+                        maxNumber = num;
+                        maxTooltipIndex = i;
+                    }
+                }
+            }
+
+            // If found, insert a new TooltipLine right after it with the desired color
+            if (maxTooltipIndex != -1)
+            {
+                int insertIndex = maxTooltipIndex + 1;
+                TooltipLine customLine = new TooltipLine(InfernalEclipseAPI.Instance, "IEoRTooltip", newTooltip);
+                if (overrideColor != default)
+                    customLine.OverrideColor = overrideColor;
+
+                tooltips.Insert(insertIndex, customLine);
+            }
+        }
 
         public static void FullTooltipOveride(List<TooltipLine> tooltips, string newTooltip)
         {
@@ -186,5 +260,33 @@ namespace InfernalEclipseAPI.Core.Utils
                 }
             }
         }
+        #endregion
+
+        #region Get Difficulty States
+        public static bool GetCalDifficulty(string diff)
+        {
+            return ModLoader.TryGetMod("CalamityMod", out Mod calamity) &&
+                   calamity.Call("GetDifficultyActive", diff) is bool b && b;
+        }
+        public static bool IsInfernumActive()
+        {
+            return WorldSaveSystem.InfernumModeEnabled;
+        }
+        public static bool GetFargoDifficullty(string diff)
+        {
+            if (!ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls))
+            {
+                return false;
+            }
+
+            return fargoSouls.Call(diff) is bool active && active;
+        }
+        public static bool IsWorldLegendary()
+        {
+            FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
+            GameModeData data = (GameModeData)findInfo.GetValue(null);
+            return (Main.getGoodWorld && data.IsMasterMode);
+        }
+        #endregion
     }
 }

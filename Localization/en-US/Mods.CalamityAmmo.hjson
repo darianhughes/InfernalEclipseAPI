@@ -1,0 +1,10 @@
+Items: {
+	WulfrumCoil: {
+		DisplayName: Wulfrum Coil
+		Tooltip:
+			'''
+			5% increased ranged damage
+			Slightly increases the velocity of ranged projectiles
+			'''
+	}
+}

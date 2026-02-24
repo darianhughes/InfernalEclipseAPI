@@ -1,0 +1,110 @@
+﻿using CalamityMod.Items.Materials;
+using CalamityMod.Tiles.Furniture.CraftingStations;
+
+namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTrees
+{
+    public class HealerRecipeChanges : ModSystem
+    {
+        private Mod Ragnarok
+        {
+            get
+            {
+                ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
+                return ragnarok;
+            }
+        }
+
+        private Mod CalBardHealer
+        {
+            get
+            {
+                ModLoader.TryGetMod("CalamityBardHealer", out Mod calbh);
+                return calbh;
+            }
+        }
+
+        private Mod SOTSBardHealer
+        {
+            get
+            {
+                ModLoader.TryGetMod("SOTSBardHealer", out Mod sotsbh);
+                return sotsbh;
+            }
+        }
+
+        private Mod ThoriumRework
+        {
+            get
+            {
+                ModLoader.TryGetMod("ThoriumRework", out Mod thorRe);
+                return thorRe;
+            }
+        }
+        private Mod thorium
+        {
+            get
+            {
+                ModLoader.TryGetMod("ThoriumMod", out Mod thor);
+                return thor;
+            }
+        }
+
+        public override void PostAddRecipes()
+        {
+            for (int index = 0; index < Recipe.numRecipes; ++index)
+            {
+                Recipe recipe = Main.recipe[index];
+
+                if (CalBardHealer != null)
+                {
+                    if (!InfernalConfig.Instance.MergeCraftingTrees)
+                        return;
+
+                    if (recipe.HasResult(CalBardHealer.Find<ModItem>("BloomingSaintessStatue")))
+                    {
+                        recipe.AddIngredient<LifeAlloy>(3);
+                    }
+
+                    if (recipe.HasResult(CalBardHealer.Find<ModItem>("ElementalBloom")))
+                    {
+                        if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
+                        recipe.AddIngredient(thorium.Find<ModItem>("SoulGuard"));
+                    }
+                }
+
+                if (ThoriumRework != null)
+                {
+                    if (ThoriumRework.TryFind("ExecutionersContract", out ModItem contract) && (InfernalConfig.Instance.MergeCraftingTrees || InfernalConfig.Instance.ThoriumBalanceChangess))
+                    {
+                        if (recipe.HasResult(contract))
+                        {
+                            recipe.RemoveTile(TileID.Loom);
+                            recipe.AddTile(TileID.LunarCraftingStation);
+                            recipe.AddIngredient(thorium.Find<ModItem>("CelestialFragment"), 5);
+                        }
+                    }
+
+                    if (!InfernalConfig.Instance.MergeCraftingTrees)
+                        return;
+
+                    if (ThoriumRework.TryFind("SealedContract", out ModItem sealedContract))
+                    {
+                        if (recipe.HasResult(sealedContract))
+                        {
+                            recipe.RemoveIngredient(thorium.Find<ModItem>("LifeGem").Type);
+
+                            if (SOTSBardHealer != null)
+                            {
+                                recipe.AddIngredient(SOTSBardHealer.Find<ModItem>("SerpentsTongue"));
+                            }
+
+                            recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence"), 3);
+                            recipe.RemoveTile(TileID.MythrilAnvil);
+                            recipe.AddTile(ModContent.TileType<CosmicAnvil>());
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

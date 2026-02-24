@@ -8,23 +8,23 @@ namespace InfernalEclipseAPI.Content.RogueThrower
     {
         private int volume2Type = -1;
         private int volume3Type = -1;
-        private int volume4Type = -1;
         private int soul1Type = -1;
         private int soul2Type = -1;
         private int soul3Type = -1;
-        private int wing1Type = -1;
         private bool initialized = false;
 
         private int? previousHeldItemType;
         private int? previousHeldItemPrefix = null;
         private bool? previousHeldItemOriginalExhaustion;
 
-        public int whiteDwarfCooldown;
+        //public int whiteDwarfCooldown;
         public int ShinobiSigilCooldown;
         public override void ResetEffects()
         {
+            /*
             if (whiteDwarfCooldown > 0)
                 whiteDwarfCooldown--;
+            */
             if (ShinobiSigilCooldown > 0)
                 ShinobiSigilCooldown--;
         }
@@ -48,9 +48,6 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
             if (ModContent.TryFind("FargowiltasSouls/EternitySoul", out ModItem modItem6))
                 soul3Type = modItem6.Type;
-
-            if (ModContent.TryFind("ThoriumMod/WhiteDwarfThrusters", out ModItem modItem7))
-                wing1Type = modItem7.Type;
 
             initialized = true;
         }
@@ -145,6 +142,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
         public override void PostUpdateEquips()
         {
+            /*
             Mod thorium; 
             ModLoader.TryGetMod("ThoriumMod", out thorium);
             if (thorium == null) return;
@@ -160,15 +158,15 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 Player.setBonus += "\nIvory flares spawn on a 2 second cooldown";
                 // Add effects here if needed
             }
+            */
         }
 
         public bool HasExhaustionClearingAccessoryEquipped()
         {
             EnsureInitialized();
 
-            // Accessory slots start at index 3. We stop before vanity slots.
             int start = 3;
-            int end = Player.armor.Length - 10; // Excludes vanity and dye slots
+            int end = Player.armor.Length - 10;
 
             for (int i = start; i < end; i++)
             {
@@ -177,14 +175,36 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
                 Item accessory = Player.armor[i];
 
-                // Skip empty slots
-                if (accessory.IsAir)
+                if (accessory == null || accessory.IsAir)
                     continue;
 
                 // Match any of the exhaustion-clearing accessory types
-                if (accessory.type == volume2Type || accessory.type == volume3Type || accessory.type == volume4Type ||
-                    accessory.type == soul1Type || accessory.type == soul2Type || accessory.type == soul3Type ||
-                    accessory.type == wing1Type)
+                if (accessory.type == volume2Type ||
+                    accessory.type == volume3Type ||
+
+                    accessory.type == soul1Type ||
+                    accessory.type == soul2Type ||
+                    accessory.type == soul3Type)
+                {
+                    return true;
+                }
+            }
+
+            foreach (ModAccessorySlot slot in ModContent.GetContent<ModAccessorySlot>())
+            {
+                if (!slot.IsEnabled())
+                    continue;
+
+                Item accessory = slot.FunctionalItem;
+
+                if (accessory == null || accessory.IsAir)
+                    continue;
+
+                if (accessory.type == volume2Type ||
+                    accessory.type == volume3Type ||
+                    accessory.type == soul1Type ||
+                    accessory.type == soul2Type ||
+                    accessory.type == soul3Type)
                 {
                     return true;
                 }

@@ -200,7 +200,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
                 if (i == 5) // Diamond needs parameters
                 {
                     int prevDef = SOTSPlayer.ModPlayer(Main.LocalPlayer).previousDefense;
-                    text = Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix." + key, prevDef.ToString(), (prevDef / 3).ToString());
+                    text = Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix." + key, prevDef.ToString(), (prevDef * 0.66).ToString());
                 }
                 else
                 {

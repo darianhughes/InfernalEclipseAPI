@@ -7,6 +7,7 @@ using InfernalEclipseAPI.Core.Utils;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.Rarities.InfernumRarities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -168,6 +169,19 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
             ContributorItem.OverrideColor = new Color(50, 205, 50);
             tooltips.Add(line);
             tooltips.Add(ContributorItem);
+
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Ropro"))}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor")}");
+                line5.OverrideColor = new(50, 205, 50);
+                tooltips.Add(line5);
+            }
+            else
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor"));
+                line5.OverrideColor = new(50, 205, 50);
+                tooltips.Add(line5);
+            }
         }
         private static string GetProgressionTooltip()
         {

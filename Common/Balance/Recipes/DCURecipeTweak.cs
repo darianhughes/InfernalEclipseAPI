@@ -2,6 +2,7 @@
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
+    // TODO: Merge this class iinto Infernal Recipe System
     internal sealed class DCURecipeTweak : ModSystem
     {
         public override void PostAddRecipes()

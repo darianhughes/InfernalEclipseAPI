@@ -8,6 +8,7 @@ namespace InfernalEclipseAPI.Core.Systems
             public static Mod Mod => ModLoader.GetMod(Name);
             public static bool Loaded => ModLoader.HasMod(Name);
         }
+
         public static class ThrowerUnification
         {
             public const string Name = "ThrowerUnification";
@@ -15,20 +16,14 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
 
         }
-        public static class InfernumSOTSSanctuaryAdjuster
-        {
 
-            public const string Name = "InfernumSOTSSanctuaryAdjuster";
-            public static Mod Mod => ModLoader.GetMod(Name);
-            public static bool Loaded => ModLoader.HasMod(Name);
-
-        }
         public static class Catalyst
         {
             public const string Name = "CatalystMod";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class Clamity
         {
             public const string Name = "Clamity";
@@ -41,6 +36,7 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class Consolaria
         {
             public const string Name = "Consolaria";
@@ -60,6 +56,13 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+        public static class FargosDLC
+        {
+            public const string Name = "FargowiltasCrossmod";
+            public static bool Loaded => ModLoader.HasMod(Name);
+            public static Mod Mod => ModLoader.GetMod(Name);
+        }
+
         public static class InfernalEclipseWeaponsDLC
         {
             public const string Name = "InfernalEclipseWeaponsDLC";
@@ -67,17 +70,12 @@ namespace InfernalEclipseAPI.Core.Systems
             public static Mod Mod => ModLoader.GetMod(Name);
         }
 
-        public static class FargosDLC
-        {
-            public const string Name = "FargowiltasCrossmod";
-            public static bool Loaded => ModLoader.HasMod(Name);
-            public static Mod Mod => ModLoader.GetMod(Name);
-        }
         public static class Luminance
         {
             public const string Name = "Luminance";
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class NoxusBoss
         {
             public const string Name = "NoxusBoss";
@@ -90,18 +88,20 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
-        public static class PackBuilder
-        {
-            public const string Name = "PackBuilder";
-            public static bool Loaded => ModLoader.HasMod(Name);
-            public static Mod Mod => ModLoader.GetMod(Name);
-        }
+
         public static class RagnarokMod
         {
             public const string Name = "RagnarokMod";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+        public static class CalBardHealer
+        {
+            public const string Name = "CalamityBardHealer";
+            public static bool Loaded => ModLoader.HasMod(Name);
+            public static Mod Mod => ModLoader.GetMod(Name);
+        }
+
         public static class RevengeancePlus
         {
             public const string Name = "RevengeancePlus";
@@ -109,6 +109,7 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
 
         }
+
         public static class SOTSBardHealer
         {
             public const string Name = "SOTSBardHealer";
@@ -121,11 +122,13 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class SubworldLibrary
         {
             public const string Name = "SubworldLibrary";
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class Thorium
         {
             public const string Name = "ThoriumMod";
@@ -138,56 +141,66 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
-        public static class Infernum
-        {
-            public const string Name = "InfernumMode";
-            public static Mod Mod => ModLoader.GetMod(Name);
-        }
+
         public static class YouBoss
         {
             public const string Name = "YouBoss";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class Starlight
         {
             public const string Name = "ssm";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class MusicDisplay
         {
             public const string Name = "MusicDisplay";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class BossChecklist
         {
             public const string Name = "BossChecklist";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class ColoredDamageTypes
         {
             public const string Name = "ColoredDamageTypes";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class Hummus
         {
             public const string Name = "WHummusMultiModBalancing";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class CatalyzedInferno
         {
             public const string Name = "CnI";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
+
         public static class CalamityModMusic
         {
             public const string Name = "CalamityModMusic";
+            public static Mod Mod => ModLoader.GetMod(Name);
+        }
+
+        public static class BlueMoon
+        {
+            public const string Name = "BlueMoon";
+            public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
     }

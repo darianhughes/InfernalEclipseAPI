@@ -21,7 +21,7 @@
 
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)
         {
-            return damageClass == Melee || damageClass == Generic ? StatInheritanceData.Full : new StatInheritanceData(0.25f, 0.25f, 0.25f, 0.25f, 0.25f);
+            return damageClass == Melee || damageClass == Generic ? StatInheritanceData.Full : new StatInheritanceData(0.5f, 0.5f, 0.5f, 0.5f, 0.5f);
         }
 
         public override bool GetEffectInheritance(DamageClass damageClass)
