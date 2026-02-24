@@ -18,6 +18,8 @@ using CalamityMod.Events;
 using Terraria.GameInput;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.Projectiles.Melee;
+using Terraria.UI;
+using InfernalEclipseAPI.Content.UI;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -62,12 +64,14 @@ namespace InfernalEclipseAPI.Core.Players
                 InfernalWorld.craftedWorkshop = true;
             }
 
-            //Alerts the player if they have Fargo's Souls enabled.
             if (ModLoader.HasMod("FargowiltasSouls"))
             {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning"), 255, 0, 0);
+                if (!ModLoader.HasMod("FargowiltasCrossmod"))
+                    InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
+                //Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning"), 255, 0, 0);
             }
 
+            //TODO convert these to notifications
             if (ModLoader.HasMod("CWRMod"))
             {
                 Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.OverhaulWarning"), 255, 0, 0);

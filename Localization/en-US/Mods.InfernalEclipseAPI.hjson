@@ -14,6 +14,11 @@ UI: {
 	LDeath: Malice Mode
 	Infernum: Infernum Mode
 	MInfernum: Ragnarok Mode
+	WarningSouls:
+		'''
+		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
+		Both the Infernum and Ragnarok difficulties will be disabled while Fargo's Souls is active.
+		'''
 }
 
 DifficultyUI: {
