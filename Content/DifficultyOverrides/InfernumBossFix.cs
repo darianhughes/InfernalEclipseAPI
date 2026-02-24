@@ -125,7 +125,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             yield return CreateBaseChangeModded(ModContent.NPCType<CrimulanPaladin>(), 7464 * Boost);
             yield return CreateBaseChangeVanilla(114, 3232 * Boost);
             yield return CreateBaseChangeVanilla(113, 10476 * Boost);
-            yield return CreateBaseChangeModded(ModContent.NPCType<BrimstoneElemental>(), 18000 * Boost);
+            //yield return CreateBaseChangeModded(ModContent.NPCType<BrimstoneElemental>(), 18000 * Boost);
             yield return CreateBaseChangeModded(576, 15100 * Boost);
             yield return CreateBaseChangeModded(657, 30000 * Boost);
             yield return new NPCHPBalancingChange(126, AccountForExpertHP1Point4((int)(23960.0 * Boost)), (BalancePriority)10, InfernumFirstMechCondition);
