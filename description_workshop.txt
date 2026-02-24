@@ -38,7 +38,7 @@ In the future, this will be a content mod that has its own story, including each
 
 The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
 
-If you have any other issues please report them in the [url=https://discord.gg/ieor] Discord server[/url]. 
+If you have any other issues please report them in the [url=https://discord.gg/tc5nZdRvaU] Discord server[/url]. 
 
 You can also check out the official wiki for our mod: https://terrariamods.wiki.gg/wiki/Infernal_Eclipse_of_Ragnarok
 

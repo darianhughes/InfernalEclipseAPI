@@ -9,4 +9,4 @@ sortAfter = CalamityMod, InfernumMode, NoxusBoss, CalamityHunt, ThoriumMod, Thor
 hideCode = true
 hideResources = true
 buildIgnore = .vs\*, Properties\*, *.csproj, *.user, obj\*, bin\*, *.config, .git\*, .github\*, LICENSE, README.md, .editorconfig, .gitignore, .gitattributes, lib/Assemblies\*
-homepage = https://discord.gg/ieor
+homepage = https://discord.gg/tc5nZdRvaU

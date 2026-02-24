@@ -7,7 +7,6 @@ using CalamityMod;
 using CalamityMod.Graphics.Primitives;
 using CalamityMod.Buffs.DamageOverTime;
 using System.Linq;
-using ReLogic.Content;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.Destinary
 {
