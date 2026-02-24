@@ -14,6 +14,11 @@ UI: {
 	LDeath: 恶意模式
 	Infernum: 炼狱模式
 	MInfernum: 诸神黄昏模式
+	/* WarningSouls:
+		'''
+		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
+		Both the Infernum and Ragnarok difficulties will be disabled while Fargo's Souls is active.
+		''' */
 }
 
 DifficultyUI: {

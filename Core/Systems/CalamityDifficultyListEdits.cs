@@ -34,6 +34,9 @@ namespace InfernalEclipseAPI.Core.Systems
 
         private static bool ShouldHideCustomDifficulties()
         {
+            if (!InfernalConfig.Instance.ThereIsNoReasonDisableThis)
+                return false;
+
             if (InfernalCrossmod.FargosSouls.Loaded)
                 return true;
 

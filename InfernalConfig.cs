@@ -153,6 +153,10 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool MoveDeerclopsChecklistEntry { get; set; }
 
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool ThereIsNoReasonDisableThis { get; set; }
+
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DontEnableThis { get; set; }
