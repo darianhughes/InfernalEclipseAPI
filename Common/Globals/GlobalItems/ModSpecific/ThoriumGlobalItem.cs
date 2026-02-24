@@ -387,19 +387,23 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     {
                         InfernalCrossmod.Thorium.Mod.Call(new object[]
                         {
-                        "BonusHealerHealBonus",
-                        player,
-                        -8
+                    "BonusHealerHealBonus",
+                    player,
+                    -8
                         });
                     }
-                    if (item.type == FindItem("AugmentedAuricTeslaValkyrieVisage"))
+
+                    if (InfernalCrossmod.Catalyst.Loaded)
                     {
-                        InfernalCrossmod.Thorium.Mod.Call(new object[]
-                        {   
-                        "BonusHealerHealBonus",
-                        player,
-                        -8
-                        });
+                        if (item.type == FindItem("AugmentedAuricTeslaValkyrieVisage"))
+                        {
+                            InfernalCrossmod.Thorium.Mod.Call(new object[]
+                            {
+                                "BonusHealerHealBonus",
+                                player,
+                                -8
+                            });
+                        }
                     }
 
                     if (item.type == FindItem("ElementalBloom"))

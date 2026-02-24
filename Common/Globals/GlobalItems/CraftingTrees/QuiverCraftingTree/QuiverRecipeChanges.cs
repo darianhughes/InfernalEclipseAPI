@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.QuiverCraftingTree
 {
@@ -70,9 +71,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.QuiverCraftingTree
                 blazingQuiverRecipe.AddIngredient<DeadshotBrooch>();
                 blazingQuiverRecipe.AddIngredient(sots.Find<ModItem>("BagOfAmmoGathering"));
                 blazingQuiverRecipe.AddIngredient(sots.Find<ModItem>("InfinityPouch"));
-                if (thorium != null && !ModLoader.TryGetMod("ssm", out _)) blazingQuiverRecipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
-                blazingQuiverRecipe.AddIngredient<GalacticaSingularity>(4);
+                if (thorium != null && !ModLoader.TryGetMod("ssm", out _)) blazingQuiverRecipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 2);
                 blazingQuiverRecipe.AddIngredient<AscendantSpiritEssence>(4);
+                blazingQuiverRecipe.AddTile<CosmicAnvil>();
                 blazingQuiverRecipe.Register();
             }
         }

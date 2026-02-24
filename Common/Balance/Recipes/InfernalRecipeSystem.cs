@@ -28,6 +28,7 @@ using Terraria.Localization;
 using InfernalEclipseAPI.Content.Items.Consumables;
 using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
+using CalamityMod.Items.LabFinders;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -402,6 +403,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 if (recipe.HasResult(ModContent.ItemType<Roxcalibur>()))
                 {
                     recipe.DecraftConditions.Add(Condition.Hardmode);
+                }
+
+                if (recipe.HasResult(ModContent.ItemType<RedSeekingMechanism>()))
+                {
+                    recipe.DecraftConditions.Add(Condition.DownedEowOrBoc);
                 }
 
                 if (recipe.HasResult(ModContent.ItemType<VoidofExtinction>()))

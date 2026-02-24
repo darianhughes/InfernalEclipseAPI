@@ -436,6 +436,11 @@ ItemTooltip: {
 		RingofRestNerf: Восстановление вдохновения имеет секунду перезарядки
 
 		SpiritInsignia: {
+			/* Effect:
+				'''
+				Increases void gain by 1 and void regeneration speed by 25%
+				Doubles damage done to non-Lux spirit enemies
+				''' */
 			OrigTooltip: Позволяет бесконечно летать на крыльях и реактивных сапогах
 			Replace: Увеличивает время полёта на 25%
 		}
