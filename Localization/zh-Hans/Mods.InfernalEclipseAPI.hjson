@@ -1588,6 +1588,16 @@ Items: {
 			Tooltip: “源自硫火熔炉的炽热精粹”
 		}
 	}
+
+	Destinary: {
+		// DisplayName: Destinary
+		/* Tooltip:
+			'''
+			Flings out razor exo disks towards the cursor that return back to the player
+			This weapon and its projectiles function as a chainsaw
+			Press Right Click to use without chopping down trees
+			''' */
+	}
 }
 
 Projectiles: {
@@ -1622,6 +1632,8 @@ Projectiles: {
 	NebulaChargeUp.DisplayName: 寰宇充能
 	DisintegratorBeam.DisplayName: 解离炮
 	DisintegratorChargeUp.DisplayName: 解离炮充能
+	// DestinaryProjectile.DisplayName: Destinary Projectile
+	// ExoDisk.DisplayName: Exo Disk
 }
 
 DiaryTooltip:

@@ -1574,6 +1574,16 @@ Items: {
 			// Tooltip: "'The essence of the Brimstone Furnace'"
 		}
 	}
+
+	Destinary: {
+		// DisplayName: Destinary
+		/* Tooltip:
+			'''
+			Flings out razor exo disks towards the cursor that return back to the player
+			This weapon and its projectiles function as a chainsaw
+			Press Right Click to use without chopping down trees
+			''' */
+	}
 }
 
 Projectiles: {
@@ -1608,6 +1618,8 @@ Projectiles: {
 	NebulaChargeUp.DisplayName: Заряд туманности
 	DisintegratorBeam.DisplayName: Луч дезинтегратора
 	DisintegratorChargeUp.DisplayName: Заряд дезинтегратора
+	// DestinaryProjectile.DisplayName: Destinary Projectile
+	// ExoDisk.DisplayName: Exo Disk
 }
 
 DiaryTooltip:
