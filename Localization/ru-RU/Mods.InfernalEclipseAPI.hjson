@@ -436,19 +436,15 @@ ItemTooltip: {
 		RingofRestNerf: Восстановление вдохновения имеет секунду перезарядки
 
 		SpiritInsignia: {
-			/* Effect:
-				'''
-				Increases void gain by 1 and void regeneration speed by 25%
-				Doubles damage done to non-Lux spirit enemies
-				''' */
-			OrigTooltip: Позволяет бесконечно летать на крыльях и реактивных сапогах
+			Effect: "{$SOTS.Items.SpiritSymphony.DisplayName}"
+			OrigTooltip: Даёт бесконечный полёт
 			Replace: Увеличивает время полёта на 25%
 		}
 
 		AscendantInsignia:
 			'''
-			Увеличивает скорость передвижения, прыжка и ускорение на 10%
-			При нажатии клавиши восходящей инсигнии даёт силу восхождения, позволяя бесконечно летать в течение 4 секунд
+			Увеличивает скорость передвижения и прыжка на 10%, а ускорение — в 1.1 раза
+			При нажатии клавиши '{$CalamityMod.Keybinds.AscendantInsigniaHotKey.DisplayName}' даёт силу восхождения, позволяющую бесконечно летать в течение 4 секунд
 			Восхождение имеет 40 секунд перезарядки
 			'''
 		GildedVoid: Пока активно увеличивает получаемую пустоту на 3
@@ -1570,8 +1566,8 @@ Items: {
 
 	Materials: {
 		EssenceOfFlame: {
-			DisplayName: Эссенция пламени
-			// Tooltip: "'The essence of the Brimstone Furnace'"
+			DisplayName: Эссенция Игнуса
+			Tooltip: "'Эссенция серной печи'"
 		}
 	}
 }
