@@ -48,16 +48,16 @@ namespace InfernalEclipseAPI.Common.Balance
                 switch (tile)
                 {
                     case 37:
-                        return NPC.downedBoss2;
+                        return NPC.downedBoss2 || Main.hardMode;
                     case 58:
-                        return NPC.downedBoss2;
+                        return NPC.downedBoss2 || Main.hardMode;
                     case 408:
                         return NPC.downedMoonlord;
                     case 659:
-                        return NPC.downedBoss2;
+                        return NPC.downedBoss2 || Main.hardMode;
                     case TileID.AlchemyTable:
                     case TileID.BewitchingTable:
-                        return NPC.downedBoss3;
+                        return NPC.downedBoss3 || Main.hardMode;
                     default:
                         if (tile == ModContent.TileType<ExodiumOre>()) { return NPC.downedMoonlord; }
                         return base.CanKillTile(i, j, tile, ref blockDamaged);
@@ -71,11 +71,11 @@ namespace InfernalEclipseAPI.Common.Balance
             if (InfernalConfig.Instance.BossKillCheckOnOres)
             {
                 if (IsBelowSpecialTable(i, j))
-                    return NPC.downedBoss3;
+                    return NPC.downedBoss3 || Main.hardMode;
 
                 if (IsBelowStrangeKeystone(i, j))
                 {
-                    return NPC.downedBoss2;
+                    return NPC.downedBoss2 || Main.hardMode;
                 }
 
                 if (InfernalCrossmod.SOTS.Loaded)
@@ -89,16 +89,16 @@ namespace InfernalEclipseAPI.Common.Balance
                 switch (type)
                 {
                     case 37:
-                        return NPC.downedBoss2;
+                        return NPC.downedBoss2 || Main.hardMode;
                     case 58:
-                        return NPC.downedBoss2;
+                        return NPC.downedBoss2 || Main.hardMode;
                     case 408:
                         return NPC.downedMoonlord;
                     case 659:
-                        return NPC.downedBoss2;
+                        return NPC.downedBoss2 || Main.hardMode;
                     case TileID.AlchemyTable:
                     case TileID.BewitchingTable:
-                        return NPC.downedBoss3;
+                        return NPC.downedBoss3 || Main.hardMode;
                     default:
                         if (type == ModContent.TileType<ExodiumOre>()) { return NPC.downedMoonlord; }
                         return base.CanExplode(i, j, type);

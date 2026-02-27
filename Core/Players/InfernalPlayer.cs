@@ -18,6 +18,8 @@ using CalamityMod.Events;
 using Terraria.GameInput;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.Projectiles.Melee;
+using Terraria.UI;
+using InfernalEclipseAPI.Content.UI;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -62,12 +64,17 @@ namespace InfernalEclipseAPI.Core.Players
                 InfernalWorld.craftedWorkshop = true;
             }
 
-            //Alerts the player if they have Fargo's Souls enabled.
             if (ModLoader.HasMod("FargowiltasSouls"))
             {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning"), 255, 0, 0);
+                InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
+            }
+            
+            if (Main.getGoodWorld)
+            {
+                InGameNotificationsTracker.AddNotification(new ForTheWorthyNotification());
             }
 
+            //TODO convert these to notifications
             if (ModLoader.HasMod("CWRMod"))
             {
                 Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.OverhaulWarning"), 255, 0, 0);
@@ -764,6 +771,37 @@ namespace InfernalEclipseAPI.Core.Players
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
         {
             TryCoinDebuff();
+        }
+
+        public override void ModifyHitByProjectile(Projectile proj, ref Terraria.Player.HurtModifiers modifiers)
+        {
+            //Reverts vanilla trap damage nerf
+            ref StatModifier sourceDamage = ref modifiers.SourceDamage;
+
+            if (proj.type == ProjectileID.Explosives)
+            {
+                sourceDamage /= Main.expertMode ? 0.225f : 0.35f;
+            }
+            else if (proj.type == ProjectileID.RollingCactus || proj.type == ProjectileID.RollingCactusSpike)
+            {
+                sourceDamage /= Main.expertMode ? 0.3f : 0.5f;
+            }
+
+            if (!Main.expertMode)
+                return;
+
+            if (proj.type == ProjectileID.Boulder || proj.type == ProjectileID.MiniBoulder)
+            {
+                sourceDamage /= 0.65f;
+            }
+            else if (proj.type == ProjectileID.SpikyBallTrap || proj.type == ProjectileID.FlamethrowerTrap || proj.type == ProjectileID.PoisonDartTrap)
+            {
+                sourceDamage /= 0.625f;
+            }
+            else if (proj.type == ProjectileID.SpearTrap)
+            {
+                sourceDamage /= 0.6f;
+            }
         }
 
         public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)

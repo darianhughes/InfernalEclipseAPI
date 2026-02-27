@@ -266,15 +266,26 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
             if (InfernalUtilities.IsInfernumActive() || InfernalUtilities.GetFargoDifficullty("MasochistMode"))
             {
-                damageMod *= 2.2f;
+                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
+                    damageMod *= 2.2f;
+                else
+                {
+                    damageMod *= 1.35f;
+                }
             }
             else if (InfernalUtilities.GetFargoDifficullty("EternityMode"))
             {
-                damageMod *= 1.675f;
+                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
+                    damageMod *= 1.675f;
+                else
+                    damageMod *= 1.25f;
             }
             else if (InfernalUtilities.GetCalDifficulty("death"))
             {
-                damageMod *= 1.5f;
+                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
+                    damageMod *= 1.5f;
+                else
+                    damageMod *= 1.1f;
             }
 
             modifiers.SourceDamage *= damageMod;

@@ -14,6 +14,23 @@ UI: {
 	LDeath: Malice Mode
 	Infernum: Infernum Mode
 	MInfernum: Ragnarok Mode
+	WarningSouls:
+		'''
+		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
+		Enabling Infernum Mode or Ragnarok mode will disable Eternity mode as they are incompatible!
+		Please do not report any balance issues or bugs while playing with Fargo's Souls.
+		'''
+	WarningForTheWorthyON:
+		'''
+		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
+		Both the Infernum and Ragnarok difficulties will be disabled in this seed!
+		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
+		'''
+	WarningForTheWorthyOFF:
+		'''
+		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
+		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
+		'''
 }
 
 DifficultyUI: {
@@ -40,7 +57,7 @@ WelcomeMessage: {
 	TBRWarning: WARNING: It is detected that you do not have Thorium Bosses Reworked enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.
 	RagWarning: WARNING: It is detected that you do not have Ragnarok enabled! Without this mod, Thorium & Calamity may not work well together. It is heavily recommended you enable this mod for a more complete & balanced experience
 	EventTrophyNotice: NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience.
-	SoulsWarning: WARNING: It is detected that you have the Fargo's Souls Mod enabled! Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.
+	SoulsWarning: WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok! Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.
 	OverhaulWarning: WARNING: It is detected that you have the Calamity Overhaul enabled! This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
 	RemnantsWarning: WARNING: It is detected that you have the Remnants mod enabled! This mod is NOT compatible with Infernum If this world was generated with the mod, please regenerate it with this mod off, or otherwise do not report bugs about world generation.
 	MasterPatchNotice: NOTICE: It is detected that you have the Infernum Master Patch mod enabled. This mod is redunant with this mod and can be disabled.
@@ -1588,6 +1605,16 @@ Items: {
 			Tooltip: "'The essence of the Brimstone Furnace'"
 		}
 	}
+
+	Destinary: {
+		DisplayName: Destinary
+		Tooltip:
+			'''
+			Flings out razor exo disks towards the cursor that return back to the player
+			This weapon and its projectiles function as a chainsaw
+			Press Right Click to use without chopping down trees
+			'''
+	}
 }
 
 Projectiles: {
@@ -1622,6 +1649,8 @@ Projectiles: {
 	NebulaChargeUp.DisplayName: Nebula Charge Up
 	DisintegratorBeam.DisplayName: Disintegrator Beam
 	DisintegratorChargeUp.DisplayName: Disintegrator Charge Up
+	DestinaryProjectile.DisplayName: Destinary Projectile
+	ExoDisk.DisplayName: Exo Disk
 }
 
 DiaryTooltip:
@@ -1662,6 +1691,7 @@ Configs: {
 			Miscellaneous: Miscellaneous
 			MultiplayerAdjustments: Multiplayer Adjustments & Utilities
 			Main: Main
+			Secret: Secret Settings
 		}
 
 		ThoriumBalanceChangess: {
@@ -1865,15 +1895,6 @@ Configs: {
 				'''
 		}
 
-		UseAprilFoolsMutant: {
-			Label: Use April Fools Mutant
-			Tooltip:
-				'''
-				Converts the Mutant from Fargo's Souls to Yharim.
-				This setting doesn't do anything if Fargo's Souls isn't enabled.
-				'''
-		}
-
 		MergeThrowerIntoRogue: {
 			Label: Merge Thrower Into Rogue
 			Tooltip:
@@ -1881,6 +1902,15 @@ Configs: {
 				Merges the Thrower & Rogue class into one refined class. 
 				Allows converted thrower weapons to still recieve thier orginal reforges.
 				Also keeps the stealth bar damage scaling intact.
+				'''
+		}
+
+		ThereIsNoReasonDisableThis: {
+			Label: There Is No Reason Disable This
+			Tooltip:
+				'''
+				There is no reason to disable this as it disables difficulties that are buggy and unbalanced when merged with Infernum.
+				Only disable this config if you know the consequences, and do not report bugs with this config disabled.
 				'''
 		}
 	}
