@@ -59,7 +59,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
         {
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
-                if (item.type == thorium.Find<ModItem>("BatScythe").Type) ThrowDistance = 125f;
+                if (item.type == thorium.Find<ModItem>("BatScythe").Type) ThrowDistance = 165f;
                 //if (item.type == thorium.Find<ModItem>("TitanScythe").Type) ThrowDistance = 150f;
                 if (item.type == thorium.Find<ModItem>("IceShaver").Type) ThrowDistance = 45f;
                 if (item.type == thorium.Find<ModItem>("DarkScythe").Type) ThrowDistance = 80f;
@@ -71,7 +71,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                 if (item.type == thorium.Find<ModItem>("LustrousBaton").Type) ThrowDistance = 115f;
                 //if (item.type == thorium.Find<ModItem>("TrueFallingTwilight").Type) ThrowDistance = 110f;
                 //if (item.type == thorium.Find<ModItem>("TrueBloodHarvest").Type) ThrowDistance = 110f;
-                if (item.type == thorium.Find<ModItem>("MorningDew").Type) ThrowDistance = 135f;
+                if (item.type == thorium.Find<ModItem>("MorningDew").Type) ThrowDistance = 150f;
                 //if (item.type == thorium.Find<ModItem>("TerraScythe").Type) ThrowDistance = 120f;
                 if (item.type == thorium.Find<ModItem>("ChristmasCheer").Type) ThrowDistance = 150f;
                 if (item.type == thorium.Find<ModItem>("DreadTearer").Type) ThrowDistance = 100f;

@@ -37,8 +37,10 @@ namespace InfernalEclipseAPI.Core.Systems
             if (!InfernalConfig.Instance.ThereIsNoReasonDisableThis)
                 return false;
 
+            /*
             if (InfernalCrossmod.FargosSouls.Loaded)
                 return true;
+            */
 
             if (Main.getGoodWorld)
                 return true;

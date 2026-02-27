@@ -41,10 +41,18 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void PreUpdateWorld()
         {
-            if ((InfernalCrossmod.FargosSouls.Loaded || Main.getGoodWorld) && InfernalConfig.Instance.ThereIsNoReasonDisableThis)
+            if (InfernalConfig.Instance.ThereIsNoReasonDisableThis && (WorldSaveSystem.InfernumModeEnabled || RagnarokModeEnabled))
             {
-                RagnarokModeEnabled = false;
-                WorldSaveSystem.InfernumModeEnabled = false;
+                if (Main.getGoodWorld)
+                {
+                    RagnarokModeEnabled = false;
+                    WorldSaveSystem.InfernumModeEnabled = false;
+                }
+
+                if (InfernalCrossmod.FargosSouls.Loaded)
+                {
+                    FargoWorldFlagAdjustments.UnsetEmode();
+                }
             }
 
             if (RagnarokModeEnabled)
@@ -159,6 +167,17 @@ namespace InfernalEclipseAPI.Core.World
             craftedWorkshop = reader.ReadBoolean();
             RagnarokModeEnabled = reader.ReadBoolean();
             hasChosenDifficulty = reader.ReadBoolean();
+        }
+    }
+
+    [JITWhenModsEnabled(InfernalCrossmod.FargosSouls.Name)]
+    [ExtendsFromMod(InfernalCrossmod.FargosSouls.Name)]
+    public static class FargoWorldFlagAdjustments
+    {
+        public static void UnsetEmode()
+        {
+            FargowiltasSouls.Core.Systems.WorldSavingSystem.EternityMode = false;
+            FargowiltasSouls.Core.Systems.WorldSavingSystem.MasochistModeReal = false;
         }
     }
 }
