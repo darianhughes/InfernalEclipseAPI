@@ -8,7 +8,7 @@ using Terraria.UI;
 
 namespace InfernalEclipseAPI.Content.UI
 {
-    public class FargosSoulsNotification : IInGameNotification
+    public class ForTheWorthyNotification : IInGameNotification
     {
         public bool ShouldBeRemoved => timeLeft <= 0;
 
@@ -65,7 +65,7 @@ namespace InfernalEclipseAPI.Content.UI
                 return;
             }
 
-            string title = Language.GetTextValue(InfernalConfig.Instance.ThereIsNoReasonDisableThis ? "Mods.InfernalEclipseAPI.UI.WarningSouls" : "Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning");
+            string title = Language.GetTextValue(InfernalConfig.Instance.ThereIsNoReasonDisableThis ? "Mods.InfernalEclipseAPI.UI.WarningForTheWorthyON" : "Mods.InfernalEclipseAPI.UI.WarningForTheWorthyOFF");
 
             float effectiveScale = Scale * 1.1f;
             Vector2 size = (FontAssets.ItemStack.Value.MeasureString(title) + new Vector2(58f, 100f)) * effectiveScale;

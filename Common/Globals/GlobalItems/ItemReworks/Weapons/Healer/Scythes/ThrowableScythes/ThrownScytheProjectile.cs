@@ -154,6 +154,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
         private float GetCustomHeight(Projectile projectile)
         {
             //thorium ones can be added here
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            {
+                if (projectile.type == thorium.Find<ModProjectile>("BatScythePro").Type) return 1.25f;
+                if (projectile.type == thorium.Find<ModProjectile>("MorningDewPro").Type) return 1.15f;
+            }
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
             {
                 //add custom for ragnarok heights here

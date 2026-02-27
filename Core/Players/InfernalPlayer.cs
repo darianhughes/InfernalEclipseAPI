@@ -66,9 +66,12 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (ModLoader.HasMod("FargowiltasSouls"))
             {
-                if (!ModLoader.HasMod("FargowiltasCrossmod"))
-                    InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
-                //Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning"), 255, 0, 0);
+                InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
+            }
+            
+            if (Main.getGoodWorld)
+            {
+                InGameNotificationsTracker.AddNotification(new ForTheWorthyNotification());
             }
 
             //TODO convert these to notifications
