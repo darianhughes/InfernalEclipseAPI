@@ -466,11 +466,11 @@ ItemTooltip: {
 		RingofRestNerf: 灵感恢复效果有1秒冷却时间
 
 		SpiritInsignia: {
-			/* Effect:
+			Effect:
 				'''
-				Increases void gain by 1 and void regeneration speed by 25%
-				Doubles damage done to non-Lux spirit enemies
-				''' */
+				增加1点虚空恢复量和25%虚空恢复速度
+				对除了辉光圣魂以外的灵魂敌怪造成双倍伤害
+				'''
 			OrigTooltip: 使你获得无限的翅膀和火箭靴飞行时间
 			Replace: 增加25%翅膀飞行时间
 		}
@@ -1607,13 +1607,13 @@ Items: {
 	}
 
 	Destinary: {
-		// DisplayName: Destinary
-		/* Tooltip:
+		DisplayName: 命律环刃
+		Tooltip:
 			'''
-			Flings out razor exo disks towards the cursor that return back to the player
-			This weapon and its projectiles function as a chainsaw
-			Press Right Click to use without chopping down trees
-			''' */
+			向光标方向掷出锋利的星流圆盘，随后返回
+			该武器及其弹幕均被视作链锯
+			按住右键使用以避免砍伐树木
+			'''
 	}
 }
 
@@ -1649,8 +1649,8 @@ Projectiles: {
 	NebulaChargeUp.DisplayName: 寰宇充能
 	DisintegratorBeam.DisplayName: 解离炮
 	DisintegratorChargeUp.DisplayName: 解离炮充能
-	// DestinaryProjectile.DisplayName: Destinary Projectile
-	// ExoDisk.DisplayName: Exo Disk
+	DestinaryProjectile.DisplayName: 命律环刃
+	ExoDisk.DisplayName: 星流圆盘
 }
 
 DiaryTooltip:
@@ -1691,7 +1691,7 @@ Configs: {
 			Miscellaneous: 融合
 			MultiplayerAdjustments: 多人游戏调整
 			Main: 主要
-			// Secret: Secret Settings
+			Secret: 秘密设置
 		}
 
 		ThoriumBalanceChangess: {
@@ -1906,12 +1906,12 @@ Configs: {
 		}
 
 		ThereIsNoReasonDisableThis: {
-			// Label: There Is No Reason Disable This
-			/* Tooltip:
+			Label: 不建议禁用此选项
+			Tooltip:
 				'''
-				There is no reason to disable this as it disables difficulties that are buggy and unbalanced when merged with Infernum.
-				Only disable this config if you know the consequences, and do not report bugs with this config disabled.
-				''' */
+				不要禁用此选项，因为它会自动禁用与炼狱模式合并后存在漏洞或严重失衡的难度
+				除非你清楚可能产生的后果，否则不要禁用此配置。若禁用后出现问题，请勿提交漏洞反馈
+				'''
 		}
 	}
 
