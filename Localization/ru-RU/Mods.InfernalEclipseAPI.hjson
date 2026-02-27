@@ -14,11 +14,11 @@ UI: {
 	LDeath: Злоба
 	Infernum: Инфернум
 	MInfernum: Рагнарёк
-	/* WarningSouls:
+	WarningSouls:
 		'''
-		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
-		Both the Infernum and Ragnarok difficulties will be disabled while Fargo's Souls is active.
-		''' */
+		ПРЕДУПРЕЖДЕНИЕ: «Fargo's Souls Mod» НЕ совместим с «Infernal Eclipse of Ragnarok»!
+		Обе сложности — Инфернум и Рагнарёк — будут отключены, пока Fargo's Souls активен.
+		'''
 }
 
 DifficultyUI: {
@@ -441,19 +441,15 @@ ItemTooltip: {
 		RingofRestNerf: Восстановление вдохновения имеет секунду перезарядки
 
 		SpiritInsignia: {
-			/* Effect:
-				'''
-				Increases void gain by 1 and void regeneration speed by 25%
-				Doubles damage done to non-Lux spirit enemies
-				''' */
-			OrigTooltip: Позволяет бесконечно летать на крыльях и реактивных сапогах
+			Effect: "{$SOTS.Items.SpiritSymphony.DisplayName}"
+			OrigTooltip: Даёт бесконечный полёт
 			Replace: Увеличивает время полёта на 25%
 		}
 
 		AscendantInsignia:
 			'''
-			Увеличивает скорость передвижения, прыжка и ускорение на 10%
-			При нажатии клавиши восходящей инсигнии даёт силу восхождения, позволяя бесконечно летать в течение 4 секунд
+			Увеличивает скорость передвижения и прыжка на 10%, а ускорение — в 1.1 раза
+			При нажатии клавиши '{$CalamityMod.Keybinds.AscendantInsigniaHotKey.DisplayName}' даёт силу восхождения, позволяющую бесконечно летать в течение 4 секунд
 			Восхождение имеет 40 секунд перезарядки
 			'''
 		GildedVoid: Пока активно увеличивает получаемую пустоту на 3
@@ -1540,13 +1536,13 @@ Items: {
 		Tooltip: ""
 		DynamicTooltip:
 			'''
-			{0}{1} увеличение всех характеристик
+			{0}{1} увеличивает все характеристики
 			Мгновенно активирует ярость и накладывает дебафф [cbuff:PotionSickness]
 			'品尝我的怒火……和布丁！'
 			'''
 		VoidTooltip: Восполняет 100 ед. пустоты
-		Stellar: Звёздное
-		Major: Значительное
+		Stellar: Звёздно
+		Major: Значительно
 	}
 
 	SingularityCore: {
@@ -1575,19 +1571,19 @@ Items: {
 
 	Materials: {
 		EssenceOfFlame: {
-			DisplayName: Эссенция пламени
-			// Tooltip: "'The essence of the Brimstone Furnace'"
+			DisplayName: Эссенция Игнуса
+			Tooltip: "'Эссенция серной печи'"
 		}
 	}
 
 	Destinary: {
-		// DisplayName: Destinary
-		/* Tooltip:
+		DisplayName: Destinary
+		Tooltip:
 			'''
 			Flings out razor exo disks towards the cursor that return back to the player
 			This weapon and its projectiles function as a chainsaw
 			Press Right Click to use without chopping down trees
-			''' */
+			'''
 	}
 }
 
@@ -1617,14 +1613,14 @@ Projectiles: {
 	_13thGltichCombo.DisplayName: Комбо _13-го глича
 	CelestialBeam.DisplayName: Неземной луч
 	CelestialIlluminationStar.DisplayName: Неземная освящённая звезда
-	DemonicRune.DisplayName: Руна маленького демонического серого кота
+	DemonicRune.DisplayName: Руна Маленького демонического серого кота
 	ThoriumHeavyScytheSpark.DisplayName: Искра тяжёлой ториевой косы
 	NebulaBeam.DisplayName: Луч туманности
 	NebulaChargeUp.DisplayName: Заряд туманности
 	DisintegratorBeam.DisplayName: Луч дезинтегратора
 	DisintegratorChargeUp.DisplayName: Заряд дезинтегратора
-	// DestinaryProjectile.DisplayName: Destinary Projectile
-	// ExoDisk.DisplayName: Exo Disk
+	DestinaryProjectile.DisplayName: "{$Items.Destinary.DisplayName}"
+	ExoDisk.DisplayName: Экзо-диск
 }
 
 DiaryTooltip:
@@ -2198,6 +2194,6 @@ Keybinds: {
 Events: {
 	//Sequential text at the end of Boss Rush Tier 5
 	BossRushTierFiveEndText_1: Мы достигли финала, Террариец.
-	BossRushTierFiveEndText_2: Всё, что стоит между вами и окончанием этого испытания, — это те, кто есть и те, кто когда-то были богами этого мира.
+	BossRushTierFiveEndText_2: Всё, что стоит между тобой и окончанием этого испытания, — это те, кто есть и те, кто когда-то были богами этого мира.
 	BossRushTierFiveEndText_3: Покажи мне силу того, кому сейчас нечего терять. Не время колебаться.
 }
