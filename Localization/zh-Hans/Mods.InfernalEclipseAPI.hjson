@@ -14,23 +14,23 @@ UI: {
 	LDeath: 恶意模式
 	Infernum: 炼狱模式
 	MInfernum: 诸神黄昏模式
-	/* WarningSouls:
+	WarningSouls:
 		'''
-		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
-		Enabling Infernum Mode or Ragnarok mode will disable Eternity mode as they are incompatible!
-		Please do not report any balance issues or bugs while playing with Fargo's Souls.
-		''' */
-	/* WarningForTheWorthyON:
+		警告：Fargo魂石与炼狱蚀光不兼容！
+		启用炼狱模式或诸神黄昏模式将会自动禁用永恒模式，因为它们彼此冲突！
+		在启用Fargo魂石的情况下出现的平衡问题或漏洞，请勿进行反馈。
 		'''
-		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
-		Both the Infernum and Ragnarok difficulties will be disabled in this seed!
-		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
-		''' */
-	/* WarningForTheWorthyOFF:
+	WarningForTheWorthyON:
 		'''
-		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
-		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
-		''' */
+		警告：For the worthy与炼狱蚀光不兼容！
+		在该种子下，炼狱难度与诸神黄昏难度将被强制禁用！
+		在For the worthy世界中出现的平衡问题或漏洞，请勿进行反馈。
+		'''
+	WarningForTheWorthyOFF:
+		'''
+		警告：For the worthy与炼狱蚀光不兼容！
+		在For the worthy世界中出现的平衡问题或漏洞，请勿进行反馈。
+		'''
 }
 
 DifficultyUI: {
