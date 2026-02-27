@@ -14,6 +14,23 @@ UI: {
 	LDeath: Злоба
 	Infernum: Инфернум
 	MInfernum: Рагнарёк
+	/* WarningSouls:
+		'''
+		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
+		Enabling Infernum Mode or Ragnarok mode will disable Eternity mode as they are incompatible!
+		Please do not report any balance issues or bugs while playing with Fargo's Souls.
+		''' */
+	/* WarningForTheWorthyON:
+		'''
+		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
+		Both the Infernum and Ragnarok difficulties will be disabled in this seed!
+		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
+		''' */
+	/* WarningForTheWorthyOFF:
+		'''
+		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
+		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
+		''' */
 }
 
 DifficultyUI: {
@@ -1570,6 +1587,16 @@ Items: {
 			Tooltip: "'Эссенция серной печи'"
 		}
 	}
+
+	Destinary: {
+		// DisplayName: Destinary
+		/* Tooltip:
+			'''
+			Flings out razor exo disks towards the cursor that return back to the player
+			This weapon and its projectiles function as a chainsaw
+			Press Right Click to use without chopping down trees
+			''' */
+	}
 }
 
 Projectiles: {
@@ -1604,6 +1631,8 @@ Projectiles: {
 	NebulaChargeUp.DisplayName: Заряд туманности
 	DisintegratorBeam.DisplayName: Луч дезинтегратора
 	DisintegratorChargeUp.DisplayName: Заряд дезинтегратора
+	// DestinaryProjectile.DisplayName: Destinary Projectile
+	// ExoDisk.DisplayName: Exo Disk
 }
 
 DiaryTooltip:
@@ -1644,6 +1673,7 @@ Configs: {
 			Miscellaneous: Разное
 			MultiplayerAdjustments: Настройки и утилиты для мультиплеера
 			Main: Главное
+			// Secret: Secret Settings
 		}
 
 		ThoriumBalanceChangess: {
@@ -1846,15 +1876,6 @@ Configs: {
 				'''
 		}
 
-		UseAprilFoolsMutant: {
-			Label: Использовать первоапрельского Мутанта
-			Tooltip:
-				'''
-				Заменяет Мутанта из Fargo's Souls на Ярима.
-				Эта настройка ничего не делает, если Fargo's Souls не включён.
-				'''
-		}
-
 		MergeThrowerIntoRogue: {
 			Label: Объединить метателя с разбойником
 			Tooltip:
@@ -1863,6 +1884,15 @@ Configs: {
 				Позволяет конвертированному метательному оружию сохранять свои оригинальные перековки.
 				Также сохраняет без изменений множитель урона от шкалы скрытности.
 				'''
+		}
+
+		ThereIsNoReasonDisableThis: {
+			// Label: There Is No Reason Disable This
+			/* Tooltip:
+				'''
+				There is no reason to disable this as it disables difficulties that are buggy and unbalanced when merged with Infernum.
+				Only disable this config if you know the consequences, and do not report bugs with this config disabled.
+				''' */
 		}
 	}
 

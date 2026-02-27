@@ -351,7 +351,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         ItemID.PurplePhaseblade,
                         ItemID.RedPhaseblade,
                         ItemID.WhitePhaseblade,
-                        ItemID.YellowPhaseblade
+                        ItemID.YellowPhaseblade,
+                        ItemID.FlameWakerBoots
                     };
 
                     int[] lockUntilSkeletron =

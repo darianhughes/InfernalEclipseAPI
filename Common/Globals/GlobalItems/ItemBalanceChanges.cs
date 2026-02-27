@@ -15,7 +15,6 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
-using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -3248,6 +3247,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #endregion
 
                     #region Healer
+                    if (GetItem(thorium, "LustrousBaton", item))
+                    {
+                        item.damage = 54;
+                    }
+
+                    if (GetItem(thorium, "HolyFire", item))
+                    {
+                        item.damage = 40;
+                    }
+
                     #region Pre-Hardmode
                     if (GetItem(thorium, "CrimsonScythe", item))
                     {
@@ -3346,6 +3355,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         //item.useAnimation = 92;
                     }
 
+                    if (item.type == thorium.Find<ModItem>("BountifulHarvest").Type)
+                    {
+                        item.damage = 17;
+                    }
+
                     //Leech Bolt
                     if (item.type == thorium.Find<ModItem>("LeechBolt").Type)
                     {
@@ -3361,7 +3375,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Purified Water
                     if (item.type == thorium.Find<ModItem>("PurifiedWater").Type)
                     {
-                        item.damage = 22;
+                        item.damage = 26;
                     }
 
                     //Shadow Wand
@@ -3402,19 +3416,19 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Molten Thresher
                     if (item.type == thorium.Find<ModItem>("MoltenThresher").Type)
                     {
-                        item.damage = 20;
+                        item.damage = 28;
                     }
 
                     //Omen
                     if (item.type == thorium.Find<ModItem>("Omen").Type)
                     {
-                        item.damage = 30;
+                        item.damage = 36;
                     }
 
                     //Bat Scythe
                     if (item.type == thorium.Find<ModItem>("BatScythe").Type)
                     {
-                        item.damage = 20;
+                        item.damage = 26;
                         item.useTime = 24;
                         item.useAnimation = 24;
                     }
@@ -3492,7 +3506,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Bone Baton
                     if (GetItem(thorium, "BoneBaton", item))
                     {
-                        item.damage = 45;
+                        item.damage = 60;
                     }
 
                     //Sacred Bludgeon
@@ -3511,13 +3525,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Blood Transfusion
                     if (GetItem(thorium, "BloodTransfusion", item))
                     {
+                        item.damage = 36;
                         item.shootSpeed = 14;
                     }
 
                     //Wild Umbra
                     if (GetItem(thorium, "WildUmbra", item))
                     {
-                        item.damage = 36;
+                        item.damage = 48;
+                        item.useTime = 16;
+                        item.useAnimation = 16;
                     }
 
                     //Iridescent Staff
@@ -3553,7 +3570,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "MorningDew", item))
                     {
-                        item.damage = 60;
+                        item.damage = 80;
                     }
 
                     if (GetItem(thorium, "TrueFallingTwilight", item))
@@ -4373,7 +4390,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 #region Hardmode
                 if (GetItem(calBardHeal, "CottonMouth", item))
                 {
-                    item.damage = 20;
+                    item.damage = 30;
                 }
 
                 if (GetItem(calBardHeal, "ElectricQuarterstaff", item))

@@ -8,6 +8,7 @@ using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Buffs.DamageOverTime;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Core.Systems;
+using Terraria;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -33,6 +34,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int whirlwindType = -1;
         //private static int marbleType = -1;
         private static int terraType = -1;
+        private static int morningDewType = -1;
 
         public override void SetStaticDefaults()
         {
@@ -56,6 +58,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 iceType = thorium.Find<ModProjectile>("IceShaverPro")?.Type ?? -1;
                 darkType = thorium.Find<ModProjectile>("DemoniteScythePro")?.Type ?? -1;
                 terraType = thorium.Find<ModProjectile>("TerraScythePro")?.Type ?? -1;
+                morningDewType = thorium.Find<ModProjectile>("MorningDewPro")?.Type ?? -1;
 
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
                 {
@@ -90,6 +93,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             var t when t == whirlwindType => 1.5f,
             //var t when t == marbleType => 1.75f,
             var t when t == terraType => 1.6f,
+            var t when t == morningDewType => 1.5f,
             _ => 1f,
         };
 
@@ -129,7 +133,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
                 trueBloodHarvestType, theBlackScytheType, titanScytheType,
                 boneBatonType, trueHallowedType,
-                crimsonType, iceType, darkType, terraType,
+                crimsonType, iceType, darkType, terraType, morningDewType
             };
 
             if (!Array.Exists(customDrawProjectiles, t => t == projectile.type))

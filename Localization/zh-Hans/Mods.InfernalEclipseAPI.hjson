@@ -14,6 +14,23 @@ UI: {
 	LDeath: 恶意模式
 	Infernum: 炼狱模式
 	MInfernum: 诸神黄昏模式
+	/* WarningSouls:
+		'''
+		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
+		Enabling Infernum Mode or Ragnarok mode will disable Eternity mode as they are incompatible!
+		Please do not report any balance issues or bugs while playing with Fargo's Souls.
+		''' */
+	/* WarningForTheWorthyON:
+		'''
+		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
+		Both the Infernum and Ragnarok difficulties will be disabled in this seed!
+		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
+		''' */
+	/* WarningForTheWorthyOFF:
+		'''
+		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
+		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
+		''' */
 }
 
 DifficultyUI: {
@@ -1588,6 +1605,16 @@ Items: {
 			Tooltip: “源自硫火熔炉的炽热精粹”
 		}
 	}
+
+	Destinary: {
+		// DisplayName: Destinary
+		/* Tooltip:
+			'''
+			Flings out razor exo disks towards the cursor that return back to the player
+			This weapon and its projectiles function as a chainsaw
+			Press Right Click to use without chopping down trees
+			''' */
+	}
 }
 
 Projectiles: {
@@ -1622,6 +1649,8 @@ Projectiles: {
 	NebulaChargeUp.DisplayName: 寰宇充能
 	DisintegratorBeam.DisplayName: 解离炮
 	DisintegratorChargeUp.DisplayName: 解离炮充能
+	// DestinaryProjectile.DisplayName: Destinary Projectile
+	// ExoDisk.DisplayName: Exo Disk
 }
 
 DiaryTooltip:
@@ -1662,6 +1691,7 @@ Configs: {
 			Miscellaneous: 融合
 			MultiplayerAdjustments: 多人游戏调整
 			Main: 主要
+			// Secret: Secret Settings
 		}
 
 		ThoriumBalanceChangess: {
@@ -1865,15 +1895,6 @@ Configs: {
 				'''
 		}
 
-		UseAprilFoolsMutant: {
-			Label: 使用愚人节突变体变种
-			Tooltip:
-				'''
-				将Fargo魂的突变体转化为亚利姆
-				若未启用Fargo魂则此设置无效
-				'''
-		}
-
 		MergeThrowerIntoRogue: {
 			Label: 融合盗贼和投手
 			Tooltip:
@@ -1882,6 +1903,15 @@ Configs: {
 				允许转换后的投手武器仍然获得其原有重铸效果
 				同时保留潜行值条的伤害加成机制
 				'''
+		}
+
+		ThereIsNoReasonDisableThis: {
+			// Label: There Is No Reason Disable This
+			/* Tooltip:
+				'''
+				There is no reason to disable this as it disables difficulties that are buggy and unbalanced when merged with Infernum.
+				Only disable this config if you know the consequences, and do not report bugs with this config disabled.
+				''' */
 		}
 	}
 
