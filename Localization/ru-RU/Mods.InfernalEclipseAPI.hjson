@@ -14,23 +14,23 @@ UI: {
 	LDeath: Злоба
 	Infernum: Инфернум
 	MInfernum: Рагнарёк
-	/* WarningSouls:
+	WarningSouls:
 		'''
-		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
-		Enabling Infernum Mode or Ragnarok mode will disable Eternity mode as they are incompatible!
-		Please do not report any balance issues or bugs while playing with Fargo's Souls.
-		''' */
-	/* WarningForTheWorthyON:
+		ПРЕДУПРЕЖДЕНИЕ: Fargo's Souls НЕ совместим с Infernal Eclipse of Ragnarok!
+		Включение режима Инфернума или режима Рагнарёка отключит Режим Вечности, так как они несовместимы!
+		Пожалуйста, не сообщайте о проблемах с балансом или ошибках, если играете с Fargo's Souls.
 		'''
-		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
-		Both the Infernum and Ragnarok difficulties will be disabled in this seed!
-		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
-		''' */
-	/* WarningForTheWorthyOFF:
+	WarningForTheWorthyON:
 		'''
-		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
-		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
-		''' */
+		ПРЕДУПРЕЖДЕНИЕ: генерация «For the Worthy» НЕ совместима с Infernal Eclipse of Ragnarok!
+		Обе сложности — Инфернум и Рагнарёк — будут отключены в этой генерации!
+		Пожалуйста, не сообщайте о проблемах с балансом или ошибках, если играете в генерации «For The Worthy».
+		'''
+	WarningForTheWorthyOFF:
+		'''
+		ПРЕДУПРЕЖДЕНИЕ: генерация «For the Worthy» НЕ совместима с Infernal Eclipse of Ragnarok!
+		Пожалуйста, не сообщайте о проблемах с балансом или ошибках, если играете в генерации «For The Worthy».
+		'''
 }
 
 DifficultyUI: {
@@ -57,7 +57,7 @@ WelcomeMessage: {
 	TBRWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас отключён «Thorium Helheim»! Настоятельно рекомендуется включить его, так как он перебалансирует боссов Thorium, добавляя им механики, более соответствующие режиму Инфернума и Calamity в целом.
 	RagWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас отключён «Ragnarok»! Без этого мода Thorium и Calamity могут плохо взаимодействовать. Настоятельно рекомендуется включить его для более полного и сбалансированного игрового опыта.
 	EventTrophyNotice: ВНИМАНИЕ: Обнаружено, что у вас отключён «More Trophies and Relics»! Без этого мода у боссов, не из ванильной игры, Calamity или Infernum, могут отсутствовать лор Calamity и вступительные анимации Инфернума. Настоятельно рекомендуется включить его для более полного и целостного опыта.
-	SoulsWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Fargo's Souls Mod»! Учтите, что режим Инфернум несовместим с режимом Вечность, и при одновременном включении обоих могут возникнуть серьёзные ошибки.
+	SoulsWarning: ПРЕДУПРЕЖДЕНИЕ: Fargo's Souls НЕ совместим с Infernal Eclipse of Ragnarok! Учтите, что режим Инфернум несовместим с режимом Вечность, и при одновременном включении обоих могут возникнуть серьёзные ошибки.
 	OverhaulWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Calamity Overhaul»! Этот мод очень багованный и вызовет множество проблем. Настоятельно рекомендуется отключить его.
 	RemnantsWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Remnants»! Этот мод НЕ совместим с Infernum. Если мир был сгенерирован с этим модом, пожалуйста, перегенерируйте его с отключённым модом, в противном случае не сообщайте об ошибках, связанных с генерацией мира
 	MasterPatchNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Infernum Master Patch». Этот мод излишен с этим модом и может быть отключён.
@@ -1548,13 +1548,13 @@ Items: {
 		Tooltip: ""
 		DynamicTooltip:
 			'''
-			{0}{1} увеличение всех характеристик
+			{0}{1} увеличивает все характеристики
 			Мгновенно активирует ярость и накладывает дебафф [cbuff:PotionSickness]
 			'品尝我的怒火……和布丁！'
 			'''
 		VoidTooltip: Восполняет 100 ед. пустоты
-		Stellar: Звёздное
-		Major: Значительное
+		Stellar: Звёздно
+		Major: Значительно
 	}
 
 	SingularityCore: {
@@ -1589,13 +1589,13 @@ Items: {
 	}
 
 	Destinary: {
-		// DisplayName: Destinary
-		/* Tooltip:
+		DisplayName: Destinary
+		Tooltip:
 			'''
 			Flings out razor exo disks towards the cursor that return back to the player
 			This weapon and its projectiles function as a chainsaw
 			Press Right Click to use without chopping down trees
-			''' */
+			'''
 	}
 }
 
@@ -1625,14 +1625,14 @@ Projectiles: {
 	_13thGltichCombo.DisplayName: Комбо _13-го глича
 	CelestialBeam.DisplayName: Неземной луч
 	CelestialIlluminationStar.DisplayName: Неземная освящённая звезда
-	DemonicRune.DisplayName: Руна маленького демонического серого кота
+	DemonicRune.DisplayName: Руна Маленького демонического серого кота
 	ThoriumHeavyScytheSpark.DisplayName: Искра тяжёлой ториевой косы
 	NebulaBeam.DisplayName: Луч туманности
 	NebulaChargeUp.DisplayName: Заряд туманности
 	DisintegratorBeam.DisplayName: Луч дезинтегратора
 	DisintegratorChargeUp.DisplayName: Заряд дезинтегратора
-	// DestinaryProjectile.DisplayName: Destinary Projectile
-	// ExoDisk.DisplayName: Exo Disk
+	DestinaryProjectile.DisplayName: "{$Items.Destinary.DisplayName}"
+	ExoDisk.DisplayName: Экзо-диск
 }
 
 DiaryTooltip:
@@ -1673,7 +1673,7 @@ Configs: {
 			Miscellaneous: Разное
 			MultiplayerAdjustments: Настройки и утилиты для мультиплеера
 			Main: Главное
-			// Secret: Secret Settings
+			Secret: Секретные настройки
 		}
 
 		ThoriumBalanceChangess: {
@@ -1851,7 +1851,7 @@ Configs: {
 		}
 
 		MoveDeerclopsChecklistEntry: {
-			Label: Передвинуть Циклопа-оленя в чек-листе
+			Label: Передвинуть Циклоп-оленя в чек-листе
 			Tooltip: Циклоп-олень теперь стоит перед Скелетроном в чек-листе, чтобы соответствовать уровню Calamity и Infernum.
 		}
 
@@ -1887,12 +1887,12 @@ Configs: {
 		}
 
 		ThereIsNoReasonDisableThis: {
-			// Label: There Is No Reason Disable This
-			/* Tooltip:
+			Label: Нет причин отключать это
+			Tooltip:
 				'''
-				There is no reason to disable this as it disables difficulties that are buggy and unbalanced when merged with Infernum.
-				Only disable this config if you know the consequences, and do not report bugs with this config disabled.
-				''' */
+				Нет причин отключать эту настройку, так как она отключает сложности, которые становятся багованными и несбалансированными при объединении с Infernum.
+				Отключайте этот конфиг, только если вы осознаёте последствия, и не сообщайте об ошибках при отключённом конфиге.
+				'''
 		}
 	}
 
@@ -2207,6 +2207,6 @@ Keybinds: {
 Events: {
 	//Sequential text at the end of Boss Rush Tier 5
 	BossRushTierFiveEndText_1: Мы достигли финала, Террариец.
-	BossRushTierFiveEndText_2: Всё, что стоит между вами и окончанием этого испытания, — это те, кто есть и те, кто когда-то были богами этого мира.
+	BossRushTierFiveEndText_2: Всё, что стоит между тобой и окончанием этого испытания, — это те, кто есть и те, кто когда-то были богами этого мира.
 	BossRushTierFiveEndText_3: Покажи мне силу того, кому сейчас нечего терять. Не время колебаться.
 }
