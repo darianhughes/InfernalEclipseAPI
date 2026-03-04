@@ -83,7 +83,7 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
-        public bool PreventRespawn() => isMinimumDiffToPreventRespawn() && AnyBosses() && Respawns > InfernalConfig.Instance.MultiplayerRespawnsAllowed;
+        public bool PreventRespawn() => isMinimumDiffToPreventRespawn() && AnyBosses() && Respawns > InfernalConfig.Instance.MultiplayerRespawnsAllowed && Main.netMode != NetmodeID.SinglePlayer;
         public override void UpdateDead()
         {
             base.UpdateDead();
