@@ -90,6 +90,19 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     item.defense = 16;
                 }
 
+                if (item.type == ItemType<CoralHelmet>())
+                {
+                    item.defense = 4;
+                }
+                if (item.type == ItemType<CoralChestGuard>())
+                {
+                    item.defense = 5;
+                }
+                if (item.type == ItemType<CoralGreaves>())
+                {
+                    item.defense = 4;
+                }
+
                 if (item.type == ItemType<IridescentHelmet>())
                 {
                     item.defense = 5;
@@ -259,6 +272,19 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) -= 0.07f;
                     player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance).Flat += 1f;
+                }
+
+                if (item.type == ItemType<CoralHelmet>())
+                {
+                    player.GetCritChance(ThoriumDamageBase<HealerDamage>.Instance) += 2f;
+                }
+                if (item.type == ItemType<CoralChestGuard>())
+                {
+                    player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.03f;
+                }
+                if (item.type == ItemType<CoralGreaves>())
+                {
+                    player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.02f;
                 }
 
                 if (item.type == ItemType<IridescentHelmet>())

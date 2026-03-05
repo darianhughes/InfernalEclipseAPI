@@ -222,7 +222,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                 }
                 else
                 {
-                    cdPlayer.renewCooldown = 92;
+                    cdPlayer.renewCooldown = 60;
                     return true;
                 }
             }

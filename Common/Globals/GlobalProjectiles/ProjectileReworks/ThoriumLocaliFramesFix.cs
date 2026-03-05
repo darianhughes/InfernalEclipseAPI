@@ -17,13 +17,13 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             int pro3type = thorium.Find<ModProjectile>("EchoWave")?.Type ?? -1;
             int pro4type = thorium.Find<ModProjectile>("PyroExplosion2")?.Type ?? -1;
             int pro5type = thorium.Find<ModProjectile>("PyroBurst")?.Type ?? -1;
+            int pro6type = thorium.Find<ModProjectile>("CalaverasPro")?.Type ?? -1;
+            int pro7type = thorium.Find<ModProjectile>("CalaverasPro2")?.Type ?? -1;
 
             if (projectile.type == pro1Type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;
-
-                //Make sure it's NOT using static ID-based immunity
                 projectile.usesIDStaticNPCImmunity = false;
             }
 
@@ -31,8 +31,6 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 10;
-
-                //Make sure it's NOT using static ID-based immunity
                 projectile.usesIDStaticNPCImmunity = false;
             }
 
@@ -40,8 +38,6 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;
-
-                //Make sure it's NOT using static ID-based immunity
                 projectile.usesIDStaticNPCImmunity = false;
             }
 
@@ -49,8 +45,13 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;
+                projectile.usesIDStaticNPCImmunity = false;
+            }
 
-                //Make sure it's NOT using static ID-based immunity
+            if (projectile.type == pro6type || projectile.type == pro7type)
+            {
+                projectile.usesLocalNPCImmunity = true;
+                projectile.localNPCHitCooldown = 40;
                 projectile.usesIDStaticNPCImmunity = false;
             }
 

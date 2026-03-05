@@ -29,6 +29,7 @@ using InfernalEclipseAPI.Content.Items.Consumables;
 using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -361,6 +362,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         ItemID.InactiveStoneBlock,
                         ItemID.AlchemyTable,
                         ItemID.BewitchingTable,
+                        ItemID.Explosives,
+                        ItemID.GenderChangePotion
                     };
 
                     foreach (int item in lockUntilWorldEvil)
@@ -372,7 +375,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     foreach (int item in lockUntilSkeletron)
                     {
                         if (recipe.HasResult(item))
-                            recipe.DecraftConditions.Add(Condition.DownedSkeletron);
+                            recipe.DecraftConditions.Add(SkeletronOrHardmode);
                     }
 
                 }
@@ -449,6 +452,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.DisableDecraft();
                     }
 
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("HydrothermicArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("HydrothermicBullet")))
+                    {
+                        recipe.DecraftConditions.Add(Condition.DownedGolem);
+                    }
+
                     if (InfernalConfig.Instance.MergeCraftingTrees)
                     {
                         if (recipe.HasResult(calAmmo.Find<ModItem>("AutoCalculationCoil")))
@@ -504,6 +512,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         {
                             thorium.TryFind("TerraKnife", out ModItem terraKnife);
                             recipe.AddIngredient(terraKnife.Type);
+                        }
+
+                        if (recipe.HasResult(thorium.Find<ModItem>("ClericsCross")))
+                        {
+                            recipe.RemoveIngredient(thorium.Find<ModItem>("PurifiedShards").Type);
+                            recipe.AddIngredient(ItemID.FallenStar, 3);
+                            recipe.AddIngredient(thorium.Find<ModItem>("Blood").Type);
                         }
                     }
                 }
@@ -577,14 +592,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             }
                         }
 
-                        //if (thorium.TryFind("LodestoneJavelin", out ModItem lodeJav))
-                        //    if (recipe.HasResult(lodeJav))
-                        //        recipe.DisableRecipe();
-
-                        //if (thorium.TryFind("ValadiumThrowingAxe", out ModItem valdiumAxe))
-                        //    if (recipe.HasResult(valdiumAxe))
-                        //        recipe.DisableRecipe();
-
                         if (thorium.TryFind("AromaticBulb", out ModItem bulb))
                         {
                             if (recipe.HasResult(bulb))
@@ -620,7 +627,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             "DemonBloodBow",
                             //"MyceliumGatlingGun",
                             "TimeWarp",
-                            "MoltenKnife"
+                            "MoltenKnife",
                         };
 
                         foreach (string item in disabledItems)
@@ -1349,6 +1356,31 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
                 #endregion
+
+                #region More Pylons
+                if (ModLoader.TryGetMod("EvilPylon", out Mod morePylon))
+                {
+                    if (recipe.HasResult(GetItem(morePylon, "BonePylon")))
+                    {
+                        recipe.DecraftConditions.Add(Condition.DownedSkeletron);
+                    }
+
+                    if (recipe.HasResult(GetItem(morePylon, "CorruptionPylon")))
+                    {
+                        recipe.DecraftConditions.Add(Condition.DownedEowOrBoc);
+                    }
+
+                    if (recipe.HasResult(GetItem(morePylon, "CrimsonPylon")))
+                    {
+                        recipe.DecraftConditions.Add(Condition.DownedEowOrBoc);
+                    }
+
+                    if (recipe.HasResult(GetItem(morePylon, "HellPylon")))
+                    {
+                        recipe.DecraftConditions.Add(Condition.DownedEowOrBoc);
+                    }
+                }
+                #endregion
             }
         }
 
@@ -1356,6 +1388,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
         {
             return mod.Find<ModItem>(name);
         }
+
+        private static readonly Condition SkeletronOrHardmode = new("Conditions.DownedSkeletron", () => NPC.downedBoss3 || Main.hardMode);
     }
 
     [JITWhenModsEnabled("SOTS")]

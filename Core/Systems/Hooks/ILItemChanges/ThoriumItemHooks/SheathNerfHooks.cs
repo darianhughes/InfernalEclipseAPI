@@ -42,12 +42,12 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks
 
         private float LeatherSheathDamageMult(object self)
         {
-            return 8f;
+            return 6f;
         }
 
         private float TitanSheathDamageMult(object self)
         {
-            return 15f;
+            return 14f;
         }
 
         public override void Unload()

@@ -18,6 +18,9 @@
             if (thor != null)
             {
                 thor.healBonus -= 10;
+
+                if (thor.healBonus < 0)
+                    thor.healBonus = 0;
             }
         }
     }
