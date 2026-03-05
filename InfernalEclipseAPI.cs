@@ -40,16 +40,6 @@ namespace InfernalEclipseAPI
         public static ModKeybind SubpaceBoostHotkey;
         public static ModKeybind ItemAbility;
 
-        public static bool FargosDLCEnabled
-        {
-            get
-            {
-                if (ModLoader.TryGetMod("FargowiltasCrossMod", out Mod fargoDLC))
-                    return true;
-                return false;
-            }
-        }
-
         public static InfernalEclipseAPI Instance;
         public InfernalEclipseAPI() => Instance = this;
 

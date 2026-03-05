@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
+using Terraria;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -115,6 +116,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (item.type == ItemID.StormTigerStaff)
                 {
                     item.damage = 60;
+                }
+
+                if (item.type == ItemID.MolotovCocktail)
+                {
+                    item.damage = 19;
                 }
             }
             #endregion
@@ -3317,6 +3323,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useTime = 10;
                         item.useAnimation = 10;
                         item.damage = 15;
+                        item.mana = 5;
+                        ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
                     }
 
                     //The Digester
@@ -3350,9 +3358,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Renew
                     if (item.type == thorium.Find<ModItem>("Renew").Type)
                     {
-                        //item.useTime = 92;
                         item.autoReuse = true;
-                        //item.useAnimation = 92;
                     }
 
                     if (item.type == thorium.Find<ModItem>("BountifulHarvest").Type)
@@ -3391,7 +3397,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 23;
                         item.useAnimation = 23;
-                        item.damage = 9;
+                        item.damage = 12;
                     }
 
                     //Samsara Lotus
@@ -3855,7 +3861,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Calaveras
                     if (item.type == thorium.Find<ModItem>("Calaveras").Type)
                     {
-                        item.damage = 37;
+                        item.damage = 55;
+                        item.damage = 18;
+                        item.useTime = 18;
                     }
 
                     //Microphone
@@ -4353,7 +4361,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.useTime = 40;
                     item.useAnimation = 40;
-                    item.damage = 18;
+                    item.damage = 19;
                 }
 
                 //The Windmill
@@ -4536,7 +4544,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Crystal Hydraulophone
                 if (UnsafeGetItem(calBardHeal, "CrystalHydraulophone", item))
                 {
-                    item.damage = 30;
+                    item.damage = 26;
                 }
 
                 //Violince
@@ -4552,7 +4560,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (UnsafeGetItem(calBardHeal, "ScrapGuitar", item))
                 {
-                    item.damage = 43;
+                    item.damage = 53;
                 }
 
                 //Return to Sludge
@@ -5769,18 +5777,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
             #endregion
-        }
-
-        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
-        {
-            //SOTS
-            if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
-            {
-                if (GetItem(sots, "GelWings", item))
-                {
-                    //player.GetModPlayer<GelWingsDashPlayer>().Active = true;
-                }
-            }
         }
 
         public override bool CanUseItem(Item item, Player player)

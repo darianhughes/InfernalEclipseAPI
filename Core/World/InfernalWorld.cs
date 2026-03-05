@@ -55,7 +55,7 @@ namespace InfernalEclipseAPI.Core.World
                 }
             }
 
-            if (RagnarokModeEnabled)
+            if (RagnarokModeEnabled && !WorldSaveSystem.InfernumModeEnabled)
                 WorldSaveSystem.InfernumModeEnabled = true;
 
             if (SubworldLibrary.SubworldSystem.AnyActive())
