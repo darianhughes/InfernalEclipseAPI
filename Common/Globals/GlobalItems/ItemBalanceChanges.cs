@@ -15,7 +15,6 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
-using Terraria;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -4734,7 +4733,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 12;
                 }
 
-                if (UnsafeGetItem(rethorium, "LodeStoneMagnetMace", item))
+                if (GetItem(rethorium, "LodeStoneMagnetMace", item))
                 {
                     item.damage = 64;
                 }

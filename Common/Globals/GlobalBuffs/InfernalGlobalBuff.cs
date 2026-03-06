@@ -1,4 +1,6 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using CalamityMod;
+using CalamityMod.Buffs.Alcohol;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
 {
@@ -6,12 +8,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
     {
         public override void Update(int type, Player player, ref int buffIndex)
         {
-            if (InfernalCrossmod.SOTS.Loaded)
-            {
-                Mod sots = InfernalCrossmod.SOTS.Mod;
-            }
+            if ((type == ModContent.BuffType<GrapeBeerBuff>() || type == ModContent.BuffType<MoonshineBuff>()) && InfernalConfig.Instance.CalamityBalanceChanges)
+                player.Calamity().alcoholPoisonLevel++;
 
-            if (InfernalCrossmod.NoxusBoss.Loaded)
+            if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 if (type == InfernalCrossmod.NoxusBoss.Mod.Find<ModBuff>("StarstrikinglySatiated").Type)
                 {

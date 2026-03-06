@@ -103,6 +103,7 @@ ItemTooltip: {
 	ScytheThrow: 右键投掷镰刀，它会以弧线轨迹返回
 	ThorsHammerPro: 命中时施加3秒的带电
 	BountifulHarvest: 交替射出穿透毒刺
+	// TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
 
 	SoulAnchor: {
 		OrigTooltip1: 将你的灵魂和生命值锚定在当前位置

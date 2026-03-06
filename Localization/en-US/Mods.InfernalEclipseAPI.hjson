@@ -103,6 +103,7 @@ ItemTooltip: {
 	ScytheThrow: Right Click to throw the scythe, which will curve on its way back
 	ThorsHammerPro: Inflcts electrified for 3 seconds on hits.
 	BountifulHarvest: Fires piercing stingers in an alternating pattern
+	TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
 
 	SoulAnchor: {
 		OrigTooltip1: Anchors your soul and health to your current position

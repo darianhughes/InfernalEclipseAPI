@@ -103,6 +103,7 @@ ItemTooltip: {
 	ScytheThrow: Нажмите ПКМ, чтобы бросить косу, которая изогнётся при возвращении
 	ThorsHammerPro: Накладывает дебафф [cbuff:Electrified] на 3 секунды.
 	BountifulHarvest: Стреляет пронзающими жалами в чередующейся последовательности
+	// TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
 
 	SoulAnchor: {
 		OrigTooltip1: Привязывает вашу душу и здоровье к текущей позиции

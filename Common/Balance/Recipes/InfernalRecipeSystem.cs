@@ -30,6 +30,7 @@ using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
 using System.Security.Policy;
+using CalamityMod.Items.Potions.Alcohol;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -419,6 +420,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (InfernalCrossmod.Clamity.Loaded)
                     {
                         recipe.AddIngredient(InfernalCrossmod.Clamity.Mod.Find<ModItem>("HuskOfCalamity"), 5);
+                    }
+                }
+
+                if (InfernalConfig.Instance.CalamityBalanceChanges)
+                {
+                    if (recipe.HasResult<Moonshine>())
+                    {
+                        recipe.AddIngredient<LivingShard>();
                     }
                 }
 
