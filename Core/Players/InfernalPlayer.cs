@@ -634,7 +634,7 @@ namespace InfernalEclipseAPI.Core.Players
 
                 float time = Player.buffTime[idx];
 
-                ref StatModifier local = ref Player.GetDamage(InfernalCrossmod.SOTS.Mod.Find<DamageClass>("VoidGeneric"));
+                ref StatModifier local = ref Player.GetDamage(DamageClass.Generic);
                 local -= (float)(0.25 * (time / 300f));
             }
 

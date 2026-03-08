@@ -2171,7 +2171,7 @@ Buffs: {
 
 	VoidSickness2: {
 		DisplayName: Void Sickness
-		Description: Void damage is being reduced!
+		Description: Your soul feels sick, reducing your damage!
 	}
 
 	LowGround: {
