@@ -20,6 +20,7 @@ using CalamityMod.NPCs.Yharon;
 using CalamityMod.Projectiles.Melee;
 using Terraria.UI;
 using InfernalEclipseAPI.Content.UI;
+using CalamityMod.Projectiles.Melee.Shortswords;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -407,7 +408,7 @@ namespace InfernalEclipseAPI.Core.Players
                 wasUsingItem = Player.itemAnimation > 0;
             }
 
-            if (!NPC.downedBoss3 && InfernalConfig.Instance.BossKillCheckOnOres && Player.HasBuff(BuffID.Bewitched))
+            if (!NPC.downedBoss3 && !Main.hardMode && InfernalConfig.Instance.BossKillCheckOnOres && Player.HasBuff(BuffID.Bewitched))
                 Player.ClearBuff(BuffID.Bewitched);
 
             if (RingofRestCooldown > 0)
@@ -666,9 +667,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if (InfernalEclipseAPI.SubpaceBoostHotkey.JustPressed && boostCooldownTime <= 15)
             {
-                //Main.NewText("SubspaceBoostHotkeyPressed");
-
-                BoostPressTimer = 2; // survive ordering differences
+                BoostPressTimer = 2;
                 BoostDirection =
                     Player.controlRight ? 1 :
                     Player.controlLeft ? -1 :
@@ -740,9 +739,15 @@ namespace InfernalEclipseAPI.Core.Players
                 modifiers.FinalDamage *= 0.8f;
             }
 
-            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()))
+            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()) &&
+                InfernalConfig.Instance.PreventBossCheese)
             {
                 modifiers.FinalDamage /= 2;
+            }
+
+            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail && proj.type == ModContent.ProjectileType<SubmarineShockerProj>() && InfernalConfig.Instance.PreventBossCheese)
+            {
+                modifiers.FinalDamage *= 0.2f;
             }
         }
 

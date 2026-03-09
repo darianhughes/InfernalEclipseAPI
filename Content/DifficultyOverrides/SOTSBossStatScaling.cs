@@ -86,23 +86,19 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     npc.lifeMax += (int)(0.25 * npc.lifeMax);
                 }
 
-                if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
-                {
-                    npc.lifeMax += (int)(((double).15) * npc.lifeMax);
-                }
-                else if (npc.type == ModContent.NPCType<PutridPinky1>())
+                if (npc.type == ModContent.NPCType<PutridPinky1>())
                 {
                     npc.lifeMax += 3 * npc.lifeMax;
                 }
                 else if (npc.type == ModContent.NPCType<PutridHook>())
                 {
-                    npc.lifeMax -= (int)(npc.lifeMax * 0.3);
+                    npc.lifeMax /= 2;
                 }
                 else if (npc.ModNPC.Name.Contains("SubspaceSerpent"))
                 {
                     npc.lifeMax += (int)(0.25f * npc.lifeMax);
                 }
-                else
+                else if (npc.type != ModContent.NPCType<PutridPinkyPhase2>())
                     npc.lifeMax += (int)(((double).35) * npc.lifeMax);
             }
         }

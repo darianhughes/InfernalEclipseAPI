@@ -31,6 +31,7 @@ using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
 using System.Security.Policy;
 using CalamityMod.Items.Potions.Alcohol;
+using System.Linq;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -631,7 +632,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         string[] disabledItems =
                         {
-                            "KineticPotion",
                             //"ChlorophyteTomahawk",
                             "DemonBloodBow",
                             //"MyceliumGatlingGun",
@@ -653,6 +653,17 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)
                     {
+                        if (InfernalCrossmod.SOTS.Loaded)
+                        {
+                            if (thorium.TryFind("FrenzyPotion", out ModItem frenzy))
+                                if (recipe.HasResult(frenzy))
+                                    recipe.DisableRecipe();
+                        }
+
+                        if (thorium.TryFind("KineticPotion", out ModItem kinetic))
+                            if (recipe.HasResult(kinetic))
+                                recipe.DisableRecipe();
+
                         if (recipe.HasResult(ItemID.JungleHat) || recipe.HasResult(ItemID.JungleShirt) || recipe.HasResult(ItemID.JunglePants) || recipe.HasResult(thorium.Find<ModItem>("BountifulHarvest")) || recipe.HasResult(thorium.Find<ModItem>("MagickStaff")))
                         {
                             recipe.RemoveTile(TileID.Anvils);
@@ -1235,6 +1246,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         {
                             recipe.AddIngredient(ItemID.FragmentStardust, 10);
                             recipe.AddIngredient<Necroplasm>(5);
+                        }
+
+                        if (recipe.HasResult(sots.Find<ModItem>("FlowerCrown")))
+                        {
+                            recipe.AddIngredient<EssenceofHavoc>(4);
+                            recipe.RemoveTile(TileID.WorkBenches);
+                            recipe.AddTile(TileID.LivingLoom);
                         }
 
                         if (recipe.HasResult(ItemID.TrueNightsEdge))

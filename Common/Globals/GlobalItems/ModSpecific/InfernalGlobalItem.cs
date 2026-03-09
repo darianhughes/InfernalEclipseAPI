@@ -81,6 +81,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     }
                 }
 
+                if (ModLoader.HasMod("SOTS"))
+                {
+                    itemLoot.Add(ItemDropRule.Common(InfernalCrossmod.SOTS.Mod.Find<ModItem>("WorldgenScanner").Type));
+                }
+
                 itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MenuMusicBox>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<LoreProvi>()));

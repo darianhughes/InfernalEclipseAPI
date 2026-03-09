@@ -23,10 +23,27 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
-                if (type == InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Bubbled").Type)
-                {
+                Mod thorium = InfernalCrossmod.Thorium.Mod;
+
+                if (type == thorium.Find<ModBuff>("Bubbled").Type)
                     player.AddBuff(BuffID.Suffocation, 1);
+
+                if (type == thorium.Find<ModBuff>("FrenzyPotionBuff").Type)
+                {
+                    if (InfernalCrossmod.SOTS.Loaded)
+                        player.ClearBuff(thorium.Find<ModBuff>("FrenzyPotionBuff").Type);
+                    else
+                        player.GetAttackSpeed(DamageClass.Generic) -= 0.03f;
                 }
+
+                if (type == thorium.Find<ModBuff>("KineticPotionBuff").Type)
+                {
+                    if (InfernalCrossmod.SOTS.Loaded)
+                        player.ClearBuff(thorium.Find<ModBuff>("KineticPotionBuff").Type);
+                }
+
+                if (type == thorium.Find<ModBuff>("BloodRush").Type)
+                    player.moveSpeed -= 0.15f;
             }
         }
     }

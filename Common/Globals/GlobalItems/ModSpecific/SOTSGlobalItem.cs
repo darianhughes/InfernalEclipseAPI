@@ -15,22 +15,19 @@ using System.Collections.Generic;
 using Terraria.Localization;
 using SOTS.Buffs.MinionBuffs;
 using SOTS.FakePlayer;
-using Terraria;
 using SOTS.Items.CritBonus;
 using SOTS.Items.Earth.Glowmoth;
 using SOTS.Items.Pyramid;
 using SOTS.Items;
-using Terraria.ModLoader;
 using InfernalEclipseAPI.Core.Players;
 using Microsoft.Xna.Framework;
-using System.Security.Policy;
 using System.Text;
 using Terraria.DataStructures;
 using SOTS.Items.Slime;
 using System.Linq;
 using CalamityMod.Items;
-
-
+using SOTS.Items.Potions;
+using SOTS.Items.Invidia;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -132,6 +129,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<SyntheticLiver>())
                 {
                     sotsPlayer.DrainDebuffs = false;
+                }
+
+                if (item.type == ItemType<CrestofDasuver>())
+                {
+                    player.GetCritChance(DamageClass.Generic) -= 3f;
                 }
 
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
@@ -354,6 +356,21 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     var wingTooltip = tooltips.FirstOrDefault(x => x.Name == "Tooltip0" && x.Mod == "Terraria");
                     if (wingTooltip != null)
                         wingTooltip.Text += sb.ToString();
+                }
+
+                if (item.type == ItemType<CrestofDasuver>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dasuver"));
+                }
+
+                if (item.type == ItemType<VibePotion>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.VibePotion"));
+                }
+
+                if (item.type == ItemType<FlowerCrown>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FlowerCrown"));
                 }
             }
         }

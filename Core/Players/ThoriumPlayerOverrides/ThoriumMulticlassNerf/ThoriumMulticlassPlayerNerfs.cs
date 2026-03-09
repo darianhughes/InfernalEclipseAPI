@@ -4,6 +4,10 @@ using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using CalamityMod.CalPlayer;
 using Terraria.GameContent.Events;
+using CalamityMod;
+using ThoriumMod.Utilities;
+using InfernalEclipseAPI.Core.Systems;
+using ThoriumMod.Buffs;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {
@@ -22,6 +26,11 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
         {
             if (switchToHealerPenaltyTimer > 0)
                 switchToHealerPenaltyTimer--;
+
+            Player.buffImmune[ModContent.BuffType<KineticPotionBuff>()] = true;
+
+            if (InfernalCrossmod.SOTS.Loaded)
+                Player.buffImmune[ModContent.BuffType<FrenzyPotionBuff>()] = true;
         }
 
         // === Helpers ===
@@ -173,6 +182,33 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 melee += (float)(0.02 * emptySummonSlots);
                 ref StatModifier ranged = ref Player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance);
                 ranged += (float)(0.02 * emptySummonSlots);
+            }
+        }
+
+        private int inspirationGainTimer;
+
+        public override void PostUpdateBuffs()
+        {
+            if (Player.Calamity().rageModeActive && InfernalCrossmod.CalBardHealer.Loaded)
+            {
+                if (inspirationGainTimer == 0)
+                {
+                    inspirationGainTimer = 30;
+                }
+                else 
+                {
+                    if (inspirationGainTimer != 30)
+                    {
+                        if (Player.GetThoriumPlayer().bardResource > 0)
+                            Player.GetThoriumPlayer().bardResource--;
+                    }
+                }
+                inspirationGainTimer--;
+            }
+            else
+            {
+                if (inspirationGainTimer != 0)
+                    inspirationGainTimer = 0;
             }
         }
     }

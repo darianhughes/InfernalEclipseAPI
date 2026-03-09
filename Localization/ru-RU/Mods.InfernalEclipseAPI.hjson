@@ -154,6 +154,17 @@ ItemTooltip: {
 		Критические удары с 50% шансом нанесут на 20 ед. урона больше
 		При получении урона с 75% шансом вы получите дебафф [cbuff:Poisoned]
 		'''
+	/* Desecar:
+		'''
+		Grants 1 defense for every 8 empty inventory slots
+		'Less is more'
+		''' */
+	/* Stekpla:
+		'''
+		Increases critical strike chance by 1% for every 8 full inventory slots
+		'More is more'
+		''' */
+	// Dasuver: Increases critical strike chance by 3%
 	SubspaceLocket:
 		'''
 		Призывает подпространственного слугу
@@ -198,6 +209,16 @@ ItemTooltip: {
 		Повторное получение того же баффа увеличивает его длительность вместо сброса таймера, вплоть до двойной длительности
 		'''
 	MutantSkeletron: "[IEoR]: Предмет нельзя использовать, пока Скелетрон не будет побеждён хотя бы один раз. Используйте для этого предмет призыва из Infernum."
+	// VibePotion: Increases attack speed by 10% while not moving and by 5% while moving
+	// BloodPotion: Increases mining speed by 15%
+	// FrenzyPotion: Increases all attack speeds by 5%
+	/* FlowerCrown:
+		'''
+		Reduces damage taken by 10%
+		Increases void gain by 4 and life regen by 2
+		When using void, 30% of the void used is converted into life
+		''' */
+	// Disabled: "[DISABLED] "
 	DedTo: - Посвящено: {0} -
 
 	Dedicated: {
@@ -1598,6 +1619,11 @@ Items: {
 			Нажмите ПКМ, чтобы использовать оружие, не вырубая деревья
 			'''
 	}
+
+	MaulerRelic: {
+		// DisplayName: Mauler Relic
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1634,6 +1660,7 @@ Projectiles: {
 	DisintegratorChargeUp.DisplayName: Заряд дезинтегратора
 	DestinaryProjectile.DisplayName: "{$Items.Destinary.DisplayName}"
 	ExoDisk.DisplayName: Экзо-диск
+	// PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
 }
 
 DiaryTooltip:

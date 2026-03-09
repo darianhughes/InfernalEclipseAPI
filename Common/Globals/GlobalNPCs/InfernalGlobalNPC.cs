@@ -14,6 +14,13 @@ using System.Linq;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Players;
 using CalamityMod.Items.Placeables.Furniture.Paintings;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using CalamityMod.Buffs.StatBuffs;
+using CalamityMod.CalPlayer;
+using CalamityMod;
+using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
+using InfernalEclipseAPI.Core.Utils;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -93,6 +100,48 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                         {
                             items[i] = new Item(ItemID.TinkerersWorkshop);
                             break;
+                        }
+                    }
+                }
+            }
+        }
+
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (InfernalWorld.RagnarokModeEnabled && npc.boss)
+            {
+                foreach (Player player in Main.player)
+                {
+                    if (player.active && !player.dead)
+                    {
+                        player.ClearBuff(ModContent.BuffType<RageMode>());
+                        player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+
+                        CalamityPlayer mp = player.Calamity();
+                        mp.rage = 0;
+                        mp.rageModeActive = false;
+                        mp.adrenaline = 0;
+                        mp.adrenalineModeActive = false;
+
+                        if (InfernalCrossmod.Thorium.Loaded)
+                        {
+                            if (InfernalCrossmod.RagnarokMod.Loaded)
+                            {
+                                RagnarokRiffSystemInteraction.ClearRiffs(player);
+                            }
+
+                            // clear locally
+                            ThoriumHelpers.ClearAllEmpowerments(player);
+
+                            // and tell others
+                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                            {
+                                ModPacket p = Mod.GetPacket();
+                                p.Write((byte)InfernalEclipseMessageType.ThoriumEmpowerment);
+                                p.Write((byte)ThoriumEmpowermentMsg.ClearEmpowerments);
+                                p.Write((byte)player.whoAmI);
+                                p.Send();
+                            }
                         }
                     }
                 }

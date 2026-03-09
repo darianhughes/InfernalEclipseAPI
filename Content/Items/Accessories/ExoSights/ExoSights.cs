@@ -147,7 +147,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
             exoSights.AddIngredient<FocusReticle>();
 
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
-                exoSights.AddIngredient(thorium.Find<ModItem>("InfernoLordsFocus"));
+                exoSights.AddIngredient(thorium.Find<ModItem>("BeholderGaze"));
 
             exoSights.AddIngredient<ExoPrism>(8);
             exoSights.AddTile<DraedonsForge>();

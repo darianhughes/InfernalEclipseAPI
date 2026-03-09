@@ -158,6 +158,17 @@ ItemTooltip: {
 		Critical strikes have a 50% chance to deal 10 more damage
 		Receiving damage has a 75% chance to poison you
 		'''
+	Desecar:
+		'''
+		Grants 1 defense for every 8 empty inventory slots
+		'Less is more'
+		'''
+	Stekpla:
+		'''
+		Increases critical strike chance by 1% for every 8 full inventory slots
+		'More is more'
+		'''
+	Dasuver: Increases critical strike chance by 3%
 	SubspaceLocket:
 		'''
 		Summons a Subspace Servant to assist in combat
@@ -202,6 +213,16 @@ ItemTooltip: {
 		Receiving the same buff multiple times will increase buff duration instead of resetting it, up to double the original duration
 		'''
 	MutantSkeletron: "[IEoR] Item is unusable until Skeletron has been defeated at least once. Use the Infernum spawn item instead."
+	VibePotion: Increases attack speed by 10% while not moving and by 5% while moving
+	BloodPotion: Increases mining speed by 15%
+	FrenzyPotion: Increases all attack speeds by 5%
+	FlowerCrown:
+		'''
+		Reduces damage taken by 10%
+		Increases void gain by 4 and life regen by 2
+		When using void, 30% of the void used is converted into life
+		'''
+	Disabled: "[DISABLED] "
 	DedTo: - Dedicated to {0} -
 
 	Dedicated: {
@@ -872,17 +893,20 @@ Items: {
 		SOTSBardHealerTooltip:
 			'''
 			Increases critical strike chance by 15%, does not stack with downgrades
-			Critical strikes deal 40 more damage, release a burst of damaging sparks, and may detonate enemies for 100% damage
+			Critical strikes deal 40 more damage and may detonate enemies for 100% damage
 			Critical strikes steal life, regenerate void, recover mana and return inspiration
 			Life steal & inspiration regeneration have a 1 second cooldown
+			Pressing the '{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}' key will grant you guaranteed critical strikes for 10 seconds
+			For one minute afterwards, you deal 10% less damage
 			Immunity to bleeding and poisoned debuffs, & grants night vision
 			'''
 		ThoriumTooltip:
 			'''
 			Increases critical strike chance by 15%, does not stack with downgrades
-			Critical strikes deal 40 more damage, release a burst of damaging sparks, and may detonate enemies for 100% damage
-			Critical strikes steal life, regenerate void, and recover mana
-			Life steal has a 0.5 second cooldown
+			Critical strikes deal 40 more damage, steal life, regenerate void, recover mana, and may detonate enemies for 100% damage
+			Life steal has a 1 second cooldown
+			Pressing the '{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}' key will grant you guaranteed critical strikes for 10 seconds
+			For one minute afterwards, you deal 10% less damage
 			Immunity to bleeding and poisoned debuffs, & grants night vision
 			'''
 		DefaultTooltip:
@@ -890,6 +914,7 @@ Items: {
 			Increases critical strike chance by 15%, does not stack with downgrades
 			Critical strikes deal 40 more damage and may detonate enemies for 100% damage
 			Critical strikes steal life, regenerate void, and recover mana
+			Life steal has a 1 second cooldown
 			Immunity to bleeding and poisoned debuffs, & grants night vision
 			'''
 		Lore: After Erelian had obtained the Exo Prism from Draedon, he finnaly had everything to perfect his suit's spirit AI - and now the tyrant was finnally in his sights.
@@ -1616,6 +1641,11 @@ Items: {
 			Press Right Click to use without chopping down trees
 			'''
 	}
+
+	MaulerRelic: {
+		DisplayName: Mauler Relic
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1652,6 +1682,7 @@ Projectiles: {
 	DisintegratorChargeUp.DisplayName: Disintegrator Charge Up
 	DestinaryProjectile.DisplayName: Destinary Projectile
 	ExoDisk.DisplayName: Exo Disk
+	PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
 }
 
 DiaryTooltip:

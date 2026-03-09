@@ -158,6 +158,17 @@ ItemTooltip: {
 		受伤时有75%的概率对你造成中毒debuff
 		暴击有50%的概率造成10点额外伤害
 		'''
+	/* Desecar:
+		'''
+		Grants 1 defense for every 8 empty inventory slots
+		'Less is more'
+		''' */
+	/* Stekpla:
+		'''
+		Increases critical strike chance by 1% for every 8 full inventory slots
+		'More is more'
+		''' */
+	// Dasuver: Increases critical strike chance by 3%
 	SubspaceLocket:
 		'''
 		召唤一只亚空之仆协助战斗
@@ -202,6 +213,16 @@ ItemTooltip: {
 		多次获得相同的buff会增加buff持续时间，而非重置时间，最多可达初始持续时间的两倍
 		'''
 	MutantSkeletron: "[炼狱蚀光] 该物品在至少击败一次骷髅王前无法使用，请改用炼狱的召唤物"
+	// VibePotion: Increases attack speed by 10% while not moving and by 5% while moving
+	// BloodPotion: Increases mining speed by 15%
+	// FrenzyPotion: Increases all attack speeds by 5%
+	/* FlowerCrown:
+		'''
+		Reduces damage taken by 10%
+		Increases void gain by 4 and life regen by 2
+		When using void, 30% of the void used is converted into life
+		''' */
+	// Disabled: "[DISABLED] "
 	DedTo: -献给{0}-
 
 	Dedicated: {
@@ -1616,6 +1637,11 @@ Items: {
 			Press Right Click to use without chopping down trees
 			''' */
 	}
+
+	MaulerRelic: {
+		// DisplayName: Mauler Relic
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1652,6 +1678,7 @@ Projectiles: {
 	DisintegratorChargeUp.DisplayName: 解离炮充能
 	// DestinaryProjectile.DisplayName: Destinary Projectile
 	// ExoDisk.DisplayName: Exo Disk
+	// PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
 }
 
 DiaryTooltip:
