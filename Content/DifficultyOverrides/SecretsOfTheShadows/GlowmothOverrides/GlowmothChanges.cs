@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using SOTS.NPCs.Boss.Glowmoth;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides.SOTS.GlowmothOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows.GlowmothOverrides
 {
     [JITWhenModsEnabled("SOTS")]
     [ExtendsFromMod("SOTS")]

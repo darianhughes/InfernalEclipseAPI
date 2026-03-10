@@ -16,6 +16,8 @@ using CalamityMod;
 using Microsoft.Xna.Framework;
 using System.Security.Policy;
 using Terraria;
+using ThoriumRework.Buffs;
+using CalamityMod.CalPlayer;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
@@ -230,7 +232,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             string name = npc.ModNPC?.Name ?? "";
             float damageMod = 0;
 
-            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater") || name.Contains("BoreanStrider") || name.Contains("QueenJellyfish") || name.Contains("Viscount"))
+            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
+                damageMod += 0.75f;
+            else if (name.Contains("BoreanStrider") || name.Contains("QueenJellyfish") || name.Contains("Viscount"))
                 damageMod += 0.6f;
             else if (name.Contains("BiteyBaby"))
                 damageMod += 1f;
@@ -334,6 +338,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 ModContent.ProjectileType<AquaiusPunchAttack>(),
                 ModContent.ProjectileType<DeathRain>(),
                 ModContent.ProjectileType<InfernalRay>(),
+                ModContent.ProjectileType<TideDagger>(),
+                ModContent.ProjectileType<FalseSun>(),
+                ModContent.ProjectileType<EraserLaser>(),
+                ModContent.ProjectileType<ExtinctionRay>(),
+                ModContent.ProjectileType<NightmareClaw>(),
+                ModContent.ProjectileType<NightmareSlash>(),
+                ModContent.ProjectileType<DyingReality>(),
 
                 ModContent.ProjectileType<IceShard>(),
                 ModContent.ProjectileType<Glacier>(),
@@ -458,7 +469,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                 }
-                if (entity.ModProjectile.Name.Contains("Lucid"))
+                if (entity.ModProjectile.Name.Contains("Lucid") || entity.ModProjectile.Name.Contains("Nightmare") || entity.ModProjectile.Name.Contains("EraserLaser") || entity.ModProjectile.Name.Contains("DyingReality"))
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                     entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
@@ -475,6 +486,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             {
                 damageMod += 0.25f;
             }
+
+            if (projectile.ModProjectile.Name.Contains("Nightmare"))
+            {
+                damageMod += 0.5f;
+            }
+
             if (IsWorldLegendary())
             {
                 damageMod *= 1.35f;
@@ -584,6 +601,25 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             );
 
             projectile.velocity = storedDirection * currentSpeed;
+        }
+    }
+
+    [JITWhenModsEnabled("ThoriumRework")]
+    [ExtendsFromMod("ThoriumRework")]
+    public class LucidityPlayer : GlobalBuff
+    {
+        public override void Update(int type, Player player, ref int buffIndex)
+        {
+            if (type == ModContent.BuffType<TerminalLucidity>())
+            {
+                CalamityPlayer mp = player.Calamity();
+
+                if (mp.rage > 0)
+                    mp.rage -= 0.05f;
+
+                if (mp.adrenaline > 0)
+                    mp.adrenaline -= 0.05f;
+            }
         }
     }
 }
