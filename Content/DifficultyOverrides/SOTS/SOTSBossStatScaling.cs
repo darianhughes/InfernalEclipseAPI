@@ -14,7 +14,7 @@ using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using SOTS.Projectiles.Chaos;
 using SOTS.NPCs.Boss.Lux;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.SOTS
 {
     [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
     [ExtendsFromMod("SOTS")]
@@ -78,7 +78,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     if (name.Contains("Excavator"))
                         npc.lifeMax *= 7; //less because holy fuck its tanky in boss rush
 
-                    npc.lifeMax += (int)(((double).25 * npc.lifeMax));
+                    npc.lifeMax += (int)((double).25 * npc.lifeMax);
                 }
 
                 if (npc.ModNPC?.Name?.Contains("TheAdvisorHead") == true || npc.ModNPC.Name.Contains("Excavator") || npc.ModNPC.Name.Contains("Lux"))
@@ -99,7 +99,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     npc.lifeMax += (int)(0.25f * npc.lifeMax);
                 }
                 else if (npc.type != ModContent.NPCType<PutridPinkyPhase2>())
-                    npc.lifeMax += (int)(((double).35) * npc.lifeMax);
+                    npc.lifeMax += (int)((double).35 * npc.lifeMax);
             }
         }
 
@@ -172,7 +172,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (BossRushEvent.BossRushActive && !scaledBossRushHP)
             {
-                npc.lifeMax += (int)(((double).25) * (double)npc.lifeMax);
+                npc.lifeMax += (int)((double).25 * npc.lifeMax);
                 npc.life = npc.lifeMax;
                 scaledBossRushHP = true;
                 return;

@@ -12,8 +12,10 @@ using ThoriumMod.Projectiles.Enemy;
 using ThoriumMod.NPCs.BossQueenJellyfish;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using ThoriumMod.NPCs.BossViscount;
+using CalamityMod;
+using Microsoft.Xna.Framework;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
     [JITWhenModsEnabled("ThoriumMod")]
     [ExtendsFromMod("ThoriumMod")]
@@ -43,7 +45,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
             GameModeData data = (GameModeData)findInfo.GetValue(null);
-            return (Main.getGoodWorld && data.IsMasterMode);
+            return Main.getGoodWorld && data.IsMasterMode;
         }
 
         public static readonly int[] thorBossMinionTypes =
@@ -153,7 +155,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
                 if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
                 {
-                    npc.lifeMax += (int)npc.lifeMax;
+                    npc.lifeMax += npc.lifeMax;
                 }
                 if (npc.ModNPC?.Name?.Contains("StarScouter") == true || npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
                 {
@@ -268,8 +270,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 return;
             }
 
-            if (npc.ModNPC?.Name?.Contains("FallenBeholder") == true)
+            if (npc.ModNPC.Name.Contains("FallenBeholder"))
                 return;
+
+            
 
             if (IsWorldLegendary())
             {
@@ -277,17 +281,24 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                npc.position += npc.velocity * 0.20f;
+                if (npc.ModNPC.Name.Contains("TheGrandThunderBird"))
+                    npc.position += npc.velocity * 0.15f;
+                else
+                    npc.position += npc.velocity * 0.20f;
             }
             else
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    npc.position += npc.velocity * 0.10f;
+                    if (npc.ModNPC.Name.Contains("TheGrandThunderBird"))
+                        npc.position += npc.velocity * 0.05f;
+                    else
+                        npc.position += npc.velocity * 0.10f;
                 }
                 else if (GetCalDifficulty("death"))
                 {
-                    npc.position += npc.velocity * 0.05f;
+                    if (!npc.ModNPC.Name.Contains("TheGrandThunderBird"))
+                        npc.position += npc.velocity * 0.05f;
                 }
             }
         }
@@ -436,14 +447,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
             GameModeData data = (GameModeData)findInfo.GetValue(null);
-            return (Main.getGoodWorld && data.IsMasterMode);
+            return Main.getGoodWorld && data.IsMasterMode;
         }
 
         public override void SetDefaults(Projectile entity)
         {
             if (InfernalCrossmod.SOTS.Loaded)
             {
-                if (entity.ModProjectile.Name.Contains("Blood") || entity.ModProjectile.Name.Contains("BiteyBaby"))
+                if (entity.ModProjectile.Name.Contains("Blood") || entity.ModProjectile.Name.Contains("BiteyBaby") || entity.ModProjectile.Name.Contains("Ripple"))
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                 }
@@ -453,6 +464,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
                 }
             }
+
+            if (entity.ModProjectile.Name.Contains("Viscount") && !entity.ModProjectile.Name.Contains("Rock") && !entity.ModProjectile.Name.Contains("Stomp"))
+                entity.Calamity().DealsDefenseDamage = false;
         }
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
@@ -471,18 +485,102 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                damageMod *= 2.2f;
+                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
+                    damageMod *= 1.70f;
+                else
+                    damageMod *= 2.2f;
             }
             else if (GetFargoDifficullty("EternityMode"))
             {
-                damageMod *= 1.675f;
+                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
+                    damageMod *= 1.60f;
+                else
+                    damageMod *= 1.675f;
             }
             else if (GetCalDifficulty("death"))
             {
-                damageMod *= 1.5f;
+                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
+                    damageMod *= 1.45f;
+                else
+                    damageMod *= 1.15f;
             }
 
             modifiers.SourceDamage *= damageMod;
+        }
+    }
+
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
+    public class ViscountBloodAccelerationGlobalProjectile : GlobalProjectile
+    {
+        public override bool InstancePerEntity => true;
+
+        private static int ViscountBloodType = -1;
+
+        private bool initialized;
+        private Vector2 storedDirection;
+        private float targetSpeed;
+        private float timer;
+
+        private float StartingSpeedMultiplier = 0.005f;
+        private float AccelerationTime = 40f;
+
+        public override void Load()
+        {
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
+                thorium.TryFind<ModProjectile>("ViscountBlood", out var viscountBlood))
+            {
+                ViscountBloodType = viscountBlood.Type;
+            }
+        }
+
+        public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
+        {
+            return entity.type == ViscountBloodType;
+        }
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            /*
+            if (Main.netMode != NetmodeID.Server)
+                Main.NewText($"ViscountBlood matched: {projectile.type}");
+            */
+
+            timer = 0f;
+            initialized = false;
+
+            float originalSpeed = projectile.velocity.Length();
+            if (originalSpeed <= 0.001f)
+            {
+                storedDirection = Vector2.UnitY;
+                targetSpeed = 0f;
+                return;
+            }
+
+            storedDirection = Vector2.Normalize(projectile.velocity);
+            targetSpeed = originalSpeed;
+
+            projectile.velocity = storedDirection * (targetSpeed * StartingSpeedMultiplier);
+            initialized = true;
+        }
+
+        public override void AI(Projectile projectile)
+        {
+            if (!initialized || targetSpeed <= 0f)
+                return;
+
+            timer++;
+
+            float progress = Utils.GetLerpValue(0f, AccelerationTime, timer, true);
+            progress *= progress;
+
+            float currentSpeed = MathHelper.Lerp(
+                targetSpeed * StartingSpeedMultiplier,
+                targetSpeed,
+                progress
+            );
+
+            projectile.velocity = storedDirection * currentSpeed;
         }
     }
 }
