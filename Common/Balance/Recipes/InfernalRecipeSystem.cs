@@ -434,12 +434,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                 if (InfernalConfig.Instance.CalamityRecipeTweaks)
                 {
-                    if (recipe.HasResult<VampiricTalisman>() & !recipe.HasIngredient(ItemID.AvengerEmblem) & !InfernalConfig.Instance.MergeCraftingTrees)
-                    {
-                        recipe.RemoveIngredient(ModContent.ItemType<RogueEmblem>());
-                        recipe.AddIngredient(ItemID.AvengerEmblem);
-                    }
-
                     if (recipe.HasResult<TheAmalgam>() && thorium != null)
                     {
                         recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 5);

@@ -21,6 +21,7 @@ using CalamityMod.Projectiles.Melee;
 using Terraria.UI;
 using InfernalEclipseAPI.Content.UI;
 using CalamityMod.Projectiles.Melee.Shortswords;
+using CalamityMod.NPCs.AquaticScourge;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -715,6 +716,14 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 modifiers.DefenseEffectiveness *= Main.hardMode ? 0.25f : 0.2f;
             }
+
+            if (InfernalCrossmod.ThoriumRework.Loaded)
+            {
+                if (target.type == InfernalCrossmod.Thorium.Mod.Find<ModNPC>("BoreanHopper").Type)
+                {
+                    modifiers.FinalDamage *= 0.2f;
+                }
+            }
         }
 
         public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
@@ -745,9 +754,25 @@ namespace InfernalEclipseAPI.Core.Players
                 modifiers.FinalDamage /= 2;
             }
 
-            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail && proj.type == ModContent.ProjectileType<SubmarineShockerProj>() && InfernalConfig.Instance.PreventBossCheese)
+            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail &&  InfernalConfig.Instance.PreventBossCheese)
             {
-                modifiers.FinalDamage *= 0.2f;
+                if (proj.type == ModContent.ProjectileType<SubmarineShockerProj>())
+                    modifiers.FinalDamage *= 0.2f;
+                
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    if (proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("BeholderBlade").Type || proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("Void").Type)
+                        modifiers.FinalDamage /= 2;
+                }
+            }
+
+            if (target.type == ModContent.NPCType<AquaticScourgeHead>() || target.type == ModContent.NPCType<AquaticScourgeBody>() || target.type == ModContent.NPCType<AquaticScourgeTail>())
+            {
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    if (proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("BeholderBlade").Type || proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("Void").Type)
+                        modifiers.FinalDamage /= 2;
+                }
             }
         }
 

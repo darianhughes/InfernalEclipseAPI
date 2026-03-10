@@ -2206,7 +2206,7 @@ Buffs: {
 	}
 
 	LowGround: {
-		DisplayName: Low Ground
+		DisplayName: Freezing Aura
 		Description: Your movement has been significantly hindered!
 	}
 

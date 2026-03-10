@@ -249,6 +249,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SOTS
         public override void SetDefaults(Projectile entity)
         {
             entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+
+            if (entity.type != ModContent.ProjectileType<GlowBombOrb>())
+                entity.Calamity().DealsDefenseDamage = false;
         }
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
@@ -262,8 +265,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SOTS
 
             if (InfernalUtilities.IsInfernumActive() || InfernalUtilities.GetFargoDifficullty("MasochistMode"))
             {
-                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
-                    damageMod *= 2.2f;
+                if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
+                    damageMod *= 1.95f;
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                    damageMod *= 1.5f;
                 else
                 {
                     damageMod *= 1.35f;
@@ -271,15 +276,19 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SOTS
             }
             else if (InfernalUtilities.GetFargoDifficullty("EternityMode"))
             {
-                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
-                    damageMod *= 1.675f;
+                if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
+                    damageMod *= 1.45f;
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                    damageMod *= 1.25f;
                 else
                     damageMod *= 1.25f;
             }
             else if (InfernalUtilities.GetCalDifficulty("death"))
             {
-                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
-                    damageMod *= 1.5f;
+                if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
+                    damageMod *= 1.15f;
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                    damageMod *= 1.1f;
                 else
                     damageMod *= 1.1f;
             }

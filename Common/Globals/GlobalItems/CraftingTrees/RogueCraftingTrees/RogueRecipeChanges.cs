@@ -64,7 +64,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                             recipe.AddIngredient(ItemID.SpookyWood, 20);
                         }
                         recipe.AddIngredient(thorium.Find<ModItem>("ShinobiSigil"));
-                        recipe.AddIngredient(ItemID.AvengerEmblem);
                     }
 
                     if (clamity != null)
