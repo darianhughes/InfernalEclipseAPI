@@ -218,6 +218,21 @@ ItemTooltip: {
 		Increases void gain by 4 and life regen by 2
 		When using void, 30% of the void used is converted into life
 		''' */
+	/* TravelBoot:
+		'''
+		5% increased movement speed
+		2% increased run acceleration
+		''' */
+
+	Nightmare: {
+		// Orig: Critical strikes unleash Nightmare Arms that do 10% damage and pull enemies together
+		/* Rework:
+			'''
+			Critical strikes unleash Nightmare Arms that do 5% damage and pull enemies together
+			Damage improves to 10% in hardmode and bosses wont be pulled
+			''' */
+	}
+
 	// Disabled: "[DISABLED] "
 	DedTo: - Посвящено: {0} -
 
@@ -1661,6 +1676,8 @@ Projectiles: {
 	DestinaryProjectile.DisplayName: "{$Items.Destinary.DisplayName}"
 	ExoDisk.DisplayName: Экзо-диск
 	// PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
+	// EvilGrowth.DisplayName: Evil Growth
+	// EvilStrike.DisplayName: Evil Strike
 }
 
 DiaryTooltip:
@@ -2190,6 +2207,11 @@ Buffs: {
 	DefaultSummonTag: {
 		DisplayName: Стандартная метка призывателя
 		Description: Mods.InfernalEclipseAPI.Buffs.DefaultSummonTag.Description
+	}
+
+	CrimulanAura: {
+		// DisplayName: Crimulan Aura
+		// Description: Mods.InfernalEclipseAPI.Buffs.CrimulanAura.Description
 	}
 }
 

@@ -28,6 +28,9 @@ using System.Linq;
 using CalamityMod.Items;
 using SOTS.Items.Potions;
 using SOTS.Items.Invidia;
+using SOTS.Items.Evil;
+using CalamityMod.Items.Accessories;
+using ThoriumRework.Projectiles;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -134,6 +137,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<CrestofDasuver>())
                 {
                     player.GetCritChance(DamageClass.Generic) -= 3f;
+                }
+
+                if (item.type == ItemType<MidnightPrism>() || item.type == ItemType<WitchHeart>() || ((item.type == ItemType<SandSharkToothNecklace>() || item.type == ItemType<ReaperToothNecklace>()) && InfernalConfig.Instance.MergeCraftingTrees))
+                {
+                    sotsPlayer.CritNightmare = false;
+                    modPlayer.CritNightmare = true;
                 }
 
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
@@ -257,6 +266,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (item.type == ItemType<NightmarePotion>() || item.type == ItemType<WitchHeart>() || item.type == ItemType<MidnightPrism>())
+            {
+                foreach (TooltipLine tooltip in tooltips)
+                {
+                    if (tooltip.Text.Contains(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Nightmare.Orig")))
+                    {
+                        tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Nightmare.Rework");
+                    }
+                }
+            }
+
             if (InfernalConfig.Instance.SOTSBalanceChanges)
             {
                 Color InfernalRed = Color.Lerp(

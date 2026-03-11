@@ -159,6 +159,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (!InfernalCrossmod.SOTS.Loaded)
                     player.Calamity().critDamage += 0.15f;
             }
+
+            if (item.type == ItemType<TravelersBoots>())
+            {
+                player.runAcceleration -= 0.06f;
+            }
         }
 
         public override void UpdateEquip(Item item, Player player)
@@ -505,6 +510,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         }
                     }
                 }
+            }
+
+            if (item.type == ItemType<TravelersBoots>())
+            {
+                InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TravelBoot"));
             }
         }
     }

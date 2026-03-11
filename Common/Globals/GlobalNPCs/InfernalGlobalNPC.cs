@@ -15,7 +15,6 @@ using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Players;
 using CalamityMod.Items.Placeables.Furniture.Paintings;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.CalPlayer;
 using CalamityMod;

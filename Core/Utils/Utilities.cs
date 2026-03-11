@@ -56,6 +56,13 @@ namespace InfernalEclipseAPI.Core.Utils
             return false;
         }
 
+        public static bool HasArmorSet(Player player, int head, int body, int legs)
+        {
+            return player.armor[0].type == head &&
+                   player.armor[1].type == body &&
+                   player.armor[2].type == legs;
+        }
+
         public static NPC FindNearestNPC(Vector2 position, float maxDistance)
         {
             NPC closest = null;

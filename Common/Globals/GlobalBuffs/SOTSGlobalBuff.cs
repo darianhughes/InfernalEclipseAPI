@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InfernalEclipseAPI.Core.Players;
 using SOTS;
 using SOTS.Buffs;
 
@@ -21,6 +17,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
                     player.SOTSPlayer().attackSpeedMod -= 0.10f;
                     player.lifeRegen -= 4;
                 }
+            }
+
+            if (type == ModContent.BuffType<Nightmare>())
+            {
+                player.SOTSPlayer().CritNightmare = false;
+                player.GetModPlayer<InfernalPlayer>().CritNightmare = true;
             }
         }
     }

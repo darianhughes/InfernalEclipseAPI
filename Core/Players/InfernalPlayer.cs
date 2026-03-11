@@ -22,6 +22,7 @@ using Terraria.UI;
 using InfernalEclipseAPI.Content.UI;
 using CalamityMod.Projectiles.Melee.Shortswords;
 using CalamityMod.NPCs.AquaticScourge;
+using InfernalEclipseAPI.Content.Projectiles;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -164,6 +165,7 @@ namespace InfernalEclipseAPI.Core.Players
         private int horrifiedTimer = 0;
         private int jamTimer = 0;
         private int batCoinTimer = 0;
+        private int nightmareArmCD;
 
         public int resonatorTimer = 0;
         public int incubatorTextTime = 0;
@@ -185,6 +187,7 @@ namespace InfernalEclipseAPI.Core.Players
         public int BoostDirection;
         public int boostCooldownTime;
         public int RingofRestCooldown;
+        public bool CritNightmare;
 
         public bool singularityCore;
 
@@ -303,6 +306,7 @@ namespace InfernalEclipseAPI.Core.Players
             focusReticle = false;
             exoSights = false;
             flightArmor = false;
+            CritNightmare = false;
         }
 
         public override void PreUpdate()
@@ -414,6 +418,11 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (RingofRestCooldown > 0)
                 RingofRestCooldown--;
+
+            if (nightmareArmCD > 0)
+                nightmareArmCD--;
+            else
+                nightmareArmCD = 0;
         }
 
         public bool soltanBullying = false;
@@ -740,7 +749,7 @@ namespace InfernalEclipseAPI.Core.Players
                 (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()) &&
                 InfernalConfig.Instance.PreventBossCheese)
             {
-                modifiers.FinalDamage *= 0.2f;
+                modifiers.FinalDamage *= 0.01f;
             }
 
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
@@ -796,6 +805,13 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (tixThumbRing && proj.arrow && hit.Crit)
                 target.AddBuff(BuffID.ShadowFlame, 60, false);
+
+            if (hit.Crit && CritNightmare && proj != null && proj.type != ModContent.ProjectileType<EvilGrowth>() && proj.type != ModContent.ProjectileType<EvilStrike>() && nightmareArmCD <= 0)
+            {
+                nightmareArmCD = 360;
+                if (Main.myPlayer == Player.whoAmI)
+                    Projectile.NewProjectile(new EntitySource_OnHit(Player, target), target.Center, Vector2.Zero, ModContent.ProjectileType<EvilGrowth>(), (int)(Main.hardMode ? hit.SourceDamage * 0.1 : hit.SourceDamage * 0.05), 0f, Player.whoAmI, 0f, target.whoAmI);
+            }
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)

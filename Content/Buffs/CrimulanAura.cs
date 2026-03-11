@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Content.Buffs
 {
-    public class LowGround : ModBuff
+    public class CrimulanAura : ModBuff
     {
         public override void SetStaticDefaults()
         {

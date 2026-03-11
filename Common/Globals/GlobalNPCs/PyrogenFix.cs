@@ -26,21 +26,13 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 npc.damage = 45;
 
-                float lifeBoost = 0f;
-
-                if (IsWorldLegendary())
-                {
-                    lifeBoost += 0.1f;
-                }
-                if (WorldSaveSystem.InfernumModeEnabled)
-                {
-                    lifeBoost += 0.20f;
-                }
-
-                npc.lifeMax += (int)(npc.lifeMax * lifeBoost);
+                npc.lifeMax = (int)(npc.lifeMax * 0.7f);
             }
             else
+            {
+                npc.lifeMax /= 2;
                 npc.damage = 35;
+            }
         }
 
         public override void PostAI(NPC npc)
@@ -55,7 +47,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
-            target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 180);
+            target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120);
             if (hurtInfo.Damage > 400 && !BossRushEvent.BossRushActive)
                 hurtInfo.Damage = 400;
         }

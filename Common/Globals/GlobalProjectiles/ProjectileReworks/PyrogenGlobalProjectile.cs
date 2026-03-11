@@ -23,17 +23,17 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
 
             if (IsClamityProj(projectile, "FireBarrage") || IsClamityProj(projectile, "FireBarrageHoming"))
             {
-                intendedDamage = 160;
+                intendedDamage = 140;
                 applyDebuff = true;
             }
             else if (IsClamityProj(projectile, "Fireblast"))
             {
-                intendedDamage = 175;
+                intendedDamage = 155;
                 applyDebuff = true;
             }
             else if (IsClamityProj(projectile, "FireBomb") || IsClamityProj(projectile, "Firethrower"))
             {
-                intendedDamage = 140;
+                intendedDamage = 120;
                 applyDebuff = true;
             }
             else if (IsClamityProj(projectile, "FireBombExplosion"))
@@ -56,7 +56,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
             if (applyDebuff)
-                target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 180);
+                target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 60);
         }
     }
 }
