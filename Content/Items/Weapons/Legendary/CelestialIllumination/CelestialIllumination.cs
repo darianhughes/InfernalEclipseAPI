@@ -1,205 +1,152 @@
-using System;
 using System.Collections.Generic;
 using CalamityMod;
 using CalamityMod.Items;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
-using InfernalEclipseAPI.Core.Utils;
-using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.Rarities.InfernumRarities;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIllumination
 {
-    // Leaving you to the balance on this one unfortunately. I am notoriously bad at balancing things.
-    // I also wanted to make a cool visual where you have stars orbiting around the player when you charge it up, and once you reach max charge, they converge and shoot the beam, but I couldn't D:
     public class CelestialIllumination : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
+        readonly static int beam = ModContent.ProjectileType<CelestialIlluminationBeam>();
+        readonly static int star = ModContent.ProjectileType<CelestialIlluminationStar>();
+        public static int Tier()
         {
-            return false;
+            // Ternary statements? What are those?
+            if (NPC.downedMoonlord)
+            {
+                if (CalamityConditions.DownedProvidence.IsMet())
+                {
+                    if (CalamityConditions.DownedPolterghast.IsMet())
+                    {
+                        if (CalamityConditions.DownedDevourerOfGods.IsMet())
+                        {
+                            if (CalamityConditions.DownedYharon.IsMet())
+                            {
+                                return 5;
+                            }
+                            return 4;
+                        }
+                        return 3;
+                    }
+                    return 2;
+                }
+                return 1;
+            }
+            return 0;
         }
-
+        public const int Deus = 0, MoonLord = 1, Providence = 2, Polterghast = 3, DoG = 4, Yharon = 5;
         public override void SetDefaults()
         {
             Item.width = 34;
             Item.height = 34;
+
             Item.useTime = 25;
             Item.useAnimation = 25;
-            Item.DamageType = ModContent.GetInstance<LegendaryMagic>();
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.autoReuse = true;
-            Item.noMelee = true;
+            Item.channel = true;
+
             Item.damage = 600;
-            Item.rare = ModContent.RarityType<InfernumProfanedRarity>();
-            Item.value = CalamityGlobalItem.RarityRedBuyPrice;
-            Item.shoot = ModContent.ProjectileType<CelestialIlluminationStar>();
-            Item.shootSpeed = 10f;
             Item.knockBack = 1f;
-            Item.consumable = false;
-            Item.maxStack = 1;
-            Item.mana = 45;
+            Item.noMelee = true;
+            Item.DamageType = LegendaryMagic.Instance;
+            Item.shootSpeed = 10f;
+            //    Item.mana = 45;
+            Item.shoot = ModContent.ProjectileType<CelestialIlluminationStar>();
+
+            Item.value = CalamityGlobalItem.RarityRedBuyPrice;
+            Item.rare = ModContent.RarityType<InfernumProfanedRarity>();
+
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
+        }
+        public override bool AltFunctionUse(Player player) => Tier() >= Polterghast && player.GetModPlayer<CelestialIlluminationPlayer>().StarCount >= CelestialIlluminationPlayer.MaxStars;
+        public override void HoldItem(Player player)
+        {
+            if (Tier() >= Polterghast)
+            {
+                player.Calamity().rightClickListener = true;
+            }
+        }
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            if (Tier() >= MoonLord)
+            {
+                velocity *= 1.35f;
+            }
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float distance = CalamityConditions.DownedProvidence.IsMet() ? 20f : 14f;
             if (player.altFunctionUse == 2)
-            {
-                Item.useStyle = ItemUseStyleID.Shoot;
-                Item.channel = true;
-                player.GetModPlayer<CelestialIlluminationPlayer>().CelestialStarCharge = 0;
-                Projectile.NewProjectile(source, player.Center + (Main.MouseWorld - player.Center).SafeNormalize(Vector2.Zero) * distance, (Main.MouseWorld - player.Center).SafeNormalize(Vector2.Zero) * 2f, ModContent.ProjectileType<CelestialBeam>(), damage, knockback, player.whoAmI);
-                return false;
-            }
-            else
-            {
-                Item.useStyle = ItemUseStyleID.Shoot;
-                Item.channel = false;
-                if (!NPC.downedMoonlord)
-                {
-                    Projectile.NewProjectile(source, player.Center + (Main.MouseWorld - player.Center).SafeNormalize(Vector2.Zero) * 20f, velocity.RotatedByRandom(MathHelper.ToRadians(7.5f)), ModContent.ProjectileType<CelestialIlluminationStar>(), 400, 2f, player.whoAmI);
-                }
-                else if (CalamityConditions.DownedGuardians.IsMet())
-                {
-                    Projectile.NewProjectile(source, player.Center + (Main.MouseWorld - player.Center).SafeNormalize(Vector2.Zero) * 20f, velocity.RotatedByRandom(MathHelper.ToRadians(10f)), ModContent.ProjectileType<CelestialIlluminationStar>(), 400, 2f, player.whoAmI);
-                    Projectile.NewProjectile(source, player.Center + (Main.MouseWorld - player.Center).SafeNormalize(Vector2.Zero) * 20f, velocity.RotatedByRandom(MathHelper.ToRadians(10f)), ModContent.ProjectileType<CelestialIlluminationStar>(), 400, 2f, player.whoAmI);
-                }
-                else if (InfernalUtilities.DownedSentinels())
-                {
-                    Projectile.NewProjectile(source, player.Center + (Main.MouseWorld - player.Center).SafeNormalize(Vector2.Zero) * 20f, velocity.RotatedByRandom(MathHelper.ToRadians(12.5f)), ModContent.ProjectileType<CelestialIlluminationStar>(), 500, 2f, player.whoAmI);
-                    Projectile.NewProjectile(source, player.Center + (Main.MouseWorld - player.Center).SafeNormalize(Vector2.Zero) * 20f, velocity.RotatedByRandom(MathHelper.ToRadians(12.5f)), ModContent.ProjectileType<CelestialIlluminationStar>(), 500, 2f, player.whoAmI);
-                    Projectile.NewProjectile(source, player.Center + (Main.MouseWorld - player.Center).SafeNormalize(Vector2.Zero) * 20f, velocity.RotatedByRandom(MathHelper.ToRadians(12.5f)), ModContent.ProjectileType<CelestialIlluminationStar>(), 500, 2f, player.whoAmI);
-                }
-                return false;
-            }
-        }
-        public override bool CanUseItem(Player player)
-        {
-            if (player.altFunctionUse == 2)
-            {
-                Item.useStyle = ItemUseStyleID.Shoot;
-                Item.useTime = 180;
-                Item.useAnimation = 180;
-                Item.channel = true;
-                Item.noUseGraphic = false;
-            }
-            else
-            {
-                Item.useStyle = ItemUseStyleID.Shoot;
-                Item.channel = true;
-                Item.useTime = 25;
-                Item.useAnimation = 25;
-                Item.noUseGraphic = false;
-
-            }
-            return base.CanUseItem(player);
-        }
-        public override bool AltFunctionUse(Player player)
-        {
-            if (CalamityConditions.DownedGuardians.IsMet() && player.GetModPlayer<CelestialIlluminationPlayer>().CelestialStarCharge >= 20)
             {
                 return true;
             }
             else
             {
-                return false;
+                Item.UseSound = SoundID.Item9;
+                return true;
             }
-        }
-        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
-        {
-            if (CalamityConditions.DownedDevourerOfGods.IsMet())
-                damage += 2.00f;
-            else if (InfernalUtilities.DownedSentinels())
-                damage += 1.25f;
-            else if (CalamityConditions.DownedProvidence.IsMet())
-                damage += 1.15f;
-            else if (CalamityConditions.DownedGuardians.IsMet())
-                damage += 0.75f;
-            else if (NPC.downedMoonlord)
-                damage += 0.25f;
-        }
-        public override void ModifyWeaponCrit(Player player, ref float crit)
-        {
-            if (CalamityConditions.DownedDevourerOfGods.IsMet())
-                crit += 10;
-            else if (InfernalUtilities.DownedSentinels())
-                crit += 10;
-            else if (CalamityConditions.DownedProvidence.IsMet())
-                crit += 10;
-            else if (CalamityConditions.DownedGuardians.IsMet())
-                crit += 10;
-            else if (NPC.downedMoonlord)
-                crit += 10;
-        }
-        public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
-        {
-            if (CalamityConditions.DownedDevourerOfGods.IsMet())
-                knockback += 3f;
-            else if (InfernalUtilities.DownedSentinels())
-                knockback += 2.75f;
-            else if (CalamityConditions.DownedProvidence.IsMet())
-                knockback += 2.5f;
-            else if (CalamityConditions.DownedGuardians.IsMet())
-                knockback += 2f;
-            else if (NPC.downedMoonlord)
-                knockback += 1f;
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Color lerpedColor = Color.Lerp(Color.White, new Color(30, 144, 255), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
+            Color lerp = Color.Lerp(Color.White, new Color(30, 144, 255), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
 
-            TooltipLine line4 = new(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Lore"));
-            tooltips.Add(line4);
+            // The power of the cosmos is contained within this book
+            TooltipLine lore = new(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Lore"));
+            tooltips.Add(lore);
 
-            if (!CalamityConditions.DownedDevourerOfGods.IsMet())
+            if (Tier() != 5)
             {
-                TooltipLine line3 = new(Mod, "Progression2", Language.GetTextValue("Mods.InfernalEclipseAPI.LegendaryTooltip.Base"));
-                line3.OverrideColor = lerpedColor;
-                tooltips.Add(line3);
+                // This weapon may grow in power as you defeat difficult foes
+                TooltipLine grow = new(Mod, "Progression2", Language.GetTextValue("Mods.InfernalEclipseAPI.LegendaryTooltip.Base"))
+                {
+                    OverrideColor = lerp
+                };
+                tooltips.Add(grow);
             }
 
-            TooltipLine line = new(Mod, "Progression", GetProgressionTooltip());
-            TooltipLine ContributorItem = new(Mod, "Progression", GetContributorItemTooltip());
-            line.OverrideColor = lerpedColor;
-            ContributorItem.OverrideColor = new Color(50, 205, 50);
-            tooltips.Add(line);
-            tooltips.Add(ContributorItem);
+            // With the defeat of _
+            // Defeat _
+            // or
+            // The Celestial Illumination is fully awaked, and its maximum power is unleashed! (Max Tier)
+            TooltipLine progression = new(Mod, "Progression", GetProgressionTooltip())
+            {
+                OverrideColor = lerp
+            };
+            tooltips.Add(progression);
 
             if (Main.keyState.IsKeyDown(Keys.LeftShift))
             {
-                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Ropro"))}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor")}");
-                line5.OverrideColor = new(50, 205, 50);
-                tooltips.Add(line5);
+                // Dedicated to Ropro0923 with the cool colour swap because yob gets one so I get one too (Ignoring the fact that Yob's a dev and I'm pointless piece of garbage :D)
+                TooltipLine dedicated = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Ropro"))}")
+                {
+                    OverrideColor = CalamityUtils.ColorSwap(new Color(50, 205, 50), new Color(23, 167, 23), 2.5f)
+                };
+                tooltips.Add(dedicated);
             }
-            else
+
+            // - Contributor Item-
+            TooltipLine contributor = new(Mod, "Progression", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor"))
             {
-                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor"));
-                line5.OverrideColor = new(50, 205, 50);
-                tooltips.Add(line5);
-            }
+                OverrideColor = new Color(50, 205, 50)
+            };
+            tooltips.Add(contributor);
         }
         private static string GetProgressionTooltip()
         {
-            if (CalamityConditions.DownedDevourerOfGods.IsMet())
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Full");
-            else if (InfernalUtilities.DownedSentinels())
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Sentinels");
-            else if (CalamityConditions.DownedProvidence.IsMet())
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Providence");
-            if (CalamityConditions.DownedGuardians.IsMet())
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.ProfanedGuardians");
-            if (NPC.downedMoonlord)
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.MoonLord");
-            return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Deus");
-        }
-        private static string GetContributorItemTooltip()
-        {
-            return Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor");
+            return Tier() switch
+            {
+                5 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Full"),
+                4 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Sentinels"),
+                3 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Providence"),
+                2 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.ProfanedGuardians"),
+                1 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.MoonLord"),
+                _ => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Deus"),
+            };
         }
     }
 }
