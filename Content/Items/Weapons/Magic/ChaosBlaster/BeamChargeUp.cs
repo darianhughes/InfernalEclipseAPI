@@ -79,7 +79,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
             // Pretty dust ring that collapses inward
             Dust d = Dust.NewDustPerfect(
                 Projectile.Center + Main.rand.NextVector2Circular(200f, 200f),
-                264
+                DustID.PortalBoltTrail
             );
             d.velocity = d.position.SafeDirectionTo(Projectile.Center) * Main.rand.NextFloat(10f);
             d.noGravity = true;

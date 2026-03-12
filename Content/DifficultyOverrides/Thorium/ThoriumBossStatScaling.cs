@@ -12,8 +12,14 @@ using ThoriumMod.Projectiles.Enemy;
 using ThoriumMod.NPCs.BossQueenJellyfish;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using ThoriumMod.NPCs.BossViscount;
+using CalamityMod;
+using Microsoft.Xna.Framework;
+using System.Security.Policy;
+using Terraria;
+using ThoriumRework.Buffs;
+using CalamityMod.CalPlayer;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
     [JITWhenModsEnabled("ThoriumMod")]
     [ExtendsFromMod("ThoriumMod")]
@@ -43,7 +49,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
             GameModeData data = (GameModeData)findInfo.GetValue(null);
-            return (Main.getGoodWorld && data.IsMasterMode);
+            return Main.getGoodWorld && data.IsMasterMode;
         }
 
         public static readonly int[] thorBossMinionTypes =
@@ -79,15 +85,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             {
                 if (entity.type == ModContent.NPCType<BoreanStrider>())
                 {
-                    entity.defense += 20;
+                    entity.defense = 125;
                 }
                 if (entity.type == ModContent.NPCType<BoreanStriderPopped>())
                 {
-                    entity.defense += 5;
+                    entity.defense = 20;
                 }
                 if (entity.type == ModContent.NPCType<BoreanHopper>())
                 {
-                    entity.defense += 25;
+                    entity.defense = 125;
                 }
             }
 
@@ -147,15 +153,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
+                if (npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
                 {
-                    npc.lifeMax += (int)(npc.lifeMax * 3f);
+                    npc.lifeMax += (int)(npc.lifeMax * 1.9f);
                 }
                 if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
                 {
-                    npc.lifeMax += (int)npc.lifeMax;
+                    npc.lifeMax += npc.lifeMax;
                 }
-                if (npc.ModNPC?.Name?.Contains("StarScouter") == true || npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
+                if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
                 {
                     npc.lifeMax += (int)(0.75 * npc.lifeMax);
                 }
@@ -169,15 +175,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
+                    if (npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
                     {
-                        npc.lifeMax += (int)(npc.lifeMax * 2.75f);
+                        npc.lifeMax += (int)(npc.lifeMax * 1.65f);
                     }
                     if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
                     {
                         npc.lifeMax += (int)(0.75 * npc.lifeMax);
                     }
-                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true || npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
+                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
                     {
                         npc.lifeMax += (int)(0.5 * npc.lifeMax);
                     }
@@ -186,15 +192,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
                 else if (GetCalDifficulty("death"))
                 {
-                    if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
+                    if (npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
                     {
-                        npc.lifeMax += (int)(npc.lifeMax * 2.5f);
+                        npc.lifeMax += (int)(npc.lifeMax * 1.4f);
                     }
                     if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
                     {
                         npc.lifeMax += (int)(0.5 * npc.lifeMax);
                     }
-                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true || npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
+                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
                     {
                         npc.lifeMax += (int)(0.375 * npc.lifeMax);
                     }
@@ -203,15 +209,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
                 else if (GetCalDifficulty("revengeance"))
                 {
-                    if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
+                    if (npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
                     {
-                        npc.lifeMax += (int)(npc.lifeMax * 2.25f);
+                        npc.lifeMax += (int)(npc.lifeMax * 1.15f);
                     }
                     if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
                     {
                         npc.lifeMax += (int)(0.25 * npc.lifeMax);
                     }
-                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true || npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
+                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
                     {
                         npc.lifeMax += (int)(0.1875 * npc.lifeMax);
                     }
@@ -226,7 +232,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             string name = npc.ModNPC?.Name ?? "";
             float damageMod = 0;
 
-            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater") || name.Contains("BoreanStrider") || name.Contains("QueenJellyfish") || name.Contains("Viscount"))
+            if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
+                damageMod += 0.75f;
+            else if (name.Contains("BoreanStrider") || name.Contains("QueenJellyfish") || name.Contains("Viscount"))
                 damageMod += 0.6f;
             else if (name.Contains("BiteyBaby"))
                 damageMod += 1f;
@@ -268,7 +276,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 return;
             }
 
-            if (npc.ModNPC?.Name?.Contains("FallenBeholder") == true)
+            if (npc.ModNPC.Name.Contains("FallenBeholder"))
                 return;
 
             if (IsWorldLegendary())
@@ -277,17 +285,24 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                npc.position += npc.velocity * 0.20f;
+                if (npc.ModNPC.Name.Contains("TheGrandThunderBird"))
+                    npc.position += npc.velocity * 0.15f;
+                else
+                    npc.position += npc.velocity * 0.20f;
             }
             else
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    npc.position += npc.velocity * 0.10f;
+                    if (npc.ModNPC.Name.Contains("TheGrandThunderBird"))
+                        npc.position += npc.velocity * 0.05f;
+                    else
+                        npc.position += npc.velocity * 0.10f;
                 }
                 else if (GetCalDifficulty("death"))
                 {
-                    npc.position += npc.velocity * 0.05f;
+                    if (!npc.ModNPC.Name.Contains("TheGrandThunderBird"))
+                        npc.position += npc.velocity * 0.05f;
                 }
             }
         }
@@ -323,6 +338,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 ModContent.ProjectileType<AquaiusPunchAttack>(),
                 ModContent.ProjectileType<DeathRain>(),
                 ModContent.ProjectileType<InfernalRay>(),
+                ModContent.ProjectileType<TideDagger>(),
+                ModContent.ProjectileType<FalseSun>(),
+                ModContent.ProjectileType<EraserLaser>(),
+                ModContent.ProjectileType<ExtinctionRay>(),
+                ModContent.ProjectileType<NightmareClaw>(),
+                ModContent.ProjectileType<NightmareSlash>(),
+                ModContent.ProjectileType<DyingReality>(),
 
                 ModContent.ProjectileType<IceShard>(),
                 ModContent.ProjectileType<Glacier>(),
@@ -436,32 +458,38 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
             GameModeData data = (GameModeData)findInfo.GetValue(null);
-            return (Main.getGoodWorld && data.IsMasterMode);
+            return Main.getGoodWorld && data.IsMasterMode;
         }
 
         public override void SetDefaults(Projectile entity)
         {
             if (InfernalCrossmod.SOTS.Loaded)
             {
-                if (entity.ModProjectile.Name.Contains("Blood") || entity.ModProjectile.Name.Contains("BiteyBaby"))
+                if (entity.ModProjectile.Name.Contains("Blood") || entity.ModProjectile.Name.Contains("BiteyBaby") || entity.ModProjectile.Name.Contains("Ripple"))
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                 }
-                if (entity.ModProjectile.Name.Contains("Lucid"))
+                if (entity.ModProjectile.Name.Contains("Lucid") || entity.ModProjectile.Name.Contains("Nightmare") || entity.ModProjectile.Name.Contains("EraserLaser") || entity.ModProjectile.Name.Contains("DyingReality"))
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                     entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
                 }
             }
+            if ((entity.ModProjectile.Name.Contains("Viscount") && !entity.ModProjectile.Name.Contains("Rock") && !entity.ModProjectile.Name.Contains("Stomp")) || 
+                (entity.ModProjectile.Name.Contains("Blizzard") || entity.ModProjectile.Name.Contains("Ice") || entity.ModProjectile.Name.Contains("Glacier")))
+                entity.Calamity().DealsDefenseDamage = false;
         }
-
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
             float damageMod = 1f;
-
             if (projectile.ModProjectile.Name.Contains("BiteyBaby"))
             {
                 damageMod += 0.25f;
+            }
+
+            if (projectile.ModProjectile.Name.Contains("Nightmare"))
+            {
+                damageMod += 0.5f;
             }
 
             if (IsWorldLegendary())
@@ -471,18 +499,127 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                damageMod *= 2.2f;
+                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
+                    damageMod *= 1.70f;
+                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier"))
+                    damageMod *= 1.35f;
+                else
+                    damageMod *= 2.2f;
             }
             else if (GetFargoDifficullty("EternityMode"))
             {
-                damageMod *= 1.675f;
+                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
+                    damageMod *= 1.60f;
+                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier"))
+                    damageMod *= 1.25f;
+                else
+                    damageMod *= 1.675f;
             }
             else if (GetCalDifficulty("death"))
             {
-                damageMod *= 1.5f;
+                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
+                    damageMod *= 1.45f;
+                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier"))
+                    damageMod *= 1.1f;
+                else
+                    damageMod *= 1.15f;
             }
 
             modifiers.SourceDamage *= damageMod;
+        }
+    }
+
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
+    public class ViscountBloodAccelerationGlobalProjectile : GlobalProjectile
+    {
+        public override bool InstancePerEntity => true;
+
+        private static int ViscountBloodType = -1;
+
+        private bool initialized;
+        private Vector2 storedDirection;
+        private float targetSpeed;
+        private float timer;
+
+        private float StartingSpeedMultiplier = 0.005f;
+        private float AccelerationTime = 40f;
+
+        public override void Load()
+        {
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
+                thorium.TryFind<ModProjectile>("ViscountBlood", out var viscountBlood))
+            {
+                ViscountBloodType = viscountBlood.Type;
+            }
+        }
+
+        public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
+        {
+            return entity.type == ViscountBloodType;
+        }
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            /*
+            if (Main.netMode != NetmodeID.Server)
+                Main.NewText($"ViscountBlood matched: {projectile.type}");
+            */
+
+            timer = 0f;
+            initialized = false;
+
+            float originalSpeed = projectile.velocity.Length();
+            if (originalSpeed <= 0.001f)
+            {
+                storedDirection = Vector2.UnitY;
+                targetSpeed = 0f;
+                return;
+            }
+
+            storedDirection = Vector2.Normalize(projectile.velocity);
+            targetSpeed = originalSpeed;
+
+            projectile.velocity = storedDirection * (targetSpeed * StartingSpeedMultiplier);
+            initialized = true;
+        }
+
+        public override void AI(Projectile projectile)
+        {
+            if (!initialized || targetSpeed <= 0f)
+                return;
+
+            timer++;
+
+            float progress = Utils.GetLerpValue(0f, AccelerationTime, timer, true);
+            progress *= progress;
+
+            float currentSpeed = MathHelper.Lerp(
+                targetSpeed * StartingSpeedMultiplier,
+                targetSpeed,
+                progress
+            );
+
+            projectile.velocity = storedDirection * currentSpeed;
+        }
+    }
+
+    [JITWhenModsEnabled("ThoriumRework")]
+    [ExtendsFromMod("ThoriumRework")]
+    public class LucidityPlayer : GlobalBuff
+    {
+        public override void Update(int type, Player player, ref int buffIndex)
+        {
+            if (type == ModContent.BuffType<TerminalLucidity>())
+            {
+                CalamityPlayer mp = player.Calamity();
+
+                if (mp.rage > 0)
+                    mp.rage -= 0.05f;
+
+                if (mp.adrenaline > 0)
+                    mp.adrenaline -= 0.05f;
+            }
         }
     }
 }

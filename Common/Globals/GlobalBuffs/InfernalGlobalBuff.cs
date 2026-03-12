@@ -1,4 +1,6 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using CalamityMod;
+using CalamityMod.Buffs.Alcohol;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
 {
@@ -6,12 +8,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
     {
         public override void Update(int type, Player player, ref int buffIndex)
         {
-            if (InfernalCrossmod.SOTS.Loaded)
-            {
-                Mod sots = InfernalCrossmod.SOTS.Mod;
-            }
+            if ((type == ModContent.BuffType<GrapeBeerBuff>() || type == ModContent.BuffType<MoonshineBuff>()) && InfernalConfig.Instance.CalamityBalanceChanges)
+                player.Calamity().alcoholPoisonLevel++;
 
-            if (InfernalCrossmod.NoxusBoss.Loaded)
+            if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 if (type == InfernalCrossmod.NoxusBoss.Mod.Find<ModBuff>("StarstrikinglySatiated").Type)
                 {
@@ -23,10 +23,27 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
-                if (type == InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Bubbled").Type)
-                {
+                Mod thorium = InfernalCrossmod.Thorium.Mod;
+
+                if (type == thorium.Find<ModBuff>("Bubbled").Type)
                     player.AddBuff(BuffID.Suffocation, 1);
+
+                if (type == thorium.Find<ModBuff>("FrenzyPotionBuff").Type)
+                {
+                    if (InfernalCrossmod.SOTS.Loaded)
+                        player.ClearBuff(thorium.Find<ModBuff>("FrenzyPotionBuff").Type);
+                    else
+                        player.GetAttackSpeed(DamageClass.Generic) -= 0.03f;
                 }
+
+                if (type == thorium.Find<ModBuff>("KineticPotionBuff").Type)
+                {
+                    if (InfernalCrossmod.SOTS.Loaded)
+                        player.ClearBuff(thorium.Find<ModBuff>("KineticPotionBuff").Type);
+                }
+
+                if (type == thorium.Find<ModBuff>("BloodRush").Type)
+                    player.moveSpeed -= 0.15f;
             }
         }
     }

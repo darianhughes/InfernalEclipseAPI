@@ -1,6 +1,9 @@
 ﻿using Terraria.GameContent.ItemDropRules;
 using RagnarokMod.Items.HealerItems.Other;
 using CalamityMod.NPCs.AcidRain;
+using CalamityMod;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics;
+using InfernumMode.Core.GlobalInstances.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
@@ -20,6 +23,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
             if (npc.type == ModContent.NPCType<Mauler>())
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Virusprayer>(), 2, 1, 1));
+
+                bool isInfernum() => WorldSaveSystem.InfernumModeEnabled;
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<MaulerRelic>());
             }
         }
     }

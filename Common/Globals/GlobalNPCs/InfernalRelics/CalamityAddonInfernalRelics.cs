@@ -1,4 +1,6 @@
-﻿using CalamityMod;
+﻿using CalamityHunt.Common.Players;
+using CalamityMod;
+using CalamityMod.CalPlayer;
 using CalamityMod.Items.Mounts;
 using CatalystMod.NPCs.Boss.Astrageldon;
 using Clamity.Content.Bosses.Clamitas.NPCs;
@@ -48,6 +50,17 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
         }
     }
 
+    [ExtendsFromMod("CalamityHunt")]
+    public static class StressMeterOverrides
+    {
+        public static void DisableStress(Player player)
+        {
+            player.GetModPlayer<SplendorJamPlayer>().active = false;
+            player.GetModPlayer<SplendorJamPlayer>().stress = 0;
+            player.GetModPlayer<SplendorJamPlayer>().stressedOut = false;
+        }
+    }
+
     [ExtendsFromMod("NoxusBoss")]
     public class WrathInfernalRelics : GlobalNPC
     {
@@ -65,14 +78,8 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                         player.mount.Dismount(player);
                         SoundEngine.PlaySound(GennedAssets.Sounds.NamelessDeity.Chuckle, player.Center);
                     }
-                }
-            }
-            if (InfernalCrossmod.Clamity.Loaded)
-            {
-                for (int i = 0; i < Main.maxPlayers; i++)
-                {
-                    Player player = Main.player[i];
-                    if (player.active && !player.dead)
+
+                    if (InfernalCrossmod.Clamity.Loaded)
                     {
                         if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
                         {
@@ -80,9 +87,22 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                             SoundEngine.PlaySound(GennedAssets.Sounds.NamelessDeity.Chuckle, player.Center);
                         }
                     }
+
+                    if (npc.ModNPC is NamelessDeityBoss ND && ND.CurrentPhase > 0)
+                    {
+                        if (ModLoader.HasMod("CalamityHunt"))
+                        {
+                            StressMeterOverrides.DisableStress(player);
+                        }
+
+                        CalamityPlayer mp = player.Calamity();
+                        mp.rage = 0;
+                        mp.rageModeActive = false;
+                        mp.adrenaline = 0;
+                        mp.adrenalineModeActive = false;
+                    }
                 }
             }
-
             return base.PreAI(npc);
         }
 

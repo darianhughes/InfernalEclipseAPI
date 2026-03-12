@@ -314,7 +314,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
                 sotsPlayer.EmeraldRing = true;
             if (this.GemDisabled[4])
             {
-                player.AddBuff(26, 60, true, false);
+                player.AddBuff(BuffID.WellFed, 60, true, false);
                 voidPlayer.VoidFoodGainMultiplier -= 0.75f;
             }
             else

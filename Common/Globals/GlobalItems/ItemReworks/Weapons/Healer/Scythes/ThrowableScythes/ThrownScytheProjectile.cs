@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Common.Projectiles;
+using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using ThoriumMod.Projectiles.Scythe;
@@ -25,10 +26,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
                 if (entity.type == thorium.Find<ModProjectile>("BoneReaperPro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("LustrousBatonPro").Type) return true;
-                //if (entity.type == thorium.Find<ModProjectile>("TrueFallingTwilightPro").Type) return true;
-                //if (entity.type == thorium.Find<ModProjectile>("TrueBloodHarvestPro").Type) return true;
+                if (entity.type == thorium.Find<ModProjectile>("TrueFallingTwilightPro").Type) return true;
+                if (entity.type == thorium.Find<ModProjectile>("TrueBloodHarvestPro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("MorningDewPro").Type) return true;
-                //if (entity.type == thorium.Find<ModProjectile>("TerraScythePro").Type) return true;
+                if (entity.type == thorium.Find<ModProjectile>("TerraScythePro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("ChristmasCheerPro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("DreadTearerPro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("TheBlackScythePro").Type) return true;
@@ -129,6 +130,58 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
                 SpawnDust(projectile);
 
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && projectile.type == thorium.Find<ModProjectile>("TerraScythePro").Type)
+                {
+                    projectile.localAI[1]++;
+
+                    if (projectile.localAI[1] >= 12f)
+                    {
+                        NPC target = InfernalUtilities.FindNearestNPC(projectile.Center, 750f);
+
+                        if (target != null)
+                        {
+                            Vector2 vector = target.Center - projectile.Center;
+
+                            float speed = 12f;
+                            float mag = vector.Length();
+
+                            if (mag > speed)
+                            {
+                                vector *= speed / mag;
+                            }
+
+                            for (int u = 0; u < 10; u++)
+                            {
+                                int dust = Dust.NewDust(
+                                    projectile.position,
+                                    projectile.width,
+                                    projectile.height,
+                                    DustID.Terra,
+                                    Main.rand.NextFloat(-5, 5),
+                                    Main.rand.NextFloat(-5, 5)
+                                );
+
+                                Main.dust[dust].noGravity = true;
+                            }
+
+                            if (projectile.owner == Main.myPlayer)
+                            {
+                                Projectile.NewProjectile(
+                                    projectile.GetSource_FromThis(),
+                                    projectile.Center,
+                                    vector + new Vector2(0, Main.rand.NextFloat(-1.25f, 1.25f)),
+                                    ModContent.ProjectileType<ZTerraScythePro>(),
+                                    (int)(projectile.damage * 0.75f),
+                                    1f,
+                                    projectile.owner
+                                );
+                            }
+                        }
+
+                        projectile.localAI[1] = 0f;
+                    }
+                }
+
                 return false; // Skip normal scythe AI
             }
 
@@ -156,6 +209,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             //thorium ones can be added here
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
+                if (projectile.type == thorium.Find<ModProjectile>("BoneReaperPro").Type) return 0.75f;
+
                 if (projectile.type == thorium.Find<ModProjectile>("BatScythePro").Type) return 1.25f;
                 if (projectile.type == thorium.Find<ModProjectile>("MorningDewPro").Type) return 1.15f;
             }

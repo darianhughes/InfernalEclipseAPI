@@ -321,13 +321,13 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 
         public void CreateSlashParticles()
         {
-            float x = MathHelper.WrapAngle(base.Projectile.rotation - base.Projectile.oldRot[1]);
+            float x = MathHelper.WrapAngle(Projectile.rotation - Projectile.oldRot[1]);
             float num = MathF.Abs(x);
-            if (!(num <= 0.1f) && !(base.Projectile.scale <= 0.5f))
+            if (!(num <= 0.1f) && !(Projectile.scale <= 0.5f))
             {
-                Vector2 vector = (base.Projectile.rotation - MathF.PI / 4f).ToRotationVector2();
-                Vector2 vector2 = vector.RotatedBy((float)x.NonZeroSign() * (MathF.PI / 2f));
-                Dust dust = Dust.NewDustPerfect(base.Projectile.Center + vector * Main.rand.NextFloat(28f, 74f) * base.Projectile.scale, 264);
+                Vector2 vector = (Projectile.rotation - MathF.PI / 4f).ToRotationVector2();
+                Vector2 vector2 = vector.RotatedBy(x.NonZeroSign() * (MathF.PI / 2f));
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + vector * Main.rand.NextFloat(28f, 74f) * Projectile.scale, DustID.PortalBoltTrail);
                 dust.velocity = vector2 * 3f + Owner.velocity * 0.35f;
                 dust.color = Color.Lerp(
                     new Color(255, 96, 96),   // light red

@@ -1,5 +1,5 @@
 ﻿using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
-namespace InfernalEclipseAPI.Content.DifficultyOverrides.OcramOverridess
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria.OcramOverridess
 {
     public class OcramBehavior : GlobalNPC
     {

@@ -5,7 +5,8 @@ Items: {
 		SetBonus:
 			'''
 			Allows auto-jump and negates fall damage
-			Jumping will fire 5 piercing knives outwards
+			Bunny hops will fire 5 piercing knives outwards
+			You can do this consecutively up to 5 times, with knives reseting every 3 seconds
 			'''
 	}
 }

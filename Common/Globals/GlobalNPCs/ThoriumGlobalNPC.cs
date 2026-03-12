@@ -162,19 +162,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             #endregion
 
             #region Biome Keys
-            if (npc.type == ModContent.NPCType<CalamityMod.NPCs.Leviathan.Leviathan>())
+            if (npc.type == ModContent.NPCType<SubmergedMimic>())
             {
-                npcLoot.Add(ModContent.ItemType<AquaticDepthsBiomeKey>());
+                npcLoot.Add(ModContent.ItemType<AquaticDepthsBiomeKey>(), 10);
             }
 
-            if (npc.type == ModContent.NPCType<FallenBeholder2>() || npc.type == ModContent.NPCType<FallenBeholder2>())
+            if (npc.type == ModContent.NPCType<HellBringerMimic>())
             {
-                npcLoot.Add(ModContent.ItemType<UnderworldBiomeKey>());
-            }
-
-            if (npc.type == NPCID.SandElemental)
-            {
-                npcLoot.Add(ModContent.ItemType<DesertBiomeKey>());
+                npcLoot.Add(ModContent.ItemType<UnderworldBiomeKey>(), 10);
             }
 
             if (npc.type == ModContent.NPCType<TheGrandThunderBird>())

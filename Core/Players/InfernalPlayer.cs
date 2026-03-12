@@ -20,6 +20,9 @@ using CalamityMod.NPCs.Yharon;
 using CalamityMod.Projectiles.Melee;
 using Terraria.UI;
 using InfernalEclipseAPI.Content.UI;
+using CalamityMod.Projectiles.Melee.Shortswords;
+using CalamityMod.NPCs.AquaticScourge;
+using InfernalEclipseAPI.Content.Projectiles;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -162,6 +165,7 @@ namespace InfernalEclipseAPI.Core.Players
         private int horrifiedTimer = 0;
         private int jamTimer = 0;
         private int batCoinTimer = 0;
+        private int nightmareArmCD;
 
         public int resonatorTimer = 0;
         public int incubatorTextTime = 0;
@@ -183,6 +187,7 @@ namespace InfernalEclipseAPI.Core.Players
         public int BoostDirection;
         public int boostCooldownTime;
         public int RingofRestCooldown;
+        public bool CritNightmare;
 
         public bool singularityCore;
 
@@ -301,6 +306,7 @@ namespace InfernalEclipseAPI.Core.Players
             focusReticle = false;
             exoSights = false;
             flightArmor = false;
+            CritNightmare = false;
         }
 
         public override void PreUpdate()
@@ -407,11 +413,16 @@ namespace InfernalEclipseAPI.Core.Players
                 wasUsingItem = Player.itemAnimation > 0;
             }
 
-            if (!NPC.downedBoss3 && InfernalConfig.Instance.BossKillCheckOnOres && Player.HasBuff(BuffID.Bewitched))
+            if (!NPC.downedBoss3 && !Main.hardMode && InfernalConfig.Instance.BossKillCheckOnOres && Player.HasBuff(BuffID.Bewitched))
                 Player.ClearBuff(BuffID.Bewitched);
 
             if (RingofRestCooldown > 0)
                 RingofRestCooldown--;
+
+            if (nightmareArmCD > 0)
+                nightmareArmCD--;
+            else
+                nightmareArmCD = 0;
         }
 
         public bool soltanBullying = false;
@@ -634,7 +645,7 @@ namespace InfernalEclipseAPI.Core.Players
 
                 float time = Player.buffTime[idx];
 
-                ref StatModifier local = ref Player.GetDamage(InfernalCrossmod.SOTS.Mod.Find<DamageClass>("VoidGeneric"));
+                ref StatModifier local = ref Player.GetDamage(DamageClass.Generic);
                 local -= (float)(0.25 * (time / 300f));
             }
 
@@ -666,9 +677,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if (InfernalEclipseAPI.SubpaceBoostHotkey.JustPressed && boostCooldownTime <= 15)
             {
-                //Main.NewText("SubspaceBoostHotkeyPressed");
-
-                BoostPressTimer = 2; // survive ordering differences
+                BoostPressTimer = 2;
                 BoostDirection =
                     Player.controlRight ? 1 :
                     Player.controlLeft ? -1 :
@@ -716,6 +725,14 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 modifiers.DefenseEffectiveness *= Main.hardMode ? 0.25f : 0.2f;
             }
+
+            if (InfernalCrossmod.ThoriumRework.Loaded)
+            {
+                if (target.type == InfernalCrossmod.Thorium.Mod.Find<ModNPC>("BoreanHopper").Type)
+                {
+                    modifiers.FinalDamage *= 0.2f;
+                }
+            }
         }
 
         public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
@@ -732,7 +749,7 @@ namespace InfernalEclipseAPI.Core.Players
                 (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()) &&
                 InfernalConfig.Instance.PreventBossCheese)
             {
-                modifiers.FinalDamage *= 0.2f;
+                modifiers.FinalDamage *= 0.01f;
             }
 
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
@@ -740,9 +757,31 @@ namespace InfernalEclipseAPI.Core.Players
                 modifiers.FinalDamage *= 0.8f;
             }
 
-            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()))
+            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()) &&
+                InfernalConfig.Instance.PreventBossCheese)
             {
                 modifiers.FinalDamage /= 2;
+            }
+
+            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail &&  InfernalConfig.Instance.PreventBossCheese)
+            {
+                if (proj.type == ModContent.ProjectileType<SubmarineShockerProj>())
+                    modifiers.FinalDamage *= 0.2f;
+                
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    if (proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("BeholderBlade").Type || proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("Void").Type)
+                        modifiers.FinalDamage /= 2;
+                }
+            }
+
+            if (target.type == ModContent.NPCType<AquaticScourgeHead>() || target.type == ModContent.NPCType<AquaticScourgeBody>() || target.type == ModContent.NPCType<AquaticScourgeTail>())
+            {
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    if (proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("BeholderBlade").Type || proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("Void").Type)
+                        modifiers.FinalDamage /= 2;
+                }
             }
         }
 
@@ -766,6 +805,13 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (tixThumbRing && proj.arrow && hit.Crit)
                 target.AddBuff(BuffID.ShadowFlame, 60, false);
+
+            if (hit.Crit && CritNightmare && proj != null && proj.type != ModContent.ProjectileType<EvilGrowth>() && proj.type != ModContent.ProjectileType<EvilStrike>() && nightmareArmCD <= 0)
+            {
+                nightmareArmCD = 360;
+                if (Main.myPlayer == Player.whoAmI)
+                    Projectile.NewProjectile(new EntitySource_OnHit(Player, target), target.Center, Vector2.Zero, ModContent.ProjectileType<EvilGrowth>(), (int)(Main.hardMode ? hit.SourceDamage * 0.1 : hit.SourceDamage * 0.05), 0f, Player.whoAmI, 0f, target.whoAmI);
+            }
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)

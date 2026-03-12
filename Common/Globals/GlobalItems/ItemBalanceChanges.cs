@@ -15,7 +15,6 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
-using Terraria;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -1268,10 +1267,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Pollen Pike
                     if (item.type == FindItem(thorium, "PollenPike"))
                     {
-                        item.damage = 35;
-                        item.useTime = 6;
-                        item.useAnimation = 6;
-                        item.shootSpeed = 22;
+                        item.damage = 38;
+                        item.useTime = 12;
+                        item.useAnimation = 12;
+                        item.shootSpeed = 12;
                         ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
                     }
 
@@ -3461,13 +3460,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Templar's Judgement
                     if (item.type == thorium.Find<ModItem>("TemplarJudgment").Type)
                     {
-                        item.damage = 46;
+                        item.damage = 62;
                     }
 
                     //Light's Lament
                     if (item.type == thorium.Find<ModItem>("LightsLament").Type)
                     {
-                        item.mana = 20;
+                        item.mana = 10;
                         item.useTime = 15;
                         item.useAnimation = 15;
                         item.damage = 40;
@@ -3481,6 +3480,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useTime = 28;
                         item.useAnimation = 28;
                         item.damage = 60;
+                        item.mana = 5;
                     }
 
                     //Falling Twilight
@@ -3719,6 +3719,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #endregion
 
                     #region Bard
+                    if (UnsafeGetItem(thorium, "HellBell", item))
+                    {
+                        item.damage = 66;
+                    }
+
                     #region Pre-Hardmode
                     //Wooden Whistle
                     if (item.type == thorium.Find<ModItem>("WoodenWhistle").Type)
@@ -3891,6 +3896,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 40;
                     }
 
+                    if (UnsafeGetItem(thorium, "SerpentsCry", item))
+                    {
+                        TrySetInspirationCost(item, 2);
+                        item.useTime = 16;
+                        item.useAnimation = 16;
+                    }
+
                     //Dragon's Wail
                     if (GetItem(thorium, "DragonsWail", item))
                     {
@@ -3905,7 +3917,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "Trombone", item))
                     {
-                        item.damage = 35;
+                        item.damage = 55;
                     }
 
                     if (GetItem(thorium, "CobaltGong", item))
@@ -3921,31 +3933,32 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "Xylophone", item))
                     {
                         item.damage = 94;
+                        item.shootSpeed = 25;
                     }
 
                     if (GetItem(thorium, "AcousticGuitar", item))
                     {
-                        item.damage = 60;
+                        item.damage = 85;
                     }
 
                     if (GetItem(thorium, "ScholarsHarp", item))
                     {
-                        item.damage = 36;
+                        item.damage = 26;
                     }
 
                     if (GetItem(thorium, "TheLullaby", item))
                     {
-                        item.damage = 70;
+                        item.damage = 100;
                     }
 
                     if (GetItem(thorium, "RiffWeaver", item))
                     {
-                        item.damage = 70;
+                        item.damage = 80;
                     }
 
                     if (GetItem(thorium, "GeodeSaxophone", item))
                     {
-                        item.damage = 50;
+                        item.damage = 66;
                     }
 
                     if (GetItem(thorium, "WindChimes", item))
@@ -4734,7 +4747,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 12;
                 }
 
-                if (UnsafeGetItem(rethorium, "LodeStoneMagnetMace", item))
+                if (GetItem(rethorium, "LodeStoneMagnetMace", item))
                 {
                     item.damage = 64;
                 }
@@ -5384,8 +5397,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 30;
                 }
                 #endregion
-                #endregion
 
+                #region Accessories
+
+                #endregion
+                #endregion
+                if (GetItem(sots, "FlowerCrown", item))
+                {
+                    item.defense = 3;
+                }
                 #region Hardmode
                 #region Melee
                 if (GetItem(sots, "Colossus", item))
@@ -5779,6 +5799,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #endregion
         }
 
+        public override void UpdateEquip(Item item, Player player)
+        {
+            if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                if (GetItem(sots, "FlowerCrown", item))
+                {
+                    player.lifeRegen -= 2;
+                }
+            }
+        }
+
         public override bool CanUseItem(Item item, Player player)
         {
             if (InfernalConfig.Instance.ThoriumBalanceChangess && InfernalCrossmod.Thorium.Loaded)
@@ -5793,9 +5824,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     }
                     else
                     {
-                        item.useTime = 6;
-                        item.useAnimation = 6;
-                        item.shootSpeed = 22;
+                        item.useTime = 12;
+                        item.useAnimation = 12;
+                        item.shootSpeed = 12;
                     }
                 }
             }

@@ -1,5 +1,8 @@
 ﻿using System.Reflection;
+using System.Security.Policy;
+using Consolaria.Content.Items.Armor.Misc;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 
@@ -10,6 +13,19 @@ namespace InfernalEclipseAPI.Core.Players
     public class ConsolariaPlayer : ModPlayer
     {
         private bool wasOnGround = true;
+
+        public int hopsLeft = 5;
+        public int hopCooldown;
+        public override void PreUpdate()
+        {
+            if (hopCooldown > 0)
+                hopCooldown--;
+            if (hopCooldown == 0)
+            {
+                hopsLeft = 5;
+                hopCooldown = 60 * 3;
+            }
+        }
 
         public override void PostUpdateEquips()
         {
@@ -43,10 +59,16 @@ namespace InfernalEclipseAPI.Core.Players
             // Detect jump start
             bool onGround = Player.velocity.Y == 0;
 
-            if (wasOnGround && !onGround && Player.velocity.Y < 0) // just left the ground
+            if (wasOnGround && !onGround && Player.velocity.Y < 0 && InfernalUtilities.HasArmorSet(Player, ModContent.ItemType<OstaraHat>(), ModContent.ItemType<OstaraJacket>(), ModContent.ItemType<OstaraBoots>()) && hopsLeft > 0) // just left the ground & has armor set
             {
                 FirePentagonProjectiles(InfernalCrossmod.Consolaria.Mod);
+                hopsLeft--;
+                if (hopsLeft == 0)
+                {
+                    hopCooldown = 60 * 3;
+                } 
             }
+
 
             wasOnGround = onGround;
         }

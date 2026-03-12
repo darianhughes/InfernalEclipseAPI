@@ -109,7 +109,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 
             Dust d = Dust.NewDustPerfect(
                 spawn,
-                264,
+                DustID.PortalBoltTrail,
                 Main.rand.NextVector2Circular(3f, 3f) + Player.velocity,
                 0,
                 col,
@@ -186,7 +186,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
                 var c = Color.White; c.A = 0;
                 Dust d = Dust.NewDustPerfect(
                     drawInfo.Position + Main.rand.NextVector2Circular(Player.width, Player.height),
-                    226,
+                    DustID.Electric,
                     Vector2.Zero,
                     0,
                     c * 0.5f,
@@ -201,7 +201,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
                 var c = new Color(0f, 0.25f, 1f, 0f) * 0.2f;
                 Dust d = Dust.NewDustPerfect(
                     Player.Center + Main.rand.NextVector2Circular(Player.width, Player.height) * 0.5f,
-                    226,
+                    DustID.Electric,
                     Main.rand.NextVector2Circular(1f, 1f),
                     0,
                     c,

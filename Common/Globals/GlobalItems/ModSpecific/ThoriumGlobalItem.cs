@@ -3,7 +3,9 @@ using System.Reflection;
 using CalamityMod;
 using CalamityMod.Items.Weapons.Melee;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Systems.Hooks;
 using InfernalEclipseAPI.Core.Utils;
+using Steamworks;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using ThoriumMod;
@@ -15,6 +17,7 @@ using ThoriumMod.Items.BossGraniteEnergyStorm;
 using ThoriumMod.Items.BossThePrimordials.Aqua;
 using ThoriumMod.Items.BossThePrimordials.Slag;
 using ThoriumMod.Items.Bronze;
+using ThoriumMod.Items.Consumable;
 using ThoriumMod.Items.Coral;
 using ThoriumMod.Items.Cultist;
 using ThoriumMod.Items.Depths;
@@ -137,6 +140,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     item.defense = 14;
                 }
+
+                if (item.type == ItemID.BreakerBlade)
+                {
+                    SheathCompatibilitySystem.SetIncompatible(item.type);
+                }
             }
         }
 
@@ -150,6 +158,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 player.GetThoriumPlayer().bonusCritDamage -= 0.12f;
                 if (!InfernalCrossmod.SOTS.Loaded)
                     player.Calamity().critDamage += 0.15f;
+            }
+
+            if (item.type == ItemType<TravelersBoots>())
+            {
+                player.runAcceleration -= 0.06f;
             }
         }
 
@@ -460,6 +473,48 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MaskoftheCrystalEye.SOTS"));
                 else
                     InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MaskoftheCrystalEye.Thorium"));
+            }
+
+            if (item.type == ItemType<BloodPotion>())
+                InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.BloodPotion"));
+
+            if (item.type == ItemType<FrenzyPotion>())
+            {
+                if (InfernalCrossmod.SOTS.Loaded)
+                {
+                    for (int index = 0; index < tooltips.Count; ++index)
+                    {
+                        if (tooltips[index].Mod == "Terraria")
+                        {
+                            if (tooltips[index].Name == "ItemName")
+                            {
+                                TooltipLine tooltip = tooltips[index];
+                                tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Disabled") + tooltip.Text;
+                            }
+                        }
+                    }
+                }
+                InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FrenzyPotion"));
+            }
+
+            if (item.type == ItemType<KineticPotion>())
+            {
+                for (int index = 0; index < tooltips.Count; ++index)
+                {
+                    if (tooltips[index].Mod == "Terraria")
+                    {
+                        if (tooltips[index].Name == "ItemName")
+                        {
+                            TooltipLine tooltip = tooltips[index];
+                            tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Disabled") + tooltip.Text;
+                        }
+                    }
+                }
+            }
+
+            if (item.type == ItemType<TravelersBoots>())
+            {
+                InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TravelBoot"));
             }
         }
     }

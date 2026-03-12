@@ -58,30 +58,8 @@ namespace InfernalEclipseAPI.Core.Players
             initialized = false;
         }
 
-        /*
-        private void EnsureInitialized()
-        {
-            if (ContractInitialized) return;
-
-            if (ModContent.TryFind<ModItem>("ThoriumRework/ExecutionersContract", out var modItem1))
-            {
-                executionersContract = modItem1.Type;
-            }
-
-            if (ModContent.TryFind<ModItem>("ThoriumRework/SealedContract", out var modItem2))
-            {
-                sealedContract = modItem2.Type;
-            }
-
-            ContractInitialized = true;
-        }
-        */
-
-
         public override void PostUpdate()
         {
-            //EnsureInitialized();
-
             if (!initialized)
             {
                 initialized = true;
@@ -120,111 +98,6 @@ namespace InfernalEclipseAPI.Core.Players
                     );
                 }
             }
-
-            /*
-            if (accessoryEquipped)
-            {
-                if (contractCooldownTimer > 0)
-                {
-                    contractCooldownTimer--;
-                    if (contractCooldownTimer == 0 && restoreContractAfterCooldown)
-                    {
-                        SetContract(true);
-                        restoreContractAfterCooldown = false;
-                    }
-                }
-            }
-            else
-            {
-                SetContract(false);
-            }
-            */
-        }
-
-        public void OnProjectileHit()
-        {
-            /*
-            if (accessoryEquipped)
-            {
-                bool contractNow = GetContract();
-
-                if (contractNow && contractCooldownTimer == 0)
-                {
-                    SetContract(true);
-                    contractCooldownTimer = 90; //EASY CHANGE COOLDOWN NUMBER
-                    restoreContractAfterCooldown = true;
-                }
-                else if (contractCooldownTimer > 0)
-                {
-                    SetContract(false);
-                }
-            }
-            */
-        }
-        public override void UpdateEquips()
-        {
-            /*
-            EnsureInitialized();
-
-            accessoryEquipped = false;
-
-            // We only want to check up to the smaller of these two lengths
-            int maxSlot = Math.Min(Player.armor.Length, Player.hideVisibleAccessory.Length);
-
-            for (int i = 3; i < maxSlot; i++) // starts at 3 to skip armor slots
-            {
-                Item accessory = Player.armor[i];
-
-                if (accessory.IsAir)
-                    continue;
-
-                if (accessory.type == executionersContract || accessory.type == sealedContract)
-                {
-                    // We're ignoring visibility here, so just set true and break
-                    accessoryEquipped = true;
-                    break;
-                }
-            }
-            */
-        }
-
-        /*
-        private bool GetContract()
-        {
-            object thoriumPlayer = GetThoriumPlayer();
-            if (thoriumPlayer == null)
-                return false;
-
-            var contractField = thoriumPlayer.GetType().GetField("contract", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (contractField == null)
-                return false;
-
-            return (bool)contractField.GetValue(thoriumPlayer);
-        }
-
-        private void SetContract(bool value)
-        {
-            object thoriumPlayer = GetThoriumPlayer();
-            if (thoriumPlayer == null)
-                return;
-
-            var contractField = thoriumPlayer.GetType().GetField("contract", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            contractField?.SetValue(thoriumPlayer, value);
-        }
-        */
-
-        private object GetThoriumPlayer()
-        {
-            if (!ModLoader.TryGetMod("ThoriumRework", out var thoriumRework))
-                return null;
-
-            var thoriumPlayerType = thoriumRework.Code?.GetType("ThoriumRework.ThoriumPlayer");
-            if (thoriumPlayerType == null)
-                return null;
-
-            var getModPlayerMethod = typeof(Player).GetMethod("GetModPlayer", 1, Type.EmptyTypes);
-            var genericMethod = getModPlayerMethod?.MakeGenericMethod(thoriumPlayerType);
-            return genericMethod?.Invoke(Player, null);
         }
 
         private void LoadProjectileTypes()

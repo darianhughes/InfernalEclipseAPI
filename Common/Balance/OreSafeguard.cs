@@ -53,8 +53,6 @@ namespace InfernalEclipseAPI.Common.Balance
                         return NPC.downedBoss2 || Main.hardMode;
                     case 408:
                         return NPC.downedMoonlord;
-                    case 659:
-                        return NPC.downedBoss2 || Main.hardMode;
                     case TileID.AlchemyTable:
                     case TileID.BewitchingTable:
                         return NPC.downedBoss3 || Main.hardMode;
@@ -94,8 +92,6 @@ namespace InfernalEclipseAPI.Common.Balance
                         return NPC.downedBoss2 || Main.hardMode;
                     case 408:
                         return NPC.downedMoonlord;
-                    case 659:
-                        return NPC.downedBoss2 || Main.hardMode;
                     case TileID.AlchemyTable:
                     case TileID.BewitchingTable:
                         return NPC.downedBoss3 || Main.hardMode;
