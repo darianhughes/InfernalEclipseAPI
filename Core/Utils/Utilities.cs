@@ -50,6 +50,35 @@ namespace InfernalEclipseAPI.Core.Utils
             return false;
         }
 
+        public static bool HasArmorSet(Player player, int head, int body, int legs)
+        {
+            return player.armor[0].type == head &&
+                   player.armor[1].type == body &&
+                   player.armor[2].type == legs;
+        }
+
+        public static NPC FindNearestNPC(Vector2 position, float maxDistance)
+        {
+            NPC closest = null;
+            float sqrMaxDistance = maxDistance * maxDistance;
+
+            foreach (NPC npc in Main.npc)
+            {
+                if (!npc.active || npc.friendly || npc.lifeMax <= 5 || npc.dontTakeDamage)
+                    continue;
+
+                float sqrDistance = Vector2.DistanceSquared(position, npc.Center);
+
+                if (sqrDistance < sqrMaxDistance)
+                {
+                    sqrMaxDistance = sqrDistance;
+                    closest = npc;
+                }
+            }
+
+            return closest;
+        }
+
         #region Math Utilities
         public static int INonZeroSign(this float x) => x >= 0f ? 1 : -1;
 

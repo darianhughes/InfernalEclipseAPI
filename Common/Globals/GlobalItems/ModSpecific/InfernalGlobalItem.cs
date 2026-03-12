@@ -14,11 +14,20 @@ using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Utils;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
+using CalamityMod.Items.Potions.Alcohol;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
     public class InfernalGlobalItem : GlobalItem
     {
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ModContent.ItemType<Moonshine>() && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                item.value = Item.buyPrice(0, 1, 0, 0);
+            }
+        }
+
         public override bool CanUseItem(Item item, Player player)
         {
             if (InfernalCrossmod.FargosMutant.Loaded)
@@ -70,6 +79,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     {
                         itemLoot.Add(ItemDropRule.Common(pillsItem.Type, 1, 200, 200));
                     }
+                }
+
+                if (ModLoader.HasMod("SOTS"))
+                {
+                    itemLoot.Add(ItemDropRule.Common(InfernalCrossmod.SOTS.Mod.Find<ModItem>("WorldgenScanner").Type));
                 }
 
                 itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MenuMusicBox>()));
@@ -198,6 +212,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if ((item.type == ModContent.ItemType<GrapeBeer>() || item.type == ModContent.ItemType<Moonshine>()) && InfernalConfig.Instance.CalamityBalanceChanges)
+                InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TwoAlchs")), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+
             if (InfernalCrossmod.FargosMutant.Loaded)
             {
                 if (item.type == InfernalCrossmod.FargosMutant.Mod.Find<ModItem>("SuspiciousSkull").Type && !NPC.downedBoss3)

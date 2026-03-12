@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Security.Policy;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using InfernalEclipseAPI.Core.Systems;
@@ -76,7 +75,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
-            modifiers.SourceDamage *= 2.0f;
+            if (npc.type != ModContent.NPCType<PyrogenBoss>() && npc.type != ModContent.NPCType<PyrogenShield>())
+                modifiers.SourceDamage *= 2.0f;
 
             if (IsWorldLegendary())
             {

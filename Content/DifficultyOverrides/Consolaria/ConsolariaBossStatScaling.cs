@@ -2,7 +2,7 @@
 using InfernalEclipseAPI.Core.Systems;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria
 {
     [JITWhenModsEnabled(InfernalCrossmod.Consolaria.Name)]
     [ExtendsFromMod(InfernalCrossmod.Consolaria.Name)]
@@ -68,7 +68,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     //Boss Rush Boost
                     if ((num1 & num2) != 0)
                     {
-                        npc.lifeMax += (int)(((double).2 * (double)npc.lifeMax));
+                        npc.lifeMax += (int)((double).2 * npc.lifeMax);
                     }
 
                     npc.lifeMax += (int)(0.20 * npc.lifeMax);
@@ -78,7 +78,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     //Boss Rush Boost
                     if ((num1 & num2) != 0)
                     {
-                        npc.lifeMax += (int)(((double).15 * (double)npc.lifeMax));
+                        npc.lifeMax += (int)((double).15 * npc.lifeMax);
                     }
 
                     npc.lifeMax += (int)(0.15 * npc.lifeMax);
@@ -88,7 +88,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     //Boss Rush Boost
                     if ((num1 & num2) != 0)
                     {
-                        npc.lifeMax += (int)(((double).1 * (double)npc.lifeMax));
+                        npc.lifeMax += (int)((double).1 * npc.lifeMax);
                     }
 
                     npc.lifeMax += (int)(0.05 * npc.lifeMax);

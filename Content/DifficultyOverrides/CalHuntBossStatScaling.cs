@@ -2,11 +2,13 @@
 using System.Reflection;
 using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss;
 using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss.Projectiles;
+using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
+using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.World;
 using InfernumMode.Core.GlobalInstances.Systems;
-using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria.DataStructures;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
@@ -38,16 +40,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (InfernalCrossmod.SOTS.Loaded)
             {
                 entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
-                entity.GetGlobalNPC<SOTSGlobalNPC>().strongVoidDamge = true;
+                //entity.GetGlobalNPC<SOTSGlobalNPC>().strongVoidDamge = true;
             }
         }
-
-        /*
-        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
-        {
-
-        }
-        */
 
         private bool scaled = false;
 
@@ -77,12 +72,28 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
                 if (InfernumActive.InfernumActive)
                 {
-                    npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                    npc.lifeMax += (int)(((double)1.5) * (double)npc.lifeMax);
                 }
 
                 npc.life = npc.lifeMax;
                 scaled = true;
             }
+
+            if (InfernalWorld.RagnarokModeEnabled && npc.active && npc.type == ModContent.NPCType<EbonianBehemuck>())
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    Player player = Main.player[i];
+                    if (player.active && !player.dead)
+                    {
+                        if (player.mount.Active)
+                        {
+                            player.mount.Dismount(player);
+                        }
+                    }
+                }
+            }
+
             return base.PreAI(npc);
         }
 
@@ -99,6 +110,33 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (InfernumActive.InfernumActive)
             {
                 npc.position += npc.velocity * 0.35f;
+            }
+
+            if (InfernalWorld.RagnarokModeEnabled)
+            {
+                if (npc.type == ModContent.NPCType<CrimulanGlopstrosity>())
+                {
+                    foreach (Player player in Main.player)
+                    {
+                        if (player.active && !player.dead && npc.WithinRange(player.Center, 5000f))
+                        {
+                            player.AddBuff(ModContent.BuffType<CrimulanAura>(), 1);
+                        }
+                    }
+                    return;
+                }
+
+                if (npc.type == ModContent.NPCType<StellarGeliath>())
+                {
+                    foreach (Player player in Main.player)
+                    {
+                        if (player.active && !player.dead && npc.WithinRange(player.Center, 5000f))
+                        {
+                            player.AddBuff(ModContent.BuffType<DoGExtremeGravity>(), 1);
+                        }
+                    }
+                    return;
+                }
             }
         }
     }
@@ -173,7 +211,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (InfernalCrossmod.SOTS.Loaded)
             {
                 entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
-                entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
+                //entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
             }
         }
 
@@ -269,7 +307,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (baseP2LifeMax <= 0)
                 return 1;
 
-            float mult = BossRushEvent.BossRushActive ? 10f : 1.35f;
+            float mult = BossRushEvent.BossRushActive ? 12.15f : 2.5f;
 
             // Clamp so we never end up at 0 due to rounding or weirdness.
             int result = (int)MathF.Round(baseP2LifeMax * mult);

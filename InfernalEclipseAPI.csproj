@@ -61,7 +61,7 @@
 			<HintPath>..\ModAssemblies\NoxusBoss_v1.2.30.dll</HintPath>
 		</Reference>
 		<Reference Include="RagnarokMod">
-			<HintPath>..\ModAssemblies\RagnarokMod_v1.5.dll</HintPath>
+		  <HintPath>lib\Assemblies\RagnarokMod.dll</HintPath>
 		</Reference>
 		<Reference Include="RevengeancePlus">
 			<HintPath>..\ModAssemblies\RevengeancePlus_v0.5.dll</HintPath>

@@ -103,6 +103,7 @@ ItemTooltip: {
 	ScytheThrow: Нажмите ПКМ, чтобы бросить косу, которая изогнётся при возвращении
 	ThorsHammerPro: Накладывает дебафф [cbuff:Electrified] на 3 секунды.
 	BountifulHarvest: Стреляет пронзающими жалами в чередующейся последовательности
+	// TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
 
 	SoulAnchor: {
 		OrigTooltip1: Привязывает вашу душу и здоровье к текущей позиции
@@ -153,6 +154,17 @@ ItemTooltip: {
 		Критические удары с 50% шансом нанесут на 20 ед. урона больше
 		При получении урона с 75% шансом вы получите дебафф [cbuff:Poisoned]
 		'''
+	/* Desecar:
+		'''
+		Grants 1 defense for every 8 empty inventory slots
+		'Less is more'
+		''' */
+	/* Stekpla:
+		'''
+		Increases critical strike chance by 1% for every 8 full inventory slots
+		'More is more'
+		''' */
+	// Dasuver: Increases critical strike chance by 3%
 	SubspaceLocket:
 		'''
 		Призывает подпространственного слугу
@@ -197,6 +209,31 @@ ItemTooltip: {
 		Повторное получение того же баффа увеличивает его длительность вместо сброса таймера, вплоть до двойной длительности
 		'''
 	MutantSkeletron: "[IEoR]: Предмет нельзя использовать, пока Скелетрон не будет побеждён хотя бы один раз. Используйте для этого предмет призыва из Infernum."
+	// VibePotion: Increases attack speed by 10% while not moving and by 5% while moving
+	// BloodPotion: Increases mining speed by 15%
+	// FrenzyPotion: Increases all attack speeds by 5%
+	/* FlowerCrown:
+		'''
+		Reduces damage taken by 10%
+		Increases void gain by 4 and life regen by 2
+		When using void, 30% of the void used is converted into life
+		''' */
+	/* TravelBoot:
+		'''
+		5% increased movement speed
+		2% increased run acceleration
+		''' */
+
+	Nightmare: {
+		// Orig: Critical strikes unleash Nightmare Arms that do 10% damage and pull enemies together
+		/* Rework:
+			'''
+			Critical strikes unleash Nightmare Arms that do 5% damage and pull enemies together
+			Damage improves to 10% in hardmode and bosses wont be pulled
+			''' */
+	}
+
+	// Disabled: "[DISABLED] "
 	DedTo: - Посвящено: {0} -
 
 	Dedicated: {
@@ -1597,6 +1634,11 @@ Items: {
 			Нажмите ПКМ, чтобы использовать оружие, не вырубая деревья
 			'''
 	}
+
+	MaulerRelic: {
+		// DisplayName: Mauler Relic
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1632,6 +1674,9 @@ Projectiles: {
 	DisintegratorChargeUp.DisplayName: Заряд дезинтегратора
 	DestinaryProjectile.DisplayName: "{$Items.Destinary.DisplayName}"
 	ExoDisk.DisplayName: Экзо-диск
+	// PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
+	// EvilGrowth.DisplayName: Evil Growth
+	// EvilStrike.DisplayName: Evil Strike
 	// CelestialIlluminationBeam.DisplayName: Celestial Illumination Beam
 	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 }
@@ -2163,6 +2208,11 @@ Buffs: {
 	DefaultSummonTag: {
 		DisplayName: Стандартная метка призывателя
 		Description: Mods.InfernalEclipseAPI.Buffs.DefaultSummonTag.Description
+	}
+
+	CrimulanAura: {
+		// DisplayName: Crimulan Aura
+		// Description: Mods.InfernalEclipseAPI.Buffs.CrimulanAura.Description
 	}
 }
 

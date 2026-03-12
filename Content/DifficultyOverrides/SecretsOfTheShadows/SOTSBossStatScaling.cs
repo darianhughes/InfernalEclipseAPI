@@ -12,9 +12,13 @@ using InfernalEclipseAPI.Core.Utils;
 using CalamityMod;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using SOTS.Projectiles.Chaos;
-using SOTS.NPCs.Boss.Lux;
+using SOTS.Projectiles.Planetarium;
+using RevengeancePlus.Projectiles;
+using SOTS.NPCs;
+using Terraria.DataStructures;
+using Terraria;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 {
     [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
     [ExtendsFromMod("SOTS")]
@@ -25,7 +29,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             ModContent.NPCType<GlowmothMinion>(),
             ModContent.NPCType<PutridPinky1>(),
             ModContent.NPCType<PutridHook>(),
-            ModContent.NPCType<FakeLux>(),
+            ModContent.NPCType<SOTS.NPCs.Boss.Lux.FakeLux>(),
+            ModContent.NPCType<PhaseEye>()
         };
 
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation)
@@ -40,12 +45,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 entity.defense += 5;
             }
 
-            if (entity.type == ModContent.NPCType<GlowmothMinion>())
+            if (entity.type == ModContent.NPCType<GlowmothMinion>() || entity.type == ModContent.NPCType<PhaseEye>())
             {
                 entity.Calamity().canBreakPlayerDefense = true;
             }
 
-            if (entity.type == ModContent.NPCType<Glowmoth>() || entity.type == ModContent.NPCType<GlowmothMinion>())
+            if (entity.type == ModContent.NPCType<Glowmoth>() || entity.type == ModContent.NPCType<GlowmothMinion>() || entity.type == ModContent.NPCType<PhaseEye>())
             {
                 entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
             }
@@ -78,7 +83,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     if (name.Contains("Excavator"))
                         npc.lifeMax *= 7; //less because holy fuck its tanky in boss rush
 
-                    npc.lifeMax += (int)(((double).25 * npc.lifeMax));
+                    npc.lifeMax += (int)((double).25 * npc.lifeMax);
                 }
 
                 if (npc.ModNPC?.Name?.Contains("TheAdvisorHead") == true || npc.ModNPC.Name.Contains("Excavator") || npc.ModNPC.Name.Contains("Lux"))
@@ -86,24 +91,20 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     npc.lifeMax += (int)(0.25 * npc.lifeMax);
                 }
 
-                if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
-                {
-                    npc.lifeMax += (int)(((double).15) * npc.lifeMax);
-                }
-                else if (npc.type == ModContent.NPCType<PutridPinky1>())
+                if (npc.type == ModContent.NPCType<PutridPinky1>())
                 {
                     npc.lifeMax += 3 * npc.lifeMax;
                 }
                 else if (npc.type == ModContent.NPCType<PutridHook>())
                 {
-                    npc.lifeMax -= (int)(npc.lifeMax * 0.3);
+                    npc.lifeMax /= 2;
                 }
                 else if (npc.ModNPC.Name.Contains("SubspaceSerpent"))
                 {
                     npc.lifeMax += (int)(0.25f * npc.lifeMax);
                 }
-                else
-                    npc.lifeMax += (int)(((double).35) * npc.lifeMax);
+                else if (npc.type != ModContent.NPCType<PutridPinkyPhase2>())
+                    npc.lifeMax += (int)((double).35 * npc.lifeMax);
             }
         }
 
@@ -176,7 +177,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (BossRushEvent.BossRushActive && !scaledBossRushHP)
             {
-                npc.lifeMax += (int)(((double).25) * (double)npc.lifeMax);
+                npc.lifeMax += (int)((double).25 * npc.lifeMax);
                 npc.life = npc.lifeMax;
                 scaledBossRushHP = true;
                 return;
@@ -228,6 +229,19 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 ModContent.ProjectileType<GlowBombShard>(),
                 ModContent.ProjectileType<GlowSparkle>(),
 
+                //Advisor
+                ModContent.ProjectileType<OtherworldlyBall>(),
+                ModContent.ProjectileType<OtherworldlyBolt>(),
+                ModContent.ProjectileType<OtherworldlyTracer>(),
+                ModContent.ProjectileType<HoloMissile>(),
+                ModContent.ProjectileType<ChargeBeam>(),
+                ModContent.ProjectileType<ThunderColumn>(),
+                ModContent.ProjectileType<ThunderColumnBlue>(),
+                ModContent.ProjectileType<ThunderColumnFast>(),
+                ModContent.ProjectileType<PhaseSpear>(),
+
+                ModContent.ProjectileType<LesserPhaseBolt>(),
+
                 //Lux
                 ModContent.ProjectileType<DogmaSphere>(),
                 ModContent.ProjectileType<ChaosWave>(),
@@ -253,6 +267,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         public override void SetDefaults(Projectile entity)
         {
             entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+
+            if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>())
+                entity.Calamity().DealsDefenseDamage = false;
+        }
+
+        public override void OnSpawn(Projectile entity, IEntitySource source)
+        {
+            if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>())
+                entity.Calamity().DealsDefenseDamage = false;
         }
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
@@ -266,8 +289,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
             if (InfernalUtilities.IsInfernumActive() || InfernalUtilities.GetFargoDifficullty("MasochistMode"))
             {
-                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
-                    damageMod *= 2.2f;
+                if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
+                    damageMod *= 1.95f;
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                    damageMod *= 1.5f;
                 else
                 {
                     damageMod *= 1.35f;
@@ -275,20 +300,54 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             }
             else if (InfernalUtilities.GetFargoDifficullty("EternityMode"))
             {
-                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
-                    damageMod *= 1.675f;
+                if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
+                    damageMod *= 1.45f;
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                    damageMod *= 1.25f;
                 else
                     damageMod *= 1.25f;
             }
             else if (InfernalUtilities.GetCalDifficulty("death"))
             {
-                if (projectile.ModProjectile.Name.Contains("Glow") || projectile.ModProjectile.Name.Contains("WaveBall"))
-                    damageMod *= 1.5f;
+                if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
+                    damageMod *= 1.15f;
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                    damageMod *= 1.1f;
                 else
                     damageMod *= 1.1f;
             }
 
             modifiers.SourceDamage *= damageMod;
+        }
+    }
+
+    [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
+    [ExtendsFromMod("SOTS")]
+    public class HoloMissileRevPlusRevert : GlobalProjectile
+    {
+        public override bool InstancePerEntity => true;
+        private bool revertedSpawnChanges;
+        public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) => entity.type == ModContent.ProjectileType<HoloMissile>();
+
+        public override void SetDefaults(Projectile entity)
+        {
+            entity.tileCollide = false;    
+        }
+
+        public override void AI(Projectile projectile)
+        {
+            if (revertedSpawnChanges)
+                return;
+
+            revertedSpawnChanges = true;
+
+            // Undo RevengeancePlus.OnSpawn:
+            // ++projectile.extraUpdates;
+            // projectile.velocity *= 0.8f;
+            if (projectile.extraUpdates > 0)
+                projectile.extraUpdates--;
+
+            projectile.velocity /= 0.8f;
         }
     }
 }

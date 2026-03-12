@@ -11,7 +11,7 @@
             if (!ModLoader.TryGetMod("CalamityAmmo", out Mod calamityAmmo))
                 return;
 
-            if (calamityAmmo.TryFind("WulfrumCoil", out ModItem coil))
+            if (item.type == calamityAmmo.Find<ModItem>("WulfrumCoil").Type)
             {
                 player.GetDamage(DamageClass.Ranged) -= 0.02f;
             }

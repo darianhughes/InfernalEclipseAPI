@@ -130,19 +130,17 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Minesky",
             "rosé",
             "TechQueen22",
+            "claw",
 
             //Supporters
             "Lylittle",
             "CuddlySnake",
             "Louhii",
-            "rocket",
             "joshuwham",
-            "KappaGrr",
             "Lucy",
 
             //Helpers
             "fjiown",
-            "Herbisa",
 
             //Special Thanks
             "N0t_UNowen",

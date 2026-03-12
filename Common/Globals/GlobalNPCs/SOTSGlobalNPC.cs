@@ -25,6 +25,18 @@ using Terraria.GameContent.ItemDropRules;
 using CalamityMod.NPCs.Cryogen;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.TreasureBags;
+using SOTS;
+using InfernalEclipseAPI.Content.Projectiles;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using SOTS.Helpers;
+using CalamityMod.NPCs.SunkenSea;
+using CalamityMod.NPCs.Perforator;
+using CalamityMod.NPCs.HiveMind;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.Perforators;
+using CalamityMod.Projectiles.Boss.BrainOfCthulhu;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -34,6 +46,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
     {
         public bool canDoVoidDamage = false;
         public bool strongVoidDamge = false;
+        public bool isFlowered;
         public override bool InstancePerEntity => true;
 
         public override void SetDefaults(NPC entity)
@@ -59,10 +72,32 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
             };
 
+            int[] dealsVoidDamge =
+            {
+                ModContent.NPCType<PerforatorHive>(),
+                ModContent.NPCType<PerforatorHeadLarge>(),
+                ModContent.NPCType<PerforatorHeadMedium>(),
+                ModContent.NPCType<PerforatorHeadSmall>(),
+                ModContent.NPCType<PerforatorBodyLarge>(),
+                ModContent.NPCType<PerforatorBodyMedium>(),
+                ModContent.NPCType<PerforatorBodySmall>(),
+                ModContent.NPCType<PerforatorTailLarge>(),
+                ModContent.NPCType<PerforatorTailMedium>(),
+                ModContent.NPCType<PerforatorTailSmall>(),
+                ModContent.NPCType<HiveMind>(),
+                ModContent.NPCType<DarkHeart>(),
+                ModContent.NPCType<HiveBlob>()
+            };
+
             if (curseImmune.Contains(entity.type) && WorldSaveSystem.InfernumModeEnabled)
             {
                 entity.buffImmune[ModContent.BuffType<CurseVision>()] = true;
                 entity.buffImmune[ModContent.BuffType<PharaohsCurse>()] = true;
+            }
+
+            if (dealsVoidDamge.Contains(entity.type))
+            {
+                canDoVoidDamage = true;
             }
 
             if (InfernalCrossmod.Thorium.Loaded)
@@ -97,6 +132,108 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             }
 
             return base.PreAI(npc);
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            if (!npc.active || npc.immortal || npc.realLife != -1)
+                return;
+
+            float num8 = 0f;
+            bool flag3 = false;
+
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile projectile = Main.projectile[i];
+                if (!projectile.active || projectile.timeLeft >= 8998)
+                    continue;
+
+                if (projectile.type != ModContent.ProjectileType<EvilGrowth>())
+                    continue;
+
+                if (projectile.ModProjectile is not EvilGrowth growth)
+                    continue;
+
+                bool flag5 = growth.effected[npc.whoAmI];
+                bool flag6 = false;
+                int num14 = -1;
+
+                if (flag5 && !npc.immortal && npc.realLife == -1)
+                {
+                    flag3 = true;
+
+                    if (num8 <= 1f)
+                    {
+                        SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Main.player[projectile.owner]);
+                        if (sotsPlayer.halfLifeRegen < 3)
+                            sotsPlayer.halfLifeRegen += 3;
+                        sotsPlayer.halfLifeRegen++;
+                        if (npc.boss)
+                            sotsPlayer.halfLifeRegen++;
+                    }
+
+                    if (num14 == npc.whoAmI)
+                    {
+                        if (flag6)
+                            num8++;
+                    }
+                    else
+                    {
+                        float num15 = 0.5f;
+                        float num16 = 0.025f;
+                        if (!flag6 && !npc.boss)
+                            num16 = 0.04f;
+
+                        Vector2 vector2_23 =
+                            new Vector2(projectile.Center.X, projectile.position.Y - 8f) -
+                            new Vector2(npc.Center.X, npc.position.Y + npc.height);
+
+                        float num19 = vector2_23.Length() * num16 * (npc.boss ? 0.01f : 1f);
+
+                        if (!flag6)
+                            num15 = 0.65f;
+
+                        Vector2 vector2_25 = vector2_23.SafeNormalize(Vector2.Zero) * (num15 + num19);
+
+                        int[] perforators =
+                        {
+                            ModContent.NPCType<PerforatorHeadLarge>(),
+                            ModContent.NPCType<PerforatorHeadMedium>(),
+                            ModContent.NPCType<PerforatorHeadSmall>(),
+                            ModContent.NPCType<PerforatorBodyLarge>(),
+                            ModContent.NPCType<PerforatorBodyMedium>(),
+                            ModContent.NPCType<PerforatorBodySmall>(),
+                            ModContent.NPCType<PerforatorTailLarge>(),
+                            ModContent.NPCType<PerforatorTailMedium>(),
+                            ModContent.NPCType<PerforatorTailSmall>(),
+                            ModContent.NPCType<DarkHeart>()
+                        };
+
+                        // The only behavioral change:
+                        if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != ModContent.NPCType<GiantClam>() && !perforators.Contains(npc.type))
+                            npc.position += vector2_25;
+                    }
+                }
+            }
+
+            isFlowered = num8 >= 1f;
+
+            float num26 = 1f;
+            if (flag3)
+            {
+                if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != ModContent.NPCType<GiantClam>())
+                    num26 *= 0.2f;
+                else
+                    num26 *= 0.875f;
+            }
+
+            npc.position -= npc.velocity * (1f - num26);
+        }
+
+        public override void UpdateLifeRegen(NPC npc, ref int damage)
+        {
+            if (isFlowered)
+                npc.lifeRegen -= 8;
         }
 
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo info)
@@ -199,6 +336,72 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             }
             #endregion
         }
+
+        public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile projectile = Main.projectile[i];
+                if (!projectile.active || projectile.timeLeft >= 8998)
+                    continue;
+
+                if (projectile.type != ModContent.ProjectileType<EvilGrowth>())
+                    continue;
+
+                if (projectile.ModProjectile is not EvilGrowth growth)
+                    continue;
+
+                bool flag = growth.effected[npc.whoAmI];
+                if (!flag || npc.realLife != -1)
+                    continue;
+
+                Texture2D armTexture = ModContent.Request<Texture2D>("SOTS/Projectiles/Evil/EvilArm", AssetRequestMode.ImmediateLoad).Value;
+                Texture2D handTexture = ModContent.Request<Texture2D>("SOTS/Projectiles/Evil/EvilHand", AssetRequestMode.ImmediateLoad).Value;
+
+                Color armColor = ColorHelper.EvilColor;
+                float scale = projectile.scale;
+                float drawScale = scale * ((float)projectile.timeLeft / 150f);
+
+                Vector2 toNpc = npc.Center - projectile.Center;
+                float segmentCount = toNpc.Length() / (armTexture.Width * drawScale);
+
+                for (int j = 0; j < segmentCount; j++)
+                {
+                    Vector2 drawPos = npc.Center + (-toNpc * (j / segmentCount)) - screenPos;
+
+                    if (j == 0)
+                    {
+                        Main.spriteBatch.Draw(
+                            handTexture,
+                            drawPos,
+                            null,
+                            armColor,
+                            toNpc.ToRotation() + MathHelper.PiOver2,
+                            new Vector2(handTexture.Width / 2f, handTexture.Height / 2f),
+                            drawScale * 1.4f,
+                            SpriteEffects.None,
+                            0f
+                        );
+                    }
+                    else
+                    {
+                        Main.spriteBatch.Draw(
+                            armTexture,
+                            drawPos,
+                            null,
+                            armColor,
+                            toNpc.ToRotation(),
+                            new Vector2(armTexture.Width / 2f, armTexture.Height / 2f),
+                            drawScale,
+                            SpriteEffects.None,
+                            0f
+                        );
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 
     [JITWhenModsEnabled("SOTS")]
@@ -208,6 +411,24 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
         public bool canDoVoidDamage = false;
         public bool strongVoidDamge = false;
         public override bool InstancePerEntity => true;
+
+        public override void SetDefaults(Projectile entity)
+        {
+            int[] dealsVoidDamge =
+            {
+                ModContent.ProjectileType<IchorShot>(),
+                ModContent.ProjectileType<IchorBlob>(),
+                ModContent.ProjectileType<IchorBlast>(),
+                ModContent.ProjectileType<IchorBolt>(),
+                ModContent.ProjectileType<IchorShower>(),
+                ModContent.ProjectileType<IchorSpit>(),
+                ModContent.ProjectileType<Crimera>(),
+                ModContent.ProjectileType<ShaderainHostile>(),
+                ModContent.ProjectileType<VileClot>(),
+                ModContent.ProjectileType<EaterOfSouls>(),
+                ModContent.ProjectileType<InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind.ShadeFire>(),
+            };
+        }
 
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {

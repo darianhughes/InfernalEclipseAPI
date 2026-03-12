@@ -19,15 +19,24 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             int pro5type = thorium.Find<ModProjectile>("PyroBurst")?.Type ?? -1;
             int pro6type = thorium.Find<ModProjectile>("CalaverasPro")?.Type ?? -1;
             int pro7type = thorium.Find<ModProjectile>("CalaverasPro2")?.Type ?? -1;
+            int pro8type = thorium.Find<ModProjectile>("DragonsWailPro")?.Type ?? -1;
+            int pro9type = thorium.Find<ModProjectile>("ScholarsHarpPro")?.Type ?? -1;
+            int pro10type = thorium.Find<ModProjectile>("AcousticWave")?.Type ?? -1;
+            int pro11type = thorium.Find<ModProjectile>("RiffWeaverPro")?.Type ?? -1;
+            int pro12type = thorium.Find<ModProjectile>("RiffWeaverPro2")?.Type ?? -1;
+            int pro13type = thorium.Find<ModProjectile>("RiffWeaverPro3")?.Type ?? -1;
+            int pro14type = thorium.Find<ModProjectile>("HellBellPro")?.Type ?? -1;
+            int pro15type = thorium.Find<ModProjectile>("TerraScythePro")?.Type ?? -1;
+            int pro16type = thorium.Find<ModProjectile>("ZTerraScythePro")?.Type ?? -1;
 
-            if (projectile.type == pro1Type)
+            if (projectile.type == pro1Type || projectile.type == pro13type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;
                 projectile.usesIDStaticNPCImmunity = false;
             }
 
-            if (projectile.type == pro2Type)
+            if (projectile.type == pro2Type || projectile.type == pro16type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 10;
@@ -48,7 +57,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
                 projectile.usesIDStaticNPCImmunity = false;
             }
 
-            if (projectile.type == pro6type || projectile.type == pro7type)
+            if (projectile.type == pro6type || projectile.type == pro7type || projectile.type == pro8type || projectile.type == pro9type || projectile.type == pro10type || projectile.type == pro11type || projectile.type == pro12type || projectile.type == pro14type || projectile.type == pro15type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 40;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using ThoriumMod.Projectiles.Scythe;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Healer.Scythes.ThrowableScythes
 {
@@ -23,10 +24,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
                 if (entity.type == thorium.Find<ModItem>("BoneReaper").Type) return true;
                 if (entity.type == thorium.Find<ModItem>("LustrousBaton").Type) return true;
-                //if (entity.type == thorium.Find<ModItem>("TrueFallingTwilight").Type) return true;
-                //if (entity.type == thorium.Find<ModItem>("TrueBloodHarvest").Type) return true;
+                if (entity.type == thorium.Find<ModItem>("TrueFallingTwilight").Type) return true;
+                if (entity.type == thorium.Find<ModItem>("TrueBloodHarvest").Type) return true;
                 if (entity.type == thorium.Find<ModItem>("MorningDew").Type) return true;
-                //if (entity.type == thorium.Find<ModItem>("TerraScythe").Type) return true;
+                if (entity.type == thorium.Find<ModItem>("TerraScythe").Type) return true;
                 if (entity.type == thorium.Find<ModItem>("ChristmasCheer").Type) return true;
                 if (entity.type == thorium.Find<ModItem>("DreadTearer").Type) return true;
                 if (entity.type == thorium.Find<ModItem>("TheBlackScythe").Type) return true;
@@ -64,15 +65,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                 if (item.type == thorium.Find<ModItem>("IceShaver").Type) ThrowDistance = 45f;
                 if (item.type == thorium.Find<ModItem>("DarkScythe").Type) ThrowDistance = 80f;
                 if (item.type == thorium.Find<ModItem>("CrimsonScythe").Type) ThrowDistance = 65f;
-                if (item.type == thorium.Find<ModItem>("FallingTwilight").Type) ThrowDistance = 80f;
-                if (item.type == thorium.Find<ModItem>("BloodHarvest").Type) ThrowDistance = 80f;
+                if (item.type == thorium.Find<ModItem>("FallingTwilight").Type) ThrowDistance = 100f;
+                if (item.type == thorium.Find<ModItem>("BloodHarvest").Type) ThrowDistance = 100f;
 
                 if (item.type == thorium.Find<ModItem>("BoneReaper").Type) ThrowDistance = 100f;
                 if (item.type == thorium.Find<ModItem>("LustrousBaton").Type) ThrowDistance = 115f;
-                //if (item.type == thorium.Find<ModItem>("TrueFallingTwilight").Type) ThrowDistance = 110f;
-                //if (item.type == thorium.Find<ModItem>("TrueBloodHarvest").Type) ThrowDistance = 110f;
+                if (item.type == thorium.Find<ModItem>("TrueFallingTwilight").Type) ThrowDistance = 125f;
+                if (item.type == thorium.Find<ModItem>("TrueBloodHarvest").Type) ThrowDistance = 125f;
                 if (item.type == thorium.Find<ModItem>("MorningDew").Type) ThrowDistance = 150f;
-                //if (item.type == thorium.Find<ModItem>("TerraScythe").Type) ThrowDistance = 120f;
+                if (item.type == thorium.Find<ModItem>("TerraScythe").Type) ThrowDistance = 140f;
                 if (item.type == thorium.Find<ModItem>("ChristmasCheer").Type) ThrowDistance = 150f;
                 if (item.type == thorium.Find<ModItem>("DreadTearer").Type) ThrowDistance = 100f;
                 if (item.type == thorium.Find<ModItem>("TheBlackScythe").Type) ThrowDistance = 150f;
@@ -127,6 +128,24 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                     if (projIndex >= 0)
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, projIndex);
 
+                    //TRUE FALLING TWILIGHT AND BLOOD HARVEST
+                    Mod thorium = ModLoader.GetMod("ThoriumMod");
+
+                    if (item.type == thorium.Find<ModItem>("TrueFallingTwilight").Type)
+                    {
+                        for (int k = 0; k < 2; k++)
+                        {
+                            Projectile.NewProjectile((IEntitySource)(object)source, ((Entity)player).Center.X, ((Entity)player).Center.Y, 0f, 0f, ModContent.ProjectileType<TrueFallingTwilightBurn>(), (int)((float)damage * 0.75f), knockback, ((Entity)player).whoAmI, (float)k, 0f, 0f);
+                        }
+                    }
+                    if (item.type == thorium.Find<ModItem>("TrueBloodHarvest").Type)
+                    {
+                        for (int k = 0; k < 2; k++)
+                        {
+                            Projectile.NewProjectile((IEntitySource)(object)source, ((Entity)player).Center.X, ((Entity)player).Center.Y, 0f, 0f, ModContent.ProjectileType<TrueBloodHarvestOrb>(), (int)((float)damage * 0.75f), knockback, ((Entity)player).whoAmI, (float)k, 0f, 0f);
+                        }
+                    }
+
                     return false;
                 }
             }
@@ -159,10 +178,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
                 if (item.type == thorium.Find<ModItem>("BoneReaper").Type) isThrowableScythe = true;
                 if (item.type == thorium.Find<ModItem>("LustrousBaton").Type) isThrowableScythe = true;
-                //if (item.type == thorium.Find<ModItem>("TrueFallingTwilight").Type) isThrowableScythe = true;
-                //if (item.type == thorium.Find<ModItem>("TrueBloodHarvest").Type) isThrowableScythe = true;
+                if (item.type == thorium.Find<ModItem>("TrueFallingTwilight").Type) isThrowableScythe = true;
+                if (item.type == thorium.Find<ModItem>("TrueBloodHarvest").Type) isThrowableScythe = true;
                 if (item.type == thorium.Find<ModItem>("MorningDew").Type) isThrowableScythe = true;
-                //if (item.type == thorium.Find<ModItem>("TerraScythe").Type) isThrowableScythe = true;
+                if (item.type == thorium.Find<ModItem>("TerraScythe").Type) isThrowableScythe = true;
                 if (item.type == thorium.Find<ModItem>("ChristmasCheer").Type) isThrowableScythe = true;
                 if (item.type == thorium.Find<ModItem>("DreadTearer").Type) isThrowableScythe = true;
                 if (item.type == thorium.Find<ModItem>("TheBlackScythe").Type) isThrowableScythe = true;
