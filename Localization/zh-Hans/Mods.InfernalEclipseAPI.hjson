@@ -103,7 +103,7 @@ ItemTooltip: {
 	ScytheThrow: 右键投掷镰刀，它会以弧线轨迹返回
 	ThorsHammerPro: 命中时施加3秒的带电
 	BountifulHarvest: 交替射出穿透毒刺
-	// TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
+	TwoAlchs: 在酒精中毒效果中被视为两种酒
 
 	SoulAnchor: {
 		OrigTooltip1: 将你的灵魂和生命值锚定在当前位置
@@ -158,17 +158,17 @@ ItemTooltip: {
 		受伤时有75%的概率对你造成中毒debuff
 		暴击有50%的概率造成10点额外伤害
 		'''
-	/* Desecar:
+	Desecar:
 		'''
-		Grants 1 defense for every 8 empty inventory slots
-		'Less is more'
-		''' */
-	/* Stekpla:
+		每有8个空物品栏就增加1点防御
+		“少即是多”
 		'''
-		Increases critical strike chance by 1% for every 8 full inventory slots
-		'More is more'
-		''' */
-	// Dasuver: Increases critical strike chance by 3%
+	Stekpla:
+		'''
+		每有8个已占用物品栏就增加1%暴击率
+		“多即是多”
+		'''
+	Dasuver: 增加3%暴击率
 	SubspaceLocket:
 		'''
 		召唤一只亚空之仆协助战斗
@@ -213,31 +213,31 @@ ItemTooltip: {
 		多次获得相同的buff会增加buff持续时间，而非重置时间，最多可达初始持续时间的两倍
 		'''
 	MutantSkeletron: "[炼狱蚀光] 该物品在至少击败一次骷髅王前无法使用，请改用炼狱的召唤物"
-	// VibePotion: Increases attack speed by 10% while not moving and by 5% while moving
-	// BloodPotion: Increases mining speed by 15%
-	// FrenzyPotion: Increases all attack speeds by 5%
-	/* FlowerCrown:
+	VibePotion: 静止时增加10%攻击速度，移动时增加5%
+	BloodPotion: 增加15%挖掘速度
+	FrenzyPotion: 增加5%所有攻击速度
+	FlowerCrown:
 		'''
-		Reduces damage taken by 10%
-		Increases void gain by 4 and life regen by 2
-		When using void, 30% of the void used is converted into life
-		''' */
-	/* TravelBoot:
+		降低10%所受伤害
+		增加4点虚空恢复量和生命恢复速度
+		在使用虚空值时，使用的30%虚空值会转化为生命值
 		'''
-		5% increased movement speed
-		2% increased run acceleration
-		''' */
+	TravelBoot:
+		'''
+		增加5%移动速度
+		奔跑加速度提升2%
+		'''
 
 	Nightmare: {
-		// Orig: Critical strikes unleash Nightmare Arms that do 10% damage and pull enemies together
-		/* Rework:
+		Orig: 暴击会释放梦魇手臂，造成10%伤害并将敌人吸引到一起
+		Rework:
 			'''
-			Critical strikes unleash Nightmare Arms that do 5% damage and pull enemies together
-			Damage improves to 10% in hardmode and bosses wont be pulled
-			''' */
+			暴击会释放梦魇手臂，造成5%伤害并将敌人吸引到一起
+			困难模式下伤害变为10%，且Boss不会被吸引
+			'''
 	}
 
-	// Disabled: "[DISABLED] "
+	Disabled: "[禁用] "
 	DedTo: -献给{0}-
 
 	Dedicated: {
@@ -1231,39 +1231,39 @@ Items: {
 	}
 
 	CelestialIllumination: {
-		// DisplayName: Celestial Illumination
-		// Tooltip: ""
+		DisplayName: 星界启明
+		Tooltip: ""
 
 		Progression: {
-			/* Deus:
+			Deus:
 				'''
-				Defeat the eldritch horror to gain more power...
-				No extra power has been gained...
-				''' */
-			/* MoonLord:
+				击败古神的邪异残躯以获得更多力量……
+				尚未获得额外力量……
 				'''
-				With the defeat of the Moon Lord, your stars are faster
-				Defeat the guardians of the profaned flame to gain more power...
-				''' */
-			/* Providence:
+			MoonLord:
 				'''
-				With the defeat of Providence, your attacks inflict Holy Flames
-				Defeat the sentinels of the scourge to gain more power...
-				''' */
-			/* Polterghast:
+				击败月亮领主后，你的星辰变得更快
+				击败亵渎之炎的拥有者以获得更多力量……
 				'''
-				With the defeat of Polterghast, you can fire a celestial beam 
-				Defeat the Devourer of Gods to gain more power...
-				''' */
-			/* DoG:
+			Providence:
 				'''
-				With the defeat of the Devourer of Gods, your stars home
-				Defeat the resplendant pheonix to gain more power...
-				''' */
-			// Full: The Celestial Illumination is fully awaked, and its true strength has been revealed!
+				击败亵渎天神后，你的攻击会施加神圣之火
+				击败噬魂集合体以获得更多力量……
+				'''
+			Polterghast:
+				'''
+				击败噬魂幽花后，你可以发射一道星体光束
+				击败噬神凶灵以获得更多力量……
+				'''
+			DoG:
+				'''
+				击败神明吞噬者后，你的星辰获得追踪
+				击败光辉之凰以获得更多力量……
+				'''
+			Full: 星界启明已苏醒，最大威能解禁！
 		}
 
-		// Lore: The final book forged by the one with the mark of the Astra...
+		Lore: 由身负星界印记之人铸就的最终之书……
 	}
 
 	Genesis: {
@@ -1654,8 +1654,8 @@ Items: {
 	}
 
 	MaulerRelic: {
-		// DisplayName: Mauler Relic
-		// Tooltip: ""
+		DisplayName: 渊海狂鲨炼狱圣物
+		Tooltip: ""
 	}
 }
 
@@ -1692,11 +1692,11 @@ Projectiles: {
 	DisintegratorChargeUp.DisplayName: 解离炮充能
 	DestinaryProjectile.DisplayName: 命律环刃
 	ExoDisk.DisplayName: 星流圆盘
-	// PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
-	// EvilGrowth.DisplayName: Evil Growth
-	// EvilStrike.DisplayName: Evil Strike
-	// CelestialIlluminationBeam.DisplayName: Celestial Illumination Beam
-	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
+	PutridPinkyDashTelegraph.DisplayName: 腐蚀之粉冲刺
+	EvilGrowth.DisplayName: 邪恶生长
+	EvilStrike.DisplayName: 邪恶打击
+	CelestialIlluminationBeam.DisplayName: 星界启明光束
+	CelestialIlluminationStar.DisplayName: 启明之星
 }
 
 DiaryTooltip:
@@ -2230,8 +2230,8 @@ Buffs: {
 	}
 
 	CrimulanAura: {
-		// DisplayName: Crimulan Aura
-		// Description: Mods.InfernalEclipseAPI.Buffs.CrimulanAura.Description
+		DisplayName: 猩魇灵气
+		Description: Mods.InfernalEclipseAPI.Buffs.CrimulanAura.Description
 	}
 }
 
