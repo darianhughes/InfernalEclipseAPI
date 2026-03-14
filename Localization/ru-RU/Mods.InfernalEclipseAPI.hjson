@@ -2212,7 +2212,7 @@ Buffs: {
 
 	CrimulanAura: {
 		// DisplayName: Crimulan Aura
-		// Description: Mods.InfernalEclipseAPI.Buffs.CrimulanAura.Description
+		// Description: Your movement has been significantly hindered!
 	}
 }
 
