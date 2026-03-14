@@ -13,12 +13,6 @@ namespace InfernalEclipseAPI.Core.Utils
     {
         private static BlendState subtractiveBlending;
         private static RasterizerState cullOnlyScreen;
-
-        public static bool DownedSentinels()
-        {
-            return CalamityConditions.DownedCeaselessVoid.IsMet() && CalamityConditions.DownedStormWeaver.IsMet() && CalamityConditions.DownedSignus.IsMet();
-        }
-
         public static Vector2 DirectionToSafe(this Entity entity, Vector2 destination)
         {
             return (destination - entity.Center).SafeNormalize(Vector2.Zero);

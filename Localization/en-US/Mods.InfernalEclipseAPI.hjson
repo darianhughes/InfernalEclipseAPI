@@ -1245,28 +1245,28 @@ Items: {
 				'''
 			MoonLord:
 				'''
-				With the defeat of the Moon Lord, you fire more stars
+				With the defeat of the Moon Lord, your stars are faster
 				Defeat the guardians of the profaned flame to gain more power...
-				'''
-			ProfanedGuardians:
-				'''
-				With the defeat of the Profaned Guardians, you can fire a celestial beam
-				Defeat the Goddess of Flame to gain more power...
 				'''
 			Providence:
 				'''
-				With the defeat of Providence, the celestial beam is stronger
+				With the defeat of Providence, your attacks inflict Holy Flames
 				Defeat the sentinels of the scourge to gain more power...
 				'''
-			Sentinels:
+			Polterghast:
 				'''
-				With the defeat of the Sentinels, the celestial beam lasts longer
+				With the defeat of Polterghast, you can fire a celestial beam 
 				Defeat the Devourer of Gods to gain more power...
 				'''
-			Full: The Celestial Illumination is fully awaked, and its maximum power is unleashed!
+			DoG:
+				'''
+				With the defeat of the Devourer of Gods, your stars home
+				Defeat the resplendant pheonix to gain more power...
+				'''
+			Full: The Celestial Illumination is fully awaked, and its true strength has been revealed!
 		}
 
-		Lore: The power of the cosmos is contained within this book...
+		Lore: The final book forged by the one with the mark of the Astra...
 	}
 
 	Genesis: {
@@ -1687,7 +1687,6 @@ Projectiles: {
 	FirstSwordHoldoutCombo.DisplayName: Sword of the First
 	_13thGltichCombo.DisplayName: _13th Gltich Combo
 	CelestialBeam.DisplayName: Celestial Beam
-	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 	DemonicRune.DisplayName: Demonic Little Grey Cat Rune
 	ThoriumHeavyScytheSpark.DisplayName: Thorium Heavy Scythe Spark
 	NebulaBeam.DisplayName: Nebula Beam
@@ -1699,6 +1698,8 @@ Projectiles: {
 	PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
 	EvilGrowth.DisplayName: Evil Growth
 	EvilStrike.DisplayName: Evil Strike
+	CelestialIlluminationBeam.DisplayName: Celestial Illumination Beam
+	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 }
 
 DiaryTooltip:

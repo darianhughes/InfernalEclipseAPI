@@ -1213,39 +1213,39 @@ Items: {
 	}
 
 	CelestialIllumination: {
-		DisplayName: Неземное озарение
-		Tooltip: ""
+		// DisplayName: Celestial Illumination
+		// Tooltip: ""
 
 		Progression: {
-			Deus:
+			/* Deus:
 				'''
-				Одержи победу над потусторонним ужасом, чтобы обрести большую силу...
-				Новая сила не была обретена...
+				Defeat the eldritch horror to gain more power...
+				No extra power has been gained...
+				''' */
+			/* MoonLord:
 				'''
-			MoonLord:
+				With the defeat of the Moon Lord, your stars are faster
+				Defeat the guardians of the profaned flame to gain more power...
+				''' */
+			/* Providence:
 				'''
-				С победой над Лунным Лордом вы выпускаете больше звёзд
-				Одержи победу над стражами осквернённого пламени, чтобы обрести большую силу...
+				With the defeat of Providence, your attacks inflict Holy Flames
+				Defeat the sentinels of the scourge to gain more power...
+				''' */
+			/* Polterghast:
 				'''
-			ProfanedGuardians:
+				With the defeat of Polterghast, you can fire a celestial beam 
+				Defeat the Devourer of Gods to gain more power...
+				''' */
+			/* DoG:
 				'''
-				После поражения Осквернённых стражей, вы можете выпускать неземной луч
-				Одержи победу над Богинеё пламени, чтобы обрести большую силу...
-				'''
-			Providence:
-				'''
-				С победой над Провиденс неземной луч становится сильнее
-				Одержи победу над прислужниками бича, чтобы обрести большую силу...
-				'''
-			Sentinels:
-				'''
-				После поражения прислужников неземной луч длится дольше
-				Одержи победу над Пожирателем богов, чтобы обрести большую силу...
-				'''
-			Full: Неземное озарение полностью пробудилось, и его мощь раскрыта на максимум!
+				With the defeat of the Devourer of Gods, your stars home
+				Defeat the resplendant pheonix to gain more power...
+				''' */
+			// Full: The Celestial Illumination is fully awaked, and its true strength has been revealed!
 		}
 
-		Lore: "'Мощь космоса заключена в этой книге'"
+		// Lore: The final book forged by the one with the mark of the Astra...
 	}
 
 	Genesis: {
@@ -1666,7 +1666,6 @@ Projectiles: {
 	FirstSwordHoldoutCombo.DisplayName: Меч первого
 	_13thGltichCombo.DisplayName: Комбо _13-го глича
 	CelestialBeam.DisplayName: Неземной луч
-	CelestialIlluminationStar.DisplayName: Неземная освящённая звезда
 	DemonicRune.DisplayName: Руна Маленького демонического серого кота
 	ThoriumHeavyScytheSpark.DisplayName: Искра тяжёлой ториевой косы
 	NebulaBeam.DisplayName: Луч туманности
@@ -1678,6 +1677,8 @@ Projectiles: {
 	// PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
 	// EvilGrowth.DisplayName: Evil Growth
 	// EvilStrike.DisplayName: Evil Strike
+	// CelestialIlluminationBeam.DisplayName: Celestial Illumination Beam
+	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 }
 
 DiaryTooltip:
