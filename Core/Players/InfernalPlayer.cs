@@ -316,7 +316,7 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (Player.ZoneLihzhardTemple && !NPC.downedPlantBoss)
             {
-                Player.statLife -= 1;
+                Player.statLife -= 2;
                 if (Player.statLife == 0)
                     Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} fell to the jungles curse..."), 0, 0);
                 Player.AddBuff(BuffID.PotionSickness, 60);
