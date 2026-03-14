@@ -146,7 +146,6 @@ ItemTooltip: {
 		增加30%来自敌人的金币
 		你随时间持续产生钱币
 		"你没有疯……你真是疯了！"
-		复仇模式专属
 		'''
 	BloodstainedCoin:
 		'''
@@ -908,24 +907,28 @@ Items: {
 		SOTSBardHealerTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击额外多造成40点伤害，释放伤害性火花，并有概率引爆敌人，造成100%额外伤害
-			暴击汲取生命，恢复虚空值，回复法力，并返还灵感值
-			吸血效果有0.5秒冷却时间
+			暴击额外多造成40点伤害，并有概率引爆敌人，造成100%额外伤害
+			暴击汲取生命，恢复虚空值，回复魔力，并返还灵感值
+			吸血效果和灵感值返还有1秒冷却时间
+			按下 “{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}” 键使你必定暴击，持续10秒
+			在之后1分钟，你造成的伤害降低10%
 			免疫流血与中毒效果，并给予你夜视能力
 			'''
 		ThoriumTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击额外多造成40点伤害，释放伤害性火花，并有概率引爆敌人，造成100%额外伤害
-			暴击汲取生命，恢复虚空值并回复法力
-			吸血效果有0.5秒冷却时间
+			暴击额外多造成40点伤害，汲取生命，恢复虚空值并回复魔力，并有概率引爆敌人，造成100%额外伤害
+			吸血效果有1秒冷却时间
+			按下 “{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}” 键使你必定暴击，持续10秒
+			在之后1分钟，你造成的伤害降低10%
 			免疫流血与中毒效果，并给予你夜视能力
 			'''
 		DefaultTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
 			暴击额外多造成40点伤害，并有概率引爆敌人，造成100%额外伤害
-			暴击汲取生命，恢复虚空值并回复法力
+			暴击汲取生命，恢复虚空值并回复魔力
+			吸血效果有1秒冷却时间
 			免疫流血与中毒效果，并给予你夜视能力
 			'''
 		Lore: 在埃雷利安从嘉登处获得星流棱镜后，他终于完善了战甲的灵魂AI——现在，暴君的身影已映入他的瞄准镜中。
@@ -2216,11 +2219,11 @@ Buffs: {
 
 	VoidSickness2: {
 		DisplayName: 虚空病
-		Description: 虚空伤害正在减少！
+		Description: 你的灵魂变得羸弱，降低你造成的伤害！
 	}
 
 	LowGround: {
-		DisplayName: 低地
+		DisplayName: 冻结光环
 		Description: 你的移动速度大幅下降！
 	}
 
@@ -2231,7 +2234,7 @@ Buffs: {
 
 	CrimulanAura: {
 		DisplayName: 猩魇灵气
-		Description: Mods.InfernalEclipseAPI.Buffs.CrimulanAura.Description
+		Description: 你的移动速度大幅下降！
 	}
 }
 
