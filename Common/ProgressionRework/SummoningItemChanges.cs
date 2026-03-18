@@ -88,6 +88,13 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                     }
                 }
 
+                //Brimstone Elemental
+                if (InfernalCrossmod.Clamity.Loaded)
+                {
+                    if (recipe.HasResult<CharredIdol>())
+                        recipe.AddIngredient<EssenceOfFlame>(2);
+                }
+
                 // Polaris
                 if (hasSOTS)
                 {

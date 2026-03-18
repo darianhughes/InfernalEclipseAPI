@@ -69,6 +69,7 @@ WelcomeMessage: {
 	RagnarokBalance: 注意：为确保武器平衡按预期生效，请在 Ragnarok 的模组配置中将“通用武器调整”选项关闭，否则改动会叠加，使武器强度远超预期。
 	RagnarokRework: 注意：检测到你同时启用了 Ragnarok 模组和 Thorium Bosses Reworked。为获得预期的游戏体验，请在 Ragnarok 模组配置中将所有 Boss 选项切换到 瑟银BOSS重置。
 	GulaVaultMessage: 暴食保险库拒绝被打开。你必须先打败一个更为强大的邪恶生物……
+	// LichMessage: The objects magic still seems to be frozen inside. Maybe the structure in the snow biome will help uncover why?
 }
 
 TimeFreezePrevention: {
@@ -236,7 +237,56 @@ ItemTooltip: {
 			'''
 	}
 
+	Helios: {
+		// Orig: Attacks scorch with each hit, increasing damage done by 3% permanently
+		// Nerf: Attacks scorch with each hit, increasing damage done by 1% permanently
+	}
+
+	Icosahedron: {
+		Hellfire: {
+			// Orig: Critical strikes may cause a flaming explosion, dealing 100% damage
+			// Nerf: Critical strikes may cause a flaming explosion, dealing 50% damage
+		}
+
+		Borealis: {
+			// Orig: Critical strikes may cause a frostburn explosion, dealing 200% damage
+			// Nerf: Critical strikes may cause a frostburn explosion, dealing 75% damage
+		}
+
+		Cursed: {
+			// OrigCursed: Critical strikes may cause a release of cursed thunder, dealing 100% damage
+			// NerfCursed: Critical strikes may cause a release of cursed thunder, dealing 75% damage
+			// OrigOther: Critical strikes may also cause frostburn or flaming explosions, dealing 100% damage
+			// NerfOther: Critical strikes may also cause frostburn or flaming explosions, dealing 75% damage
+		}
+
+		Charms: {
+			// Orig: Critical strikes may detonate enemies for 100% damage
+			// Nerf: Critical strikes may detonate enemies for 75% damage
+		}
+	}
+
+	DreadGreaves: {
+		// Orig: 20% increased movement speed
+		// Nerf: 9% increased movement speed
+	}
+
+	PlasmaShrimp: {
+		// Orig: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 50% damage
+		// Nerf: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 25% damage
+	}
+
+	ShatteredDreams: {
+		// Orig: Magic weapons unleash a star for 100% damage but consume void equal to 10% of their mana cost
+		/* Nerf:
+			'''
+			Magic weapons unlease a star that deal 100% damage but consume void equal to 10% of their mana cost
+			Only 3 stars can be active at a time
+			''' */
+	}
+
 	Disabled: "[禁用] "
+	// DauntlessBuff: +2% radiant damage
 	DedTo: -献给{0}-
 
 	Dedicated: {
@@ -1264,6 +1314,16 @@ Items: {
 				击败光辉之凰以获得更多力量……
 				'''
 			Full: 星界启明已苏醒，最大威能解禁！
+			/* ProfanedGuardians:
+				'''
+				With the defeat of the Profaned Guardians, you can fire a celestial beam
+				Defeat the Goddess of Flame to gain more power...
+				''' */
+			/* Sentinels:
+				'''
+				With the defeat of the Sentinels, the celestial beam lasts longer
+				Defeat the Devourer of Gods to gain more power...
+				''' */
 		}
 
 		Lore: 由身负星界印记之人铸就的最终之书……
@@ -1962,6 +2022,20 @@ Configs: {
 				除非你清楚可能产生的后果，否则不要禁用此配置。若禁用后出现问题，请勿提交漏洞反馈
 				'''
 		}
+
+		DeveloperMode: {
+			// Label: Developer Mode
+			// Tooltip: Toggles the availablity of tools useful for development.
+		}
+
+		UseAprilFoolsMutant: {
+			// Label: Use April Fools Mutant
+			/* Tooltip:
+				'''
+				Converts the Mutant from Fargo's Souls to Yharim.
+				This setting doesn't do anything if Fargo's Souls isn't enabled.
+				''' */
+		}
 	}
 
 	Difficulty: {
@@ -2235,6 +2309,11 @@ Buffs: {
 	CrimulanAura: {
 		DisplayName: 猩魇灵气
 		Description: 你的移动速度大幅下降！
+	}
+
+	BrimstoneDesperation: {
+		// DisplayName: Brimstone Desperation
+		// Description: Brimstone energy flows though the air, disabling many of your abilites!
 	}
 }
 

@@ -91,12 +91,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                         recipe.AddIngredient(thorium.Find<ModItem>("BoneGrip"));
                     }
 
-                    if (recipe.HasResult(thorium.Find<ModItem>("MagnetoGrip")) && recipe.HasIngredient(thorium.Find<ModItem>("BoneGrip")))
+                    if (recipe.HasResult(thorium.Find<ModItem>("MagnetoGrip")))
                     {
-                        recipe.DisableRecipe();
+                        recipe.AddIngredient<DubiousPlating>(6);
+                        recipe.AddIngredient<PurifiedGel>(3);
                     }
 
-                    if (recipe.HasResult<ElectriciansGlove>() && (recipe.HasIngredient<BloodstainedGlove>() || recipe.HasIngredient<FilthyGlove>()))
+                    if (recipe.HasResult<ElectriciansGlove>() && recipe.HasIngredient(ItemID.Wire))
                         recipe.DisableRecipe();
 
                     if (recipe.HasResult<Nanotech>())
@@ -114,25 +115,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 
             if (thorium != null)
             {
-                Recipe corruptMaganeto = Recipe.Create(thorium.Find<ModItem>("MagnetoGrip").Type)
-                                               .AddIngredient<FilthyGlove>()
-                                               .AddIngredient(ItemID.Wire, 15)
-                                               .AddIngredient<DubiousPlating>(6)
-                                               .AddIngredient<PurifiedGel>(3)
-                                               .AddTile(TileID.TinkerersWorkbench)
-                                               .Register();
-
-                Recipe crimsonMaganeto = Recipe.Create(thorium.Find<ModItem>("MagnetoGrip").Type)
-                                               .AddIngredient<BloodstainedGlove>()
-                                               .AddIngredient(ItemID.Wire, 15)
-                                               .AddIngredient<DubiousPlating>(6)
-                                               .AddIngredient<PurifiedGel>(3)
-                                               .AddTile(TileID.TinkerersWorkbench)
-                                               .Register();
-
                 Recipe electriciansGlove = Recipe.Create(ModContent.ItemType<ElectriciansGlove>());
                 electriciansGlove.AddIngredient(thorium.Find<ModItem>("MagnetoGrip"));
-
                 if (sots != null)
                 {
                     electriciansGlove.AddIngredient(sots.Find<ModItem>("AbsoluteBar"), 5);
@@ -140,8 +124,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                 }
                 else
                 {
-                    electriciansGlove.AddIngredient(ItemID.Wire, 100);
                     electriciansGlove.AddIngredient(ItemID.HallowedBar, 5);
+                    electriciansGlove.AddIngredient(thorium.Find<ModItem>("StrangeAlienTech"));
                 }
                 electriciansGlove.Register();
             }

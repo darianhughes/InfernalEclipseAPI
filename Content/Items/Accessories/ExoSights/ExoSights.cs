@@ -103,8 +103,6 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
             sotsPlayer.CritVoidsteal += 1.25f;
             sotsPlayer.CritManasteal += 5 + Main.rand.Next(4);
             sotsPlayer.CritCurseFire = true;
-
-            //Inferno Lord is handled in a global item
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

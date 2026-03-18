@@ -31,6 +31,23 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
 
             if (InfernalCrossmod.SOTS.Loaded)
                 Player.buffImmune[ModContent.BuffType<FrenzyPotionBuff>()] = true;
+
+            if (InfernalConfig.Instance.ThoriumBalanceChangess)
+            {
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    Player.buffImmune[InfernalCrossmod.ThoriumRework.Mod.Find<ModBuff>("Deathsinger").Type] = true;
+                }
+            }
+
+            if (InfernalConfig.Instance.DisableDuplicateContent)
+            {
+                Player.buffImmune[ModContent.BuffType<DeepFreezeCoatingBuff>()] = true;
+                Player.buffImmune[ModContent.BuffType<ExplosiveCoatingBuff>()] = true;
+                Player.buffImmune[ModContent.BuffType<GorgonCoatingBuff>()] = true;
+                Player.buffImmune[ModContent.BuffType<SporeCoatingBuff>()] = true;
+                Player.buffImmune[ModContent.BuffType<ToxicCoatingBuff>()] = true;
+            }
         }
 
         // === Helpers ===
@@ -65,12 +82,12 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
         }
 
         private static bool IsExcluded(Item item) =>
-            item.CountsAsClass<LegendaryMelee>() || item.CountsAsClass<LegendaryRanged>() ||
-            item.CountsAsClass<MythicMelee>() || item.CountsAsClass<MythicMagic>();
+            item.CountsAsClass<LegendaryMelee>() || item.CountsAsClass<LegendaryRanged>() || item.CountsAsClass<LegendaryMagic>() ||
+            item.CountsAsClass<MythicMelee>() || item.CountsAsClass<MythicMagic>() || item.CountsAsClass<MythicRanged>() || item.CountsAsClass<MythicSummon>();
 
         private static bool IsExcluded(Projectile proj) =>
-            proj.CountsAsClass<LegendaryMelee>() || proj.CountsAsClass<LegendaryRanged>() ||
-            proj.CountsAsClass<MythicMelee>() || proj.CountsAsClass<MythicMagic>();
+            proj.CountsAsClass<LegendaryMelee>() || proj.CountsAsClass<LegendaryRanged>() || proj.CountsAsClass<LegendaryMagic>() ||
+            proj.CountsAsClass<MythicMelee>() || proj.CountsAsClass<MythicMagic>() || proj.CountsAsClass<MythicRanged>() || proj.CountsAsClass<MythicSummon>();
 
         private static bool ShouldIgnoreContext() => HasAllGemTech() || DD2Event.Ongoing;
 
@@ -170,6 +187,16 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
             if (switchToHealerPenaltyTimer > 0)
                 Player.AddBuff(ModContent.BuffType<BrokenOath>(), switchToHealerPenaltyTimer);
             */
+        }
+
+        public override void UpdateBadLifeRegen()
+        {
+            ThoriumPlayer thoriumPlayer = Player.GetThoriumPlayer();
+
+            if (thoriumPlayer.conflagrate)
+            {
+                Player.lifeRegen -= 15;
+            }
         }
 
         public override void PostUpdateMiscEffects()

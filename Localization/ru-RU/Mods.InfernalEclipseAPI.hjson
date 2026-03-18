@@ -69,6 +69,7 @@ WelcomeMessage: {
 	RagnarokBalance: ВНИМАНИЕ: Для корректной работы балансировки оружия установите в конфиге мода «Ragnarok» параметр «Общие настройки оружия» в значение «Выключено». В противном случае изменения будут накладываться, и оружие станет значительно сильнее задуманного.
 	RagnarokRework: ВНИМАНИЕ: Обнаружено, что у вас одновременно включены «Ragnarok» и «Thorium Helheim». Для получения задуманного опыта переключите все переключатели боссов в конфиге с «Ragnarok» на «Thorium Helheim».
 	GulaVaultMessage: Хранилище отказывается открываться. Сперва необходимо победить более сильное зло...
+	// LichMessage: The objects magic still seems to be frozen inside. Maybe the structure in the snow biome will help uncover why?
 }
 
 TimeFreezePrevention: {
@@ -233,7 +234,56 @@ ItemTooltip: {
 			''' */
 	}
 
+	Helios: {
+		// Orig: Attacks scorch with each hit, increasing damage done by 3% permanently
+		// Nerf: Attacks scorch with each hit, increasing damage done by 1% permanently
+	}
+
+	Icosahedron: {
+		Hellfire: {
+			// Orig: Critical strikes may cause a flaming explosion, dealing 100% damage
+			// Nerf: Critical strikes may cause a flaming explosion, dealing 50% damage
+		}
+
+		Borealis: {
+			// Orig: Critical strikes may cause a frostburn explosion, dealing 200% damage
+			// Nerf: Critical strikes may cause a frostburn explosion, dealing 75% damage
+		}
+
+		Cursed: {
+			// OrigCursed: Critical strikes may cause a release of cursed thunder, dealing 100% damage
+			// NerfCursed: Critical strikes may cause a release of cursed thunder, dealing 75% damage
+			// OrigOther: Critical strikes may also cause frostburn or flaming explosions, dealing 100% damage
+			// NerfOther: Critical strikes may also cause frostburn or flaming explosions, dealing 75% damage
+		}
+
+		Charms: {
+			// Orig: Critical strikes may detonate enemies for 100% damage
+			// Nerf: Critical strikes may detonate enemies for 75% damage
+		}
+	}
+
+	DreadGreaves: {
+		// Orig: 20% increased movement speed
+		// Nerf: 9% increased movement speed
+	}
+
+	PlasmaShrimp: {
+		// Orig: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 50% damage
+		// Nerf: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 25% damage
+	}
+
+	ShatteredDreams: {
+		// Orig: Magic weapons unleash a star for 100% damage but consume void equal to 10% of their mana cost
+		/* Nerf:
+			'''
+			Magic weapons unlease a star that deal 100% damage but consume void equal to 10% of their mana cost
+			Only 3 stars can be active at a time
+			''' */
+	}
+
 	// Disabled: "[DISABLED] "
+	// DauntlessBuff: +2% radiant damage
 	DedTo: - Посвящено: {0} -
 
 	Dedicated: {
@@ -1243,6 +1293,16 @@ Items: {
 				Defeat the resplendant pheonix to gain more power...
 				''' */
 			// Full: The Celestial Illumination is fully awaked, and its true strength has been revealed!
+			/* ProfanedGuardians:
+				'''
+				With the defeat of the Profaned Guardians, you can fire a celestial beam
+				Defeat the Goddess of Flame to gain more power...
+				''' */
+			/* Sentinels:
+				'''
+				With the defeat of the Sentinels, the celestial beam lasts longer
+				Defeat the Devourer of Gods to gain more power...
+				''' */
 		}
 
 		// Lore: The final book forged by the one with the mark of the Astra...
@@ -1940,6 +2000,20 @@ Configs: {
 				Отключайте этот конфиг, только если вы осознаёте последствия, и не сообщайте об ошибках при отключённом конфиге.
 				'''
 		}
+
+		DeveloperMode: {
+			// Label: Developer Mode
+			// Tooltip: Toggles the availablity of tools useful for development.
+		}
+
+		UseAprilFoolsMutant: {
+			// Label: Use April Fools Mutant
+			/* Tooltip:
+				'''
+				Converts the Mutant from Fargo's Souls to Yharim.
+				This setting doesn't do anything if Fargo's Souls isn't enabled.
+				''' */
+		}
 	}
 
 	Difficulty: {
@@ -2213,6 +2287,11 @@ Buffs: {
 	CrimulanAura: {
 		// DisplayName: Crimulan Aura
 		// Description: Your movement has been significantly hindered!
+	}
+
+	BrimstoneDesperation: {
+		// DisplayName: Brimstone Desperation
+		// Description: Brimstone energy flows though the air, disabling many of your abilites!
 	}
 }
 

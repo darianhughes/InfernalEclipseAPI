@@ -66,11 +66,9 @@ Composers: Peter Fung
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
 And special thanks to the following creators for the music in this mod:
-[list]
-	[*] CDMusic: "Ensemble of Fools (Encore Mix)"
-	[*] Kuudray: "TWISTED GARDEN [Remix]"
-	[*] Peter Fung: "Teardrops of Dragonfire"
-	[*] psykomatic: "Descent Of Divinities"
-	[*] theforge128: "Calamity Before the Cynosure"
-	[*] TheTrester: "Omiscience Of Gods"
-[/list]
+CDMusic: "Ensemble of Fools (Encore Mix)"
+Kuudray: "TWISTED GARDEN [Remix]"
+Peter Fung: "Teardrops of Dragonfire"
+psykomatic: "Descent Of Divinities"
+theforge128: "Calamity Before the Cynosure"
+TheTrester: "Omiscience Of Gods"

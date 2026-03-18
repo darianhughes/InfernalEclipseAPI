@@ -163,6 +163,10 @@ namespace InfernalEclipseAPI
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DontEnableThis { get; set; }
+
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DeveloperMode { get; set; }
         #endregion
     }
 

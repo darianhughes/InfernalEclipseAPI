@@ -17,14 +17,13 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         private int? previousHeldItemPrefix = null;
         private bool? previousHeldItemOriginalExhaustion;
 
-        //public int whiteDwarfCooldown;
+        public int whiteDwarfCooldown;
         public int ShinobiSigilCooldown;
         public override void ResetEffects()
         {
-            /*
             if (whiteDwarfCooldown > 0)
                 whiteDwarfCooldown--;
-            */
+
             if (ShinobiSigilCooldown > 0)
                 ShinobiSigilCooldown--;
         }
@@ -142,7 +141,6 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
         public override void PostUpdateEquips()
         {
-            /*
             Mod thorium; 
             ModLoader.TryGetMod("ThoriumMod", out thorium);
             if (thorium == null) return;
@@ -156,9 +154,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 Player.armor[2].type == whiteDwarfGreaves)
             {
                 Player.setBonus += "\nIvory flares spawn on a 2 second cooldown";
-                // Add effects here if needed
             }
-            */
         }
 
         public bool HasExhaustionClearingAccessoryEquipped()

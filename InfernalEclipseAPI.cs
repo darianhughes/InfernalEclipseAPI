@@ -24,7 +24,9 @@ using InfernalEclipseAPI.Core.Utils;
 using CalamityMod.World;
 using Terraria.GameContent.Creative;
 using static Terraria.GameContent.Creative.CreativePowers;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("HomewardRagnarok")]
 namespace InfernalEclipseAPI
 {
     public enum InfernalEclipseMessageType : byte
@@ -35,6 +37,7 @@ namespace InfernalEclipseAPI
         ToggleRagnarok = 4,
         SyncRagnarokState = 5
     }
+
     public partial class InfernalEclipseAPI : Mod
 	{
         public static ModKeybind SubpaceBoostHotkey;
@@ -293,7 +296,7 @@ namespace InfernalEclipseAPI
 
                 case InfernalEclipseMessageType.ToggleRagnarok:
                     {
-                        Player player = reader.ReadByte() > -1 && reader.ReadByte() < Main.maxPlayers && Main.player[reader.ReadByte()].active && !Main.player[reader.ReadByte()].dead && !Main.player[reader.ReadByte()].ghost ? Main.player[reader.ReadByte()] : null;
+                        Player player = reader.ReadByte() < Main.maxPlayers && Main.player[reader.ReadByte()].active && !Main.player[reader.ReadByte()].dead && !Main.player[reader.ReadByte()].ghost ? Main.player[reader.ReadByte()] : null;
 
                         if (Main.netMode == NetmodeID.Server)
                         {

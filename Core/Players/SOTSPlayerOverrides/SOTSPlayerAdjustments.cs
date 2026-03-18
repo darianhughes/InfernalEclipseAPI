@@ -1,4 +1,5 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using CalamityMod;
+using InfernalEclipseAPI.Core.Systems;
 using SOTS;
 using Terraria.Localization;
 
@@ -21,6 +22,17 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
             if (Player.GetModPlayer<InfernalPlayer>().singularityCore)
             {
                 Player.VoidPlayer().voidRegenSpeed += 0.1f;
+            }
+        }
+
+        public override void PostUpdateEquips()
+        {
+            SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Player);
+
+            if (Player.Calamity().grapeBeer)
+            {
+                sotsPlayer.CritBonusDamage = (int)(sotsPlayer.CritBonusDamage * 0.25f);
+                sotsPlayer.CritBonusMultiplier *= 0.75f;
             }
         }
 

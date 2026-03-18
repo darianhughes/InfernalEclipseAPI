@@ -5,9 +5,10 @@ using CalamityMod.Items.Weapons.Melee;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Systems.Hooks;
 using InfernalEclipseAPI.Core.Utils;
-using Steamworks;
+using InfernumMode.Content.Items.Accessories;
+using InfernumMode.Core.GlobalInstances.Players;
+using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.Items.ArcaneArmor;
 using ThoriumMod.Items.BasicAccessories;
@@ -22,12 +23,12 @@ using ThoriumMod.Items.Coral;
 using ThoriumMod.Items.Cultist;
 using ThoriumMod.Items.Depths;
 using ThoriumMod.Items.Donate;
+using ThoriumMod.Items.Dread;
 using ThoriumMod.Items.Flesh;
 using ThoriumMod.Items.HealerItems;
 using ThoriumMod.Items.Icy;
 using ThoriumMod.Items.NPCItems;
 using ThoriumMod.Items.Sandstone;
-using ThoriumMod.Items.Thorium;
 using ThoriumMod.Items.ThrownItems;
 using ThoriumMod.Items.Valadium;
 using ThoriumMod.Utilities;
@@ -36,9 +37,27 @@ using static Terraria.ModLoader.ModContent;
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
     [JITWhenModsEnabled(InfernalCrossmod.Thorium.Name)]
-    [ExtendsFromMod("ThoriumMod")]
+    [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
     public class ThoriumGlobalItem : GlobalItem
     {
+        public override void SetStaticDefaults()
+        {
+            InfernumPlayer.AccessoryUpdateEvent += (InfernumPlayer player) =>
+            {
+                if (player.GetValue<bool>(Purity.FieldName))
+                {
+                    Player p = player.Player;
+                    float bonus = 1.4f;
+
+                    p.GetDamage<BardDamage>() *= bonus;
+                    p.GetDamage<HealerDamage>() *= bonus;
+                    p.GetDamage<HealerTool>() *= bonus;
+                    p.GetDamage<HealerToolDamageHybrid>() *= bonus;
+                    p.GetDamage<TrueDamage>() *= bonus;
+                }
+            };
+        }
+
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemType<IceLance>() ||
@@ -378,6 +397,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetCritChance(ThoriumDamageBase<HealerDamage>.Instance) -= 6f;
                 }
 
+                if (item.type == ItemType<DreadGreaves>())
+                {
+                    player.moveSpeed -= 0.11f;
+                }
+
                 if (InfernalCrossmod.RagnarokMod.Loaded)
                 {
                     if (item.type == ItemType<NinjaEmblem>())
@@ -454,6 +478,23 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             }
         }
 
+        public override string IsArmorSet(Item head, Item body, Item legs)
+        {
+            if (head.type == ItemType<DreadSkull>() && body.type == ItemType<DreadChestPlate>() && legs.type == ItemType<DreadGreaves>())
+                return "Dread";
+
+            return base.IsArmorSet(head, body, legs);
+        }
+
+        public override void UpdateArmorSet(Player player, string set)
+        {
+            if (set == "Dread")
+            {
+                player.maxRunSpeed -= 1.5f;
+                player.runAcceleration -= 0.04f;
+            }
+        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if (item.type == ItemID.EyeoftheGolem) {
@@ -482,39 +523,59 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             {
                 if (InfernalCrossmod.SOTS.Loaded)
                 {
-                    for (int index = 0; index < tooltips.Count; ++index)
-                    {
-                        if (tooltips[index].Mod == "Terraria")
-                        {
-                            if (tooltips[index].Name == "ItemName")
-                            {
-                                TooltipLine tooltip = tooltips[index];
-                                tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Disabled") + tooltip.Text;
-                            }
-                        }
-                    }
+                    InfernalUtilities.AddDisabledItemTag(tooltips);
                 }
                 InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FrenzyPotion"));
             }
 
             if (item.type == ItemType<KineticPotion>())
             {
-                for (int index = 0; index < tooltips.Count; ++index)
-                {
-                    if (tooltips[index].Mod == "Terraria")
-                    {
-                        if (tooltips[index].Name == "ItemName")
-                        {
-                            TooltipLine tooltip = tooltips[index];
-                            tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Disabled") + tooltip.Text;
-                        }
-                    }
-                }
+                InfernalUtilities.AddDisabledItemTag(tooltips);
             }
 
             if (item.type == ItemType<TravelersBoots>())
             {
                 InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TravelBoot"));
+            }
+
+            if (item.type == ItemType<DreadGreaves>())
+            {
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DreadGreaves.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DreadGreaves.Nerf"));
+            }
+
+            if (InfernalConfig.Instance.DisableDuplicateContent)
+            {
+                string[] coatings =
+                {
+                    "DeepFreezeCoatingItem",
+                    "ExplosiveCoatingItem",
+                    "GorgonCoatingItem",
+                    "SporeCoatingItem",
+                    "ToxicCoatingItem",
+                };
+
+                foreach (string coating in coatings)
+                    if (item.type == InfernalCrossmod.Thorium.Mod.Find<ModItem>(coating).Type)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                string[] disabledItems =
+                {
+                    //"ChlorophyteTomahawk",
+                    "DemonBloodBow",
+                    //"MyceliumGatlingGun",
+                    "TimeWarp",
+                    "MoltenKnife",
+                };
+
+                foreach (string disabledItem in disabledItems)
+                    if (item.type == InfernalCrossmod.Thorium.Mod.Find<ModItem>(disabledItem).Type)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
+            }
+
+            if (InfernalCrossmod.ThoriumRework.Loaded)
+            {
+                if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("DeathsingerPotion").Type)
+                    InfernalUtilities.AddDisabledItemTag(tooltips);
             }
         }
     }

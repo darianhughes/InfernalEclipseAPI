@@ -31,6 +31,7 @@ using SOTS.Items.Invidia;
 using SOTS.Items.Evil;
 using CalamityMod.Items.Accessories;
 using ThoriumRework.Projectiles;
+using SOTS.Items.Temple;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -391,6 +392,42 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<FlowerCrown>())
                 {
                     InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FlowerCrown"));
+                }
+
+                if (item.type == ItemType<Helios>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Helios.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Helios.Nerf"));
+                }
+
+                if (item.type == ItemType<BorealisIcosahedron>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Borealis.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Borealis.Nerf"));
+                }
+
+                if (item.type == ItemType<CursedIcosahedron>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Cursed.OrigCursed"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Cursed.NerfCursed"));
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Cursed.OrigOther"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Cursed.NerfOther"));
+                }
+
+                if (item.type == ItemType<HellfireIcosahedron>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Hellfire.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Hellfire.Nerf"));
+                }
+
+                if (item.type == ItemType<BagOfCharms>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Nerf"));
+                }
+
+                if (item.type == ItemType<PlasmaShrimp>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.PlasmaShrimp.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.PlasmaShrimp.Nerf"));
+                }
+
+                if (item.type == ItemType<WishingStar>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShatteredDreams.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShatteredDreams.Nerf"));
                 }
             }
         }

@@ -553,6 +553,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddIngredient(ItemID.FallenStar, 3);
                             recipe.AddIngredient(thorium.Find<ModItem>("Blood").Type);
                         }
+
+                        if (recipe.HasResult(thorium.Find<ModItem>("Zunpet")))
+                        {
+                            recipe.RemoveIngredient(ItemID.HallowedBar);
+                        }
                     }
                 }
 
@@ -1320,6 +1325,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddTile(TileID.LunarCraftingStation);
                         }
 
+                        if (recipe.HasResult(sots.Find<ModItem>("CursedIcosahedron")))
+                        {
+                            recipe.AddIngredient(ItemID.Ectoplasm, 3);
+                        }
+
+                        #region Soul of Plight Additions
                         if (recipe.HasResult(ItemID.TrueNightsEdge))
                             recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
 
@@ -1437,6 +1448,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             if(recipe.HasResult(fishGun.Find<ModItem>("TrueMutantNightfish")))
                                 recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 20);
                         }
+                        #endregion
                     }
                 }
                 #endregion

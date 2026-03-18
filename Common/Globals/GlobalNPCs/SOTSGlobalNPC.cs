@@ -37,6 +37,7 @@ using InfernumMode.Content.BehaviorOverrides.BossAIs.Perforators;
 using CalamityMod.Projectiles.Boss.BrainOfCthulhu;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
+using SOTS.Common.GlobalNPCs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -242,6 +243,32 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             {
                 int damage = 1 + npc.damage / (strongVoidDamge ? 3 : 6);
                 VoidPlayer.VoidDamage(Mod, target, damage);
+            }
+        }
+
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            NerfBlazingCurse(npc, ref modifiers);
+        }
+
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
+        {
+            NerfBlazingCurse(npc, ref modifiers);
+        }
+
+        private static void NerfBlazingCurse(NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if (!InfernalConfig.Instance.SOTSBalanceChanges) return;
+
+            DebuffNPC debuffNPC = npc.GetGlobalNPC<DebuffNPC>();
+
+            if (debuffNPC.BlazingCurse > 0)
+            {
+                float orig = 1f + 0.03f * debuffNPC.BlazingCurse + 0.005f * debuffNPC.BlazingCurse;
+                float nerfed = 1f + 0.01f * debuffNPC.BlazingCurse + 0.005f * debuffNPC.BlazingCurse;
+
+                modifiers.SourceDamage /= orig;
+                modifiers.SourceDamage *= nerfed;
             }
         }
 

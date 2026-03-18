@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
+using SOTS.Items.Invidia;
 using SOTS.WorldgenHelpers;
 using Terraria.GameContent.Generation;
 using Terraria.WorldBuilding;
@@ -46,6 +47,7 @@ namespace InfernalEclipseAPI.Core.World
             if (InfernalCrossmod.SOTS.Loaded)
             {
                 SOTSWorldGenModifications.EmeraldGemChestNoHellstone();
+                SOTSWorldGenModifications.InvidiaChestHealingPotionNerf();
             }
         }
     }
@@ -87,6 +89,33 @@ namespace InfernalEclipseAPI.Core.World
 
                     item.SetDefaults(replacement);
                     item.stack = 6;
+                }
+            }
+        }
+
+        public static void InvidiaChestHealingPotionNerf()
+        {
+            ushort invidiaChestTileType = (ushort)ModContent.TileType<InvidiaChestTile>();
+
+            for (int i = 0; i < Main.maxChests; i++)
+            {
+                Chest chest = Main.chest[i];
+                if (chest == null)
+                    continue;
+
+                Tile tile = Main.tile[chest.x, chest.y];
+                if (tile == null || tile.TileType != invidiaChestTileType)
+                    continue;
+
+                for (int slot = 0; slot < chest.item.Length; slot++)
+                {
+                    Item item = chest.item[slot];
+                    if (item == null || item.type != ItemID.GreaterHealingPotion)
+                        continue;
+
+                    int stack = item.stack;
+                    item.SetDefaults(ItemID.HealingPotion);
+                    item.stack = stack;
                 }
             }
         }

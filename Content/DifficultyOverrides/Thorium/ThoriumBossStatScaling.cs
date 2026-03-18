@@ -18,6 +18,7 @@ using System.Security.Policy;
 using Terraria;
 using ThoriumRework.Buffs;
 using CalamityMod.CalPlayer;
+using ThoriumMod.NPCs.BossFallenBeholder;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
@@ -164,6 +165,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
                 {
                     npc.lifeMax += (int)(0.75 * npc.lifeMax);
+                }
+                if (npc.type == ModContent.NPCType<FallenBeholder>() || npc.type == ModContent.NPCType<FallenBeholder2>())
+                {
+                    npc.lifeMax += (int)(npc.lifeMax * 0.5f);
                 }
                 string name = npc.ModNPC?.Name ?? "";
                 if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
@@ -314,8 +319,6 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
     {
         public static bool IsReworkedThoriumMinion(NPC npc)
         {
-            return false;
-
             int[] reworkType =
             [
             ];
@@ -358,7 +361,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 ModContent.ProjectileType<JammingJellyfish>(),
                 ModContent.ProjectileType<JellyfishShock>(),
 
-                ModContent.ProjectileType<ThoriumRework.Projectiles.BiteyBaby>()
+                ModContent.ProjectileType<ThoriumRework.Projectiles.BiteyBaby>(),
+
+                ModContent.ProjectileType<ThoriumRework.Projectiles.SoulSteal>(),
+                ModContent.ProjectileType<EradicationRay>(),
+                ModContent.ProjectileType<EradicationBeam>(),
+                ModContent.ProjectileType<EradicationBeamF>(),
+                ModContent.ProjectileType<FalseBeholder>(),
+                ModContent.ProjectileType<VoidEye>(),
+                ModContent.ProjectileType<VoidEyeF>()
             ];
 
             foreach (int type in reworkType)
@@ -423,7 +434,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 ModContent.ProjectileType<ViscountRockSummon>(),
                 ModContent.ProjectileType<ViscountRockSummon>(),
                 ModContent.ProjectileType<ViscountStomp>(),
-                ModContent.ProjectileType<ViscountStomp2>(),             
+                ModContent.ProjectileType<ViscountStomp2>(),      
+                
+                //Fallen Beholder
+                ModContent.ProjectileType<BeholderLavaCascade>(),
+                ModContent.ProjectileType<BeholderLavaCascade1>(),
+                ModContent.ProjectileType<ThoriumMod.Projectiles.Boss.SoulSteal>(),
+                ModContent.ProjectileType<BeholderBeam>(),
+                ModContent.ProjectileType<DoomBeholderBeam>(),
             ];
 
             foreach (int type in types)
@@ -465,7 +483,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
         {
             if (InfernalCrossmod.SOTS.Loaded)
             {
-                if (entity.ModProjectile.Name.Contains("Blood") || entity.ModProjectile.Name.Contains("BiteyBaby") || entity.ModProjectile.Name.Contains("Ripple"))
+                if (entity.ModProjectile.Name.Contains("Blood") || entity.ModProjectile.Name.Contains("BiteyBaby") || entity.ModProjectile.Name.Contains("Ripple") ||
+                    (entity.ModProjectile.Name.Contains("Beholder") && !entity.ModProjectile.Name.Contains("Lava")) || entity.ModProjectile.Name.Contains("Soul") ||
+                    entity.ModProjectile.Name.Contains("Void") || entity.ModProjectile.Name.Contains("Eradication"))
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                 }
@@ -476,7 +496,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 }
             }
             if ((entity.ModProjectile.Name.Contains("Viscount") && !entity.ModProjectile.Name.Contains("Rock") && !entity.ModProjectile.Name.Contains("Stomp")) || 
-                (entity.ModProjectile.Name.Contains("Blizzard") || entity.ModProjectile.Name.Contains("Ice") || entity.ModProjectile.Name.Contains("Glacier")))
+                entity.ModProjectile.Name.Contains("Blizzard") || entity.ModProjectile.Name.Contains("Ice") || entity.ModProjectile.Name.Contains("Glacier") ||
+                (entity.ModProjectile.Name.Contains("Beholder") && !entity.ModProjectile.Name.Contains("Beam") && !entity.ModProjectile.Name.Contains("Ray") && !entity.ModProjectile.Name.Contains("False")) ||
+                entity.ModProjectile.Name.Contains("VoidEye") || !entity.ModProjectile.Name.Contains("SoulSteal"))
                 entity.Calamity().DealsDefenseDamage = false;
         }
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
@@ -501,7 +523,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             {
                 if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
                     damageMod *= 1.70f;
-                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier"))
+                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
+                         projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
+                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam"))
                     damageMod *= 1.35f;
                 else
                     damageMod *= 2.2f;
@@ -510,7 +534,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             {
                 if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
                     damageMod *= 1.60f;
-                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier"))
+                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
+                         projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
+                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam"))
                     damageMod *= 1.25f;
                 else
                     damageMod *= 1.675f;
@@ -519,7 +545,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             {
                 if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
                     damageMod *= 1.45f;
-                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier"))
+                else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
+                         projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
+                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam"))
                     damageMod *= 1.1f;
                 else
                     damageMod *= 1.15f;
