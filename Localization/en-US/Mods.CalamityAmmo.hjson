@@ -7,4 +7,13 @@ Items: {
 			Slightly increases the velocity of ranged projectiles
 			'''
 	}
+
+	WulfrumBullet: {
+		DisplayName: Wulfrum Scrap Bullet
+		Tooltip:
+			'''
+			Radiates wulfrum energy beams with a slight homing ability
+			"Last Hamon, son."
+			'''
+	}
 }

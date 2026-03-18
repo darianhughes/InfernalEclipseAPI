@@ -481,6 +481,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.requiredTile.Clear();
                             recipe.AddTile(ModContent.TileType<DraedonsForge>());
                         }
+                        if (recipe.HasResult(calAmmo.Find<ModItem>("MushroomUnitedNations")))
+                        {
+                            recipe.RemoveIngredient(ItemID.ShroomiteBar);
+                            recipe.AddIngredient(ItemID.LunarBar, 10);
+                            recipe.AddIngredient(ItemID.FragmentVortex, 6);
+                        }
                     }
                 }
                 #endregion
