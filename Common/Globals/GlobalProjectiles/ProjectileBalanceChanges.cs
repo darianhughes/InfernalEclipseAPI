@@ -455,6 +455,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.penetrate = 3;
                 }
 
+                if (GetProj(entity, sotsBH, "GoopwoodWiggle"))
+                {
+                    entity.localNPCHitCooldown = 30;
+                    entity.usesLocalNPCImmunity = true;
+                }
+
                 if (GetProj(entity, sotsBH, "GoopwoodSplit") || GetProj(entity, sotsBH, "ForbiddenMaelstrom") || GetProj(entity, sotsBH, "Serpentbite"))
                 {
                     if (InfernalConfig.Instance.SOTSThrowerToRogue) entity.DamageType = ModContent.GetInstance<VoidRogue>();
@@ -477,6 +483,15 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 }
                 else
                     projectile.damage /= 3;
+            }
+
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "CalamityAmmo" && projectile.ModProjectile.Name == "Shroomere" && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                projectile.damage /= 6;
+            }
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "CalamityAmmo" && (projectile.ModProjectile.Name == "Crabulon_Spore" || projectile.ModProjectile.Name == "Spore1" || projectile.ModProjectile.Name == "Spore2" || projectile.ModProjectile.Name == "Spore3") && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                projectile.damage /= 2;
             }
         }
 

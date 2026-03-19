@@ -739,7 +739,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Bullets
                 if (UnsafeGetItem(calAmmo, "WulfrumBullet", item))
                 {
-                    item.damage = 7;
+                    item.damage = 4;
                 }
 
                 if (UnsafeGetItem(calAmmo, "VictideBullet", item))
@@ -5135,6 +5135,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 64;
                 }
 
+                if (GetItem(sots, "ImperialPike", item))
+                {
+                    item.damage = 13;
+                }
+
                 if (GetItem(sots, "CursedImpale", item))
                 {
                     item.shootSpeed = 8;
@@ -5534,9 +5539,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sots, "SupernovaScatter", item))
                 {
-                    item.useTime = 90;
-                    item.useAnimation = 90;
-                    item.damage = 27;
+                    item.useTime = 120;
+                    item.useAnimation = 120;
+                    item.damage = 15;
                 }
 
                 if (GetItem(sots, "IcicleImpale", item))
@@ -5675,7 +5680,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(sotsBH, "GoopwoodWiggle", item))
                 {
                     item.shootSpeed = 8;
-                    item.damage = 19;
+                    item.damage = 21;
+                    item.useTime = 6;
+                    item.useAnimation = 12;
                 }
 
                 if (GetItem(sotsBH, "GoopwoodSplit", item))
@@ -5692,11 +5699,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.shootSpeed = 8;
                     item.damage = 34;
+                    item.useTime = 4;
+                    item.useAnimation = 12;
                 }
 
                 if (GetItem(sotsBH, "ForbiddenMaelstrom", item))
                 {
-                    item.damage = 58;
+                    item.damage = 44;
                 }
 
                 if (GetItem(sotsBH, "CursedAnkhStaff", item))
