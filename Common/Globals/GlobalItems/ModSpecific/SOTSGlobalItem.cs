@@ -32,6 +32,7 @@ using SOTS.Items.Evil;
 using CalamityMod.Items.Accessories;
 using ThoriumRework.Projectiles;
 using SOTS.Items.Temple;
+using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -43,6 +44,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         {
             InfernalPlayer modPlayer = player.GetModPlayer<InfernalPlayer>();
             SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(player);
+            SOTSPlayerAdjustments sotsAdjustmentPlayer = player.GetModPlayer<SOTSPlayerAdjustments>();
 
             if (InfernalConfig.Instance.SOTSBalanceChanges)
             {
@@ -146,6 +148,44 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     modPlayer.CritNightmare = true;
                 }
 
+                if (item.type == ItemType<RoyalJelly>())
+                {
+                    sotsPlayer.additionalHeal -= 40;
+                    sotsAdjustmentPlayer.royalJelly = true;
+                }
+
+                if (item.type == ItemType<GlowSpores>())
+                {
+                    sotsPlayer.additionalPotionMana -= 40;
+                    sotsAdjustmentPlayer.glowSpores = true;
+                }
+
+                if (item.type == ItemType<GlowJelly>())
+                {
+                    sotsPlayer.additionalHeal -= 40;
+                    sotsPlayer.additionalPotionMana -= 40;
+                    sotsAdjustmentPlayer.glowJelly = true;
+                }
+
+                if (item.type == ItemType<Sandwich>())
+                {
+                    sotsPlayer.additionalHeal -= 40;
+                    sotsAdjustmentPlayer.sandwich = true;
+                }
+
+                if (item.type == ItemType<AlchemistsCharm>())
+                {
+                    sotsPlayer.additionalHeal -= 100;
+                    sotsPlayer.additionalPotionMana -= 100;
+                    sotsAdjustmentPlayer.alchemistsCharm = true;
+                }
+
+                if (item.type == ItemType<OtherworldlyAmplifier>())
+                {
+                    sotsPlayer.CritBonusDamage -= 8;
+                    sotsPlayer.CritBonusDamage += GetAmpliferCritBonus(player);
+                }
+
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
                 {
                     Mod sBH = InfernalCrossmod.SOTSBardHealer.Mod;
@@ -157,6 +197,39 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     }
                 }
             }
+        }
+
+        public static int GetAmpliferCritBonus(Player player)
+        {
+            if (player.HeldItem.useTime == 0)
+            {
+                return 0;
+            }
+            else if (player.HeldItem.useTime <= 20)
+            {
+                return 2;
+            }
+            else if (player.HeldItem.useTime <= 25)
+            {
+                return 3;
+            }
+            else if (player.HeldItem.useTime <= 30)
+            {
+                return 4;
+            }
+            else if (player.HeldItem.useTime <= 35)
+            {
+                return 5;
+            }
+            else if (player.HeldItem.useTime <= 45)
+            {
+                return 6;
+            }
+            else if (player.HeldItem.useTime <= 55)
+            {
+                return 7;
+            }
+            return 8;
         }
 
         public override void SetDefaults(Item item)
@@ -428,6 +501,29 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<WishingStar>())
                 {
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShatteredDreams.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShatteredDreams.Nerf"));
+                }
+
+                if (item.type == ItemType<OtherworldlyAmplifier>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.OtherworldlyAmplifier", GetAmpliferCritBonus(Main.LocalPlayer)));
+                }
+
+                if (item.type == ItemType<Sandwich>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.SandwichOrig"), 
+                    Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.SandwichOrig") + "\n" + Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DoesNotStack"));
+                }
+
+                if (item.type == ItemType<GlowJelly>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.JellyOrig"),
+                    Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.JellyOrig") + "\n" + Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DoesNotStack"));
+                }
+
+                if (item.type == ItemType<AlchemistsCharm>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.AlchOrig"),
+                    Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.AlchOrig") + "\n" + Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DoesNotStack"));
                 }
             }
         }

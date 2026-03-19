@@ -38,6 +38,7 @@ using CalamityMod.Projectiles.Boss.BrainOfCthulhu;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
 using SOTS.Common.GlobalNPCs;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -196,7 +197,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
                         Vector2 vector2_25 = vector2_23.SafeNormalize(Vector2.Zero) * (num15 + num19);
 
-                        int[] perforators =
+                        int[] immuneNPCs =
                         {
                             ModContent.NPCType<PerforatorHeadLarge>(),
                             ModContent.NPCType<PerforatorHeadMedium>(),
@@ -207,11 +208,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                             ModContent.NPCType<PerforatorTailLarge>(),
                             ModContent.NPCType<PerforatorTailMedium>(),
                             ModContent.NPCType<PerforatorTailSmall>(),
-                            ModContent.NPCType<DarkHeart>()
+                            ModContent.NPCType<DarkHeart>(),
+                            ModContent.NPCType<GiantClam>(),
+                            ModContent.NPCType<LightSnuffingHand>(),
+                            ModContent.NPCType<PutridPinky1>()
                         };
 
                         // The only behavioral change:
-                        if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != ModContent.NPCType<GiantClam>() && !perforators.Contains(npc.type))
+                        if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && !immuneNPCs.Contains(npc.type))
                             npc.position += vector2_25;
                     }
                 }

@@ -285,6 +285,20 @@ ItemTooltip: {
 			'''
 	}
 
+	OtherworldlyAmplifier:
+		'''
+		Critical strikes deal up to 8 more damage
+		The damage bonus stars at 2 and scales inversely with item use speed
+		Your current bonus is {0}
+		'''
+
+	AlchCharm: {
+		AlchOrig: Increases healing and mana received from potions by 100
+		JellyOrig: Increases healing and mana received from potions by 40
+		SandwichOrig: Increases healing received from potions by 40
+	}
+
+	DoesNotStack: Does not stack with downgrades
 	Disabled: "[DISABLED] "
 	DauntlessBuff: +2% radiant damage
 	DedTo: - Dedicated to {0} -
@@ -579,6 +593,7 @@ ItemTooltip: {
 		AlchemistCharm:
 			'''
 			Increases healing and mana received from potions by 100
+			Does not stack with downgrades
 			Increases buff duration by 67%
 			'''
 		SubspaceBoostersDash: Press {0} while on the ground to blast forward, granting higher speed and acceleration
@@ -1469,7 +1484,7 @@ Items: {
 			'''
 			Right click to fire a burst of sword beams
 			While holding Rage will be automatically activated when the meter is full
-			While Rage is active, you spawn clones of yourselft that attack at your cursor
+			While Rage is active, you spawn clones of yourself that attack at your cursor
 			The thirteenth form of the Crystal of the Glitch, wielded by Nahu Guritchi
 			'I will end our curse once and for all, Zane!'
 			'''

@@ -282,6 +282,20 @@ ItemTooltip: {
 			''' */
 	}
 
+	/* OtherworldlyAmplifier:
+		'''
+		Critical strikes deal up to 8 more damage
+		The damage bonus stars at 2 and scales inversely with item use speed
+		Your current bonus is {0}
+		''' */
+
+	AlchCharm: {
+		// AlchOrig: Increases healing and mana received from potions by 100
+		// JellyOrig: Increases healing and mana received from potions by 40
+		// SandwichOrig: Increases healing received from potions by 40
+	}
+
+	// DoesNotStack: Does not stack with downgrades
 	// Disabled: "[DISABLED] "
 	// DauntlessBuff: +2% radiant damage
 	DedTo: - Посвящено: {0} -

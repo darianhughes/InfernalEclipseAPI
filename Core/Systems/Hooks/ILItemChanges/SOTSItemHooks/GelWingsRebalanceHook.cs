@@ -11,7 +11,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
         private Hook verticalSpeedsHook;
         private Hook updateAccessoryHook;
 
-        private static WingStats NewStats = new WingStats(60, 8f, 2f);
+        private static WingStats NewStats = new WingStats(60, 7.5f, 2f);
 
         public override void Load()
         {
