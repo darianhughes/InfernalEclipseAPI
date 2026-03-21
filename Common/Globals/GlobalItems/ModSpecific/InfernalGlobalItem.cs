@@ -61,6 +61,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             {
                 item.value = Item.buyPrice(0, 1, 0, 0);
             }
+
+            if (item.type == ModContent.ItemType<GrapeBeer>() && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                item.value = Item.buyPrice(0, 0, 3, 0);
+            }
         }
 
         public override bool CanUseItem(Item item, Player player)
@@ -251,7 +256,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if ((item.type == ModContent.ItemType<GrapeBeer>() || item.type == ModContent.ItemType<Moonshine>()) && InfernalConfig.Instance.CalamityBalanceChanges)
-                InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TwoAlchs")), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+            {
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Orig"), InfernalCrossmod.SOTS.Loaded ? Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf") + "\n" + Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional") : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf"));
+                InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TwoAlchs"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+            }
 
             if (InfernalCrossmod.FargosMutant.Loaded)
             {

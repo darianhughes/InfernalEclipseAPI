@@ -396,6 +396,47 @@ Items: {
 			'''
 	}
 
+	DreamWeaversHelmet: {
+		// DisplayName: Dream Weaver's Helmet
+		/* Tooltip:
+			'''
+			'Bind the enemies of your future in temporal agony'
+			Corrupts your radiant powers
+			45% decreased non-radiant damage
+			45% increased radiant damage
+			36% increased radiant critical strike chance
+			Maximum mana increased by 20
+			''' */
+	}
+
+	DreamWeaversHood: {
+		// DisplayName: Dream Weaver's Hood
+		/* Tooltip:
+			'''
+			'Manifest your dearest dreams through your allies'
+			25% decreased non-radiant damage
+			30% increased radiant damage
+			16% increased radiant critical strike chance
+			35% decreased mana cost
+			Massively increased mana regeneration
+			Maximum mana increased by 60
+			Healing spells will heal an additional 6 life
+			''' */
+	}
+
+	DreamWeaversTabard: {
+		// DisplayName: Dream Weaver's Tabard
+		/* Tooltip:
+			'''
+			25% decreased non-radiant damage
+			25% increased radiant damage
+			14% increased radiant critical strike chance
+			20% decreased mana cost
+			Massively increased mana regeneration
+			Healing spells will heal an additional 2 life
+			''' */
+	}
+
 	TideTurnerGreaves: {
 		DisplayName: 洪流逆潮者足具
 		Tooltip:

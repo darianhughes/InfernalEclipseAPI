@@ -101,6 +101,23 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
                 target.AddBuff(BuffID.CursedInferno, 120);
             }
         }
+
+        public override void GrapplePullSpeed(Projectile projectile, Player player, ref float speed)
+        {
+            if (projectile.type == ModContent.ProjectileType<InfernoHook>())
+            {
+                speed = 11f;
+            }
+            base.GrapplePullSpeed(projectile, player, ref speed);
+        }
+
+        public override void GrappleRetreatSpeed(Projectile projectile, Player player, ref float speed)
+        {
+            if (projectile.type == ModContent.ProjectileType<InfernoHook>())
+            {
+                speed = 17f;
+            }
+        }
     }
 
     [JITWhenModsEnabled("SOTS")]

@@ -1,4 +1,5 @@
 UI: {
+	Cooldowns.ManaSteal: Mana Steal Remaining
 	RagnarokIconText: Ragnarok Mode is enabled
 	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
 	NoRespawn2: Respawn prevented: Only {0} respawns per boss in {1} multiplayer!
@@ -105,6 +106,12 @@ ItemTooltip: {
 	ThorsHammerPro: Inflcts electrified for 3 seconds on hits.
 	BountifulHarvest: Fires piercing stingers in an alternating pattern
 	TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
+
+	GrapeBeer: {
+		Orig: 75% reduced critical strike damage
+		Nerf: 75% reduced critical strike damage and 30% reduced critical strike chance
+		SOTSAdditional: Disables effects of Icosahedrons
+	}
 
 	SoulAnchor: {
 		OrigTooltip1: Anchors your soul and health to your current position
@@ -296,6 +303,31 @@ ItemTooltip: {
 		AlchOrig: Increases healing and mana received from potions by 100
 		JellyOrig: Increases healing and mana received from potions by 40
 		SandwichOrig: Increases healing received from potions by 40
+	}
+
+	PlatformGenerator:
+		'''
+		Generates 2 platforms to the left and right of you
+		You can right click to drag the platforms, but they will always remain symmetrical
+		Sentries can be summoned on top of the platforms
+		'Bring your sentries with you!'
+		'''
+	FortressGenerator:
+		'''
+		Increases max minions and max sentries by 1
+		Generates 4 platforms to the left and right of you
+		You can right click to drag the platforms, but they will always remain symmetrical
+		Sentries can be summoned on top of the platforms
+		'''
+
+	DissolvingElements: {
+		NatureFlipped: Increases life regeneration by 0.25 HP/s while in the inventory, up to 1 HP/s total
+		EarthFlipped: Increases defense by 1 while in the inventory, up to 4 total
+		AuroraFlipped: Increases movement speed by 1% while in the inventory, up to 4% total
+		DelugeFlipped: Increases ranged damage by 2% while in the inventory, up to 8% total
+		AetherFlipped: Increases magic damage by 2% while in the inventory, up to 8% total
+		NetherFlipped: Increases melee damage by 2% while in the inventory, up to 8% total
+		BrillianceFlipped: Increases summon damage by 2% while in the inventory, up to 8% total
 	}
 
 	DoesNotStack: Does not stack with downgrades
@@ -974,7 +1006,6 @@ Items: {
 			Increases critical strike chance by 15%, does not stack with downgrades
 			Critical strikes deal 40 more damage and may detonate enemies for 75% damage
 			Critical strikes steal life, regenerate void, recover mana and return inspiration
-			Life steal & inspiration regeneration have a 1 second cooldown
 			Pressing the '{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}' key will grant you guaranteed critical strikes for 10 seconds
 			For one minute afterwards, you deal 10% less damage
 			Immunity to bleeding and poisoned debuffs, & grants night vision
@@ -983,7 +1014,6 @@ Items: {
 			'''
 			Increases critical strike chance by 15%, does not stack with downgrades
 			Critical strikes deal 40 more damage, steal life, regenerate void, recover mana, and may detonate enemies for 75% damage
-			Life steal has a 1 second cooldown
 			Pressing the '{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}' key will grant you guaranteed critical strikes for 10 seconds
 			For one minute afterwards, you deal 10% less damage
 			Immunity to bleeding and poisoned debuffs, & grants night vision
@@ -993,7 +1023,6 @@ Items: {
 			Increases critical strike chance by 15%, does not stack with downgrades
 			Critical strikes deal 40 more damage and may detonate enemies for 75% damage
 			Critical strikes steal life, regenerate void, and recover mana
-			Life steal has a 1 second cooldown
 			Immunity to bleeding and poisoned debuffs, & grants night vision
 			'''
 		Lore: After Erelian had obtained the Exo Prism from Draedon, he finnaly had everything to perfect his suit's spirit AI - and now the tyrant was finnally in his sights.

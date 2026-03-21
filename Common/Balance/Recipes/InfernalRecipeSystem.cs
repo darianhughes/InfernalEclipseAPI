@@ -430,6 +430,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient<LivingShard>();
                     }
+
+                    if (recipe.HasResult<GrapeBeer>())
+                    {
+                        recipe.AddIngredient<StarblightSoot>(5);
+                    }
                 }
 
                 if (InfernalConfig.Instance.CalamityRecipeTweaks)

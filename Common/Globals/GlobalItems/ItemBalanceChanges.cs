@@ -389,9 +389,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 24;
                 }
 
-                if (item.type == ModContent.ItemType<AerialTracker>())
+                if (item.type == ModContent.ItemType<FeatherKnife>())
                 {
-                    item.damage = 20;
+                    item.damage = 22;
                 }
                 #endregion
             }
@@ -1526,6 +1526,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "IllumiteBlade", item))
                     {
                         item.crit = 0;
+                        item.damage = 40;
                     }
 
                     if (GetItem(thorium, "SolScorchedSlab", item))
@@ -1556,7 +1557,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "IllumiteSpear", item))
                     {
-                        item.damage = 76;
+                        item.damage = 46;
                     }
 
                     if (GetItem(thorium, "Spearmint", item))
@@ -1983,7 +1984,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TitanBow", item))
                     {
-                        item.damage = 90;
+                        item.damage = 60;
                     }
 
                     if (GetItem(thorium, "LittleRed", item))
@@ -2007,13 +2008,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "IllumiteShotbow", item))
                     {
                         item.crit = 0;
-                        item.damage = 36;
+                        item.damage = 28;
                     }
 
                     if (GetItem(thorium, "IllumiteBlaster", item))
                     {
                         item.crit = 0;
-                        item.damage = 36;
+                        item.damage = 25;
                     }
 
                     if (GetItem(thorium, "ShadowFlareBow", item))
@@ -2408,7 +2409,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "BassBooster", item))
                     {
-                        item.damage = 60;
+                        item.damage = 48;
                     }
 
                     if (GetItem(thorium, "DarkFlame", item))
@@ -2876,7 +2877,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 8;
                         item.useAnimation = 8;
-                        item.damage = 27;
+                        item.damage = 25;
                     }
 
                     //Spiky Caltrop
@@ -2900,7 +2901,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Champion's God Hand
                     if (item.type == thorium.Find<ModItem>("ChampionsGodHand").Type)
                     {
-                        item.damage = 55;
+                        item.damage = 75;
                         item.shootSpeed = 20;
                     }
 
@@ -2924,7 +2925,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useTime = 12;
                         item.useAnimation = 12;
                         item.shootSpeed = 16;
-                        item.damage = 42;
+                        item.damage = 50;
                     }
 
                     //Embowellment
@@ -2933,7 +2934,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useTime = 18;
                         item.useAnimation = 18;
                         item.shootSpeed = 16;
-                        item.damage = 56;
+                        item.damage = 60;
                     }
 
                     //Gauss Flinger
@@ -3151,7 +3152,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TerraKnife", item))
                     {
-                        item.damage = 40;
+                        item.damage = 45;
                     }
 
                     if (GetItem(thorium, "FireAxe", item))
@@ -3506,7 +3507,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Sacred Bludgeon
                     if (GetItem(thorium, "SacredBludgeon", item))
                     {
-                        item.damage = 55;
+                        item.damage = 65;
                     }
 
                     //Tranquil Lyre
@@ -4746,7 +4747,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(rethorium, "LodeStoneMagnetMace", item))
                 {
-                    item.damage = 64;
+                    item.damage = 70;
                 }
 
                 if (UnsafeGetItem(rethorium, "SoulSnatcher", item))
@@ -4761,7 +4762,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (UnsafeGetItem(rethorium, "ValadiumHeavyScythe", item))
                 {
-                    item.damage = 85;
+                    item.damage = 100;
+                    item.useTime = 24;
+                    item.useAnimation = 24;
                 }
                 #endregion
 
@@ -5806,6 +5809,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useTime = 28;
                     item.useAnimation = 28;
                     item.damage = 112;
+                    item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }
             }
             #endregion

@@ -9,6 +9,7 @@ using CalamityMod.Buffs.DamageOverTime;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Core.Systems;
 using Terraria;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -464,6 +465,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 if (GetProj(entity, sotsBH, "GoopwoodSplit") || GetProj(entity, sotsBH, "ForbiddenMaelstrom") || GetProj(entity, sotsBH, "Serpentbite"))
                 {
                     if (InfernalConfig.Instance.SOTSThrowerToRogue) entity.DamageType = ModContent.GetInstance<VoidRogue>();
+                }
+            }
+
+            if (InfernalCrossmod.Consolaria.Loaded && InfernalConfig.Instance.ConsolariaBalanceChanges)
+            {
+                if (GetProj(entity, InfernalCrossmod.Consolaria.Mod, "TonbogiriSpear"))
+                {
+                    entity.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }
             }
         }

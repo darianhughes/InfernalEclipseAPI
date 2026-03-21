@@ -3,7 +3,7 @@ using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 
-namespace InfernalEclipseAPI.Core.Systems.Hooks
+namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
 {
     public class ProjectileHealingHooks : ModSystem
     {
@@ -54,7 +54,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks
             if (gauzeProType != null)
             {
 
-                var gauzeProjAIMethod = gauzeProType.GetMethod("AI", BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
+                var gauzeProjAIMethod = gauzeProType.GetMethod("AI", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
                 if (gauzeProjAIMethod != null)
                     MonoModHooks.Modify(gauzeProjAIMethod, IL_SetGauzeHealToFive);
             }
@@ -123,10 +123,10 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks
             var c = new ILCursor(il);
 
             // Find the integer constant '2' used in ThoriumHeal call
-            if (c.TryGotoNext(i => i.OpCode == Mono.Cecil.Cil.OpCodes.Ldc_I4_2))
+            if (c.TryGotoNext(i => i.OpCode == OpCodes.Ldc_I4_2))
             {
                 // Replace base heal 2 - 4
-                c.Next.OpCode = Mono.Cecil.Cil.OpCodes.Ldc_I4_4;
+                c.Next.OpCode = OpCodes.Ldc_I4_4;
             }
         }
 
@@ -159,17 +159,17 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks
             var c = new ILCursor(il);
 
             // --- Patch base heal: 2 - 5 ---
-            if (c.TryGotoNext(i => i.OpCode == Mono.Cecil.Cil.OpCodes.Ldc_I4_2))
+            if (c.TryGotoNext(i => i.OpCode == OpCodes.Ldc_I4_2))
             {
-                c.Next.OpCode = Mono.Cecil.Cil.OpCodes.Ldc_I4_5;
+                c.Next.OpCode = OpCodes.Ldc_I4_5;
             }
 
             // --- Patch out-of-combat bonus: 4 - 10 ---
             c.Index = 0; // Reset cursor to start
-            if (c.TryGotoNext(i => i.OpCode == Mono.Cecil.Cil.OpCodes.Ldc_I4_4))
+            if (c.TryGotoNext(i => i.OpCode == OpCodes.Ldc_I4_4))
             {
                 // If the original delegate adds 4, replace with 10
-                c.Next.OpCode = Mono.Cecil.Cil.OpCodes.Ldc_I4_S;
+                c.Next.OpCode = OpCodes.Ldc_I4_S;
                 c.Next.Operand = (sbyte)10;
             }
         }
@@ -231,7 +231,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks
             // Look for the first constant 2 and replace with 3
             if (c.TryGotoNext(i => i.OpCode == OpCodes.Ldc_I4_2))
             {
-                c.Next.OpCode = Mono.Cecil.Cil.OpCodes.Ldc_I4_3;
+                c.Next.OpCode = OpCodes.Ldc_I4_3;
             }
         }
 
@@ -240,10 +240,10 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks
             var c = new ILCursor(il);
 
             // Look for the first integer constant '2' (Ldc_I4_2)
-            if (c.TryGotoNext(i => i.OpCode == Mono.Cecil.Cil.OpCodes.Ldc_I4_2))
+            if (c.TryGotoNext(i => i.OpCode == OpCodes.Ldc_I4_2))
             {
                 // Replace it with 5
-                c.Next.OpCode = Mono.Cecil.Cil.OpCodes.Ldc_I4_5;
+                c.Next.OpCode = OpCodes.Ldc_I4_5;
             }
         }
 

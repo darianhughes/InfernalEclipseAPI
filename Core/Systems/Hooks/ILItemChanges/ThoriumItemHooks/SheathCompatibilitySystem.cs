@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace InfernalEclipseAPI.Core.Systems.Hooks
+namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks
 {
     public class SheathCompatibilitySystem : ModSystem
     {

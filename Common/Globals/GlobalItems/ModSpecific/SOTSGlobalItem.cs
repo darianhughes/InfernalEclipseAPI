@@ -30,9 +30,9 @@ using SOTS.Items.Potions;
 using SOTS.Items.Invidia;
 using SOTS.Items.Evil;
 using CalamityMod.Items.Accessories;
-using ThoriumRework.Projectiles;
 using SOTS.Items.Temple;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -180,6 +180,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     sotsAdjustmentPlayer.alchemistsCharm = true;
                 }
 
+                if (item.type == ItemType<PlatformGenerator>() || item.type == ItemType<FortressGenerator>())
+                {
+                    player.GetDamage(DamageClass.Summon) -= 0.1f;
+                }
+
                 if (item.type == ItemType<OtherworldlyAmplifier>())
                 {
                     sotsPlayer.CritBonusDamage -= 8;
@@ -303,6 +308,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<VoidspaceLeggings>())
                 {
                     item.defense = 13;
+                }
+
+                if (item.type == ItemType<InfernoHook>())
+                {
+                    item.shootSpeed = 14;
                 }
             }
         }
@@ -524,6 +534,39 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.AlchOrig"),
                     Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.AlchOrig") + "\n" + Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DoesNotStack"));
+                }
+
+                if (item.type == ItemType<InfernoHook>())
+                {
+                    void ApplyTooltipEdits(IList<TooltipLine> lines, Func<Item, TooltipLine, bool> predicate, Action<TooltipLine> action)
+                    {
+                        foreach (TooltipLine line in lines)
+                            if (predicate.Invoke(item, line))
+                                action.Invoke(line);
+                    }
+                    Func<Item, TooltipLine, bool> LineName(string s) => (Item i, TooltipLine l) => l.Mod == "Terraria" && l.Name == s;
+                    void EditTooltipByName(string lineName, Action<TooltipLine> action) => ApplyTooltipEdits(tooltips, LineName(lineName), action);
+                    void AddGrappleStats(float r, float l, float e, float p) => EditTooltipByName("Equipable", (line) => line.Text += "\n" + CalamityUtils.GetText("Common.GrappleStats").Format(r.ToString(), l.ToString(), e.ToString(), p.ToString()));
+
+                    AddGrappleStats(510 / 16f, item.shootSpeed, 17f, 11f);
+                }
+
+                if (item.type == ItemType<PlatformGenerator>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.PlatformGenerator"));
+                }
+
+                if (item.type == ItemType<FortressGenerator>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FortressGenerator"));
+
+                    if (InfernalConfig.Instance.MergeCraftingTrees)
+                    {
+                        if (InfernalCrossmod.Thorium.Loaded)
+                            InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull"), InfernalRed);
+                        if (InfernalCrossmod.Clamity.Loaded)
+                            InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CyanPearl"), InfernalRed);
+                    }
                 }
             }
         }

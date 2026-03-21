@@ -23,9 +23,10 @@ using InfernalEclipseAPI.Content.UI;
 using CalamityMod.Projectiles.Melee.Shortswords;
 using CalamityMod.NPCs.AquaticScourge;
 using InfernalEclipseAPI.Content.Projectiles;
-using Terraria;
 using InfernumMode.Content.Items.Accessories;
 using CalamityMod.CalPlayer;
+using CalamityMod.Balancing;
+using InfernalEclipseAPI.Content.Cooldowns;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -192,6 +193,10 @@ namespace InfernalEclipseAPI.Core.Players
         public int RingofRestCooldown;
         public bool CritNightmare;
 
+        public float manaSteal = Main.expertMode ? 40f : 50f;
+        public float voidSteal;
+        public float inspirationSteal;
+
         public bool singularityCore;
 
         public override void Initialize()
@@ -264,6 +269,20 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (boostCooldownTime > 0)
                 boostCooldownTime--;
+
+            if (manaSteal < (Main.expertMode ? 40f : 50f))
+                manaSteal++;
+
+            if (voidSteal < (Main.expertMode ? 45f : 55f))
+            {
+                voidSteal++;
+            }
+
+            if (voidSteal > (Main.expertMode ? 45f : 55f))
+                voidSteal = (Main.expertMode ? 45f : 55f);
+
+            if (inspirationSteal < (Main.expertMode ? 5f : 6f))
+                inspirationSteal++;
 
             if (batPoop)
             {
@@ -702,6 +721,35 @@ namespace InfernalEclipseAPI.Core.Players
                     oceanBufferModified = false; // reset if buff is gone
                 }
             }
+
+            /*
+            if (Player.whoAmI == Main.myPlayer)
+            {
+                float baseRecoveryRate = Main.expertMode ? 0.3f : 0.4f;
+                float lifeStealRecoveryRateReduction = Main.expertMode ? 0.2f : 0.25f;
+                float lifeStealCap = Main.expertMode ? 40f : 50f;
+
+                float lifeStealRecoveryRate = baseRecoveryRate - lifeStealRecoveryRateReduction;
+
+                if (manaSteal < lifeStealCap)
+                {
+                    int timeLeft = (int)MathF.Ceiling(Math.Max(0f, lifeStealCap - manaSteal));
+
+                    // If it should display at all, don't let it become 0 from float truncation.
+                    if (timeLeft <= 0)
+                        timeLeft = 1;
+
+                    if (Player.Calamity().cooldowns.TryGetValue(ManaSteal.ID, out var cooldown))
+                    {
+                        cooldown.timeLeft = timeLeft;
+                    }
+                    else
+                    {
+                        Player.AddCooldown(ManaSteal.ID, timeLeft).timeLeft = timeLeft;
+                    }
+                }
+            }
+            */
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)

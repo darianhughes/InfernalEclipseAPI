@@ -11,7 +11,6 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Players;
-using CalamityMod;
 using Microsoft.Xna.Framework.Input;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights

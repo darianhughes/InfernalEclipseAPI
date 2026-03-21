@@ -1,4 +1,5 @@
 ﻿using InfernalEclipseAPI.Core.Systems;
+using RagnarokMod.Utils;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using ThoriumMod;
@@ -9,7 +10,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 {
     [JITWhenModsEnabled(InfernalCrossmod.Thorium.Name)]
     [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
-    public class RogueCooldowns : GlobalProjectile
+    public class WhiteDwarfArmorCooldown : GlobalProjectile
     {
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -24,6 +25,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 if (cdPlayer.whiteDwarfCooldown > 0)
                 {
                     thoriumPlayer.setWhiteDwarf = false;
+                    GetRagnarokModPlayerField.SetWhiteDwarf(player, false);
                 }
                 else
                 {
@@ -84,6 +86,16 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 else
                     thoriumPlayer.accShinobiSigilCrit = 0;
             }
+        }
+    }
+
+    [JITWhenModsEnabled("RagnarokMod")]
+    [ExtendsFromMod("RagnarokMod")]
+    public static class GetRagnarokModPlayerField
+    {
+        public static void SetWhiteDwarf(Player player, bool value)
+        {
+            player.GetRagnarokModPlayer().WhiteDwarf = value;
         }
     }
 }

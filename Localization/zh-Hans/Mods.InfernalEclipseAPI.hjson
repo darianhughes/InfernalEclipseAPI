@@ -1,4 +1,5 @@
 UI: {
+	// Cooldowns.ManaSteal: Mana Steal Remaining
 	RagnarokIconText: 诸神黄昏模式已启用
 	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
 	NoRespawn2: 复活受限：在 {1} 人联机时，每场 Boss 战中每位玩家只有 {0} 次重生机会！
@@ -105,6 +106,12 @@ ItemTooltip: {
 	ThorsHammerPro: 命中时施加3秒的带电
 	BountifulHarvest: 交替射出穿透毒刺
 	TwoAlchs: 在酒精中毒效果中被视为两种酒
+
+	GrapeBeer: {
+		// Orig: 75% reduced critical strike damage
+		// Nerf: 75% reduced critical strike damage and 30% reduced critical strike chance
+		// SOTSAdditional: Disables effects of Icosahedrons
+	}
 
 	SoulAnchor: {
 		OrigTooltip1: 将你的灵魂和生命值锚定在当前位置
@@ -296,6 +303,31 @@ ItemTooltip: {
 		// AlchOrig: Increases healing and mana received from potions by 100
 		// JellyOrig: Increases healing and mana received from potions by 40
 		// SandwichOrig: Increases healing received from potions by 40
+	}
+
+	/* PlatformGenerator:
+		'''
+		Generates 2 platforms to the left and right of you
+		You can right click to drag the platforms, but they will always remain symmetrical
+		Sentries can be summoned on top of the platforms
+		'Bring your sentries with you!'
+		''' */
+	/* FortressGenerator:
+		'''
+		Increases max minions and max sentries by 1
+		Generates 4 platforms to the left and right of you
+		You can right click to drag the platforms, but they will always remain symmetrical
+		Sentries can be summoned on top of the platforms
+		''' */
+
+	DissolvingElements: {
+		// NatureFlipped: Increases life regeneration by 0.25 HP/s while in the inventory, up to 1 HP/s total
+		// EarthFlipped: Increases defense by 1 while in the inventory, up to 4 total
+		// AuroraFlipped: Increases movement speed by 1% while in the inventory, up to 4% total
+		// DelugeFlipped: Increases ranged damage by 2% while in the inventory, up to 8% total
+		// AetherFlipped: Increases magic damage by 2% while in the inventory, up to 8% total
+		// NetherFlipped: Increases melee damage by 2% while in the inventory, up to 8% total
+		// BrillianceFlipped: Increases summon damage by 2% while in the inventory, up to 8% total
 	}
 
 	// DoesNotStack: Does not stack with downgrades

@@ -368,23 +368,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 //    });
                 //}
 
-                if (item.type == sots.Find<ModItem>("FortressGenerator").Type)
-                {
-                    foreach (TooltipLine tooltip in tooltips)
-                    {
-                        if (tooltip.Text.Contains(fortessOrig1))
-                        {
-                            tooltip.Text = replaceInfo;
-                        }
-                        if (tooltip.Text.Contains(fortessOrig2))
-                        {
-                            tooltip.Text = skullInfo;
-                            tooltip.OverrideColor = new Color?(InfernalRed);
-                        }
-                    }
-                    AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
-                }
-
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {
                     //tooltips.Add(new TooltipLine(Mod, "sentries", twoMoreSentries)
@@ -533,22 +516,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 //        OverrideColor = new Color?(NoThorYellow)
                 //    });
                 //}
-
-                if (item.type == sots.Find<ModItem>("FortressGenerator").Type)
-                {
-                    foreach (TooltipLine tooltip in tooltips)
-                    {
-                        if (tooltip.Text.Contains(fortessOrig1))
-                        {
-                            tooltip.Text = replaceInfo;
-                        }
-                        if (tooltip.Text.Contains(fortessOrig2))
-                        {
-                            tooltip.Text = cyanPearlInfo;
-                            tooltip.OverrideColor = new Color?(InfernalRed);
-                        }
-                    }
-                }
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Content.RogueThrower
 {
@@ -19,6 +20,8 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
         public int whiteDwarfCooldown;
         public int ShinobiSigilCooldown;
+        public int bronzeSetCooldown;
+
         public override void ResetEffects()
         {
             if (whiteDwarfCooldown > 0)
@@ -26,6 +29,9 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
             if (ShinobiSigilCooldown > 0)
                 ShinobiSigilCooldown--;
+
+            if (bronzeSetCooldown > 0)
+                bronzeSetCooldown--;
         }
 
         private void EnsureInitialized()
@@ -143,7 +149,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         {
             Mod thorium; 
             ModLoader.TryGetMod("ThoriumMod", out thorium);
-            if (thorium == null) return;
+            if (thorium == null || InfernalCrossmod.Hummus.Loaded) return;
 
             int whiteDwarfHelm = thorium.Find<ModItem>("WhiteDwarfMask").Type;
             int whiteDwarfPlate = thorium.Find<ModItem>("WhiteDwarfGuard").Type;

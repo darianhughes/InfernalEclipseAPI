@@ -3,7 +3,7 @@ using System.Reflection;
 using CalamityMod;
 using CalamityMod.Items.Weapons.Melee;
 using InfernalEclipseAPI.Core.Systems;
-using InfernalEclipseAPI.Core.Systems.Hooks;
+using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks;
 using InfernalEclipseAPI.Core.Utils;
 using InfernumMode.Content.Items.Accessories;
 using InfernumMode.Core.GlobalInstances.Players;
@@ -402,6 +402,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.moveSpeed -= 0.11f;
                 }
 
+                if (item.ModItem.Name == "DreamWeaversHelmet" && ModLoader.HasMod("ThoriumRework"))
+                {
+                    player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 20f;
+                }
+                if (item.ModItem.Name == "DreamWeaversHood" && ModLoader.HasMod("ThoriumRework"))
+                {
+                    player.GetDamage((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 0.3f;
+                    player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 16f;
+                }
+                if (item.ModItem.Name == "DreamWeaversTabard" && ModLoader.HasMod("ThoriumRework"))
+                {
+                    player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 14f;
+                }
+
                 if (InfernalCrossmod.RagnarokMod.Loaded)
                 {
                     if (item.type == ItemType<NinjaEmblem>())
@@ -432,7 +446,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         {
                         "BonusHealerHealBonus",
                         player,
-                        -4
+                        -6
                         });
                     }
 
@@ -442,7 +456,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         {
                         "BonusHealerHealBonus",
                         player,
-                        -5
+                        -8
                         });
                     }
 
@@ -450,9 +464,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     {
                         InfernalCrossmod.Thorium.Mod.Call(new object[]
                         {
-                    "BonusHealerHealBonus",
-                    player,
-                    -8
+                        "BonusHealerHealBonus",
+                        player,
+                        -11
                         });
                     }
 
@@ -464,7 +478,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                             {
                                 "BonusHealerHealBonus",
                                 player,
-                                -8
+                                -11
                             });
                         }
                     }

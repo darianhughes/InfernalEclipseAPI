@@ -25,6 +25,7 @@ using CalamityMod.World;
 using Terraria.GameContent.Creative;
 using static Terraria.GameContent.Creative.CreativePowers;
 using System.Runtime.CompilerServices;
+using NoxusBoss.Core.SolynEvents;
 
 [assembly: InternalsVisibleTo("HomewardRagnarok")]
 namespace InfernalEclipseAPI
@@ -35,7 +36,8 @@ namespace InfernalEclipseAPI
         TriggerScytheCharge = 2,
         ThoriumEmpowerment = 3,
         ToggleRagnarok = 4,
-        SyncRagnarokState = 5
+        SyncRagnarokState = 5,
+        MarsMultiplayerSync = 6
     }
 
     public partial class InfernalEclipseAPI : Mod
@@ -361,6 +363,13 @@ namespace InfernalEclipseAPI
 
                         break;
                     }
+
+                case InfernalEclipseMessageType.MarsMultiplayerSync:
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        MarsCombatEvent.MarsBeingSummoned = true;
+                    }
+                    break;
             }
 
             //int npcIndex = reader.ReadInt32();

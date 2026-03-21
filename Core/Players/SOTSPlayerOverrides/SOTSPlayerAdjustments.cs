@@ -71,6 +71,9 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
             {
                 sotsPlayer.CritBonusDamage = (int)(sotsPlayer.CritBonusDamage * 0.25f);
                 sotsPlayer.CritBonusMultiplier *= 0.75f;
+                sotsPlayer.CritCurseFire = false;
+                sotsPlayer.CritFire = false;
+                sotsPlayer.CritFrost = false;
             }
         }
 

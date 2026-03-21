@@ -5,6 +5,7 @@ using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -43,7 +44,7 @@ namespace InfernalEclipseAPI.Core.World
         {
             if (InfernalConfig.Instance.ThereIsNoReasonDisableThis && (WorldSaveSystem.InfernumModeEnabled || RagnarokModeEnabled))
             {
-                if (Main.getGoodWorld)
+                if (Main.getGoodWorld && (RagnarokModeEnabled || WorldSaveSystem.InfernumModeEnabled))
                 {
                     RagnarokModeEnabled = false;
                     WorldSaveSystem.InfernumModeEnabled = false;
@@ -51,7 +52,8 @@ namespace InfernalEclipseAPI.Core.World
 
                 if (InfernalCrossmod.FargosSouls.Loaded)
                 {
-                    FargoWorldFlagAdjustments.UnsetEmode();
+                    if (FargoWorldFlagAdjustments.IsEmodeOrMasoActive())
+                        FargoWorldFlagAdjustments.UnsetEmode();
                 }
             }
 
@@ -174,6 +176,8 @@ namespace InfernalEclipseAPI.Core.World
     [ExtendsFromMod(InfernalCrossmod.FargosSouls.Name)]
     public static class FargoWorldFlagAdjustments
     {
+        public static bool IsEmodeOrMasoActive() => FargowiltasSouls.Core.Systems.WorldSavingSystem.EternityMode || FargowiltasSouls.Core.Systems.WorldSavingSystem.MasochistModeReal;
+
         public static void UnsetEmode()
         {
             FargowiltasSouls.Core.Systems.WorldSavingSystem.EternityMode = false;
