@@ -20,7 +20,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             var thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             var cdPlayer = player.GetModPlayer<RogueThrowerPlayer>();
 
-            if (thoriumPlayer.setWhiteDwarf && hit.Crit)
+            if ((thoriumPlayer.setWhiteDwarf || GetRagnarokModPlayerField.RagnarokWhiteDwarfActive(player)) && hit.Crit)
             {
                 if (cdPlayer.whiteDwarfCooldown > 0)
                 {
@@ -29,7 +29,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 }
                 else
                 {
-                    int cooldown = 120; // Default cooldown
+                    int cooldown = 60; // Default cooldown
 
                     /*
                     // Check if White Dwarf Thrusters accessory is equipped
@@ -93,6 +93,8 @@ namespace InfernalEclipseAPI.Content.RogueThrower
     [ExtendsFromMod("RagnarokMod")]
     public static class GetRagnarokModPlayerField
     {
+        public static bool RagnarokWhiteDwarfActive(Player player) => player.GetRagnarokModPlayer().WhiteDwarf;
+
         public static void SetWhiteDwarf(Player player, bool value)
         {
             player.GetRagnarokModPlayer().WhiteDwarf = value;

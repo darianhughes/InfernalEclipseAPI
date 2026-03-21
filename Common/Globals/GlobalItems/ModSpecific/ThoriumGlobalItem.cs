@@ -16,6 +16,7 @@ using ThoriumMod.Items.BossFallenBeholder;
 using ThoriumMod.Items.BossForgottenOne;
 using ThoriumMod.Items.BossGraniteEnergyStorm;
 using ThoriumMod.Items.BossThePrimordials.Aqua;
+using ThoriumMod.Items.BossThePrimordials.Dream;
 using ThoriumMod.Items.BossThePrimordials.Slag;
 using ThoriumMod.Items.Bronze;
 using ThoriumMod.Items.Consumable;
@@ -402,16 +403,16 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.moveSpeed -= 0.11f;
                 }
 
-                if (item.ModItem.Name == "DreamWeaversHelmet" && ModLoader.HasMod("ThoriumRework"))
+                if (item.type == ItemType<DreamWeaversHelmet>() && ModLoader.HasMod("ThoriumRework"))
                 {
                     player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 20f;
                 }
-                if (item.ModItem.Name == "DreamWeaversHood" && ModLoader.HasMod("ThoriumRework"))
+                if (item.type == ItemType<DreamWeaversHood>() && ModLoader.HasMod("ThoriumRework"))
                 {
                     player.GetDamage((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 0.3f;
                     player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 16f;
                 }
-                if (item.ModItem.Name == "DreamWeaversTabard" && ModLoader.HasMod("ThoriumRework"))
+                if (item.type == ItemType<DreamWeaversTabard>() && ModLoader.HasMod("ThoriumRework"))
                 {
                     player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 14f;
                 }
