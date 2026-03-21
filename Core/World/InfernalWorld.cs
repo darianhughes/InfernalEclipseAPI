@@ -5,7 +5,6 @@ using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
-using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Core.World
 {
