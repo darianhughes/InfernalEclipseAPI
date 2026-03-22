@@ -1,5 +1,5 @@
 UI: {
-	// Cooldowns.ManaSteal: Mana Steal Remaining
+	Cooldowns.ManaSteal: 剩余魔力吸取量
 	RagnarokIconText: 诸神黄昏模式已启用
 	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
 	NoRespawn2: 复活受限：在 {1} 人联机时，每场 Boss 战中每位玩家只有 {0} 次重生机会！
@@ -70,7 +70,7 @@ WelcomeMessage: {
 	RagnarokBalance: 注意：为确保武器平衡按预期生效，请在 Ragnarok 的模组配置中将“通用武器调整”选项关闭，否则改动会叠加，使武器强度远超预期。
 	RagnarokRework: 注意：检测到你同时启用了 Ragnarok 模组和 Thorium Bosses Reworked。为获得预期的游戏体验，请在 Ragnarok 模组配置中将所有 Boss 选项切换到 瑟银BOSS重置。
 	GulaVaultMessage: 暴食保险库拒绝被打开。你必须先打败一个更为强大的邪恶生物……
-	// LichMessage: The objects magic still seems to be frozen inside. Maybe the structure in the snow biome will help uncover why?
+	LichMessage: 这件物品的魔力似乎仍然被冻结在其中。或许雪原中的那座建筑能帮助你揭示原因？
 }
 
 TimeFreezePrevention: {
@@ -108,9 +108,9 @@ ItemTooltip: {
 	TwoAlchs: 在酒精中毒效果中被视为两种酒
 
 	GrapeBeer: {
-		// Orig: 75% reduced critical strike damage
-		// Nerf: 75% reduced critical strike damage and 30% reduced critical strike chance
-		// SOTSAdditional: Disables effects of Icosahedrons
+		Orig: 降低75%暴击伤害
+		Nerf: 降低75%暴击伤害并降低30%暴击率
+		SOTSAdditional: 禁用所有二十面体的效果
 	}
 
 	SoulAnchor: {
@@ -245,94 +245,94 @@ ItemTooltip: {
 	}
 
 	Helios: {
-		// Orig: Attacks scorch with each hit, increasing damage done by 3% permanently
-		// Nerf: Attacks scorch with each hit, increasing damage done by 1% permanently
+		Orig: 每次攻击命中都会造成烧焦，会永久增加3%伤害
+		Nerf: 每次攻击命中都会造成烧焦，会永久增加1%伤害
 	}
 
 	Icosahedron: {
 		Hellfire: {
-			// Orig: Critical strikes may cause a flaming explosion, dealing 100% damage
-			// Nerf: Critical strikes may cause a flaming explosion, dealing 50% damage
+			Orig: 暴击时会引起火焰爆裂，造成100%伤害
+			Nerf: 暴击时会引起火焰爆裂，造成50%伤害
 		}
 
 		Borealis: {
-			// Orig: Critical strikes may cause a frostburn explosion, dealing 200% damage
-			// Nerf: Critical strikes may cause a frostburn explosion, dealing 75% damage
+			Orig: 暴击时会引起霜火爆裂，造成200%伤害
+			Nerf: 暴击时会引起霜火爆裂，造成75%伤害
 		}
 
 		Cursed: {
-			// OrigCursed: Critical strikes may cause a release of cursed thunder, dealing 100% damage
-			// NerfCursed: Critical strikes may cause a release of cursed thunder, dealing 75% damage
-			// OrigOther: Critical strikes may also cause frostburn or flaming explosions, dealing 100% damage
-			// NerfOther: Critical strikes may also cause frostburn or flaming explosions, dealing 75% damage
+			OrigCursed: 暴击时会释放诅咒雷，造成100%伤害
+			NerfCursed: 暴击时会释放诅咒雷，造成75%伤害
+			OrigOther: 暴击也会引起霜火或火焰爆裂，造成100%伤害
+			NerfOther: 暴击也会引起霜火或火焰爆裂，造成75%伤害
 		}
 
 		Charms: {
-			// Orig: Critical strikes may detonate enemies for 100% damage
-			// Nerf: Critical strikes may detonate enemies for 75% damage
+			Orig: 暴击有概率引爆敌人，造成100%伤害
+			Nerf: 暴击有概率引爆敌人，造成75%伤害
 		}
 	}
 
 	DreadGreaves: {
-		// Orig: 20% increased movement speed
-		// Nerf: 9% increased movement speed
+		Orig: 增加20%移动速度
+		Nerf: 增加9%移动速度
 	}
 
 	PlasmaShrimp: {
-		// Orig: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 50% damage
-		// Nerf: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 25% damage
+		Orig: 当超过40%魔力值时，魔法武器射出额外的，很烫的虾等离子体，造成50%伤害
+		Nerf: 当超过40%魔力值时，魔法武器射出额外的，很烫的虾等离子体，造成25%伤害
 	}
 
 	ShatteredDreams: {
-		// Orig: Magic weapons unleash a star for 100% damage but consume void equal to 10% of their mana cost
-		/* Nerf:
+		Orig: 魔法武器会释放出一颗100%伤害的星星，但会消耗相当于其魔力消耗的10%虚空值
+		Nerf:
 			'''
-			Magic weapons unlease a star that deal 100% damage but consume void equal to 10% of their mana cost
-			Only 3 stars can be active at a time
-			''' */
+			魔法武器会释放出一颗100%伤害的星星，但会消耗相当于其魔力消耗的10%虚空值
+			一次只能释放3颗星星
+			'''
 	}
 
-	/* OtherworldlyAmplifier:
+	OtherworldlyAmplifier:
 		'''
-		Critical strikes deal up to 8 more damage
-		The damage bonus stars at 2 and scales inversely with item use speed
-		Your current bonus is {0}
-		''' */
+		暴击最多会造成8点额外伤害
+		伤害加成初始为2点，并会随物品使用速度的降低而增加
+		你的当前加成为{0}点
+		'''
 
 	AlchCharm: {
-		// AlchOrig: Increases healing and mana received from potions by 100
-		// JellyOrig: Increases healing and mana received from potions by 40
-		// SandwichOrig: Increases healing received from potions by 40
+		AlchOrig: 增加100点从药水治疗的生命值和恢复的魔力值
+		JellyOrig: 增加40点从药水治疗的生命值
+		SandwichOrig: 增加40点从药水治疗的生命值
 	}
 
-	/* PlatformGenerator:
+	PlatformGenerator:
 		'''
-		Generates 2 platforms to the left and right of you
-		You can right click to drag the platforms, but they will always remain symmetrical
-		Sentries can be summoned on top of the platforms
-		'Bring your sentries with you!'
-		''' */
-	/* FortressGenerator:
+		在你左右两侧生成2个平台
+		右键点击可拖动平台，但它们会始终保持对称
+		可在平台顶部召唤哨兵
+		'带上你的哨兵和你一起走!'
 		'''
-		Increases max minions and max sentries by 1
-		Generates 4 platforms to the left and right of you
-		You can right click to drag the platforms, but they will always remain symmetrical
-		Sentries can be summoned on top of the platforms
-		''' */
+	FortressGenerator:
+		'''
+		+1召唤栏和哨兵栏
+		在你左右两侧生成4个平台
+		右键点击可拖动平台，但它们会始终保持对称
+		可在平台顶部召唤哨兵
+		'''
 
 	DissolvingElements: {
-		// NatureFlipped: Increases life regeneration by 0.25 HP/s while in the inventory, up to 1 HP/s total
-		// EarthFlipped: Increases defense by 1 while in the inventory, up to 4 total
-		// AuroraFlipped: Increases movement speed by 1% while in the inventory, up to 4% total
-		// DelugeFlipped: Increases ranged damage by 2% while in the inventory, up to 8% total
-		// AetherFlipped: Increases magic damage by 2% while in the inventory, up to 8% total
-		// NetherFlipped: Increases melee damage by 2% while in the inventory, up to 8% total
-		// BrillianceFlipped: Increases summon damage by 2% while in the inventory, up to 8% total
+		NatureFlipped: 放置于物品栏时会增加0.25点生命恢复速度，最多1点
+		EarthFlipped: 放置于物品栏时会增加1点防御值，最多4点
+		AuroraFlipped: 放置于物品栏时会增加1%移动速度，最多4%
+		DelugeFlipped: 放置于物品栏时会增加2%远程伤害，最多8%
+		AetherFlipped: 放置于物品栏时会增加2%魔法伤害，最多8%
+		NetherFlipped: 放置于物品栏时会增加2%近战伤害，最多4%
+		BrillianceFlipped: 放置于物品栏时会增加2%召唤伤害，最多8%
 	}
 
-	// DoesNotStack: Does not stack with downgrades
+	DoesNotStack: 不与下位效果叠加
 	Disabled: "[禁用] "
-	// DauntlessBuff: +2% radiant damage
+	DauntlessBuff: +2%光辉伤害
 	DedTo: -献给{0}-
 
 	Dedicated: {
@@ -1003,7 +1003,7 @@ Items: {
 		SOTSBardHealerTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击额外多造成40点伤害，并有概率引爆敌人，造成100%额外伤害
+			暴击额外多造成40点伤害，并有概率引爆敌人，造成75%额外伤害
 			暴击汲取生命，恢复虚空值，回复魔力，并返还灵感值
 			吸血效果和灵感值返还有1秒冷却时间
 			按下 “{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}” 键使你必定暴击，持续10秒
@@ -1013,7 +1013,7 @@ Items: {
 		ThoriumTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击额外多造成40点伤害，汲取生命，恢复虚空值并回复魔力，并有概率引爆敌人，造成100%额外伤害
+			暴击额外多造成40点伤害，汲取生命，恢复虚空值并回复魔力，并有概率引爆敌人，造成75%额外伤害
 			吸血效果有1秒冷却时间
 			按下 “{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}” 键使你必定暴击，持续10秒
 			在之后1分钟，你造成的伤害降低10%
@@ -1022,7 +1022,7 @@ Items: {
 		DefaultTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击额外多造成40点伤害，并有概率引爆敌人，造成100%额外伤害
+			暴击额外多造成40点伤害，并有概率引爆敌人，造成75%额外伤害
 			暴击汲取生命，恢复虚空值并回复魔力
 			吸血效果有1秒冷却时间
 			免疫流血与中毒效果，并给予你夜视能力
@@ -1360,7 +1360,7 @@ Items: {
 				击败光辉之凰以获得更多力量……
 				'''
 			Full: 星界启明已苏醒，最大威能解禁！
-			/* ProfanedGuardians:
+			/* SProfanedGuardians:
 				'''
 				With the defeat of the Profaned Guardians, you can fire a celestial beam
 				Defeat the Goddess of Flame to gain more power...
@@ -2070,17 +2070,17 @@ Configs: {
 		}
 
 		DeveloperMode: {
-			// Label: Developer Mode
-			// Tooltip: Toggles the availablity of tools useful for development.
+			Label: 开发者模式
+			Tooltip: 切换用于开发的有用工具的启用状态
 		}
 
 		UseAprilFoolsMutant: {
-			// Label: Use April Fools Mutant
-			/* Tooltip:
+			Label: 使用愚人节突变体
+			Tooltip:
 				'''
-				Converts the Mutant from Fargo's Souls to Yharim.
-				This setting doesn't do anything if Fargo's Souls isn't enabled.
-				''' */
+				将 Fargo's Souls 的突变体转变为亚利姆
+				如果 Fargo's Souls 未启用，则该设置不会生效
+				'''
 		}
 	}
 
@@ -2358,8 +2358,8 @@ Buffs: {
 	}
 
 	BrimstoneDesperation: {
-		// DisplayName: Brimstone Desperation
-		// Description: Brimstone energy flows though the air, disabling many of your abilites!
+		DisplayName: 硫火绝望
+		Description: 硫火能量在空气中流动，禁用了你的大多数能力！
 	}
 }
 
