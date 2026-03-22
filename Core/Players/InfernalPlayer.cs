@@ -27,6 +27,9 @@ using InfernumMode.Content.Items.Accessories;
 using CalamityMod.CalPlayer;
 using CalamityMod.Balancing;
 using InfernalEclipseAPI.Content.Cooldowns;
+using CalamityMod.NPCs.PlaguebringerGoliath;
+using CalamityMod.NPCs.Ravager;
+using Daybreak.Common.Features.Hooks;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -455,14 +458,8 @@ namespace InfernalEclipseAPI.Core.Players
             if (soltanBullying)
             {
                 float emptySummonSlots = Player.maxMinions - Player.slotsMinions;
-                ref StatModifier melee = ref Player.GetDamage(DamageClass.Melee);
-                melee += (float)(0.02 * emptySummonSlots);
-                ref StatModifier ranged = ref Player.GetDamage(DamageClass.Ranged);
-                ranged += (float)(0.02 * emptySummonSlots);
-                ref StatModifier magic = ref Player.GetDamage(DamageClass.Magic);
-                magic += (float)(0.02 * emptySummonSlots);
-                ref StatModifier throwing = ref Player.GetDamage(DamageClass.Throwing);
-                throwing += (float)(0.02 * emptySummonSlots);
+                Player.GetDamage(DamageClass.Generic) += (float)(0.02 * emptySummonSlots);
+                Player.GetDamage(DamageClass.Summon) -= (float)(0.02 * emptySummonSlots);
 
                 ref StatModifier summon = ref Player.GetDamage(DamageClass.Summon);
                 summon -= (float)(0.1 * Player.slotsMinions);
@@ -790,7 +787,7 @@ namespace InfernalEclipseAPI.Core.Players
             item.DamageType = ModContent.GetInstance<MeleeWhip>();
 
             //damage *= ratio;       // mimic Melee scaling
-            damage *= 1.10f;       // extra 10% while SoltanBullying
+            damage *= 1.25f;       // extra 10% while SoltanBullying
         }
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
@@ -861,6 +858,12 @@ namespace InfernalEclipseAPI.Core.Players
                     if (proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("BeholderBlade").Type || proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("Void").Type)
                         modifiers.FinalDamage /= 2;
                 }
+            }
+
+            if ((target.type == ModContent.NPCType<PlaguebringerGoliath>() || target.type == ModContent.NPCType<RavagerBody>() || target.type == ModContent.NPCType<RavagerClawLeft>() || target.type == ModContent.NPCType<RavagerClawRight>() || target.type == ModContent.NPCType<RavagerHead>() ||
+                target.type == ModContent.NPCType<RavagerHead2>() || target.type == ModContent.NPCType<RavagerLegLeft>() || target.type == ModContent.NPCType<RavagerLegRight>()) && (proj.type == ModContent.ProjectileType<DukesDecapitatorProj>() || proj.type == ModContent.ProjectileType<DukesDecapitatorBubble>()))
+            {
+                modifiers.FinalDamage *= 0.1f;
             }
         }
 

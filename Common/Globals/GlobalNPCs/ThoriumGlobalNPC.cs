@@ -33,6 +33,8 @@ using ThoriumMod.NPCs.BossQueenJellyfish;
 using ThoriumMod.NPCs.BossViscount;
 using InfernumMode.Core.GlobalInstances.Systems;
 using InfernalEclipseAPI.Content.Items.SpawnItems;
+using Terraria.Graphics.Effects;
+using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -74,6 +76,24 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 npc.buffImmune[oozed] = true;
                 npc.buffImmune[stunned] = true;
             }
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.type == ModContent.NPCType<Lich>() || npc.type == ModContent.NPCType<LichHeadless>())
+            {
+                Main.GraveyardVisualIntensity = 1f;
+            }
+            return base.PreAI(npc);
+        }
+
+        public override bool PreKill(NPC npc)
+        {
+            if (npc.type == ModContent.NPCType<Lich>() || npc.type == ModContent.NPCType<LichHeadless>())
+            {
+                Main.GraveyardVisualIntensity = 0f;
+            }
+            return base.PreKill(npc);
         }
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)

@@ -20,6 +20,7 @@ using CalamityMod.CalPlayer;
 using CalamityMod;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
 using InfernalEclipseAPI.Core.Utils;
+using CalamityMod.Buffs.StatDebuffs;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -149,7 +150,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override bool PreAI(NPC npc)
         {
-            if (!InfernalConfig.Instance.VanillaBalanceChanges || !npc.active || (npc.type != NPCID.HallowBoss)) return base.PreAI(npc);
+            if (!npc.active) return base.PreAI(npc);
 
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -157,10 +158,18 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
                     continue;
 
-                if (InfernalCrossmod.Clamity.Loaded)
+                if (InfernalConfig.Instance.VanillaBalanceChanges && npc.type == NPCID.HallowBoss)
                 {
-                    if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
-                        player.mount.Dismount(player);
+                    if (InfernalCrossmod.Clamity.Loaded)
+                    {
+                        if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
+                            player.mount.Dismount(player);
+                    }
+                }
+
+                if (InfernalWorld.RagnarokModeEnabled && npc.type == NPCID.Golem)
+                {
+                    player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
                 }
             }
 

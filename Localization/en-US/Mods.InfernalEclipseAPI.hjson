@@ -1816,7 +1816,7 @@ BullyingTooltip:
 	Increases most non-summon damage by 2% for each unused minion slot.
 	Reduces summon damage by 10% for each used minion slot.
 	Whips now scale with your melee bonuses instead of summoner bonuses
-	Increases whip damage by 10%
+	Increases whip damage by 25%
 	[c/E3AF40:A paper note with a microchip on it, designed by Dylan]
 	[c/BEBEBE:Press "Left Shift" to read the writing on the back of the note]
 	'''
@@ -2316,7 +2316,7 @@ Buffs: {
 	}
 
 	WarpJammed: {
-		Description: Draedon is monitoring your teleports...
+		Description: Your teleports are being monitored!
 		DisplayName: Warp Jammed
 	}
 
