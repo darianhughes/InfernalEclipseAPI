@@ -625,6 +625,7 @@ ItemTooltip: {
 		AlchemistCharm:
 			'''
 			增加100点从药水治疗的生命值和恢复的魔力值
+			无法与下位饰品叠加
 			增加67%buff持续时间
 			'''
 		SubspaceBoostersDash: 在地面上按下{0}键可向前方进行爆裂冲刺，提供更快的的速度和加速度
@@ -1342,7 +1343,7 @@ Items: {
 			MoonLord:
 				'''
 				击败月亮领主后，你的星辰变得更快
-				击败亵渎之炎的拥有者以获得更多力量……
+				击败亵渎之炎的守护者以获得更多力量……
 				'''
 			Providence:
 				'''
@@ -1360,16 +1361,16 @@ Items: {
 				击败光辉之凰以获得更多力量……
 				'''
 			Full: 星界启明已苏醒，最大威能解禁！
-			/* ProfanedGuardians:
+			ProfanedGuardians:
 				'''
-				With the defeat of the Profaned Guardians, you can fire a celestial beam
-				Defeat the Goddess of Flame to gain more power...
-				''' */
-			/* Sentinels:
+				击败亵渎守卫后，你可以发射一道星体光束
+				击败神怒之焰以获得更多力量……
 				'''
-				With the defeat of the Sentinels, the celestial beam lasts longer
-				Defeat the Devourer of Gods to gain more power...
-				''' */
+			Sentinels:
+				'''
+				击败神之仆从后，你的星体光束持续时间更久
+				击败噬神凶灵以获得更多力量……
+				'''
 		}
 
 		Lore: 由身负星界印记之人铸就的最终之书……
@@ -1818,7 +1819,7 @@ BullyingTooltip:
 	每有一个未使用的召唤栏，非召唤伤害提升2%
 	每有一个已使用的召唤栏，召唤伤害降低10%
 	鞭子现在将受益于近战伤害加成，而不是召唤伤害加成
-	鞭子伤害提升10%
+	鞭子伤害提升25%
 	[c/E3AF40:一张附带芯片的纸条，由迪伦设计]
 	[c/BEBEBE:按住"左Shift"以阅读便笺背面的文字]
 	'''
@@ -2318,7 +2319,7 @@ Buffs: {
 	}
 
 	WarpJammed: {
-		Description: 嘉登正在监控你的传送行动……
+		Description: 你的传送正在被监视！
 		DisplayName: 时空阻滞
 	}
 
