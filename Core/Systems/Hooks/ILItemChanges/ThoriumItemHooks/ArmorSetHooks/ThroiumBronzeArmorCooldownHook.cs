@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using ThoriumMod.Projectiles;
 using ThoriumMod.Sounds;
 
-namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks
+namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks.ArmorSetHooks
 {
     [JITWhenModsEnabled("ThoriumMod")]
     [ExtendsFromMod("ThoriumMod")]

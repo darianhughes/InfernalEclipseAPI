@@ -18,6 +18,8 @@ using SOTS.NPCs;
 using Terraria.DataStructures;
 using Terraria;
 using SOTS.Projectiles.AbandonedVillage;
+using SOTS.NPCs.Boss.Lux;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 {
@@ -51,7 +53,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 entity.Calamity().canBreakPlayerDefense = true;
             }
 
-            if (entity.type == ModContent.NPCType<Glowmoth>() || entity.type == ModContent.NPCType<GlowmothMinion>() || entity.type == ModContent.NPCType<PhaseEye>())
+            if (entity.type == ModContent.NPCType<Glowmoth>() || entity.type == ModContent.NPCType<GlowmothMinion>() || entity.type == ModContent.NPCType<PhaseEye>() || entity.type == ModContent.NPCType<Lux>())
             {
                 entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
             }
@@ -87,7 +89,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                     npc.lifeMax += (int)((double).25 * npc.lifeMax);
                 }
 
-                if (npc.ModNPC?.Name?.Contains("TheAdvisorHead") == true || npc.ModNPC.Name.Contains("Lux"))
+                if (npc.ModNPC.Name.Contains("Lux"))
+                {
+                    npc.lifeMax += (int)(0.45 * npc.lifeMax);
+                }
+                else if (npc.ModNPC.Name.Contains("TheAdvisorHead"))
                 {
                     npc.lifeMax += (int)(0.25 * npc.lifeMax);
                 }
@@ -268,7 +274,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 ModContent.ProjectileType<ChaosDart2>(),
                 ModContent.ProjectileType<ChaosEraser>(),
                 ModContent.ProjectileType<ChaosEraser2>(),
-                ModContent.ProjectileType<DogmaLaser>()
+                ModContent.ProjectileType<DogmaLaser>(),
+                ModContent.ProjectileType<ThunderBall>(),
+                ModContent.ProjectileType<ChaosHelixLaser>(),
+                ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>()
             };
 
             foreach (int type in types)
@@ -285,14 +294,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
 
             if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>() && 
-                entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>())
+                entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>() && entity.type != ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>())
                 entity.Calamity().DealsDefenseDamage = false;
         }
 
         public override void OnSpawn(Projectile entity, IEntitySource source)
         {
             if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>() &&
-                entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>())
+                entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>() &&
+                entity.type != ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>())
                 entity.Calamity().DealsDefenseDamage = false;
         }
 
@@ -311,6 +321,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                     damageMod *= 1.95f;
                 else if (projectile.type == ModContent.ProjectileType<WaveBall>() || projectile.Name.Contains("Excavator") || projectile.type == ModContent.ProjectileType<CollapseBlock>())
                     damageMod *= 1.5f;
+                else if ((projectile.ModProjectile.Name.Contains("Chaos") || projectile.ModProjectile.Name.Contains("Dogma")) && projectile.type != ModContent.ProjectileType<ChaosHelixLaser>())
+                {
+                    damageMod *= 1.2f;
+                }
                 else
                 {
                     damageMod *= 1.35f;

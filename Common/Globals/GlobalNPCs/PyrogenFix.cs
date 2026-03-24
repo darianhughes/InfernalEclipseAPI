@@ -26,7 +26,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 npc.damage = 45;
 
-                npc.lifeMax = (int)(npc.lifeMax * 0.7f);
+                npc.lifeMax = (int)(npc.lifeMax * 0.85f);
             }
             else
             {

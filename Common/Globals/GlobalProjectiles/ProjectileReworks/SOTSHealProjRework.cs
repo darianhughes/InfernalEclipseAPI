@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using SOTS;
 using SOTS.Projectiles.Base;
-using SOTS.Projectiles.Minions;
 using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ProjectileReworks
@@ -93,6 +92,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ProjectileReworks
                 if (healedAmount > 0)
                     player.lifeSteal -= healedAmount * cooldownMult;
 
+                if (player.lifeSteal < -70f)
+                    player.lifeSteal = -70f;
+
                 previousLife = player.statLife;
             }
 
@@ -110,6 +112,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ProjectileReworks
 
                 if (healedAmount > 0)
                     player.GetModPlayer<InfernalPlayer>().manaSteal -= healedAmount * cooldownMult;
+
+                if (player.GetModPlayer<InfernalPlayer>().manaSteal < -40f)
+                    player.GetModPlayer<InfernalPlayer>().manaSteal = -40f;
 
                 previousMana = player.statMana;
             }
@@ -129,6 +134,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ProjectileReworks
 
                 if (healedAmount > 0)
                     player.GetModPlayer<InfernalPlayer>().voidSteal -= healedAmount * cooldownMult;
+
+                if (player.GetModPlayer<InfernalPlayer>().voidSteal < -45f)
+                    player.GetModPlayer<InfernalPlayer>().voidSteal = -45f;
 
                 previousVoid = player.VoidPlayer().voidMeter;
             }
@@ -150,6 +158,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ProjectileReworks
                             cooldownMult = 1f;
 
                         player.GetModPlayer<InfernalPlayer>().inspirationSteal -= healedAmount * cooldownMult;
+
+                        if (player.GetModPlayer<InfernalPlayer>().inspirationSteal < -10f)
+                            player.GetModPlayer<InfernalPlayer>().inspirationSteal = -10f;
                     }
                 }
             }

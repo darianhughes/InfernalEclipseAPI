@@ -32,7 +32,7 @@ using SOTS.Items.Evil;
 using CalamityMod.Items.Accessories;
 using SOTS.Items.Temple;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
-using System.Security.Policy;
+using SOTS.Items.Gems;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -110,6 +110,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     player.GetCritChance(DamageClass.Generic) -= 20f;
                     modPlayer.focusReticle = true;
+                    sotsPlayer.CritBonusDamage -= 40;
+                    sotsPlayer.CritBonusDamage += GetReticleCritBonus(player);
                 }
 
                 if (item.type == ModContent.ItemType<Starbelt>())
@@ -191,6 +193,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     sotsPlayer.CritBonusDamage += GetAmpliferCritBonus(player);
                 }
 
+                if (item.type == ItemType<FocusCrystal>())
+                {
+                    sotsPlayer.CritBonusDamage -= 40;
+                    sotsPlayer.CritBonusDamage += GetFocusCritBonus(player);
+                }
+
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
                 {
                     Mod sBH = InfernalCrossmod.SOTSBardHealer.Mod;
@@ -204,37 +212,103 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             }
         }
 
-        public static int GetAmpliferCritBonus(Player player)
+        private static int GetAmpliferCritBonus(Player player)
         {
             if (player.HeldItem.useTime == 0)
             {
                 return 0;
             }
-            else if (player.HeldItem.useTime <= 20)
+            else if (player.HeldItem.useTime <= 9)
             {
                 return 2;
             }
-            else if (player.HeldItem.useTime <= 25)
+            else if (player.HeldItem.useTime <= 14)
             {
                 return 3;
             }
-            else if (player.HeldItem.useTime <= 30)
+            else if (player.HeldItem.useTime <= 22)
             {
                 return 4;
             }
-            else if (player.HeldItem.useTime <= 35)
+            else if (player.HeldItem.useTime <= 29)
             {
                 return 5;
             }
-            else if (player.HeldItem.useTime <= 45)
+            else if (player.HeldItem.useTime <= 37)
             {
                 return 6;
             }
-            else if (player.HeldItem.useTime <= 55)
+            else if (player.HeldItem.useTime <= 45)
             {
                 return 7;
             }
             return 8;
+        }
+
+        private static int GetFocusCritBonus(Player player)
+        {
+            if (player.HeldItem.useTime == 0)
+            {
+                return 0;
+            }
+            else if (player.HeldItem.useTime <= 9)
+            {
+                return 8;
+            }
+            else if (player.HeldItem.useTime <= 14)
+            {
+                return 10;
+            }
+            else if (player.HeldItem.useTime <= 22)
+            {
+                return 13;
+            }
+            else if (player.HeldItem.useTime <= 29)
+            {
+                return 16;
+            }
+            else if (player.HeldItem.useTime <= 37)
+            {
+                return 20;
+            }
+            else if (player.HeldItem.useTime <= 45)
+            {
+                return 25;
+            }
+            return 30;
+        }
+
+        public static int GetReticleCritBonus(Player player)
+        {
+            if (player.HeldItem.useTime == 0)
+            {
+                return 0;
+            }
+            else if (player.HeldItem.useTime <= 9)
+            {
+                return 15;
+            }
+            else if (player.HeldItem.useTime <= 14)
+            {
+                return 17;
+            }
+            else if (player.HeldItem.useTime <= 22)
+            {
+                return 20;
+            }
+            else if (player.HeldItem.useTime <= 29)
+            {
+                return 25;
+            }
+            else if (player.HeldItem.useTime <= 37)
+            {
+                return 30;
+            }
+            else if (player.HeldItem.useTime <= 45)
+            {
+                return 35;
+            }
+            return 40;
         }
 
         public override void SetDefaults(Item item)
@@ -394,7 +468,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ModContent.ItemType<FocusReticle>())
                 {
-                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FocusReticle"));
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FocusReticle", GetReticleCritBonus(Main.LocalPlayer)));
                 }
 
                 if (item.type == ModContent.ItemType<Starbelt>())
@@ -518,6 +592,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.OtherworldlyAmplifier", GetAmpliferCritBonus(Main.LocalPlayer)));
                 }
 
+                if (item.type == ItemType<FocusCrystal>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.FocusCrystal", GetFocusCritBonus(Main.LocalPlayer)));
+                }
+
                 if (item.type == ItemType<Sandwich>())
                 {
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AlchCharm.SandwichOrig"), 
@@ -567,6 +646,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         if (InfernalCrossmod.Clamity.Loaded)
                             InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CyanPearl"), InfernalRed);
                     }
+                }
+
+                if (item.type == ItemType<RubyRing>())
+                {
+                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.RubyRing"));
+                }
+
+                if (item.type == ItemType<ChallengerRing>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.Items.RubyRing.Tooltip"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.RubyRing"));
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ChallengerRubyHover.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ChallengerRubyHover.Nerf"));
                 }
             }
         }

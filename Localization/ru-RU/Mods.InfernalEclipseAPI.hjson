@@ -162,6 +162,12 @@ ItemTooltip: {
 		Критические удары с 50% шансом нанесут на 20 ед. урона больше
 		При получении урона с 75% шансом вы получите дебафф [cbuff:Poisoned]
 		'''
+
+	PolishedCoin: {
+		// Orig: Critical strikes have a 50% chance to deal 30 more damage
+		// Nerf: Critical strikes have a 50% chance to deal 15 more damage
+	}
+
 	/* Desecar:
 		'''
 		Grants 1 defense for every 8 empty inventory slots
@@ -292,8 +298,16 @@ ItemTooltip: {
 	/* OtherworldlyAmplifier:
 		'''
 		Critical strikes deal up to 8 more damage
-		The damage bonus stars at 2 and scales inversely with item use speed
+		The damage bonus starts at 2 and scales inversely with item use speed
 		Your current bonus is {0}
+		''' */
+	/* FocusCrystal:
+		'''
+		Critical strikes deal up to 30 more damage
+		The damage bonus starts at 8 and scales inversely with item use speed
+		Your current bonus is {0}
+		Increases critical strike chance by 4%
+		Immunity to Poison and Bleeding
 		''' */
 
 	AlchCharm: {
@@ -325,6 +339,26 @@ ItemTooltip: {
 		// AetherFlipped: Increases magic damage by 2% while in the inventory, up to 8% total
 		// NetherFlipped: Increases melee damage by 2% while in the inventory, up to 8% total
 		// BrillianceFlipped: Increases summon damage by 2% while in the inventory, up to 8% total
+	}
+
+	/* RubyRing:
+		'''
+		Killed enemies have a 50% chance to drop additional hearts
+		This chance increases to 100% with critical strikes
+		''' */
+
+	ChallengerRubyHover: {
+		/* Orig:
+			'''
+			> Killed enemies have a 50% chance to drop additional hearts
+			> This chance increases to 100% with critical strikes
+			> Collecting hearts lengthens the duration of active buffs, up to double the original duration
+			''' */
+		/* Nerf:
+			'''
+			> Killed enemies have a 50% chance to drop additional hearts
+			> This chance increases to 100% with critical strikes
+			''' */
 	}
 
 	// DoesNotStack: Does not stack with downgrades

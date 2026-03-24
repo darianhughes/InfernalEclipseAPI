@@ -4,7 +4,6 @@ using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using CalamityMod.Events;
 using Mono.Cecil.Cil;
-using InfernalEclipseAPI.Core.World;
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks
 {

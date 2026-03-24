@@ -10,6 +10,7 @@ using InfernumMode.Core.GlobalInstances.Players;
 using Terraria;
 using Terraria.Localization;
 using ThoriumMod;
+using ThoriumMod.Items;
 using ThoriumMod.Items.ArcaneArmor;
 using ThoriumMod.Items.BasicAccessories;
 using ThoriumMod.Items.BossFallenBeholder;

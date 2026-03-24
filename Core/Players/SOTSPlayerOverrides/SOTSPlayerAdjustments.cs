@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using CalamityMod.Buffs.Alcohol;
 using InfernalEclipseAPI.Core.Systems;
 using SOTS;
 using Terraria.Localization;
@@ -66,6 +67,12 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
         public override void PostUpdateEquips()
         {
             SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Player);
+
+            if (sotsPlayer.InverseDiamondRing)
+            {
+                Player.ClearBuff(ModContent.BuffType<GrapeBeerBuff>());
+                Player.Calamity().grapeBeer = false;
+            }
 
             if (Player.Calamity().grapeBeer)
             {

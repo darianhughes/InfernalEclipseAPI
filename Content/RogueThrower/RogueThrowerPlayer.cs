@@ -1,10 +1,13 @@
 ﻿using System.Reflection;
 using InfernalEclipseAPI.Core.Systems;
+using ThoriumMod.Utilities;
 
 namespace InfernalEclipseAPI.Content.RogueThrower
 {
     //Exhaustion removal code by Wardrobe Hummus
     //White Dwarf set cooldown by Akira
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
     public class RogueThrowerPlayer : ModPlayer
     {
         private int volume2Type = -1;
@@ -21,6 +24,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         public int whiteDwarfCooldown;
         public int ShinobiSigilCooldown;
         public int bronzeSetCooldown;
+        public int dragonSetCooldown;
 
         public override void ResetEffects()
         {
@@ -32,6 +36,9 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
             if (bronzeSetCooldown > 0)
                 bronzeSetCooldown--;
+
+            if (dragonSetCooldown > 0)
+                dragonSetCooldown--;
         }
 
         private void EnsureInitialized()
@@ -161,6 +168,9 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             {
                 Player.setBonus += "\nIvory flares spawn on a 2 second cooldown";
             }
+
+            if (dragonSetCooldown > 0)
+                Player.GetThoriumPlayer().dragonSet = false;
         }
 
         public bool HasExhaustionClearingAccessoryEquipped()

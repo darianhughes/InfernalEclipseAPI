@@ -1,52 +1,76 @@
-﻿using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
+﻿using InfernalEclipseAPI.Core.Systems;
+using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria.OcramOverridess
 {
     public class OcramBehavior : GlobalNPC
     {
-        private static Mod console;
         private static bool bloodmoonStartedByOcram = false;
-        public static bool ConsolariaActive
+        private static bool bloodmoonStartedByDreadnaut = false;
+
+        public override bool PreAI(NPC npc)
         {
-            get
+            if (InfernumActive.InfernumActive && npc.type == NPCID.BloodNautilus && !Main.bloodMoon)
             {
-                if (ModLoader.TryGetMod("Consolaria", out console))
-                {
-                    return true;
-                }
-                return false;
+                Main.bloodMoon = true;
+                bloodmoonStartedByDreadnaut = true;
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendData(MessageID.WorldData); // sync the blood moon
             }
+
+            return base.PreAI(npc);
         }
+
         public override void AI(NPC npc)
         {
-            if (!InfernumActive.InfernumActive || !ConsolariaActive)
+            if (!InfernumActive.InfernumActive)
                 { return; }
 
-            if (npc.type ==  console.Find<ModNPC>("Ocram").Type)
+            if (InfernalCrossmod.Consolaria.Loaded) 
             {
-                if (!Main.bloodMoon)
+                if (npc.type == InfernalCrossmod.Consolaria.Mod.Find<ModNPC>("Ocram").Type)
                 {
-                    Main.bloodMoon = true;
-                    bloodmoonStartedByOcram = true;
-                    if (Main.netMode == NetmodeID.Server)
-                        NetMessage.SendData(MessageID.WorldData); // sync the blood moon
+                    if (!Main.bloodMoon)
+                    {
+                        Main.bloodMoon = true;
+                        bloodmoonStartedByOcram = true;
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendData(MessageID.WorldData); // sync the blood moon
+                    }
                 }
             }
         }
 
         public override void OnKill(NPC npc)
         {
-            if (!InfernumActive.InfernumActive || !ConsolariaActive)
-            { return; }
-            if (npc.type == console.Find<ModNPC>("Ocram").Type)
+            if (!InfernumActive.InfernumActive)
+                return;
+
+            if (npc.type == NPCID.BloodNautilus && bloodmoonStartedByDreadnaut)
+            {
                 DisableBloodMoon();
+            }
+
+            if (InfernalCrossmod.Consolaria.Loaded && bloodmoonStartedByOcram)
+            {
+                if (npc.type == InfernalCrossmod.Consolaria.Mod.Find<ModNPC>("Ocram").Type)
+                    DisableBloodMoon();
+            }
         }
 
         public override bool CheckDead(NPC npc)
         {
-            if (InfernumActive.InfernumActive && ConsolariaActive) 
+            if (InfernumActive.InfernumActive) 
             {
-                if (npc.type == console.Find<ModNPC>("Ocram").Type)
+                if (npc.type == NPCID.BloodNautilus && bloodmoonStartedByDreadnaut)
+                {
                     DisableBloodMoon();
+                }
+
+                if (InfernalCrossmod.Consolaria.Loaded && bloodmoonStartedByOcram)
+                {
+                    if (npc.type == InfernalCrossmod.Consolaria.Mod.Find<ModNPC>("Ocram").Type)
+                        DisableBloodMoon();
+                }
             }
 
             return base.CheckDead(npc);
@@ -54,7 +78,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria.OcramOverrid
 
         private static void DisableBloodMoon()
         {
-            if (Main.bloodMoon && bloodmoonStartedByOcram)
+            if (Main.bloodMoon)
             {
                 Main.bloodMoon = false;
 

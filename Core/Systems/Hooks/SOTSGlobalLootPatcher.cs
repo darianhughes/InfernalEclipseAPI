@@ -53,7 +53,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
-                if (npc.type == InfernalCrossmod.Thorium.Mod.Find<ModNPC>("BiteyBaby").Type)
+                if (npc.type == InfernalCrossmod.Thorium.Mod.Find<ModNPC>("BiteyBaby").Type || npc.type == InfernalCrossmod.Thorium.Mod.Find<ModNPC>("AbyssalSpawn").Type)
                     return false;
             }
 

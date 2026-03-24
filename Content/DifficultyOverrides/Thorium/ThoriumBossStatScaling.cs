@@ -14,11 +14,14 @@ using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using ThoriumMod.NPCs.BossViscount;
 using CalamityMod;
 using Microsoft.Xna.Framework;
-using System.Security.Policy;
-using Terraria;
 using ThoriumRework.Buffs;
 using CalamityMod.CalPlayer;
 using ThoriumMod.NPCs.BossFallenBeholder;
+using ThoriumMod.NPCs.BossForgottenOne;
+using Terraria;
+using ThoriumMod.Buffs;
+using CalamityMod.Buffs.DamageOverTime;
+using InfernalEclipseAPI.Core.World;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
@@ -66,6 +69,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             ModContent.NPCType<SpittingJellyfish>(),
             ModContent.NPCType<ZealousJellyfish>(),
             ModContent.NPCType<ThoriumMod.NPCs.BossViscount.BiteyBaby>(),
+            ModContent.NPCType<AbyssalSpawn>()
         ];
 
         public static bool IsReworkNPC(NPC npc)
@@ -100,12 +104,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
             if (InfernalCrossmod.SOTS.Loaded)
             {
-                if (entity.type == ModContent.NPCType<Viscount>() || entity.type == ModContent.NPCType<ThoriumMod.NPCs.BossViscount.BiteyBaby>())
+                if (entity.type == ModContent.NPCType<Viscount>() || entity.type == ModContent.NPCType<ThoriumMod.NPCs.BossViscount.BiteyBaby>() ||
+                    entity.type == ModContent.NPCType<ForgottenOne>() || entity.type == ModContent.NPCType<ForgottenOneCracked>())
                 {
                     entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
                 }
 
-                if (entity.type == ModContent.NPCType<DreamEater>())
+                if (entity.type == ModContent.NPCType<DreamEater>() || entity.type == ModContent.NPCType<ForgottenOneReleased>())
                 {
                     entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
                     entity.GetGlobalNPC<SOTSGlobalNPC>().strongVoidDamge = true;
@@ -169,6 +174,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 if (npc.type == ModContent.NPCType<FallenBeholder>() || npc.type == ModContent.NPCType<FallenBeholder2>())
                 {
                     npc.lifeMax += (int)(npc.lifeMax * 0.5f);
+                }
+                if (npc.type == ModContent.NPCType<ForgottenOne>() || npc.type == ModContent.NPCType<ForgottenOneCracked>() || npc.type == ModContent.NPCType<ForgottenOneReleased>())
+                {
+                    npc.lifeMax += (int)(npc.lifeMax * 0.25f);
                 }
                 string name = npc.ModNPC?.Name ?? "";
                 if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
@@ -243,6 +252,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 damageMod += 0.6f;
             else if (name.Contains("BiteyBaby"))
                 damageMod += 1f;
+            else if (npc.type == ModContent.NPCType<FallenBeholder>() || npc.type == ModContent.NPCType<FallenBeholder2>())
+                damageMod += 0.05f;
 
             if (IsWorldLegendary())
             {
@@ -269,6 +280,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
         public override void PostAI(NPC npc)
         {
+            if (npc.type == ModContent.NPCType<ForgottenOne>() && npc.defense != 240)
+            {
+                npc.defense = 120;
+            }
+            if (npc.type == ModContent.NPCType<ForgottenOneCracked>() && npc.defense == 40)
+            {
+                npc.defense = 75;
+            }
+
             if (npc.ModNPC?.Name?.Contains("BoreanStrider") == true)
             {
                 foreach (Player player in Main.player)
@@ -369,7 +389,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 ModContent.ProjectileType<EradicationBeamF>(),
                 ModContent.ProjectileType<FalseBeholder>(),
                 ModContent.ProjectileType<VoidEye>(),
-                ModContent.ProjectileType<VoidEyeF>()
+                ModContent.ProjectileType<VoidEyeF>(),
+
+                ModContent.ProjectileType<AbyssBubble>(),
+                ModContent.ProjectileType<AbyssBubble2>(),
+                ModContent.ProjectileType<AbyssalApparition>(),
             ];
 
             foreach (int type in reworkType)
@@ -442,6 +466,16 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 ModContent.ProjectileType<ThoriumMod.Projectiles.Boss.SoulSteal>(),
                 ModContent.ProjectileType<BeholderBeam>(),
                 ModContent.ProjectileType<DoomBeholderBeam>(),
+
+                //Forgotten One
+                ModContent.ProjectileType<ForgottenOneSpit>(),
+                ModContent.ProjectileType<ForgottenOneSpit2>(),
+                ModContent.ProjectileType<Whirlpool>(),
+                ModContent.ProjectileType<AquaRipple>(),
+                ModContent.ProjectileType<AbyssalStrike>(),
+                ModContent.ProjectileType<AbyssalStrike2>(),
+                ModContent.ProjectileType<OldGodSpit>(),
+                ModContent.ProjectileType<OldGodSpit2>()
             ];
 
             foreach (int type in types)
@@ -485,22 +519,42 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             {
                 if (entity.ModProjectile.Name.Contains("Blood") || entity.ModProjectile.Name.Contains("BiteyBaby") || entity.ModProjectile.Name.Contains("Ripple") ||
                     (entity.ModProjectile.Name.Contains("Beholder") && !entity.ModProjectile.Name.Contains("Lava")) || entity.ModProjectile.Name.Contains("Soul") ||
-                    entity.ModProjectile.Name.Contains("Void") || entity.ModProjectile.Name.Contains("Eradication"))
+                    entity.ModProjectile.Name.Contains("Void") || entity.ModProjectile.Name.Contains("Eradication") || entity.ModProjectile.Name.Contains("OldGodSpit") ||
+                    entity.ModProjectile.Name.Contains("AbyssalStrike2"))
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                 }
-                if (entity.ModProjectile.Name.Contains("Lucid") || entity.ModProjectile.Name.Contains("Nightmare") || entity.ModProjectile.Name.Contains("EraserLaser") || entity.ModProjectile.Name.Contains("DyingReality"))
+                if (entity.ModProjectile.Name.Contains("Lucid") || entity.ModProjectile.Name.Contains("Nightmare") || entity.ModProjectile.Name.Contains("EraserLaser") || entity.ModProjectile.Name.Contains("DyingReality") || 
+                    entity.ModProjectile.Name.Contains("AbyssalApparition"))
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                     entity.GetGlobalProjectile<VoidDamageProjectile>().strongVoidDamge = true;
                 }
             }
+
             if ((entity.ModProjectile.Name.Contains("Viscount") && !entity.ModProjectile.Name.Contains("Rock") && !entity.ModProjectile.Name.Contains("Stomp")) || 
                 entity.ModProjectile.Name.Contains("Blizzard") || entity.ModProjectile.Name.Contains("Ice") || entity.ModProjectile.Name.Contains("Glacier") ||
                 (entity.ModProjectile.Name.Contains("Beholder") && !entity.ModProjectile.Name.Contains("Beam") && !entity.ModProjectile.Name.Contains("Ray") && !entity.ModProjectile.Name.Contains("False")) ||
                 entity.ModProjectile.Name.Contains("VoidEye") || !entity.ModProjectile.Name.Contains("SoulSteal"))
                 entity.Calamity().DealsDefenseDamage = false;
+
+            if (entity.ModProjectile.Name.Contains("AbyssBubble"))
+                entity.light = 0.25f;
         }
+
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
+        {
+            if (projectile.ModProjectile?.Name == "AbyssBubble" && InfernalWorld.RagnarokModeEnabled)
+            {
+                target.AddBuff(ModContent.BuffType<Bubbled>(), 45);
+                target.AddBuff(ModContent.BuffType<CrushDepth>(), 3 * 60);
+            }
+            if (projectile.type == ModContent.ProjectileType<Whirlpool>())
+            {
+                target.AddBuff(ModContent.BuffType<CrushDepth>(), 5 * 60);
+            }
+        }
+
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
             float damageMod = 1f;
@@ -523,9 +577,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             {
                 if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
                     damageMod *= 1.70f;
+                if (projectile.ModProjectile.Name.Contains("ForgottenOne") || projectile.type == ModContent.ProjectileType<AquaRipple>() || projectile.type == ModContent.ProjectileType<Whirlpool>() || 
+                    projectile.ModProjectile.Name.Contains("AbyssBubble") || projectile.ModProjectile.Name.Contains("AbyssalStrike") || projectile.ModProjectile.Name.Contains("OldGodSpit"))
+                    damageMod *= 1.375f;
                 else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
                          projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
-                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam"))
+                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam") || projectile.ModProjectile.Name.Contains("AbyssalApparition"))
                     damageMod *= 1.35f;
                 else
                     damageMod *= 2.2f;

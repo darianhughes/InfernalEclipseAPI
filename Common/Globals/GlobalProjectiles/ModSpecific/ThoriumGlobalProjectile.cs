@@ -3,10 +3,10 @@ using ThoriumMod.Projectiles;
 using CalamityMod.Projectiles.Melee;
 using CalamityMod;
 
-namespace InfernalEclipseAPI.Common.GlobalProjectiles
+namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 {
     [ExtendsFromMod("ThoriumMod")]
-    public class ProjectileToThoriumWeaponClass : GlobalProjectile
+    public class ThoriumGlobalProjectile : GlobalProjectile
     {
         public override void SetDefaults(Projectile entity)
         {

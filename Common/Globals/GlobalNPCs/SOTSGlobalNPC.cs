@@ -49,6 +49,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
         public bool canDoVoidDamage = false;
         public bool strongVoidDamge = false;
         public bool isFlowered;
+
+        private const int MaxAnomalyCurseStacks = 30;
+
         public override bool InstancePerEntity => true;
 
         public override void SetDefaults(NPC entity)
@@ -138,7 +141,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
         public override void PostAI(NPC npc)
         {
-            if (!npc.active || npc.immortal || npc.realLife != -1)
+            if (!npc.active)
+                return;
+
+            DebuffNPC debuffNPC = npc.GetGlobalNPC<DebuffNPC>();
+
+            if (debuffNPC.AnomalyCurse > MaxAnomalyCurseStacks)
+                debuffNPC.AnomalyCurse = MaxAnomalyCurseStacks;
+
+            if (npc.immortal || npc.realLife != -1)
                 return;
 
             float num8 = 0f;

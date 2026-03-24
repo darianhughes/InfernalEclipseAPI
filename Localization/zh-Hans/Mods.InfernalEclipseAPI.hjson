@@ -165,6 +165,12 @@ ItemTooltip: {
 		受伤时有75%的概率对你造成中毒debuff
 		暴击有50%的概率造成10点额外伤害
 		'''
+
+	PolishedCoin: {
+		// Orig: Critical strikes have a 50% chance to deal 30 more damage
+		// Nerf: Critical strikes have a 50% chance to deal 15 more damage
+	}
+
 	Desecar:
 		'''
 		每有8个空物品栏就增加1点防御
@@ -298,6 +304,14 @@ ItemTooltip: {
 		伤害加成初始为2点，并会随物品使用速度的降低而增加
 		你的当前加成为{0}点
 		'''
+	/* FocusCrystal:
+		'''
+		Critical strikes deal up to 30 more damage
+		The damage bonus starts at 8 and scales inversely with item use speed
+		Your current bonus is {0}
+		Increases critical strike chance by 4%
+		Immunity to Poison and Bleeding
+		''' */
 
 	AlchCharm: {
 		AlchOrig: 增加100点从药水治疗的生命值和恢复的魔力值
@@ -328,6 +342,26 @@ ItemTooltip: {
 		AetherFlipped: 放置于物品栏时会增加2%魔法伤害，最多8%
 		NetherFlipped: 放置于物品栏时会增加2%近战伤害，最多4%
 		BrillianceFlipped: 放置于物品栏时会增加2%召唤伤害，最多8%
+	}
+
+	/* RubyRing:
+		'''
+		Killed enemies have a 50% chance to drop additional hearts
+		This chance increases to 100% with critical strikes
+		''' */
+
+	ChallengerRubyHover: {
+		/* Orig:
+			'''
+			> Killed enemies have a 50% chance to drop additional hearts
+			> This chance increases to 100% with critical strikes
+			> Collecting hearts lengthens the duration of active buffs, up to double the original duration
+			''' */
+		/* Nerf:
+			'''
+			> Killed enemies have a 50% chance to drop additional hearts
+			> This chance increases to 100% with critical strikes
+			''' */
 	}
 
 	DoesNotStack: 不与下位效果叠加

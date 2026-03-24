@@ -197,8 +197,8 @@ namespace InfernalEclipseAPI.Core.Players
         public bool CritNightmare;
 
         public float manaSteal = Main.expertMode ? 40f : 50f;
-        public float voidSteal;
-        public float inspirationSteal;
+        public float voidSteal = Main.expertMode ? 45f : 55f;
+        public float inspirationSteal = Main.expertMode ? 5f : 10f;
 
         public bool singularityCore;
 
@@ -815,7 +815,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
             {
-                modifiers.FinalDamage *= 0.2f;
+                modifiers.FinalDamage *= 0.1f;
             }
         }
 
@@ -830,7 +830,7 @@ namespace InfernalEclipseAPI.Core.Players
 
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
             {
-                modifiers.FinalDamage *= 0.8f;
+                modifiers.FinalDamage *= 0.1f;
             }
 
             if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()) &&

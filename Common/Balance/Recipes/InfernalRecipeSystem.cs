@@ -1329,9 +1329,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(sots.Find<ModItem>("UltimatePolarizer")))
                         {
                             recipe.AddIngredient(ItemID.LunarBar, 5);
-                            recipe.AddIngredient(sots.Find<ModItem>("SanguiteBar"), 5);
                             if (InfernalCrossmod.Catalyst.Loaded)
                                 recipe.AddIngredient(InfernalCrossmod.Catalyst.Mod.Find<ModItem>("MetanovaBar"), 5);
+                            recipe.AddIngredient(sots.Find<ModItem>("SanguiteBar"), 5);
                             recipe.RemoveTile(TileID.TinkerersWorkbench);
                             recipe.AddTile(TileID.LunarCraftingStation);
                         }

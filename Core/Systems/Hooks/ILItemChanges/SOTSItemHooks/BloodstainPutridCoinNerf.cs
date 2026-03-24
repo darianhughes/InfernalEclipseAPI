@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Utils;
 using MonoMod.RuntimeDetour;
 using SOTS;
 using SOTS.Items.CritBonus;
@@ -15,6 +16,7 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
     {
         private static Hook bloodstainHook = null;
         private static Hook putridHook = null;
+        private static Hook polishedHook = null;
 
         public override void OnModLoad()
         {
@@ -30,6 +32,10 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
             Type putridCoin = sots.Code.GetType("SOTS.Items.CritBonus.PutridCoin");
             MethodInfo putridOrig = putridCoin.GetMethod("UpdateAccessory", BindingFlags.Public | BindingFlags.Instance);
             putridHook = new Hook(putridOrig, PutridUpdateAccessory);
+
+            Type polishedCoin = sots.Code.GetType("SOTS.Items.CritBonus.PolishedCoin");
+            MethodInfo polishedOrig = polishedCoin.GetMethod("UpdateAccessory", BindingFlags.Public | BindingFlags.Instance);
+            polishedHook = new Hook(polishedOrig, PolishedUpdateAccessory);
         }
 
         public override void OnModUnload()
@@ -39,6 +45,9 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
 
             putridHook?.Dispose();
             putridHook = null;
+
+            polishedHook?.Dispose();
+            polishedHook = null;
         }
 
         private static void BloodstainUpdateAccessory(Action<ModItem, Player, bool> orig, ModItem self, Player player, bool hideVisual)
@@ -60,6 +69,18 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
             if (Terraria.Utils.NextBool(Main.rand, 2))
                 sotsPlayer.CritBonusDamage += 10;
         }
+
+        private static void PolishedUpdateAccessory(Action<ModItem, Player, bool> orig, ModItem self, Player player, bool hideVisual)
+        {
+            SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(player);
+            player.GetCritChance(DamageClass.Generic) += 2f;
+
+            if (Terraria.Utils.NextBool(Main.rand, 2))
+                sotsPlayer.CritBonusDamage += 15;
+
+            player.buffImmune[30] = true;
+            player.buffImmune[20] = true;
+        }
     }
 
     [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
@@ -73,7 +94,8 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
 
         public override bool AppliesToEntity(Item entity, bool lateInstantiation)
         {
-            return entity.type == ModContent.ItemType<PutridCoin>() || entity.type == ModContent.ItemType<BloodstainedCoin>() || entity.type == ModContent.ItemType<DiamondRing>() || entity.type == ModContent.ItemType<ChallengerRing>();
+            return entity.type == ModContent.ItemType<PutridCoin>() || entity.type == ModContent.ItemType<BloodstainedCoin>()  || entity.type == ModContent.ItemType<PolishedCoin>()
+                || entity.type == ModContent.ItemType<DiamondRing>() || entity.type == ModContent.ItemType<ChallengerRing>();
         }
         private static void FullTooltipOveride(List<TooltipLine> tooltips, string stealthTooltip)
         {
@@ -104,6 +126,11 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
             {
                 FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.BloodstainedCoin"));
             }
+            if (item.type == ModContent.ItemType<PolishedCoin>())
+            {
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.PolishedCoin.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.PolishedCoin.Nerf"));
+            }
+
             if (item.type == ModContent.ItemType<DiamondRing>())
             {
                 int previousDefense = SOTSPlayer.ModPlayer(Main.LocalPlayer).previousDefense;

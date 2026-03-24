@@ -12,6 +12,7 @@ using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Players;
 using Microsoft.Xna.Framework.Input;
+using InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
 {
@@ -110,14 +111,14 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
             {
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
                 {
-                    tooltips.Add(new(Mod, "ItemInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.SOTSBardHealerTooltip")));
+                    tooltips.Add(new(Mod, "ItemInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.SOTSBardHealerTooltip", SOTSGlobalItem.GetReticleCritBonus(Main.LocalPlayer))));
                 }
                 else
-                    tooltips.Add(new(Mod, "ItemInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.ThoriumTooltip")));
+                    tooltips.Add(new(Mod, "ItemInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.ThoriumTooltip", SOTSGlobalItem.GetReticleCritBonus(Main.LocalPlayer))));
             }
             else
             {
-                tooltips.Add(new(Mod, "ItemInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.DefaultTooltip")));
+                tooltips.Add(new(Mod, "ItemInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.DefaultTooltip", SOTSGlobalItem.GetReticleCritBonus(Main.LocalPlayer))));
             }
 
             //tooltips.Add(new TooltipLine(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.ExoSights.Lore")) { OverrideColor = Color.MediumPurple });
