@@ -397,44 +397,44 @@ Items: {
 	}
 
 	DreamWeaversHelmet: {
-		// DisplayName: Dream Weaver's Helmet
-		/* Tooltip:
+		DisplayName: 梦境编织者头盔
+		Tooltip:
 			'''
-			'Bind the enemies of your future in temporal agony'
-			Corrupts your radiant powers
-			45% decreased non-radiant damage
-			45% increased radiant damage
-			36% increased radiant critical strike chance
-			Maximum mana increased by 20
-			''' */
+			“用暂时的苦痛捆绑住你未来的敌人”
+			污染你的光辉力量
+			降低45%非光辉伤害
+			增加45%光辉伤害
+			增加36%光辉暴击率
+			最大魔力值增加20
+			'''
 	}
 
 	DreamWeaversHood: {
-		// DisplayName: Dream Weaver's Hood
-		/* Tooltip:
+		DisplayName: 梦境编织者兜帽
+		Tooltip:
 			'''
-			'Manifest your dearest dreams through your allies'
-			25% decreased non-radiant damage
-			30% increased radiant damage
-			16% increased radiant critical strike chance
-			35% decreased mana cost
-			Massively increased mana regeneration
-			Maximum mana increased by 60
-			Healing spells will heal an additional 6 life
-			''' */
+			“通过你的队友表明你最由衷的梦想”
+			降低25%非光辉伤害
+			增加30%光辉伤害
+			增加16%光辉暴击率
+			降低35%魔力消耗
+			大幅增加魔力再生
+			最大魔力值增加60
+			治疗法术会额外治疗6点生命值
+			'''
 	}
 
 	DreamWeaversTabard: {
-		// DisplayName: Dream Weaver's Tabard
-		/* Tooltip:
+		DisplayName: 梦境编织者长袍
+		Tooltip:
 			'''
-			25% decreased non-radiant damage
-			25% increased radiant damage
-			14% increased radiant critical strike chance
-			20% decreased mana cost
-			Massively increased mana regeneration
-			Healing spells will heal an additional 2 life
-			''' */
+			降低25%非光辉伤害
+			增加25%光辉伤害
+			增加14%光辉暴击率
+			降低20%魔力消耗
+			大幅增加魔力再生
+			治疗法术会额外治疗2点生命值
+			'''
 	}
 
 	TideTurnerGreaves: {
