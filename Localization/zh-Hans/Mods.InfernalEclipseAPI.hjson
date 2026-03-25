@@ -351,12 +351,12 @@ ItemTooltip: {
 		被击杀的敌人有50%的概率掉落额外的红心
 		暴击时此概率会增加至100%
 		'''
-	/* DiamondInvertedRing:
+	DiamondInvertedRing:
 		'''
-		Increase defense based on a third of damage, then decreases damage by defense buff
-		Increases defense by {0}
-		Decreases damage by {1}%
-		''' */
+		根据三分之一伤害增加防御值，然后会降低伤害所增益的防御值
+		增加{0}点防御值
+		降低{1}%伤害
+		'''
 
 	ChallengerRubyHover: {
 		Orig:
@@ -373,37 +373,37 @@ ItemTooltip: {
 	}
 
 	ChallengerInvertedRingHover: {
-		/* Orig:
+		Orig:
 			'''
-			> You can no longer critically strike
-			> Increases received to critical strike chance are converted into multiplicative increases to damage
-			''' */
-		/* Rework:
+			> 你无法暴击
+			> 增加的暴击率会转化为对伤害的乘算增幅
 			'''
-			> Increase defense based on a third of damage, then decreases damage by defense buff
-			> Increases defense by {0}
-			> Decreases damage by {1}%
-			''' */
+		Rework:
+			'''
+			> 根据三分之一伤害增加防御值，然后会降低伤害所增益的防御值
+			> 增加{0}点防御值
+			> 降低{1}%伤害
+			'''
 	}
 
 	ChallengerInvertedDiamondHover: {
 	}
 
 	DemonBlood: {
-		/* Replace:
+		Replace:
 			'''
-			Enemies are more likely to target you
-			'Infused with everlasting Blood'
-			''' */
-		/* SetBonus:
+			“注入永恒的血液”
+			敌怪更有可能以你为目标
 			'''
-			20% chance to completely neutralize incoming damage
-			The damage neutralization has a cooldown of 20 seconds
-			''' */
+		SetBonus:
+			'''
+			20%概率完全抵消到来的伤害
+			伤害抵消有20秒的冷却时间
+			'''
 	}
 
 	DoesNotStack: 不与下位效果叠加
-	// NoBoss: Does not work while a boss is alive
+	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "
 	DauntlessBuff: +2%光辉伤害
 	DedTo: -献给{0}-
@@ -1647,7 +1647,6 @@ Items: {
 			'''
 			被击杀的敌人有50%的概率掉落额外的红心
 			暴击时此概率会增加至100%
-			收集红心会延长生效增益的持续时间，最多可达初始持续时间的两倍
 			'''
 		G5:
 			'''
@@ -1685,8 +1684,9 @@ Items: {
 		# Opposite of Pride, Humility
 		I5:
 			'''
-			你无法暴击
-			增加的暴击率会转化为对伤害的乘算增幅
+			根据三分之一伤害增加防御值，然后会降低伤害所增益的防御值
+			增加{0}点防御值
+			降低{1}%伤害
 			'''
 		# Opposite of Lust, Chastity
 		I6:
@@ -1696,23 +1696,19 @@ Items: {
 			'''
 		NormalTooltip:
 			'''
-			增加18%伤害
-			增加5%箭矢伤害
-			增加10%移动速度
+			增加18%伤害和5%箭矢伤害
+			增加10%移动速度和4%暴击率
+			增加4点所有伤害和5点护甲穿透
+			箭矢暴击会用暗影焰短暂点燃敌怪
 			+3.5HP/s生命再生和2格最大仆从栏位
-			增加仆从击退
-			+4所有伤害
-			增加5点护甲穿透
-			增加4%暴击率
-			增加金币掉落和魔法伤害
-			在白天时+2 HP/s生命再生
-			在夜晚时增加20点防御
-			在日食时+1HP/s生命再生和10点防御
-			箭矢暴击会用暗影焰短暂灼烧敌怪
+			增加仆从击退力和钱币掉落
+			随着时间推移会获得多种强化
+			    在白天时+2 HP/s生命再生
+			    在夜晚时增加20点防御
+			    在日食时+1HP/s生命再生和10点防御
 			增加20%最大飞行时间
-			“于火焰与火花之后，若你凝视得足够深远，便能洞悉你的过去和未来”
 			'''
-		// FlavorText: Behind the flames and the sparks, if you look deep enough, you will see your past and your future
+		FlavorText: “于火焰与火花之后，若你凝视得足够深远，便能洞悉你的过去和未来”
 	}
 
 	InfernalTerraBladeRelic: {
@@ -1849,8 +1845,8 @@ Items: {
 	}
 
 	DreamEssence: {
-		// DisplayName: Dream Essence
-		// Tooltip: "'Twilight of the Gods'"
+		DisplayName: 梦幻精华
+		Tooltip: “诸神暮光”
 	}
 }
 
