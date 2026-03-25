@@ -1,4 +1,5 @@
-﻿using CalamityMod;
+﻿using System.Security.Policy;
+using CalamityMod;
 using CalamityMod.Buffs.Alcohol;
 using InfernalEclipseAPI.Core.Systems;
 using SOTS;
@@ -68,11 +69,18 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
         {
             SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Player);
 
+            /*
+            if (InfernalPlayer.PlayerHasPurity(Player))
+            {
+                sotsPlayer.InverseDiamondRing = false;
+            }
+
             if (sotsPlayer.InverseDiamondRing)
             {
                 Player.ClearBuff(ModContent.BuffType<GrapeBeerBuff>());
                 Player.Calamity().grapeBeer = false;
             }
+            */
 
             if (Player.Calamity().grapeBeer)
             {

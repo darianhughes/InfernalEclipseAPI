@@ -123,6 +123,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Tencvin",
             "Jillyfish",
             "Arkangel",
+            "DaVids",
 
             //Donors
             "bryce27",

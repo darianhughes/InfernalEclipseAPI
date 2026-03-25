@@ -1,5 +1,9 @@
 ﻿using System.Reflection;
+using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
+using Terraria.DataStructures;
+using ThoriumMod.Items.Terrarium;
+using ThoriumMod.NPCs;
 using ThoriumMod.Utilities;
 
 namespace InfernalEclipseAPI.Content.RogueThrower
@@ -25,6 +29,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         public int ShinobiSigilCooldown;
         public int bronzeSetCooldown;
         public int dragonSetCooldown;
+        public int demonBloodDodgeCooldown;
 
         public override void ResetEffects()
         {
@@ -39,6 +44,9 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
             if (dragonSetCooldown > 0)
                 dragonSetCooldown--;
+
+            if (demonBloodDodgeCooldown > 0)
+                demonBloodDodgeCooldown--;
         }
 
         private void EnsureInitialized()
@@ -94,6 +102,23 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             else
             {
                 RestoreExhaustion();
+            }
+
+            if (InfernalCrossmod.ThoriumRework.Loaded)
+            {
+                if (Player.armor[0].type == ModContent.ItemType<TerrariumHelmet>() &&
+                    Player.armor[1].type == ModContent.ItemType<TerrariumBreastPlate>() &&
+                    Player.armor[2].type == ModContent.ItemType<TerrariumGreaves>())
+                {
+                    for (int i = 3; i < 8 + Player.extraAccessorySlots; i++)
+                    {
+                        if (Player.armor[i].type == ModContent.ItemType<TerrariumWings>())
+                        {
+                            Player.wingTimeMax *= 2;
+                            break;
+                        }
+                    }
+                }
             }
         }
 
@@ -223,6 +248,49 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             }
 
             return false;
+        }
+
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            ThoriumGlobalNPC thorGlobalNPC = target.GetGlobalNPC<ThoriumGlobalNPC>();
+            bool isHostile = !target.friendly && target.lifeMax > 5 && target.chaseable && (!target.dontTakeDamage) && !target.immortal;
+            IEntitySource sourceOnHit = proj.GetSource_OnHit(target);
+            Player player = Main.player[proj.owner];
+
+            if (Player.GetModPlayer<InfernalPlayer>().gutWrench & isHostile && !thorGlobalNPC.netSpawnedFromStatue)
+            {
+                int lifeHealed = Math.Min(damageDone / 100, Player.statLifeMax2 / 2 - Player.statLife);
+                if (Player.lifeSteal > 0)
+                {
+                    Player.HealLife(lifeHealed);
+
+                    if (Player.lifeSteal - lifeHealed * 10f < -35)
+                        Player.lifeSteal = -35;
+                    else
+                        Player.lifeSteal -= lifeHealed * 10f;
+                }
+            }
+        }
+
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            ThoriumGlobalNPC thorGlobalNPC = target.GetGlobalNPC<ThoriumGlobalNPC>();
+            bool isHostile = !target.friendly && target.lifeMax > 5 && target.chaseable && (!target.dontTakeDamage) && !target.immortal;
+            IEntitySource sourceOnHit = Player.GetSource_OnHit(target);
+
+            if (Player.GetModPlayer<InfernalPlayer>().gutWrench & isHostile && !thorGlobalNPC.netSpawnedFromStatue)
+            {
+                int lifeHealed = Math.Min(damageDone / 100, Player.statLifeMax2 / 2 - Player.statLife);
+                if (Player.lifeSteal > 0)
+                {
+                    Player.HealLife(lifeHealed);
+
+                    if (Player.lifeSteal - lifeHealed * 10f < -35)
+                        Player.lifeSteal = -35;
+                    else
+                        Player.lifeSteal -= lifeHealed * 10f;
+                }
+            }
         }
     }
 }

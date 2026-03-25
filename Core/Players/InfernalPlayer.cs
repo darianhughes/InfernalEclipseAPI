@@ -30,6 +30,7 @@ using InfernalEclipseAPI.Content.Cooldowns;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Ravager;
 using Daybreak.Common.Features.Hooks;
+using SOTS;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -40,6 +41,8 @@ namespace InfernalEclipseAPI.Core.Players
         public bool scalingArmorPenetration;
         public bool flightArmor;
         public bool Earthdrive;
+        public bool InverseDiamondRing;
+        public bool gutWrench;
 
         private const int AdjRadius = 4;
 
@@ -332,6 +335,7 @@ namespace InfernalEclipseAPI.Core.Players
             exoSights = false;
             flightArmor = false;
             CritNightmare = false;
+            gutWrench = false;
         }
 
         public override void PreUpdate()
@@ -358,6 +362,40 @@ namespace InfernalEclipseAPI.Core.Players
                 if (Player.HasBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("RealityBearer").Type) && BossRushEvent.BossRushActive)
                     Player.ClearBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("RealityBearer").Type);
             }
+        }
+
+        public int defenseGain;
+
+        public override void UpdateEquips()
+        {
+            if (Player.SOTSPlayer().InverseDiamondRing)
+            {
+                InverseDiamondRing = Player.SOTSPlayer().InverseDiamondRing;
+                Player.SOTSPlayer().InverseDiamondRing = false;
+            }
+
+            Player player = this.Player;
+
+            // Best class total multiplier.
+            // 1.00f = no bonus, 1.35f = +35%, etc.
+            StatModifier bestClassDamage = player.GetBestClassDamage();
+            float totalBestDamageMult = bestClassDamage.ApplyTo(1f);
+
+            float damageBonus = bestClassDamage.Additive * bestClassDamage.Multiplicative - 1f;
+            if (damageBonus < 0f)
+                damageBonus = 0f;
+
+            // Convert 1/3 of the bonus into defense.
+            // Example: +30% damage -> 10 defense
+            defenseGain = (int)(damageBonus * 100f / 3f);
+
+            if (InverseDiamondRing)
+            {
+                player.statDefense += defenseGain;
+
+                player.GetDamage(DamageClass.Generic) -= defenseGain * 0.01f;
+            }
+            this.InverseDiamondRing = false;
         }
 
         public override void PostUpdate()
@@ -466,6 +504,19 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
+        public static bool PlayerHasPurity(Player player)
+        {
+            int purityType = ModContent.ItemType<Purity>();
+
+            for (int i = 3; i < 10 + player.extraAccessorySlots; i++)
+            {
+                Item item = player.armor[i];
+                if (item != null && item.type == purityType)
+                    return true;
+            }
+            return false;
+        }
+
         public override void PostUpdateEquips()
         {
             if (exoSights || focusReticle)
@@ -500,18 +551,7 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (statShareAll)
             {
-                int purityType = ModContent.ItemType<Purity>();
-
-                // Check accessory slots
-                bool hasPurity = false;
-                for (int i = 3; i < 10 + Player.extraAccessorySlots; i++)
-                {
-                    Item item = Player.armor[i];
-                    if (item != null && item.type == purityType)
-                        hasPurity = true;
-                }
-
-                if (!hasPurity)
+                if (!PlayerHasPurity(Player))
                 {
                     var meleeDamage = Player.GetDamage(DamageClass.Melee);
                     float meleeAdd = (meleeDamage.Additive - 1f) * 0.1f;

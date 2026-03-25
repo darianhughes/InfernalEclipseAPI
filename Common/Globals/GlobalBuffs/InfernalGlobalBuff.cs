@@ -11,7 +11,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
             if ((type == ModContent.BuffType<GrapeBeerBuff>() || type == ModContent.BuffType<MoonshineBuff>()) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 player.Calamity().alcoholPoisonLevel++;
-                player.GetCritChance(DamageClass.Generic) -= 0.3f;
+                player.GetCritChance(DamageClass.Generic) -= 30f;
             }
 
                 if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)

@@ -92,8 +92,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 {
                     //scryingGlass.UpdateAccessory(player, hideVisual);
                     //--player.maxTurrets;
-                    //necroticSkull.UpdateAccessory(player, hideVisual);
-                    //--player.maxMinions;
+                    necroticSkull.UpdateAccessory(player, hideVisual);
+                    --player.maxMinions;
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     //fortressGenerator.UpdateAccessory(player, hideVisual);
                     //player.lifeRegen -= 2;
@@ -110,8 +110,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 {
                     //scryingGlass.UpdateAccessory(player, hideVisual);
                     //--player.maxTurrets;
-                    //necroticSkull.UpdateAccessory(player, hideVisual);
-                    //--player.maxMinions;
+                    necroticSkull.UpdateAccessory(player, hideVisual);
+                    --player.maxMinions;
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     //fortressGenerator.UpdateAccessory(player, hideVisual);
                     //player.lifeRegen -= 2;
@@ -141,8 +141,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 {
                     //scryingGlass.UpdateAccessory(player, hideVisual);
                     //--player.maxTurrets;
-                    //necroticSkull.UpdateAccessory(player, hideVisual);
-                    //--player.maxMinions;
+                    necroticSkull.UpdateAccessory(player, hideVisual);
+                    --player.maxMinions;
                     cystralScorpion.UpdateAccessory(player, hideVisual);
                     //fortressGenerator.UpdateAccessory(player, hideVisual);
                     //player.lifeRegen -= 2;
@@ -370,18 +370,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {
-                    //tooltips.Add(new TooltipLine(Mod, "sentries", twoMoreSentries)
-                    //{
-                    //    OverrideColor = new Color?(InfernalRed)
-                    //});
+                    AddTooltip(tooltips, twoMoreSentries, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    //tooltips.Add(new TooltipLine(Mod, "skull", skullInfo)
-                    //{
-                    //    OverrideColor = new Color?(InfernalRed)
-                    //});
+                    AddTooltip(tooltips, skullInfo, InfernalRed);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfo)
                     //{
@@ -395,18 +389,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StatisCurse>())
                 {
-                    //tooltips.Add(new TooltipLine(Mod, "sentries", threeMoreSentries)
-                    //{
-                    //    OverrideColor = new Color?(InfernalRed)
-                    //});
+                    AddTooltip(tooltips, twoMoreSentries, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    //tooltips.Add(new TooltipLine(Mod, "skull", skullInfo)
-                    //{
-                    //    OverrideColor = new Color?(InfernalRed)
-                    //});
+                    AddTooltip(tooltips, skullInfo, InfernalRed);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfo)
                     //{
@@ -429,7 +417,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
-                    //AddTooltip(tooltips, twoMoreSentries, InfernalRed);
+                    AddTooltip(tooltips, twoMoreSentries, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)

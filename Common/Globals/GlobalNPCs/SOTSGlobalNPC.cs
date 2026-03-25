@@ -39,6 +39,7 @@ using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
 using SOTS.Common.GlobalNPCs;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -111,6 +112,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 {
                     entity.buffImmune[ModContent.BuffType<CurseVision>()] = true;
                     entity.buffImmune[ModContent.BuffType<PharaohsCurse>()] = true;
+                }
+            }
+        }
+
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (npc.boss)
+            {
+                foreach (Player player in Main.player)
+                {
+                    if (player.active && !player.dead)
+                    {
+                        player.ClearBuff(ModContent.BuffType<Embattle>());
+                    }
                 }
             }
         }

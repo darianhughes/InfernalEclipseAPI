@@ -1,25 +1,10 @@
-﻿namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCraftingTree
+﻿using CalamityMod.Items.Materials;
+using CalamityMod.Tiles.Furniture.CraftingStations;
+
+namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCraftingTree
 {
     public class TunnerRecipeChanges : ModSystem
     {
-        private Mod Ragnarok
-        {
-            get
-            {
-                ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
-                return ragnarok;
-            }
-        }
-
-        private Mod CalBardHealer
-        {
-            get
-            {
-                ModLoader.TryGetMod("CalamityBardHealer", out Mod calbh);
-                return calbh;
-            }
-        }
-
         private Mod SOTSBardHealer
         {
             get
@@ -46,15 +31,6 @@
             }
         }
 
-        private Mod sots
-        {
-            get
-            {
-                ModLoader.TryGetMod("SOTS", out Mod sots);
-                return sots;
-            }
-        }
-
         public override void PostAddRecipes()
         {
             for (int index = 0; index < Recipe.numRecipes; ++index)
@@ -71,7 +47,7 @@
                             recipe.AddTile(TileID.LunarCraftingStation);
                             recipe.RemoveTile(TileID.TinkerersWorkbench);
                             recipe.RemoveIngredient(thorium.Find<ModItem>("BloomWeave").Type);
-                            recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 5);
+                            recipe.AddIngredient<EffulgentFeather>(5);
                         }
                     }
                 }
@@ -86,7 +62,9 @@
                         recipe.RemoveIngredient(SOTSBardHealer.Find<ModItem>("SubsonicTuner").Type);
 
                         recipe.AddIngredient(SOTSBardHealer, "InfrasonicTuner");
-                        recipe.AddIngredient(thorium, "ShootingStarFragment", 6);
+                        recipe.AddIngredient<RuinousSoul>(6);
+                        recipe.RemoveTile(TileID.MythrilAnvil);
+                        recipe.AddTile<CosmicAnvil>();
                     }
 
                     if (ModLoader.TryGetMod("ssm", out Mod CSE))

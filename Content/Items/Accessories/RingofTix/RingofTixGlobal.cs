@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using InfernalEclipseAPI.Core.Players;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -199,8 +200,15 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
 
                 if (i == 5) // Diamond needs parameters
                 {
-                    int prevDef = SOTSPlayer.ModPlayer(Main.LocalPlayer).previousDefense;
-                    text = Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix." + key, prevDef.ToString(), (prevDef * 0.66).ToString());
+                    if (key == "G5")
+                    {
+                        int prevDef = SOTSPlayer.ModPlayer(Main.LocalPlayer).previousDefense;
+                        text = Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix." + key, prevDef.ToString(), (prevDef * 0.66).ToString());
+                    }
+                    else
+                    {
+                        text = Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix." + key, Main.LocalPlayer.GetModPlayer<InfernalPlayer>().defenseGain, Main.LocalPlayer.GetModPlayer<InfernalPlayer>().defenseGain);
+                    }
                 }
                 else
                 {

@@ -14,6 +14,21 @@ Items: {
 		Electronic instrument projectiles also on first hit chain lightning for 10% damage to the nearest close enemy
 		Increases max inspiration by 5
 		'''
+	LunateCharm.Tooltip:
+		'''
+		Negates non-radiant damage penalties caused by healer armor
+		Removes the radiant damage penalty from the Broken Oath debuff
+		'''
+	SealedContract.Tooltip:
+		'''
+		Maximum life increased by 60
+		Healing spells grant an additional 5 life
+		Negates non-radiant damage penalties caused by healer armor
+		Removes the radiant damage penalty from the Broken Oath debuff
+		Gaining soul essence with radiant scythes grant a stack of aggregate charge
+		Radiant damage from scythe projectiles or non-scythe weapons consume aggregate charge to grant soul essence
+		"Seal the deal!"
+		'''
 }
 
 ItemDescriptions: {

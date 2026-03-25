@@ -2,13 +2,18 @@
 using System.Reflection;
 using CalamityMod;
 using CalamityMod.Items.Weapons.Melee;
+using InfernalEclipseAPI.Content.Items.Materials;
+using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks;
 using InfernalEclipseAPI.Core.Utils;
 using InfernumMode.Content.Items.Accessories;
 using InfernumMode.Core.GlobalInstances.Players;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
+using Terraria.ModLoader;
 using ThoriumMod;
 using ThoriumMod.Items;
 using ThoriumMod.Items.ArcaneArmor;
@@ -16,6 +21,8 @@ using ThoriumMod.Items.BasicAccessories;
 using ThoriumMod.Items.BossFallenBeholder;
 using ThoriumMod.Items.BossForgottenOne;
 using ThoriumMod.Items.BossGraniteEnergyStorm;
+using ThoriumMod.Items.BossLich;
+using ThoriumMod.Items.BossThePrimordials;
 using ThoriumMod.Items.BossThePrimordials.Aqua;
 using ThoriumMod.Items.BossThePrimordials.Dream;
 using ThoriumMod.Items.BossThePrimordials.Slag;
@@ -23,14 +30,17 @@ using ThoriumMod.Items.Bronze;
 using ThoriumMod.Items.Consumable;
 using ThoriumMod.Items.Coral;
 using ThoriumMod.Items.Cultist;
+using ThoriumMod.Items.DemonBlood;
 using ThoriumMod.Items.Depths;
 using ThoriumMod.Items.Donate;
 using ThoriumMod.Items.Dread;
 using ThoriumMod.Items.Flesh;
 using ThoriumMod.Items.HealerItems;
 using ThoriumMod.Items.Icy;
+using ThoriumMod.Items.Misc;
 using ThoriumMod.Items.NPCItems;
 using ThoriumMod.Items.Sandstone;
+using ThoriumMod.Items.Terrarium;
 using ThoriumMod.Items.ThrownItems;
 using ThoriumMod.Items.Valadium;
 using ThoriumMod.Utilities;
@@ -185,6 +195,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             {
                 player.runAcceleration -= 0.06f;
             }
+
+            if (item.type == ItemType<GutWrenchersGauntlet>())
+            {
+                player.GetThoriumPlayer().gutWrench = false;
+                if (player.statLife <= player.statLifeMax2 * 0.5)
+                {
+                    player.GetModPlayer<InfernalPlayer>().gutWrench = true;
+                }
+            }
         }
 
         public override void UpdateEquip(Item item, Player player)
@@ -245,6 +264,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.1f;
                 }
+                if (item.type == ItemType<BronzeGreaves>())
+                {
+                    player.GetDamage(DamageClass.Throwing) += 0.1f;
+                    player.GetAttackSpeed(DamageClass.Throwing) -= 0.1f;
+                }
 
                 if (item.type == ItemType<PlagueDoctorsMask>())
                 {
@@ -261,31 +285,65 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ItemType<FungusHat>())
                 {
-                    player.GetDamage(DamageClass.Throwing) -= 0.03f;
+                    player.GetDamage(DamageClass.Throwing) -= 0.02f;
                 }
                 if (item.type == ItemType<FungusGuard>())
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.02f;
+                    player.GetAttackSpeed(DamageClass.Throwing) -= 0.05f;
+                }
+
+                if (item.type == ItemType<HallowedGuise>() || item.type == ItemType<AncientHallowedGuise>())
+                {
+                    player.GetDamage(DamageClass.Throwing) -= 0.15f;
+                    player.GetAttackSpeed(DamageClass.Throwing) -= 0.08f;
+                }
+
+                if (item.type == ItemType<LichCarapace>())
+                {
+                    player.GetDamage(DamageClass.Throwing) -= 0.05f;
+                }
+                if (item.type == ItemType<LichTalon>())
+                {
+                    player.GetDamage(DamageClass.Throwing) -= 0.025f;
+                    player.GetCritChance(DamageClass.Throwing) -= 5f;
                 }
 
                 if (item.type == ItemType<ShadeMasterMask>())
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.05f;
                 }
+                if (item.type == ItemType<ShadeMasterGarb>())
+                {
+                    player.GetAttackSpeed(DamageClass.Throwing) -= 0.1f;
+                }
                 if (item.type == ItemType<ShadeMasterTreads>())
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.025f;
+                    player.GetCritChance(DamageClass.Throwing) -= 5f;
                 }
 
                 if (item.type == ItemType<WhiteDwarfMask>())
                 {
-                    player.GetDamage(DamageClass.Throwing) -= 0.1f;
+                    player.GetDamage(DamageClass.Throwing) -= 0.05f;
+                }
+                if (item.type == ItemType<WhiteDwarfGuard>())
+                {
+                    player.GetAttackSpeed(DamageClass.Throwing) -= 0.15f;
                 }
                 if (item.type == ItemType<WhiteDwarfGreaves>())
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.05f;
                 }
 
+                if (item.type == ItemType<TideTurnersGaze>() && InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    player.GetDamage(DamageClass.Throwing) += 0.10f;
+                }
+                if (item.type == ItemType<TideTurnerBreastplate>() && InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    player.GetAttackSpeed(DamageClass.Throwing) -= 0.10f;
+                }
                 if (item.type == ItemType<TideTurnerGreaves>() && InfernalCrossmod.ThoriumRework.Loaded)
                 {
                     player.GetAttackSpeed(DamageClass.Melee) -= 0.2f;
@@ -404,6 +462,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.moveSpeed -= 0.11f;
                 }
 
+                if (item.type == ItemType<DemonBloodBreastPlate>())
+                {
+                    player.GetThoriumPlayer().demonBloodBreastplateDodge = false;
+                }
+
                 if (item.type == ItemType<DreamWeaversHelmet>() && ModLoader.HasMod("ThoriumRework"))
                 {
                     player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 20f;
@@ -418,12 +481,24 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 14f;
                 }
 
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    if (item.type == ItemType<TerrariumWings>())
+                    {
+                        if (player.armor[0].type == ItemType<TerrariumHelmet>() && player.armor[1].type == ItemType<TerrariumBreastPlate>() && player.armor[2].type == ItemType<TerrariumGreaves>() && player.miscCounter % 2 == 0 && player.wingTime > 0f)
+                        {
+                            player.wingTime -= 1f;
+                        }
+                    }
+                }
+
                 if (InfernalCrossmod.RagnarokMod.Loaded)
                 {
                     if (item.type == ItemType<NinjaEmblem>())
                     {
-                        player.GetDamage(DamageClass.Generic) -= 0.03f;
+                        player.GetDamage(DamageClass.Generic) += 0.02f;
                         player.GetCritChance(DamageClass.Generic) -= 3f;
+                        player.GetAttackSpeed(DamageClass.Generic) -= 0.05f;
                     }
                 }
 
@@ -499,6 +574,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             if (head.type == ItemType<DreadSkull>() && body.type == ItemType<DreadChestPlate>() && legs.type == ItemType<DreadGreaves>())
                 return "Dread";
 
+            if (head.type == ItemType<DemonBloodHelmet>() && body.type == ItemType<DemonBloodBreastPlate>() && legs.type == ItemType<DemonBloodGreaves>())
+                return "DemonBlood";
+
             return base.IsArmorSet(head, body, legs);
         }
 
@@ -508,6 +586,33 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             {
                 player.maxRunSpeed -= 1.5f;
                 player.runAcceleration -= 0.04f;
+            }
+            if (set == "DemonBlood")
+            {
+                player.GetThoriumPlayer().demonBloodBreastplateDodge = true;
+                player.setBonus += $"\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DemonBlood.SetBonus")}";
+            }
+        }
+
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            if (item.type == ItemType<ThePrimordialsTreasureBag>())
+            {
+                itemLoot.Add(ItemDropRule.Common(ItemType<DreamEssence>(), 1, 5, 5));
+            }
+        }
+
+        public override void OnSpawn(Item item, IEntitySource source)
+        {
+            if (!InfernalConfig.Instance.ThoriumBalanceChangess)
+                return;
+
+            if (item.type != ItemType<TheOmegaCore>())
+                return;
+
+            if (source is EntitySource_ItemOpen itemOpen && itemOpen.ItemType == ItemType<ThePrimordialsTreasureBag>())
+            {
+                item.TurnToAir();
             }
         }
 
@@ -557,6 +662,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             if (item.type == ItemType<DreadGreaves>())
             {
                 InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DreadGreaves.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DreadGreaves.Nerf"));
+            }
+
+            if (item.type == ItemType<DemonBloodBreastPlate>())
+            {
+                InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DemonBlood.Replace"));
             }
 
             if (InfernalConfig.Instance.DisableDuplicateContent)

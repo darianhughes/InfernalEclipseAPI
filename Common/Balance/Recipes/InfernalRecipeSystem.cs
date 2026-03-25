@@ -30,8 +30,6 @@ using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
-using System.Security.Policy;
-using ThoriumMod.Items.BossMini;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -182,6 +180,17 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             #region Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
+                if (InfernalConfig.Instance.ThoriumBalanceChangess)
+                {
+                    Recipe omegaCore = Recipe.Create(thorium.Find<ModItem>("TheOmegaCore").Type);
+                    if (InfernalCrossmod.NoxusBoss.Loaded)
+                        omegaCore.AddIngredient(InfernalCrossmod.NoxusBoss.Mod.Find<ModItem>("MetallicChunk"));
+                    omegaCore.AddIngredient(ModContent.ItemType<Rock>());
+                    omegaCore.AddIngredient<DreamEssence>();
+                    omegaCore.AddTile<DraedonsForge>();
+                    omegaCore.Register();
+                }
+
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && !InfernalConfig.Instance.DisableBloodOrbPotions)
                 {
                     if (!InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -456,6 +465,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #region Calamity Ranger Expansion
                 if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))
                 {
+                    if (recipe.HasResult(ItemID.PinkGel) && recipe.Mod == calAmmo)
+                        recipe.DisableRecipe();
+
                     if (recipe.HasResult(calAmmo.Find<ModItem>("HardTack")))
                     {
                         recipe.DisableDecraft();
@@ -464,6 +476,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult(calAmmo.Find<ModItem>("HydrothermicArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("HydrothermicBullet")))
                     {
                         recipe.DecraftConditions.Add(Condition.DownedGolem);
+
+                        if (InfernalConfig.Instance.CalamityBalanceChanges)
+                            recipe.DisableRecipe();
                     }
 
                     if (InfernalConfig.Instance.MergeCraftingTrees)
@@ -548,6 +563,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult<MiracleMatter>() && !recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore")))
                     {
                         recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 5);
+                    }
+
+                    if (recipe.HasResult(thorium.Find<ModItem>("LodestoneJavelin")))
+                    {
+                        recipe.ReplaceResult(thorium.Find<ModItem>("LodestoneJavelin"), 200);
+                    }
+
+                    if (recipe.HasResult(thorium.Find<ModItem>("ValadiumBattleAxe")))
+                    {
+                        recipe.ReplaceResult(thorium.Find<ModItem>("ValadiumBattleAxe"), 200);
                     }
 
                     if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))

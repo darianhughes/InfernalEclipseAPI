@@ -13,6 +13,7 @@ using Luminance.Common.Utilities;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
 using InfernalEclipseAPI.Core.Graphics.Primitives;
 using CalamityMod.Buffs.StatBuffs;
+using CalamityMod;
 
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted
@@ -381,7 +382,9 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted
             if (DidFireThisAction || Time < fireTick)
                 return;
 
-            Vector2 spawn = Main.MouseWorld;
+            NPC npc = CalamityUtils.ClosestNPCAt(Main.MouseWorld, 500f, true, true);
+
+            Vector2 spawn = npc.Center;
             int cloneDmg = Scale(Projectile.damage, RageCloneDamageFactor);
             int slashDmg = Scale(Projectile.damage, BlackSlashDamageFactor);
 

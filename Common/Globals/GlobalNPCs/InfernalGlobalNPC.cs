@@ -21,6 +21,8 @@ using CalamityMod;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
 using InfernalEclipseAPI.Core.Utils;
 using CalamityMod.Buffs.StatDebuffs;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
+using Terraria;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -104,6 +106,24 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     }
                 }
             }
+
+            if (ModLoader.TryGetMod("CalamityAmmo", out Mod calamityAmmo) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                int hydroArrow = calamityAmmo.Find<ModItem>("HydrothermicArrow").Type;
+                int hydroBullet = calamityAmmo.Find<ModItem>("HydrothermicBullet").Type;
+
+                // Remove matching entries
+                for (int i = 0; i < items.Length; i++)
+                {
+                    Item item = items[i];
+
+                    if (item == null || item.IsAir)
+                        continue;
+
+                    if (item.type == hydroArrow || item.type == hydroBullet)
+                        item.TurnToAir();
+                }
+            }
         }
 
         public override void OnSpawn(NPC npc, IEntitySource source)
@@ -170,6 +190,18 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 if (InfernalWorld.RagnarokModeEnabled && npc.type == NPCID.Golem)
                 {
                     player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
+                }
+
+                if (InfernalConfig.Instance.PreventBossCheese && npc.type == ModContent.NPCType<HealerShieldCrystal>())
+                {
+                    player.ClearBuff(ModContent.BuffType<RageMode>());
+                    player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+
+                    CalamityPlayer mp = player.Calamity();
+                    mp.rage = 0;
+                    mp.rageModeActive = false;
+                    mp.adrenaline = 0;
+                    mp.adrenalineModeActive = false;
                 }
             }
 

@@ -10,6 +10,7 @@ using Terraria.DataStructures;
 using InfernalEclipseAPI.Core.Systems;
 using Terraria;
 using System.Security.Policy;
+using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -36,6 +37,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
         //private static int marbleType = -1;
         private static int terraType = -1;
         private static int morningDewType = -1;
+        private static int kinetoType = -1;
+        private static int sarsType = -1;
 
         public override void SetStaticDefaults()
         {
@@ -60,6 +63,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 darkType = thorium.Find<ModProjectile>("DemoniteScythePro")?.Type ?? -1;
                 terraType = thorium.Find<ModProjectile>("TerraScythePro")?.Type ?? -1;
                 morningDewType = thorium.Find<ModProjectile>("MorningDewPro")?.Type ?? -1;
+                kinetoType = thorium.Find<ModProjectile>("KinetoscythePro2")?.Type ?? -1;
 
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
                 {
@@ -70,6 +74,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal))
                 {
                     whirlwindType = calBardHeal.Find<ModProjectile>("Whirlwind")?.Type ?? -1;
+                    sarsType = calBardHeal.Find<ModProjectile>("SARS")?.Type ?? -1;
                 }
             }
         }
@@ -95,6 +100,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
             //var t when t == marbleType => 1.75f,
             var t when t == terraType => 1.6f,
             var t when t == morningDewType => 1.5f,
+            var t when t == kinetoType => 1.5f,
+            var t when t == sarsType => 1.5f,
             _ => 1f,
         };
 
@@ -134,7 +141,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
                 trueBloodHarvestType, theBlackScytheType, titanScytheType,
                 boneBatonType, trueHallowedType,
-                crimsonType, iceType, darkType, terraType, morningDewType
+                crimsonType, iceType, darkType, terraType, morningDewType, kinetoType, sarsType
             };
 
             if (!Array.Exists(customDrawProjectiles, t => t == projectile.type))

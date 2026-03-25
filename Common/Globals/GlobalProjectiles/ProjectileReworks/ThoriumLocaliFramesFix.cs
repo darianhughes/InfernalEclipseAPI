@@ -30,32 +30,20 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             int pro16type = thorium.Find<ModProjectile>("ZTerraScythePro")?.Type ?? -1;
             int pro17type = thorium.Find<ModProjectile>("NaiadShivPro")?.Type ?? -1;
             int pro18type = thorium.Find<ModProjectile>("GaussFlingerPro")?.Type ?? -1;
+            int pro19type = thorium.Find<ModProjectile>("KinetoscythePro")?.Type ?? -1;
+            int pro20type = thorium.Find<ModProjectile>("KinetoscythePro2")?.Type ?? -1;
 
-            if (projectile.type == pro1Type || projectile.type == pro13type)
+            if (projectile.type == pro1Type || projectile.type == pro13type || projectile.type == pro3type || projectile.type == pro4type || projectile.type == pro5type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;
                 projectile.usesIDStaticNPCImmunity = false;
             }
 
-            if (projectile.type == pro2Type || projectile.type == pro16type)
+            if (projectile.type == pro2Type || projectile.type == pro16type || projectile.type == pro19type || projectile.type == pro20type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 10;
-                projectile.usesIDStaticNPCImmunity = false;
-            }
-
-            if (projectile.type == pro3type)
-            {
-                projectile.usesLocalNPCImmunity = true;
-                projectile.localNPCHitCooldown = 20;
-                projectile.usesIDStaticNPCImmunity = false;
-            }
-
-            if (projectile.type == pro4type || projectile.type == pro5type)
-            {
-                projectile.usesLocalNPCImmunity = true;
-                projectile.localNPCHitCooldown = 20;
                 projectile.usesIDStaticNPCImmunity = false;
             }
 

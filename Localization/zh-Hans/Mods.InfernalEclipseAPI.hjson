@@ -349,6 +349,12 @@ ItemTooltip: {
 		Killed enemies have a 50% chance to drop additional hearts
 		This chance increases to 100% with critical strikes
 		''' */
+	/* DiamondInvertedRing:
+		'''
+		Increase defense based on a third of damage, then decreases damage by defense buff
+		Increases defense by {0}
+		Decreases damage by {1}%
+		''' */
 
 	ChallengerRubyHover: {
 		/* Orig:
@@ -364,7 +370,38 @@ ItemTooltip: {
 			''' */
 	}
 
+	ChallengerInvertedRingHover: {
+		/* Orig:
+			'''
+			> You can no longer critically strike
+			> Increases received to critical strike chance are converted into multiplicative increases to damage
+			''' */
+		/* Rework:
+			'''
+			> Increase defense based on a third of damage, then decreases damage by defense buff
+			> Increases defense by {0}
+			> Decreases damage by {1}%
+			''' */
+	}
+
+	ChallengerInvertedDiamondHover: {
+	}
+
+	DemonBlood: {
+		/* Replace:
+			'''
+			Enemies are more likely to target you
+			'Infused with everlasting Blood'
+			''' */
+		/* SetBonus:
+			'''
+			20% chance to completely neutralize incoming damage
+			The damage neutralization has a cooldown of 20 seconds
+			''' */
+	}
+
 	DoesNotStack: 不与下位效果叠加
+	// NoBoss: Does not work while a boss is alive
 	Disabled: "[禁用] "
 	DauntlessBuff: +2%光辉伤害
 	DedTo: -献给{0}-
@@ -1667,6 +1704,7 @@ Items: {
 			增加20%最大飞行时间
 			“于火焰与火花之后，若你凝视得足够深远，便能洞悉你的过去和未来”
 			'''
+		// FlavorText: Behind the flames and the sparks, if you look deep enough, you will see your past and your future
 	}
 
 	InfernalTerraBladeRelic: {
@@ -1800,6 +1838,11 @@ Items: {
 	MaulerRelic: {
 		DisplayName: 渊海狂鲨炼狱圣物
 		Tooltip: ""
+	}
+
+	DreamEssence: {
+		// DisplayName: Dream Essence
+		// Tooltip: "'Twilight of the Gods'"
 	}
 }
 

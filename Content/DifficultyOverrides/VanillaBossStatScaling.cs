@@ -70,9 +70,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 if (npc.type == NPCID.CultistBoss)
                 {
                     if (NPC.downedGolemBoss)
-                        npc.lifeMax *= 3;
-                    else if (NPC.downedPlantBoss)
                         npc.lifeMax += (int)(1.5 * npc.lifeMax);
+                    else if (NPC.downedPlantBoss)
+                        npc.lifeMax += (int)(1.25 * npc.lifeMax);
                     else if (NPC.downedMechBossAny)
                     {
                         if (NPC.downedMechBoss1)

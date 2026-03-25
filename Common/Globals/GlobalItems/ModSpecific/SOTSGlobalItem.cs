@@ -33,6 +33,7 @@ using CalamityMod.Items.Accessories;
 using SOTS.Items.Temple;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
 using SOTS.Items.Gems;
+using CalamityMod.Items.Potions.Alcohol;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -40,6 +41,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
     [ExtendsFromMod("SOTS")]
     public class SOTSGlobalItem : GlobalItem
     {
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (item.type == ItemType<MartianWarhorn>())
+            {
+                if (CalamityUtils.AnyBossNPCS())
+                {
+                    return false;
+                }
+            }
+            return base.CanUseItem(item, player);
+        }
         public override void UpdateAccessory(Item item, Player player, bool hidevisual)
         {
             InfernalPlayer modPlayer = player.GetModPlayer<InfernalPlayer>();
@@ -197,6 +209,18 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     sotsPlayer.CritBonusDamage -= 40;
                     sotsPlayer.CritBonusDamage += GetFocusCritBonus(player);
+                }
+
+                if (item.type == ItemType<Calculator>())
+                {
+                    var cplayer = player.Calamity();
+                    cplayer.critDamage -= GrapeBeer.CritLoss * 0.01f;
+                    player.GetCritChance(DamageClass.Generic) -= 30f;
+                    sotsPlayer.CritBonusDamage = (int)(sotsPlayer.CritBonusDamage * 0.25f);
+                    sotsPlayer.CritBonusMultiplier *= 0.75f;
+                    sotsPlayer.CritCurseFire = false;
+                    sotsPlayer.CritFire = false;
+                    sotsPlayer.CritFrost = false;
                 }
 
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
@@ -657,6 +681,18 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.Items.RubyRing.Tooltip"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.RubyRing"));
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ChallengerRubyHover.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ChallengerRubyHover.Nerf"));
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.Items.ChallengerRing.I5"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DiamondInvertedRing", Main.LocalPlayer.GetModPlayer<InfernalPlayer>().defenseGain, Main.LocalPlayer.GetModPlayer<InfernalPlayer>().defenseGain));
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ChallengerInvertedRingHover.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ChallengerInvertedRingHover.Rework", Main.LocalPlayer.GetModPlayer<InfernalPlayer>().defenseGain, Main.LocalPlayer.GetModPlayer<InfernalPlayer>().defenseGain));
+                }
+
+                if (item.type == ItemType<MartianWarhorn>())
+                {
+                    InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.NoBoss"), InfernalRed);
+                }
+
+                if (item.type == ItemType<Calculator>())
+                {
+                    InfernalUtilities.AddTooltip(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional")}", InfernalRed);
                 }
             }
         }

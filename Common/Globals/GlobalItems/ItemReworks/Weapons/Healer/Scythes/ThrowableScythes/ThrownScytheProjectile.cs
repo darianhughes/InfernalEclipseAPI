@@ -3,6 +3,7 @@ using InfernalEclipseAPI.Common.Projectiles;
 using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
+using ThoriumMod;
 using ThoriumMod.Projectiles.Scythe;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Healer.Scythes.ThrowableScythes
@@ -182,6 +183,46 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                     }
                 }
 
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium2) && projectile.type == thorium2.Find<ModProjectile>("ChristmasCheerPro").Type)
+                {
+                    projectile.localAI[1]++;
+
+                    if (projectile.localAI[1] >= 4f)
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            Vector2 vector = projectile.Center;
+
+                            float speed = 12f;
+
+                            float randomAngle = Main.rand.NextFloat(0f, MathHelper.TwoPi);
+
+                            Vector2 baseDirection = -Vector2.UnitY;
+                            Vector2 randomVelocity = randomAngle.ToRotationVector2() * speed;
+
+                            if (projectile.owner == Main.myPlayer)
+                            {
+                                int proj = Projectile.NewProjectile(
+                                    projectile.GetSource_FromThis(),
+                                    projectile.Center,
+                                    randomVelocity,
+                                    ProjectileID.PineNeedleFriendly,
+                                    (int)(projectile.damage * 0.25f),
+                                    1f,
+                                    projectile.owner
+                                );
+
+                                if (proj >= 0 && Main.projectile.IndexInRange(proj))
+                                {
+                                    Main.projectile[proj].DamageType = ThoriumDamageBase<HealerDamage>.Instance;
+                                }
+                            }
+                        }
+
+                        projectile.localAI[1] = 0f;
+                    }
+                }
+
                 return false; // Skip normal scythe AI
             }
 
@@ -213,6 +254,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
                 if (projectile.type == thorium.Find<ModProjectile>("BatScythePro").Type) return 1.25f;
                 if (projectile.type == thorium.Find<ModProjectile>("MorningDewPro").Type) return 1.15f;
+                if (projectile.type == thorium.Find<ModProjectile>("ChristmasCheerPro").Type) return 1.00f;
             }
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
             {

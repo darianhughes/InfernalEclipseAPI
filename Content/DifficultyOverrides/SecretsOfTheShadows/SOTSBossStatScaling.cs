@@ -20,6 +20,7 @@ using Terraria;
 using SOTS.Projectiles.AbandonedVillage;
 using SOTS.NPCs.Boss.Lux;
 using System.Security.Policy;
+using SOTS.Projectiles.Celestial;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 {
@@ -155,7 +156,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                     return;
 
                 if (npc.type == ModContent.NPCType<SubspaceSerpentHead>())
-                    npc.position += npc.velocity * 0.25f;
+                    npc.position += npc.velocity * 0.15f;
                 else
                     npc.position += npc.velocity * 0.35f;
             }
@@ -277,7 +278,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 ModContent.ProjectileType<DogmaLaser>(),
                 ModContent.ProjectileType<ThunderBall>(),
                 ModContent.ProjectileType<ChaosHelixLaser>(),
-                ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>()
+                ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>(),
+
+                //Subspace
+                ModContent.ProjectileType<BossBabyLaser>(),
+                ModContent.ProjectileType<GreaterCellBlast>(),
+                ModContent.ProjectileType<WaveBlast>(),
+                ModContent.ProjectileType<InfernoPhaseBolt>()
             };
 
             foreach (int type in types)
@@ -290,11 +297,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 
         public override void SetDefaults(Projectile entity)
         {
-            if (!entity.ModProjectile.Name.Contains("Excavator") && entity.type != ModContent.ProjectileType<CollapseBlock>())
+            if (!entity.ModProjectile.Name.Contains("Excavator") && entity.type != ModContent.ProjectileType<CollapseBlock>() &&
+                entity.type != ModContent.ProjectileType<BossBabyLaser>() && entity.type != ModContent.ProjectileType<GreaterCellBlast>() && entity.type != ModContent.ProjectileType<WaveBlast>() && entity.type != ModContent.ProjectileType<InfernoPhaseBolt>())
                 entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
 
             if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>() && 
-                entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>() && entity.type != ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>())
+                entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>() && 
+                entity.type != ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>() && entity.type != ModContent.ProjectileType<InfernoPhaseBolt>())
                 entity.Calamity().DealsDefenseDamage = false;
         }
 
@@ -304,6 +313,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>() &&
                 entity.type != ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>())
                 entity.Calamity().DealsDefenseDamage = false;
+
+            if (entity.type == ModContent.ProjectileType<InfernoPhaseBolt>())
+                entity.damage = 50;
         }
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
@@ -349,7 +361,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                     damageMod *= 1.1f;
             }
 
-            modifiers.SourceDamage *= damageMod;
+            if (projectile.type != ModContent.ProjectileType<InfernoPhaseBolt>())
+                modifiers.SourceDamage *= damageMod;
         }
     }
 

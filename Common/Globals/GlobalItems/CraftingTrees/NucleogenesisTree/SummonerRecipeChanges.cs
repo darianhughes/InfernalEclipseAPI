@@ -47,6 +47,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //    recipe.AddIngredient(ItemID.SummonerEmblem);
                     //}
 
+                    if (recipe.HasResult(ModContent.ItemType<StatisBlessing>()))
+                    {
+                        recipe.RemoveIngredient(ItemID.PygmyNecklace);
+                        recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
+                    }
+
                     if (recipe.HasResult(ModContent.ItemType<StatisCurse>()))
                     {
                         //recipe.RemoveIngredient(ItemID.FragmentStardust);
@@ -84,11 +90,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                             recipe.AddIngredient(clamity.Find<ModItem>("CyanPearl"));
                         }
 
+                        /*
                         if (thorium != null && recipe.HasIngredient(ItemID.PygmyNecklace))
                         {
                             recipe.RemoveIngredient(ItemID.PygmyNecklace);
                             if (!recipe.HasIngredient(thorium.Find<ModItem>("NecroticSkull"))) recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
                         }
+                        */
 
                         recipe.AddIngredient<LifeAlloy>(2);
                     }
@@ -117,11 +125,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 {
                     if (recipe.HasResult(ModContent.ItemType<StatisBlessing>()))
                     {
-                        recipe.RemoveIngredient(ItemID.PygmyNecklace);
+                        //recipe.RemoveIngredient(ItemID.PygmyNecklace);
                         //recipe.RemoveIngredient(ItemID.SummonerEmblem);
                         //recipe.RemoveIngredient(ModContent.ItemType<CoreofSunlight>());
                         //recipe.AddIngredient(ItemID.BeetleHusk, 3);
-                        if (!recipe.HasIngredient(thorium.Find<ModItem>("NecroticSkull"))) recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
+                        //if (!recipe.HasIngredient(thorium.Find<ModItem>("NecroticSkull"))) recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
                         recipe.AddIngredient(thorium.Find<ModItem>("CrystalScorpion"));
                         //recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
                         //recipe.AddIngredient(thorium.Find<ModItem>("ScryingGlass"));

@@ -351,6 +351,12 @@ ItemTooltip: {
 		Killed enemies have a 50% chance to drop additional hearts
 		This chance increases to 100% with critical strikes
 		'''
+	DiamondInvertedRing:
+		'''
+		Increase defense based on a third of damage, then decreases damage by defense buff
+		Increases defense by {0}
+		Decreases damage by {1}%
+		'''
 
 	ChallengerRubyHover: {
 		Orig:
@@ -366,7 +372,38 @@ ItemTooltip: {
 			'''
 	}
 
+	ChallengerInvertedRingHover: {
+		Orig:
+			'''
+			> You can no longer critically strike
+			> Increases received to critical strike chance are converted into multiplicative increases to damage
+			'''
+		Rework:
+			'''
+			> Increase defense based on a third of damage, then decreases damage by defense buff
+			> Increases defense by {0}
+			> Decreases damage by {1}%
+			'''
+	}
+
+	ChallengerInvertedDiamondHover: {
+	}
+
+	DemonBlood: {
+		Replace:
+			'''
+			Enemies are more likely to target you
+			'Infused with everlasting Blood'
+			'''
+		SetBonus:
+			'''
+			20% chance to completely neutralize incoming damage
+			The damage neutralization has a cooldown of 20 seconds
+			'''
+	}
+
 	DoesNotStack: Does not stack with downgrades
+	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "
 	DauntlessBuff: +2% radiant damage
 	DedTo: - Dedicated to {0} -
@@ -1607,7 +1644,6 @@ Items: {
 			'''
 			Killed enemies have a 50% chance to drop additional hearts
 			This chance increases to 100% with critical strikes
-			Collecting hearts lengthens the duration of active buffs, up to double the original duration
 			'''
 		G5:
 			'''
@@ -1645,8 +1681,9 @@ Items: {
 		# Opposite of Pride, Humility
 		I5:
 			'''
-			You can no longer critically strike
-			Increases received to critical strike chance are converted into multiplicative increases to damage
+			Increase defense based on a third of damage, then decreases damage by defense buff
+			Increases defense by {0}
+			Decreases damage by {1}%
 			'''
 		# Opposite of Lust, Chastity
 		I6:
@@ -1656,22 +1693,19 @@ Items: {
 			'''
 		NormalTooltip:
 			'''
-			18% increase to damage
-			Increases arrow damage by 5%
-			10% increased movement speed
-			+3.5 HP/s life regen and +2 max minions
-			Increased minion knockback
-			Increases all damage by 4
-			Increases armor penetration by 5
-			Increases critical strike chance by 4%
-			Increases coin drops and magic damage.
-			During the day, grants +2 HP/s life regen
-			During the night, grants +20 defense
-			During an eclipse, grants +1 HP/s life regen and +10 defense
+			18% increased damage and 5% increased arrow damaage
+			10% increased movement speed and 4% increased critical strike chance
+			Increases all damage by 4 and armor penetration by 5
 			Arrow critical strikes briefly shadowflame enemies
+			+3.5 HP/s life regen and +2 max minions
+			Increased minion knockback & coin drops
+			Grants various buff as the day goes on
+			    During the day, grants +2 HP/s life regen
+			    During the night, grants +20 defense
+			    During an eclipse, grants +1 HP/s life regen and +10 defense
 			Boosts your maximum flight time by 20%
-			'Behind the flames and the sparks, if you look deep enough, you will see your past and your future'
 			'''
+		FlavorText: Behind the flames and the sparks, if you look deep enough, you will see your past and your future
 	}
 
 	InfernalTerraBladeRelic: {
@@ -1805,6 +1839,11 @@ Items: {
 	MaulerRelic: {
 		DisplayName: Mauler Relic
 		Tooltip: ""
+	}
+
+	DreamEssence: {
+		DisplayName: Dream Essence
+		Tooltip: "'Twilight of the Gods'"
 	}
 }
 
