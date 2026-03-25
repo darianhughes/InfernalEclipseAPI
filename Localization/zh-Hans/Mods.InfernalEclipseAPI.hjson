@@ -372,6 +372,20 @@ ItemTooltip: {
 			'''
 	}
 
+	ChallengerInvertedRingHover: {
+		/* Orig:
+			'''
+			> You can no longer critically strike
+			> Increases received to critical strike chance are converted into multiplicative increases to damage
+			''' */
+		/* Rework:
+			'''
+			> Increase defense based on a third of damage, then decreases damage by defense buff
+			> Increases defense by {0}
+			> Decreases damage by {1}%
+			''' */
+	}
+
 	ChallengerInvertedDiamondHover: {
 	}
 
