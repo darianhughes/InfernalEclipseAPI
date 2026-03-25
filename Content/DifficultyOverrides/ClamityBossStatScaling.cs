@@ -46,14 +46,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (npc.boss && npc.type != ModContent.NPCType<PyrogenBoss>() && npc.type != ModContent.NPCType<PyrogenShield>())
             {
-                if (npc.type != ModContent.NPCType<ClamitasBoss>())
-                {
-                    npc.lifeMax += npc.lifeMax;
-                }
-                else if (npc.type == ModContent.NPCType<ClamitasBoss>())
-                {
-                    npc.lifeMax -= (int)(npc.lifeMax * 0.66);
-                }
+                npc.lifeMax += npc.lifeMax;
 
                 if (IsWorldLegendary())
                 {
@@ -99,11 +92,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             if (npc.type == ModContent.NPCType<ClamitasBoss>())
             {
-                if (npc.defense == 9999)
-                    npc.defense = 50;
-
-                if (npc.defense == 35)
-                    npc.defense = 25;
+                npc.defense = 9999;
             }
         }
 
@@ -112,23 +101,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             ModNPC modNPC14 = npc.ModNPC;
             if (!((modNPC14 != null ? (((ModType)modNPC14).Name.Contains("ClamitasBoss") ? 1 : 0) : 0) != 0) && npc.type != ModContent.NPCType<PyrogenBoss>())
             {
-                npc.position += npc.velocity * 0.1f;
-
-                if (IsWorldLegendary())
-                {
-                    npc.position += 0.1f * npc.velocity;
-                }
-                if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
-                {
-                    npc.position += npc.velocity * 0.35f;
-                }
-                else
-                {
-                    if (GetFargoDifficullty("EternityMode"))
-                    {
-                        npc.position += npc.velocity * 0.25f;
-                    }
-                }
+                npc.position += npc.velocity * 10f;
             }
         }
     }

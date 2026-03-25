@@ -22,7 +22,7 @@ namespace InfernalEclipseAPI.Core.Players
         //private int sealedContract = -1;
         //private bool ContractInitialized = false;
 
-        public int renewCooldown;
+        //public int renewCooldown;
         public int starBirthCooldown;
 
         public bool buffBubbleBulwarkWandCooldown;
@@ -39,8 +39,8 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void ResetEffects()
         {
-            if (renewCooldown > 0)
-                renewCooldown--;
+            //if (renewCooldown > 0)
+                //renewCooldown--;
             if (starBirthCooldown > 0)
                 starBirthCooldown--;
             buffBubbleBulwarkWandCooldown = false;

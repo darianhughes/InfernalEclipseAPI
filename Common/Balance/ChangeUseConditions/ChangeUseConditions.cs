@@ -80,23 +80,6 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                 }
             }
 
-            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && InfernalConfig.Instance.ThoriumBalanceChangess)
-            {
-                if (thorium.TryFind("Renew", out ModItem renew))
-                    renewID = renew.Type;
-
-                CanUseItemEvent += ModifyRenewUseConditions;
-
-                if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
-                {
-                    if (calBardHeal.TryFind("StarBirth", out ModItem starBirth))
-                        starBirthID = starBirth.Type;
-                    if (calBardHeal.TryFind("LostOasis", out ModItem lostOasis))
-                        lostOasisID = lostOasis.Type;
-                    CanUseItemEvent += ModifyStarBirthUseConditions;
-                }
-            }
-
             return base.IsLoadingEnabled(mod);
         }
 
@@ -209,25 +192,6 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             return true;
         }
         */
-
-        private bool ModifyRenewUseConditions(Item item, Player player)
-        {
-            if (item.type == renewID)
-            {
-                var cdPlayer = player.GetModPlayer<HealerPlayer>();
-
-                if (cdPlayer.renewCooldown > 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    cdPlayer.renewCooldown = 60;
-                    return true;
-                }
-            }
-            return true;
-        }
 
         private bool ModifyStarBirthUseConditions(Item item, Player player)
         {

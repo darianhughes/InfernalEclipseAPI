@@ -4418,13 +4418,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 32;
                 }
 
-                //Fire Hazard
-                if (item.type == calBardHeal.Find<ModItem>("FireHazard").Type)
-                {
-                    item.damage = 30;
-                    //projectile?
-                }
-
                 if (GetItem(calBardHeal, "TidalForce", item))
                 {
                     item.damage = 231;

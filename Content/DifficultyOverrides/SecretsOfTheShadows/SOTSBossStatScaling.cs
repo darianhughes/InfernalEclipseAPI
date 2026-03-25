@@ -103,10 +103,6 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 {
                     npc.lifeMax += 3 * npc.lifeMax;
                 }
-                else if (npc.type == ModContent.NPCType<PutridHook>())
-                {
-                    npc.lifeMax /= 2;
-                }
                 else if (npc.ModNPC.Name.Contains("SubspaceSerpent"))
                 {
                     npc.lifeMax += (int)(0.25f * npc.lifeMax);
@@ -115,7 +111,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 {
                     npc.lifeMax += (int)(0.05f * npc.lifeMax);
                 }
-                else if (npc.type != ModContent.NPCType<PutridPinkyPhase2>())
+                else
                     npc.lifeMax += (int)((double).35 * npc.lifeMax);
             }
         }
@@ -124,11 +120,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
         {
             if (InfernumActive.InfernumActive)
             {
-                if (npc.type == ModContent.NPCType<PutridPinkyPhase2>())
-                {
-                    modifiers.SourceDamage *= 1.20f;
-                }
-                else if (npc.type == ModContent.NPCType<PutridPinky1>())
+                if (npc.type == ModContent.NPCType<PutridPinky1>())
                 {
                     modifiers.SourceDamage *= 2.5f;
                 }
