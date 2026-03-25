@@ -5,6 +5,8 @@ using System.Reflection;
 using static CalamityMod.UI.DraedonSummoning.CodebreakerUI;
 namespace InfernalEclipseAPI.Core.Systems.MultiplayerFixes.Mars
 {
+    [JITWhenModsEnabled("NoxusBoss")]
+    [ExtendsFromMod("NoxusBoss")]
     public class CodeBreakerQuestSummonButtonFix : ModSystem
     {
         private static Hook marsButtonHook;

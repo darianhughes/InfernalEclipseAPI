@@ -1,6 +1,4 @@
-﻿using System.Security.Policy;
-using CalamityMod;
-using CalamityMod.Buffs.Alcohol;
+﻿using CalamityMod;
 using InfernalEclipseAPI.Core.Systems;
 using SOTS;
 using Terraria.Localization;
@@ -39,6 +37,37 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
         public override void UpdateEquips()
         {
             SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Player);
+            InfernalPlayer mp = Player.GetModPlayer<InfernalPlayer>();
+
+            if (Player.SOTSPlayer().InverseDiamondRing)
+            {
+                mp.InverseDiamondRing = Player.SOTSPlayer().InverseDiamondRing;
+                Player.SOTSPlayer().InverseDiamondRing = false;
+            }
+
+            Player player = this.Player;
+
+            // Best class total multiplier.
+            // 1.00f = no bonus, 1.35f = +35%, etc.
+            StatModifier bestClassDamage = player.GetBestClassDamage();
+            float totalBestDamageMult = bestClassDamage.ApplyTo(1f);
+
+            float damageBonus = bestClassDamage.Additive * bestClassDamage.Multiplicative - 1f;
+            if (damageBonus < 0f)
+                damageBonus = 0f;
+
+            // Convert 1/3 of the bonus into defense.
+            // Example: +30% damage -> 10 defense
+            mp.defenseGain = (int)(damageBonus * 100f / 3f);
+
+            if (mp.InverseDiamondRing)
+            {
+                player.statDefense += mp.defenseGain;
+
+                player.GetDamage(DamageClass.Generic) -= mp.defenseGain * 0.01f;
+            }
+            mp.InverseDiamondRing = false;
+
 
             if (alchemistsCharm)
             {
