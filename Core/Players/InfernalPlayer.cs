@@ -25,12 +25,8 @@ using CalamityMod.NPCs.AquaticScourge;
 using InfernalEclipseAPI.Content.Projectiles;
 using InfernumMode.Content.Items.Accessories;
 using CalamityMod.CalPlayer;
-using CalamityMod.Balancing;
-using InfernalEclipseAPI.Content.Cooldowns;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Ravager;
-using Daybreak.Common.Features.Hooks;
-using SOTS;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -365,38 +361,6 @@ namespace InfernalEclipseAPI.Core.Players
         }
 
         public int defenseGain;
-
-        public override void UpdateEquips()
-        {
-            if (Player.SOTSPlayer().InverseDiamondRing)
-            {
-                InverseDiamondRing = Player.SOTSPlayer().InverseDiamondRing;
-                Player.SOTSPlayer().InverseDiamondRing = false;
-            }
-
-            Player player = this.Player;
-
-            // Best class total multiplier.
-            // 1.00f = no bonus, 1.35f = +35%, etc.
-            StatModifier bestClassDamage = player.GetBestClassDamage();
-            float totalBestDamageMult = bestClassDamage.ApplyTo(1f);
-
-            float damageBonus = bestClassDamage.Additive * bestClassDamage.Multiplicative - 1f;
-            if (damageBonus < 0f)
-                damageBonus = 0f;
-
-            // Convert 1/3 of the bonus into defense.
-            // Example: +30% damage -> 10 defense
-            defenseGain = (int)(damageBonus * 100f / 3f);
-
-            if (InverseDiamondRing)
-            {
-                player.statDefense += defenseGain;
-
-                player.GetDamage(DamageClass.Generic) -= defenseGain * 0.01f;
-            }
-            this.InverseDiamondRing = false;
-        }
 
         public override void PostUpdate()
         {

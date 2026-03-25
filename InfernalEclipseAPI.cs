@@ -367,7 +367,7 @@ namespace InfernalEclipseAPI
                 case InfernalEclipseMessageType.MarsMultiplayerSync:
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        MarsCombatEvent.MarsBeingSummoned = true;
+                        WrathPacketHandler.SetMarsCombatEvent();
                     }
                     break;
             }
@@ -381,6 +381,16 @@ namespace InfernalEclipseAPI
             //{
             //    Logger.Debug("Didnt find methodinfo for achievement update handler!");
             //}
+        }
+    }
+
+    [JITWhenModsEnabled("NoxusBoss")]
+    [ExtendsFromMod("NoxusBoss")]
+    public static class WrathPacketHandler
+    {
+        public static void SetMarsCombatEvent()
+        {
+            MarsCombatEvent.MarsBeingSummoned = true;
         }
     }
 }
