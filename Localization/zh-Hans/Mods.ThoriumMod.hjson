@@ -1,7 +1,7 @@
 Buffs: {
 	NinjaBuff: {
-		// DisplayName: Sleight of Hand
-		// Description: Throwing velocity is increased by 20%, and throwing critical strike chance increased by 10%
+		DisplayName: 诡诈之手
+		Description: 增加20%投掷弹幕速度和10%投掷暴击率
 	}
 }
 
@@ -47,13 +47,13 @@ Items: {
 	}
 
 	Kinetoscythe: {
-		// DisplayName: Kineto-scythe
-		/* Tooltip:
+		DisplayName: 动能镰刀
+		Tooltip:
 			'''
-			Rapidly spins a high tech scythe all around you
-			Right Click to generate a stationary spinning energy scythe
-			Spin the scythe while the energy scythe is active to make it home onto enemies 
-			''' */
+			快速在你周围旋转一把高科技镰刀
+			右键生成一个静止的旋转能量镰刀
+			在能量镰刀激活时旋转镰刀，使其自动追踪敌怪
+			'''
 	}
 
 	BlackMIDI: {
@@ -152,12 +152,12 @@ Items: {
 	}
 
 	BronzeGreaves: {
-		// DisplayName: Bronze Greaves
-		/* Tooltip:
+		DisplayName: 青铜护胫
+		Tooltip:
 			'''
-			10% increased throwing damage
-			10% increased movement speed
-			''' */
+			增加10%投掷伤害
+			增加10%移动速度
+			'''
 	}
 
 	PlagueDoctorsMask: {
@@ -211,32 +211,32 @@ Items: {
 	}
 
 	HallowedGuise: {
-		// DisplayName: Hallowed Guise
-		/* Tooltip:
+		DisplayName: 神圣兜盔
+		Tooltip:
 			'''
-			10% increased throwing damage
-			8% increased throwing critical strike chance
-			''' */
+			增加10%投掷伤害
+			增加8%暴击率
+			'''
 	}
 
 	LichCarapace: {
-		// DisplayName: Lich's Carapace
-		/* Tooltip:
+		DisplayName: 巫妖皮甲
+		Tooltip:
 			'''
-			'Embrace death...'
-			15% increased throwing damage
-			30% increased throwing velocity
-			''' */
+			“拥抱死亡……”
+			增加15%投掷伤害
+			增加30%投掷弹幕速度
+			'''
 	}
 
 	LichTalon: {
-		// DisplayName: Lich's Talons
-		/* Tooltip:
+		DisplayName: 巫妖之爪
+		Tooltip:
 			'''
-			'Embrace death...'
-			10% increased throwing damage
-			10% increased throwing critical strike chance
-			''' */
+			“拥抱死亡……”
+			增加10%投掷伤害
+			增加10%投掷暴击率
+			'''
 	}
 
 	ShadeMasterMask: {
@@ -251,13 +251,13 @@ Items: {
 	}
 
 	ShadeMasterGarb: {
-		// DisplayName: Shade Master's Garb
-		/* Tooltip:
+		DisplayName: 暗影大师装束
+		Tooltip:
 			'''
-			'Live in the shadows and strike with precision'
-			15% increased throwing damage
-			30% increased throwing velocity
-			''' */
+			“生活在暗影中并精确打击”
+			增加15%投掷伤害
+			增加30%投掷弹幕速度
+			'''
 	}
 
 	ShadeMasterTreads: {
@@ -503,27 +503,27 @@ Items: {
 	}
 
 	TideTurnersGaze: {
-		// DisplayName: Tide Turner's Depth-Crown
-		/* Tooltip:
+		DisplayName: 洪流逆潮者王冠
+		Tooltip:
 			'''
-			'Unleash aquatic wrath upon your foes'
-			35% increased throwing damage
-			50% chance not to consume thrown items
-			Increases your maximum technique points by 2
-			Throwing damage briefly increases the damage the enemy takes by 10%
-			Produces a floating globule every 1 second
-			Every globule makes your next attack a mini-crit, if it does not crit
-			''' */
+			“向你的敌人释放海洋之怒”
+			增加35%投掷伤害
+			50%概率不消耗投掷物品
+			最大技巧值增加2
+			投掷伤害会使敌怪受到的伤害短暂增加10%
+			每秒钟产生一个漂浮球
+			每颗球会使你下次攻击没暴击时产生一次小暴击
+			'''
 	}
 
 	TideTurnerBreastplate: {
-		// DisplayName: Tide Turner's Depth-Guard
-		/* Tooltip:
+		DisplayName: 洪流逆潮者胸甲
+		Tooltip:
 			'''
-			15% increased melee & throwing damage
-			10% increased melee speed
-			16% increased melee & throwing critical strike chance
-			''' */
+			增加15%近战和投掷伤害
+			增加10%近战攻击速度
+			增加16%近战和投掷暴击率
+			'''
 	}
 
 	TideTurnerGreaves: {
