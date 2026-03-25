@@ -30,8 +30,6 @@ using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
-using System.Security.Policy;
-using ThoriumMod.Items.BossMini;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -182,6 +180,17 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             #region Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
+                if (InfernalConfig.Instance.ThoriumBalanceChangess)
+                {
+                    Recipe omegaCore = Recipe.Create(thorium.Find<ModItem>("TheOmegaCore").Type);
+                    if (InfernalCrossmod.NoxusBoss.Loaded)
+                        omegaCore.AddIngredient(InfernalCrossmod.NoxusBoss.Mod.Find<ModItem>("MetallicChunk"));
+                    omegaCore.AddIngredient(ModContent.ItemType<Rock>());
+                    omegaCore.AddIngredient<DreamEssence>();
+                    omegaCore.AddTile<DraedonsForge>();
+                    omegaCore.Register();
+                }
+
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && !InfernalConfig.Instance.DisableBloodOrbPotions)
                 {
                     if (!InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -430,6 +439,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient<LivingShard>();
                     }
+
+                    if (recipe.HasResult<GrapeBeer>())
+                    {
+                        recipe.AddIngredient<StarblightSoot>(5);
+                    }
                 }
 
                 if (InfernalConfig.Instance.CalamityRecipeTweaks)
@@ -451,6 +465,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #region Calamity Ranger Expansion
                 if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))
                 {
+                    if (recipe.HasResult(ItemID.PinkGel) && recipe.Mod == calAmmo)
+                        recipe.DisableRecipe();
+
                     if (recipe.HasResult(calAmmo.Find<ModItem>("HardTack")))
                     {
                         recipe.DisableDecraft();
@@ -459,6 +476,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult(calAmmo.Find<ModItem>("HydrothermicArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("HydrothermicBullet")))
                     {
                         recipe.DecraftConditions.Add(Condition.DownedGolem);
+
+                        if (InfernalConfig.Instance.CalamityBalanceChanges)
+                            recipe.DisableRecipe();
                     }
 
                     if (InfernalConfig.Instance.MergeCraftingTrees)
@@ -480,6 +500,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.RemoveIngredient(ModContent.ItemType<PlasmaDriveCore>());
                             recipe.requiredTile.Clear();
                             recipe.AddTile(ModContent.TileType<DraedonsForge>());
+                        }
+                        if (recipe.HasResult(calAmmo.Find<ModItem>("MushroomUnitedNations")))
+                        {
+                            recipe.RemoveIngredient(ItemID.ShroomiteBar);
+                            recipe.AddIngredient(ItemID.LunarBar, 10);
+                            recipe.AddIngredient(ItemID.FragmentVortex, 6);
                         }
                     }
                 }
@@ -539,6 +565,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 5);
                     }
 
+                    if (recipe.HasResult(thorium.Find<ModItem>("LodestoneJavelin")))
+                    {
+                        recipe.ReplaceResult(thorium.Find<ModItem>("LodestoneJavelin"), 200);
+                    }
+
+                    if (recipe.HasResult(thorium.Find<ModItem>("ValadiumBattleAxe")))
+                    {
+                        recipe.ReplaceResult(thorium.Find<ModItem>("ValadiumBattleAxe"), 200);
+                    }
+
                     if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                     {
                         if (recipe.HasResult(ModContent.ItemType<ReboundingRainbow>()))
@@ -552,6 +588,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.RemoveIngredient(thorium.Find<ModItem>("PurifiedShards").Type);
                             recipe.AddIngredient(ItemID.FallenStar, 3);
                             recipe.AddIngredient(thorium.Find<ModItem>("Blood").Type);
+                        }
+
+                        if (recipe.HasResult(thorium.Find<ModItem>("Zunpet")))
+                        {
+                            recipe.RemoveIngredient(ItemID.HallowedBar);
                         }
                     }
                 }
@@ -1313,13 +1354,19 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(sots.Find<ModItem>("UltimatePolarizer")))
                         {
                             recipe.AddIngredient(ItemID.LunarBar, 5);
-                            recipe.AddIngredient(sots.Find<ModItem>("SanguiteBar"), 5);
                             if (InfernalCrossmod.Catalyst.Loaded)
                                 recipe.AddIngredient(InfernalCrossmod.Catalyst.Mod.Find<ModItem>("MetanovaBar"), 5);
+                            recipe.AddIngredient(sots.Find<ModItem>("SanguiteBar"), 5);
                             recipe.RemoveTile(TileID.TinkerersWorkbench);
                             recipe.AddTile(TileID.LunarCraftingStation);
                         }
 
+                        if (recipe.HasResult(sots.Find<ModItem>("CursedIcosahedron")))
+                        {
+                            recipe.AddIngredient(ItemID.Ectoplasm, 3);
+                        }
+
+                        #region Soul of Plight Additions
                         if (recipe.HasResult(ItemID.TrueNightsEdge))
                             recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);
 
@@ -1437,6 +1484,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             if(recipe.HasResult(fishGun.Find<ModItem>("TrueMutantNightfish")))
                                 recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 20);
                         }
+                        #endregion
                     }
                 }
                 #endregion

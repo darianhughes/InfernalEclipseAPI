@@ -7,7 +7,7 @@ using CalamityMod.Events;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 using CatalystMod.Tiles.Ores;
 using CatalystMod;
-using InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges;
+using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks.ILTileChanges;
 
 namespace InfernalEclipseAPI.Core.Systems.BossChanges.ILBossChanges
 {

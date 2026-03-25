@@ -20,7 +20,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
     {
         public override void SetDefaults()
         {
-            Item.width = Item.height = 54;
+            Item.width = 76;
+            Item.height = 38;
             Item.damage = 6000;
             Item.DamageType = MythicMagic.Instance;
             Item.useTime = 200;

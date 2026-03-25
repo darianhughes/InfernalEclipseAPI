@@ -413,6 +413,7 @@ namespace InfernalEclipseAPI.Core.Systems
 
                 EventSceneBase<MiniBossScene>.Instance.NPCs.Add(InfernalCrossmod.SOTS.Mod.Find<ModNPC>("PutridPinky1").Type);
                 newMiniBoss(findSOTSNPC("ChaosConstruct"));
+                newMiniBoss(findSOTSNPC("ChaosSpirit"));
                 newMiniBoss(findSOTSNPC("EarthenConstruct"));
                 newMiniBoss(findSOTSNPC("EarthenSpirit"));
                 newMiniBoss(findSOTSNPC("EvilConstruct"));

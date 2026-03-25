@@ -23,6 +23,14 @@ using InfernalEclipseAPI.Content.UI;
 using CalamityMod.Projectiles.Melee.Shortswords;
 using CalamityMod.NPCs.AquaticScourge;
 using InfernalEclipseAPI.Content.Projectiles;
+using InfernumMode.Content.Items.Accessories;
+using CalamityMod.CalPlayer;
+using CalamityMod.Balancing;
+using InfernalEclipseAPI.Content.Cooldowns;
+using CalamityMod.NPCs.PlaguebringerGoliath;
+using CalamityMod.NPCs.Ravager;
+using Daybreak.Common.Features.Hooks;
+using SOTS;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -33,6 +41,8 @@ namespace InfernalEclipseAPI.Core.Players
         public bool scalingArmorPenetration;
         public bool flightArmor;
         public bool Earthdrive;
+        public bool InverseDiamondRing;
+        public bool gutWrench;
 
         private const int AdjRadius = 4;
 
@@ -189,6 +199,10 @@ namespace InfernalEclipseAPI.Core.Players
         public int RingofRestCooldown;
         public bool CritNightmare;
 
+        public float manaSteal = Main.expertMode ? 40f : 50f;
+        public float voidSteal = Main.expertMode ? 45f : 55f;
+        public float inspirationSteal = Main.expertMode ? 5f : 10f;
+
         public bool singularityCore;
 
         public override void Initialize()
@@ -262,6 +276,20 @@ namespace InfernalEclipseAPI.Core.Players
             if (boostCooldownTime > 0)
                 boostCooldownTime--;
 
+            if (manaSteal < (Main.expertMode ? 40f : 50f))
+                manaSteal++;
+
+            if (voidSteal < (Main.expertMode ? 45f : 55f))
+            {
+                voidSteal++;
+            }
+
+            if (voidSteal > (Main.expertMode ? 45f : 55f))
+                voidSteal = (Main.expertMode ? 45f : 55f);
+
+            if (inspirationSteal < (Main.expertMode ? 5f : 6f))
+                inspirationSteal++;
+
             if (batPoop)
             {
                 batCoinTimer++;
@@ -307,6 +335,7 @@ namespace InfernalEclipseAPI.Core.Players
             exoSights = false;
             flightArmor = false;
             CritNightmare = false;
+            gutWrench = false;
         }
 
         public override void PreUpdate()
@@ -318,7 +347,7 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 Player.statLife -= 2;
                 if (Player.statLife == 0)
-                    Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} fell to the jungles curse..."), 0, 0);
+                    Player.KillMe(PlayerDeathReason.ByCustomReason(NetworkText.FromLiteral($"{Player.name} fell to the jungles curse...")), 0, 0);
                 Player.AddBuff(BuffID.PotionSickness, 60);
             }
 
@@ -333,6 +362,40 @@ namespace InfernalEclipseAPI.Core.Players
                 if (Player.HasBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("RealityBearer").Type) && BossRushEvent.BossRushActive)
                     Player.ClearBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("RealityBearer").Type);
             }
+        }
+
+        public int defenseGain;
+
+        public override void UpdateEquips()
+        {
+            if (Player.SOTSPlayer().InverseDiamondRing)
+            {
+                InverseDiamondRing = Player.SOTSPlayer().InverseDiamondRing;
+                Player.SOTSPlayer().InverseDiamondRing = false;
+            }
+
+            Player player = this.Player;
+
+            // Best class total multiplier.
+            // 1.00f = no bonus, 1.35f = +35%, etc.
+            StatModifier bestClassDamage = player.GetBestClassDamage();
+            float totalBestDamageMult = bestClassDamage.ApplyTo(1f);
+
+            float damageBonus = bestClassDamage.Additive * bestClassDamage.Multiplicative - 1f;
+            if (damageBonus < 0f)
+                damageBonus = 0f;
+
+            // Convert 1/3 of the bonus into defense.
+            // Example: +30% damage -> 10 defense
+            defenseGain = (int)(damageBonus * 100f / 3f);
+
+            if (InverseDiamondRing)
+            {
+                player.statDefense += defenseGain;
+
+                player.GetDamage(DamageClass.Generic) -= defenseGain * 0.01f;
+            }
+            this.InverseDiamondRing = false;
         }
 
         public override void PostUpdate()
@@ -368,7 +431,7 @@ namespace InfernalEclipseAPI.Core.Players
                 if (distanceMoved > 1000f || usedTeleportItem)
                 {
                     SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
-                    Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} tried to escape the multiversal terror."), 9999.0, 0);
+                    Player.KillMe(PlayerDeathReason.ByCustomReason(NetworkText.FromLiteral($"{Player.name} tried to escape the multiversal terror.")), 9999.0, 0);
                 }
 
                 previousPos = Player.position;
@@ -406,7 +469,7 @@ namespace InfernalEclipseAPI.Core.Players
                 if (distanceMoved > 1000f || usedTeleportItem)
                 {
                     SoundEngine.PlaySound(CalamityMod.Sounds.CommonCalamitySounds.ExoPlasmaShootSound, Player.Center);
-                    Player.KillMe(PlayerDeathReason.ByCustomReason($"{Player.name} tried to escape draedon's creations."), 9999.0, 0);
+                    Player.KillMe(PlayerDeathReason.ByCustomReason(NetworkText.FromLiteral($"{Player.name} tried to escape draedon's creations.")), 9999.0, 0);
                 }
 
                 previousPos = Player.position;
@@ -433,18 +496,25 @@ namespace InfernalEclipseAPI.Core.Players
             if (soltanBullying)
             {
                 float emptySummonSlots = Player.maxMinions - Player.slotsMinions;
-                ref StatModifier melee = ref Player.GetDamage(DamageClass.Melee);
-                melee += (float)(0.02 * emptySummonSlots);
-                ref StatModifier ranged = ref Player.GetDamage(DamageClass.Ranged);
-                ranged += (float)(0.02 * emptySummonSlots);
-                ref StatModifier magic = ref Player.GetDamage(DamageClass.Magic);
-                magic += (float)(0.02 * emptySummonSlots);
-                ref StatModifier throwing = ref Player.GetDamage(DamageClass.Throwing);
-                throwing += (float)(0.02 * emptySummonSlots);
+                Player.GetDamage(DamageClass.Generic) += (float)(0.02 * emptySummonSlots);
+                Player.GetDamage(DamageClass.Summon) -= (float)(0.02 * emptySummonSlots);
 
                 ref StatModifier summon = ref Player.GetDamage(DamageClass.Summon);
                 summon -= (float)(0.1 * Player.slotsMinions);
             }
+        }
+
+        public static bool PlayerHasPurity(Player player)
+        {
+            int purityType = ModContent.ItemType<Purity>();
+
+            for (int i = 3; i < 10 + player.extraAccessorySlots; i++)
+            {
+                Item item = player.armor[i];
+                if (item != null && item.type == purityType)
+                    return true;
+            }
+            return false;
         }
 
         public override void PostUpdateEquips()
@@ -481,140 +551,143 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (statShareAll)
             {
-                var meleeDamage = Player.GetDamage(DamageClass.Melee);
-                float meleeAdd = (meleeDamage.Additive - 1f) * 0.1f;
-                float meleeFlat = meleeDamage.Flat * 0.1f;
-                float meleeMult = ((meleeDamage.Multiplicative - 1f) * 0.1f) + 1f;
-                float meleeBase = meleeDamage.Base * 0.1f;
-
-                var rangedDamage = Player.GetDamage(DamageClass.Ranged);
-                float rangedAdd = (rangedDamage.Additive - 1f) * 0.1f;
-                float rangedFlat = rangedDamage.Flat * 0.1f;
-                float rangedMult = ((rangedDamage.Multiplicative - 1f) * 0.1f) + 1f;
-                float rangedBase = rangedDamage.Base * 0.1f;
-
-                var magicDamage = Player.GetDamage(DamageClass.Magic);
-                float magicAdd = (magicDamage.Additive - 1f) * 0.1f;
-                float magicFlat = magicDamage.Flat * 0.1f;
-                float magicMult = ((magicDamage.Multiplicative - 1f) * 0.1f) + 1f;
-                float magicBase = magicDamage.Base * 0.1f;
-
-                var summonDamage = Player.GetDamage(DamageClass.Summon);
-                float summonAdd = (summonDamage.Additive - 1f) * 0.1f;
-                float summonFlat = summonDamage.Flat * 0.1f;
-                float summonMult = ((summonDamage.Multiplicative - 1f) * 0.1f) + 1f;
-                float summonBase = summonDamage.Base * 0.1f;
-
-                if (meleeAdd > 0f)
+                if (!PlayerHasPurity(Player))
                 {
-                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
-                    ref var melee = ref Player.GetDamage(DamageClass.Melee);
-                    generic += meleeAdd;
-                    melee -= meleeAdd;
-                }
+                    var meleeDamage = Player.GetDamage(DamageClass.Melee);
+                    float meleeAdd = (meleeDamage.Additive - 1f) * 0.1f;
+                    float meleeFlat = meleeDamage.Flat * 0.1f;
+                    float meleeMult = ((meleeDamage.Multiplicative - 1f) * 0.1f) + 1f;
+                    float meleeBase = meleeDamage.Base * 0.1f;
 
-                if (meleeFlat > 0f)
-                {
-                    Player.GetDamage(DamageClass.Generic).Flat += meleeFlat;
-                    Player.GetDamage(DamageClass.Melee).Flat -= meleeFlat;
-                }
+                    var rangedDamage = Player.GetDamage(DamageClass.Ranged);
+                    float rangedAdd = (rangedDamage.Additive - 1f) * 0.1f;
+                    float rangedFlat = rangedDamage.Flat * 0.1f;
+                    float rangedMult = ((rangedDamage.Multiplicative - 1f) * 0.1f) + 1f;
+                    float rangedBase = rangedDamage.Base * 0.1f;
 
-                if (meleeMult > 1f)
-                {
-                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
-                    ref var melee = ref Player.GetDamage(DamageClass.Melee);
-                    generic *= meleeMult;
-                    melee /= meleeMult;
-                }
+                    var magicDamage = Player.GetDamage(DamageClass.Magic);
+                    float magicAdd = (magicDamage.Additive - 1f) * 0.1f;
+                    float magicFlat = magicDamage.Flat * 0.1f;
+                    float magicMult = ((magicDamage.Multiplicative - 1f) * 0.1f) + 1f;
+                    float magicBase = magicDamage.Base * 0.1f;
 
-                if (meleeBase > 0f)
-                {
-                    Player.GetDamage(DamageClass.Generic).Base += meleeBase;
-                    Player.GetDamage(DamageClass.Melee).Base -= meleeBase;
-                }
+                    var summonDamage = Player.GetDamage(DamageClass.Summon);
+                    float summonAdd = (summonDamage.Additive - 1f) * 0.1f;
+                    float summonFlat = summonDamage.Flat * 0.1f;
+                    float summonMult = ((summonDamage.Multiplicative - 1f) * 0.1f) + 1f;
+                    float summonBase = summonDamage.Base * 0.1f;
 
-                if (rangedAdd > 0f)
-                {
-                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
-                    ref var ranged = ref Player.GetDamage(DamageClass.Ranged);
-                    generic += rangedAdd;
-                    ranged -= rangedAdd;
-                }
+                    if (meleeAdd > 0f)
+                    {
+                        ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                        ref var melee = ref Player.GetDamage(DamageClass.Melee);
+                        generic += meleeAdd;
+                        melee -= meleeAdd;
+                    }
 
-                if (rangedFlat > 0f)
-                {
-                    Player.GetDamage(DamageClass.Generic).Flat += rangedFlat;
-                    Player.GetDamage(DamageClass.Ranged).Flat -= rangedFlat;
-                }
+                    if (meleeFlat > 0f)
+                    {
+                        Player.GetDamage(DamageClass.Generic).Flat += meleeFlat;
+                        Player.GetDamage(DamageClass.Melee).Flat -= meleeFlat;
+                    }
 
-                if (rangedMult > 1f)
-                {
-                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
-                    ref var ranged = ref Player.GetDamage(DamageClass.Ranged);
-                    generic *= rangedMult;
-                    ranged /= rangedMult;
-                }
+                    if (meleeMult > 1f)
+                    {
+                        ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                        ref var melee = ref Player.GetDamage(DamageClass.Melee);
+                        generic *= meleeMult;
+                        melee /= meleeMult;
+                    }
 
-                if (rangedBase > 0f)
-                {
-                    Player.GetDamage(DamageClass.Generic).Base += rangedBase;
-                    Player.GetDamage(DamageClass.Ranged).Base -= rangedBase;
-                }
+                    if (meleeBase > 0f)
+                    {
+                        Player.GetDamage(DamageClass.Generic).Base += meleeBase;
+                        Player.GetDamage(DamageClass.Melee).Base -= meleeBase;
+                    }
 
-                if (magicAdd > 0f)
-                {
-                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
-                    ref var magic = ref Player.GetDamage(DamageClass.Magic);
-                    generic += magicAdd;
-                    magic -= magicAdd;
-                }
+                    if (rangedAdd > 0f)
+                    {
+                        ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                        ref var ranged = ref Player.GetDamage(DamageClass.Ranged);
+                        generic += rangedAdd;
+                        ranged -= rangedAdd;
+                    }
 
-                if (magicFlat > 0f)
-                {
-                    Player.GetDamage(DamageClass.Generic).Flat += magicFlat;
-                    Player.GetDamage(DamageClass.Magic).Flat -= magicFlat;
-                }
+                    if (rangedFlat > 0f)
+                    {
+                        Player.GetDamage(DamageClass.Generic).Flat += rangedFlat;
+                        Player.GetDamage(DamageClass.Ranged).Flat -= rangedFlat;
+                    }
 
-                if (magicMult > 1f)
-                {
-                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
-                    ref var magic = ref Player.GetDamage(DamageClass.Magic);
-                    generic *= magicMult;
-                    magic /= magicMult;
-                }
+                    if (rangedMult > 1f)
+                    {
+                        ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                        ref var ranged = ref Player.GetDamage(DamageClass.Ranged);
+                        generic *= rangedMult;
+                        ranged /= rangedMult;
+                    }
 
-                if (magicBase > 0f)
-                {
-                    Player.GetDamage(DamageClass.Generic).Base += magicBase;
-                    Player.GetDamage(DamageClass.Magic).Base -= magicBase;
-                }
+                    if (rangedBase > 0f)
+                    {
+                        Player.GetDamage(DamageClass.Generic).Base += rangedBase;
+                        Player.GetDamage(DamageClass.Ranged).Base -= rangedBase;
+                    }
 
-                if (summonAdd > 0f)
-                {
-                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
-                    ref var summon = ref Player.GetDamage(DamageClass.Summon);
-                    generic += summonAdd;
-                    summon -= summonAdd;
-                }
+                    if (magicAdd > 0f)
+                    {
+                        ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                        ref var magic = ref Player.GetDamage(DamageClass.Magic);
+                        generic += magicAdd;
+                        magic -= magicAdd;
+                    }
 
-                if (summonFlat > 0f)
-                {
-                    Player.GetDamage(DamageClass.Generic).Flat += summonFlat;
-                    Player.GetDamage(DamageClass.Summon).Flat -= summonFlat;
-                }
+                    if (magicFlat > 0f)
+                    {
+                        Player.GetDamage(DamageClass.Generic).Flat += magicFlat;
+                        Player.GetDamage(DamageClass.Magic).Flat -= magicFlat;
+                    }
 
-                if (summonMult > 1f)
-                {
-                    ref var generic = ref Player.GetDamage(DamageClass.Generic);
-                    ref var summon = ref Player.GetDamage(DamageClass.Summon);
-                    generic *= summonMult;
-                    summon /= summonMult;
-                }
+                    if (magicMult > 1f)
+                    {
+                        ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                        ref var magic = ref Player.GetDamage(DamageClass.Magic);
+                        generic *= magicMult;
+                        magic /= magicMult;
+                    }
 
-                if (summonBase > 0f)
-                {
-                    Player.GetDamage(DamageClass.Generic).Base += summonBase;
-                    Player.GetDamage(DamageClass.Summon).Base -= summonBase;
+                    if (magicBase > 0f)
+                    {
+                        Player.GetDamage(DamageClass.Generic).Base += magicBase;
+                        Player.GetDamage(DamageClass.Magic).Base -= magicBase;
+                    }
+
+                    if (summonAdd > 0f)
+                    {
+                        ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                        ref var summon = ref Player.GetDamage(DamageClass.Summon);
+                        generic += summonAdd;
+                        summon -= summonAdd;
+                    }
+
+                    if (summonFlat > 0f)
+                    {
+                        Player.GetDamage(DamageClass.Generic).Flat += summonFlat;
+                        Player.GetDamage(DamageClass.Summon).Flat -= summonFlat;
+                    }
+
+                    if (summonMult > 1f)
+                    {
+                        ref var generic = ref Player.GetDamage(DamageClass.Generic);
+                        ref var summon = ref Player.GetDamage(DamageClass.Summon);
+                        generic *= summonMult;
+                        summon /= summonMult;
+                    }
+
+                    if (summonBase > 0f)
+                    {
+                        Player.GetDamage(DamageClass.Generic).Base += summonBase;
+                        Player.GetDamage(DamageClass.Summon).Base -= summonBase;
+                    }
                 }
             }
 
@@ -632,6 +705,20 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
             Earthdrive = false;
+
+            if (Player.HasBuff(ModContent.BuffType<BrimstoneDesperation>()))
+            {
+                CalamityPlayer mp = Player.Calamity();
+
+                mp.chaliceOfTheBloodGod = false;
+                mp.chaliceHeartStyle = false;
+                mp.draedonsHeart = false;
+
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    ThoriumEffectHandler.DisableThoriumEffects(Player);
+                }
+            }
         }
 
         private bool oceanBufferModified = false;
@@ -671,6 +758,35 @@ namespace InfernalEclipseAPI.Core.Players
                     oceanBufferModified = false; // reset if buff is gone
                 }
             }
+
+            /*
+            if (Player.whoAmI == Main.myPlayer)
+            {
+                float baseRecoveryRate = Main.expertMode ? 0.3f : 0.4f;
+                float lifeStealRecoveryRateReduction = Main.expertMode ? 0.2f : 0.25f;
+                float lifeStealCap = Main.expertMode ? 40f : 50f;
+
+                float lifeStealRecoveryRate = baseRecoveryRate - lifeStealRecoveryRateReduction;
+
+                if (manaSteal < lifeStealCap)
+                {
+                    int timeLeft = (int)MathF.Ceiling(Math.Max(0f, lifeStealCap - manaSteal));
+
+                    // If it should display at all, don't let it become 0 from float truncation.
+                    if (timeLeft <= 0)
+                        timeLeft = 1;
+
+                    if (Player.Calamity().cooldowns.TryGetValue(ManaSteal.ID, out var cooldown))
+                    {
+                        cooldown.timeLeft = timeLeft;
+                    }
+                    else
+                    {
+                        Player.AddCooldown(ManaSteal.ID, timeLeft).timeLeft = timeLeft;
+                    }
+                }
+            }
+            */
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)
@@ -690,7 +806,7 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
-        public void ConvertSummonMeleeToMelee(Player player, Item item, ref StatModifier damage)
+        public void ConvertSummonMeleeToMelee(Item item, ref StatModifier damage)
         {
             if (item.DamageType == ModContent.GetInstance<MeleeWhip>())
                 item.DamageType = DamageClass.SummonMeleeSpeed;
@@ -711,12 +827,12 @@ namespace InfernalEclipseAPI.Core.Players
             item.DamageType = ModContent.GetInstance<MeleeWhip>();
 
             //damage *= ratio;       // mimic Melee scaling
-            damage *= 1.10f;       // extra 10% while SoltanBullying
+            damage *= 1.25f;       // extra 10% while SoltanBullying
         }
 
         public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
         {
-            ConvertSummonMeleeToMelee(Player, item, ref damage);
+            ConvertSummonMeleeToMelee(item, ref damage);
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -739,7 +855,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
             {
-                modifiers.FinalDamage *= 0.2f;
+                modifiers.FinalDamage *= 0.1f;
             }
         }
 
@@ -754,7 +870,7 @@ namespace InfernalEclipseAPI.Core.Players
 
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
             {
-                modifiers.FinalDamage *= 0.8f;
+                modifiers.FinalDamage *= 0.1f;
             }
 
             if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()) &&
@@ -782,6 +898,12 @@ namespace InfernalEclipseAPI.Core.Players
                     if (proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("BeholderBlade").Type || proj.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModProjectile>("Void").Type)
                         modifiers.FinalDamage /= 2;
                 }
+            }
+
+            if ((target.type == ModContent.NPCType<PlaguebringerGoliath>() || target.type == ModContent.NPCType<RavagerBody>() || target.type == ModContent.NPCType<RavagerClawLeft>() || target.type == ModContent.NPCType<RavagerClawRight>() || target.type == ModContent.NPCType<RavagerHead>() ||
+                target.type == ModContent.NPCType<RavagerHead2>() || target.type == ModContent.NPCType<RavagerLegLeft>() || target.type == ModContent.NPCType<RavagerLegRight>()) && (proj.type == ModContent.ProjectileType<DukesDecapitatorProj>() || proj.type == ModContent.ProjectileType<DukesDecapitatorBubble>()))
+            {
+                modifiers.FinalDamage *= 0.1f;
             }
         }
 

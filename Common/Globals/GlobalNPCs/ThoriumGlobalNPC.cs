@@ -32,6 +32,9 @@ using ThoriumMod.NPCs.BossMini;
 using ThoriumMod.NPCs.BossQueenJellyfish;
 using ThoriumMod.NPCs.BossViscount;
 using InfernumMode.Core.GlobalInstances.Systems;
+using InfernalEclipseAPI.Content.Items.SpawnItems;
+using Terraria.Graphics.Effects;
+using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -75,6 +78,24 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             }
         }
 
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.type == ModContent.NPCType<Lich>() || npc.type == ModContent.NPCType<LichHeadless>())
+            {
+                Main.GraveyardVisualIntensity = 1f;
+            }
+            return base.PreAI(npc);
+        }
+
+        public override bool PreKill(NPC npc)
+        {
+            if (npc.type == ModContent.NPCType<Lich>() || npc.type == ModContent.NPCType<LichHeadless>())
+            {
+                Main.GraveyardVisualIntensity = 0f;
+            }
+            return base.PreKill(npc);
+        }
+
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == ModContent.NPCType<GigaClam>())
@@ -95,7 +116,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 {
                     if (npc.type == npcID)
                     {
-                        npcLoot.Add(ModLoader.GetMod("SOTS").Find<ModItem>("TwilightShard").Type, 3);
+                        npcLoot.AddIf(() => AncientPhylacteryRightClickBlocker.DownedAdvisor, ModLoader.GetMod("SOTS").Find<ModItem>("TwilightShard").Type, 3);
                     }
                 }
 
@@ -196,7 +217,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
         {
             if (item.type == ModContent.ItemType<StarScouterTreasureBag>() && ModLoader.HasMod("SOTS"))
             {
-                itemLoot.Add(ModLoader.GetMod("SOTS").Find<ModItem>("TwilightShard").Type, 1, 7, 14);
+                itemLoot.AddIf(() => AncientPhylacteryRightClickBlocker.DownedAdvisor, ModLoader.GetMod("SOTS").Find<ModItem>("TwilightShard").Type, 1, 7, 14);
             }
 
             if (item.type == ModContent.ItemType<LichTreasureBag>() && InfernalCrossmod.ThoriumRework.Loaded && !InfernalCrossmod.Hummus.Loaded)

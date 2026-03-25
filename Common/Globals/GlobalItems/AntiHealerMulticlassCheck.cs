@@ -1,6 +1,7 @@
 ﻿using InfernalEclipseAPI.Content.Buffs;
 using ThoriumMod;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
+using InfernalEclipseAPI.Core.DamageClasses;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -30,7 +31,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             if (item is null) return false;
 
-            // Requires Thorium reference; if you can't reference it directly, replace with your own detection.
+            if (item.CountsAsClass<VoidRogue>()) return false;
+
             if (item.CountsAsClass<HealerDamage>() || item.CountsAsClass<HealerToolDamageHybrid>() || item.CountsAsClass<HealerTool>()) return true;
 
             return false;

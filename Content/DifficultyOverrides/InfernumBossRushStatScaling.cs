@@ -1,4 +1,5 @@
 ﻿using CalamityMod.NPCs.GreatSandShark;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.GreatSandShark;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides
 {
@@ -35,6 +36,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                         npc.lifeMax *= 75;
                     }
                 }
+            }
+
+            if (npc.type == ModContent.NPCType<BereftVassal>() || npc.type == ModContent.NPCType<GreatSandShark>())
+            {
+                npc.lifeMax += (int)(0.15 * npc.lifeMax);
             }
         }
     }

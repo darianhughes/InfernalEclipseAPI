@@ -1,4 +1,5 @@
 UI: {
+	// Cooldowns.ManaSteal: Mana Steal Remaining
 	RagnarokIconText: Рагнарёк активирован
 	NoRespawn: Возрождение предотвращено: Только одно возрождение в битве с боссом в {0} мультиплеере!
 	NoRespawn2: Возрождение предотвращено: Только {0} {^0:возрождение;возрождения;возрождений} в битве с боссом в {1} мультиплеере!
@@ -69,6 +70,7 @@ WelcomeMessage: {
 	RagnarokBalance: ВНИМАНИЕ: Для корректной работы балансировки оружия установите в конфиге мода «Ragnarok» параметр «Общие настройки оружия» в значение «Выключено». В противном случае изменения будут накладываться, и оружие станет значительно сильнее задуманного.
 	RagnarokRework: ВНИМАНИЕ: Обнаружено, что у вас одновременно включены «Ragnarok» и «Thorium Helheim». Для получения задуманного опыта переключите все переключатели боссов в конфиге с «Ragnarok» на «Thorium Helheim».
 	GulaVaultMessage: Хранилище отказывается открываться. Сперва необходимо победить более сильное зло...
+	// LichMessage: The objects magic still seems to be frozen inside. Maybe the structure in the snow biome will help uncover why?
 }
 
 TimeFreezePrevention: {
@@ -104,6 +106,12 @@ ItemTooltip: {
 	ThorsHammerPro: Накладывает дебафф [cbuff:Electrified] на 3 секунды.
 	BountifulHarvest: Стреляет пронзающими жалами в чередующейся последовательности
 	// TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
+
+	GrapeBeer: {
+		// Orig: 75% reduced critical strike damage
+		// Nerf: 75% reduced critical strike damage and 30% reduced critical strike chance
+		// SOTSAdditional: Disables effects of Icosahedrons
+	}
 
 	SoulAnchor: {
 		OrigTooltip1: Привязывает вашу душу и здоровье к текущей позиции
@@ -154,6 +162,12 @@ ItemTooltip: {
 		Критические удары с 50% шансом нанесут на 20 ед. урона больше
 		При получении урона с 75% шансом вы получите дебафф [cbuff:Poisoned]
 		'''
+
+	PolishedCoin: {
+		// Orig: Critical strikes have a 50% chance to deal 30 more damage
+		// Nerf: Critical strikes have a 50% chance to deal 15 more damage
+	}
+
 	/* Desecar:
 		'''
 		Grants 1 defense for every 8 empty inventory slots
@@ -233,7 +247,160 @@ ItemTooltip: {
 			''' */
 	}
 
+	Helios: {
+		// Orig: Attacks scorch with each hit, increasing damage done by 3% permanently
+		// Nerf: Attacks scorch with each hit, increasing damage done by 1% permanently
+	}
+
+	Icosahedron: {
+		Hellfire: {
+			// Orig: Critical strikes may cause a flaming explosion, dealing 100% damage
+			// Nerf: Critical strikes may cause a flaming explosion, dealing 50% damage
+		}
+
+		Borealis: {
+			// Orig: Critical strikes may cause a frostburn explosion, dealing 200% damage
+			// Nerf: Critical strikes may cause a frostburn explosion, dealing 75% damage
+		}
+
+		Cursed: {
+			// OrigCursed: Critical strikes may cause a release of cursed thunder, dealing 100% damage
+			// NerfCursed: Critical strikes may cause a release of cursed thunder, dealing 75% damage
+			// OrigOther: Critical strikes may also cause frostburn or flaming explosions, dealing 100% damage
+			// NerfOther: Critical strikes may also cause frostburn or flaming explosions, dealing 75% damage
+		}
+
+		Charms: {
+			// Orig: Critical strikes may detonate enemies for 100% damage
+			// Nerf: Critical strikes may detonate enemies for 75% damage
+		}
+	}
+
+	DreadGreaves: {
+		// Orig: 20% increased movement speed
+		// Nerf: 9% increased movement speed
+	}
+
+	PlasmaShrimp: {
+		// Orig: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 50% damage
+		// Nerf: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 25% damage
+	}
+
+	ShatteredDreams: {
+		// Orig: Magic weapons unleash a star for 100% damage but consume void equal to 10% of their mana cost
+		/* Nerf:
+			'''
+			Magic weapons unlease a star that deal 100% damage but consume void equal to 10% of their mana cost
+			Only 3 stars can be active at a time
+			''' */
+	}
+
+	/* OtherworldlyAmplifier:
+		'''
+		Critical strikes deal up to 8 more damage
+		The damage bonus starts at 2 and scales inversely with item use speed
+		Your current bonus is {0}
+		''' */
+	/* FocusCrystal:
+		'''
+		Critical strikes deal up to 30 more damage
+		The damage bonus starts at 8 and scales inversely with item use speed
+		Your current bonus is {0}
+		Increases critical strike chance by 4%
+		Immunity to Poison and Bleeding
+		''' */
+
+	AlchCharm: {
+		// AlchOrig: Increases healing and mana received from potions by 100
+		// JellyOrig: Increases healing and mana received from potions by 40
+		// SandwichOrig: Increases healing received from potions by 40
+	}
+
+	/* PlatformGenerator:
+		'''
+		Generates 2 platforms to the left and right of you
+		You can right click to drag the platforms, but they will always remain symmetrical
+		Sentries can be summoned on top of the platforms
+		'Bring your sentries with you!'
+		''' */
+	/* FortressGenerator:
+		'''
+		Increases max minions and max sentries by 1
+		Generates 4 platforms to the left and right of you
+		You can right click to drag the platforms, but they will always remain symmetrical
+		Sentries can be summoned on top of the platforms
+		''' */
+
+	DissolvingElements: {
+		// NatureFlipped: Increases life regeneration by 0.25 HP/s while in the inventory, up to 1 HP/s total
+		// EarthFlipped: Increases defense by 1 while in the inventory, up to 4 total
+		// AuroraFlipped: Increases movement speed by 1% while in the inventory, up to 4% total
+		// DelugeFlipped: Increases ranged damage by 2% while in the inventory, up to 8% total
+		// AetherFlipped: Increases magic damage by 2% while in the inventory, up to 8% total
+		// NetherFlipped: Increases melee damage by 2% while in the inventory, up to 8% total
+		// BrillianceFlipped: Increases summon damage by 2% while in the inventory, up to 8% total
+	}
+
+	/* RubyRing:
+		'''
+		Killed enemies have a 50% chance to drop additional hearts
+		This chance increases to 100% with critical strikes
+		''' */
+	/* DiamondInvertedRing:
+		'''
+		Increase defense based on a third of damage, then decreases damage by defense buff
+		Increases defense by {0}
+		Decreases damage by {1}%
+		''' */
+
+	ChallengerRubyHover: {
+		/* Orig:
+			'''
+			> Killed enemies have a 50% chance to drop additional hearts
+			> This chance increases to 100% with critical strikes
+			> Collecting hearts lengthens the duration of active buffs, up to double the original duration
+			''' */
+		/* Nerf:
+			'''
+			> Killed enemies have a 50% chance to drop additional hearts
+			> This chance increases to 100% with critical strikes
+			''' */
+	}
+
+	ChallengerInvertedRingHover: {
+		/* Orig:
+			'''
+			> You can no longer critically strike
+			> Increases received to critical strike chance are converted into multiplicative increases to damage
+			''' */
+		/* Rework:
+			'''
+			> Increase defense based on a third of damage, then decreases damage by defense buff
+			> Increases defense by {0}
+			> Decreases damage by {1}%
+			''' */
+	}
+
+	ChallengerInvertedDiamondHover: {
+	}
+
+	DemonBlood: {
+		/* Replace:
+			'''
+			Enemies are more likely to target you
+			'Infused with everlasting Blood'
+			''' */
+		/* SetBonus:
+			'''
+			20% chance to completely neutralize incoming damage
+			The damage neutralization has a cooldown of 20 seconds
+			''' */
+	}
+
+	// DoesNotStack: Does not stack with downgrades
+	// NoBoss: Does not work while a boss is alive
 	// Disabled: "[DISABLED] "
+	// DauntlessBuff: +2% radiant damage
 	DedTo: - Посвящено: {0} -
 
 	Dedicated: {
@@ -1243,6 +1410,16 @@ Items: {
 				Defeat the resplendant pheonix to gain more power...
 				''' */
 			// Full: The Celestial Illumination is fully awaked, and its true strength has been revealed!
+			/* ProfanedGuardians:
+				'''
+				With the defeat of the Profaned Guardians, you can fire a celestial beam
+				Defeat the Goddess of Flame to gain more power...
+				''' */
+			/* Sentinels:
+				'''
+				With the defeat of the Sentinels, the celestial beam lasts longer
+				Defeat the Devourer of Gods to gain more power...
+				''' */
 		}
 
 		// Lore: The final book forged by the one with the mark of the Astra...
@@ -1505,6 +1682,7 @@ Items: {
 			Увеличивает максимальное время полёта на 20%
 			'За пламенем и искрами, если заглянуть достаточно глубоко, можно увидеть своё прошлое и будущее'
 			'''
+		// FlavorText: Behind the flames and the sparks, if you look deep enough, you will see your past and your future
 	}
 
 	InfernalTerraBladeRelic: {
@@ -1638,6 +1816,11 @@ Items: {
 	MaulerRelic: {
 		// DisplayName: Mauler Relic
 		// Tooltip: ""
+	}
+
+	DreamEssence: {
+		// DisplayName: Dream Essence
+		// Tooltip: "'Twilight of the Gods'"
 	}
 }
 
@@ -1940,6 +2123,20 @@ Configs: {
 				Отключайте этот конфиг, только если вы осознаёте последствия, и не сообщайте об ошибках при отключённом конфиге.
 				'''
 		}
+
+		DeveloperMode: {
+			// Label: Developer Mode
+			// Tooltip: Toggles the availablity of tools useful for development.
+		}
+
+		UseAprilFoolsMutant: {
+			// Label: Use April Fools Mutant
+			/* Tooltip:
+				'''
+				Converts the Mutant from Fargo's Souls to Yharim.
+				This setting doesn't do anything if Fargo's Souls isn't enabled.
+				''' */
+		}
 	}
 
 	Difficulty: {
@@ -2213,6 +2410,11 @@ Buffs: {
 	CrimulanAura: {
 		// DisplayName: Crimulan Aura
 		// Description: Your movement has been significantly hindered!
+	}
+
+	BrimstoneDesperation: {
+		// DisplayName: Brimstone Desperation
+		// Description: Brimstone energy flows though the air, disabling many of your abilites!
 	}
 }
 

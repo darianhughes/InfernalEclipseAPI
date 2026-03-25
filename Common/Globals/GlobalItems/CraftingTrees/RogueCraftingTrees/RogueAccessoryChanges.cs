@@ -18,15 +18,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
             }
         }
 
-        private Mod sots
-        {
-            get
-            {
-                ModLoader.TryGetMod("SOTS", out Mod sots);
-                return sots;
-            }
-        }
-
         private Mod calamity
         {
             get
@@ -94,19 +85,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     scutterGem.UpdateAccessory(player, hideVisual);
                 }
 
-                if (item.type == ModContent.ItemType<FilthyGlove>() || item.type == ModContent.ItemType<BloodstainedGlove>())
-                {
-                    scutterGem.UpdateAccessory(player, hideVisual);
-                    ModItem boneGrip = thorium.Find<ModItem>("BoneGrip");
-                    boneGrip.UpdateAccessory(player, hideVisual);
-                }
-
                 if (item.type == thorium.Find<ModItem>("MagnetoGrip").Type)
                 {
                     scutterGem.UpdateAccessory(player, hideVisual);
-                    CalamityPlayer modPlayer = player.Calamity();
-                    modPlayer.bloodyGlove = true;
-                    modPlayer.filthyGlove = true;
                 }
 
                 if (item.type == ModContent.ItemType<Nanotech>() || item.type == ModContent.ItemType<ElectriciansGlove>())
@@ -218,15 +199,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     AddTooltip(tooltips, scuttlerInfo, true);
                 }
 
-                if (item.type == ModContent.ItemType<FilthyGlove>() || item.type == ModContent.ItemType<BloodstainedGlove>())
-                {
-                    AddTooltip(tooltips, boneInfo, true);
-                    AddTooltip(tooltips, scuttlerInfo, true);
-                }
-
                 if (item.type == thorium.Find<ModItem>("MagnetoGrip").Type)
                 {
-                    AddTooltip(tooltips, bloodyfilthyInfo, true);
                     AddTooltip(tooltips, scuttlerInfo, true);
                 }
 

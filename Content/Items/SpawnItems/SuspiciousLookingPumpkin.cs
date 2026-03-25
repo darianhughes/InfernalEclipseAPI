@@ -6,6 +6,13 @@ using Microsoft.Xna.Framework;
 using ThoriumMod.Utilities;
 using CalamityMod.Items.Materials;
 using ThoriumMod.Items.Misc;
+using MonoMod.RuntimeDetour;
+using System.Reflection;
+using SOTS;
+using InfernalEclipseAPI.Core.Systems;
+using System.Security.Policy;
+using ThoriumMod.Items.ZRemoved;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.SpawnItems
 {
@@ -55,12 +62,22 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
                 }
                 else
                 {
+                    bool canSummon = true;
+
+                    if (InfernalCrossmod.SOTS.Loaded)
+                    {
+                        if (!AncientPhylacteryRightClickBlocker.DownedPolaris)
+                        {
+                            canSummon = false;
+                        }
+                    }
+
                     Player localPlayer = Main.LocalPlayer;
                     if (Main.IsItDay())
                     {
                         base.RightClick(i, j, type);
                     }
-                    else
+                    else if (canSummon)
                     {
                         if ((NPC.AnyNPCs(ModContent.NPCType<Lich>()) ? 1 : (NPC.AnyNPCs(ModContent.NPCType<LichHeadless>()) ? 1 : 0)) != 0)
                         {
@@ -109,5 +126,70 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
             }
             base.RightClick(i, j, type);
         }
+
+        public override void MouseOver(int i, int j, int type)
+        {
+            if (type == ModContent.TileType<AncientPhylactery>())
+            {
+                if (InfernalCrossmod.SOTS.Loaded)
+                {
+                    if (!AncientPhylacteryRightClickBlocker.DownedPolaris)
+                    {
+                        Player localPlayer = Main.LocalPlayer;
+                        int cursorItemIconId1 = localPlayer.cursorItemIconID;
+                        localPlayer.cursorItemIconID = ModContent.ItemType<LichRequirement3>();
+                        int cursorItemIconId2 = localPlayer.cursorItemIconID;
+                        if (cursorItemIconId1 == cursorItemIconId2)
+                            return;
+                        localPlayer.noThrow = 2;
+                        localPlayer.cursorItemIconText = "";
+                        localPlayer.cursorItemIconEnabled = true;
+                    }
+                }
+            }
+        }
+    }
+
+    [JITWhenModsEnabled("SOTS")]
+    [ExtendsFromMod("SOTS")]
+    public class AncientPhylacteryRightClickBlocker : ModSystem
+    {
+        private Hook rightClickHook;
+
+        public override void Load()
+        {
+            if (!ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+                return;
+
+            ModTile tile = thorium.Find<ModTile>("AncientPhylactery");
+            MethodInfo method = tile.GetType().GetMethod("RightClick", BindingFlags.Instance | BindingFlags.Public);
+
+            if (method is null)
+                return;
+
+            rightClickHook = new Hook(method, RightClickHook);
+        }
+
+        public override void Unload()
+        {
+            rightClickHook?.Dispose();
+            rightClickHook = null;
+        }
+
+        private static bool RightClickHook(Func<object, int, int, bool> orig, object self, int i, int j)
+        {
+            Player player = Main.LocalPlayer;
+
+            if (!DownedPolaris)
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.LichMessage"), Color.LightBlue);
+                return false;
+            }
+
+            return orig(self, i, j);
+        }
+
+        public static bool DownedAdvisor => SOTSWorld.downedAdvisor;
+        public static bool DownedPolaris => SOTSWorld.downedAmalgamation;
     }
 }

@@ -1,6 +1,8 @@
-﻿using InfernalEclipseAPI.Core.Players;
+﻿using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.Core.Players;
 using SOTS;
 using SOTS.Buffs;
+using SOTS.Buffs.MinionBuffs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
 {

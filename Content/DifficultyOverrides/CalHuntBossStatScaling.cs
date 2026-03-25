@@ -307,7 +307,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (baseP2LifeMax <= 0)
                 return 1;
 
-            float mult = BossRushEvent.BossRushActive ? 12.15f : 2.5f;
+            float mult = BossRushEvent.BossRushActive ? 5f : 2.5f;
 
             // Clamp so we never end up at 0 due to rounding or weirdness.
             int result = (int)MathF.Round(baseP2LifeMax * mult);

@@ -26,7 +26,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
         {
             if (player.altFunctionUse == 2)
             {
-                player.GetModPlayer<InfernalPlayer>().resonatorTimer = 60 * 5;
+                player.GetModPlayer<InfernalPlayer>().resonatorTimer = 180;
             }
 
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);

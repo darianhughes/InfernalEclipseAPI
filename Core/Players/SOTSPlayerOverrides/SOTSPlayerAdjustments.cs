@@ -1,4 +1,7 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using System.Security.Policy;
+using CalamityMod;
+using CalamityMod.Buffs.Alcohol;
+using InfernalEclipseAPI.Core.Systems;
 using SOTS;
 using Terraria.Localization;
 
@@ -9,6 +12,13 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
     public class SOTSPlayerAdjustments : ModPlayer
     {
         public string bossMessage = "";
+        public bool royalJelly;
+        public bool glowSpores;
+        public bool sandwich;
+        public bool glowJelly;
+        public bool alchemistsCharm;
+
+
         public override void ResetEffects()
         {
             SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Player);
@@ -21,6 +31,64 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
             if (Player.GetModPlayer<InfernalPlayer>().singularityCore)
             {
                 Player.VoidPlayer().voidRegenSpeed += 0.1f;
+            }
+
+            royalJelly = sandwich = glowJelly = alchemistsCharm = false;
+        }
+
+        public override void UpdateEquips()
+        {
+            SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Player);
+
+            if (alchemistsCharm)
+            {
+                sotsPlayer.additionalHeal += 100;
+                sotsPlayer.additionalPotionMana += 100;
+            }
+            else if (glowJelly)
+            {
+                sotsPlayer.additionalHeal += 40;
+                sotsPlayer.additionalPotionMana += 40;
+            }
+            else if (glowSpores)
+            {
+                sotsPlayer.additionalPotionMana += 40;
+            }
+
+            if (sandwich)
+            {
+                sotsPlayer.additionalHeal += 40;
+            }
+            else if (royalJelly && !glowJelly && !alchemistsCharm)
+            {
+                sotsPlayer.additionalHeal += 40;
+            }
+        }
+
+        public override void PostUpdateEquips()
+        {
+            SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Player);
+
+            /*
+            if (InfernalPlayer.PlayerHasPurity(Player))
+            {
+                sotsPlayer.InverseDiamondRing = false;
+            }
+
+            if (sotsPlayer.InverseDiamondRing)
+            {
+                Player.ClearBuff(ModContent.BuffType<GrapeBeerBuff>());
+                Player.Calamity().grapeBeer = false;
+            }
+            */
+
+            if (Player.Calamity().grapeBeer)
+            {
+                sotsPlayer.CritBonusDamage = (int)(sotsPlayer.CritBonusDamage * 0.25f);
+                sotsPlayer.CritBonusMultiplier *= 0.75f;
+                sotsPlayer.CritCurseFire = false;
+                sotsPlayer.CritFire = false;
+                sotsPlayer.CritFrost = false;
             }
         }
 

@@ -2,6 +2,7 @@
 using Terraria.DataStructures;
 using System.Reflection;
 using InfernalEclipseAPI.Core.World;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -57,6 +58,12 @@ namespace InfernalEclipseAPI.Core.Players
 
         public static bool isMinimumDiffToPreventRespawn()
         {
+            if (InfernalCrossmod.NoxusBoss.Loaded)
+            {
+                if (NPC.AnyNPCs(InfernalCrossmod.NoxusBoss.Mod.Find<ModNPC>("NamelessDeityBoss").Type))
+                    return true;
+            }
+
             Difficulty diff = InfernalConfig.Instance.MinimumDifficultyToPreventRespawns;
             switch (diff)
             {
@@ -83,7 +90,18 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
-        public bool PreventRespawn() => isMinimumDiffToPreventRespawn() && AnyBosses() && Respawns > InfernalConfig.Instance.MultiplayerRespawnsAllowed && Main.netMode != NetmodeID.SinglePlayer;
+        public bool RespawnsUsed()
+        {
+            if (InfernalCrossmod.NoxusBoss.Loaded)
+            {
+                if (NPC.AnyNPCs(InfernalCrossmod.NoxusBoss.Mod.Find<ModNPC>("NamelessDeityBoss").Type))
+                    return true;
+            }
+
+            return Respawns > InfernalConfig.Instance.MultiplayerRespawnsAllowed;
+        }
+
+        public bool PreventRespawn() => isMinimumDiffToPreventRespawn() && AnyBosses() && RespawnsUsed() && Main.netMode != NetmodeID.SinglePlayer;
         public override void UpdateDead()
         {
             base.UpdateDead();

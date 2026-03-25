@@ -3,7 +3,6 @@ using System.Linq;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using SOTS.Items.CritBonus;
-using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
 {
@@ -68,38 +67,6 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
                     customLine.OverrideColor = InfernalRed;
 
                 tooltips.Insert(insertIndex, customLine);
-            }
-        }
-
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            if (!InfernalConfig.Instance.SOTSBalanceChanges)
-                return;
-
-            if (item.type == ModContent.ItemType<CloverCharm>())
-            {
-                string nerf = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CloverNerf2");
-                AddTooltip(tooltips, nerf, true);
-            }
-
-            if (InfernalCrossmod.SOTSBardHealer.Loaded)
-            {
-                if (item.type == InfernalCrossmod.SOTSBardHealer.Mod.Find<ModItem>("RingofRest").Type)
-                {
-                    string nerf = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.RingofRestNerf");
-                    AddTooltip(tooltips, nerf, true);
-                }
-            }
-
-            if (item.type == ModContent.ItemType<SoulCharm>() || item.type == ModContent.ItemType<BagOfCharms>())
-            {
-                string nerf;
-                if (InfernalCrossmod.SOTSBardHealer.Loaded)
-                    nerf = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CloverNerf");
-                else
-                    nerf = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CloverNerf2");
-
-                AddTooltip(tooltips, nerf, true);
             }
         }
     }

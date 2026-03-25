@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using ThoriumMod.Projectiles.Scythe;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Healer.Scythes.ThrowableScythes
@@ -200,8 +202,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
             if (isThrowableScythe)
             {
-                tooltips.Add(new TooltipLine(Mod, "ScytheThrow",
-                    Terraria.Localization.Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ScytheThrow")));
+                InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ScytheThrow"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
             }
         }
     }

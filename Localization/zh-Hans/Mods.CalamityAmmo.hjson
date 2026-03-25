@@ -7,4 +7,13 @@ Items: {
 			略微提升远程弹幕的速度
 			'''
 	}
+
+	WulfrumBullet: {
+		// DisplayName: Wulfrum Scrap Bullet
+		/* Tooltip:
+			'''
+			Radiates wulfrum energy beams with a slight homing ability
+			"Last Hamon, son."
+			''' */
+	}
 }

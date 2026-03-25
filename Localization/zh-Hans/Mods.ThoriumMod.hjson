@@ -1,3 +1,10 @@
+Buffs: {
+	NinjaBuff: {
+		// DisplayName: Sleight of Hand
+		// Description: Throwing velocity is increased by 20%, and throwing critical strike chance increased by 10%
+	}
+}
+
 Items: {
 	CapeoftheSurvivor: {
 		DisplayName: 生存者披风
@@ -37,6 +44,16 @@ Items: {
 	KeyofPlight: {
 		DisplayName: 恶意钥匙
 		Tooltip: “充满许多灵魂的精华”
+	}
+
+	Kinetoscythe: {
+		// DisplayName: Kineto-scythe
+		/* Tooltip:
+			'''
+			Rapidly spins a high tech scythe all around you
+			Right Click to generate a stationary spinning energy scythe
+			Spin the scythe while the energy scythe is active to make it home onto enemies 
+			''' */
 	}
 
 	BlackMIDI: {
@@ -134,6 +151,15 @@ Items: {
 		Tooltip: 增加10%投掷伤害
 	}
 
+	BronzeGreaves: {
+		// DisplayName: Bronze Greaves
+		/* Tooltip:
+			'''
+			10% increased throwing damage
+			10% increased movement speed
+			''' */
+	}
+
 	PlagueDoctorsMask: {
 		DisplayName: 瘟疫医生面具
 		Tooltip:
@@ -184,6 +210,35 @@ Items: {
 			'''
 	}
 
+	HallowedGuise: {
+		// DisplayName: Hallowed Guise
+		/* Tooltip:
+			'''
+			10% increased throwing damage
+			8% increased throwing critical strike chance
+			''' */
+	}
+
+	LichCarapace: {
+		// DisplayName: Lich's Carapace
+		/* Tooltip:
+			'''
+			'Embrace death...'
+			15% increased throwing damage
+			30% increased throwing velocity
+			''' */
+	}
+
+	LichTalon: {
+		// DisplayName: Lich's Talons
+		/* Tooltip:
+			'''
+			'Embrace death...'
+			10% increased throwing damage
+			10% increased throwing critical strike chance
+			''' */
+	}
+
 	ShadeMasterMask: {
 		DisplayName: 暗影大师面具
 		Tooltip:
@@ -193,6 +248,16 @@ Items: {
 			33%概率不消耗投掷物品
 			最大技巧值增加2
 			'''
+	}
+
+	ShadeMasterGarb: {
+		// DisplayName: Shade Master's Garb
+		/* Tooltip:
+			'''
+			'Live in the shadows and strike with precision'
+			15% increased throwing damage
+			30% increased throwing velocity
+			''' */
 	}
 
 	ShadeMasterTreads: {
@@ -394,6 +459,71 @@ Items: {
 			[c/70DB93:获取方式：击败遗忘之主/遗忘之主宝藏袋获得]
 			[c/B8860B:职业划分：牧师]
 			'''
+	}
+
+	DreamWeaversHelmet: {
+		DisplayName: 梦境编织者头盔
+		Tooltip:
+			'''
+			“用暂时的苦痛捆绑住你未来的敌人”
+			污染你的光辉力量
+			降低45%非光辉伤害
+			增加45%光辉伤害
+			增加36%光辉暴击率
+			最大魔力值增加20
+			'''
+	}
+
+	DreamWeaversHood: {
+		DisplayName: 梦境编织者兜帽
+		Tooltip:
+			'''
+			“通过你的队友表明你最由衷的梦想”
+			降低25%非光辉伤害
+			增加30%光辉伤害
+			增加16%光辉暴击率
+			降低35%魔力消耗
+			大幅增加魔力再生
+			最大魔力值增加60
+			治疗法术会额外治疗6点生命值
+			'''
+	}
+
+	DreamWeaversTabard: {
+		DisplayName: 梦境编织者长袍
+		Tooltip:
+			'''
+			降低25%非光辉伤害
+			增加25%光辉伤害
+			增加14%光辉暴击率
+			降低20%魔力消耗
+			大幅增加魔力再生
+			治疗法术会额外治疗2点生命值
+			'''
+	}
+
+	TideTurnersGaze: {
+		// DisplayName: Tide Turner's Depth-Crown
+		/* Tooltip:
+			'''
+			'Unleash aquatic wrath upon your foes'
+			35% increased throwing damage
+			50% chance not to consume thrown items
+			Increases your maximum technique points by 2
+			Throwing damage briefly increases the damage the enemy takes by 10%
+			Produces a floating globule every 1 second
+			Every globule makes your next attack a mini-crit, if it does not crit
+			''' */
+	}
+
+	TideTurnerBreastplate: {
+		// DisplayName: Tide Turner's Depth-Guard
+		/* Tooltip:
+			'''
+			15% increased melee & throwing damage
+			10% increased melee speed
+			16% increased melee & throwing critical strike chance
+			''' */
 	}
 
 	TideTurnerGreaves: {

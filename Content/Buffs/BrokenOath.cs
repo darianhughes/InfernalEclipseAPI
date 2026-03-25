@@ -1,4 +1,7 @@
-﻿namespace InfernalEclipseAPI.Content.Buffs
+﻿using InfernalEclipseAPI.Core.Systems;
+using ThoriumRework;
+
+namespace InfernalEclipseAPI.Content.Buffs
 {
     [ExtendsFromMod("ThoriumMod")]
     public class BrokenOath : ModBuff
@@ -23,5 +26,12 @@
                     thor.healBonus = 0;
             }
         }
+    }
+
+    [JITWhenModsEnabled(InfernalCrossmod.ThoriumRework.Name)]
+    [ExtendsFromMod(InfernalCrossmod.ThoriumRework.Name)]
+    public static class LunateCharmChecker
+    {
+        public static bool PlayerHasLunateCharm(Player player) => player.GetModPlayer<ThoriumPlayer>().lunateCharm; 
     }
 }

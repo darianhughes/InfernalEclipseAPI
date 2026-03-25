@@ -21,7 +21,7 @@ Items: {
 			25% decreased non-radiant damage
 			+80 max life
 			Moderately increased life regeneration
-			Healing spells heal an additional 8 life
+			Healing spells heal an additional 6 life
 			'''
 	}
 
@@ -33,7 +33,7 @@ Items: {
 			30% decreased non-radiant damage
 			+100 max life
 			Moderately increased life regeneration
-			Healing spells heal an additional 10 life
+			Healing spells heal an additional 7 life
 			'''
 	}
 
@@ -47,7 +47,7 @@ Items: {
 			45% decreased mana cost
 			+200 max life
 			+100 max mana
-			Healing spells heal an additional 10 life
+			Healing spells heal an additional 7 life
 			'''
 	}
 
@@ -59,7 +59,7 @@ Items: {
 		45% decreased mana cost
 		+200 max life
 		+100 max mana
-		Healing spells heal an additional 10 life
+		Healing spells heal an additional 7 life
 		'''
 	ElementalBloom.Tooltip:
 		'''

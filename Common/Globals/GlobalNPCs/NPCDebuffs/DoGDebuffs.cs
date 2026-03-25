@@ -1,5 +1,8 @@
 ﻿using CalamityMod.NPCs.DevourerofGods;
 using InfernalEclipseAPI.Core.Systems;
+using InfernumMode;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.DoG;
+using Terraria;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
 {
@@ -14,9 +17,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
             }
         }
 
+        public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
+        {
+            return npc.type == ModContent.NPCType<DevourerofGodsHead>();
+        }
+
         public override bool PreAI(NPC npc)
         {
-            if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active || npc.type != ModContent.NPCType<DevourerofGodsHead>()) return base.PreAI(npc);
+            if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active) return base.PreAI(npc);
 
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -38,6 +46,23 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
             }
 
             return base.PreAI(npc);
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            if (!npc.active)
+                return;
+
+            if (DoGPhase2HeadBehaviorOverride.InPhase2)
+            {
+                if (npc.damage == 650)
+                    npc.damage = 885;
+            }
+            else
+            {
+                if (npc.damage == 600)
+                    npc.damage = 800;
+            }
         }
     }
 }

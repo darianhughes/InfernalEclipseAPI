@@ -15,16 +15,56 @@ using InfernalEclipseAPI.Core.Utils;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using CalamityMod.Items.Potions.Alcohol;
+using CalamityMod;
+using InfernumMode.Content.Items.Misc;
+using InfernumMode.Core.GlobalInstances.Players;
+using InfernumMode.Content.Items.Accessories;
+using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
+using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
     public class InfernalGlobalItem : GlobalItem
     {
+        public override void SetStaticDefaults()
+        {
+            InfernumPlayer.AccessoryUpdateEvent += (InfernumPlayer player) =>
+            {
+                if (player.GetValue<bool>(Purity.FieldName))
+                {
+                    Player p = player.Player;
+                    float bonus = 0.57f; //close enough i guess
+
+                    p.GetDamage<MythicMagic>() *= bonus;
+                    p.GetDamage<MythicMelee>() *= bonus;
+                    p.GetDamage<MythicRanged>() *= bonus;
+                    p.GetDamage<MythicSummon>() *= bonus;
+                    //rogue
+                    //bard
+                    //healer
+                    //generic
+
+                    p.GetDamage<LegendaryMelee>() *= bonus;
+                    p.GetDamage<LegendaryRanged>() *= bonus;
+                    p.GetDamage<LegendaryMagic>() *= bonus;
+                    //summoner
+                    //bard
+                    //healer
+                    //generic
+                }
+            };
+        }
+
         public override void SetDefaults(Item item)
         {
             if (item.type == ModContent.ItemType<Moonshine>() && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 item.value = Item.buyPrice(0, 1, 0, 0);
+            }
+
+            if (item.type == ModContent.ItemType<GrapeBeer>() && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                item.value = Item.buyPrice(0, 0, 3, 0);
             }
         }
 
@@ -35,6 +75,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == InfernalCrossmod.FargosMutant.Mod.Find<ModItem>("SuspiciousSkull").Type && !NPC.downedBoss3)
                     return false;
             }
+
+            if (item.type == ModContent.ItemType<Wayfinder>() && player.Calamity().ZoneAbyss && !DownedBossSystem.downedYharon)
+                return false;
 
             return base.CanUseItem(item, player);
         }
@@ -213,7 +256,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if ((item.type == ModContent.ItemType<GrapeBeer>() || item.type == ModContent.ItemType<Moonshine>()) && InfernalConfig.Instance.CalamityBalanceChanges)
-                InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TwoAlchs")), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+            {
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Orig"), InfernalCrossmod.SOTS.Loaded ? Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf") + "\n" + Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional") : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf"));
+                InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.TwoAlchs"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+            }
 
             if (InfernalCrossmod.FargosMutant.Loaded)
             {

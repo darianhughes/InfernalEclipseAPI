@@ -17,6 +17,10 @@ using RevengeancePlus.Projectiles;
 using SOTS.NPCs;
 using Terraria.DataStructures;
 using Terraria;
+using SOTS.Projectiles.AbandonedVillage;
+using SOTS.NPCs.Boss.Lux;
+using System.Security.Policy;
+using SOTS.Projectiles.Celestial;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 {
@@ -50,7 +54,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 entity.Calamity().canBreakPlayerDefense = true;
             }
 
-            if (entity.type == ModContent.NPCType<Glowmoth>() || entity.type == ModContent.NPCType<GlowmothMinion>() || entity.type == ModContent.NPCType<PhaseEye>())
+            if (entity.type == ModContent.NPCType<Glowmoth>() || entity.type == ModContent.NPCType<GlowmothMinion>() || entity.type == ModContent.NPCType<PhaseEye>() || entity.type == ModContent.NPCType<Lux>())
             {
                 entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
             }
@@ -86,7 +90,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                     npc.lifeMax += (int)((double).25 * npc.lifeMax);
                 }
 
-                if (npc.ModNPC?.Name?.Contains("TheAdvisorHead") == true || npc.ModNPC.Name.Contains("Excavator") || npc.ModNPC.Name.Contains("Lux"))
+                if (npc.ModNPC.Name.Contains("Lux"))
+                {
+                    npc.lifeMax += (int)(0.45 * npc.lifeMax);
+                }
+                else if (npc.ModNPC.Name.Contains("TheAdvisorHead"))
                 {
                     npc.lifeMax += (int)(0.25 * npc.lifeMax);
                 }
@@ -102,6 +110,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 else if (npc.ModNPC.Name.Contains("SubspaceSerpent"))
                 {
                     npc.lifeMax += (int)(0.25f * npc.lifeMax);
+                }
+                else if (npc.ModNPC.Name.Contains("Excavator"))
+                {
+                    npc.lifeMax += (int)(0.05f * npc.lifeMax);
                 }
                 else if (npc.type != ModContent.NPCType<PutridPinkyPhase2>())
                     npc.lifeMax += (int)((double).35 * npc.lifeMax);
@@ -124,7 +136,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 
                 if (npc.ModNPC.Name.Contains("Excavator"))
                 {
-                    modifiers.SourceDamage *= 0.25f;
+                    modifiers.SourceDamage *= 1.1f;
                 }
             }
         }
@@ -144,7 +156,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                     return;
 
                 if (npc.type == ModContent.NPCType<SubspaceSerpentHead>())
-                    npc.position += npc.velocity * 0.25f;
+                    npc.position += npc.velocity * 0.15f;
                 else
                     npc.position += npc.velocity * 0.35f;
             }
@@ -229,6 +241,16 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 ModContent.ProjectileType<GlowBombShard>(),
                 ModContent.ProjectileType<GlowSparkle>(),
 
+                //Excavator
+                ModContent.ProjectileType<ExcavatorOrb>(),
+                ModContent.ProjectileType<ExcavatorBolt>(),
+                ModContent.ProjectileType<ExcavatorLightning>(),
+                ModContent.ProjectileType<ExcavatorRocket>(),
+                ModContent.ProjectileType<ExcavatorSaw>(),
+                ModContent.ProjectileType<CollapseBlock>(),
+                ModContent.ProjectileType<ExcavatorBoltBig>(),
+                ModContent.ProjectileType<ExcavatorBoltSmall>(),
+
                 //Advisor
                 ModContent.ProjectileType<OtherworldlyBall>(),
                 ModContent.ProjectileType<OtherworldlyBolt>(),
@@ -253,7 +275,16 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 ModContent.ProjectileType<ChaosDart2>(),
                 ModContent.ProjectileType<ChaosEraser>(),
                 ModContent.ProjectileType<ChaosEraser2>(),
-                ModContent.ProjectileType<DogmaLaser>()
+                ModContent.ProjectileType<DogmaLaser>(),
+                ModContent.ProjectileType<ThunderBall>(),
+                ModContent.ProjectileType<ChaosHelixLaser>(),
+                ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>(),
+
+                //Subspace
+                ModContent.ProjectileType<BossBabyLaser>(),
+                ModContent.ProjectileType<GreaterCellBlast>(),
+                ModContent.ProjectileType<WaveBlast>(),
+                ModContent.ProjectileType<InfernoPhaseBolt>()
             };
 
             foreach (int type in types)
@@ -266,16 +297,25 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 
         public override void SetDefaults(Projectile entity)
         {
-            entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+            if (!entity.ModProjectile.Name.Contains("Excavator") && entity.type != ModContent.ProjectileType<CollapseBlock>() &&
+                entity.type != ModContent.ProjectileType<BossBabyLaser>() && entity.type != ModContent.ProjectileType<GreaterCellBlast>() && entity.type != ModContent.ProjectileType<WaveBlast>() && entity.type != ModContent.ProjectileType<InfernoPhaseBolt>())
+                entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
 
-            if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>())
+            if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>() && 
+                entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>() && 
+                entity.type != ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>() && entity.type != ModContent.ProjectileType<InfernoPhaseBolt>())
                 entity.Calamity().DealsDefenseDamage = false;
         }
 
         public override void OnSpawn(Projectile entity, IEntitySource source)
         {
-            if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>())
+            if (entity.type != ModContent.ProjectileType<GlowBombOrb>() && entity.type != ModContent.ProjectileType<HoloMissile>() &&
+                entity.type != ModContent.ProjectileType<ExcavatorRocket>() && entity.type != ModContent.ProjectileType<ExcavatorSaw>() && entity.type != ModContent.ProjectileType<CollapseBlock>() &&
+                entity.type != ModContent.ProjectileType<RevengeancePlus.Projectiles.FakeLux>())
                 entity.Calamity().DealsDefenseDamage = false;
+
+            if (entity.type == ModContent.ProjectileType<InfernoPhaseBolt>())
+                entity.damage = 50;
         }
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
@@ -291,8 +331,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
             {
                 if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
                     damageMod *= 1.95f;
-                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>() || projectile.Name.Contains("Excavator") || projectile.type == ModContent.ProjectileType<CollapseBlock>())
                     damageMod *= 1.5f;
+                else if ((projectile.ModProjectile.Name.Contains("Chaos") || projectile.ModProjectile.Name.Contains("Dogma")) && projectile.type != ModContent.ProjectileType<ChaosHelixLaser>())
+                {
+                    damageMod *= 1.2f;
+                }
                 else
                 {
                     damageMod *= 1.35f;
@@ -302,7 +346,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
             {
                 if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
                     damageMod *= 1.45f;
-                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>() || projectile.Name.Contains("Excavator") || projectile.type == ModContent.ProjectileType<CollapseBlock>())
                     damageMod *= 1.25f;
                 else
                     damageMod *= 1.25f;
@@ -311,13 +355,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
             {
                 if (projectile.type == ModContent.ProjectileType<GlowBombOrb>() || projectile.type == ModContent.ProjectileType<GlowBombShard>() || projectile.type == ModContent.ProjectileType<GlowSparkle>())
                     damageMod *= 1.15f;
-                else if (projectile.type == ModContent.ProjectileType<WaveBall>())
+                else if (projectile.type == ModContent.ProjectileType<WaveBall>() || projectile.Name.Contains("Excavator") || projectile.type == ModContent.ProjectileType<CollapseBlock>())
                     damageMod *= 1.1f;
                 else
                     damageMod *= 1.1f;
             }
 
-            modifiers.SourceDamage *= damageMod;
+            if (projectile.type != ModContent.ProjectileType<InfernoPhaseBolt>())
+                modifiers.SourceDamage *= damageMod;
         }
     }
 

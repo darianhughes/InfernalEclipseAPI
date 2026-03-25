@@ -12,8 +12,6 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges
     {
         private Hook getBonusesHook;
 
-        public delegate void VisionAmuletEffect(Player player, int gem, int frame);
-
         public override bool IsLoadingEnabled(Mod mod)
         {
             return !ModLoader.HasMod("SecretsOfTheSouls");
@@ -22,11 +20,15 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges
         public override void Load()
         {
             var type = InfernalCrossmod.SOTS.Mod.Code.GetType("SOTS.Items.AbandonedVillage.VisionAmulet");
-            var mi = type?.GetMethod("GetBonuses", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var mi = type?.GetMethod("GetBonuses", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
 
-            if (mi == null) return;
+            if (mi == null)
+            {
+                InfernalEclipseAPI.Instance.Logger.Warn("Failed to find Vision Amulet's GetBonuses method for hooking. Elemental Amulet nerfs will not be applied.");
+                return;
+            }
 
-            getBonusesHook = new Hook(mi, new GetBonuses_Replacement(GetBonuses_Hook));
+            getBonusesHook = new Hook(mi, GetBonuses_Hook);
         }
 
         public override void Unload()
@@ -35,9 +37,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges
             getBonusesHook = null;
         }
 
-        private delegate void GetBonuses_Replacement(object self, Player player, int gem, int frame);
-
-        private static void GetBonuses_Hook(object self, Player player, int gem, int frame)
+        private static void GetBonuses_Hook(Player player, int gem, int frame)
         {
             SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(player);
             VoidPlayer voidPlayer = VoidPlayer.ModPlayer(player);
@@ -92,6 +92,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges
                         sotsPlayer.LazyCrafterAmulet = true;
                     else
                         infernalPlayer.LazyCrafterAmulet = true;
+
                     sotsPlayer.additionalPotionMana += 40;
                     player.statManaMax2 += 40;
                     break;

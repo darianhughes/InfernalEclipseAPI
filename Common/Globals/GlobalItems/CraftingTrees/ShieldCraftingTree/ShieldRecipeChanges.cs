@@ -105,6 +105,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         }
                     }
 
+                    if (sots != null)
+                    {
+                        if (recipe.HasResult(sots.Find<ModItem>("BulwarkOfTheAncients")))
+                        {
+                            recipe.RemoveTile(TileID.TinkerersWorkbench);
+                            recipe.AddTile(TileID.LunarCraftingStation);
+                        }
+                    }
+
                     if (recipe.HasResult(thorium.Find<ModItem>("TerrariumDefender")))
                     {
                         if (sots != null)
@@ -114,7 +123,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             recipe.RemoveIngredient(ItemID.FrozenTurtleShell);
                             recipe.AddIngredient(sots.Find<ModItem>("BulwarkOfTheAncients").Type);
                             if (!recipe.HasIngredient(ItemID.FrozenShield)) recipe.AddIngredient(ItemID.FrozenShield);
-
+                            recipe.AddIngredient(ItemID.LunarBar, 5);
                         }
                         else
                         {

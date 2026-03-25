@@ -20,6 +20,9 @@ using CalamityMod.CalPlayer;
 using CalamityMod;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
 using InfernalEclipseAPI.Core.Utils;
+using CalamityMod.Buffs.StatDebuffs;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
+using Terraria;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -103,6 +106,24 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     }
                 }
             }
+
+            if (ModLoader.TryGetMod("CalamityAmmo", out Mod calamityAmmo) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                int hydroArrow = calamityAmmo.Find<ModItem>("HydrothermicArrow").Type;
+                int hydroBullet = calamityAmmo.Find<ModItem>("HydrothermicBullet").Type;
+
+                // Remove matching entries
+                for (int i = 0; i < items.Length; i++)
+                {
+                    Item item = items[i];
+
+                    if (item == null || item.IsAir)
+                        continue;
+
+                    if (item.type == hydroArrow || item.type == hydroBullet)
+                        item.TurnToAir();
+                }
+            }
         }
 
         public override void OnSpawn(NPC npc, IEntitySource source)
@@ -149,7 +170,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override bool PreAI(NPC npc)
         {
-            if (!InfernalConfig.Instance.VanillaBalanceChanges || !npc.active || (npc.type != NPCID.HallowBoss)) return base.PreAI(npc);
+            if (!npc.active) return base.PreAI(npc);
 
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -157,10 +178,30 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
                     continue;
 
-                if (InfernalCrossmod.Clamity.Loaded)
+                if (InfernalConfig.Instance.VanillaBalanceChanges && npc.type == NPCID.HallowBoss)
                 {
-                    if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
-                        player.mount.Dismount(player);
+                    if (InfernalCrossmod.Clamity.Loaded)
+                    {
+                        if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
+                            player.mount.Dismount(player);
+                    }
+                }
+
+                if (InfernalWorld.RagnarokModeEnabled && npc.type == NPCID.Golem)
+                {
+                    player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
+                }
+
+                if (InfernalConfig.Instance.PreventBossCheese && npc.type == ModContent.NPCType<HealerShieldCrystal>())
+                {
+                    player.ClearBuff(ModContent.BuffType<RageMode>());
+                    player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+
+                    CalamityPlayer mp = player.Calamity();
+                    mp.rage = 0;
+                    mp.rageModeActive = false;
+                    mp.adrenaline = 0;
+                    mp.adrenalineModeActive = false;
                 }
             }
 

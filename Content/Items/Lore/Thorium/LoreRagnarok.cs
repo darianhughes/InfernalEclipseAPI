@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CalamityMod.Items.LoreItems;
 using CalamityMod.Rarities;
+using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework.Input;
 using Terraria.Localization;
@@ -36,7 +37,7 @@ namespace InfernalEclipseAPI.Content.Items.Lore.Thorium
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Book)
-                .AddIngredient<TheOmegaCore>()
+                .AddIngredient<DreamEssence>()
                 .AddTile(TileID.Bookcases)
                 .Register();
         }

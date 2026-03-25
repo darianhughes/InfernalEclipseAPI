@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
@@ -61,10 +62,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
         {
             if (scytheTypes == null || !scytheTypes.Contains(item.type) || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
-            tooltips.Add(new TooltipLine(Mod, "ExtraInfo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SoulEssence"))
-            {
-                OverrideColor = new Color?(Color.Yellow)
-            });
+            InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SoulEssence"), overrideColor: Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
         }
     }
 }

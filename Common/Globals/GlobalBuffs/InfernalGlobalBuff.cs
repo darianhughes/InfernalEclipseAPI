@@ -9,9 +9,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
         public override void Update(int type, Player player, ref int buffIndex)
         {
             if ((type == ModContent.BuffType<GrapeBeerBuff>() || type == ModContent.BuffType<MoonshineBuff>()) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
                 player.Calamity().alcoholPoisonLevel++;
+                player.GetCritChance(DamageClass.Generic) -= 30f;
+            }
 
-            if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)
+                if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 if (type == InfernalCrossmod.NoxusBoss.Mod.Find<ModBuff>("StarstrikinglySatiated").Type)
                 {

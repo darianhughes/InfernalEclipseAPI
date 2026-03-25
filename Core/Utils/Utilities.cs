@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.DataStructures;
 using InfernumMode.Core.GlobalInstances.Systems;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Core.Utils
 {
@@ -235,6 +236,21 @@ namespace InfernalEclipseAPI.Core.Utils
         #endregion
 
         #region Tooltip Utilities
+        public static void AddDisabledItemTag(List<TooltipLine> tooltips)
+        {
+            for (int index = 0; index < tooltips.Count; ++index)
+            {
+                if (tooltips[index].Mod == "Terraria")
+                {
+                    if (tooltips[index].Name == "ItemName")
+                    {
+                        TooltipLine tooltip = tooltips[index];
+                        tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Disabled") + tooltip.Text;
+                    }
+                }
+            }
+        }
+
         public static void AddTooltip(List<TooltipLine> tooltips, string newTooltip, Color overrideColor = default)
         {
             int maxTooltipIndex = -1;
@@ -262,6 +278,19 @@ namespace InfernalEclipseAPI.Core.Utils
                     customLine.OverrideColor = overrideColor;
 
                 tooltips.Insert(insertIndex, customLine);
+            }
+        }
+
+        public static void ReplaceTooltip(List<TooltipLine> tooltips, string origTooltiip, string newTooltip, bool overrideColor = false)
+        {
+            foreach (TooltipLine tooltip in tooltips)
+            {
+                if (tooltip.Text.Contains(origTooltiip))
+                {
+                    tooltip.Text = newTooltip;
+                    if (overrideColor)
+                        tooltip.OverrideColor = new Color?(InfernalRed);
+                }
             }
         }
 

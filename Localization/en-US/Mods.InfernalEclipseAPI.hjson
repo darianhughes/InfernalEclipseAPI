@@ -1,4 +1,5 @@
 UI: {
+	Cooldowns.ManaSteal: Mana Steal Remaining
 	RagnarokIconText: Ragnarok Mode is enabled
 	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
 	NoRespawn2: Respawn prevented: Only {0} respawns per boss in {1} multiplayer!
@@ -69,6 +70,7 @@ WelcomeMessage: {
 	RagnarokBalance: NOTICE: For the Balancing of weapons to be as intended, set the Ragnarok mod config of 'Generic Weapon Tweaks' to OFF, as otherwise the changes will stack and weapons will be far stronger than intended.
 	RagnarokRework: NOTICE: It is detected that you have both the Ragnarok mod and Thorium Bosses Reworked enabled. For the intended experience, turn all the boss toggles in the Ragnarok Boss Config to Thorium Bosses Reworked.
 	GulaVaultMessage: The vault refuses to open. A stronger evil must be defeated first...
+	LichMessage: The objects magic still seems to be frozen inside. Maybe the structure in the snow biome will help uncover why?
 }
 
 TimeFreezePrevention: {
@@ -104,6 +106,12 @@ ItemTooltip: {
 	ThorsHammerPro: Inflcts electrified for 3 seconds on hits.
 	BountifulHarvest: Fires piercing stingers in an alternating pattern
 	TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
+
+	GrapeBeer: {
+		Orig: 75% reduced critical strike damage
+		Nerf: 75% reduced critical strike damage and 30% reduced critical strike chance
+		SOTSAdditional: Disables effects of Icosahedrons
+	}
 
 	SoulAnchor: {
 		OrigTooltip1: Anchors your soul and health to your current position
@@ -157,6 +165,12 @@ ItemTooltip: {
 		Critical strikes have a 50% chance to deal 10 more damage
 		Receiving damage has a 75% chance to poison you
 		'''
+
+	PolishedCoin: {
+		Orig: Critical strikes have a 50% chance to deal 30 more damage
+		Nerf: Critical strikes have a 50% chance to deal 15 more damage
+	}
+
 	Desecar:
 		'''
 		Grants 1 defense for every 8 empty inventory slots
@@ -183,7 +197,9 @@ ItemTooltip: {
 	FocusReticle:
 		'''
 		Increases critical strike chance by 15%, does not stack with downgrades
-		Critical strikes deal 40 more damage
+		Critical strikes deal up to 40 more damage
+		The damage bonus starts at 15 and scales inversely with item use speed
+		Your current bonus is {0}
 		Immunity to bleeding and poisoned debuffs
 		'''
 	Starbelt:
@@ -236,7 +252,160 @@ ItemTooltip: {
 			'''
 	}
 
+	Helios: {
+		Orig: Attacks scorch with each hit, increasing damage done by 3% permanently
+		Nerf: Attacks scorch with each hit, increasing damage done by 1% permanently
+	}
+
+	Icosahedron: {
+		Hellfire: {
+			Orig: Critical strikes may cause a flaming explosion, dealing 100% damage
+			Nerf: Critical strikes may cause a flaming explosion, dealing 50% damage
+		}
+
+		Borealis: {
+			Orig: Critical strikes may cause a frostburn explosion, dealing 200% damage
+			Nerf: Critical strikes may cause a frostburn explosion, dealing 75% damage
+		}
+
+		Cursed: {
+			OrigCursed: Critical strikes may cause a release of cursed thunder, dealing 100% damage
+			NerfCursed: Critical strikes may cause a release of cursed thunder, dealing 75% damage
+			OrigOther: Critical strikes may also cause frostburn or flaming explosions, dealing 100% damage
+			NerfOther: Critical strikes may also cause frostburn or flaming explosions, dealing 75% damage
+		}
+
+		Charms: {
+			Orig: Critical strikes may detonate enemies for 100% damage
+			Nerf: Critical strikes may detonate enemies for 75% damage
+		}
+	}
+
+	DreadGreaves: {
+		Orig: 20% increased movement speed
+		Nerf: 9% increased movement speed
+	}
+
+	PlasmaShrimp: {
+		Orig: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 50% damage
+		Nerf: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 25% damage
+	}
+
+	ShatteredDreams: {
+		Orig: Magic weapons unleash a star for 100% damage but consume void equal to 10% of their mana cost
+		Nerf:
+			'''
+			Magic weapons unlease a star that deal 100% damage but consume void equal to 10% of their mana cost
+			Only 3 stars can be active at a time
+			'''
+	}
+
+	OtherworldlyAmplifier:
+		'''
+		Critical strikes deal up to 8 more damage
+		The damage bonus starts at 2 and scales inversely with item use speed
+		Your current bonus is {0}
+		'''
+	FocusCrystal:
+		'''
+		Critical strikes deal up to 30 more damage
+		The damage bonus starts at 8 and scales inversely with item use speed
+		Your current bonus is {0}
+		Increases critical strike chance by 4%
+		Immunity to Poison and Bleeding
+		'''
+
+	AlchCharm: {
+		AlchOrig: Increases healing and mana received from potions by 100
+		JellyOrig: Increases healing and mana received from potions by 40
+		SandwichOrig: Increases healing received from potions by 40
+	}
+
+	PlatformGenerator:
+		'''
+		Generates 2 platforms to the left and right of you
+		You can right click to drag the platforms, but they will always remain symmetrical
+		Sentries can be summoned on top of the platforms
+		'Bring your sentries with you!'
+		'''
+	FortressGenerator:
+		'''
+		Increases max minions and max sentries by 1
+		Generates 4 platforms to the left and right of you
+		You can right click to drag the platforms, but they will always remain symmetrical
+		Sentries can be summoned on top of the platforms
+		'''
+
+	DissolvingElements: {
+		NatureFlipped: Increases life regeneration by 0.25 HP/s while in the inventory, up to 1 HP/s total
+		EarthFlipped: Increases defense by 1 while in the inventory, up to 4 total
+		AuroraFlipped: Increases movement speed by 1% while in the inventory, up to 4% total
+		DelugeFlipped: Increases ranged damage by 2% while in the inventory, up to 8% total
+		AetherFlipped: Increases magic damage by 2% while in the inventory, up to 8% total
+		NetherFlipped: Increases melee damage by 2% while in the inventory, up to 8% total
+		BrillianceFlipped: Increases summon damage by 2% while in the inventory, up to 8% total
+	}
+
+	RubyRing:
+		'''
+		Killed enemies have a 50% chance to drop additional hearts
+		This chance increases to 100% with critical strikes
+		'''
+	DiamondInvertedRing:
+		'''
+		Increase defense based on a third of damage, then decreases damage by defense buff
+		Increases defense by {0}
+		Decreases damage by {1}%
+		'''
+
+	ChallengerRubyHover: {
+		Orig:
+			'''
+			> Killed enemies have a 50% chance to drop additional hearts
+			> This chance increases to 100% with critical strikes
+			> Collecting hearts lengthens the duration of active buffs, up to double the original duration
+			'''
+		Nerf:
+			'''
+			> Killed enemies have a 50% chance to drop additional hearts
+			> This chance increases to 100% with critical strikes
+			'''
+	}
+
+	ChallengerInvertedRingHover: {
+		Orig:
+			'''
+			> You can no longer critically strike
+			> Increases received to critical strike chance are converted into multiplicative increases to damage
+			'''
+		Rework:
+			'''
+			> Increase defense based on a third of damage, then decreases damage by defense buff
+			> Increases defense by {0}
+			> Decreases damage by {1}%
+			'''
+	}
+
+	ChallengerInvertedDiamondHover: {
+	}
+
+	DemonBlood: {
+		Replace:
+			'''
+			Enemies are more likely to target you
+			'Infused with everlasting Blood'
+			'''
+		SetBonus:
+			'''
+			20% chance to completely neutralize incoming damage
+			The damage neutralization has a cooldown of 20 seconds
+			'''
+	}
+
+	DoesNotStack: Does not stack with downgrades
+	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "
+	DauntlessBuff: +2% radiant damage
 	DedTo: - Dedicated to {0} -
 
 	Dedicated: {
@@ -529,6 +698,7 @@ ItemTooltip: {
 		AlchemistCharm:
 			'''
 			Increases healing and mana received from potions by 100
+			Does not stack with downgrades
 			Increases buff duration by 67%
 			'''
 		SubspaceBoostersDash: Press {0} while on the ground to blast forward, granting higher speed and acceleration
@@ -907,9 +1077,10 @@ Items: {
 		SOTSBardHealerTooltip:
 			'''
 			Increases critical strike chance by 15%, does not stack with downgrades
-			Critical strikes deal 40 more damage and may detonate enemies for 100% damage
+			Critical strikes deal up to 40 more damage and may detonate enemies for 75% damage
+			The damage bonus starts at 15 and scales inversely with item use speed
+			Your current bonus is {0}
 			Critical strikes steal life, regenerate void, recover mana and return inspiration
-			Life steal & inspiration regeneration have a 1 second cooldown
 			Pressing the '{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}' key will grant you guaranteed critical strikes for 10 seconds
 			For one minute afterwards, you deal 10% less damage
 			Immunity to bleeding and poisoned debuffs, & grants night vision
@@ -917,8 +1088,9 @@ Items: {
 		ThoriumTooltip:
 			'''
 			Increases critical strike chance by 15%, does not stack with downgrades
-			Critical strikes deal 40 more damage, steal life, regenerate void, recover mana, and may detonate enemies for 100% damage
-			Life steal has a 1 second cooldown
+			Critical strikes deal up to 40 more damage, steal life, regenerate void, recover mana, and may detonate enemies for 75% damage
+			The damage bonus starts at 15 and scales inversely with item use speed
+			Your current bonus is {0}
 			Pressing the '{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}' key will grant you guaranteed critical strikes for 10 seconds
 			For one minute afterwards, you deal 10% less damage
 			Immunity to bleeding and poisoned debuffs, & grants night vision
@@ -926,9 +1098,10 @@ Items: {
 		DefaultTooltip:
 			'''
 			Increases critical strike chance by 15%, does not stack with downgrades
-			Critical strikes deal 40 more damage and may detonate enemies for 100% damage
+			Critical strikes deal up to 40 more damage and may detonate enemies for 75% damage
+			The damage bonus starts at 15 and scales inversely with item use speed
+			Your current bonus is {0}
 			Critical strikes steal life, regenerate void, and recover mana
-			Life steal has a 1 second cooldown
 			Immunity to bleeding and poisoned debuffs, & grants night vision
 			'''
 		Lore: After Erelian had obtained the Exo Prism from Draedon, he finnaly had everything to perfect his suit's spirit AI - and now the tyrant was finnally in his sights.
@@ -1264,6 +1437,16 @@ Items: {
 				Defeat the resplendant pheonix to gain more power...
 				'''
 			Full: The Celestial Illumination is fully awaked, and its true strength has been revealed!
+			ProfanedGuardians:
+				'''
+				With the defeat of the Profaned Guardians, you can fire a celestial beam
+				Defeat the Goddess of Flame to gain more power...
+				'''
+			Sentinels:
+				'''
+				With the defeat of the Sentinels, the celestial beam lasts longer
+				Defeat the Devourer of Gods to gain more power...
+				'''
 		}
 
 		Lore: The final book forged by the one with the mark of the Astra...
@@ -1409,7 +1592,7 @@ Items: {
 			'''
 			Right click to fire a burst of sword beams
 			While holding Rage will be automatically activated when the meter is full
-			While Rage is active, you spawn clones of yourselft that attack at your cursor
+			While Rage is active, you spawn clones of yourself that attack at your cursor
 			The thirteenth form of the Crystal of the Glitch, wielded by Nahu Guritchi
 			'I will end our curse once and for all, Zane!'
 			'''
@@ -1461,7 +1644,6 @@ Items: {
 			'''
 			Killed enemies have a 50% chance to drop additional hearts
 			This chance increases to 100% with critical strikes
-			Collecting hearts lengthens the duration of active buffs, up to double the original duration
 			'''
 		G5:
 			'''
@@ -1499,8 +1681,9 @@ Items: {
 		# Opposite of Pride, Humility
 		I5:
 			'''
-			You can no longer critically strike
-			Increases received to critical strike chance are converted into multiplicative increases to damage
+			Increase defense based on a third of damage, then decreases damage by defense buff
+			Increases defense by {0}
+			Decreases damage by {1}%
 			'''
 		# Opposite of Lust, Chastity
 		I6:
@@ -1510,22 +1693,19 @@ Items: {
 			'''
 		NormalTooltip:
 			'''
-			18% increase to damage
-			Increases arrow damage by 5%
-			10% increased movement speed
-			+3.5 HP/s life regen and +2 max minions
-			Increased minion knockback
-			Increases all damage by 4
-			Increases armor penetration by 5
-			Increases critical strike chance by 4%
-			Increases coin drops and magic damage.
-			During the day, grants +2 HP/s life regen
-			During the night, grants +20 defense
-			During an eclipse, grants +1 HP/s life regen and +10 defense
+			18% increased damage and 5% increased arrow damaage
+			10% increased movement speed and 4% increased critical strike chance
+			Increases all damage by 4 and armor penetration by 5
 			Arrow critical strikes briefly shadowflame enemies
+			+3.5 HP/s life regen and +2 max minions
+			Increased minion knockback & coin drops
+			Grants various buff as the day goes on
+			    During the day, grants +2 HP/s life regen
+			    During the night, grants +20 defense
+			    During an eclipse, grants +1 HP/s life regen and +10 defense
 			Boosts your maximum flight time by 20%
-			'Behind the flames and the sparks, if you look deep enough, you will see your past and your future'
 			'''
+		FlavorText: Behind the flames and the sparks, if you look deep enough, you will see your past and your future
 	}
 
 	InfernalTerraBladeRelic: {
@@ -1660,6 +1840,11 @@ Items: {
 		DisplayName: Mauler Relic
 		Tooltip: ""
 	}
+
+	DreamEssence: {
+		DisplayName: Dream Essence
+		Tooltip: "'Twilight of the Gods'"
+	}
 }
 
 Projectiles: {
@@ -1712,7 +1897,7 @@ BullyingTooltip:
 	Increases most non-summon damage by 2% for each unused minion slot.
 	Reduces summon damage by 10% for each used minion slot.
 	Whips now scale with your melee bonuses instead of summoner bonuses
-	Increases whip damage by 10%
+	Increases whip damage by 25%
 	[c/E3AF40:A paper note with a microchip on it, designed by Dylan]
 	[c/BEBEBE:Press "Left Shift" to read the writing on the back of the note]
 	'''
@@ -1962,6 +2147,20 @@ Configs: {
 				Only disable this config if you know the consequences, and do not report bugs with this config disabled.
 				'''
 		}
+
+		DeveloperMode: {
+			Label: Developer Mode
+			Tooltip: Toggles the availablity of tools useful for development.
+		}
+
+		UseAprilFoolsMutant: {
+			Label: Use April Fools Mutant
+			Tooltip:
+				'''
+				Converts the Mutant from Fargo's Souls to Yharim.
+				This setting doesn't do anything if Fargo's Souls isn't enabled.
+				'''
+		}
 	}
 
 	Difficulty: {
@@ -2198,7 +2397,7 @@ Buffs: {
 	}
 
 	WarpJammed: {
-		Description: Draedon is monitoring your teleports...
+		Description: Your teleports are being monitored!
 		DisplayName: Warp Jammed
 	}
 
@@ -2235,6 +2434,11 @@ Buffs: {
 	CrimulanAura: {
 		DisplayName: Crimulan Aura
 		Description: Your movement has been significantly hindered!
+	}
+
+	BrimstoneDesperation: {
+		DisplayName: Brimstone Desperation
+		Description: Brimstone energy flows though the air, disabling many of your abilites!
 	}
 }
 

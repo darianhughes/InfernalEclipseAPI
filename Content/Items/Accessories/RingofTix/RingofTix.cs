@@ -72,6 +72,8 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
                 tooltips.Add(new TooltipLine(Mod, "SOTSTip",
                     Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.SOTSTooltip")));
 
+            tooltips.Add(new(Mod, "Flavour", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.FlavorText")));
+
             Color color = CalamityUtils.ColorSwap(Color.OrangeRed, Color.DarkRed, 2f);
 
             if (Main.keyState.IsKeyDown(Keys.LeftShift))

@@ -1,4 +1,5 @@
 UI: {
+	Cooldowns.ManaSteal: 剩余魔力吸取量
 	RagnarokIconText: 诸神黄昏模式已启用
 	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
 	NoRespawn2: 复活受限：在 {1} 人联机时，每场 Boss 战中每位玩家只有 {0} 次重生机会！
@@ -69,6 +70,7 @@ WelcomeMessage: {
 	RagnarokBalance: 注意：为确保武器平衡按预期生效，请在 Ragnarok 的模组配置中将“通用武器调整”选项关闭，否则改动会叠加，使武器强度远超预期。
 	RagnarokRework: 注意：检测到你同时启用了 Ragnarok 模组和 Thorium Bosses Reworked。为获得预期的游戏体验，请在 Ragnarok 模组配置中将所有 Boss 选项切换到 瑟银BOSS重置。
 	GulaVaultMessage: 暴食保险库拒绝被打开。你必须先打败一个更为强大的邪恶生物……
+	LichMessage: 这件物品的魔力似乎仍然被冻结在其中。或许雪原中的那座建筑能帮助你揭示原因？
 }
 
 TimeFreezePrevention: {
@@ -104,6 +106,12 @@ ItemTooltip: {
 	ThorsHammerPro: 命中时施加3秒的带电
 	BountifulHarvest: 交替射出穿透毒刺
 	TwoAlchs: 在酒精中毒效果中被视为两种酒
+
+	GrapeBeer: {
+		Orig: 降低75%暴击伤害
+		Nerf: 降低75%暴击伤害并降低30%暴击率
+		SOTSAdditional: 禁用所有二十面体的效果
+	}
 
 	SoulAnchor: {
 		OrigTooltip1: 将你的灵魂和生命值锚定在当前位置
@@ -157,6 +165,12 @@ ItemTooltip: {
 		受伤时有75%的概率对你造成中毒debuff
 		暴击有50%的概率造成10点额外伤害
 		'''
+
+	PolishedCoin: {
+		Orig: 暴击有50%的概率造成30点额外伤害
+		Nerf: 暴击有50%的概率造成15点额外伤害
+	}
+
 	Desecar:
 		'''
 		每有8个空物品栏就增加1点防御
@@ -183,7 +197,9 @@ ItemTooltip: {
 	FocusReticle:
 		'''
 		增加15%暴击率，无法与下位饰品叠加
-		暴击会造成40点额外伤害
+		暴击最多额外造成40点额外伤害
+		初始伤害加成为15点，并会随物品使用速度的降低而增加
+		你的当前加成为{0}点
 		对流血和中毒debuff免疫
 		'''
 	Starbelt:
@@ -236,7 +252,146 @@ ItemTooltip: {
 			'''
 	}
 
+	Helios: {
+		Orig: 每次攻击命中都会造成烧焦，会永久增加3%伤害
+		Nerf: 每次攻击命中都会造成烧焦，会永久增加1%伤害
+	}
+
+	Icosahedron: {
+		Hellfire: {
+			Orig: 暴击时会引起火焰爆裂，造成100%伤害
+			Nerf: 暴击时会引起火焰爆裂，造成50%伤害
+		}
+
+		Borealis: {
+			Orig: 暴击时会引起霜火爆裂，造成200%伤害
+			Nerf: 暴击时会引起霜火爆裂，造成75%伤害
+		}
+
+		Cursed: {
+			OrigCursed: 暴击时会释放诅咒雷，造成100%伤害
+			NerfCursed: 暴击时会释放诅咒雷，造成75%伤害
+			OrigOther: 暴击也会引起霜火或火焰爆裂，造成100%伤害
+			NerfOther: 暴击也会引起霜火或火焰爆裂，造成75%伤害
+		}
+
+		Charms: {
+			Orig: 暴击有概率引爆敌人，造成100%伤害
+			Nerf: 暴击有概率引爆敌人，造成75%伤害
+		}
+	}
+
+	DreadGreaves: {
+		Orig: 增加20%移动速度
+		Nerf: 增加9%移动速度
+	}
+
+	PlasmaShrimp: {
+		Orig: 当超过40%魔力值时，魔法武器射出额外的，很烫的虾等离子体，造成50%伤害
+		Nerf: 当超过40%魔力值时，魔法武器射出额外的，很烫的虾等离子体，造成25%伤害
+	}
+
+	ShatteredDreams: {
+		Orig: 魔法武器会释放出一颗100%伤害的星星，但会消耗相当于其魔力消耗的10%虚空值
+		Nerf:
+			'''
+			魔法武器会释放出一颗100%伤害的星星，但会消耗相当于其魔力消耗的10%虚空值
+			一次只能释放3颗星星
+			'''
+	}
+
+	OtherworldlyAmplifier:
+		'''
+		暴击最多额外造成8点额外伤害
+		初始伤害加成为2点，并会随物品使用速度的降低而增加
+		你的当前加成为{0}点
+		'''
+	FocusCrystal:
+		'''
+		暴击最多额外造成30点额外伤害
+		初始伤害加成为8点，并会随物品使用速度的降低而增加
+		你的当前加成为{0}点
+		增加4%暴击率
+		对中毒和流血debuff免疫
+		'''
+
+	AlchCharm: {
+		AlchOrig: 增加100点从药水治疗的生命值和恢复的魔力值
+		JellyOrig: 增加40点从药水治疗的生命值
+		SandwichOrig: 增加40点从药水治疗的生命值
+	}
+
+	PlatformGenerator:
+		'''
+		在你左右两侧生成2个平台
+		右键点击可拖动平台，但它们会始终保持对称
+		可在平台顶部召唤哨兵
+		'带上你的哨兵和你一起走!'
+		'''
+	FortressGenerator:
+		'''
+		+1召唤栏和哨兵栏
+		在你左右两侧生成4个平台
+		右键点击可拖动平台，但它们会始终保持对称
+		可在平台顶部召唤哨兵
+		'''
+
+	DissolvingElements: {
+		NatureFlipped: 放置于物品栏时会增加0.25点生命恢复速度，最多1点
+		EarthFlipped: 放置于物品栏时会增加1点防御值，最多4点
+		AuroraFlipped: 放置于物品栏时会增加1%移动速度，最多4%
+		DelugeFlipped: 放置于物品栏时会增加2%远程伤害，最多8%
+		AetherFlipped: 放置于物品栏时会增加2%魔法伤害，最多8%
+		NetherFlipped: 放置于物品栏时会增加2%近战伤害，最多4%
+		BrillianceFlipped: 放置于物品栏时会增加2%召唤伤害，最多8%
+	}
+
+	RubyRing:
+		'''
+		被击杀的敌人有50%的概率掉落额外的红心
+		暴击时此概率会增加至100%
+		'''
+	/* DiamondInvertedRing:
+		'''
+		Increase defense based on a third of damage, then decreases damage by defense buff
+		Increases defense by {0}
+		Decreases damage by {1}%
+		''' */
+
+	ChallengerRubyHover: {
+		Orig:
+			'''
+			> 被击杀的敌人有50%的概率掉落额外的红心
+			> 暴击时此概率会增加至100%
+			> 收集红心会延长生效buff的持续时间，最多可达初始持续时间的两倍
+			'''
+		Nerf:
+			'''
+			> 被击杀的敌人有50%的概率掉落额外的红心
+			> 暴击时此概率会增加至100%
+			'''
+	}
+
+	ChallengerInvertedDiamondHover: {
+	}
+
+	DemonBlood: {
+		/* Replace:
+			'''
+			Enemies are more likely to target you
+			'Infused with everlasting Blood'
+			''' */
+		/* SetBonus:
+			'''
+			20% chance to completely neutralize incoming damage
+			The damage neutralization has a cooldown of 20 seconds
+			''' */
+	}
+
+	DoesNotStack: 不与下位效果叠加
+	// NoBoss: Does not work while a boss is alive
 	Disabled: "[禁用] "
+	DauntlessBuff: +2%光辉伤害
 	DedTo: -献给{0}-
 
 	Dedicated: {
@@ -529,6 +684,7 @@ ItemTooltip: {
 		AlchemistCharm:
 			'''
 			增加100点从药水治疗的生命值和恢复的魔力值
+			无法与下位饰品叠加
 			增加67%buff持续时间
 			'''
 		SubspaceBoostersDash: 在地面上按下{0}键可向前方进行爆裂冲刺，提供更快的的速度和加速度
@@ -907,7 +1063,9 @@ Items: {
 		SOTSBardHealerTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击额外多造成40点伤害，并有概率引爆敌人，造成100%额外伤害
+			暴击最多额外造成40点伤害，并有概率引爆敌人，造成75%额外伤害
+			初始伤害加成为15点，并会随物品使用速度的降低而增加
+			你的当前加成为{0}点
 			暴击汲取生命，恢复虚空值，回复魔力，并返还灵感值
 			吸血效果和灵感值返还有1秒冷却时间
 			按下 “{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}” 键使你必定暴击，持续10秒
@@ -917,7 +1075,9 @@ Items: {
 		ThoriumTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击额外多造成40点伤害，汲取生命，恢复虚空值并回复魔力，并有概率引爆敌人，造成100%额外伤害
+			暴击最多额外造成40点伤害，汲取生命，恢复虚空值并回复魔力，并有概率引爆敌人，造成75%额外伤害
+			初始伤害加成为15点，并会随物品使用速度的降低而增加
+			你的当前加成为{0}点
 			吸血效果有1秒冷却时间
 			按下 “{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}” 键使你必定暴击，持续10秒
 			在之后1分钟，你造成的伤害降低10%
@@ -926,7 +1086,9 @@ Items: {
 		DefaultTooltip:
 			'''
 			暴击率提高15%，无法与下位饰品叠加
-			暴击额外多造成40点伤害，并有概率引爆敌人，造成100%额外伤害
+			暴击最多额外造成40点伤害，并有概率引爆敌人，造成75%额外伤害
+			初始伤害加成为15点，并会随物品使用速度的降低而增加
+			你的当前加成为{0}点
 			暴击汲取生命，恢复虚空值并回复魔力
 			吸血效果有1秒冷却时间
 			免疫流血与中毒效果，并给予你夜视能力
@@ -1246,7 +1408,7 @@ Items: {
 			MoonLord:
 				'''
 				击败月亮领主后，你的星辰变得更快
-				击败亵渎之炎的拥有者以获得更多力量……
+				击败亵渎之炎的守护者以获得更多力量……
 				'''
 			Providence:
 				'''
@@ -1264,6 +1426,16 @@ Items: {
 				击败光辉之凰以获得更多力量……
 				'''
 			Full: 星界启明已苏醒，最大威能解禁！
+			ProfanedGuardians:
+				'''
+				击败亵渎守卫后，你可以发射一道星体光束
+				击败神怒之焰以获得更多力量……
+				'''
+			Sentinels:
+				'''
+				击败神之仆从后，你的星体光束持续时间更久
+				击败噬神凶灵以获得更多力量……
+				'''
 		}
 
 		Lore: 由身负星界印记之人铸就的最终之书……
@@ -1526,6 +1698,7 @@ Items: {
 			增加20%最大飞行时间
 			“于火焰与火花之后，若你凝视得足够深远，便能洞悉你的过去和未来”
 			'''
+		// FlavorText: Behind the flames and the sparks, if you look deep enough, you will see your past and your future
 	}
 
 	InfernalTerraBladeRelic: {
@@ -1660,6 +1833,11 @@ Items: {
 		DisplayName: 渊海狂鲨炼狱圣物
 		Tooltip: ""
 	}
+
+	DreamEssence: {
+		// DisplayName: Dream Essence
+		// Tooltip: "'Twilight of the Gods'"
+	}
 }
 
 Projectiles: {
@@ -1712,7 +1890,7 @@ BullyingTooltip:
 	每有一个未使用的召唤栏，非召唤伤害提升2%
 	每有一个已使用的召唤栏，召唤伤害降低10%
 	鞭子现在将受益于近战伤害加成，而不是召唤伤害加成
-	鞭子伤害提升10%
+	鞭子伤害提升25%
 	[c/E3AF40:一张附带芯片的纸条，由迪伦设计]
 	[c/BEBEBE:按住"左Shift"以阅读便笺背面的文字]
 	'''
@@ -1962,6 +2140,20 @@ Configs: {
 				除非你清楚可能产生的后果，否则不要禁用此配置。若禁用后出现问题，请勿提交漏洞反馈
 				'''
 		}
+
+		DeveloperMode: {
+			Label: 开发者模式
+			Tooltip: 切换用于开发的有用工具的启用状态
+		}
+
+		UseAprilFoolsMutant: {
+			Label: 使用愚人节突变体
+			Tooltip:
+				'''
+				将 Fargo's Souls 的突变体转变为亚利姆
+				如果 Fargo's Souls 未启用，则该设置不会生效
+				'''
+		}
 	}
 
 	Difficulty: {
@@ -2198,7 +2390,7 @@ Buffs: {
 	}
 
 	WarpJammed: {
-		Description: 嘉登正在监控你的传送行动……
+		Description: 你的传送正在被监视！
 		DisplayName: 时空阻滞
 	}
 
@@ -2235,6 +2427,11 @@ Buffs: {
 	CrimulanAura: {
 		DisplayName: 猩魇灵气
 		Description: 你的移动速度大幅下降！
+	}
+
+	BrimstoneDesperation: {
+		DisplayName: 硫火绝望
+		Description: 硫火能量在空气中流动，禁用了你的大多数能力！
 	}
 }
 

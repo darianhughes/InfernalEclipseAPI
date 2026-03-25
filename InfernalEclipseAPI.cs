@@ -24,7 +24,10 @@ using InfernalEclipseAPI.Core.Utils;
 using CalamityMod.World;
 using Terraria.GameContent.Creative;
 using static Terraria.GameContent.Creative.CreativePowers;
+using System.Runtime.CompilerServices;
+using NoxusBoss.Core.SolynEvents;
 
+[assembly: InternalsVisibleTo("HomewardRagnarok")]
 namespace InfernalEclipseAPI
 {
     public enum InfernalEclipseMessageType : byte
@@ -33,8 +36,10 @@ namespace InfernalEclipseAPI
         TriggerScytheCharge = 2,
         ThoriumEmpowerment = 3,
         ToggleRagnarok = 4,
-        SyncRagnarokState = 5
+        SyncRagnarokState = 5,
+        MarsMultiplayerSync = 6
     }
+
     public partial class InfernalEclipseAPI : Mod
 	{
         public static ModKeybind SubpaceBoostHotkey;
@@ -293,7 +298,7 @@ namespace InfernalEclipseAPI
 
                 case InfernalEclipseMessageType.ToggleRagnarok:
                     {
-                        Player player = reader.ReadByte() > -1 && reader.ReadByte() < Main.maxPlayers && Main.player[reader.ReadByte()].active && !Main.player[reader.ReadByte()].dead && !Main.player[reader.ReadByte()].ghost ? Main.player[reader.ReadByte()] : null;
+                        Player player = reader.ReadByte() < Main.maxPlayers && Main.player[reader.ReadByte()].active && !Main.player[reader.ReadByte()].dead && !Main.player[reader.ReadByte()].ghost ? Main.player[reader.ReadByte()] : null;
 
                         if (Main.netMode == NetmodeID.Server)
                         {
@@ -358,6 +363,13 @@ namespace InfernalEclipseAPI
 
                         break;
                     }
+
+                case InfernalEclipseMessageType.MarsMultiplayerSync:
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        MarsCombatEvent.MarsBeingSummoned = true;
+                    }
+                    break;
             }
 
             //int npcIndex = reader.ReadInt32();

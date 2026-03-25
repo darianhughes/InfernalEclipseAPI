@@ -111,17 +111,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 
                 if (player.statLife <= player.statLifeMax2 * 0.25)
                 {
-                    if (thorium.TryFind("TerrariumDefenderBuff", out ModBuff tdBuff))
-                        player.AddBuff(tdBuff.Type, 10);
-
-                    player.lifeRegen += 20;
-                    player.statDefense += 20;
-                }
-                else if (Main.netMode == NetmodeID.MultiplayerClient && Main.myPlayer != player.whoAmI)
-                {
-                    Player localPlayer = Main.LocalPlayer;
-                    if (Vector2.DistanceSquared(localPlayer.Center, player.Center) < 160000f)
-                        localPlayer.AddBuff(BuffID.Regeneration, 30);
+                    player.lifeRegen -= 10;
                 }
             }
 
@@ -178,7 +168,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         if (thorium.TryFind("TerrariumDefenderBuff", out ModBuff tdBuff))
                             player.AddBuff(tdBuff.Type, 10);
 
-                        player.lifeRegen += 20;
+                        player.lifeRegen += 10;
                         player.statDefense += 20;
                     }
                     else if (Main.netMode == NetmodeID.MultiplayerClient && Main.myPlayer != player.whoAmI)
@@ -259,7 +249,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         if (thorium.TryFind("TerrariumDefenderBuff", out ModBuff tdBuff))
                             player.AddBuff(tdBuff.Type, 10);
 
-                        player.lifeRegen += 20;
+                        player.lifeRegen += 10;
                         player.statDefense += 20;
                     }
                     else if (Main.netMode == NetmodeID.MultiplayerClient && Main.myPlayer != player.whoAmI)

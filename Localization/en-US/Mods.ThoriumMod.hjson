@@ -1,3 +1,10 @@
+Buffs: {
+	NinjaBuff: {
+		DisplayName: Sleight of Hand
+		Description: Throwing velocity is increased by 20%, and throwing critical strike chance increased by 10%
+	}
+}
+
 Items: {
 	CapeoftheSurvivor: {
 		DisplayName: Cape of the Survivor
@@ -39,6 +46,16 @@ Items: {
 		Tooltip: "'Charged with the essence of many souls'"
 	}
 
+	Kinetoscythe: {
+		DisplayName: Kineto-scythe
+		Tooltip:
+			'''
+			Rapidly spins a high tech scythe all around you
+			Right Click to generate a stationary spinning energy scythe
+			Spin the scythe while the energy scythe is active to make it home onto enemies 
+			'''
+	}
+
 	BlackMIDI: {
 		DisplayName: Black MIDI
 		Tooltip:
@@ -57,9 +74,8 @@ Items: {
 		DisplayName: Hero Emblem
 		Tooltip:
 			'''
-			5% increased damage
+			10% increased damage
 			2% increased critical strike chance
-			5% increased attack speed
 			'''
 	}
 
@@ -133,6 +149,15 @@ Items: {
 		Tooltip: 10% increased throwing damage
 	}
 
+	BronzeGreaves: {
+		DisplayName: Bronze Greaves
+		Tooltip:
+			'''
+			10% increased throwing damage
+			10% increased movement speed
+			'''
+	}
+
 	PlagueDoctorsMask: {
 		DisplayName: Plague Doctor's Mask
 		Tooltip:
@@ -168,7 +193,7 @@ Items: {
 		DisplayName: Fungus Cap
 		Tooltip:
 			'''
-			5% increased throwing damage
+			10% increased throwing damage
 			33% chance to not consume throwing items
 			Increases your maximum technique points by 1
 			'''
@@ -176,10 +201,35 @@ Items: {
 
 	FungusGuard: {
 		DisplayName: Fungus Guard
+		Tooltip: 10% increased throwing damage
+	}
+
+	HallowedGuise: {
+		DisplayName: Hallowed Guise
 		Tooltip:
 			'''
 			10% increased throwing damage
-			5% increased throwing weapon speed
+			8% increased throwing critical strike chance
+			'''
+	}
+
+	LichCarapace: {
+		DisplayName: Lich's Carapace
+		Tooltip:
+			'''
+			'Embrace death...'
+			15% increased throwing damage
+			30% increased throwing velocity
+			'''
+	}
+
+	LichTalon: {
+		DisplayName: Lich's Talons
+		Tooltip:
+			'''
+			'Embrace death...'
+			10% increased throwing damage
+			10% increased throwing critical strike chance
 			'''
 	}
 
@@ -194,13 +244,23 @@ Items: {
 			'''
 	}
 
+	ShadeMasterGarb: {
+		DisplayName: Shade Master's Garb
+		Tooltip:
+			'''
+			'Live in the shadows and strike with precision'
+			15% increased throwing damage
+			30% increased throwing velocity
+			'''
+	}
+
 	ShadeMasterTreads: {
 		DisplayName: Shade Master's Treads
 		Tooltip:
 			'''
 			'Live in the shadows and strike with precision'
 			10% increased throwing damage
-			20% increased throwing weapon critical strike chance
+			15% increased throwing weapon critical strike chance
 			15% increased movement speed
 			'''
 	}
@@ -209,7 +269,7 @@ Items: {
 		DisplayName: White Dwarf Mask
 		Tooltip:
 			'''
-			10% increased throwing damage
+			15% increased throwing damage
 			33% chance to not consume throwing items
 			Increases your maximum technique points by 2
 			'''
@@ -220,7 +280,6 @@ Items: {
 		Tooltip:
 			'''
 			10% increased throwing damage
-			15% increased throwing weapon speed
 			30% increased throwing weapon velocity
 			'''
 	}
@@ -386,6 +445,71 @@ Items: {
 			15% increased radiant damage
 			15% decreased mana cost
 			Healing spells will heal an additional 1 life
+			'''
+	}
+
+	DreamWeaversHelmet: {
+		DisplayName: Dream Weaver's Helmet
+		Tooltip:
+			'''
+			'Bind the enemies of your future in temporal agony'
+			Corrupts your radiant powers
+			45% decreased non-radiant damage
+			45% increased radiant damage
+			36% increased radiant critical strike chance
+			Maximum mana increased by 20
+			'''
+	}
+
+	DreamWeaversHood: {
+		DisplayName: Dream Weaver's Hood
+		Tooltip:
+			'''
+			'Manifest your dearest dreams through your allies'
+			25% decreased non-radiant damage
+			30% increased radiant damage
+			16% increased radiant critical strike chance
+			35% decreased mana cost
+			Massively increased mana regeneration
+			Maximum mana increased by 60
+			Healing spells will heal an additional 6 life
+			'''
+	}
+
+	DreamWeaversTabard: {
+		DisplayName: Dream Weaver's Tabard
+		Tooltip:
+			'''
+			25% decreased non-radiant damage
+			25% increased radiant damage
+			14% increased radiant critical strike chance
+			20% decreased mana cost
+			Massively increased mana regeneration
+			Healing spells will heal an additional 2 life
+			'''
+	}
+
+	TideTurnersGaze: {
+		DisplayName: Tide Turner's Depth-Crown
+		Tooltip:
+			'''
+			'Unleash aquatic wrath upon your foes'
+			35% increased throwing damage
+			50% chance not to consume thrown items
+			Increases your maximum technique points by 2
+			Throwing damage briefly increases the damage the enemy takes by 10%
+			Produces a floating globule every 1 second
+			Every globule makes your next attack a mini-crit, if it does not crit
+			'''
+	}
+
+	TideTurnerBreastplate: {
+		DisplayName: Tide Turner's Depth-Guard
+		Tooltip:
+			'''
+			15% increased melee & throwing damage
+			10% increased melee speed
+			16% increased melee & throwing critical strike chance
 			'''
 	}
 

@@ -37,6 +37,9 @@ using InfernumMode.Content.BehaviorOverrides.BossAIs.Perforators;
 using CalamityMod.Projectiles.Boss.BrainOfCthulhu;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
+using SOTS.Common.GlobalNPCs;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -47,6 +50,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
         public bool canDoVoidDamage = false;
         public bool strongVoidDamge = false;
         public bool isFlowered;
+
+        private const int MaxAnomalyCurseStacks = 30;
+
         public override bool InstancePerEntity => true;
 
         public override void SetDefaults(NPC entity)
@@ -110,6 +116,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             }
         }
 
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (npc.boss)
+            {
+                foreach (Player player in Main.player)
+                {
+                    if (player.active && !player.dead)
+                    {
+                        player.ClearBuff(ModContent.BuffType<Embattle>());
+                    }
+                }
+            }
+        }
+
         public override bool PreAI(NPC npc)
         {
             if (!InfernalConfig.Instance.SOTSBalanceChanges || !npc.active || (npc.type != ModContent.NPCType<SubspaceSerpentHead>() && npc.type != ModContent.NPCType<Lux>())) return base.PreAI(npc);
@@ -136,7 +156,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
         public override void PostAI(NPC npc)
         {
-            if (!npc.active || npc.immortal || npc.realLife != -1)
+            if (!npc.active)
+                return;
+
+            DebuffNPC debuffNPC = npc.GetGlobalNPC<DebuffNPC>();
+
+            if (debuffNPC.AnomalyCurse > MaxAnomalyCurseStacks)
+                debuffNPC.AnomalyCurse = MaxAnomalyCurseStacks;
+
+            if (npc.immortal || npc.realLife != -1)
                 return;
 
             float num8 = 0f;
@@ -195,7 +223,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
                         Vector2 vector2_25 = vector2_23.SafeNormalize(Vector2.Zero) * (num15 + num19);
 
-                        int[] perforators =
+                        int[] immuneNPCs =
                         {
                             ModContent.NPCType<PerforatorHeadLarge>(),
                             ModContent.NPCType<PerforatorHeadMedium>(),
@@ -206,11 +234,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                             ModContent.NPCType<PerforatorTailLarge>(),
                             ModContent.NPCType<PerforatorTailMedium>(),
                             ModContent.NPCType<PerforatorTailSmall>(),
-                            ModContent.NPCType<DarkHeart>()
+                            ModContent.NPCType<DarkHeart>(),
+                            ModContent.NPCType<GiantClam>(),
+                            ModContent.NPCType<LightSnuffingHand>(),
+                            ModContent.NPCType<PutridPinky1>()
                         };
 
                         // The only behavioral change:
-                        if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != ModContent.NPCType<GiantClam>() && !perforators.Contains(npc.type))
+                        if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && !immuneNPCs.Contains(npc.type))
                             npc.position += vector2_25;
                     }
                 }
@@ -242,6 +273,32 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             {
                 int damage = 1 + npc.damage / (strongVoidDamge ? 3 : 6);
                 VoidPlayer.VoidDamage(Mod, target, damage);
+            }
+        }
+
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            NerfBlazingCurse(npc, ref modifiers);
+        }
+
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
+        {
+            NerfBlazingCurse(npc, ref modifiers);
+        }
+
+        private static void NerfBlazingCurse(NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if (!InfernalConfig.Instance.SOTSBalanceChanges) return;
+
+            DebuffNPC debuffNPC = npc.GetGlobalNPC<DebuffNPC>();
+
+            if (debuffNPC.BlazingCurse > 0)
+            {
+                float orig = 1f + 0.03f * debuffNPC.BlazingCurse + 0.005f * debuffNPC.BlazingCurse;
+                float nerfed = 1f + 0.01f * debuffNPC.BlazingCurse + 0.005f * debuffNPC.BlazingCurse;
+
+                modifiers.SourceDamage /= orig;
+                modifiers.SourceDamage *= nerfed;
             }
         }
 
