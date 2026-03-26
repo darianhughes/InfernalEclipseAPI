@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks.ILTileChanges;
+using InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using ThoriumMod;

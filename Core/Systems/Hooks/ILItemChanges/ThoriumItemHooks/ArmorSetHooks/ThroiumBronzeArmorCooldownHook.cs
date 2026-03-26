@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using InfernalEclipseAPI.Content.RogueThrower;
 using MonoMod.RuntimeDetour;
-using RagnarokMod.Utils;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using ThoriumMod.Projectiles;
@@ -82,7 +81,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks.A
             if (proj.type == lightStrikeType || proj.type == throwingGuideFollowupType)
                 return;
 
-            if (!proj.IsThrown())
+            if (!proj.CountsAsClass(DamageClass.Throwing))
                 return;
 
             if (!Main.rand.NextBool(5))

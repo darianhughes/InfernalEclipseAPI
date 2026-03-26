@@ -2,10 +2,9 @@
 using MonoMod.RuntimeDetour;
 using Terraria.Audio;
 using Microsoft.Xna.Framework;
-using CalamityMod;
 using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks.ILTileChanges
+namespace InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges
 {
     [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
     [ExtendsFromMod(InfernalCrossmod.SOTS.Name)]
