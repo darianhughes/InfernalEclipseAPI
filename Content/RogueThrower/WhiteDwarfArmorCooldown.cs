@@ -1,4 +1,5 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using System.Security.Policy;
+using InfernalEclipseAPI.Core.Systems;
 using RagnarokMod.Utils;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -20,7 +21,13 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             var thoriumPlayer = player.GetModPlayer<ThoriumPlayer>();
             var cdPlayer = player.GetModPlayer<RogueThrowerPlayer>();
 
-            if ((thoriumPlayer.setWhiteDwarf || GetRagnarokModPlayerField.RagnarokWhiteDwarfActive(player)) && hit.Crit)
+            bool ragWhiteDwarf = false;
+            if (InfernalCrossmod.RagnarokMod.Loaded)
+            {
+                ragWhiteDwarf = GetRagnarokModPlayerField.RagnarokWhiteDwarfActive(player);
+            }
+
+            if ((thoriumPlayer.setWhiteDwarf || ragWhiteDwarf) && hit.Crit)
             {
                 if (cdPlayer.whiteDwarfCooldown > 0)
                 {
