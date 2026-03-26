@@ -11,7 +11,7 @@ using CalamityMod.Tiles.SunkenSea;
 using CalamityMod.Tiles.Ores;
 using SOTS.Items.Furniture.Functional;
 
-namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks.ILTileChanges
+namespace InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges
 {
     [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
     [ExtendsFromMod(InfernalCrossmod.SOTS.Name)]

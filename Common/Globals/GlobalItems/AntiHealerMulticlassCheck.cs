@@ -2,6 +2,7 @@
 using ThoriumMod;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
 using InfernalEclipseAPI.Core.DamageClasses;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -31,7 +32,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
         {
             if (item is null) return false;
 
-            if (item.CountsAsClass<VoidRogue>()) return false;
+            if (InfernalCrossmod.SOTSBardHealer.Loaded)
+            {
+                if (item.CountsAsClass<VoidRogue>()) return false;
+            }
 
             if (item.CountsAsClass<HealerDamage>() || item.CountsAsClass<HealerToolDamageHybrid>() || item.CountsAsClass<HealerTool>()) return true;
 

@@ -16,7 +16,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst
         public static int BaseDamage => 230;
 
         public static float PlayerPostHitSpeed => 30f;
-        public static int PlayerPostHitIFrameGracePeriod => (int)Math.Round(1.0f * 60f);
+        public static int PlayerPostHitIFrameGracePeriod => 12;
         public static float PlayerDashSpeed => 75f;
 
         private static readonly SoundStyle SlashSfx = new("InfernalEclipseAPI/Assets/Sounds/Custom/TerraBlade/Slash")

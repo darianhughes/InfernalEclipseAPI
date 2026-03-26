@@ -437,7 +437,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted
 
                 AnimeHitVisualsCountdown = AnimeVisualsDuration;
                 ScreenShakeSystem.StartShakeAtPoint(target.Center, 6.4f);
-                Owner.SetImmuneTimeForAllTypes(Swordofthe14thGlitch.PlayerPostHitIFrameGracePeriod);
+                Owner.SetImmuneTimeForAllTypes(12);
             }
         }
 
