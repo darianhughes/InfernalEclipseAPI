@@ -23,6 +23,7 @@ using InfernalEclipseAPI.Core.Utils;
 using CalamityMod.Buffs.StatDebuffs;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
 using Terraria;
+using CalamityMod.Events;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -128,7 +129,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (InfernalWorld.RagnarokModeEnabled && npc.boss)
+            if (InfernalWorld.RagnarokModeEnabled && npc.boss && !BossRushEvent.BossRushActive)
             {
                 foreach (Player player in Main.player)
                 {
