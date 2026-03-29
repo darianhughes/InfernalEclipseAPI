@@ -223,6 +223,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     sotsPlayer.CritFrost = false;
                 }
 
+                if (item.type == ItemType<ShoeIce>())
+                {
+                    player.moveSpeed -= 0.25f;
+                    player.maxRunSpeed -= 0.4f;
+                }
+
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
                 {
                     Mod sBH = InfernalCrossmod.SOTSBardHealer.Mod;
@@ -693,6 +699,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<Calculator>())
                 {
                     InfernalUtilities.AddTooltip(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional")}", InfernalRed);
+                }
+
+                if (item.type == ItemType<ShoeIce>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShoeIce.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShoeIce.Nerf"));
                 }
             }
         }

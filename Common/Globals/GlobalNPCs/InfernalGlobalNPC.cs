@@ -253,7 +253,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (npc.type == NPCID.Plantera)
             {
                 InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
-                InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
+                //InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
             }
             if (npc.type == ModContent.NPCType<BrimstoneElemental>() || npc.type == ModContent.NPCType<AquaticScourgeHead>())
             {
@@ -277,7 +277,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (npc.type == NPCID.Plantera)
             {
                 InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
-                InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
+                //InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
             }
             if (npc.type == ModContent.NPCType<BrimstoneElemental>() || npc.type == ModContent.NPCType<AquaticScourgeHead>())
             {

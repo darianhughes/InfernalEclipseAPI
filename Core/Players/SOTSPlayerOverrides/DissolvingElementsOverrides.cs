@@ -274,6 +274,29 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
                 sotsPlayer.DissolvingBrilliance -= item.stack;
                 overrides.DissolvingBrilliance += item.stack;
             }
+
+            if (item.type == ModContent.ItemType<PrecariousCluster>())
+            {
+                sotsPlayer.DissolvingAether -= item.stack;
+                sotsPlayer.DissolvingEarth -= item.stack;
+                sotsPlayer.DissolvingAurora -= item.stack;
+                sotsPlayer.DissolvingNature -= item.stack;
+
+                overrides.DissolvingAether += item.stack;
+                overrides.DissolvingEarth += item.stack;
+                overrides.DissolvingAurora += item.stack;
+                overrides.DissolvingNature += item.stack;
+            }
+            if (item.type == ModContent.ItemType<TerminalCluster>())
+            {
+                sotsPlayer.DissolvingNether -= item.stack;
+                sotsPlayer.DissolvingDeluge -= item.stack;
+                sotsPlayer.DissolvingBrilliance -= item.stack;
+
+                overrides.DissolvingNether += item.stack;
+                overrides.DissolvingDeluge += item.stack;
+                overrides.DissolvingBrilliance += item.stack;
+            }
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -294,6 +317,20 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
                     InfernalUtilities.ReplaceTooltip(tooltips, DE.PolarizeToolTip, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.NetherFlipped"));
                 if (item.type == ModContent.ItemType<DissolvingBrilliance>())
                     InfernalUtilities.ReplaceTooltip(tooltips, DE.PolarizeToolTip, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.BrillianceFlipped"));
+            }
+
+            if (item.type == ModContent.ItemType<PrecariousCluster>())
+            {
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.PrecariousClusterTextList.1"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.NatureFlipped"));
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.PrecariousClusterTextList.3"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.EarthFlipped"));
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.PrecariousClusterTextList.5"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.AuroraFlipped"));
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.PrecariousClusterTextList.7"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.AetherFlipped"));
+            }
+            if (item.type == ModContent.ItemType<TerminalCluster>())
+            {
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.TerminalClusterTextList.1"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.DelugeFlipped"));
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.TerminalClusterTextList.5"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.NetherFlipped"));
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.SOTS.TerminalClusterTextList.7"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DissolvingElements.BrillianceFlipped"));
             }
         }
     }

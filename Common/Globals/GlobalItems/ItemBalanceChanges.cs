@@ -3096,8 +3096,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(thorium, "TrueLightAnguish", item))
                     {
                         item.shootSpeed = 26;
-                        item.useTime = 12;
-                        item.useAnimation = 12;
+                        item.useTime = 14;
+                        item.useAnimation = 14;
                     }
 
                     if (GetItem(thorium, "TrueEmbowelment", item))
@@ -3105,7 +3105,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.shootSpeed = 26;
                         item.useTime = 30;
                         item.useAnimation = 30;
-                        item.damage = 90;
+                        item.damage = 80;
                     }
 
                     if (GetItem(thorium, "BudBomb", item))
@@ -3154,7 +3154,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.shootSpeed = 22;
                         item.useTime = 16;
                         item.useAnimation = 16;
-                        item.damage = 275;
+                        item.damage = 310;
                     }
 
                     if (GetItem(thorium, "PharaohsSlab", item))
@@ -3882,6 +3882,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     #endregion
 
                     #region Hardmode
+                    if (UnsafeGetItem(thorium, "SunflareGuitar", item))
+                    {
+                        item.damage = 104;
+                    }
+
                     if (UnsafeGetItem(thorium, "Organ", item))
                     {
                         item.damage = 40;
@@ -4069,7 +4074,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TheMaw", item))
                     {
-                        item.damage = 85;
+                        item.damage = 120;
                         item.shootSpeed = 30;
                     }
 
@@ -4422,7 +4427,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (item.type == calBardHeal.Find<ModItem>("FireHazard").Type)
                 {
                     item.damage = 30;
-                    //projectile?
                 }
 
                 if (GetItem(calBardHeal, "TidalForce", item))
@@ -4483,7 +4487,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.useTime = 30;
                     item.useAnimation = 30;
-                    item.damage = 175;
+                    item.damage = 235;
                 }
 
                 //Exorectionist

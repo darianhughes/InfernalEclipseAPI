@@ -402,6 +402,11 @@ ItemTooltip: {
 			'''
 	}
 
+	ShoeIce: {
+		// Orig: 40% increased movement speed
+		// Nerf: 15% increased movement speed
+	}
+
 	DoesNotStack: 不与下位效果叠加
 	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "

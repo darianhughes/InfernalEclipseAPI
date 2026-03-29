@@ -193,11 +193,6 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 entity.penetrate = 2;
             }
 
-            if (entity.type == ModContent.ProjectileType<PauldronDash>() && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                //entity.idStaticNPCHitCooldown = 480;
-            }
-
             if (ModLoader.TryGetMod("Clamity", out Mod clam))
             {
                 if (entity.type == clam.Find<ModProjectile>("FireBarrage").Type)

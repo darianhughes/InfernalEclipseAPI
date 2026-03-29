@@ -5,6 +5,7 @@ using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
+using System.ComponentModel;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -13,7 +14,7 @@ namespace InfernalEclipseAPI.Core.World
         public static bool dreadonDestroyerDialoguePlayed = false;
         public static bool dreadonDestroyer2DialoguePlayed = false;
         public static bool jungleSubshockPlanteraDialoguePlayed = false;
-        public static bool jungleSlagspitterPlateraDiaglougePlayer = false;
+        //public static bool jungleSlagspitterPlateraDiaglougePlayer = false;
         public static bool sulfurScourgeDialoguePlayed = false;
         public static bool brimstoneDialoguePlayed = false;
         public static bool yharonDischarge = false;
@@ -22,13 +23,15 @@ namespace InfernalEclipseAPI.Core.World
         public static bool craftedWorkshop = false;
         public static bool RagnarokModeEnabled;
         public static bool hasChosenDifficulty = false;
+        
+        public static int dreamEaterAttempts = 0;
 
         public static void ResetFlags()
         {
             dreadonDestroyerDialoguePlayed = false;
             dreadonDestroyer2DialoguePlayed = false;
             jungleSubshockPlanteraDialoguePlayed = false;
-            jungleSlagspitterPlateraDiaglougePlayer=false;
+            //jungleSlagspitterPlateraDiaglougePlayer=false;
             sulfurScourgeDialoguePlayed =false;
             brimstoneDialoguePlayed =false;
             yharonDischarge =false;
@@ -37,6 +40,8 @@ namespace InfernalEclipseAPI.Core.World
             craftedWorkshop = false;
             RagnarokModeEnabled = false;
             hasChosenDifficulty = false;
+
+            dreamEaterAttempts = 0;
         }
 
         public override void PreUpdateWorld()
@@ -102,7 +107,7 @@ namespace InfernalEclipseAPI.Core.World
             tag["dreadonDestroyerDialoguePlayed"] = dreadonDestroyerDialoguePlayed;
             tag["dreadonDestroyer2DialoguePlayed"] = dreadonDestroyer2DialoguePlayed;
             tag["jungleSubshockPlanteraDialoguePlayed"] = jungleSubshockPlanteraDialoguePlayed;
-            tag["jungleSlagspitterPlateraDiaglougePlayer"] = jungleSlagspitterPlateraDiaglougePlayer;
+            //tag["jungleSlagspitterPlateraDiaglougePlayer"] = jungleSlagspitterPlateraDiaglougePlayer;
             tag["sulfurScourgeDialoguePlayed"] = sulfurScourgeDialoguePlayed;
             tag["brimstoneDialoguePlayed"] = brimstoneDialoguePlayed;
             tag["yharonDischarge"] = yharonDischarge;
@@ -111,6 +116,7 @@ namespace InfernalEclipseAPI.Core.World
             tag["craftedWorkshop"] = craftedWorkshop;
             tag["RagnarokModeEnabled"] = RagnarokModeEnabled;
             tag["hasChosenDifficulty"] = hasChosenDifficulty;
+            tag["dreamEaterAttempts"] = dreamEaterAttempts;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -118,7 +124,7 @@ namespace InfernalEclipseAPI.Core.World
             GetData(ref dreadonDestroyerDialoguePlayed, "dreadonDestroyerDialoguePlayed", tag);
             GetData(ref dreadonDestroyer2DialoguePlayed, "dreadonDestroyerDialoguePlayed", tag);
             GetData(ref jungleSubshockPlanteraDialoguePlayed, "junglePlanteraDialoguePlayed", tag);
-            GetData(ref jungleSlagspitterPlateraDiaglougePlayer, "jungleSlagspitterPlateraDiaglougePlayer", tag);
+            //GetData(ref jungleSlagspitterPlateraDiaglougePlayer, "jungleSlagspitterPlateraDiaglougePlayer", tag);
             GetData(ref sulfurScourgeDialoguePlayed, "sulfurScourgeDialoguePlayed", tag);
             GetData(ref brimstoneDialoguePlayed, "brimstoneDialoguePlayed", tag);
             GetData(ref yharonDischarge, "yharonDischarge", tag);
@@ -131,6 +137,11 @@ namespace InfernalEclipseAPI.Core.World
                 RagnarokModeEnabled = value;
             else
                 RagnarokModeEnabled = false;
+
+            if (tag.TryGet("dreamEaterAttempts", out int attempts))
+                dreamEaterAttempts = attempts;
+            else
+                dreamEaterAttempts = 0;
         }
 
         public static void GetData(ref bool baseVar, string path, TagCompound tag)
@@ -143,7 +154,7 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(dreadonDestroyerDialoguePlayed);
             writer.Write(dreadonDestroyer2DialoguePlayed);
             writer.Write(jungleSubshockPlanteraDialoguePlayed);
-            writer.Write(jungleSlagspitterPlateraDiaglougePlayer);
+            //writer.Write(jungleSlagspitterPlateraDiaglougePlayer);
             writer.Write(sulfurScourgeDialoguePlayed);
             writer.Write(brimstoneDialoguePlayed);
             writer.Write(yharonDischarge);
@@ -152,6 +163,7 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(craftedWorkshop);
             writer.Write(RagnarokModeEnabled);
             writer.Write(hasChosenDifficulty);
+            writer.Write(dreamEaterAttempts);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -159,7 +171,7 @@ namespace InfernalEclipseAPI.Core.World
             dreadonDestroyerDialoguePlayed = reader.ReadBoolean();
             dreadonDestroyer2DialoguePlayed = reader.ReadBoolean();
             jungleSubshockPlanteraDialoguePlayed =reader.ReadBoolean();
-            jungleSlagspitterPlateraDiaglougePlayer = reader.ReadBoolean();
+            //jungleSlagspitterPlateraDiaglougePlayer = reader.ReadBoolean();
             sulfurScourgeDialoguePlayed = reader.ReadBoolean();
             brimstoneDialoguePlayed = reader.ReadBoolean();
             yharonSmasher = reader.ReadBoolean();
@@ -168,6 +180,7 @@ namespace InfernalEclipseAPI.Core.World
             craftedWorkshop = reader.ReadBoolean();
             RagnarokModeEnabled = reader.ReadBoolean();
             hasChosenDifficulty = reader.ReadBoolean();
+            dreamEaterAttempts = reader.Read7BitEncodedInt();
         }
     }
 

@@ -402,6 +402,11 @@ ItemTooltip: {
 			'''
 	}
 
+	ShoeIce: {
+		Orig: 40% increased movement speed
+		Nerf: 15% increased movement speed
+	}
+
 	DoesNotStack: Does not stack with downgrades
 	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "
