@@ -504,6 +504,15 @@ namespace InfernalEclipseAPI.Common.Projectiles
             {
                 projectile.damage /= 2;
             }
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "CalamityAmmo" && projectile.ModProjectile.Name == "SoulBullet_Proj" && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                projectile.damage /= 2;
+            }
+
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "SOTS" && projectile.ModProjectile.Name == "RevolutionBoltDay" && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                projectile.damage /= 3;
+            }
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)

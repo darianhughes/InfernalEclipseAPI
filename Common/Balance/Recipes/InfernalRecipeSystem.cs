@@ -501,12 +501,29 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.requiredTile.Clear();
                             recipe.AddTile(ModContent.TileType<DraedonsForge>());
                         }
-                        if (recipe.HasResult(calAmmo.Find<ModItem>("MushroomUnitedNations")))
+                    }
+
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("MushroomUnitedNations")))
+                    {
+                        recipe.RemoveIngredient(ItemID.ShroomiteBar);
+                        recipe.AddIngredient(ItemID.LunarBar, 10);
+                        recipe.AddIngredient(ItemID.FragmentVortex, 6);
+                    }
+
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("NapalmBullet")))
+                    {
+                        for (int i = 0; i < recipe.requiredItem.Count; i++)
                         {
-                            recipe.RemoveIngredient(ItemID.ShroomiteBar);
-                            recipe.AddIngredient(ItemID.LunarBar, 10);
-                            recipe.AddIngredient(ItemID.FragmentVortex, 6);
+                            if (recipe.requiredItem[i].type == ItemID.EmptyBullet)
+                            {
+                                recipe.requiredItem[i].stack = 100;
+                            }
                         }
+
+                        recipe.AddIngredient<UnholyCore>();
+
+                        int napalmType = calAmmo.Find<ModItem>("NapalmBullet").Type;
+                        recipe.ReplaceResult(napalmType, 100);
                     }
                 }
                 #endregion

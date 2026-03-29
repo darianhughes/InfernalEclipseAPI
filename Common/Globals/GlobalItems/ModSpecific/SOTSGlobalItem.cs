@@ -351,6 +351,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
             if (InfernalConfig.Instance.SOTSBalanceChanges)
             {
+                if (item.type == ItemType<ShatterShardChestplate>())
+                {
+                    item.defense = 5;
+                }
+
+
                 if (item.type == ItemType<FrostArtifactHelmet>())
                 {
                     item.defense = 13;

@@ -5208,6 +5208,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 25;
                 }
 
+                if (GetItem(sots, "GlazeBow", item))
+                {
+                    item.damage = 13;
+                }
+
                 if (GetItem(sots, "AncientSteelLongbow", item))
                 {
                     item.damage = 21;
@@ -5469,6 +5474,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 80;
                 }
 
+                if (GetItem(sots, "Pyrocide", item))
+                {
+                    item.damage = 96;
+                }
+
                 if (GetItem(sots, "DuneSplicer", item))
                 {
                     item.damage = 30;
@@ -5491,6 +5501,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 12;
                     item.damage = 125;
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (GetItem(sots, "PlasmaCutterButOnAChain", item))
+                {
+                    item.damage = 260;
                 }
 
                 if (GetItem(sots, "SubspaceScissors", item))
@@ -5584,7 +5599,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sots, "CataclysmSpheres", item))
                 {
-                    item.damage = 35;
+                    item.damage = 40;
                 }
 
                 if (GetItem(sots, "DimensionShredder", item))
@@ -5638,7 +5653,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sots, "DanceOfDeath", item))
                 {
-                    item.damage = 33;
+                    item.damage = 53;
                 }
 
                 if (GetItem(sots, "Apocalypse", item))
@@ -5753,13 +5768,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sotsBH, "SerpentCharmerofSage", item))
                 {
-                    item.damage = 27;
+                    item.damage = 24;
                 }
 
                 if (GetItem(sotsBH, "Serpentbite", item))
                 {
                     item.crit = 6;
-                    item.damage = 54;
+                    item.damage = 66;
                 }
 
                 if (GetItem(sotsBH, "ChoirofOne", item))
@@ -5809,21 +5824,32 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (UnsafeGetItem(console, "VolcanicRepeater", item))
                 {
-                    item.damage = 30;
+                    item.damage = 36;
+                }
+
+                if (UnsafeGetItem(console, "EternityStaff", item))
+                {
+                    item.damage = 42;
+                }
+
+                if (UnsafeGetItem(console, "OcramsEye", item))
+                {
+                    item.useTime = 7;
+                    item.useAnimation = 21;
                 }
 
                 if (UnsafeGetItem(console, "Tizona", item))
                 {
-                    item.useTime = 20;
-                    item.useAnimation = 20;
-                    item.damage = 93;
+                    item.useTime = 18;
+                    item.useAnimation = 18;
+                    item.damage = 87;
                 }
 
                 if (UnsafeGetItem(console, "Tonbogiri", item))
                 {
-                    item.useTime = 28;
-                    item.useAnimation = 28;
-                    item.damage = 112;
+                    item.useTime = 26;
+                    item.useAnimation = 26;
+                    item.damage = 132;
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }
             }
