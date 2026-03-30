@@ -3,7 +3,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 
-namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks.ILTileChanges
+namespace InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges
 {
     [JITWhenModsEnabled("SOTS")]
     [ExtendsFromMod("SOTS")]

@@ -1,6 +1,7 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items.Accessories;
 using InfernalEclipseAPI.Core.Systems;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {
@@ -76,8 +77,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         recipe.AddIngredient(thorium.Find<ModItem>("CapeoftheSurvivor"));
                         recipe.AddIngredient<DeificAmulet>();
                         recipe.AddIngredient<EffulgentFeather>(5);
+                        recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence").Type, 3);
                         recipe.RemoveTile(TileID.TinkerersWorkbench);
-                        recipe.AddTile(TileID.LunarCraftingStation);
+                        recipe.AddTile<CosmicAnvil>();
                     }
 
                     ModItem plasmaGen = null;
