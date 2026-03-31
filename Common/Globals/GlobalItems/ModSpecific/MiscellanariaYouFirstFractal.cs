@@ -18,6 +18,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         {
             ItemID.Sets.Deprecated[ItemID.FirstFractal] = true;
             ItemID.Sets.ShimmerTransformToItem[ItemID.Zenith] = -1;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.FirstFractal] = -1;
         }
     }
 }
