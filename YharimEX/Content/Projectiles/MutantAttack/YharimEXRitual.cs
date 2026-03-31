@@ -5,16 +5,14 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Assets.ExtraTextures;
-using YharimEX.Core.Globals;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using YharimEX.Assets.ExtraTextures;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXRitual : YharimEXArena
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSphere";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSphere";
 
         private const float realRotation = MathHelper.Pi / 140f;
         private bool MutantDead;
@@ -112,29 +110,6 @@ namespace YharimEX.Content.Projectiles
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             base.OnHitPlayer(target, info);
-            Mod FargoSouls = null;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-                if ((YharimEXWorldFlags.MasochistModeReal || YharimEXWorldFlags.InfernumMode) && Main.npc[YharimEXGlobalNPC.yharimEXBoss].ai[0] == -5)
-                {
-                    if (!target.HasBuff(FargoSouls.Find<ModBuff>("TimeFrozenBuff").Type))
-                        SoundEngine.PlaySound(new SoundStyle("YharimEX/Assets/Sounds/Attacks/ZaWarudo"), target.Center);
-                    target.AddBuff(FargoSouls.Find<ModBuff>("TimeFrozenBuff").Type, 300);
-                }
-            }
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -165,7 +140,7 @@ namespace YharimEX.Content.Projectiles
             var maxOpacity = Projectile.Opacity;
             float scale = Projectile.scale * 0.5f;
 
-            ManagedShader borderShader = ShaderManager.GetShader("YharimEX.YharimEXP2Aura");
+            ManagedShader borderShader = ShaderManager.GetShader("InfernalEclipseAPI.YharimEXP2Aura");
             borderShader.TrySetParameter("colorMult", 7.35f);
             borderShader.TrySetParameter("time", Main.GlobalTimeWrappedHourly);
             borderShader.TrySetParameter("radius", radius * scale);
@@ -194,7 +169,7 @@ namespace YharimEX.Content.Projectiles
             Vector2 origin2 = rectangle.Size() / 2f;
 
             Color color26 = Projectile.GetAlpha(lightColor);
-            Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXSphereGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSphereGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int rect1 = glow.Height;
             int rect2 = 0;
             Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);

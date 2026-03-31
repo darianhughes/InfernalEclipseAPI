@@ -7,14 +7,12 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Assets.ExtraTextures;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Players;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
+using YharimEX.Assets.ExtraTextures;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXGiantDeathray2 : YharimEXSpecialDeathray
     {
@@ -38,15 +36,6 @@ namespace YharimEX.Content.Projectiles
             base.SetDefaults();
 
             Projectile.netImportant = true;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-                SetupFargoProjectile.TimeFreezeImmune = true;
-                if (YharimEXWorldFlags.MasochistModeReal)
-                    maxTime += 180;
-            }
         }
 
         public override bool? CanDamage()
@@ -71,17 +60,10 @@ namespace YharimEX.Content.Projectiles
 
         public override void AI()
         {
-            Mod FargoSouls = null;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
-
             base.AI();
 
             if (!Main.dedServ && Main.LocalPlayer.active)
-                YharimEXGlobalUtilities.ScreenshakeRumble(6);
+                YharimEXUtils.ScreenshakeRumble(6);
 
             Projectile.timeLeft = 2;
 
@@ -90,7 +72,7 @@ namespace YharimEX.Content.Projectiles
             {
                 Projectile.velocity = -Vector2.UnitY;
             }
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
             if (npc != null)
             {
                 Projectile.Center = npc.Center + Main.rand.NextVector2Circular(5, 5) + Vector2.UnitX.RotatedBy(npc.ai[3]) * (npc.ai[0] == -7 ? 100 : 175) * Projectile.scale / 10f;
@@ -100,12 +82,6 @@ namespace YharimEX.Content.Projectiles
                 }
                 else if (npc.ai[0] == -5) //final spark
                 {
-                    if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        if (npc.HasValidTarget && Main.player[npc.target].HasBuff(FargoSouls.Find<ModBuff>("TimeFrozenBuff").Type))
-                            stall = true;
-                    }
-
                     if (npc.localAI[2] > 30) //mutant is forcing a despawn
                         {
                             //so this should disappear too
@@ -139,8 +115,8 @@ namespace YharimEX.Content.Projectiles
             {
                 if (!Main.dedServ)
                 {
-                    SoundEngine.PlaySound(new SoundStyle("FargowiltasSouls/Assets/Sounds/Siblings/Deviantt/DeviBigDeathray") with { Volume = 1.5f }, Projectile.Center);
-                    SoundEngine.PlaySound(new SoundStyle("FargowiltasSouls/Assets/Sounds/Siblings/Mutant/FinalSpark") with { Volume = 1.5f }, Projectile.Center);
+                    SoundEngine.PlaySound(new SoundStyle("InfernalEclipseAPI/YharimEX/Assets/Sounds/Attacks/YharimEXDeviBigDeathray") with { Volume = 1.5f }, Projectile.Center);
+                    SoundEngine.PlaySound(new SoundStyle("InfernalEclipseAPI/YharimEX/Assets/Sounds/Attacks/YharimEXFinalSpark") with { Volume = 1.5f }, Projectile.Center);
                 }
             }
             float num801 = 10f;
@@ -154,7 +130,7 @@ namespace YharimEX.Content.Projectiles
             float scale = stall ? 1f : (float)Math.Sin(Projectile.localAI[0] * 3.14159274f / maxTime);
             stall = false;
             Projectile.scale = scale * 7f * num801;
-            if (YharimEXWorldFlags.MasochistModeReal)
+            if (WorldSaveSystem.InfernumModeEnabled)
                 Projectile.scale *= 5f;
 
             if (Projectile.scale > num801)
@@ -196,8 +172,6 @@ namespace YharimEX.Content.Projectiles
                 Main.LocalPlayer.immuneTime = 0;
                 Main.LocalPlayer.hurtCooldowns[0] = 0;
                 Main.LocalPlayer.hurtCooldowns[1] = 0;
-                if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    Main.LocalPlayer.ClearBuff(FargoSouls.Find<ModBuff>("GoldenStasisBuff").Type);
             }
         }
 
@@ -242,19 +216,6 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-                target.GetModPlayer<YharimEXPlayer>().YharimEXNoUsingItems = 2;
-            }
-
             target.immune = false;
             target.immuneTime = 0;
             target.hurtCooldowns[0] = 0;
@@ -283,7 +244,7 @@ namespace YharimEX.Content.Projectiles
             if (Projectile.velocity == Vector2.Zero)
                 return false;
 
-            ManagedShader shader = ShaderManager.GetShader("FargowiltasSouls.MutantDeathray");
+            ManagedShader shader = ShaderManager.GetShader("InfernalEclipseAPI.MutantDeathray");
 
             // Get the laser end position.
             Vector2 laserEnd = Projectile.Center + Projectile.velocity.SafeNormalize(Vector2.UnitY) * drawDistance;
@@ -302,10 +263,10 @@ namespace YharimEX.Content.Projectiles
             // The laser should fade to white in the middle.
             Color brightColor = new(194, 255, 242, 100);
             shader.TrySetParameter("mainColor", brightColor);
-            YharimEXGlobalUtilities.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
+            YharimEXUtils.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
             // Draw a big glow above the start of the laser, to help mask the intial fade in due to the immense width.
 
-            Texture2D glowTexture = ModContent.Request<Texture2D>("FargowiltasSouls/Content/Projectiles/GlowRing").Value;
+            Texture2D glowTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXGlowRing").Value;
 
             Vector2 glowDrawPosition = Projectile.Center - Projectile.velocity * (BeBrighter ? 90f : 180f);
 

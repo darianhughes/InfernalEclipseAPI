@@ -4,10 +4,8 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXPhantasmalBlast : ModProjectile
     {
@@ -29,13 +27,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.penetrate = -1;
             Projectile.scale = 1f;
             Projectile.alpha = 0;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.canSplit = false;
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
         }
 
         public override void AI()
@@ -99,15 +90,6 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Mod FargoSouls = null;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                target.AddBuff(FargoSouls.Find<ModBuff>("CurseOFTheMoonBuff").Type, 600);
-            }
             target.immune[Projectile.owner] = 1;
         }
 

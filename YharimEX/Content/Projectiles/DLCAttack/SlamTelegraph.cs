@@ -117,7 +117,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
             //Main.spriteBatch.End();
             //Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
 
-            ManagedShader shader = ShaderManager.GetShader("YharimEX.Vertex_ArcTelegraph");
+            ManagedShader shader = ShaderManager.GetShader("InfernalEclipseAPI.Vertex_ArcTelegraph");
 
             YharimEXUtils.SetTexture1(ModContent.Request<Texture2D>("Terraria/Images/Extra_193").Value);
             if (Crimson)

@@ -6,11 +6,11 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXIronParry : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXIronParry";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXIronParry";
 
         public override void SetStaticDefaults()
         {

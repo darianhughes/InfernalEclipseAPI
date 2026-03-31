@@ -7,7 +7,6 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Luminance.Core.Graphics;
 using YharimEX.Content.Projectiles.DLCAttack;
-using YharimEX.Content.Projectiles;
 using CalamityMod.NPCs.DevourerofGods;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.ProfanedGuardians;
@@ -19,6 +18,8 @@ using CalamityMod.World;
 using InfernumMode.Core.GlobalInstances.Systems;
 using InfernalEclipseAPI.Core.World;
 using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack;
+using InfernalEclipseAPI.YharimEX.Common.Graphics.Particles;
 
 namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
 {
@@ -37,11 +38,11 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
             {
                 if (npc.ai[0] < 0) //desperation
                 {
-                    npc.ModNPC.Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/StoriaShort");
+                    npc.ModNPC.Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/CrossroadsofTwoLegendsDesp");
                 }
                 else
                 {
-                    npc.ModNPC.Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/Storia");
+                    npc.ModNPC.Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/CrossroadsofTwoLegendsP2");
                 }
             }
 

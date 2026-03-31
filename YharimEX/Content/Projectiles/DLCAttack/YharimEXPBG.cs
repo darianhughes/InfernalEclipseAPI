@@ -13,6 +13,7 @@ using Terraria.GameContent;
 using Terraria;
 using Terraria.ModLoader;
 using Luminance.Core.Graphics;
+using InfernalEclipseAPI.YharimEX.Common.Graphics.Particles;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {

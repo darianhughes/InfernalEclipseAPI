@@ -1,15 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CalamityMod.World;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
+using Luminance.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
 
-namespace YharimEX.Content.Projectiles.MutantAttack
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXCosmosVortex : ModProjectile
     {
@@ -29,11 +26,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
             Projectile.tileCollide = false;
             Projectile.alpha = 255;
             Projectile.penetrate = -1;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
         }
 
         public override bool? CanDamage()
@@ -45,7 +37,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
         {
             int time = 360;
             int maxScale = 3;
-            float rotationMult = (YharimEXWorldFlags.MasochistModeReal || YharimEXWorldFlags.InfernumMode) ? 1.4f : 1f;
+            float rotationMult = WorldSaveSystem.InfernumModeEnabled ? 1.4f : 1f;
 
             if (Projectile.ai[1] == 0)
                 time = 30;
@@ -147,9 +139,9 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                 {
                     Suck();
 
-                    int lightningTime = YharimEXWorldFlags.EternityMode && Projectile.ai[1] != 1f ? 6 : 15;
-                    if (YharimEXWorldFlags.MasochistModeReal || YharimEXWorldFlags.InfernumMode)
-                        lightningTime = YharimEXWorldFlags.EternityMode && Projectile.ai[1] != 1f ? 5 : 8;
+                    int lightningTime = CalamityWorld.death && Projectile.ai[1] != 1f ? 6 : 15;
+                    if (WorldSaveSystem.InfernumModeEnabled)
+                        lightningTime = CalamityWorld.death && Projectile.ai[1] != 1f ? 5 : 8;
 
                     if (Projectile.localAI[0] % lightningTime == 0) //shoot lightning out, rotate 48 degrees per second by default
                     {
@@ -157,7 +149,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
                         SoundEngine.PlaySound(SoundID.Item82, Projectile.Center);
 
-                        if (YharimEXGlobalUtilities.HostCheck)
+                        if (YharimEXUtils.HostCheck)
                         {
                             const int max = 3;
                             for (int i = 0; i < max; i++)
@@ -173,10 +165,9 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         Projectile.localAI[1] += rotationMult * MathHelper.ToRadians(48f / 60f * lightningTime) * Projectile.ai[1];
                     }
 
-                    //emode, ai1 check is a phase 2 check
-                    if (YharimEXWorldFlags.EternityMode && Projectile.ai[1] != 1f && Projectile.localAI[0] % 75 == 0)
+                    if (CalamityWorld.death && Projectile.ai[1] != 1f && Projectile.localAI[0] % 75 == 0)
                     {
-                        if (YharimEXGlobalUtilities.HostCheck)
+                        if (YharimEXUtils.HostCheck)
                         {
                             const int max = 7;
                             for (int i = 0; i < max; i++)
@@ -226,7 +217,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                 {
                     float f = Main.rand.NextFloat() * 6.283185f;
                     float num2 = Main.rand.NextFloat();
-                    Dust dust = Dust.NewDustPerfect(Projectile.Center + f.ToRotationVector2() * (110 + 600 * num2), 229, (f - 3.141593f).ToRotationVector2() * (14 + 8 * num2), 0, default, 1f);
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center + f.ToRotationVector2() * (110 + 600 * num2), DustID.Vortex, (f - 3.141593f).ToRotationVector2() * (14 + 8 * num2), 0, default, 1f);
                     dust.scale = 0.9f;
                     dust.fadeIn = 1.15f + num2 * 0.3f;
                     //dust.color = new Color(1f, 1f, 1f, num1) * (1f - num1);

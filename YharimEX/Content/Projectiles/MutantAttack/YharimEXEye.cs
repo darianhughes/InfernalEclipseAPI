@@ -1,4 +1,5 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -6,15 +7,12 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Players;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXEye : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXEye";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXEye";
 
         public virtual int TrailAdditive => 0;
 
@@ -74,7 +72,7 @@ namespace YharimEX.Content.Projectiles
                     }
                 }
 
-                Projectile ritual = YharimEXGlobalUtilities.ProjectileExists(ritualID, ModContent.ProjectileType<YharimEXRitual>());
+                Projectile ritual = YharimEXUtils.ProjectileExists(ritualID, ModContent.ProjectileType<YharimEXRitual>());
                 if (ritual != null && Projectile.Distance(ritual.Center) > 1200f) //despawn faster
                     Projectile.timeLeft = 0;
             }
@@ -82,21 +80,6 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-            //    YharimEXFargoPlayer YharimEXFargoPlayer = target.GetModPlayer<YharimEXFargoPlayer>();
-            //    if (YharimEXFargoPlayer.YharimEXBetsyDashing)
-            //        return;
-
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-            }
             Projectile.timeLeft = 0;
         }
 
@@ -140,7 +123,7 @@ namespace YharimEX.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXEye_Glow").Value;
+            Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXEye_Glow").Value;
             int rect1 = glow.Height / Main.projFrames[Projectile.type];
             int rect2 = rect1 * Projectile.frame;
             Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);

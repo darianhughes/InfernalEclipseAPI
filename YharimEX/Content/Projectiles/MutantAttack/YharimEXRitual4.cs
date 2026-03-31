@@ -1,18 +1,16 @@
 ﻿using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ModLoader;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXRitual4 : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSphere";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSphere";
         private const float PI = (float)Math.PI;
         private const float rotationPerTick = PI / 150f;
         private const float threshold = 2100;
@@ -21,7 +19,7 @@ namespace YharimEX.Content.Projectiles
         {
             base.SetStaticDefaults();
             Main.projFrames[Projectile.type] = 2;
-            Terraria.ID.ProjectileID.Sets.DrawScreenCheckFluff[Projectile.type] = 2400;
+            ProjectileID.Sets.DrawScreenCheckFluff[Projectile.type] = 2400;
         }
 
         public override void SetDefaults()
@@ -32,16 +30,11 @@ namespace YharimEX.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.alpha = 255;
-                        if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = true;
-            }
         }
 
         public override void AI()
         {
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
             if (npc != null && npc.ai[0] == 10)
             {
                 Projectile.alpha -= 17;
@@ -96,7 +89,7 @@ namespace YharimEX.Content.Projectiles
             Vector2 origin2 = rectangle.Size() / 2f;
 
             Color color26 = Projectile.GetAlpha(lightColor);
-            Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXSphereGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSphereGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int rect1 = glow.Height;
             int rect2 = 0;
             Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);

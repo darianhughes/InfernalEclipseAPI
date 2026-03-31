@@ -65,6 +65,8 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LittleCatTheme"), "Demonic Little Grey Cat Theme Song", "by vivivivivi", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by Peter Fung", "Infernal Eclipse of Ragnarok");
 
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, "Assets/Music/Isolation"), "Isolation", "by NightHawk22", "");
+
             if (ModLoader.TryGetMod("YouBoss", out _))
             {
                 musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "FINAL FRACTAL", "ENNWAY", "You");

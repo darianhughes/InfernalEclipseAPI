@@ -11,7 +11,6 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {
@@ -67,7 +66,6 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (YharimEXWorldFlags.EternityMode && YharimEXCrossmodSystem.FargowiltasSouls.Loaded) target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
             target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 60 * 5);
             target.AddBuff(ModContent.BuffType<VulnerabilityHex>(), 60 * 5);
             base.OnHitPlayer(target, info);

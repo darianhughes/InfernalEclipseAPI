@@ -6,16 +6,16 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using Luminance.Common.Utilities;
+using InfernumMode.Core.GlobalInstances.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXEyeOfCthulhu : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXEyeOfCthulhu";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXEyeOfCthulhu";
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = Main.npcFrameCount[NPCID.EyeofCthulhu];
@@ -35,12 +35,6 @@ namespace YharimEX.Content.Projectiles
             CooldownSlot = 1;
 
             Projectile.timeLeft = 216;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
 
             Projectile.alpha = 255;
         }
@@ -78,7 +72,7 @@ namespace YharimEX.Content.Projectiles
 
         public override void AI()
         {
-            Player player = YharimEXGlobalUtilities.PlayerExists(Projectile.ai[0]);
+            Player player = YharimEXUtils.PlayerExists(Projectile.ai[0]);
             if (player == null)
             {
                 Projectile.Kill();
@@ -98,7 +92,7 @@ namespace YharimEX.Content.Projectiles
                 if (p != Main.maxProjectiles)
                 {
                     Main.projectile[p].timeLeft = Projectile.timeLeft + 180 + 30 + 150; //+ 60 + 240;
-                    if (YharimEXWorldFlags.MasochistModeReal)
+                    if (WorldSaveSystem.InfernumModeEnabled)
                         Main.projectile[p].timeLeft -= 30;
                 }
             };
@@ -109,7 +103,7 @@ namespace YharimEX.Content.Projectiles
 
                 SoundEngine.PlaySound(SoundID.ForceRoarPitched, Projectile.Center);
 
-                if (YharimEXGlobalUtilities.HostCheck)
+                if (YharimEXUtils.HostCheck)
                     Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<YharimEXGlowRing>(), 0, 0f, Main.myPlayer, -1, NPCID.EyeofCthulhu);
             }
 
@@ -172,7 +166,7 @@ namespace YharimEX.Content.Projectiles
             }
             else if (Projectile.ai[1] == 121) //make the golden sickles
             {
-                if (YharimEXGlobalUtilities.HostCheck)
+                if (YharimEXUtils.HostCheck)
                 {
                     SpawnProjectile(Projectile.Center - Projectile.velocity / 2);
 
@@ -183,7 +177,7 @@ namespace YharimEX.Content.Projectiles
                     if (p != Main.maxProjectiles)
                         Main.projectile[p].timeLeft = Projectile.timeLeft + 180 + 30;
 
-                    if (YharimEXWorldFlags.MasochistModeReal)
+                    if (WorldSaveSystem.InfernumModeEnabled)
                     {
                         p = Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<YharimEXScythe2>(), Projectile.damage, 0, Main.myPlayer, accel, angle);
                         if (p != Main.maxProjectiles)
@@ -205,7 +199,7 @@ namespace YharimEX.Content.Projectiles
             {
                 Projectile.rotation = Projectile.velocity.ToRotation() - MathHelper.PiOver2;
 
-                if (YharimEXGlobalUtilities.HostCheck)
+                if (YharimEXUtils.HostCheck)
                 {
                     SpawnProjectile(Projectile.Center);
                     SpawnProjectile(Projectile.Center - Projectile.velocity / 2);
@@ -213,7 +207,7 @@ namespace YharimEX.Content.Projectiles
             }
             else
             {
-                if (YharimEXGlobalUtilities.HostCheck)
+                if (YharimEXUtils.HostCheck)
                 {
                     SpawnProjectile(Projectile.Center);
                     SpawnProjectile(Projectile.Center - Projectile.velocity / 2);
@@ -231,31 +225,6 @@ namespace YharimEX.Content.Projectiles
 
             if (Projectile.frame < 3)
                 Projectile.frame = 3;
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                Mod FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-
-                if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    if (YharimEXWorldFlags.EternityMode || YharimEXWorldFlags.DeathMode)
-                    {
-                        target.AddBuff(BuffID.Obstructed, 15);
-                        target.AddBuff(FargoSouls.Find<ModBuff>("Berserked").Type, 15);
-                        if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                        {
-                            target.YharimPlayer().MaxLifeReduction += 100;
-                        }
-                        else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                        {
-                            EternityDebuffs.ManageOnHitDebuffs(target);
-                        }
-                    }
-                }
-            }
         }
 
         public override void OnKill(int timeLeft)

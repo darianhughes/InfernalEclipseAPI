@@ -1,19 +1,17 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXSlimeRain : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSlimeRain";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSlimeRain";
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
@@ -30,19 +28,13 @@ namespace YharimEX.Content.Projectiles
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;
             CooldownSlot = 1;
-            
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
         }
 
         public override bool? CanDamage() => false;
 
         public override void AI()
         {
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[0], ModContent.NPCType<YharimEXBoss>());
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[0], ModContent.NPCType<YharimEXBoss>());
             if (npc != null && (npc.ai[0] == 36 || npc.ai[0] == 48))
             {
                 Projectile.timeLeft = 2;
@@ -61,7 +53,6 @@ namespace YharimEX.Content.Projectiles
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.Slimed, 300);
-            if (YharimEXWorldFlags.EternityMode && YharimEXCrossmodSystem.FargowiltasSouls.Loaded) target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
         }
 
         public override bool PreDraw(ref Color lightColor)

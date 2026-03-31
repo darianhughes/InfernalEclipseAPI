@@ -49,12 +49,11 @@ namespace InfernalEclipseAPI.Common.Balance
                 {
                     case 37:
                         return NPC.downedBoss2 || Main.hardMode;
-                    case 58:
-                        return NPC.downedBoss2 || Main.hardMode;
                     case 408:
                         return NPC.downedMoonlord;
                     case TileID.AlchemyTable:
                     case TileID.BewitchingTable:
+                    case TileID.Hellstone:
                         return NPC.downedBoss3 || Main.hardMode;
                     default:
                         if (tile == ModContent.TileType<ExodiumOre>()) { return NPC.downedMoonlord; }

@@ -1,17 +1,17 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Globals;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
 using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXEyeHoming : YharimEXEye
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXEye";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXEye";
 
         public override void SetDefaults()
         {
@@ -23,14 +23,14 @@ namespace YharimEX.Content.Projectiles
         {
             const int endHomingTime = -600;
 
-            float maxSpeed = YharimEXWorldFlags.MasochistModeReal ? 15f : 10f;
+            float maxSpeed = WorldSaveSystem.InfernumModeEnabled ? 15f : 10f;
 
             bool stopAttacking = false;
 
-            NPC npc = YharimEXGlobalUtilities.NPCExists(YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>());
+            NPC npc = YharimEXUtils.NPCExists(YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>());
             int[] spearSpinAIs = [4, 5, 6, 13, 14, 15, 21, 22, 23];
             if ((npc == null || !spearSpinAIs.Contains((int)npc.ai[0]))
-                && !(YharimEXWorldFlags.MasochistModeReal && npc.ai[0] > 10)
+                && !(WorldSaveSystem.InfernumModeEnabled && npc.ai[0] > 10)
                 && !Main.getGoodWorld)
             {
                 Projectile.ai[1] = endHomingTime; //for deceleration
@@ -39,7 +39,7 @@ namespace YharimEX.Content.Projectiles
 
             Projectile.ai[1]--;
 
-            Player p = YharimEXGlobalUtilities.PlayerExists(npc == null ? Projectile.ai[0] : npc.target);
+            Player p = YharimEXUtils.PlayerExists(npc == null ? Projectile.ai[0] : npc.target);
             if (stopAttacking || Projectile.ai[1] > 0 && p != null && Projectile.Distance(p.Center) < 240)
             {
                 if (p != null)
@@ -67,7 +67,7 @@ namespace YharimEX.Content.Projectiles
                         Projectile.velocity *= 1.02f;
 
                     Vector2 target = p.Center;
-                    float deactivateHomingRange = YharimEXWorldFlags.MasochistModeReal ? 360 : 480;
+                    float deactivateHomingRange = WorldSaveSystem.InfernumModeEnabled ? 360 : 480;
                     if (Projectile.Distance(target) > deactivateHomingRange)
                     {
                         Vector2 distance = target - Projectile.Center;

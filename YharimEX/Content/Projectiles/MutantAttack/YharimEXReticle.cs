@@ -1,4 +1,7 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Globals;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -6,14 +9,12 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXReticle : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXReticle";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXReticle";
         public override void SetDefaults()
         {
             Projectile.width = 110;
@@ -24,7 +25,7 @@ namespace YharimEX.Content.Projectiles
             Projectile.penetrate = -1;
             Projectile.hostile = true;
             Projectile.alpha = 255;
-            Projectile.timeLeft = YharimEXWorldFlags.MasochistModeReal || YharimEXWorldFlags.InfernumMode ? 120 : 150;
+            Projectile.timeLeft = WorldSaveSystem.InfernumModeEnabled ? 120 : 150;
         }
 
         public override bool? CanDamage()
@@ -34,7 +35,7 @@ namespace YharimEX.Content.Projectiles
 
         public override void AI()
         {
-            if (YharimEXGlobalUtilities.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>())
+            if (YharimEXUtils.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>())
                 && !Main.npc[YharimEXGlobalNPC.yharimEXBoss].dontTakeDamage)
             {
                 if (Projectile.localAI[0] == 0)

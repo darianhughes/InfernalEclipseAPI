@@ -6,12 +6,11 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using CalamityMod.World;
 
-namespace YharimEX.Content.Projectiles.MutantAttack
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXTrueEyeR : ModProjectile
     {
@@ -37,12 +36,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
             Projectile.ignoreWater = true;
             CooldownSlot = 1;
             Projectile.penetrate = -1;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 1;
-            }
         }
 
         public override bool? CanDamage()
@@ -109,7 +102,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         for (int i = 0; i < max; i++)
                         {
                             Vector2 spawnPos = Projectile.Center - Vector2.UnitY * 6f + new Vector2(distance, 0f).RotatedBy(rotation * i);
-                            if (YharimEXGlobalUtilities.HostCheck)
+                            if (YharimEXUtils.HostCheck)
                                 Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), spawnPos, Vector2.Zero, ModContent.ProjectileType<YharimEXTrueEyeSphere>(),
                                     Projectile.damage, 0f, Projectile.owner, Projectile.identity, i);
                         }
@@ -203,13 +196,9 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
+            if (CalamityWorld.death)
             {
                 target.YharimPlayer().MaxLifeReduction += 100;
-            }
-            else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                EternityDebuffs.ManageOnHitDebuffs(target);
             }
         }
 
@@ -248,7 +237,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
             Main.EntitySpriteDraw(texture2D13, Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, Projectile.rotation, origin2, Projectile.scale, SpriteEffects.None, 0);
 
-            Texture2D pupil = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXTrueEyePupil", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D pupil = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXTrueEyePupil", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             Vector2 pupilOffset = new Vector2(localAI1 / 2f, 0f).RotatedBy(localAI0);
             pupilOffset += new Vector2(0f, -6f).RotatedBy(Projectile.rotation);
             Vector2 pupilOrigin = pupil.Size() / 2f;

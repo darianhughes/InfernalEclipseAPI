@@ -1,11 +1,12 @@
 ﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using CalamityMod.Rarities;
 
 namespace InfernalEclipseAPI.YharimEX.Content.Items
 {
     public class YharimsRage : ModItem
     {
-        public override string Texture => "YharimEX/Assets/Items/YharimsRage";
+        public override string Texture => "CalamityMod/Items/Weapons/Magic/YharimsCrystal";
         public override void SetStaticDefaults()
         {
             //Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(3, 11));
@@ -18,7 +19,7 @@ namespace InfernalEclipseAPI.YharimEX.Content.Items
         {
             Item.width = 52;
             Item.height = 52;
-            Item.rare = ItemRarityID.Purple;
+            Item.rare = ModContent.RarityType<BurnishedAuric>();
             Item.maxStack = 20;
             Item.useAnimation = 30;
             Item.useTime = 30;

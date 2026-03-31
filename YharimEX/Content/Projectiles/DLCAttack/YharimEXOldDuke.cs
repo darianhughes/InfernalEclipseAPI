@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CalamityMod.Buffs.StatDebuffs;
 using Terraria.ModLoader;
 using Terraria;
+using InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {

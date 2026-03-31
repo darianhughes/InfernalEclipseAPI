@@ -4,17 +4,17 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using YharimEX.Core.Systems;
-using YharimEX.Core.Globals;
-using YharimEX.Assets.ExtraTextures;
 using InfernalEclipseAPI.YharimEX.Content.Deathrays;
+using InfernumMode.Core.GlobalInstances.Systems;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using YharimEX.Assets.ExtraTextures;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
 	public class YharimEXDeathraySmall : BaseDeathray, IPixelatedPrimitiveRenderer
     {
 
-        public override string Texture => "YharimEX/Assets/Projectiles/PhantasmalDeathrayML";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/PhantasmalDeathrayML";
         public YharimEXDeathraySmall() : base(30) { }
 
         public override void SetStaticDefaults()
@@ -40,7 +40,7 @@ namespace YharimEX.Content.Projectiles
             }
             float num801 = 0.3f;
             Projectile.localAI[0] += 1f;
-            if (Projectile.localAI[0] >= maxTime || YharimEXWorldFlags.MasochistModeReal)
+            if (Projectile.localAI[0] >= maxTime || WorldSaveSystem.InfernumModeEnabled)
             {
                 Projectile.Kill();
                 return;
@@ -111,7 +111,7 @@ namespace YharimEX.Content.Projectiles
             if (Projectile.hide)
                 return;
 
-            ManagedShader shader = ShaderManager.GetShader("YharimEX.YharimEXGenericDeathray");
+            ManagedShader shader = ShaderManager.GetShader("InfernalEclipseAPI.YharimEXGenericDeathray");
 
             // Get the laser end position.
             Vector2 laserEnd = Projectile.Center + Projectile.velocity.SafeNormalize(Vector2.UnitY) * drawDistance * 1.1f;
@@ -128,7 +128,7 @@ namespace YharimEX.Content.Projectiles
             // Set shader parameters. This one takes a fademap and a color.
 
             // GameShaders.Misc["FargoswiltasSouls:MutantDeathray"].UseImage1(); cannot be used due to only accepting vanilla paths.
-            YharimEXGlobalUtilities.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
+            YharimEXUtils.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
             // The laser should fade to this in the middle.
             shader.TrySetParameter("mainColor", new Color(255, 255, 183, 100));
             shader.TrySetParameter("stretchAmount", 3);

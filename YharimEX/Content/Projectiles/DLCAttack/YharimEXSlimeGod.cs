@@ -11,8 +11,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {
@@ -44,7 +43,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
             {
                 Projectile.scale = 1.1f;
                 SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/SlimeGodShot", 2, (SoundType)0));
-                if (YharimEXGlobalUtilities.HostCheck)
+                if (YharimEXUtils.HostCheck)
                 {
                     int p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + Vector2.UnitY * Projectile.height / 2, Vector2.UnitY, ModContent.ProjectileType<SlamTelegraph>(), 0, 0, Main.myPlayer, ai1: 150 * 1.2f);
                     if (p.WithinBounds(Main.maxProjectiles))
@@ -75,7 +74,6 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (YharimEXWorldFlags.EternityMode && YharimEXCrossmodSystem.FargowiltasSouls.Loaded) target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
             base.OnHitPlayer(target, info);
         }
         public override void OnKill(int timeLeft)

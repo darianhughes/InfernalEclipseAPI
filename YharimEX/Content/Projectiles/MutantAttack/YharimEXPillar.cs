@@ -7,17 +7,17 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Assets.Sounds.Attacks;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernalEclipseAPI.YharimEX.Core.Globals;
+using InfernumMode.Core.GlobalInstances.Systems;
+using YharimEX.Assets.Sounds.Attacks;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXPillar : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/Astrageldon";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/Astrageldon";
         private int target = -1;
 
         public override void SetStaticDefaults()
@@ -39,12 +39,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 600;
             CooldownSlot = 1;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 1;
-                SetupFargoProjectile.TimeFreezeImmune = true;
-            }
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -150,44 +144,10 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Mod FargoSouls = null;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
             if (target.mount.Active)
                 target.mount.Dismount(target);
             target.velocity.X = Projectile.velocity.X < 0 ? -15f : 15f;
             target.velocity.Y = -10f;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                target.AddBuff(FargoSouls.Find<ModBuff>("StunnedBuff").Type, 240);
-
-                if (YharimEXWorldFlags.EternityMode || YharimEXWorldFlags.DeathMode)
-                {
-                    target.AddBuff(FargoSouls.Find<ModBuff>("MarkedforDeathBuff").Type, 240);
-                }
-                if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        target.YharimPlayer().MaxLifeReduction += 100;
-                    }
-                    else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        EternityDebuffs.ManageOnHitDebuffs(target);
-                    }
-                    switch ((int)Projectile.ai[0])
-                    {
-                        case 0: target.AddBuff(FargoSouls.Find<ModBuff>("ReverseManaFlowerBuff").Type, 360); break; //nebula
-                        case 1: target.AddBuff(FargoSouls.Find<ModBuff>("AtrophiedBuff").Type, 360); break; //solar
-                        case 2: target.AddBuff(FargoSouls.Find<ModBuff>("JammedBuff").Type, 360); break; //vortex
-                        default: target.AddBuff(FargoSouls.Find<ModBuff>("AntisocialBuff").Type, 360); break; //stardust
-                    }
-                    Projectile.timeLeft = 0;
-                }
-            }
         }
 
         public override void OnKill(int timeLeft)
@@ -216,10 +176,10 @@ namespace YharimEX.Content.Projectiles
                     dust.scale *= 2f;
                 }
             }
-            if (YharimEXGlobalUtilities.HostCheck)
+            if (YharimEXUtils.HostCheck)
             {
                 int fragmentDuration = 240;
-                if (YharimEXGlobalUtilities.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>())
+                if (YharimEXUtils.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>())
                     && Main.npc[YharimEXGlobalNPC.yharimEXBoss].ai[0] == 19)
                 {
                     fragmentDuration = (int)Main.npc[YharimEXGlobalNPC.yharimEXBoss].localAI[0];
@@ -227,7 +187,7 @@ namespace YharimEX.Content.Projectiles
 
                 const int max = 24;
                 const float rotationInterval = 2f * (float)Math.PI / max;
-                float speed = YharimEXWorldFlags.MasochistModeReal ? 5.5f : 5f;
+                float speed = WorldSaveSystem.InfernumModeEnabled ? 5.5f : 5f;
                 for (int j = 0; j < 4; j++)
                 {
                     Vector2 vel = new Vector2(0f, speed * (j + 0.5f)).RotatedBy(Projectile.rotation);

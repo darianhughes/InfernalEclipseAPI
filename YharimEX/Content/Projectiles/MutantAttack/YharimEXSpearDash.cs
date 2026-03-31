@@ -1,4 +1,6 @@
 ﻿using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,11 +11,8 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using YharimEX.Assets.Sounds.Attacks;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public abstract class YharimEXSpearAttack : ModProjectile
     {
@@ -26,7 +25,7 @@ namespace YharimEX.Content.Projectiles
 
         protected void TryLifeSteal(Vector2 pos, int playerWhoAmI)
         {
-            if (YharimEXWorldFlags.MasochistModeReal && npc is NPC)
+            if (WorldSaveSystem.InfernumModeEnabled && npc is NPC)
             {
                 int totalHealPerHit = npc.lifeMax / 100 * 5;
 
@@ -52,7 +51,7 @@ namespace YharimEX.Content.Projectiles
 
     public class YharimEXSpearDash : YharimEXSpearAttack
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSpear";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSpear";
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("The Penetrator");
@@ -71,12 +70,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.alpha = 0;
             CooldownSlot = 1;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = true;
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
@@ -109,7 +102,7 @@ namespace YharimEX.Content.Projectiles
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            npc = YharimEXGlobalUtilities.NPCExists(reader.Read7BitEncodedInt());
+            npc = YharimEXUtils.NPCExists(reader.Read7BitEncodedInt());
         }
 
         float scaletimer;
@@ -118,7 +111,7 @@ namespace YharimEX.Content.Projectiles
             if (Projectile.localAI[1] == 0f)
             {
                 Projectile.localAI[1] = 1f;
-                if (!YharimEXWorldFlags.MasochistModeReal)
+                if (!WorldSaveSystem.InfernumModeEnabled)
                 {   
                     if (Projectile.ai[1] != -2)
                     {
@@ -143,7 +136,7 @@ namespace YharimEX.Content.Projectiles
                 Projectile.position -= Projectile.velocity;
                 Projectile.rotation = mutant.velocity.ToRotation() + MathHelper.ToRadians(135f);
                 Projectile.Center = mutant.Center + mutant.velocity;
-                if ((Projectile.ai[1] <= 0f || YharimEXWorldFlags.MasochistModeReal) && --Projectile.localAI[0] < 0)
+                if ((Projectile.ai[1] <= 0f || WorldSaveSystem.InfernumModeEnabled) && --Projectile.localAI[0] < 0)
                 {
                     if (Projectile.ai[1] == -2)
                     {
@@ -151,7 +144,7 @@ namespace YharimEX.Content.Projectiles
 
                         for (int i = -1; i <= 1; i += 2)
                         {
-                            if (YharimEXGlobalUtilities.HostCheck)
+                            if (YharimEXUtils.HostCheck)
                             {
                                 int p = Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, 16f * Vector2.Normalize(mutant.velocity).RotatedBy(MathHelper.PiOver2 * i),
                                 ModContent.ProjectileType<YharimEXSphereSmall>(), Projectile.damage, 0f, Projectile.owner, -1);
@@ -160,13 +153,13 @@ namespace YharimEX.Content.Projectiles
                             }
                         }
                     }
-                    else if (YharimEXWorldFlags.MasochistModeReal)
+                    else if (WorldSaveSystem.InfernumModeEnabled)
                     {
                         Projectile.localAI[0] = 2;
 
                         for (int i = -1; i <= 1; i += 2)
                         {
-                            if (YharimEXGlobalUtilities.HostCheck)
+                            if (YharimEXUtils.HostCheck)
                             {
                                 int p = Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, 16f / 2f * Vector2.Normalize(mutant.velocity).RotatedBy(MathHelper.PiOver2 * i),
                                 ModContent.ProjectileType<YharimEXSphereSmall>(), Projectile.damage, 0f, Projectile.owner, -1);
@@ -179,7 +172,7 @@ namespace YharimEX.Content.Projectiles
                     {
                         Projectile.localAI[0] = 2;
 
-                        if (YharimEXGlobalUtilities.HostCheck)
+                        if (YharimEXUtils.HostCheck)
                             Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<YharimEXSphereSmall>(), Projectile.damage, 0f, Projectile.owner, mutant.target);
                     }
                 }
@@ -196,17 +189,6 @@ namespace YharimEX.Content.Projectiles
         {
             Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), target.Center + Main.rand.NextVector2Circular(100, 100), Vector2.Zero, ModContent.ProjectileType<YharimEXBombSmall>(), 0, 0f, Projectile.owner);
 
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-            }
             TryLifeSteal(target.Center, target.whoAmI);
         }
 
@@ -223,7 +205,7 @@ namespace YharimEX.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXEye_Glow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXEye_Glow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int rect1 = glow.Height / Main.projFrames[Projectile.type];
             int rect2 = rect1 * Projectile.frame;
             Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);

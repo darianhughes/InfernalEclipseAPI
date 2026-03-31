@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Luminance.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXMark2 : ModProjectile
     {
@@ -24,12 +23,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.aiStyle = -1;
             CooldownSlot = 1;
             Projectile.hide = true;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 1;
-            }
         }
 
         public override bool? CanDamage()
@@ -61,21 +54,7 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Mod FargoSouls = null;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
             target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.EternityMode)
-                {
-                    target.AddBuff(FargoSouls.Find<ModBuff>("InfestedBuff").Type, Main.rand.Next(60, 300));
-                    target.AddBuff(FargoSouls.Find<ModBuff>("IvyVenomBuff").Type, Main.rand.Next(60, 300));
-                    target.AddBuff(FargoSouls.Find<ModBuff>("MutantFangBuff").Type, 180);
-                }
-            }
         }
 
         public override bool PreDraw(ref Color lightColor)

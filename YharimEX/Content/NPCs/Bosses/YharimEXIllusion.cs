@@ -1,15 +1,15 @@
-﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
+﻿using InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using YharimEX.Content.Projectiles;
 
 namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
 {
     public class YharimEXIllusion : ModNPC
     {
-        public override string Texture => "YharimEX/Assets/NPCs/YharimEXBoss";
-        public override string HeadTexture => "YharimEX/Assets/NPCs/YharimEXIllusion_Head_Boss";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXBoss";
+        public override string HeadTexture => "InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXIllusion_Head_Boss";
 
         public override void SetStaticDefaults()
         {

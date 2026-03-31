@@ -5,17 +5,18 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Core.Globals;
-using YharimEX.Content.Projectiles.FargoProjectile;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using CalamityMod.World;
+using InfernumMode.Core.GlobalInstances.Systems;
+using Luminance.Common.Utilities;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXBossProjectile : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/NPCs/YharimEXBoss";
-        public static string trailTexture => "YharimEX/Assets/NPCs/YharimEXSoul";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXBoss";
+        public static string trailTexture => "InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXSoul";
         public static int npcType => ModContent.NPCType<YharimEXBoss>();
         public bool auraTrail;
         const int auraFrames = 19;
@@ -36,11 +37,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.height = 50;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = true;
-            }
         }
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
@@ -53,7 +49,7 @@ namespace YharimEX.Content.Projectiles
         {
             Cake = false;
 
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], npcType);
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], npcType);
             if (npc != null)
             {
                 Projectile.Center = npc.Center;
@@ -62,30 +58,30 @@ namespace YharimEX.Content.Projectiles
                 Projectile.timeLeft = 30;
                 auraTrail = npc.localAI[3] >= 3;
 
-        // RETURN        Projectile.hide =
-        //            Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<YharimEXSpearAim>()] > 0
-        //            || Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<YharimEXSpearDash>()] > 0
-        //            || Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<YharimEXSpearSpin>()] > 0
-        //            || Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<YharimEXSlimeRain>()] > 0;
+                // RETURN        Projectile.hide =
+                //            Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<YharimEXSpearAim>()] > 0
+                //            || Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<YharimEXSpearDash>()] > 0
+                //            || Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<YharimEXSpearSpin>()] > 0
+                //            || Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<YharimEXSlimeRain>()] > 0;
 
                 sansEye =
                     npc.ai[0] == 10 && npc.ai[1] > 150
                     || npc.ai[0] == -5 && npc.ai[2] > 420 - 90 && npc.ai[2] < 420;
 
-                if (npc.ai[0] == 10 && YharimEXWorldFlags.EternityMode)
+                if (npc.ai[0] == 10 && CalamityWorld.death)
                 {
                     SHADOWMUTANTREAL += 0.03f;
                     if (SHADOWMUTANTREAL > 0.75f)
                         SHADOWMUTANTREAL = 0.75f;
 
-                    if (npc.ai[1] > 150 && YharimEXWorldFlags.MasochistModeReal && Main.getGoodWorld)
+                    if (npc.ai[1] > 150 && WorldSaveSystem.InfernumModeEnabled && Main.getGoodWorld)
                         Cake = true;
                 }
 
                 Projectile.localAI[1] = sansEye ? MathHelper.Lerp(Projectile.localAI[1], 1f, 0.05f) : 0; //for rotation of sans eye
                 Projectile.ai[0] = sansEye ? Projectile.ai[0] + 1 : 0;
 
-                if (YharimEXWorldFlags.MasochistModeReal && (npc.ai[0] >= 11 || npc.ai[0] < 0))
+                if (WorldSaveSystem.InfernumModeEnabled && (npc.ai[0] >= 11 || npc.ai[0] < 0))
                 {
                     sansEye = true;
                     Projectile.ai[0] = -1;
@@ -100,7 +96,7 @@ namespace YharimEX.Content.Projectiles
                         Projectile.localAI[0] = 0;
                 }
 
-                if (YharimEXWorldFlags.MasochistModeReal && Main.getGoodWorld)
+                if (WorldSaveSystem.InfernumModeEnabled && Main.getGoodWorld)
                 {
                     if (!npc.HasValidTarget && npc.velocity.Y < 0)
                     {
@@ -116,7 +112,7 @@ namespace YharimEX.Content.Projectiles
             else
             {
                 sansEye = false;
-                if (YharimEXGlobalUtilities.HostCheck)
+                if (YharimEXUtils.HostCheck)
                     Projectile.Kill();
                 return;
             }
@@ -153,7 +149,7 @@ namespace YharimEX.Content.Projectiles
             Rectangle rectangle = new(0, y3, texture2D13.Width, num156);
             Vector2 origin2 = rectangle.Size() / 2f;
 
-            Texture2D aura = ModContent.Request<Texture2D>("YharimEX/Assets/NPCs/YharimEXAura", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D aura = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXAura", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int auraFrameHeight = aura.Height / auraFrames;
             int auraY = auraFrameHeight * (int)Projectile.localAI[0];
             Rectangle auraRectangle = new(0, auraY, aura.Width, auraFrameHeight);
@@ -230,7 +226,7 @@ namespace YharimEX.Content.Projectiles
             {
                 Color color = Color.Red;
 
-                bool forcedMasoEye = YharimEXWorldFlags.MasochistModeReal && Projectile.ai[0] == -1;
+                bool forcedMasoEye = WorldSaveSystem.InfernumModeEnabled && Projectile.ai[0] == -1;
 
                 const int maxTime = 120;
                 float effectiveTime = Projectile.ai[0];
@@ -245,7 +241,7 @@ namespace YharimEX.Content.Projectiles
                     ? Projectile.scale * Main.cursorScale * 0.8f * Main.rand.NextFloat(0.75f, 1.25f)
                     : Projectile.scale * modifier * Main.cursorScale * 1.25f;
 
-                Texture2D star = ModContent.Request<Texture2D>("YharimEX/Assets/Effects/LifeStar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                Texture2D star = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/ExtraTextures/LifeStar", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
                 Rectangle rect = new(0, 0, star.Width, star.Height);
                 Vector2 origin = new(star.Width / 2 + sansScale, star.Height / 2 + sansScale);
 

@@ -1,5 +1,6 @@
 ﻿// using FargowiltasSouls.Content.Bosses.Champions.Cosmos;
 // using FargowiltasSouls.Content.Bosses.VanillaEternity;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,9 +8,8 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
 
-namespace YharimEX.Content.Projectiles.MutantAttack
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXMoonLordVortex : YharimEXCosmosVortex
     {
@@ -54,7 +54,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
             //if (Projectile.localAI[1] > 0) Projectile.localAI[1]--;
 
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], NPCID.MoonLordCore);
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], NPCID.MoonLordCore);
             if (npc != null && npc.ai[0] != 2f)
             {
                 /*Projectile.localAI[0]++;
@@ -71,7 +71,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
                 if (Projectile.localAI[1] == 0)
                 {
-                    if (YharimEXGlobalUtilities.HostCheck)
+                    if (YharimEXUtils.HostCheck)
                     {
                         for (int i = -1; i <= 1; i += 2)
                         {

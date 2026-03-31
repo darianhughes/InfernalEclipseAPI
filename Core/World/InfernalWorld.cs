@@ -5,6 +5,7 @@ using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
+using Terraria.GameContent.Events;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -41,6 +42,12 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void PreUpdateWorld()
         {
+            BirthdayParty.GenuineParty = true;
+            if (!BirthdayParty.ManualParty)
+            {
+                BirthdayParty.ToggleManualParty();
+            }
+
             if (InfernalConfig.Instance.ThereIsNoReasonDisableThis && (WorldSaveSystem.InfernumModeEnabled || RagnarokModeEnabled))
             {
                 if (Main.getGoodWorld && (RagnarokModeEnabled || WorldSaveSystem.InfernumModeEnabled))

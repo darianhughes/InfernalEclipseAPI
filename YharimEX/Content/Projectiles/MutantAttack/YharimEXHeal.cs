@@ -1,4 +1,7 @@
-﻿using Luminance.Core.Graphics;
+﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
+using Luminance.Common.Utilities;
+using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,15 +11,12 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using YharimEX.Assets.ExtraTextures;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
 	public class YharimEXHeal : ModProjectile, IPixelatedPrimitiveRenderer
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXHeal";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXHeal";
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Mutant Heal");
@@ -33,12 +33,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 1800;
             Projectile.scale = 0.8f;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = true;
-            }
         }
 
         public override bool? CanDamage()
@@ -60,12 +54,6 @@ namespace YharimEX.Content.Projectiles
 
         public override void AI()
         {
-            Mod FargoSouls = null;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
-
             if (Projectile.localAI[0] == 0)
             {
                 if (Projectile.localAI[1] == 0)
@@ -110,7 +98,7 @@ namespace YharimEX.Content.Projectiles
                 {
                     ai0 -= 1;
 
-                    if (YharimEXWorldFlags.MasochistModeReal)
+                    if (WorldSaveSystem.InfernumModeEnabled)
                     {
                         Projectile.Kill();
                         return;
@@ -131,10 +119,6 @@ namespace YharimEX.Content.Projectiles
                     {
                         if (Main.player[ai0].whoAmI == Main.myPlayer)
                         {
-                            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                            {
-                                Main.player[ai0].ClearBuff(FargoSouls.Find<ModBuff>("InfestedBuff").Type);
-                            }
                             Main.player[ai0].statLife += Projectile.damage;
                             Main.player[ai0].HealEffect(Projectile.damage);
                             if (Main.player[ai0].statLife > Main.player[ai0].statLifeMax2)
@@ -144,7 +128,7 @@ namespace YharimEX.Content.Projectiles
                     }
                     else
                     {
-                        if (YharimEXGlobalUtilities.HostCheck)
+                        if (YharimEXUtils.HostCheck)
                         {
                             Main.npc[ai0].life += Projectile.damage;
                             Main.npc[ai0].HealEffect(Projectile.damage);
@@ -191,7 +175,7 @@ namespace YharimEX.Content.Projectiles
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return (new Color(51, 255, 191, 210)) * Projectile.Opacity * 0.8f;
+            return new Color(51, 255, 191, 210) * Projectile.Opacity * 0.8f;
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -250,8 +234,8 @@ namespace YharimEX.Content.Projectiles
         }
         public void RenderPixelatedPrimitives(SpriteBatch spriteBatch)
         {
-            ManagedShader shader = ShaderManager.GetShader("YharimEX.YharimEXBlobTrail");
-            YharimEXGlobalUtilities.SetTexture1(YharimEXTextureRegistry.FadedStreak.Value);
+            ManagedShader shader = ShaderManager.GetShader("InfernalEclipseAPI.YharimEXBlobTrail");
+            YharimEXUtils.SetTexture1(YharimEXTextureRegistry.FadedStreak.Value);
             PrimitiveRenderer.RenderTrail(Projectile.oldPos, new(WidthFunction, ColorFunction, _ => Projectile.Size * 0.5f, Pixelate: true, Shader: shader), 25);
         }
     }

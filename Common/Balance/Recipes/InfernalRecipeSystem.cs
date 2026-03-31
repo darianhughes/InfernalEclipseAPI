@@ -30,6 +30,8 @@ using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ModLoader;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -341,6 +343,20 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
                 #endregion
+
+                if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+                {
+                    if (recipe.HasResult(InfernalCrossmod.InfernalEclipseWeaponsDLC.Mod.Find<ModItem>("AuricBrimfireCrosier").Type))
+                        recipe.DisableRecipe();
+                }
+
+                if (ModLoader.TryGetMod("CalValEX", out Mod calVal))
+                {
+                    if (recipe.HasResult(calVal.Find<ModItem>("YhogoStick").Type) || recipe.HasResult(calVal.Find<ModItem>("YharimCape").Type))
+                    {
+                        recipe.DisableRecipe();
+                    }
+                }
 
                 #region Vanilla
                 if (recipe.HasResult(ItemID.Sashimi))

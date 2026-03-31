@@ -1,19 +1,17 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXSansHead : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/NPCs/YharimEXGolemHead";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXGolemHead";
 
         public override void SetStaticDefaults()
         {
@@ -33,12 +31,6 @@ namespace YharimEX.Content.Projectiles
 
             Projectile.timeLeft = 420;
             Projectile.hide = true;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 1;
-            }
         }
 
         public override bool CanHitPlayer(Player target)
@@ -66,7 +58,7 @@ namespace YharimEX.Content.Projectiles
                 Projectile.velocity = Vector2.Zero;
                 Projectile.netUpdate = true;
 
-                if (YharimEXGlobalUtilities.HostCheck)
+                if (YharimEXUtils.HostCheck)
                 {
                     Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center,
                         Vector2.UnitY * Projectile.ai[2],
@@ -86,21 +78,6 @@ namespace YharimEX.Content.Projectiles
             }
 
             Projectile.frame = 1;
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-            }
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -29,8 +29,8 @@ namespace InfernalEclipseAPI.Content.UI
             }
         }
         public override LocalizedText Name => Language.GetText("Mods.InfernalEclipseAPI.DifficultyUI.Name");
-        public override Color ChatTextColor => new Color(196, 62, 0);
-        public override SoundStyle ActivationSound => new("InfernalEclipseAPI/Assets/Sounds/NamelessDeityRageFail");
+        public override Color ChatTextColor => Color.Cyan;
+        public override SoundStyle ActivationSound => _activationSound ??= new("CalamityMod/Sounds/Custom/DifficultySelection/Malice_Mode_Select");
         public override int BackBoneGameModeID => GameModeID.Master;
         public override LocalizedText ShortDescription => Language.GetText("Mods.InfernalEclipseAPI.DifficultyUI.ShortDescription");
         public override Asset<Texture2D> TextureDisabled

@@ -7,16 +7,16 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using Luminance.Common.Utilities;
+using InfernumMode.Core.GlobalInstances.Systems;
 
-namespace YharimEX.Content.Projectiles.MutantAttack
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXGlowLine : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXGlowLine";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXGlowLine";
 
         public override void SetStaticDefaults()
         {
@@ -35,11 +35,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
             Projectile.alpha = 255;
 
             Projectile.hide = true;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
         }
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
@@ -84,7 +79,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         maxTime = 30;
                         alphaModifier = 10;
 
-                        NPC abom = YharimEXGlobalUtilities.NPCExists(Projectile.localAI[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC abom = YharimEXUtils.NPCExists(Projectile.localAI[1], ModContent.NPCType<YharimEXBoss>());
                         if (abom != null)
                         {
                             Projectile.Center = abom.Center;
@@ -131,7 +126,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         maxTime = 60;
                         alphaModifier = 6f;
 
-                        NPC abom = YharimEXGlobalUtilities.NPCExists(Projectile.localAI[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC abom = YharimEXUtils.NPCExists(Projectile.localAI[1], ModContent.NPCType<YharimEXBoss>());
                         if (abom != null)
                         {
                             Projectile.Center = abom.Center;
@@ -144,7 +139,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                                 targetRot -= 2f * (float)Math.PI;
                             Projectile.rotation = Projectile.rotation.AngleLerp(targetRot, 0.05f);
 
-                            if (YharimEXWorldFlags.MasochistModeReal || YharimEXWorldFlags.InfernumMode)
+                            if (WorldSaveSystem.InfernumModeEnabled)
                                 Projectile.Center -= Projectile.rotation.ToRotationVector2() * 1500;
                         }
                     }
@@ -156,7 +151,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         maxTime = 150;
                         alphaModifier = 7f;
 
-                        NPC abom = YharimEXGlobalUtilities.NPCExists(Projectile.localAI[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC abom = YharimEXUtils.NPCExists(Projectile.localAI[1], ModContent.NPCType<YharimEXBoss>());
                         if (abom != null)
                         {
                             Projectile.Center = abom.Center;
@@ -170,7 +165,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
                         Projectile.position -= Projectile.velocity;
                         Projectile.rotation = Projectile.velocity.ToRotation();
-                        if (YharimEXWorldFlags.MasochistModeReal || YharimEXWorldFlags.InfernumMode)
+                        if (WorldSaveSystem.InfernumModeEnabled)
                             Projectile.Center -= Projectile.rotation.ToRotationVector2() * 1500;
                     }
                     break;
@@ -181,7 +176,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         maxTime = 120;
                         alphaModifier = 4f;
 
-                        NPC abom = YharimEXGlobalUtilities.NPCExists(Projectile.localAI[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC abom = YharimEXUtils.NPCExists(Projectile.localAI[1], ModContent.NPCType<YharimEXBoss>());
                         if (abom != null)
                         {
                             Vector2 targetPos = abom.Center + Vector2.UnitX * Projectile.ai[1];
@@ -195,14 +190,9 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
                 case 6: //eridanus vortex lightning starting angles
                     {
-                        if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                        {
-                            SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                            SetupFargoProjectile.TimeFreezeImmune = true;
-                        }
                         color = new Color(51, 255, 191);
                         maxTime = 90;
-                        Player p = YharimEXGlobalUtilities.PlayerExists(Projectile.ai[1]);
+                        Player p = YharimEXUtils.PlayerExists(Projectile.ai[1]);
                         if (p != null)
                         {
                             Projectile.rotation = Projectile.SafeDirectionTo(p.Center).ToRotation();
@@ -219,12 +209,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
                 case 7: //celestial pillar explode
                     {
-                        if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                        {
-                            SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                            SetupFargoProjectile.TimeFreezeImmune = true;
-                        }
-
                         color = (int)Projectile.ai[1] switch
                         {
                             0 => Color.Magenta,
@@ -242,7 +226,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
 
                         if (counter == maxTime)
                         {
-                            if (YharimEXGlobalUtilities.HostCheck)
+                            if (YharimEXUtils.HostCheck)
                             {
                                 for (int j = 0; j < 4; j++)
                                 {
@@ -259,7 +243,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         color = new Color(51, 255, 191, 0);
                         maxTime = 60;
 
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], NPCID.PrimeCannon, NPCID.PrimeLaser, NPCID.PrimeSaw, NPCID.PrimeVice);
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], NPCID.PrimeCannon, NPCID.PrimeLaser, NPCID.PrimeSaw, NPCID.PrimeVice);
                         if (npc != null)
                         {
                             Projectile.Center = npc.Center;
@@ -282,7 +266,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         maxTime = 120;
                         alphaModifier = 2;
 
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], NPCID.Retinazer);
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], NPCID.Retinazer);
                         if (npc != null)
                         {
                             Vector2 offset = new Vector2(npc.width - 24, 0).RotatedBy(npc.rotation + 1.57079637);
@@ -304,7 +288,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         alphaModifier = 1;
                         Projectile.scale = 0.5f;
 
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
                         if (npc != null)
                         {
                             Projectile.Center = npc.Center;
@@ -437,7 +421,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         alphaModifier = counter > maxTime / 2 ? 6 : 3;
                         Projectile.scale = 4f;
 
-                        NPC mutant = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC mutant = YharimEXUtils.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
                         if (mutant != null)
                         {
                             float targetRot = MathHelper.WrapAngle(mutant.ai[3]);
@@ -455,7 +439,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         maxTime = 180;
                         alphaModifier = 5;
 
-                        Projectile vortex = YharimEXGlobalUtilities.ProjectileExists(YharimEXGlobalUtilities.GetProjectileByIdentity(Projectile.owner, Projectile.ai[1], ModContent.ProjectileType<YharimEXMoonLordVortex>()));
+                        Projectile vortex = YharimEXUtils.ProjectileExists(YharimEXUtils.GetProjectileByIdentity(Projectile.owner, Projectile.ai[1], ModContent.ProjectileType<YharimEXMoonLordVortex>()));
                         if (vortex != null)
                         {
                             Projectile.Center = vortex.Center;
@@ -463,7 +447,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                             Projectile.position -= Projectile.velocity;
                             Projectile.rotation = Projectile.velocity.ToRotation();
                         }
-                        else if (YharimEXGlobalUtilities.HostCheck)
+                        else if (YharimEXUtils.HostCheck)
                         {
                             Projectile.Kill();
                             return;
@@ -566,7 +550,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         maxTime = 60 * 2;
                         alphaModifier = 1;
 
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], NPCID.CultistBoss);
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], NPCID.CultistBoss);
                         if (npc != null)
                         {
                             if (counter > maxTime / 2)
@@ -577,7 +561,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                             if (npc.ai[0] == 5)
                             {
                                 //in here so it doesnt kill itself as soon as it spawns
-                                if (counter > 0 && npc.ai[1] == 1f && YharimEXGlobalUtilities.HostCheck)
+                                if (counter > 0 && npc.ai[1] == 1f && YharimEXUtils.HostCheck)
                                 {
                                     Projectile.Kill();
                                     return;

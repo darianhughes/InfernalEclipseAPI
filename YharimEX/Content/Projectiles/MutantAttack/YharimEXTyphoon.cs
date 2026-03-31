@@ -5,13 +5,12 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXTyphoon : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXTyphoon";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXTyphoon";
 
         public override void SetStaticDefaults()
         {
@@ -68,18 +67,7 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-                target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
-            }
+            target.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(300, 600));
         }
 
         public override void OnKill(int timeLeft)

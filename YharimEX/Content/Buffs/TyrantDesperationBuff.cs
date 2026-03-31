@@ -1,4 +1,6 @@
-﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
+﻿using CalamityMod;
+using CalamityMod.Cooldowns;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 
 namespace InfernalEclipseAPI.YharimEX.Content.Buffs
 {
@@ -15,6 +17,12 @@ namespace InfernalEclipseAPI.YharimEX.Content.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.YharimPlayer().YharimDesperation = true;
+
+            player.AddBuff(BuffID.ChaosState, 2);
+
+            player.AddCooldown(PermafrostConcoction.ID, CalamityUtils.SecondsToFrames(180));
+            player.AddCooldown(GlobalDodge.ID, CalamityUtils.SecondsToFrames(180));
+            player.AddCooldown(CalamityMod.Cooldowns.ChaosState.ID, CalamityUtils.SecondsToFrames(180));
         }
     }
 }

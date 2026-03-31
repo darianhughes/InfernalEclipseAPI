@@ -1,14 +1,14 @@
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXGlowything : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXGlowything";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXGlowything";
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
@@ -35,7 +35,7 @@ namespace YharimEX.Content.Projectiles
 
             if (spawnPoint == Vector2.Zero)
                 spawnPoint = Projectile.Center;
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1]);
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1]);
             if (npc != null)
                 spawnPoint = npc.Center;
             Projectile.Center = spawnPoint + Vector2.UnitX.RotatedBy(Projectile.ai[0]) * 96 * Projectile.scale;

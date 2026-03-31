@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
@@ -6,11 +7,8 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Content.NPCs.Bosses;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXDestroyerBody : ModProjectile
     {
@@ -85,7 +83,7 @@ namespace YharimEX.Content.Projectiles
                 Projectile.netUpdate = true;
             }
 
-            int byIdentity = YharimEXGlobalUtilities.GetProjectileByIdentity(Projectile.owner, (int)Projectile.ai[0], Projectile.type, ModContent.ProjectileType<YharimEXDestroyerHead>());
+            int byIdentity = YharimEXUtils.GetProjectileByIdentity(Projectile.owner, (int)Projectile.ai[0], Projectile.type, ModContent.ProjectileType<YharimEXDestroyerHead>());
             if (byIdentity >= 0 && Main.projectile[byIdentity].active)
             {
                 flag67 = true;
@@ -137,17 +135,6 @@ namespace YharimEX.Content.Projectiles
         //            Projectile.ai[2] == 0 ? 156 : 25, Projectile.scale);
         //        Main.gore[g].timeLeft = 20;
         //    }
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                Mod FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-
-                target.AddBuff(Projectile.ai[2] == 0 ? FargoSouls.Find<ModBuff>("LightningRodBuff").Type : BuffID.Weak, Main.rand.Next(300, 1200));
-                target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
-            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 {
     public class BloomLine : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/BloomLine";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/BloomLine";
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.DrawScreenCheckFluff[Projectile.type] = 2400;

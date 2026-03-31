@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using YharimEX.Core.Systems;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {
@@ -100,7 +99,6 @@ namespace YharimEX.Content.Projectiles.DLCAttack
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (YharimEXWorldFlags.EternityMode && YharimEXCrossmodSystem.FargowiltasSouls.Loaded) target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
             base.OnHitPlayer(target, info);
         }
     }

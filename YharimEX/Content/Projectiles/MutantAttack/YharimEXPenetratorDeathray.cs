@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXPenetratorDeathray : YharimEXSpecialDeathray
     {
@@ -26,11 +24,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
 
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.canSplit = true;
-            }
             Projectile.hide = true;
         }
 
@@ -55,7 +48,7 @@ namespace YharimEX.Content.Projectiles
             if (Projectile.localAI[0] == 0f)
             {
                 if (!Main.dedServ)
-                    SoundEngine.PlaySound(new SoundStyle("YharimEX/Assets/Sounds/Attacks/YharimEXZombie") { Volume = 0.6f }, Projectile.Center);
+                    SoundEngine.PlaySound(new SoundStyle("InfernalEclipseAPI/YharimEX/Assets/Sounds/Attacks/YharimEXZombie") { Volume = 0.6f }, Projectile.Center);
             }
             float num801 = .5f;
             Projectile.localAI[0] += 1f;
@@ -95,15 +88,6 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Mod FargoSouls = null;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                target.AddBuff(FargoSouls.Find<ModBuff>("CurseOFTheMoonBuff").Type, 600);
-            }
             target.immune[Projectile.owner] = 1;
         }
     }

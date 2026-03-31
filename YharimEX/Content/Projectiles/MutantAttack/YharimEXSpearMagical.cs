@@ -1,27 +1,20 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXSpearMagical : YharimEXSpearThrown
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSpear";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSpear";
         public override void SetDefaults()
         {
             base.SetDefaults();
             Projectile.timeLeft = attackTime + 600 / flySpeed;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 1;
-            }
         }
 
         const int attackTime = 120;
@@ -52,7 +45,7 @@ namespace YharimEX.Content.Projectiles
                 if (--Projectile.localAI[0] < 0)
                 {
                     Projectile.localAI[0] = 4;
-                    if (Projectile.ai[1] == 0 && YharimEXGlobalUtilities.HostCheck)
+                    if (Projectile.ai[1] == 0 && YharimEXUtils.HostCheck)
                         Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<YharimEXSphereSmall>(), Projectile.damage, 0f, Projectile.owner, Projectile.ai[0]);
                 }
             }
@@ -64,7 +57,7 @@ namespace YharimEX.Content.Projectiles
         {
             base.OnKill(timeLeft);
 
-            if (YharimEXGlobalUtilities.HostCheck)
+            if (YharimEXUtils.HostCheck)
             {
                 Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<YharimEXSunBlast>(),
                     Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.velocity.ToRotation(), 12);

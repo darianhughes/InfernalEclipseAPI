@@ -12,6 +12,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using CalamityMod;
+using InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {

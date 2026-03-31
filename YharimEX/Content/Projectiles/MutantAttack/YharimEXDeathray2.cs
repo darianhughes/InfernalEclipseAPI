@@ -5,12 +5,11 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Core.Globals;
-using YharimEX.Assets.ExtraTextures;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using YharimEX.Assets.ExtraTextures;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXDeathray2 : YharimEXSpecialDeathray, IPixelatedPrimitiveRenderer
     {
@@ -96,21 +95,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.rotation = Projectile.velocity.ToRotation() - 1.57079637f;
         }
 
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-            }
-        }
-
         public override bool PreDraw(ref Color lightColor) => false;
 
         public float WidthFunction(float trailInterpolant) => Projectile.width * Projectile.scale * 1.3f;
@@ -127,13 +111,13 @@ namespace YharimEX.Content.Projectiles
             if (Projectile.hide)
                 return;
 
-            ManagedShader shader = ShaderManager.GetShader("YharimEX.YharimEXGenericDeathray");
+            ManagedShader shader = ShaderManager.GetShader("InfernalEclipseAPI.YharimEXGenericDeathray");
             Vector2 laserEnd = Projectile.Center + Projectile.velocity.SafeNormalize(Vector2.UnitY) * drawDistance * 1.1f;
             Vector2 initialDrawPoint = Projectile.Center - Projectile.velocity * 85f;
             Vector2[] baseDrawPoints = new Vector2[8];
             for (int i = 0; i < baseDrawPoints.Length; i++)
             baseDrawPoints[i] = Vector2.Lerp(initialDrawPoint, laserEnd, i / (float)(baseDrawPoints.Length - 1f));
-            YharimEXGlobalUtilities.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
+            YharimEXUtils.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
             shader.TrySetParameter("mainColor", new Color(255, 255, 183, 100));
             shader.TrySetParameter("stretchAmount", 3);
             shader.TrySetParameter("scrollSpeed", 2f);

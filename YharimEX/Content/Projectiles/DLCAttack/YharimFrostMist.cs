@@ -12,6 +12,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using CalamityMod;
+using Luminance.Common.Utilities;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {

@@ -1,17 +1,18 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Globals;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXReticle2 : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXTargetingReticle";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXTargetingReticle";
 
         public override void SetDefaults()
         {
@@ -34,7 +35,7 @@ namespace YharimEX.Content.Projectiles
 
         public override void AI()
         {
-            if (YharimEXGlobalUtilities.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>())
+            if (YharimEXUtils.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>())
                 && !Main.npc[YharimEXGlobalNPC.yharimEXBoss].dontTakeDamage)
             {
                 int modifier = 60 - Projectile.timeLeft;

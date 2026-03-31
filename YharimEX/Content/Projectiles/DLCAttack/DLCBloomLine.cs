@@ -5,7 +5,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 {
     public class DLCBloomLine : BloomLine
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/BloomLine";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/BloomLine";
 
         private int counter;
 

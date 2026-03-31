@@ -7,12 +7,13 @@ using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
 using InfernalEclipseAPI.YharimEX.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.World;
+using InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {
     public class DLCYharimSpearDash : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimAtlantis";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimAtlantis";
 
         public override void SetStaticDefaults()
         {
@@ -184,7 +185,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXEye_Glow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXEye_Glow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int rect1 = glow.Height / Main.projFrames[Projectile.type];
             int rect2 = rect1 * Projectile.frame;
             Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);

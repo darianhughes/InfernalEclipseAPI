@@ -1,0 +1,279 @@
+{
+    "frames": {
+        "HallowEnchantBarrier": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 160,
+                "h": 636
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 4,
+                "w": 160,
+                "h": 636
+            },
+            "sourceSize": {
+                "w": 160,
+                "h": 640
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "SmokeParticle": {
+            "frame": {
+                "x": 160,
+                "y": 0,
+                "w": 80,
+                "h": 218
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 80,
+                "h": 218
+            },
+            "sourceSize": {
+                "w": 80,
+                "h": 218
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "ElectricSpark": {
+            "frame": {
+                "x": 160,
+                "y": 218,
+                "w": 22,
+                "h": 170
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 22,
+                "h": 170
+            },
+            "sourceSize": {
+                "w": 24,
+                "h": 170
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "Bloom": {
+            "frame": {
+                "x": 240,
+                "y": 0,
+                "w": 100,
+                "h": 100
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 100,
+                "h": 100
+            },
+            "sourceSize": {
+                "w": 100,
+                "h": 100
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "AlphaBloom": {
+            "frame": {
+                "x": 240,
+                "y": 100,
+                "w": 93,
+                "h": 93
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 4,
+                "y": 4,
+                "w": 93,
+                "h": 93
+            },
+            "sourceSize": {
+                "w": 100,
+                "h": 100
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "SparkParticle": {
+            "frame": {
+                "x": 240,
+                "y": 193,
+                "w": 64,
+                "h": 64
+            },
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 4,
+                "y": 4,
+                "w": 64,
+                "h": 64
+            },
+            "sourceSize": {
+                "w": 72,
+                "h": 72
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "BigSparkle": {
+            "frame": {
+                "x": 182,
+                "y": 218,
+                "w": 50,
+                "h": 50
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 50,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 50,
+                "h": 50
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "RectangleParticle": {
+            "frame": {
+                "x": 304,
+                "y": 193,
+                "w": 16,
+                "h": 50
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 16,
+                "h": 50
+            },
+            "sourceSize": {
+                "w": 16,
+                "h": 50
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "HeartParticle": {
+            "frame": {
+                "x": 320,
+                "y": 193,
+                "w": 22,
+                "h": 20
+            },
+            "rotated": true,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 22,
+                "h": 20
+            },
+            "sourceSize": {
+                "w": 22,
+                "h": 20
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "Bubble": {
+            "frame": {
+                "x": 320,
+                "y": 215,
+                "w": 10,
+                "h": 19
+            },
+            "rotated": true,
+            "trimmed": true,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 10,
+                "h": 19
+            },
+            "sourceSize": {
+                "w": 10,
+                "h": 20
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        "SmallSparkle": {
+            "frame": {
+                "x": 320,
+                "y": 225,
+                "w": 15,
+                "h": 15
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 15,
+                "h": 15
+            },
+            "sourceSize": {
+                "w": 15,
+                "h": 15
+            },
+            "pivot": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    },
+    "meta": {
+        "app": "http://free-tex-packer.com",
+        "version": "0.6.7",
+        "image": "ParticleAtlas.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 340,
+            "h": 636
+        },
+        "scale": 1
+    }
+}

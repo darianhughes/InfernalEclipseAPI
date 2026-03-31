@@ -13,12 +13,13 @@ using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
 using InfernalEclipseAPI.YharimEX.Core.Systems;
 using CalamityMod.World;
 using InfernumMode.Core.GlobalInstances.Systems;
+using InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack;
 
 namespace YharimEX.Content.Projectiles.DLCAttack
 {
     public class DLCYharimSpearSpin : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimAtlantis";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimAtlantis";
 
         public override void SetStaticDefaults()
         {
@@ -122,7 +123,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
             {
                 for (float i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i += 0.1f)
                 {
-                    Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXPenetratorSpinGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                    Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXPenetratorSpinGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
                     Color color27 = Color.Lerp(new Color(51, 255, 191, 210), Color.Transparent, (float)Math.Cos(Projectile.ai[0]) / 3 + 0.3f);
                     color27 *= (float)(ProjectileID.Sets.TrailCacheLength[Projectile.type] - i) / ProjectileID.Sets.TrailCacheLength[Projectile.type];
                     float scale = Projectile.scale - (float)Math.Cos(Projectile.ai[0]) / 5;
@@ -165,7 +166,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 
             if (Projectile.ai[1] > 0)
             {
-                Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXSpearAimGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSpearAimGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
                 float modifier = Projectile.timeLeft / Projectile.ai[1];
                 Color glowColor = predictive ? new Color(0, 0, 255, 210) : new Color(51, 255, 191, 210);
                 glowColor *= 1f - modifier;

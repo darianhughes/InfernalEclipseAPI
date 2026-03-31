@@ -1,4 +1,6 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Globals;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,14 +9,12 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXFishron : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXFishron";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXFishron";
         protected int p = -1;
 
         public override void SetStaticDefaults()
@@ -129,7 +129,7 @@ namespace YharimEX.Content.Projectiles
                     if (Projectile.Distance(targetPos) < 50)
                         Projectile.velocity = (Projectile.velocity * 19f + distance) / 20f;
                     else
-                        Projectile.velocity = YharimEXGlobalUtilities.SmartAccel(Projectile.Center, targetPos, Projectile.velocity, 3f, 2f);
+                        Projectile.velocity = YharimEXUtils.SmartAccel(Projectile.Center, targetPos, Projectile.velocity, 3f, 2f);
                     Projectile.position += Main.player[ai0].velocity / 2f;
                     if (++Projectile.frameCounter > 5)
                     {
@@ -138,23 +138,6 @@ namespace YharimEX.Content.Projectiles
                             Projectile.frame = 0;
                     }
                 }
-            }
-        }
-
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-
             }
         }
 

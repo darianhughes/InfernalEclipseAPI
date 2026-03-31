@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
@@ -6,11 +7,8 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Content.NPCs.Bosses;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXDestroyerTail : ModProjectile
     {
@@ -89,7 +87,7 @@ namespace YharimEX.Content.Projectiles
                 Projectile.netUpdate = true;
             }
 
-            int byIdentity = YharimEXGlobalUtilities.GetProjectileByIdentity(Projectile.owner, (int)Projectile.ai[0], ModContent.ProjectileType<YharimEXDestroyerBody>());
+            int byIdentity = YharimEXUtils.GetProjectileByIdentity(Projectile.owner, (int)Projectile.ai[0], ModContent.ProjectileType<YharimEXDestroyerBody>());
             if (byIdentity >= 0 && Main.projectile[byIdentity].active)
             {
                 flag67 = true;
@@ -133,18 +131,6 @@ namespace YharimEX.Content.Projectiles
                 dust = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.RedTorch, -Projectile.velocity.X * 0.2f,
                     -Projectile.velocity.Y * 0.2f, 100);
                 Main.dust[dust].velocity *= 2f;
-            }
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                Mod FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-
-                target.AddBuff(Projectile.ai[2] == 0 ? FargoSouls.Find<ModBuff>("LightningRodBuff").Type : BuffID.Weak, Main.rand.Next(300, 1200));
-
-                target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
             }
         }
     }

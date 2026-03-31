@@ -1,16 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Luminance.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.IO;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
-using YharimEX.Content.NPCs.Bosses;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXDestroyerHead : ModProjectile
     {
@@ -90,18 +87,6 @@ namespace YharimEX.Content.Projectiles
                 Projectile.velocity.Y += IdleAccel * (Projectile.position.Y < p.position.Y ? -1 : 1);
                 p.velocity.X += IdleAccel * (p.position.X < Projectile.position.X ? -1 : 1);
                 p.velocity.Y += IdleAccel * (p.position.Y < Projectile.position.Y ? -1 : 1);
-            }
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                Mod FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-
-                target.AddBuff(Projectile.ai[2] == 0 ? FargoSouls.Find<ModBuff>("LightningRodBuff").Type : BuffID.Weak, Main.rand.Next(300, 1200));
-
-                target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
             }
         }
 

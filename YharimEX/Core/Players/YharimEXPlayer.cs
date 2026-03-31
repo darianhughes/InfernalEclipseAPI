@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfernalEclipseAPI.YharimEX.Content.Buffs;
+using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
 namespace InfernalEclipseAPI.YharimEX.Core.Players

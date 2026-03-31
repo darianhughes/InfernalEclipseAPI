@@ -7,16 +7,14 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles.MutantAttack
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXGlowRingHollow : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXGlowRingHollow";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXGlowRingHollow";
 
         public override void SetStaticDefaults()
         {
@@ -35,12 +33,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
             Projectile.hostile = true;
             Projectile.alpha = 255;
             Projectile.hide = true;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
         }
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
@@ -63,11 +55,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
             switch ((int)Projectile.ai[0])
             {
                 case 1: //mutant reti glaive
-                    if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                        SetupFargoProjectile.TimeFreezeImmune = true;
-                    }
                     color = Color.Red;
                     radius = 525;
                     maxTime = 90;
@@ -75,11 +62,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                     break;
 
                 case 2: //mutant spaz glaive
-                    if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                        SetupFargoProjectile.TimeFreezeImmune = true;
-                    }
                     color = Color.Green;
                     radius = 350;
                     maxTime = 90;
@@ -97,7 +79,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                             Projectile.alpha = 0;
                         }
 
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
                         if (npc != null)
                         {
                             Projectile.Center = npc.Center;
@@ -118,11 +100,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                     break;
 
                 case 5: //mutant subphase transition
-                    if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                        SetupFargoProjectile.TimeFreezeImmune = true;
-                    }
                     color = Color.Red;
                     maxTime = 120;
                     radius = 1200 * (float)Math.Cos(Math.PI / 2 * Projectile.localAI[0] / maxTime);
@@ -135,7 +112,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         color = Color.Purple;
                         maxTime = 120;
                         alphaModifier = Projectile.localAI[0] > maxTime / 2 ? 10 : 1;
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], NPCID.TheDestroyer);
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], NPCID.TheDestroyer);
                         if (npc != null)
                         {
                             Projectile.Center = npc.Center;
@@ -153,7 +130,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                     {
                         color = Color.Yellow;
                         alphaModifier = 10;
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
                         if (npc != null && npc.ai[3] == 0)
                         {
                             Projectile.Center = npc.Center;
@@ -184,7 +161,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         color = Color.Yellow;
                         maxTime = 120;
                         alphaModifier = Projectile.localAI[0] > maxTime / 2 ? 10 : 1;
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], NPCID.TheDestroyer);
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], NPCID.TheDestroyer);
                         if (npc != null)
                         {
                             Projectile.Center = npc.Center;
@@ -203,7 +180,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         color = Color.Violet;
                         maxTime = 90;
                         alphaModifier = 10;
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], NPCID.LunarTowerNebula);
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], NPCID.LunarTowerNebula);
                         if (npc != null)
                         {
                             if (Projectile.localAI[0] == maxTime)
@@ -217,7 +194,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                                     Main.dust[d].noGravity = true;
                                 }
 
-                                if (YharimEXGlobalUtilities.HostCheck)
+                                if (YharimEXUtils.HostCheck)
                                 {
                                     for (int i = -2; i <= 2; i++)
                                     {
@@ -242,7 +219,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         color = Color.DeepPink;
                         maxTime = 30;
                         alphaModifier = 3;
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[2], ModContent.NPCType<YharimEXBoss>());
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[2], ModContent.NPCType<YharimEXBoss>());
                         if (npc != null)
                         {
                             Projectile.Center = npc.Center;
@@ -257,7 +234,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         maxTime = 300 - 90;
                         alphaModifier = Projectile.localAI[0] > maxTime / 2 ? 10 : 1;
 
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
                         if (npc != null)
                         {
                             Projectile.Center = npc.Center + Vector2.Normalize(npc.velocity).RotatedBy(MathHelper.PiOver2) * 300;
@@ -279,7 +256,7 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                         if (Projectile.localAI[0] > maxTime / 2) //NEVER fade normally
                             Projectile.localAI[0] = maxTime / 2;
 
-                        NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], NPCID.WallofFlesh);
+                        NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], NPCID.WallofFlesh);
                         if (npc != null)
                         {
                             Projectile.Center = npc.Center;

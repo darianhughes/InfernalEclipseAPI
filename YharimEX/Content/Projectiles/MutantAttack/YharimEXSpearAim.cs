@@ -4,15 +4,15 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using Luminance.Common.Utilities;
+using InfernumMode.Core.GlobalInstances.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXSpearAim : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSpear";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSpear";
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
@@ -31,13 +31,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.alpha = 0;
             Projectile.timeLeft = 60;
             CooldownSlot = 1;
-
-                        if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = true;
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
@@ -85,7 +78,7 @@ namespace YharimEX.Content.Projectiles
                 }
                 else
                 {
-                    if (!(Projectile.ai[1] == 4 && Projectile.timeLeft < System.Math.Abs(Projectile.localAI[1]) + 5))
+                    if (!(Projectile.ai[1] == 4 && Projectile.timeLeft < Math.Abs(Projectile.localAI[1]) + 5))
                         Projectile.rotation = Projectile.rotation.AngleLerp(yharimEX.SafeDirectionTo(Main.player[yharimEX.target].Center).ToRotation(), 0.2f);
                 }
             }
@@ -126,17 +119,6 @@ namespace YharimEX.Content.Projectiles
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), target.Center + Main.rand.NextVector2Circular(100, 100), Vector2.Zero, ModContent.ProjectileType<YharimEXBombSmall>(), 0, 0f, Projectile.owner);
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-            }
         }
 
         public override Color? GetAlpha(Color lightColor) => Color.White * Projectile.Opacity;
@@ -164,7 +146,7 @@ namespace YharimEX.Content.Projectiles
             float windupFraction = 0.5f;
             float extensionFraction;
             //dont do it for predictive aim
-            if (!YharimEXWorldFlags.MasochistModeReal && Projectile.ai[1] <= 1)
+            if (!WorldSaveSystem.InfernumModeEnabled && Projectile.ai[1] <= 1)
             {
                 if (timeFraction > windupFraction) // rear back
                 {
@@ -203,7 +185,7 @@ namespace YharimEX.Content.Projectiles
 
             if (Projectile.ai[1] != 5)
             {
-                Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXSpearAimGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSpearAimGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
                 float modifier = Projectile.timeLeft / (60f - Projectile.localAI[1]);
                 Color glowColor = new Color(255, 191, 51, 210);
                 if (Projectile.ai[1] > 1)

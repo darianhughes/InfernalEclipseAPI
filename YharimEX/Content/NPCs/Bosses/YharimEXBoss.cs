@@ -12,7 +12,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
 using Terraria.Graphics.Effects;
 using Terraria.Localization;
-using YharimEX.Content.Projectiles.MutantAttack;
 using InfernalEclipseAPI.YharimEX.Content.Items;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Town;
 using InfernalEclipseAPI.YharimEX.Core.Systems;
@@ -21,14 +20,23 @@ using InfernumMode.Core.GlobalInstances.Systems;
 using InfernalEclipseAPI.YharimEX.Core.Globals;
 using CalamityMod.World;
 using InfernalEclipseAPI.YharimEX.Content.Buffs;
-using YharimEX.Content.Projectiles;
+using InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack;
+using YharimEX.Assets.Sounds.Attacks;
+using YharimEX.Assets.ExtraTextures;
+using CalamityMod.Items.Potions;
+using InfernalEclipseAPI.Core.Systems;
+using Terraria.GameContent.ItemDropRules;
+using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
+using CalamityMod.Items.Placeables.Furniture.Paintings;
+using InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword;
 
 namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
 {
+    [AutoloadBossHead]
     public class YharimEXBoss : ModNPC
     {
-        public override string Texture => "YharimEX/Assets/NPCs/YharimEXBoss";
-        public override string BossHeadTexture => "YharimEX/Assets/NPCs/YharimEXBoss_Head";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXBoss";
+        public override string BossHeadTexture => "InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXBoss_Head";
         public SlotId? TelegraphSound = null;
         Player player => Main.player[NPC.target];
         public bool playerInvulTriggered;
@@ -45,14 +53,6 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
         string TownNPCName;
         public const int HyperMax = 5;
 
-        public Mod FargoSouls()
-        {
-            ModLoader.TryGetMod("FargowiltasSouls", out Mod fargoSouls);
-            return fargoSouls;
-        }
-
-        public Mod fargoSouls => FargoSouls();
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 4;
@@ -68,29 +68,13 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
                 BuffID.OnFire,
                 BuffID.Suffocation,
             ]);
-
-            if (fargoSouls != null)
-            {
-                NPC.AddDebuffImmunities(
-                [
-                    fargoSouls.Find<ModBuff>("LethargicBuff").Type,
-                    fargoSouls.Find<ModBuff>("ClippedWingsBuff").Type,
-                    fargoSouls.Find<ModBuff>("MutantNibbleBuff").Type,
-                    fargoSouls.Find<ModBuff>("OceanicMaulBuff").Type,
-                    fargoSouls.Find<ModBuff>("LightningRodBuff").Type,
-                    fargoSouls.Find<ModBuff>("SadismBuff").Type,
-                    fargoSouls.Find<ModBuff>("GodEaterBuff").Type,
-                    fargoSouls.Find<ModBuff>("TimeFrozenBuff").Type,
-                    fargoSouls.Find<ModBuff>("LeadPoisonBuff").Type,
-                ]);
-            }
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange([
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                new FlavorTextBestiaryInfoElement("Mods.YharimEX.Bestiary.YharimEXBoss")
+                new FlavorTextBestiaryInfoElement("Mods.InfernalEclipseAPI.Bestiary.YharimEXBoss")
             ]);
         }
 
@@ -125,7 +109,7 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
                 NPC.defense *= 10;
                 Main.NewText("RAH");
             }
-            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/TheRealityoftheProphecy");
+            Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/CrossroadsofTwoLegendsP1");
             SceneEffectPriority = SceneEffectPriority.BossHigh + 1;
         }
 
@@ -829,7 +813,7 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
                 if (!SkyManager.Instance["InfernalEclipseAPI:YharimEXBoss"].IsActive())
                     SkyManager.Instance.Activate("InfernalEclipseAPI:YharimEXBoss");
 
-                Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/Storia");
+                Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/CrossroadsofTwoLegendsP2");
             }
         }
 
@@ -837,7 +821,7 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
         {
             if (WorldSaveSystem.InfernumModeEnabled)
             {
-                Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/StoriaShort");
+                Music = MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/CrossroadsofTwoLegendsDesp");
             }
         }
 
@@ -3680,7 +3664,7 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
             {
                 if (!Main.dedServ)
                 {
-                    ManagedScreenFilter filter = ShaderManager.GetFilter("YharimEX.FinalSpark");
+                    ManagedScreenFilter filter = ShaderManager.GetFilter("InfernalEclipseAPI.FinalSpark");
                     filter.Activate();
 
                     //    if (SoulConfig.Instance.ForcedFilters && Main.WaveQuality == 0)
@@ -3925,23 +3909,28 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            base.ModifyNPCLoot(npcLoot);
+            npcLoot.AddConditionalPerPlayer(() => !YharimEXWorldFlags.DownedYharimEX, ModContent.ItemType<LoreMegalomaniac>(), desc: DropHelper.FirstKillText);
 
-            //    npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<MutantBag>()));
-            //    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutantTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TyrantYharimsUltisword>()));
 
-            //    npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<MutantRelic>()));
-            //    npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<SpawnSack>(), 4));
+            if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+            {
+                npcLoot.Add(ItemDropRule.Common(InfernalCrossmod.InfernalEclipseWeaponsDLC.Mod.Find<ModItem>("AuricBrimfireCrosier").Type));
+            }
 
-            //    LeadingConditionRule emodeRule = new(new EModeDropCondition());
-            //    emodeRule.OnSuccess(YharimEXUtils.BossBagDropCustom(ModContent.ItemType<Items.Accessories.Masomode.MutantEye>()));
-            //    npcLoot.Add(emodeRule);
+            if (ModLoader.TryGetMod("CalValEX", out Mod calVal))
+            {
+                npcLoot.Add(ItemDropRule.Common(calVal.Find<ModItem>("YharimCape").Type));
+                npcLoot.Add(ItemDropRule.Common(calVal.Find<ModItem>("YhogoStick").Type));
+            }
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), ThankYouPainting.DropInt));
         }
 
-        //  public override void BossLoot(ref string name, ref int potionType)
-        //  {
-        //    potionType = ItemID.SuperHealingPotion;
-        //  }
+        public override void BossLoot(ref int potionType)
+        {
+            potionType = ModContent.ItemType<SupremeHealingPotion>();
+        }
 
         public override void FindFrame(int frameHeight)
         {
@@ -3996,7 +3985,7 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
                 return;
             var maxOpacity = NPC.Opacity;
 
-            ManagedShader borderShader = ShaderManager.GetShader("YharimEX.YharimEXP1Aura");
+            ManagedShader borderShader = ShaderManager.GetShader("InfernalEclipseAPI.YharimEXP1Aura");
             borderShader.TrySetParameter("colorMult", 7.35f);
             borderShader.TrySetParameter("time", Main.GlobalTimeWrappedHourly);
             borderShader.TrySetParameter("radius", radius);

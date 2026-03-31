@@ -4,6 +4,7 @@ using System.Linq;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.NPCs.DevourerofGods;
+using InfernalEclipseAPI.YharimEX.Common.Graphics.Particles;
 using InfernalEclipseAPI.YharimEX.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using Luminance.Common.Utilities;
@@ -20,7 +21,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 {
     public class YharimEXDoGHead : ModProjectile
     {
-        public override string Texture => "InfernumMode/Content/BehaviorOverrides/BossAIs/DoG/DoGP2Head";
+        public override string Texture => "CalamityMod/NPCs/DevourerofGods/DevourerofGodsHead";
 
         public override void SetStaticDefaults()
         {

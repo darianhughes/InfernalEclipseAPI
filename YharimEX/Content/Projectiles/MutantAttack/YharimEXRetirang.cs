@@ -4,14 +4,12 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Content.NPCs.Bosses;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXRetirang : ModProjectile
     {
-        public override string Texture => "CalamityMod/Items/Weapons/Melee/TriactisTruePaladinianMageHammerofMightMelee";
+        public override string Texture => "CalamityMod/Items/Weapons/Melee/TriactisTruePaladinianMageHammerofMight";
 
         public override void SetStaticDefaults()
         {
@@ -50,7 +48,6 @@ namespace YharimEX.Content.Projectiles
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.Ichor, 120);
-            if (YharimEXWorldFlags.EternityMode && YharimEXCrossmodSystem.FargowiltasSouls.Loaded) target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
         }
         public override bool PreDraw(ref Color lightColor)
         {

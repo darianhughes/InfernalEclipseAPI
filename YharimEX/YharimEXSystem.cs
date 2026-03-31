@@ -1,4 +1,5 @@
-﻿using Terraria.Graphics.Effects;
+﻿using InfernalEclipseAPI.YharimEX.Content.Sky;
+using Terraria.Graphics.Effects;
 
 namespace InfernalEclipseAPI.YharimEX
 {

@@ -5,14 +5,12 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXPenetratorThrown : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSpear";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSpear";
 
         public override void SetStaticDefaults()
         {
@@ -34,13 +32,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.extraUpdates = 1;
             Projectile.alpha = 0;
             Projectile.DamageType = DamageClass.Ranged;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-                SetupFargoProjectile.noInteractionWithNPCImmunityFrames = false;
-            }
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
@@ -123,15 +114,6 @@ namespace YharimEX.Content.Projectiles
                 if (p != Main.maxProjectiles)
                     Main.projectile[p].DamageType = Projectile.DamageType;
             }
-            Mod FargoSouls = null;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                target.AddBuff(FargoSouls.Find<ModBuff>("CurseOFTheMoonBuff").Type, 600);
-            }
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -141,7 +123,7 @@ namespace YharimEX.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXEye_Glow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXEye_Glow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int rect1 = glow.Height / Main.projFrames[Projectile.type];
             int rect2 = rect1 * Projectile.frame;
             Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);

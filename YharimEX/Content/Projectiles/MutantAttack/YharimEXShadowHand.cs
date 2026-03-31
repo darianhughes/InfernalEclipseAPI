@@ -1,4 +1,5 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Globals;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -6,10 +7,8 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXShadowHand : YharimEXFishron
     {
@@ -81,26 +80,6 @@ namespace YharimEX.Content.Projectiles
                     Projectile.velocity = (Projectile.velocity * 19f + distance) / 20f;
                     Projectile.position += Main.player[ai0].velocity / 2f;
                 }
-            }
-        }
-
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        target.YharimPlayer().MaxLifeReduction += 100;
-                    }
-                    else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        EternityDebuffs.ManageOnHitDebuffs(target);
-                    }
-                }
-                EternityDebuffs.ApplyHypothermia(target);
             }
         }
 

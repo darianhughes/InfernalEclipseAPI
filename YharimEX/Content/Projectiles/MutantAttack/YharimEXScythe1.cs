@@ -8,12 +8,10 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Content.NPCs.Bosses;
-using YharimEX.Core.Systems;
 using Terraria.Graphics.Effects;
 using ReLogic.Content;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXScythe1 : ModProjectile
     {
@@ -179,7 +177,7 @@ namespace YharimEX.Content.Projectiles
                     drawColor * Projectile.Opacity,
                     -angle + MathHelper.PiOver2,
                     vortexTexture.Size() * 0.5f,
-                    (Projectile.scale * (1 - i * 0.05f) * 0.25f) * Projectile.Opacity, // quarter size
+                    Projectile.scale * (1 - i * 0.05f) * 0.25f * Projectile.Opacity, // quarter size
                     SpriteEffects.None,
                     0
                 );
@@ -192,7 +190,7 @@ namespace YharimEX.Content.Projectiles
                 Color.Black * Projectile.Opacity,
                 Projectile.rotation,
                 centerTexture.Size() * 0.5f,
-                (Projectile.scale * 0.9f * 0.25f) * Projectile.Opacity, // quarter size
+                Projectile.scale * 0.9f * 0.25f * Projectile.Opacity, // quarter size
                 SpriteEffects.None,
                 0
             );
@@ -241,8 +239,6 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-
-            if (YharimEXWorldFlags.EternityMode && YharimEXCrossmodSystem.FargowiltasSouls.Loaded) target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
             target.AddBuff(BuffID.Bleeding, 600);
         }
     }

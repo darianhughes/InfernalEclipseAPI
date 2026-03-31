@@ -17,7 +17,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 {
     public class YharimEXDoGTail : ModProjectile
     {
-        public override string Texture => "InfernumMode/Content/BehaviorOverrides/BossAIs/DoG/DoGP2Tail";
+        public override string Texture => "CalamityMod/NPCs/DevourerofGods/DevourerofGodsBody";
 
         public override void SetStaticDefaults()
         {

@@ -1,14 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
+using Luminance.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public abstract class YharimEXArena : ModProjectile
     {
@@ -51,13 +50,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.hide = true;
             Projectile.netImportant = true;
             CooldownSlot = 0;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = true;
-                SetupFargoProjectile.DeletionImmuneRank = 3;
-                SetupFargoProjectile.GrazeCheck = true;
-            }
         }
 
         public override bool? CanDamage()
@@ -82,7 +74,7 @@ namespace YharimEX.Content.Projectiles
         float speed = 17;
         public override void AI()
         {
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], npcType);
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], npcType);
             if (npc != null)
             {
                 Projectile.alpha -= increment;

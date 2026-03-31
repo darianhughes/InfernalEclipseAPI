@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXBombSmall : YharimEXBomb
     {
@@ -15,24 +13,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.width = 275;
             Projectile.height = 275;
             Projectile.scale = 0.75f;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = false;
-            }
-        }
-
-        public override bool? CanDamage()
-        {
-            if (Projectile.frame > 2 && Projectile.frame <= 4)
-            {
-                if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    SetupFargoProjectile.SetGrazeCD(Projectile);
-                    return false;
-                }
-            }
-            return true;
         }
 
         public override void AI()

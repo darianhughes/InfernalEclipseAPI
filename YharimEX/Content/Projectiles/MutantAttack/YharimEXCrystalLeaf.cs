@@ -1,17 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
+using Luminance.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXCrystalLeaf : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXCrystalLeaf";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXCrystalLeaf";
 
         public override void SetStaticDefaults()
         {
@@ -48,7 +48,7 @@ namespace YharimEX.Content.Projectiles
             Projectile.scale = (Main.mouseTextColor / 200f - 0.35f) * 0.2f + 0.95f;
             Projectile.scale *= 2.5f;
 
-            int byIdentity = YharimEXGlobalUtilities.GetProjectileByIdentity(Projectile.owner, (int)Projectile.ai[0], ModContent.ProjectileType<YharimEXMark2>());
+            int byIdentity = YharimEXUtils.GetProjectileByIdentity(Projectile.owner, (int)Projectile.ai[0], ModContent.ProjectileType<YharimEXMark2>());
             if (byIdentity != -1)
             {
                 Vector2 offset = new Vector2(100, 0).RotatedBy(Projectile.ai[1]);
@@ -62,21 +62,6 @@ namespace YharimEX.Content.Projectiles
             }
 
             Projectile.rotation = Projectile.ai[1] + (float)Math.PI / 2f;
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                Mod FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-                target.AddBuff(BuffID.Poisoned, Main.rand.Next(60, 300));
-                if (YharimEXWorldFlags.EternityMode)
-                {
-                    target.AddBuff(FargoSouls.Find<ModBuff>("InfestedBuff").Type, Main.rand.Next(60, 300));
-                    target.AddBuff(FargoSouls.Find<ModBuff>("IvyVenomBuff").Type, Main.rand.Next(60, 300));
-                    target.AddBuff(FargoSouls.Find<ModBuff>("MutantFangBuff").Type, 180);
-                }
-            }
         }
 
         public override Color? GetAlpha(Color drawColor)

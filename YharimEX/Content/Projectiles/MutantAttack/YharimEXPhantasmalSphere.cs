@@ -1,14 +1,13 @@
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXPhantasmalSphere : ModProjectile
     {
@@ -33,11 +32,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.timeLeft = 120;
             Projectile.tileCollide = false;
             Projectile.alpha = 200;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.canSplit = true;
-            }
             Projectile.penetrate = 2;
             Projectile.hide = true;
         }
@@ -59,7 +53,7 @@ namespace YharimEX.Content.Projectiles
             {
                 Projectile.localAI[0] = 0;
 
-                NPC n = YharimEXGlobalUtilities.NPCExists(YharimEXGlobalUtilities.FindClosestHostileNPC(Projectile.Center, 1500));
+                NPC n = YharimEXUtils.NPCExists(YharimEXUtils.FindClosestHostileNPC(Projectile.Center, 1500));
                 if (n == null)
                 {
                     Projectile.Kill();
@@ -130,7 +124,7 @@ namespace YharimEX.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXSphereGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSphereGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int rect1 = glow.Height;
             int rect2 = 0;
             Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);

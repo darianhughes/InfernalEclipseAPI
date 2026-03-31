@@ -27,6 +27,9 @@ using InfernumMode.Content.Items.Accessories;
 using CalamityMod.CalPlayer;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Ravager;
+using InfernalEclipseAPI.YharimEX.Content.Buffs;
+using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
+using InfernalEclipseAPI.Content.Items.Consumables;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -44,6 +47,12 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PlayerConnect()
         {
+            if (!aniversaryYearOneLoreObtained)
+            {
+                Player.QuickSpawnItem(Player.GetSource_FromThis(), ModContent.ItemType<LoreAnniversaryOne>());
+                Player.QuickSpawnItem(Player.GetSource_FromThis(), ModContent.ItemType<BirthdayCake>());
+            }
+
             if (!InfernalWorld.craftedWorkshop && workshopHasBeenOwned)
             {
                 InfernalWorld.craftedWorkshop = true;
@@ -68,6 +77,12 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void OnEnterWorld()
         {
+            if (!aniversaryYearOneLoreObtained)
+            {
+                Player.QuickSpawnItem(Player.GetSource_FromThis(), ModContent.ItemType<LoreAnniversaryOne>());
+                Player.QuickSpawnItem(Player.GetSource_FromThis(), ModContent.ItemType<BirthdayCake>());
+            }
+
             if (!InfernalWorld.craftedWorkshop && workshopHasBeenOwned)
             {
                 InfernalWorld.craftedWorkshop = true;
@@ -201,6 +216,8 @@ namespace InfernalEclipseAPI.Core.Players
 
         public bool singularityCore;
 
+        public bool aniversaryYearOneLoreObtained = false;
+
         public override void Initialize()
         {
             workshopHasBeenOwned = false;
@@ -213,6 +230,12 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 tag.Add("workshopHasBeenOwned", true);
             }
+
+            if (aniversaryYearOneLoreObtained)
+            {
+                tag.Add("aniversaryYearOneLoreObtained", true);
+            }
+
             var boost = new List<string>();
             boost.AddWithCondition("singularityCore", singularityCore);
 
@@ -222,6 +245,8 @@ namespace InfernalEclipseAPI.Core.Players
         public override void LoadData(TagCompound tag)
         {
             workshopHasBeenOwned = tag.Get<bool>("workshopHasBeenOwned");
+
+            aniversaryYearOneLoreObtained = tag.Get<bool>("aniversaryYearOneLoreObtained");
 
             var boost = tag.GetList<string>("IEORboost");
             singularityCore = boost.Contains("singularityCore");
@@ -336,6 +361,11 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PreUpdate()
         {
+            if (ModLoader.HasMod("FargowiltasSouls"))
+            {
+                InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
+            }
+
             if (BoostPressTimer > 0)
                 BoostPressTimer--;
 
@@ -670,7 +700,7 @@ namespace InfernalEclipseAPI.Core.Players
             }
             Earthdrive = false;
 
-            if (Player.HasBuff(ModContent.BuffType<BrimstoneDesperation>()))
+            if (Player.HasBuff(ModContent.BuffType<BrimstoneDesperation>()) || Player.HasBuff(ModContent.BuffType<TyrantDesperationBuff>()))
             {
                 CalamityPlayer mp = Player.Calamity();
 

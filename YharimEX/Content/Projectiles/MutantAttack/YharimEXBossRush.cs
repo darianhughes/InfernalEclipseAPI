@@ -3,12 +3,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXBossRush : ModProjectile
     {
@@ -28,16 +26,11 @@ namespace YharimEX.Content.Projectiles
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.hide = true;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = true;
-            }
         }
 
         public override void AI()
         {
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[0], ModContent.NPCType<YharimEXBoss>());
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[0], ModContent.NPCType<YharimEXBoss>());
             if (npc == null)
             {
                 Projectile.Kill();
@@ -143,11 +136,11 @@ namespace YharimEX.Content.Projectiles
 
         private void ManualSpawn(NPC npc, int type)
         {
-            if (YharimEXGlobalUtilities.HostCheck)
+            if (YharimEXUtils.HostCheck)
             {
-                int n = YharimEXGlobalUtilities.NewNPCEasy(Terraria.Entity.InheritSource(Projectile), npc.Center, type);
+                int n = YharimEXUtils.NewNPCEasy(Terraria.Entity.InheritSource(Projectile), npc.Center, type);
                 if (n != Main.maxNPCs)
-                    YharimEXGlobalUtilities.PrintLocalization("Announcement.HasAwoken", new Color(175, 75, 255), Language.GetTextValue($"Mods.{Mod.Name}.NPCs.YharimEXBoss.DisplayName"));
+                    YharimEXUtils.PrintLocalization("Announcement.HasAwoken", new Color(175, 75, 255), Language.GetTextValue($"Mods.{Mod.Name}.NPCs.YharimEXBoss.DisplayName"));
             }
         }
     }

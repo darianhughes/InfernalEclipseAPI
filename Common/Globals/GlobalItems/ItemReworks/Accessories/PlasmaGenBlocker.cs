@@ -6,6 +6,7 @@ using CalamityMod.NPCs.ExoMechs.Artemis;
 using CalamityMod.NPCs.ExoMechs.Thanatos;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.SupremeCalamitas;
+using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
 using ThoriumMod.Items.Donate;
 using ThoriumMod.Utilities;
 
@@ -36,7 +37,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
                 ModContent.NPCType<SupremeCatastrophe>(),
                 ModContent.NPCType<ProfanedGuardianHealer>(),
                 ModContent.NPCType<ProfanedGuardianDefender>(),
-                ModContent.NPCType<ProfanedGuardianCommander>()
+                ModContent.NPCType<ProfanedGuardianCommander>(),
+                ModContent.NPCType<YharimEXBoss>()
             };
 
             foreach (int boss in blockedBosses)

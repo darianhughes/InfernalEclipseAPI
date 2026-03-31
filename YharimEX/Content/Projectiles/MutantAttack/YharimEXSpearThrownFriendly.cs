@@ -1,13 +1,13 @@
-﻿namespace YharimEX.Content.Projectiles
+﻿namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXSpearThrownFriendly : YharimEXPenetratorThrown
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSpear";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSpear";
 
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.DamageType = Terraria.ModLoader.DamageClass.Default;
+            Projectile.DamageType = DamageClass.Default;
         }
     }
 }

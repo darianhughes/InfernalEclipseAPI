@@ -3,15 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using Luminance.Common.Utilities;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXSphereSmall : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSphere";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSphere";
 
         public override void SetStaticDefaults()
         {
@@ -73,21 +73,6 @@ namespace YharimEX.Content.Projectiles
             }
         }
 
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-            }
-        }
-
         public override void OnKill(int timeleft)
         {
             //SoundEngine.PlaySound(SoundID.NPCDeath6, Projectile.Center);
@@ -113,7 +98,7 @@ namespace YharimEX.Content.Projectiles
                 Main.dust[index3].noGravity = true;
             }
 
-            if (YharimEXGlobalUtilities.HostCheck) //explosion
+            if (YharimEXUtils.HostCheck) //explosion
                 Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<YharimEXBombSmall>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
 
@@ -124,7 +109,7 @@ namespace YharimEX.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D glow = ModContent.Request<Texture2D>("YharimEX/Assets/Projectiles/YharimEXSphereGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D glow = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSphereGlow", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int rect1 = glow.Height;
             int rect2 = 0;
             Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);

@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
 using Terraria.Graphics.Effects;
 using ReLogic.Content;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXScythe2 : YharimEXScythe1
     {
@@ -40,7 +40,7 @@ namespace YharimEX.Content.Projectiles
                     Main.dust[d].noGravity = true;
                     Main.dust[d].velocity *= 6f;
                 }
-                if (YharimEXGlobalUtilities.HostCheck)
+                if (YharimEXUtils.HostCheck)
                     Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<YharimEXIronParry>(), 0, 0f, Main.myPlayer);
             }
         }
@@ -109,7 +109,7 @@ namespace YharimEX.Content.Projectiles
                     drawColor * Projectile.Opacity,
                     -angle + MathHelper.PiOver2,
                     vortexTexture.Size() * 0.5f,
-                    (Projectile.scale * (1 - i * 0.05f) * 0.25f) * Projectile.Opacity, // quarter size
+                    Projectile.scale * (1 - i * 0.05f) * 0.25f * Projectile.Opacity, // quarter size
                     SpriteEffects.None,
                     0
                 );
@@ -122,7 +122,7 @@ namespace YharimEX.Content.Projectiles
                 Color.Black * Projectile.Opacity,
                 Projectile.rotation,
                 centerTexture.Size() * 0.5f,
-                (Projectile.scale * 0.9f * 0.25f) * Projectile.Opacity, // quarter size
+                Projectile.scale * 0.9f * 0.25f * Projectile.Opacity, // quarter size
                 SpriteEffects.None,
                 0
             );

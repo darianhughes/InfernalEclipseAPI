@@ -6,17 +6,15 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Particles;
-using YharimEX.Content.Projectiles.FargoProjectile;
+using InfernalEclipseAPI.YharimEX.Content.Particles;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class
      YharimEXGlowRing : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXGlowRing";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXGlowRing";
 
         public override void SetStaticDefaults()
         {
@@ -34,21 +32,13 @@ namespace YharimEX.Content.Projectiles
             Projectile.hostile = true;
             Projectile.alpha = 0;
             //Projectile.timeLeft = 1200;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-                SetupFargoProjectile.TimeFreezeImmune = true;
-            }
         }
 
         public Color color = new(255, 255, 255, 0);
 
         public override void AI()
         {
-
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[0]);
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[0]);
             if (npc != null)
                 Projectile.Center = npc.Center;
 
@@ -79,7 +69,7 @@ namespace YharimEX.Content.Projectiles
                         //color = new Color(51, 255, 191) * modifier; OLD BLUE
                         //if (maxTime - Projectile.localAI[0] < 10)
                         //color = Color.White;
-                        Projectile.alpha = (int)(255f * (progress));
+                        Projectile.alpha = (int)(255f * progress);
                         //Projectile.scale = 3f * 9f * (1f - modifier);
                         Projectile.scale = 0.2f + 0.8f * modifier;
 
@@ -87,7 +77,7 @@ namespace YharimEX.Content.Projectiles
                             Projectile.Center += Vector2.UnitY.RotatedBy(npc.rotation) * 15;
 
                         Vector2 sparkDir = Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi);
-                        float sparkDistance = (120 * progress) * Main.rand.NextFloat(0.6f, 1.3f);
+                        float sparkDistance = 120 * progress * Main.rand.NextFloat(0.6f, 1.3f);
                         Vector2 sparkCenter = Projectile.Center + sparkDir * sparkDistance * 2;
                         float sparkTime = 15;
                         Vector2 sparkVel = (Projectile.Center - sparkCenter) / sparkTime;
@@ -112,7 +102,7 @@ namespace YharimEX.Content.Projectiles
                         //color = new Color(51, 255, 191) * modifier; OLD BLUE
                         //if (maxTime - Projectile.localAI[0] < 10)
                         //color = Color.White;
-                        Projectile.alpha = (int)(255f * (progress));
+                        Projectile.alpha = (int)(255f * progress);
                         //Projectile.scale = 3f * 6f * (1f - modifier);
 
                         Projectile.scale = 0.2f + 0.8f * modifier;
@@ -121,7 +111,7 @@ namespace YharimEX.Content.Projectiles
                             Projectile.Center += Vector2.UnitY.RotatedBy(npc.rotation) * 15;
 
                         Vector2 sparkDir = Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi);
-                        float sparkDistance = (120 * progress) * Main.rand.NextFloat(0.6f, 1.3f);
+                        float sparkDistance = 120 * progress * Main.rand.NextFloat(0.6f, 1.3f);
                         Vector2 sparkCenter = Projectile.Center + sparkDir * sparkDistance;
                         float sparkTime = 15;
                         Vector2 sparkVel = (Projectile.Center - sparkCenter) / sparkTime;

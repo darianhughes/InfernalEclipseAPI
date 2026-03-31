@@ -4,15 +4,13 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXGuardian : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXGuardian";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXGuardian";
 
 
         public override void SetStaticDefaults()
@@ -36,12 +34,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.timeLeft = 240;
             Projectile.hide = true;
             Projectile.light = 0.5f;
-
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.DeletionImmuneRank = 1;
-            }
         }
 
         public override bool CanHitPlayer(Player target)
@@ -67,41 +59,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.frame = 2;
             Projectile.direction = Projectile.velocity.X < 0 ? -1 : 1;
             Projectile.rotation += Projectile.direction * .3f;
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            Mod FargoSouls = null;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-            }
-            
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        target.YharimPlayer().MaxLifeReduction += 100;
-                    }
-                    else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        EternityDebuffs.ManageOnHitDebuffs(target);
-                    }
-                }
-                if (YharimEXWorldFlags.EternityMode)
-                {
-                    target.AddBuff(FargoSouls.Find<ModBuff>("OceanicMaulBuff").Type, 5400);
-                    if (YharimEXWorldFlags.MasochistModeReal || YharimEXWorldFlags.InfernumMode)
-                    {
-                        target.AddBuff(FargoSouls.Find<ModBuff>("GodEaterBuff").Type, 420);
-                    }
-                    target.AddBuff(FargoSouls.Find<ModBuff>("FlamesoftheUniverseBuff").Type, 420);
-                    target.AddBuff(FargoSouls.Find<ModBuff>("MarkedForDeathBuff").Type, 420);
-                }
-                target.AddBuff(FargoSouls.Find<ModBuff>("DefenselessBuff").Type, 480);
-            }
         }
 
         public override void OnKill(int timeLeft)

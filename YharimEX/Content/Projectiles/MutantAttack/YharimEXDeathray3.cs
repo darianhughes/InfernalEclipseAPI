@@ -1,5 +1,4 @@
-﻿using YharimEX.Assets.ExtraTextures;
-using Luminance.Core.Graphics;
+﻿using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,17 +6,18 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 using InfernalEclipseAPI.YharimEX.Content.Deathrays;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
+using YharimEX.Assets.ExtraTextures;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXDeathray3 : BaseDeathray, IPixelatedPrimitiveRenderer
     {
 
-        public override string Texture => "YharimEX/Assets/Projectiles/PhantasmalDeathray";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/PhantasmalDeathray";
         public YharimEXDeathray3() : base(270, grazeCD: 30) { }
         public override void SetStaticDefaults()
         {
@@ -42,9 +42,9 @@ namespace YharimEX.Content.Projectiles
 
             Projectile.position -= Projectile.velocity;
 
-            float DECELERATION = YharimEXWorldFlags.MasochistModeReal ? 0.9716f : 0.9712f;
+            float DECELERATION = WorldSaveSystem.InfernumModeEnabled ? 0.9716f : 0.9712f;
 
-            NPC npc = YharimEXGlobalUtilities.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
+            NPC npc = YharimEXUtils.NPCExists(Projectile.ai[1], ModContent.NPCType<YharimEXBoss>());
             if (npc != null)
             {
                 //float minTime = npc.ai[3] - 60;
@@ -135,17 +135,6 @@ namespace YharimEX.Content.Projectiles
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-            }
             target.AddBuff(BuffID.OnFire, 300);
         }
 
@@ -160,7 +149,7 @@ namespace YharimEX.Content.Projectiles
             if (Projectile.hide)
                 return;
 
-            ManagedShader shader = ShaderManager.GetShader("YharimEX.GenericDeathray");
+            ManagedShader shader = ShaderManager.GetShader("InfernalEclipseAPI.YharimEXGenericDeathray");
 
             // Get the laser end position.
             Vector2 laserEnd = Projectile.Center + Projectile.velocity.SafeNormalize(Vector2.UnitY) * drawDistance * 1.1f;
@@ -175,7 +164,7 @@ namespace YharimEX.Content.Projectiles
                 baseDrawPoints[i] = Vector2.Lerp(initialDrawPoint, laserEnd, i / (float)(baseDrawPoints.Length - 1f));
 
             // GameShaders.Misc["FargoswiltasSouls:MutantDeathray"].UseImage1(); cannot be used due to only accepting vanilla paths.
-            YharimEXGlobalUtilities.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
+            YharimEXUtils.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
             shader.TrySetParameter("mainColor", new Color(255, 255, 183, 100));
             shader.TrySetParameter("stretchAmount", 1);
             shader.TrySetParameter("scrollSpeed", 3f);

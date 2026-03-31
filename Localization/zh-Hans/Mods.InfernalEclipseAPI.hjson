@@ -757,6 +757,7 @@ ItemTooltip: {
 		ND: 无名光神
 		Mars: 玛尔斯
 		EoL: 光之女皇
+		// Yharim: Yharim's
 	}
 
 	AstrageldonRelic: {
@@ -1186,6 +1187,42 @@ Items: {
 		LoreRagnarok: {
 			DisplayName: 诸神黄昏
 			Tooltip: ""
+		}
+
+		LoreMegalomaniac: {
+			// DisplayName: The Megalomaniac
+			// Tooltip: ""
+			/* Lore:
+				'''
+				The Devourer, the Dragon, and the Witch. All fell to your ambition. Your motive. Your drive.
+				I had an ambition similar. But never was I deemed hero.
+				I freed this world of tyranny, and yet I stand known as a tyrant.
+				Now one with a determination like mine arrives hell-bent on my destruction.
+				I will meet the same fate the oppressor I felled had.
+				Destined to be dispatched of by one with similar aspirations as themself.
+				I should have known, realized it sooner. It was always meant to be this way.
+				''' */
+		}
+
+		LoreAnniversaryOne: {
+			// DisplayName: Infernal Eclipse of Ragnarok
+			// Tooltip: Greatly boosts passive luck while in your inventory
+			/* Lore:
+				'''
+				What started as a small project I put together just for myself and a few friends has slowly grown into something much bigger than I ever expected. 
+				Infernal Eclipse of Ragnarok began as a way to make a chaotic mix of mods actually feel playable together by
+				just tweaking things here and there so my playthrough at the time would fell smoother and more fun. 
+				But over time, those small fixes turned into full systems, then into reworks, and eventually into an entire framework for how the game should feel. 
+				I found myself not just patching things, but designing—rethinking progression, balancing classes across multiple mods, 
+				and building something that felt cohesive instead of stitched together. 
+				It's been a long process of trial, frustration, and iteration, especially learning how to make everything work in multiplayer 
+				and across so many different mods, but it's also been incredibly rewarding. 
+				What was once just a personal project has become a full-scale development effort with its own identity, and honestly, 
+				seeing it grow into something others can enjoy has been one of the most fulfilling parts of the journey.
+
+				Thank you to everyone who has supported the mod, given feedback, and been part of this community.
+				Here's to many more updates, features, and chaotic times in the world of Infernal Eclipse of Ragnarok!
+				''' */
 		}
 	}
 
@@ -1848,46 +1885,168 @@ Items: {
 		DisplayName: 梦幻精华
 		Tooltip: “诸神暮光”
 	}
+
+	YharimsRage: {
+		// DisplayName: Yharim's Rage
+		/* Tooltip:
+			'''
+			Summons Godseeker, Yharim
+			Not consumable
+			'Terrarian... I remember you're calamities...'
+			''' */
+	}
+
+	TyrantYharimsUltisword: {
+		// DisplayName: Tyrant's Penetrator
+		/* Tooltip:
+			'''
+			Throw a auric greatsword that impales, immolates, and slows enemies
+			Up to five blades can impale an enemy at a time, with further hits launching the previous impaled blades
+			Press <right> to enter a stance where you can use <left> to perform a colossal, devastating slash
+			While in the stance, you gain life and flight time regeneration and your dashes have a shorter cooldown
+			The devastating slash must recharge after being used
+			Striking an impaled enemy with the devastating slash launches all blades and readies another slash
+			The final enemy hit with a devastating slash has a death mark applied to them
+			When you exit the stance, the death mark explodes for massive damage
+			'The reward of becoming a godseeker...'
+			''' */
+	}
+
+	BirthdayCake: {
+		// DisplayName: Birthday Cake
+		// Tooltip: ""
+		/* DynamicTooltip:
+			'''
+			{0} improvements to all stats
+			Instantly activates adrenaline mode & inflicts potion sickness
+			'Happy Birthday!'
+			''' */
+		// Stellar: Stellar
+		// Major: Major
+	}
 }
 
 Projectiles: {
+	// YharimEXSunBlast.DisplayName: Sun Blast
+	// YharimEXBrain.DisplayName: Brain of Confusion
+	// YharimEXRitual.DisplayName: Yharim EX Ritual
+	// YharimEXMark2.DisplayName: Yharim EX Mark 2
+	// YharimEXEye.DisplayName: Yharim EX Eye
+	// YharimEXDoGTail.DisplayName: Devourer of Gods
+	// YharimEXDoGHead.DisplayName: Devourer of Gods
+	// YharimEXDoGBody.DisplayName: Devourer of Gods
+	// YharimEXDeathraySmall.DisplayName: Deathray
+	// YharimEXDeathrayAim.DisplayName: Deathray
+	// YharimEXDeathray3.DisplayName: Deathray
+	// YharimEXDeathray2.DisplayName: Deathray
+	// YharimEXDeathray1.DisplayName: Deathray
+	// YharimEXCrystalLeaf.DisplayName: Crystal Leaf
+	// YharimEXBossProjectile.DisplayName: Yharim EX Boss Projectile
+	// YharimEXBombSmall.DisplayName: Bomb
+	// YharimEXBomb.DisplayName: Bomb
+	// MutantEyeOfCthulhu.DisplayName: Eye Of Cthulhu
+	// YharimEXEyeHoming.DisplayName: Eye
+	// YharimEXEyeWavy.DisplayName: Eye
+	// YharimEXFishron.DisplayName: Yharon
+	// YharimEXFishronRitual.DisplayName: Fishron Ritual
+	// YharimEXFragment.DisplayName: Fragment
+	// YharimEXGiantDeathray2.DisplayName: Giant Deathray
+	// YharimEXGlowRing.DisplayName: Glow Ring
+	// YharimEXGlowything.DisplayName: Glowything
+	// YharimEXGuardian.DisplayName: Ares
+	// YharimEXHeal.DisplayName: Mutant Yharim EX Heal Heal
+	// YharimEXMark1.DisplayName: Yharim EX Mark 1
+	// YharimEXNuke.DisplayName: Nuke
+	// YharimEXPhantasmalBlast.DisplayName: Phantasmal Blast
+	// YharimEXPillar.DisplayName: Astrageldon
+	// YharimEXReticle.DisplayName: Yharim EX Reticle
+	// YharimEXRetirang.DisplayName: Yharim EX Retirang
+	// YharimEXReticle2.DisplayName: Yharim EX Reticle 2
+	// YharimEXRitual2.DisplayName: Yharim EX Ritual 2
+	// YharimEXRitual3.DisplayName: Yharim EX Ritual 3
+	// YharimEXRitual4.DisplayName: Yharim EX Ritual 4
+	// YharimEXRitual5.DisplayName: Yharim EX Ritual 5
+	// YharimEXSansBeam.DisplayName: Yharim EX Sans Beam
+	// YharimEXSansHead.DisplayName: Yharim EX Sans Head
+	// YharimEXIronParry.DisplayName: Yharim EX Iron Parry
+	// YharimEXScythe1.DisplayName: Yharim EX Scythe 1
+	// YharimEXScythe2.DisplayName: Yharim EX Scythe 2
+	// YharimEXShadowHand.DisplayName: Shadow Hand
+	// YharimEXSlimeBall.DisplayName: Yharim EX Slime Ball
+	// YharimEXSlimeRain.DisplayName: Yharim EX Slime Rain
+	// YharimEXSlimeSpike.DisplayName: Yharim EX Slime Spike
+	// YharimEXSpazmarang.DisplayName: Yharim EX Spazmarang
+	// YharimEXSpearAim.DisplayName: Spear
+	// YharimEXSpearDash.DisplayName: Spear Dash
+	// YharimEXSphereSmall.DisplayName: Sphere
+	// YharimEXPenetratorDeathray.DisplayName: Penetrator Deathray
+	// YharimEXPenetratorThrown.DisplayName: Penetrator
+	// YharimEXPhantasmalSphere.DisplayName: Phantasmal Sphere
+	// YharimEXSpearMagical.DisplayName: Yharim Spear
+	// YharimEXSpearSpin.DisplayName: Yharim Spear
+	// YharimEXSpearThrown.DisplayName: Yharim EX Spear
+	// YharimEXSpearThrownFriendly.DisplayName: Spear Thrown Friendly
+	// YharimEXSphereRing.DisplayName: Sphere Ring
+	// YharimEXSword.DisplayName: Yharim EX Sword
+	// YharimEXTrueEyeDeathray.DisplayName: True Eye Deathray
+	// YharimEXTrueEyeL.DisplayName: True Eye
+	// YharimEXTrueEyeR.DisplayName: True Eye
+	// YharimEXTrueEyeS.DisplayName: True Eye
+	// YharimEXTrueEyeSphere.DisplayName: True Eye Sphere
+	// YharimEXEyeOfCthulhu.DisplayName: Calamitas Clone
+	// YharimEXTyphoon.DisplayName: Typhoon
+	// YharimEXBossRush.DisplayName: Boss Rush
+	// BloomLine.DisplayName: Bloom Line
+	// DLCBloomLine.DisplayName: Bloom Line
+	// DLCYharimFishronRitual.DisplayName: Fishron Ritual
+	// DLCYharimSpearDash.DisplayName: Spear Dash
+	// DLCYharimSpearSpin.DisplayName: Spear Spin
+	// SlamTelegraph.DisplayName: Slam Telegraph
+	// YharimEXAresBomb.DisplayName: Ares Bomb
+	// YharimEXAresNuke.DisplayName: Ares Nuke
+	// YharimEXAureusSpawn.DisplayName: Aureus Spawn
+	// YharimEXHolyRay.DisplayName: Holy Ray
+	// YharimEXOldDuke.DisplayName: Old Duke
+	// YharimEXPBG.DisplayName: Plaguebringer Goliath
+	// YharimEXPolter.DisplayName: Polterghast
+	// YharimEXSCal.DisplayName: Brimstone Monster
+	// YharimEXSlimeGod.DisplayName: Slime God
+	// Boss.YharimEXYharonVortex.DisplayName: Yharon Vortex
+	// YharimFrostMist.DisplayName: Frost Mist
+	// YharimEXDestroyerBody.DisplayName: The Destroyer
+	// YharimEXDestroyerHead.DisplayName: The Destroyer
+	// YharimEXDestroyerTail.DisplayName: The Destroyer
+	// YharimEXGlowLine.DisplayName: Yharim E X Glow Line
+	// YharimEXCelestialFragment.DisplayName: Yharim E X Celestial Fragment
+	// YharimEXCosmosVortex.DisplayName: Yharim E X Cosmos Vortex
+	// YharimEXGlowRingHollow.DisplayName: Yharim E X Glow Ring Hollow
+	// YharimEXMoonLordVortex.DisplayName: Yharim E X Moon Lord Vortex
+	NovaBombBlackHoleProj.DisplayName: 黑洞
+	NovaBombProj.DisplayName: 新星炸弹
 	GlitchSwordHoldout.DisplayName: 故障剑形
-	Rogue.NovaBombProj.DisplayName: 奇点残秽
-	StellarStar.DisplayName: 星耀飞芒
-	BossRushTier6Animation.DisplayName: Boss Rush第六阶段动画
-	RogueSpectreBlast.DisplayName: 幽影冲击
-	BountifulHarvestStinger.DisplayName: 丰收尖刺
-	FriendlyBrimstoneBarrage.DisplayName: 硫火弹幕
-	FriendlyBrimstoneFireblast.DisplayName: 硫火爆焰
-	RadioMicPro.DisplayName: 无线麦克风音律
-	RadioMicShadowBurst.DisplayName: 无线麦克风暗影爆发
-	TidalWaveWhirlpool.DisplayName: 海潮涡流
-	FireAxeStealthPro.DisplayName: 消防斧绝赞潜伏中
-	GalaxyRainController.DisplayName: 星河之雨控制器
-	FriendlyBrimstoneGigablast.DisplayName: 巨型硫火爆焰
-	BeamChargeUp.DisplayName: 光束充能
-	ChaosBlasterBeam.DisplayName: 灾耀星芒光束
 	HomingTerraBeam.DisplayName: 泰拉光束
 	PlayerShadowClone.DisplayName: 暗影分身
 	TerraSlash.DisplayName: 泰拉斩切
-	NovaBombBlackHoleProj.DisplayName: 黑洞
-	NovaBombProj.DisplayName: 新星炸弹
-	FirstSwordHoldoutCombo.DisplayName: 剑一
+	CelestialIlluminationBeam.DisplayName: 星界启明光束
+	CelestialIlluminationStar.DisplayName: 启明之星
+	StellarStar.DisplayName: 星耀飞芒
+	BeamChargeUp.DisplayName: 光束充能
+	ChaosBlasterBeam.DisplayName: 灾耀星芒光束
+	DestinaryProjectile.DisplayName: 命律环刃
+	ExoDisk.DisplayName: 星流圆盘
 	_13thGltichCombo.DisplayName: 故障XIII
-	CelestialBeam.DisplayName: 天界光束
-	DemonicRune.DisplayName: 恶魔小灰猫符文
-	ThoriumHeavyScytheSpark.DisplayName: 瑟银重镰火花
+	FirstSwordHoldoutCombo.DisplayName: 剑一
+	GalaxyRainController.DisplayName: 星河之雨控制器
 	NebulaBeam.DisplayName: 寰宇死光
 	NebulaChargeUp.DisplayName: 寰宇充能
 	DisintegratorBeam.DisplayName: 解离炮
 	DisintegratorChargeUp.DisplayName: 解离炮充能
-	DestinaryProjectile.DisplayName: 命律环刃
-	ExoDisk.DisplayName: 星流圆盘
-	PutridPinkyDashTelegraph.DisplayName: 腐蚀之粉冲刺
+	BossRushTier6Animation.DisplayName: Boss Rush第六阶段动画
+	BountifulHarvestStinger.DisplayName: 丰收尖刺
 	EvilGrowth.DisplayName: 邪恶生长
 	EvilStrike.DisplayName: 邪恶打击
-	CelestialIlluminationBeam.DisplayName: 星界启明光束
-	CelestialIlluminationStar.DisplayName: 启明之星
+	ThoriumHeavyScytheSpark.DisplayName: 瑟银重镰火花
+	// Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
 }
 
 DiaryTooltip:
@@ -2236,6 +2395,11 @@ BossRushIntroText1:
 	'''
 
 InfernumIntegration: {
+	YharimMutant:
+		'''
+		寻神者
+		亚利姆
+		'''
 	Astrageldon:
 		'''
 		诸界惊骇
@@ -2335,11 +2499,6 @@ InfernumIntegration: {
 		'''
 		诸象融典
 		憎恶
-		'''
-	YharimMutant:
-		'''
-		寻神者
-		亚利姆
 		'''
 	Mutant:
 		'''
@@ -2443,12 +2602,19 @@ Buffs: {
 		DisplayName: 硫火绝望
 		Description: 硫火能量在空气中流动，禁用了你的大多数能力！
 	}
+
+	TyrantDesperationBuff: {
+		// DisplayName: Godseeker's Fury
+		// Description: The Tyrant's final stand. You take double damage!
+	}
+
+	TyrantPresenceBuff: {
+		// DisplayName: Tyrant Presence
+		// Description: Defense, damage reduction, and healing reduced; some accessory effects disabled
+	}
 }
 
-SpawnInfo: {
-	Dreadnautilus: 在血月钓鱼有概率生成
-	PrimordialWyrmHead: 在深渊最深处，潜藏着一件古老的遗物……
-}
+// SpawnInfo.YharimEXBoss: Use [i:InfernalEclipseAPI/YharimsRage] on the surface.
 
 Tiles: {
 	CatastrophicFabricationsMusicBoxTile.MapEntry: 铸灾神械音乐盒
@@ -2465,6 +2631,154 @@ NPCs: {
 		Bestiary: 关于这只猫，人们所知甚少。
 		Name: 恶魔小灰猫
 		DisplayName: 恶魔小灰猫
+	}
+
+	// YharimEXBoss.DisplayName: Godseeker, Yharim
+	// YharimEXIllusion.DisplayName: Godseeker, Yharim
+
+	TheGodseeker: {
+		// DisplayName: The Godseeker
+		// Census.SpawnCondition: Defeat the Tyrant in combat
+
+		TownNPCMood: {
+			// Princess_LovesNPC: Sometimes {NPCName} tells me stories of his adventures.
+			// LikeNPC_Princess: I respect {NPCName}. Despite being young she can rule a kingdom.
+			// HateCrowded: Disappointing.
+			// DislikeCrowded: There are too many of your allies here.
+			// LoveSpace: This reminds me of a great grass plain.
+			// FarFromHome: I am scouting for evil. Care to join?
+			// NoHome: If we are going to work together now, I need a place to stay.
+			// Content: This will suffice.
+			// HateBiome: Is this really the best area you could find for me?
+		}
+
+		NPCDialog: {
+			// Default1: Have you seen that fellow Ninja person? I'd like to give my sincere apologies for... partake of a him; the taste was awful.
+			// Default2: Semi-friendly reminder, that touching living slimes will dissolve your flesh. Better watch your feet!
+			// Default3: Remember to feed your slime mount! It's not that hard, really, just jump on some bunny along your way and that should be a nice snack.
+			// Default4: Ugh, asphalt, what a horrible way to die. I gave you Soldifier, so please, just use frozen slime blocks, it's so much more humane.
+			// Default5: Whatever rumor you heard that all slimes originate from one source is wrong.
+			// Default6: You better tell me torches in this house are made of charcoal, or I shall find another place to stay.
+			// Default7: Don't be too harsh on those underground black slimes, they just want a little bit of attention, since no one can see them properly. Including me.
+			// Default8: Spiked slimes were a really great addition to my army. This idea was so much better than "let's eat bombs and then blow up" one.
+			// Night: I see, it's dark at night, but could you use lanterns instead of torches around here? It's almost an assassination attempt, you know?
+			// Rare: Gel may be 'tasty', but don't get any ideas!
+		}
+
+		// This will show up regardless of difficulty. Just naming it the same as fargos for easy use.
+		// Chat.EternityDefeat: TEST
+	}
+
+	// SkipPhase1: Yharim is getting tired.
+
+	GFBText: {
+		// Random0: Hah, foolish choice
+		// Random1: How do you feel now?
+		// Random2: I will strike you down
+		// Random3: I shall end you.
+		// Random4: You truly are an idiot
+		// Random5: You will be rent apart.
+		// Random6: I am Yharim, Godseeker.
+		// Random7: You will wish to go back.
+		// Random8: You can not rival me.
+		// Random9: None may rival my power.
+		// Random10: The Penetrator shivers...
+		// Random11: You cannot rival an Auric Soul!
+		// Random12: I am the most powerful being in the realm.
+		// Random13: Witness a catastrophe.
+		// Random14: I will never fall, this world will end before I do
+		// Random15: IThe fighting hasn't even started
+		// Random16: Don't even try to dodge.
+		// Random17: For centuries I have trained for a fight like this.
+		// Random18: Die.
+		// Random19: It isn't possible to beat me.
+		// Random20: Just give up, there is no point.
+		// Random21: You are so, so small.
+		// Random22: What can you do to me!
+		// Random23: Hello everyone my name is Markiplier!
+		// Random24: This isn't even my final form!
+		// Random25: Power? Hah, I see none.
+		// Random26: You don't begin to match me.
+		// Random27: Bold choice, fighting me
+		// Random28: I cannot lose.
+		// Random29: This world will not live as long as me
+		// Random30: Is this fight going the way you thought it would?
+		// Random31: YOU WILL NOT SURVIVE!
+		// Random32: You will fall. Why? Because I said so
+		// Random33: You will cease to exist after this!
+		// Random34: You expect to beat me? What makes you think you stand a chance?
+		// Random35: The Auric soul empowers me.
+		// Random36: Your bones will shatter!
+		// Random37: Break.
+		// Random38: Why are you still trying.
+		// Random39: YOI WILL CEASE TO EXIST!
+		// Random40: YOU. FIGHT ME!
+		// Random41: I WILL STRIKE YOU DOWN!
+		// Random42: You have lived too long.
+		// Random43: You are a bug to me
+		// Random44: You are weak. I am a god.
+		// Random45: I will crush you under my foot!
+		// Random46: You have grown, but not enough.
+		// Random47: You bested Calamitas, that takes strength. NOT ENOUGH TO BEAT ME!
+		// Random48: My victory is nigh
+		// Random49: You thought you were powerful?!
+		// Random50: Your body will squelch.
+		// Random51: This truly is a calamitous situation!
+		// Random52: Cry some more!
+		// Random53: I bet you felt that!
+		// Random54: I feel nothing!
+		// Random55: CRUSH!
+		// Random56: Burn.
+		// Random57: RUN WHILE YOU CAN!
+		// Random58: You are a baby.
+		// Random59: You don't stand a chance.
+		// Random60: How many times have you died to me already?
+		// Random61: Calamitas and Permafrost are of no more use to me.
+		// Random62: You? Divine? Hah.
+		// Random63: Cry.
+		// Random64: Despar.
+		// Random65: Suffer the agony.
+		// Random66: YOUR LIFE WILL END.
+		// Random67: You life serves zero purpose, you should-
+		// Random68: You are worthless.
+		// Random69: You wont live for much longer!
+		// Random70: This world. It belongs to me. I am no tyrant, I am a god. I am the ruler of this world, and I deem you unfit to live in it.
+		// Quote1: You don't get these anymore.
+		// Quote2: You haven't felt anything yet.
+		// Quote3: Have fun losing.
+		// Quote4: Face my sword!
+		// Quote5: Agh.
+		// Quote6: BEAM ATTACK!
+		// Quote7: My power grows.
+		// Quote8: My sword will split you in two.
+		// Quote9: Feel my wrath!
+		// Quote10: AGH!
+		// Quote11: Feel the pain.
+		// Quote12: The world doesn't belong to you.
+		// Quote13: Nothing stands a chance to me.
+		// Quote14: I will rend you!
+		// Quote15: DIE.
+		// Quote16: Xeroc himself fears me
+		// Quote17: Machine.
+		// Quote18: Here be dragons!
+		// Quote19: Have fun dodging This.
+		// Quote20: Why am I using this?
+		// Quote21: You can't keep up?
+		// Quote22: I am ruler of all!
+		// Quote23: Anarchy will reign.
+		// Quote24: The Empress' Excel Assault!
+		// Quote25: You think I'm done?
+		// Quote26: YOU ARE NOTHING
+		// Quote27: DIE MORTAL
+		// Quote28: I CONTROL ALL. I AM THE ONE WITH THE AURIC SOUL
+		// Quote29: I HAVE TAKEN THE AURIC SOUL! I AM ONE WITH POWER UNIMAGINABLE! I AM IMMORTAL! I AM A GOD!
+		// Quote30: YOU. WILL. FALL. YOU. WILL. DIE. I. WILL. STRIKE. YOU. DOOOOOOOWN.
+		// Quote31: RAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+		// Quote32: How was I bested!
+		// Quote33: Oh, yeah...
+		// Quote34: You're not bad...
+		// Quote35: RED
+		// Quote36: I am Yharim, the Tyrant Godseeker.
 	}
 }
 
@@ -2490,3 +2804,6 @@ Events: {
 	BossRushTierFiveEndText_2: 如今横亘在你与试炼终点之间的，是这个世界过去和现在存在的神明
 	BossRushTierFiveEndText_3: 现在，让我看看一个已无退路之人的力量。别在这里倒下。
 }
+
+// LifeUp: +5 max life
+// Beastiary.TheGodseeker: Yharim was an oppressive, ruler of Terraria. He lead a massive army, which he rules over with an iron fist, and his influence was felt by almost everyone throughout the planet.

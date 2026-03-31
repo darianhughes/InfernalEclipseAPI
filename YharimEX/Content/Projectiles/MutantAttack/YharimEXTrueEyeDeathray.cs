@@ -5,18 +5,17 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Luminance.Core.Graphics;
-using YharimEX.Core.Systems;
-using YharimEX.Core.Globals;
-using YharimEX.Assets.ExtraTextures;
 using InfernalEclipseAPI.YharimEX.Content.Deathrays;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using YharimEX.Assets.ExtraTextures;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
 	public class YharimEXTrueEyeDeathray : BaseDeathray, IPixelatedPrimitiveRenderer
     {
 
-        public override string Texture => "YharimEX/Assets/Projectiles/PhantasmalDeathray";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/PhantasmalDeathray";
         public YharimEXTrueEyeDeathray() : base(90) { }
 
         public override void SetStaticDefaults()
@@ -113,21 +112,6 @@ namespace YharimEX.Content.Projectiles
             Projectile.position -= Projectile.velocity;
         }
 
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    target.YharimPlayer().MaxLifeReduction += 100;
-                }
-                else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    EternityDebuffs.ManageOnHitDebuffs(target);
-                }
-            }
-        }
-
         public override bool PreDraw(ref Color lightColor) => false;
 
         public float WidthFunction(float trailInterpolant) => Projectile.width * Projectile.scale * 1.3f;
@@ -143,7 +127,7 @@ namespace YharimEX.Content.Projectiles
         {
             if (Projectile.hide)
                 return;
-            ManagedShader shader = ShaderManager.GetShader("YharimEX.YharimEXGenericDeathray");
+            ManagedShader shader = ShaderManager.GetShader("InfernalEclipseAPI.YharimEXGenericDeathray");
 
             // Get the laser end position.
             Vector2 laserEnd = Projectile.Center + Projectile.velocity.SafeNormalize(Vector2.UnitY) * drawDistance * 1.1f;
@@ -160,7 +144,7 @@ namespace YharimEX.Content.Projectiles
             // Set shader parameters. This one takes a fademap and a color.
 
             // GameShaders.Misc["FargoswiltasSouls:MutantDeathray"].UseImage1(); cannot be used due to only accepting vanilla paths.
-            YharimEXGlobalUtilities.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
+            YharimEXUtils.SetTexture1(YharimEXTextureRegistry.YharimEXStreak.Value);
             // The laser should fade to this in the middle.
             shader.TrySetParameter("mainColor", new Color(253, 252, 183, 100));
             shader.TrySetParameter("stretchAmount", 3);

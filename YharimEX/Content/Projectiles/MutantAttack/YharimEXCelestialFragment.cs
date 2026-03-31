@@ -1,14 +1,14 @@
+using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles.MutantAttack
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXCelestialFragment : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXCelestialFragment";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXCelestialFragment";
 
         public override void SetStaticDefaults()
         {
@@ -66,24 +66,6 @@ namespace YharimEX.Content.Projectiles.MutantAttack
                 dust.fadeIn = 1f;
                 dust.scale = 1f + Main.rand.NextFloat() + Main.rand.Next(4) * 0.3f;
                 dust.noGravity = true;
-            }
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                Mod FargoSouls = YharimEXCrossmodSystem.FargowiltasSouls.Mod;
-                target.AddBuff(FargoSouls.Find<ModBuff>("HexedBuff").Type, 120);
-                target.AddBuff(FargoSouls.Find<ModBuff>("CurseoftheMoonBuff").Type, 360);
-                if (YharimEXWorldFlags.EternityMode || YharimEXWorldFlags.DeathMode)
-                    switch ((int)Projectile.ai[0])
-                    {
-                        case 0: target.AddBuff(FargoSouls.Find<ModBuff>("ReverseManaFlowBuff").Type, 180); break; //nebula
-                        case 1: target.AddBuff(FargoSouls.Find<ModBuff>("AtrophiedBuff").Type, 180); break; //solar
-                        case 2: target.AddBuff(FargoSouls.Find<ModBuff>("JammedBuff").Type, 180); break; //vortex
-                        default: target.AddBuff(FargoSouls.Find<ModBuff>("AntisocialBuff").Type, 180); break; //stardust
-                    }
             }
         }
 

@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXSlimeSpike : YharimEXSlimeBall
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSlimeSpike";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSlimeSpike";
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 3;

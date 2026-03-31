@@ -14,7 +14,7 @@ namespace YharimEX.Content.Projectiles.DLCAttack
 {
     public class DLCYharimFishronRitual : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXFishronRitual";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXFishronRitual";
 
         private const int safeRange = 150;
 

@@ -1,18 +1,14 @@
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Globals;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXSlimeBall : ModProjectile
     {
-        public override string Texture => "YharimEX/Assets/Projectiles/YharimEXSlimeBall";
+        public override string Texture => "InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSlimeBall";
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
@@ -55,7 +51,7 @@ namespace YharimEX.Content.Projectiles
                 }
             }
 
-            if (++Projectile.localAI[1] > 10 && YharimEXGlobalUtilities.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>()))
+            if (++Projectile.localAI[1] > 10 && YharimEXUtils.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>()))
             {
                 float yOffset = Projectile.Center.Y - Main.npc[YharimEXGlobalNPC.yharimEXBoss].Center.Y;
                 if (Math.Sign(yOffset) == Math.Sign(Projectile.velocity.Y) && Projectile.Distance(Main.npc[YharimEXGlobalNPC.yharimEXBoss].Center) > 1200 + Projectile.ai[0])
@@ -80,7 +76,6 @@ namespace YharimEX.Content.Projectiles
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.Slimed, 240);
-            if (YharimEXWorldFlags.EternityMode && YharimEXCrossmodSystem.FargowiltasSouls.Loaded) target.AddBuff(YharimEXCrossmodSystem.FargowiltasSouls.Mod.Find<ModBuff>("MutantFangBuff").Type, 180);
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -94,7 +89,7 @@ namespace YharimEX.Content.Projectiles
                 sheetClamped = 1;
             if (sheetClamped > 3)
                 sheetClamped = 3;
-            Texture2D texture2D13 = ModContent.Request<Texture2D>($"YharimEX/Assets/Projectiles/YharimEXSlimeBall_{sheetClamped}", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+            Texture2D texture2D13 = ModContent.Request<Texture2D>($"InfernalEclipseAPI/YharimEX/Assets/Projectiles/YharimEXSlimeBall_{sheetClamped}", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
             int num156 = texture2D13.Height / Main.projFrames[Projectile.type]; //ypos of lower right corner of sprite to draw
             int y3 = num156 * Projectile.frame; //ypos of upper left corner of sprite to draw
             Rectangle rectangle = new(0, y3, texture2D13.Width, num156);

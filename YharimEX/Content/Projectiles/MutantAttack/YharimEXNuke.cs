@@ -6,14 +6,14 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
+using InfernalEclipseAPI.YharimEX.Core.Systems;
+using InfernumMode.Core.GlobalInstances.Systems;
+using InfernalEclipseAPI.YharimEX.Core.Globals;
 using YharimEX.Assets.ExtraTextures;
 using YharimEX.Assets.Sounds.Attacks;
-using YharimEX.Core.Globals;
-using YharimEX.Core.Systems;
-using YharimEX.Content.Projectiles.FargoProjectile;
-using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
 
-namespace YharimEX.Content.Projectiles
+namespace InfernalEclipseAPI.YharimEX.Content.Projectiles.MutantAttack
 {
     public class YharimEXNuke : ModProjectile, IPixelatedPrimitiveRenderer
     {
@@ -36,14 +36,8 @@ namespace YharimEX.Content.Projectiles
             Projectile.hostile = true;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
-            Projectile.timeLeft = YharimEXWorldFlags.MasochistModeReal ? 120 : 180;
+            Projectile.timeLeft = WorldSaveSystem.InfernumModeEnabled ? 120 : 180;
             CooldownSlot = 1;
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                SetupFargoProjectile SetupFargoProjectile = Projectile.GetGlobalProjectile<SetupFargoProjectile>();
-                SetupFargoProjectile.TimeFreezeImmune = true;
-                SetupFargoProjectile.DeletionImmuneRank = 2;
-            }
         }
 
         public override void AI()
@@ -54,14 +48,14 @@ namespace YharimEX.Content.Projectiles
                 SoundEngine.PlaySound(SoundID.Item20, Projectile.position);
             }
 
-            if (!YharimEXGlobalUtilities.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>())
+            if (!YharimEXUtils.BossIsAlive(ref YharimEXGlobalNPC.yharimEXBoss, ModContent.NPCType<YharimEXBoss>())
                 || Main.npc[YharimEXGlobalNPC.yharimEXBoss].dontTakeDamage)
             {
                 Projectile.Kill();
                 return;
             }
 
-            if (YharimEXWorldFlags.MasochistModeReal && Main.getGoodWorld)
+            if (WorldSaveSystem.InfernumModeEnabled && Main.getGoodWorld)
             {
                 if (++Projectile.localAI[2] > YharimEXBoss.HyperMax + 1)
                 {
@@ -108,27 +102,9 @@ namespace YharimEX.Content.Projectiles
                 Main.dust[index2].velocity = vector2_2;
             }
 
-            if (YharimEXGlobalUtilities.HostCheck)
+            if (YharimEXUtils.HostCheck)
             {
                 Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<YharimEXPhantasmalBlast>(), 0, 0f, Projectile.owner);
-            }
-        }
-
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-            {
-                if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                {
-                    if (YharimEXWorldFlags.DeathMode & !YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        target.YharimPlayer().MaxLifeReduction += 100;
-                    }
-                    else if (YharimEXCrossmodSystem.FargowiltasSouls.Loaded)
-                    {
-                        EternityDebuffs.ManageOnHitDebuffs(target);
-                    }
-                }
             }
         }
 
@@ -145,8 +121,8 @@ namespace YharimEX.Content.Projectiles
 
         public void RenderPixelatedPrimitives(SpriteBatch spriteBatch)
         {
-            ManagedShader shader = ShaderManager.GetShader("YharimEX.YharimEXBlobTrail");
-            YharimEXGlobalUtilities.SetTexture1(YharimEXTextureRegistry.ColorNoiseMap.Value);
+            ManagedShader shader = ShaderManager.GetShader("InfernalEclipseAPI.YharimEXBlobTrail");
+            YharimEXUtils.SetTexture1(YharimEXTextureRegistry.ColorNoiseMap.Value);
             PrimitiveRenderer.RenderTrail(Projectile.oldPos, new(WidthFunction, ColorFunction, _ => Projectile.Size * 0.5f, Pixelate: true, Shader: shader), 25);
         }
 

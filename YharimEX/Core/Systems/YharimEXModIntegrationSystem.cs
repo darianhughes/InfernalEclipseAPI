@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.Localization;
+using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
 
 namespace InfernalEclipseAPI.YharimEX.Core.Systems
 {
@@ -21,10 +22,9 @@ namespace InfernalEclipseAPI.YharimEX.Core.Systems
             ModLoader.TryGetMod("MusicDisplay", out Mod musicDisplay);
             if (musicDisplay is null) return;
 
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/TheRealityoftheProphecy"), "The Reality of the Prophecy", "by theforge129", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/Storia"), "Storia", "by Xi Vs Sakuzyo", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/StoriaShort"), "Storia (Desperation)", "by Xi Vs Sakuzyo", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/LegendsAboutTheGodseeker"), "Legends About The Godseeker", "TheTrester", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/CrossroadsofTwoLegendsP1"), "Crossroads of Two Legends (Legends)", "by TheTrester", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/CrossroadsofTwoLegendsP2"), "Crossroads of Two Legends (Intimidating)", "by TheTrester", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(Mod, "YharimEX/Assets/Music/CrossroadsofTwoLegendsDesp"), "Crossroads of Two Legends (Desperation)", "by TheTrester", "Infernal Eclipse of Ragnarok");
         }
 
         private void BossChecklistSetup()
@@ -107,7 +107,7 @@ namespace InfernalEclipseAPI.YharimEX.Core.Systems
                     {
                         Action<SpriteBatch, Rectangle, Color> action = (sb, rect, color) =>
                         {
-                            Texture2D texture2D = ModContent.Request<Texture2D>("YharimEX/Assets/NPCs/YharimEXBossChecklist", (AssetRequestMode)2).Value;
+                            Texture2D texture2D = ModContent.Request<Texture2D>("InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXBossChecklist", (AssetRequestMode)2).Value;
                             Vector2 vector2;
                             vector2 = new Vector2(
                                 rect.X + rect.Width / 2f - texture2D.Width / 2f,
@@ -116,8 +116,8 @@ namespace InfernalEclipseAPI.YharimEX.Core.Systems
                             sb.Draw(texture2D, vector2, color);
                         };
                         dictionary.Add("customPortrait", action);
-                        dictionary.Add("displayName", Language.GetText("Mods.YharimEX.NPCs.YharimEXBoss.DisplayName"));
-                        dictionary.Add("overrideHeadTextures", "YharimEX/Assets/NPCs/YharimEXBoss_Head");
+                        dictionary.Add("displayName", Language.GetText("Mods.InfernalEclipseAPI.NPCs.YharimEXBoss.DisplayName"));
+                        dictionary.Add("overrideHeadTextures", "InfernalEclipseAPI/YharimEX/Assets/NPCs/YharimEXBoss_Head");
                     }
                 }
             }
@@ -131,7 +131,7 @@ namespace InfernalEclipseAPI.YharimEX.Core.Systems
             }
             dictionary.Add("collectibles", intList1);
             if (!flag)
-                dictionary.Add("spawnInfo", Language.GetText("Mods.YharimEX.SpawnInfo." + InternalName));
+                dictionary.Add("spawnInfo", Language.GetText("Mods.InfernalEclipseAPI.SpawnInfo." + InternalName));
 
             return dictionary;
         }
