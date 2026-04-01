@@ -403,8 +403,8 @@ ItemTooltip: {
 	}
 
 	ShoeIce: {
-		// Orig: 40% increased movement speed
-		// Nerf: 15% increased movement speed
+		Orig: 增加40%移动速度
+		Nerf: 增加15%移动速度
 	}
 
 	DoesNotStack: 不与下位效果叠加
