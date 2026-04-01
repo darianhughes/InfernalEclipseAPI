@@ -3922,6 +3922,7 @@ namespace InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses
             {
                 npcLoot.Add(ItemDropRule.Common(calVal.Find<ModItem>("YharimCape").Type));
                 npcLoot.Add(ItemDropRule.Common(calVal.Find<ModItem>("YhogoStick").Type));
+                npcLoot.Add(ItemDropRule.Common(calVal.Find<ModItem>("AncientAuricTeslaHelm").Type));
             }
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), ThankYouPainting.DropInt));

@@ -71,7 +71,7 @@ namespace InfernalEclipseAPI.Content.Items.Consumables
         public static void OnActivation(Player player)
         {
             player.Calamity().adrenaline = player.Calamity().adrenalineMax;
-            player.AddBuff(ModContent.BuffType<AdrenalineMode>(), 2);
+            player.AddBuff(ModContent.BuffType<AdrenalineMode>(), player.Calamity().AdrenalineDuration);
 
             if (player.whoAmI == Main.myPlayer)
                 SoundEngine.PlaySound(new("CalamityMod/Sounds/Custom/AbilitySounds/AdrenalineActivate"));

@@ -41,6 +41,7 @@ using CalamityMod.Projectiles.Typeless;
 using CalamityMod.Systems;
 using CalamityMod.UI.DraedonSummoning;
 using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.AstrumDeus;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
@@ -722,7 +723,12 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 {
                     NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, WrathNPC("AvatarRift"));
                 }, permittedNPCs: new int[] { WrathNPC("BattleSolyn"), WrathNPC("NamelessDeityBoss"), WrathNPC("AvatarRift"), WrathNPC("AvatarOfEmptiness") }));
+            }
 
+            Bosses.Add(new Boss(NPCType<YharimEXBoss>(), TimeChangeContext.Night, specialSpawnCountdown: 270));
+
+            if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.WrathoftheGodsBossesInBossRush)
+            {
                 Bosses.Add(new Boss(WrathNPC("NamelessDeityBoss"), TimeChangeContext.Night, specialSpawnCountdown: 270));
             }
 

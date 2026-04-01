@@ -1921,13 +1921,24 @@ Items: {
 		Stellar: Stellar
 		Major: Major
 	}
+
+	ShatteredSubcommunity: {
+		DisplayName: Shattered Subcommunity
+		Tooltip:
+			'''
+			'Ruined by toxicity, it still contains most of the part of The (Calamity) Community...'
+			Increases mining speed by 50%
+			Increases luck by 0.5 and fishing power by 50
+			Increases tile and wall placing speed by 50% and placing range by 5
+			'''
+	}
 }
 
 Projectiles: {
 	YharimEXSunBlast.DisplayName: Sun Blast
 	YharimEXBrain.DisplayName: Brain of Confusion
-	YharimEXRitual.DisplayName: Yharim EX Ritual
-	YharimEXMark2.DisplayName: Yharim EX Mark 2
+	YharimEXRitual.DisplayName: Yharim Ritual
+	YharimEXMark2.DisplayName: Yharim Mark
 	YharimEXEye.DisplayName: Yharim EX Eye
 	YharimEXDoGTail.DisplayName: Devourer of Gods
 	YharimEXDoGHead.DisplayName: Devourer of Gods
@@ -1938,7 +1949,7 @@ Projectiles: {
 	YharimEXDeathray2.DisplayName: Deathray
 	YharimEXDeathray1.DisplayName: Deathray
 	YharimEXCrystalLeaf.DisplayName: Crystal Leaf
-	YharimEXBossProjectile.DisplayName: Yharim EX Boss Projectile
+	YharimEXBossProjectile.DisplayName: Yharim Boss Projectile
 	YharimEXBombSmall.DisplayName: Bomb
 	YharimEXBomb.DisplayName: Bomb
 	MutantEyeOfCthulhu.DisplayName: Eye Of Cthulhu
@@ -1951,28 +1962,28 @@ Projectiles: {
 	YharimEXGlowRing.DisplayName: Glow Ring
 	YharimEXGlowything.DisplayName: Glowything
 	YharimEXGuardian.DisplayName: Ares
-	YharimEXHeal.DisplayName: Mutant Yharim EX Heal Heal
-	YharimEXMark1.DisplayName: Yharim EX Mark 1
+	YharimEXHeal.DisplayName: Yharim Heal
+	YharimEXMark1.DisplayName: Yharim Mark
 	YharimEXNuke.DisplayName: Nuke
 	YharimEXPhantasmalBlast.DisplayName: Phantasmal Blast
 	YharimEXPillar.DisplayName: Astrageldon
-	YharimEXReticle.DisplayName: Yharim EX Reticle
-	YharimEXRetirang.DisplayName: Yharim EX Retirang
-	YharimEXReticle2.DisplayName: Yharim EX Reticle 2
-	YharimEXRitual2.DisplayName: Yharim EX Ritual 2
-	YharimEXRitual3.DisplayName: Yharim EX Ritual 3
-	YharimEXRitual4.DisplayName: Yharim EX Ritual 4
-	YharimEXRitual5.DisplayName: Yharim EX Ritual 5
-	YharimEXSansBeam.DisplayName: Yharim EX Sans Beam
-	YharimEXSansHead.DisplayName: Yharim EX Sans Head
-	YharimEXIronParry.DisplayName: Yharim EX Iron Parry
-	YharimEXScythe1.DisplayName: Yharim EX Scythe 1
-	YharimEXScythe2.DisplayName: Yharim EX Scythe 2
+	YharimEXReticle.DisplayName: Yharim Reticle
+	YharimEXRetirang.DisplayName: Retirang
+	YharimEXReticle2.DisplayName: Yharim Reticle
+	YharimEXRitual2.DisplayName: Yharim Ritual
+	YharimEXRitual3.DisplayName: Yharim Ritual
+	YharimEXRitual4.DisplayName: Yharim Ritual
+	YharimEXRitual5.DisplayName: Yharim Ritual
+	YharimEXSansBeam.DisplayName: Sans Beam
+	YharimEXSansHead.DisplayName: Sans Head
+	YharimEXIronParry.DisplayName: Iron Parry
+	YharimEXScythe1.DisplayName: Scythe 1
+	YharimEXScythe2.DisplayName: Scythe 2
 	YharimEXShadowHand.DisplayName: Shadow Hand
-	YharimEXSlimeBall.DisplayName: Yharim EX Slime Ball
-	YharimEXSlimeRain.DisplayName: Yharim EX Slime Rain
-	YharimEXSlimeSpike.DisplayName: Yharim EX Slime Spike
-	YharimEXSpazmarang.DisplayName: Yharim EX Spazmarang
+	YharimEXSlimeBall.DisplayName: Slime Ball
+	YharimEXSlimeRain.DisplayName: Slime Rain
+	YharimEXSlimeSpike.DisplayName: Slime Spike
+	YharimEXSpazmarang.DisplayName: Spazmarang
 	YharimEXSpearAim.DisplayName: Spear
 	YharimEXSpearDash.DisplayName: Spear Dash
 	YharimEXSphereSmall.DisplayName: Sphere
@@ -2013,36 +2024,48 @@ Projectiles: {
 	YharimEXDestroyerBody.DisplayName: The Destroyer
 	YharimEXDestroyerHead.DisplayName: The Destroyer
 	YharimEXDestroyerTail.DisplayName: The Destroyer
-	YharimEXGlowLine.DisplayName: Yharim E X Glow Line
-	YharimEXCelestialFragment.DisplayName: Yharim E X Celestial Fragment
-	YharimEXCosmosVortex.DisplayName: Yharim E X Cosmos Vortex
-	YharimEXGlowRingHollow.DisplayName: Yharim E X Glow Ring Hollow
-	YharimEXMoonLordVortex.DisplayName: Yharim E X Moon Lord Vortex
-	NovaBombBlackHoleProj.DisplayName: Nova Bomb Black Hole Proj
-	NovaBombProj.DisplayName: Nova Bomb Proj
-	GlitchSwordHoldout.DisplayName: Glitch Sword Holdout
-	HomingTerraBeam.DisplayName: Homing Terra Beam
-	PlayerShadowClone.DisplayName: Player Shadow Clone
-	TerraSlash.DisplayName: Terra Slash
-	CelestialIlluminationBeam.DisplayName: Celestial Illumination Beam
-	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
+	YharimEXGlowLine.DisplayName: Yharim Glow Line
+	YharimEXCelestialFragment.DisplayName: Yharim Celestial Fragment
+	YharimEXCosmosVortex.DisplayName: Yharim Cosmos Vortex
+	YharimEXGlowRingHollow.DisplayName: Yharim Glow Ring Hollow
+	YharimEXMoonLordVortex.DisplayName: Yharim Moon Lord Vortex
+	GlitchSwordHoldout.DisplayName: Glitch Sword
+	Rogue.NovaBombProj.DisplayName: Nova Bomb
 	StellarStar.DisplayName: Stellar Star
+	BossRushTier6Animation.DisplayName: Tier 6 Animation
+	RogueSpectreBlast.DisplayName: Spectre Blast
+	BountifulHarvestStinger.DisplayName: Harvest Stinger
+	FriendlyBrimstoneBarrage.DisplayName: Brimstone Barrage
+	FriendlyBrimstoneFireblast.DisplayName: Brimstone Fireblast
+	RadioMicPro.DisplayName: Radio Mic
+	RadioMicShadowBurst.DisplayName: hadow Burst
+	TidalWaveWhirlpool.DisplayName: Whirlpool
+	FireAxeStealthPro.DisplayName: Fire Axe
+	GalaxyRainController.DisplayName: Galaxy Rain
+	FriendlyBrimstoneGigablast.DisplayName: Brimstone Gigablast
 	BeamChargeUp.DisplayName: Beam Charge Up
 	ChaosBlasterBeam.DisplayName: Chaos Blaster Beam
-	DestinaryProjectile.DisplayName: Destinary Projectile
-	ExoDisk.DisplayName: Exo Disk
-	_13thGltichCombo.DisplayName: _13th Gltich Combo
-	FirstSwordHoldoutCombo.DisplayName: First Sword Holdout Combo
-	GalaxyRainController.DisplayName: Galaxy Rain Controller
+	HomingTerraBeam.DisplayName: Terra Beam
+	PlayerShadowClone.DisplayName: Shadow Clone
+	TerraSlash.DisplayName: Terra Slash
+	NovaBombBlackHoleProj.DisplayName: Black Hole
+	NovaBombProj.DisplayName: Nova Bomb
+	FirstSwordHoldoutCombo.DisplayName: Sword of the First
+	_13thGltichCombo.DisplayName: 13th Gltich
+	CelestialBeam.DisplayName: Celestial Beam
+	DemonicRune.DisplayName: Demonic Little Grey Cat Rune
+	ThoriumHeavyScytheSpark.DisplayName: Thorium Heavy Scythe Spark
 	NebulaBeam.DisplayName: Nebula Beam
 	NebulaChargeUp.DisplayName: Nebula Charge Up
 	DisintegratorBeam.DisplayName: Disintegrator Beam
 	DisintegratorChargeUp.DisplayName: Disintegrator Charge Up
-	BossRushTier6Animation.DisplayName: Boss Rush Tier6 Animation
-	BountifulHarvestStinger.DisplayName: Bountiful Harvest Stinger
+	DestinaryProjectile.DisplayName: Destinary Projectile
+	ExoDisk.DisplayName: Exo Disk
+	PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash
 	EvilGrowth.DisplayName: Evil Growth
 	EvilStrike.DisplayName: Evil Strike
-	ThoriumHeavyScytheSpark.DisplayName: Thorium Heavy Scythe Spark
+	CelestialIlluminationBeam.DisplayName: Celestial Illumination Beam
+	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
 }
 

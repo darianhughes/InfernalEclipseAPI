@@ -1,6 +1,9 @@
 ﻿using InfernalEclipseAPI.YharimEX.Core.Systems;
 using InfernalEclipseAPI.YharimEX.Content.NPCs.Bosses;
 using CalamityMod.Rarities;
+using CalamityMod.Items.Materials;
+using Terraria;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace InfernalEclipseAPI.YharimEX.Content.Items
 {
@@ -41,5 +44,16 @@ namespace InfernalEclipseAPI.YharimEX.Content.Items
         }
 
         //public override Color? GetAlpha(Color lightColor) => Color.White;
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient<AuricBar>(5);
+            recipe.AddIngredient<AshesofAnnihilation>(3);
+            recipe.AddIngredient<MiracleMatter>();
+            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient(wotg.Find<ModItem>("MetallicChunk").Type);
+            recipe.AddTile<SCalAltar>();
+            recipe.Register();
+        }
     }
 }

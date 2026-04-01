@@ -4,6 +4,7 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
 using CalamityMod.Items.Placeables.Abyss;
 using CalamityMod.Items.SummonItems;
+using CalamityMod.Items.Tools;
 using CalamityMod.Tiles.DraedonSummoner;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Content.Items.Materials;
@@ -267,6 +268,15 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                         recipe.AddIngredient<ArmoredShell>(3);
                         recipe.AddIngredient<TwistingNether>(3);
                         recipe.AddIngredient<DarkPlasma>(3);
+                    }
+                }
+
+                //Wall of Bronze
+                if (InfernalCrossmod.Clamity.Loaded)
+                {
+                    if (recipe.HasResult(InfernalCrossmod.Clamity.Mod.Find<ModItem>("AncientConsole")))
+                    {
+                        recipe.AddIngredient<MomentumCapacitor>();
                     }
                 }
             }
