@@ -19,7 +19,7 @@ Items: {
 
 	SoulBullet: {
 		DisplayName: 魂弹
-		 Tooltip:
+		Tooltip:
 			'''
 			追踪最近的敌怪，造成一半伤害但穿透敌怪三次，每次造成的伤害递减
 			“由压入弹壳的悲惨灵魂所制成，可能会吸引同样可怜的灵魂”
