@@ -426,6 +426,7 @@ ItemTooltip: {
 		cheese: cheesenuggets
 		Puzzles: Mr. Puzzles
 		cat: StarlightCat
+		// Arkangel: Arkangel
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -743,6 +744,7 @@ ItemTooltip: {
 		ND: Божества
 		Mars: Марса
 		EoL: Императрицы света
+		// Yharim: Yharim's
 	}
 
 	AstrageldonRelic: {
@@ -793,45 +795,6 @@ ItemTooltip: {
 }
 
 Lore: {
-	Abom:
-		'''
-		Средний ребёнок в семье вечных сиблингов и один из самых ленивых существ, которых я когда-либо видел.
-		Хотя Мерзостть способен полностью контролировать погоду и с лёгкостью отражать любых захватчиков, он невероятно ленив — настолько, что даже встроил своё оружие прямо в руки, чтобы не носить его.
-		Его оружие способно рассекать саму душу и подчинять себе любые сверхъестественные явления.
-		Хорошо, что он решил не прибегать к неземным атакам, иначе твоя победа была бы попросту невозможна.
-		'''
-	Devi:
-		'''
-		Младшая из вечных сиблингов и при этом самая слабая.
-		За своё путешествие она собрала целую кучу редких предметов монстров, и, будучи в настроении помогать, она продаёт их другим.
-		Однако, когда у нее нет настроения помогать, она даёт полную волю своему влюблённому садизму.
-		Девиантт способна колдовать, используя как изначальный свет, так и чистую любовь, и всё это размахивая живым топором, сотканным из зла.
-		И хотя ты одолел её в бою, кажется, она не боится смерти, и я впервые вижу, чтобы она выкладывалась в бою на полную.
-		'''
-	Mutant:
-		'''
-		Старший и сильнейший из вечных сиблингов.
-		Хотя остальные сиблинги называют Мутанта своим братом, он лично отказывается подтверждать свой пол.
-		Он — Хранитель вечности, воплощение абсолютной силы и как полагают, явился из иного мира за пределами нашего измерениями.
-		Помимо тебя, он является сильнейшим существом, когда-либо ступавшим по землям Террарии, и истинным повелителем всякого боевого искусства.
-		Но, даже обладая всей этой силой, он всегда был больше заинтересован в том, чтобы наблюдать за чужими битвами, нежели участвовать в них самому.
-		Он всегда говорил людям, что ищет кого-то сильного, и, похоже, он нашёл того, кого искал.
-		'''
-	DylanLore:
-		'''
-		Хм... Я удивлен, что ты вообще знаешь об этом человеке.
-		Когда мы впервые нашли его, то приняли за бога... однако, в итоге оказалось, что у него на самом деле не было ауритовой души.
-		Мы приняли его в свои ряды, и он научил нас создавать могущественную экипировку, наполненную стихиями, и бомбы, которые были не просто стальными.
-		Его идеи значительно усилили мою армию, но сам он никогда не сражался.
-
-		Однажды, когда я зашёл в его комнату, там не было ничего, кроме записки.
-		Мы не смогли перевести его письмо, но по картинкам можно было понять, что это было что-то вроде кольца.
-		и одним из ключевых компонентов, судя по всему, было «Кольцо тёмного солнца».
-		Возможно, это «Руководство» сможет помочь тебе расшифровать записку дальше.
-		Так или иначе, я уверен, что ты сумеешь понять, как его создать.
-
-		–Следите за будущими обновлениями Infernal Eclipse of Ragnarok!–
-		'''
 	DylanSoltan:
 		'''
 		Кто бы ни читал эту записку, знай:
@@ -854,112 +817,6 @@ Lore: {
 		[c/E3AF40:Книга вызывает ощущение чего-то потустороннего... возможно, существует нечто большее, чем Ярим или даже божество.]
 
 		–Следите за новостями о будущем Infernal Eclipse of Ragnarok!–
-		'''
-	Provi:
-		'''
-		Однажды я мечтал о покое. Не знаю, почему.
-		С тех пор как до меня дошли слухи, что существует нечто за пределами этого мира,
-		Я постоянно ощущал присутствие этой женщины в нашем мире.
-		Что Торну от неё нужно? Кто знает.
-		Но теперь вся сила в твоих руках, Террариец.
-		'''
-	Mirror:
-		'''
-		Я долго вглядывался в него, но, как и в любом другом зеркале, видел лишь себя.
-		Но даже тогда что-то чувствовалось... иным. Казалось неправильным, почти... извращённым.
-		Я не обратил на это внимания. Но даже сейчас я чувствую пронзительный взгляд своего отражения... пронзающий меня насквозь.
-		Когда ты зашёл так далеко, самое сложное в твоём путешествии — это столкнуться с самим собой.
-		'''
-	Subspace:
-		'''
-		Существуют легенды о таинственных змееподобных существах, бродящих между измерениями.
-		Многие говорят, что они слишком опасны, чтобы сражаться с ними в одиночку,
-		и что они могут убить любого в мгновение ока с помощью энергии пустоты, которой они обладают.
-		Однако этот же... явно подросток.
-		'''
-	Polaris:
-		'''
-		Когда я впервые привлек Дрэйдона в свою армию, он сразу же приступил к работе над так называемым «секретным проектом», о котором он отказывался рассказывать подробнее.
-		Вскоре после этого он представил свою первую мрачную машину смерти.
-		Я знал, что он подходит для моей армии, однако его проявленные способности были... многообещающими. Очень многообещающими.
-		'''
-	Putrid:
-		'''
-		Похоже, это неудавшийся эксперимент.
-		У него наблюдается странная тяга к арахису, растущему на поверхности, хотя причина этого неизвестна.
-		Ему далеко до силы других желеобразных угроз этого мира,
-		но, тем не менее, он всё же представлял из себя грозного противника.
-		'''
-	Lux:
-		'''
-		Хотя освящение защищают многие, духам хаоса нет равных.
-		Ни одного из них так и не удалось достаточно ослабить для подчинения и практического применения,
-		поэтому Дрэйдон в итоге заключил их в конструкты с единственной целью — удержать их любой ценой.
-		Примечательно, что после её поражения коллекционер вновь явился, чтобы поглотить остатки её энергии.
-		Забавно.
-		'''
-	Pharoah:
-		'''
-		Результат очередной глупости, вызванной стремлением к божественности.
-		Младший из королевских братьев, наследник престола оазиса.
-		Хотя, в отличие от своего проклятого и подлого старшего брата, его сердце было чистым, всё же его постигла печальная участь.
-		Вмешательство душ отравило его склеп, погрузив его в глубокий мучительный сон.
-		Его последователи и королевские помощники пытались спасти его, но было уже слишком поздно.
-		Попробуйте скорбеть после этой победы. Он был слишком молод, чтобы страдать от последствий своего происхождения.
-		'''
-	Advisor:
-		'''
-		Мне не ведомо, что за существо этот «Советник» и каково его происхождение,
-		но, судя по всему, он был глубоко связан с энергией пустоты, что залегает в самых недрах Террарии.
-		Как тому, кто скован здесь, тебе, возможно, и удастся выведать эту тайну
-		у коллекционера, что поглотил его сущность после победы над ним.
-		'''
-	Glowmoth:
-		'''
-		Это создание, похожее на мотылька, интересно тем, что селится в тех же светящихся пещерах, заражённых грибами, что и другой подобный зверь.
-		Кажется, оно испускает своего рода биолюминесцентное свечение, напоминающее пустоту...
-		возможно, оно обитает в этих пещерах из-за скрытой здесь энергии пустоты?
-		Как бы то ни было, это выше моего понимания.
-		'''
-	Mjolnir:
-		'''
-		Тор, один из немногих богов, кому удалось избежать моего крестового похода,
-		тем не менее он никогда не забудет, что я сделал с ним и его семьёй.
-		Асгард всего лишь земля грешников, поэтому я просто сделал с ними то, что они сделали со многими другими.
-		Тор ускользнул от меня и я был уверен, что он по сей день правит Асгардом,
-		но с его молотом в твоих руках, возможно отныне это не так.
-		'''
-	Ragnarok:
-		'''
-		Как любопытно.
-		Рагнарёк, мифический конец времён, оказался существом, а не событием.
-		Я искал по всему миру способ вызвать его, дабы уничтожить Асгард,
-		но в конце концов, я прекратил свои поиски.
-		Сказания о змеях и огне были далеки от истины,
-		но теперь Рагнарёк погряз в руинах, как и сам Асгард.
-
-		Теперь тебя считают героем этих земель,
-		и возможно ты обретёшь покой в новой эре, которую создал сам.
-		Однако, берегись, ибо за каждым концом следует новое начало...
-		[c/7C0A02:Не испытывай свою удачу дальше, Террариец.]
-		'''
-	Primordials:
-		'''
-		До того, как был создан мир, существовали только Первородные.
-		Каждый из них олицетворяет один из аспектов этого мира и защищает его от Рагнарёка.
-		Во время своей войны я жаждал уничтожить их, думая, что они такие же грешники, как и другие боги,
-		но что бы я ни делал, я не смог привлечь их внимание.
-		Неужели я не достоин их внимания, несмотря на всё, что я сделал для мира?
-		Только не говорите мне, что они считают меня ничтожеством в истории этого мира по сравнению с тобой...
-		'''
-	ThunderBird:
-		'''
-		Некогда эти птицы были великими и грозными противниками, достойной дичью для охоты.
-		Их перья могли преобразовывать спящую энергию солнца в мощные молнии, отсюда и название.
-		Однако эти великие битвы были мимолётными, и вскоре из-за естественного отбора
-		они утратили большую часть своей могущественной силы.
-		Тот, кого ты одолел, — всего лишь жалкий карлик по сравнению с тем, что я когда-то видел,
-		но титул Великой громовой птицы будет жить вечно.
 		'''
 }
 
@@ -1091,76 +948,268 @@ Items: {
 		LorePolaris: {
 			DisplayName: Полярис
 			Tooltip: ""
+			/* Lore:
+				'''
+				When I had initially brought Draedon onto my army, he had immediately began work on a supposed  "secret project" that he refused to elaborate on.
+				Soon after, he presented his first grim death machine.
+				I knew it was fit for my army, however, his prowess shown was... promising. Very much so.
+				''' */
 		}
 
 		LoreAdvisor: {
 			DisplayName: Аналитик
 			Tooltip: ""
+			/* Lore:
+				'''
+				Unlike most creatures, I know not of this "Advisor" or its origins
+				However, it seemed to be much in tune with the void energy lying deep within the crust of Terraria.
+				As who chained it to the Planetarium? I couldn't tell you. 
+				Maybe you could find the answers of that secret from the collector that absorbed its essence after its defeat.
+				''' */
 		}
 
 		LoreGlowmoth: {
 			DisplayName: Светомотылёк
 			Tooltip: ""
+			/* Lore:
+				'''
+				This moth-like creature is interesting, as it makes its homes within the same glowing, mushroom‑infested caves as another similar beast.
+				It seems to emit some sort of bioluminescent glow, reminiscent of the void...
+				perhaps it resides in these caves for their latent void energy?
+				Whatever the case may be, it is beyond me.
+				''' */
 		}
 
 		LoreLux: {
 			DisplayName: Люкс
 			Tooltip: ""
+			/* Lore:
+				'''
+				While the Hallow has many that protect it, chaos spirits have no equal.
+				None of them had ever been sufficiently weakened for intelligent use,
+				and Draedon ended up shoving them into constructs for the sole purpose of containment.
+				With this in mind, it is odd that collector once again came to absorb what was left of its energy after its defeat.
+				How quaint.
+				''' */
 		}
 
 		LorePharaoh: {
 			DisplayName: Проклятие Фараона
 			Tooltip: ""
+			/* Lore:
+				'''
+				The product of yet another folly of the greed towards godhood.
+				Younger of the royal brothers, heir to the throne of the oasis.
+				Though unlike his accursed and vile older sibling, his heart was pure, yet he still faced a saddening fate.
+				The meddling of souls had poisoned his crypt into a pestilence, casting him in a deep painful slumber.
+				His followers and royal assistants tried to save him, but it was too late.
+				Try to mourn after this victory. He was too young to suffer the consequences of his lineage.
+				''' */
 		}
 
 		LorePutrid: {
 			DisplayName: Гнилостный пинки
 			Tooltip: ""
+			/* Lore:
+				'''
+				A failed experiment, it would seem.
+				It has a certain hunger for Peanuts that grow on the surface, though the reasoning is unknown.
+				It is nowhere near the strength of some of the other gelatinous threats of this world,
+				but it was still formidable irregardless.
+				''' */
 		}
 
 		LoreSerpent: {
 			DisplayName: Подпространственный змей
 			Tooltip: ""
+			/* Lore:
+				'''
+				There lies tales of mysterious serpent‑like beings that roam the manifold between dimensions.
+				Many say that they are too dangerous to face alone,
+				and that they could kill anyone within an instant with the void energy they possess.
+				This one, however... is clearly juvenile.
+				''' */
 		}
 
 		LoreProvi: {
 			DisplayName: Галактика
 			Tooltip: ""
+			/* Lore:
+				'''
+				I dreamt of peace once. I don't know why I did.
+				Ever since I received word that there was something beyond this world,
+				I've have felt that womans presence in our world every now and again.
+				Now what Thorne wanted from her? Who knows.
+				But all the power is in your hands now, Terrarian.
+				''' */
 		}
 
 		LoreMirror: {
 			DisplayName: Проклятое зеркало
 			Tooltip: ""
+			/* Lore:
+				'''
+				I stared into it for a long while, but like any other mirror, I only saw myself.
+				But even then, something felt... different. It felt wrong, almost... twisted.
+				I disregarded it. But even now, I can feel the piercing gaze my reflection had... shooting directly through my skull.
+				Once you come so far, the hardest part of your journey is facing yourself.
+				''' */
 		}
 
 		LoreDylan: {
 			DisplayName: Дилан
 			Tooltip: ""
-		}
+			/* Lore:
+				'''
+				Hmm ... I'm surprised that you even know of that person.
+				The first time we found him we thought he was a god ... however, ends up he didn't actually have a auric soul.
+				We took him in and he showed us how to make powerful elemental imbued gear and bombs that wasn't just steel.
+				His ideas had helped increase my army's power by a lot, but he never fought himself.
 
-		LoreAbominationn.DisplayName: Мерзостть
-		LoreDeviantt.DisplayName: Девиантт
-		LoreMutant.DisplayName: Мутант
-		SoltanBullyingSlip.DisplayName: Анти-Солтановская записка-чип Дилана
+				One day when I went to his room, but nothing was there expect from a note.
+				We couldn't translate his writing but from the pictures it was some sort of ring,
+				with one of the key ingredients appering to be a "Dark Sun Ring."
+				Perhaps that "Guide" could help you further decipher this note.
+				Regardless, I'm sure you'll figure out how to make it.
+
+				–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
+				''' */
+		}
 
 		LoreMjolnir: {
 			DisplayName: Мьёльнир
 			Tooltip: ""
+			/* Lore:
+				'''
+				Thor, one of the many gods that had managed to evade my crusade,
+				yet he wiill never forget what I had done to him and family.
+				Asgard was merely a land of sinners, so I mererly did what they had done to so many others.
+				Thor had escaped me and I belived he still ruled over Asgard to this day,
+				but with his hammer in your hands, perhaps it is no more.
+				''' */
 		}
 
 		LorePrimordials: {
 			DisplayName: Первородные
 			Tooltip: ""
+			/* Lore:
+				'''
+				Before the world was formed, there were only the Primordials.
+				Each of them represents an aspect of this world, and protect the world from Ragnarok.
+				During my war, I had wanted to slay them thinking they were merely sinners like the other gods,
+				however no matter what I did I could not get there attention.
+				Was I not worthy of their attention despite all I had done to the world?
+				Don't tell me they think I'm a spec in this worlds history compared to you...
+				''' */
 		}
 
 		LoreThunderBird: {
 			DisplayName: Великая громовая птица
 			Tooltip: ""
+			/* Lore:
+				'''
+				These birds were once great and fearsome adversaries, fine foes worth the hunt.
+				Thier feathers could can channel the sun's dormant energy into potent lightning, hense the name.
+				However, these great battles were fleeting; and soon by generation selection,
+				they had lost most of thier potent strength.
+				The one you bested is not but a mellowed runt in comparision to what I had once seen,
+				yet forevermore the title of the Grand Thunder Bird lives on.
+				''' */
 		}
 
 		LoreRagnarok: {
 			DisplayName: Рагнарёк
 			Tooltip: ""
+			/* Lore:
+				'''
+				How curious.
+				Ragnarok, the fabled end of days, was a being rather than an event.
+				I had searched the world for how to start it, so I could destroy Asgard,
+				but in the end, I had found nothing.
+				The tales of serpents and fire were far from the truth,
+				but now Ragnarok lies in ruin just like Asgard itself.
+
+				You are now seen as the hero for this land, 
+				and may you find peace in the new age you have created.
+				However, beware, for with every end comes a new beginning...
+				[c/7C0A02:Do not push your luck further, Terrarian.]
+				''' */
+		}
+
+		LoreMegalomaniac: {
+			// DisplayName: The Megalomaniac
+			// Tooltip: ""
+			/* Lore:
+				'''
+				The Devourer, the Dragon, and the Witch. All fell to your ambition. Your motive. Your drive.
+				I had an ambition similar. But never was I deemed hero.
+				I freed this world of tyranny, and yet I stand known as a tyrant.
+				Now one with a determination like mine arrives hell-bent on my destruction.
+				I will meet the same fate the oppressor I felled had.
+				Destined to be dispatched of by one with similar aspirations as themself.
+				I should have known, realized it sooner. It was always meant to be this way.
+				''' */
+		}
+
+		LoreAnniversaryOne: {
+			// DisplayName: Infernal Eclipse of Ragnarok
+			// Tooltip: Greatly boosts passive luck while in your inventory
+			/* Lore:
+				'''
+				What started as a small project I put together just for myself and a few friends has slowly grown into something much bigger than I ever expected. 
+				Infernal Eclipse of Ragnarok began as a way to make a chaotic mix of mods actually feel playable together by
+				just tweaking things here and there so my playthrough at the time would fell smoother and more fun. 
+				But over time, those small fixes turned into full systems, then into reworks, and eventually into an entire framework for how the game should feel. 
+				I found myself not just patching things, but designing—rethinking progression, balancing classes across multiple mods, 
+				and building something that felt cohesive instead of stitched together. 
+				It's been a long process of trial, frustration, and iteration, especially learning how to make everything work in multiplayer 
+				and across so many different mods, but it's also been incredibly rewarding. 
+				What was once just a personal project has become a full-scale development effort with its own identity, and honestly, 
+				seeing it grow into something others can enjoy has been one of the most fulfilling parts of the journey.
+
+				Thank you to everyone who has supported the mod, given feedback, and been part of this community.
+				Here's to many more updates, features, and chaotic times in the world of Infernal Eclipse of Ragnarok!
+				''' */
+		}
+
+		LoreAbominationn: {
+			DisplayName: Мерзостть
+			// Tooltip: ""
+			/* Lore:
+				'''
+				The middle child of the eternal siblings, and one of the laziest people I've ever seen.
+				While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
+				he truly is super lazy, going to the point of even fusing his weapons to his hands.
+				His weapon has the ability to divide the soul itself, and has the ability to use all supernatural phenomena. 
+				Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
+				''' */
+		}
+
+		LoreDeviantt: {
+			DisplayName: Девиантт
+			// Tooltip: ""
+			/* Lore:
+				'''
+				The youngest of the eternal siblings, and also the weakest.
+				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
+				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
+				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while using a living axe made of evil.
+				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
+				''' */
+		}
+
+		LoreMutant: {
+			DisplayName: Мутант
+			// Tooltip: ""
+			/* Lore:
+				'''
+				The oldest and strongest of the eternal siblings.
+				While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
+				He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift.
+				Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
+				Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
+				He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
+				''' */
 		}
 	}
 
@@ -1827,6 +1876,60 @@ Items: {
 		// DisplayName: Dream Essence
 		// Tooltip: "'Twilight of the Gods'"
 	}
+
+	TyrantYharimsUltisword: {
+		// DisplayName: Tyrant's Penetrator
+		/* Tooltip:
+			'''
+			Throw a auric greatsword that impales, immolates, and slows enemies
+			Up to five blades can impale an enemy at a time, with further hits launching the previous impaled blades
+			Press <right> to enter a stance where you can use <left> to perform a colossal, devastating slash
+			While in the stance, you gain life and flight time regeneration and your dashes have a shorter cooldown
+			The devastating slash must recharge after being used
+			Striking an impaled enemy with the devastating slash launches all blades and readies another slash
+			The final enemy hit with a devastating slash has a death mark applied to them
+			When you exit the stance, the death mark explodes for massive damage
+			'The reward of becoming a godseeker...'
+			''' */
+	}
+
+	BirthdayCake: {
+		// DisplayName: Birthday Cake
+		// Tooltip: ""
+		/* DynamicTooltip:
+			'''
+			{0} improvements to all stats
+			Instantly activates adrenaline mode & inflicts potion sickness
+			Can not be consumed when a boss is alive
+			'Happy Birthday!'
+			''' */
+		// Stellar: Stellar
+		// Major: Major
+	}
+
+	ShatteredSubcommunity: {
+		// DisplayName: Shattered Subcommunity
+		/* Tooltip:
+			'''
+			'Ruined by toxicity, it still contains most of the part of The (Calamity) Community...'
+			Increases mining speed by 50%
+			Increases luck by 0.5 and fishing power by 50
+			Increases tile and wall placing speed by 50% and placing range by 5
+			''' */
+	}
+
+	// SoltanBullyingSlip.DisplayName: Dylan's Anti-Soltan Chipnote
+	// MysteriousDiary.DisplayName: Mysterious Diary
+
+	AngelDyeItem: {
+		// DisplayName: Angel Dye
+		// Tooltip: ""
+	}
+
+	ArkangelDyeItem: {
+		// DisplayName: Arkangel Dye
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -1862,11 +1965,12 @@ Projectiles: {
 	DisintegratorChargeUp.DisplayName: Заряд дезинтегратора
 	DestinaryProjectile.DisplayName: "{$Items.Destinary.DisplayName}"
 	ExoDisk.DisplayName: Экзо-диск
-	// PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash Telegraph
+	// PutridPinkyDashTelegraph.DisplayName: Putrid Pinky Dash
 	// EvilGrowth.DisplayName: Evil Growth
 	// EvilStrike.DisplayName: Evil Strike
 	// CelestialIlluminationBeam.DisplayName: Celestial Illumination Beam
 	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
+	// Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
 }
 
 DiaryTooltip:

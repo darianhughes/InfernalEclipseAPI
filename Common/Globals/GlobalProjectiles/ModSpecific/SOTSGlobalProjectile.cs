@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Buffs.StatDebuffs;
+using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using SOTS;
@@ -35,22 +36,31 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 
             if (projectile.type == ModContent.ProjectileType<SharangaBlastSummon>())
             {
-                if (sotsPlayer.CritCurseFire)
-                    projectile.damage = (int)(projectile.damage * 0.75f);
-                else if (sotsPlayer.CritFire)
-                    projectile.damage = (int)(projectile.damage * 0.5f);
+                if (!player.GetModPlayer<InfernalPlayer>().bagOfCharms)
+                {
+                    if (sotsPlayer.CritCurseFire)
+                        projectile.damage = (int)(projectile.damage * 0.75f);
+                    else if (sotsPlayer.CritFire)
+                        projectile.damage = (int)(projectile.damage * 0.5f);
+                }
             }
 
             if (projectile.type == ModContent.ProjectileType<IcePulseSummon>())
             {
-                if (sotsPlayer.CritCurseFire || sotsPlayer.CritFrost)
-                    projectile.damage = (int)(projectile.damage * 0.75f);
+                if (!player.GetModPlayer<InfernalPlayer>().bagOfCharms)
+                {
+                    if (sotsPlayer.CritCurseFire || sotsPlayer.CritFrost)
+                        projectile.damage = (int)(projectile.damage * 0.75f);
+                }
             }
 
             if (projectile.type == ModContent.ProjectileType<CursedThunder>())
             {
-                if (sotsPlayer.CritCurseFire)
-                    projectile.damage = (int)(projectile.damage * 0.75f);
+                if (!player.GetModPlayer<InfernalPlayer>().bagOfCharms)
+                {
+                    if (sotsPlayer.CritCurseFire)
+                        projectile.damage = (int)(projectile.damage * 0.75f);
+                }
             }
         }
 

@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
+using CalamityMod.Rarities;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -149,6 +150,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 315;
                     item.DamageType = ModContent.GetInstance<MythicMelee>();
+                    item.rare = ModContent.RarityType<PureGreen>();
+                    item.value = CalamityGlobalItem.RarityPureGreenBuyPrice;
                 }
             }
             #endregion
@@ -377,9 +380,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (item.type == ModContent.ItemType<LeviathanTeeth>())
                 {
-                    item.damage = 120;
-                    item.useTime = 22;
-                    item.useAnimation = 22;
+                    item.damage = 80;
+                    item.useTime = 14;
+                    item.useAnimation = 14;
                 }
                 #endregion
             }
@@ -2054,6 +2057,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.damage = 47;
                         item.crit = 4;
+                        item.useTime = 5;
+                        item.useAnimation = 20;
                     }
 
                     if (GetItem(thorium, "TrenchSpitter", item))
@@ -2079,7 +2084,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "OmniBow", item))
                     {
-                        item.damage = 140;
+                        item.damage = 40;
                     }
 
                     if (GetItem(thorium, "OmniCannon", item))
@@ -3899,6 +3904,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useAnimation = 16;
                     }
 
+                    if (UnsafeGetItem(thorium, "TheTriangle", item))
+                    {
+                        item.damage = 114;
+                    }
+
                     //Dragon's Wail
                     if (GetItem(thorium, "DragonsWail", item))
                     {
@@ -4660,7 +4670,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(calBardHeal, "SpookyMonth", item))
                 {
-                    item.damage = 555;
+                    item.damage = 266;
                     item.useTime = 4;
                     item.useAnimation = 16;
                 }

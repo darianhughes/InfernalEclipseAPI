@@ -27,6 +27,8 @@ using InfernumMode.Content.Items.Accessories;
 using CalamityMod.CalPlayer;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Ravager;
+using CalamityMod.NPCs.Providence;
+using System.Linq;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -194,12 +196,15 @@ namespace InfernalEclipseAPI.Core.Players
         public int boostCooldownTime;
         public int RingofRestCooldown;
         public bool CritNightmare;
+        public bool bagOfCharms;
 
         public float manaSteal = Main.expertMode ? 40f : 50f;
         public float voidSteal = Main.expertMode ? 45f : 55f;
         public float inspirationSteal = Main.expertMode ? 5f : 10f;
 
         public bool singularityCore;
+
+        public bool aniversaryYearOneLoreObtained = false;
 
         public override void Initialize()
         {
@@ -213,6 +218,12 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 tag.Add("workshopHasBeenOwned", true);
             }
+
+            if (aniversaryYearOneLoreObtained)
+            {
+                tag.Add("aniversaryYearOneLoreObtained", true);
+            }
+
             var boost = new List<string>();
             boost.AddWithCondition("singularityCore", singularityCore);
 
@@ -222,6 +233,8 @@ namespace InfernalEclipseAPI.Core.Players
         public override void LoadData(TagCompound tag)
         {
             workshopHasBeenOwned = tag.Get<bool>("workshopHasBeenOwned");
+
+            aniversaryYearOneLoreObtained = tag.Get<bool>("aniversaryYearOneLoreObtained");
 
             var boost = tag.GetList<string>("IEORboost");
             singularityCore = boost.Contains("singularityCore");
@@ -332,6 +345,7 @@ namespace InfernalEclipseAPI.Core.Players
             flightArmor = false;
             CritNightmare = false;
             gutWrench = false;
+            bagOfCharms = false;
         }
 
         public override void PreUpdate()
@@ -803,7 +817,51 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if (scalingArmorPenetration)
             {
-                modifiers.DefenseEffectiveness *= Main.hardMode ? 0.25f : 0.2f;
+                bool bypassScalingArmorPen = false;
+
+                int[] bypassScalingArmorPenCal =
+                [
+                    ModContent.NPCType<Providence>()
+                ];
+
+                if (bypassScalingArmorPenCal.Contains(target.type))
+                    bypassScalingArmorPen = true;
+
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    Mod thor = InfernalCrossmod.Thorium.Mod;
+
+                    int[] bypassScalingAmorPenThor =
+                    [
+                        thor.Find<ModNPC>("BoreanStrider").Type,
+                        thor.Find<ModNPC>("BoreanStriderPopped").Type,
+                        thor.Find<ModNPC>("BoreanHopper").Type,
+                        thor.Find<ModNPC>("BoreanStrider").Type,
+                        thor.Find<ModNPC>("ForgottenOne").Type,
+                        thor.Find<ModNPC>("ForgottenOneCracked").Type,
+                        thor.Find<ModNPC>("ForgottenOneReleased").Type,
+                    ];
+
+                    if (bypassScalingAmorPenThor.Contains(target.target))
+                        bypassScalingArmorPen = true;
+                }
+
+                if (InfernalCrossmod.Clamity.Loaded)
+                {
+                    Mod clam = InfernalCrossmod.Clamity.Mod;
+                    int[] bypassScaliingAmorPenClam =
+                    [
+                        clam.Find<ModNPC>("ClamitasBoss").Type
+                    ];
+
+                    if (bypassScaliingAmorPenClam.Contains(target.target))
+                        bypassScalingArmorPen = true;
+                }
+
+                if (!bypassScalingArmorPen)
+                {
+                    modifiers.DefenseEffectiveness *= Main.hardMode ? 0.75f : 0.8f;
+                }
             }
 
             if (InfernalCrossmod.ThoriumRework.Loaded)

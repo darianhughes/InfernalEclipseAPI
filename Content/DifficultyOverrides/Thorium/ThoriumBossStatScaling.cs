@@ -575,9 +575,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
-                    damageMod *= 1.70f;
-                if (projectile.ModProjectile.Name.Contains("ForgottenOne") || projectile.type == ModContent.ProjectileType<AquaRipple>() || projectile.type == ModContent.ProjectileType<Whirlpool>() || 
+                if (projectile.type == ModContent.ProjectileType<ViscountRipple>())
+                    damageMod *= 1.775f;
+                else if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
+                    damageMod *= 1.625f;
+                else if (projectile.ModProjectile.Name.Contains("ForgottenOne") || projectile.type == ModContent.ProjectileType<AquaRipple>() || projectile.type == ModContent.ProjectileType<Whirlpool>() ||
                     projectile.ModProjectile.Name.Contains("AbyssBubble") || projectile.ModProjectile.Name.Contains("AbyssalStrike") || projectile.ModProjectile.Name.Contains("OldGodSpit"))
                     damageMod *= 1.375f;
                 else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
@@ -589,22 +591,26 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             }
             else if (GetFargoDifficullty("EternityMode"))
             {
-                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
-                    damageMod *= 1.60f;
+                if (projectile.ModProjectile.Name.Contains("ForgottenOne") || projectile.type == ModContent.ProjectileType<AquaRipple>() || projectile.type == ModContent.ProjectileType<Whirlpool>() ||
+                    projectile.ModProjectile.Name.Contains("AbyssBubble") || projectile.ModProjectile.Name.Contains("AbyssalStrike") || projectile.ModProjectile.Name.Contains("OldGodSpit"))
+                    damageMod *= 1.275f;
                 else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
                          projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
-                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam"))
+                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam") || projectile.ModProjectile.Name.Contains("AbyssalApparition") ||
+                         (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp")))
                     damageMod *= 1.25f;
                 else
                     damageMod *= 1.675f;
             }
             else if (GetCalDifficulty("death"))
             {
-                if (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp"))
-                    damageMod *= 1.45f;
+                if (projectile.ModProjectile.Name.Contains("ForgottenOne") || projectile.type == ModContent.ProjectileType<AquaRipple>() || projectile.type == ModContent.ProjectileType<Whirlpool>() ||
+                    projectile.ModProjectile.Name.Contains("AbyssBubble") || projectile.ModProjectile.Name.Contains("AbyssalStrike") || projectile.ModProjectile.Name.Contains("OldGodSpit"))
+                    damageMod *= 1.15f;
                 else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
                          projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
-                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam"))
+                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam") || projectile.ModProjectile.Name.Contains("AbyssalApparition") ||
+                         (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp")))
                     damageMod *= 1.1f;
                 else
                     damageMod *= 1.15f;

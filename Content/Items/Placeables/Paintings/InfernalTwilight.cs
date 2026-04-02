@@ -102,6 +102,9 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "WitherTaco",
             "Verveine",
 
+            //Content Creators
+            "Yardis",
+
             //Other
             "Kes",
             "Feldy",

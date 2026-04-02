@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CalamityMod.Items.LoreItems;
 using CalamityMod.Rarities;
 using InfernumMode.Content.Items.Placeables;
 using Microsoft.Xna.Framework.Input;
@@ -7,9 +6,8 @@ using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse
 {
-    public class MysteriousDiary : LoreItem
+    public class MysteriousDiary : ModItem
     {
-
         public override LocalizedText Tooltip => Language.GetOrRegister("Mods.InfernalEclipseAPI.DiaryTooltip");
 
         public override void SetStaticDefaults()
@@ -37,8 +35,6 @@ namespace InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             TooltipLine fullLore = new(Mod, "DiaryLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.MysteriousDiary"));
-            if (ExtensionIndicatorColor.HasValue)
-                fullLore.OverrideColor = ExtensionIndicatorColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);
         }
 

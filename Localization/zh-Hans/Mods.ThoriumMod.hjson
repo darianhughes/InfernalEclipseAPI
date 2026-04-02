@@ -65,6 +65,17 @@ Items: {
 			'''
 	}
 
+	DreamCatcher: {
+		// DisplayName: Dream Catcher
+		/* Tooltip:
+			'''
+			Summons up to one dream catcher at the cursor's location
+			Staying within the dream catcher will heal you for 20% of max life if you take fatal damage
+			Revived players will have temporarily reduced stats and will be unable to revive again for 2 minutes
+			'To catch and cradle the hopes of the world...'
+			''' */
+	}
+
 	HereticBreaker: {
 		DisplayName: 异教毁灭者
 		Tooltip: 吸取3生命值

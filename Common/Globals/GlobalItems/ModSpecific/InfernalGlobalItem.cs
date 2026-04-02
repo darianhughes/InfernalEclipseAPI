@@ -250,6 +250,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 InfernalWorld.craftedWorkshop = true;
             }
 
+            if (item.type == ModContent.ItemType<LoreAnniversaryOne>())
+            {
+                player.GetModPlayer<InfernalPlayer>().aniversaryYearOneLoreObtained = true;
+            }
+
             return base.OnPickup(item, player);
         }
 

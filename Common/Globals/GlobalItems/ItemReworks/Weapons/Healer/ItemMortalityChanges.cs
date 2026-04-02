@@ -1,10 +1,13 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Healer
 {
-    public class RecuperateChanges : GlobalItem
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
+    public class ItemMortalityChanges : GlobalItem
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -12,6 +15,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
         }
 
         public override bool InstancePerEntity => false;
+        private static HashSet<int> mortalityItems;
+        private static bool initialized;
+
         public static Mod thorium
         {
             get
@@ -23,7 +29,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (!IsRecuperate(item)) return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+            if (!IsMortality(item)) return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && thorium.TryFind("Mortality", out ModBuff mortality))
             {
@@ -35,7 +41,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
         public override void HoldItem(Item item, Player player)
         {
-            if (!IsRecuperate(item))
+            if (!IsMortality(item))
                 return;
 
             if (!player.channel)
@@ -49,11 +55,30 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             }
         }
 
-        private bool IsRecuperate(Item item)
+        private bool IsMortality(Item item)
         {
-            return ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
-                   thorium.TryFind("Recuperate", out ModItem recuperate) &&
-                   item.type == recuperate.Type;
+            EnsureInitialized();
+
+            return item != null && mortalityItems.Contains(item.type);
+        }
+
+        private void EnsureInitialized()
+        {
+            if (initialized)
+                return;
+
+            mortalityItems = new HashSet<int>();
+
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            {
+                if (thorium.TryFind("Recuperate", out ModItem recuperate))
+                    mortalityItems.Add(recuperate.Type);
+
+                if (thorium.TryFind("UnboundFantasy", out ModItem unbound))
+                    mortalityItems.Add(unbound.Type);
+            }
+
+            initialized = true;
         }
     }
 }

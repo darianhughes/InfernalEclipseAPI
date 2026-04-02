@@ -103,6 +103,7 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights
             sotsPlayer.CritVoidsteal += 1.25f;
             sotsPlayer.CritManasteal += 5 + Main.rand.Next(4);
             sotsPlayer.CritCurseFire = true;
+            player.GetModPlayer<InfernalPlayer>().bagOfCharms = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

@@ -229,6 +229,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.maxRunSpeed -= 0.4f;
                 }
 
+                if (item.type == ItemType<BagOfCharms>())
+                {
+                    player.GetModPlayer<InfernalPlayer>().bagOfCharms = true;
+                }
+
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
                 {
                     Mod sBH = InfernalCrossmod.SOTSBardHealer.Mod;
@@ -610,7 +615,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ItemType<BagOfCharms>())
                 {
-                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Nerf"));
+                    //InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Nerf"));
                 }
 
                 if (item.type == ItemType<PlasmaShrimp>())

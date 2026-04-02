@@ -7,10 +7,14 @@ using Terraria.ModLoader.IO;
 namespace InfernalEclipseAPI.Core.Players
 {
     //Original code provided by Wardrobe Hummus
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
     public class HealerPlayer : ModPlayer
     {
         private int scytheChargeCooldown;
-        private bool initialized;
+        private bool hadDreamCatcher;
+
+        private bool initialized = false;
         public HashSet<int> fifthScytheTypes = new();
 
         //public bool accessoryEquipped = false;
@@ -60,6 +64,8 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PostUpdate()
         {
+            Player player = Player;
+
             if (!initialized)
             {
                 initialized = true;
@@ -98,6 +104,24 @@ namespace InfernalEclipseAPI.Core.Players
                     );
                 }
             }
+
+            bool hasDreamCatcher = player.HasBuff(ModContent.BuffType<ThoriumMod.Buffs.Healer.DreamCatcherBuff>());
+            bool hasExhaustion = player.HasBuff(ModContent.BuffType<ThoriumMod.Buffs.RevivalExhaustion>());
+
+            if (hadDreamCatcher && !hasDreamCatcher && hasExhaustion)
+            {
+                int setLife = (int)(player.statLifeMax2 * 0.2f);
+                player.statLife = Math.Max(1, setLife);
+
+                player.HealEffect(player.statLife);
+
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && thorium.TryFind("Mortality", out ModBuff mortality))
+                {
+                    player.AddBuff(mortality.Type, 600);
+                }
+            }
+
+            hadDreamCatcher = hasDreamCatcher;
         }
 
         private void LoadProjectileTypes()

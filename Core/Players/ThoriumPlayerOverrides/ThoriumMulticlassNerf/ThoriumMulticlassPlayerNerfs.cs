@@ -36,7 +36,8 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
             {
                 if (InfernalCrossmod.ThoriumRework.Loaded)
                 {
-                    Player.buffImmune[InfernalCrossmod.ThoriumRework.Mod.Find<ModBuff>("Deathsinger").Type] = true;
+                    if (InfernalCrossmod.ThoriumRework.Mod.TryFind("Deathsinger", out ModBuff deathsinger))
+                        Player.buffImmune[deathsinger.Type] = true;
                 }
             }
 

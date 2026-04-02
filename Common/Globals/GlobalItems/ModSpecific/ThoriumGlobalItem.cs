@@ -558,6 +558,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                                 -11
                             });
                         }
+                        if (item.type == FindItem("IntergelacticProtectorHelm"))
+                        {
+                            InfernalCrossmod.Thorium.Mod.Call(new object[]
+                            {
+                                "BonusHealerHealBonus",
+                                player,
+                                -4
+                            });
+                        }
                     }
 
                     if (item.type == FindItem("ElementalBloom"))

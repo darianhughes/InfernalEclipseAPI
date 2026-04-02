@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Items;
-using CalamityMod.Items.LoreItems;
 using CalamityMod.Rarities;
 using InfernalEclipseAPI.Core.Players;
 using Microsoft.Xna.Framework.Input;
@@ -8,7 +7,7 @@ using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories
 {
-    public class SoltanBullyingSlip : LoreItem
+    public class SoltanBullyingSlip : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -29,14 +28,14 @@ namespace InfernalEclipseAPI.Content.Items.Accessories
         {
             InfernalPlayer infernalPlayer = player.GetModPlayer<InfernalPlayer>();
             infernalPlayer.soltanBullying = true;
+
+            player.whipRangeMultiplier += 0.5f;
         }
         public override LocalizedText Tooltip => Language.GetOrRegister("Mods.InfernalEclipseAPI.BullyingTooltip");
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             TooltipLine fullLore = new(Mod, "DiaryLore", Language.GetTextValue("Mods.InfernalEclipseAPI.Lore.DylanSoltan"));
-            if (ExtensionIndicatorColor.HasValue)
-                fullLore.OverrideColor = ExtensionIndicatorColor.Value;
             HoldShiftTooltip(tooltips, new TooltipLine[] { fullLore }, true);
         }
 

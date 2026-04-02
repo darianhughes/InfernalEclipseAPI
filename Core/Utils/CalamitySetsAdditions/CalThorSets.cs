@@ -11,7 +11,10 @@ namespace InfernalEclipseAPI.Core.Utils.CalamitySetsAdditions
         {
             int[] noHomingWithGrapeBeer =
             {
-                ModContent.ProjectileType<DragonPulse>()
+                ModContent.ProjectileType<DragonPulse>(),
+                ModContent.ProjectileType<OmniBoom>(),
+                ModContent.ProjectileType<OmniBurst>(),
+                ModContent.ProjectileType<OmniBurstDamage>(),
             };
 
             foreach (int proj in noHomingWithGrapeBeer)
