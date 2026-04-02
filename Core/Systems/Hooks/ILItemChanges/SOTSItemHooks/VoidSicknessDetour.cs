@@ -2,6 +2,9 @@
 using InfernalEclipseAPI.Content.Buffs;
 using MonoMod.RuntimeDetour;
 using SOTS.Items.Void;
+using SOTS.Void;
+using ThoriumMod.Gores;
+using ThoriumMod.Items.BossFallenBeholder;
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
 {
@@ -10,6 +13,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
     public class VoidSicknessDetour : ModSystem
     {
         private static Hook onConsumeHook;
+        private Hook sealedUpdateInventoryHook;
 
         public override void Load()
         {
@@ -22,12 +26,25 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
                 throw new MissingMethodException("SOTS.Items.Void.VoidConsumable.OnConsumeItem(Player) not found.");
 
             onConsumeHook = new Hook(m, OnConsumeItem_Detour);
+
+            MethodInfo sealedUpdateInventoryMethod = typeof(VoidConsumable).GetMethod(
+               nameof(VoidConsumable.SealedUpdateInventory),
+               BindingFlags.Instance | BindingFlags.Public);
+
+            if (sealedUpdateInventoryMethod is null)
+                throw new Exception("Failed to find VoidConsumable.SealedUpdateInventory for detour.");
+
+            sealedUpdateInventoryHook = new Hook(sealedUpdateInventoryMethod, HookSealedUpdateInventory);
         }
 
         public override void Unload()
         {
             onConsumeHook?.Dispose();
             onConsumeHook = null;
+
+            sealedUpdateInventoryHook?.Dispose();
+            sealedUpdateInventoryHook = null;
+
         }
 
         private static void OnConsumeItem_Detour(Action<VoidConsumable, Player> orig, VoidConsumable self, Player player)
@@ -36,6 +53,20 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
 
             if (player?.active == true)
                 player.AddBuff(ModContent.BuffType<VoidSickness2>(), 300);
+        }
+
+        private delegate void Orig_SealedUpdateInventory(VoidConsumable self, Player player);
+        private static void HookSealedUpdateInventory(Orig_SealedUpdateInventory orig, VoidConsumable self, Player player)
+        {
+            VoidPlayer voidPlayer = VoidPlayer.ModPlayer(player);
+            int num1 = 0;
+            int num2 = voidPlayer.voidMeterMax2 - voidPlayer.lootingSouls - voidPlayer.VoidMinionConsumption - self.GetVoidAmt();
+
+            while (player?.active == true && voidPlayer.voidMeter <= num1 && num2 >= 0 && self.Item.stack > 0 && self.CanUseItem(player))
+            {
+                self.Activate(player);
+                player.AddBuff(ModContent.BuffType<VoidSickness2>(), 300);
+            }
         }
     }
 }

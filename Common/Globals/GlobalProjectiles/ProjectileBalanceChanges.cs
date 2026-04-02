@@ -193,11 +193,6 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 entity.penetrate = 2;
             }
 
-            if (entity.type == ModContent.ProjectileType<PauldronDash>() && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                //entity.idStaticNPCHitCooldown = 480;
-            }
-
             if (ModLoader.TryGetMod("Clamity", out Mod clam))
             {
                 if (entity.type == clam.Find<ModProjectile>("FireBarrage").Type)
@@ -508,6 +503,15 @@ namespace InfernalEclipseAPI.Common.Projectiles
             if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "CalamityAmmo" && (projectile.ModProjectile.Name == "Crabulon_Spore" || projectile.ModProjectile.Name == "Spore1" || projectile.ModProjectile.Name == "Spore2" || projectile.ModProjectile.Name == "Spore3") && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 projectile.damage /= 2;
+            }
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "CalamityAmmo" && projectile.ModProjectile.Name == "SoulBullet_Proj" && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                projectile.damage /= 2;
+            }
+
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "SOTS" && projectile.ModProjectile.Name == "RevolutionBoltDay" && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                projectile.damage /= 3;
             }
         }
 

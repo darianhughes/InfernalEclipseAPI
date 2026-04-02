@@ -48,7 +48,6 @@ namespace InfernalEclipseAPI.Common.Balance
                 switch (tile)
                 {
                     case 37:
-                        return NPC.downedBoss2 || Main.hardMode;
                     case 58:
                         return NPC.downedBoss2 || Main.hardMode;
                     case 408:

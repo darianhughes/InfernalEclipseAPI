@@ -61,6 +61,21 @@ Items: {
 		+100 max mana
 		Healing spells heal an additional 7 life
 		'''
+
+	IntergelacticProtectorHelm: {
+		Tooltip:
+			'''
+			11% increased radiant damage, critical strike chance and casting speed
+			33% decreased non-radiant damage
+			'''
+		SetBonus:
+			'''
+			22% increased radiant damage
+			Healing spells will heal an additional 6 life
+			Asteroids have a 20 % chance to heal {0} life upon hitting enemies
+			'''
+	}
+
 	ElementalBloom.Tooltip:
 		'''
 		Maximum life increased by 40

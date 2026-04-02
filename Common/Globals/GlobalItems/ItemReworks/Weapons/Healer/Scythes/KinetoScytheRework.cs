@@ -65,7 +65,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
             public override void AI(Projectile projectile)
             {
-                if (projectile.type != KinetoScytheRework.KinetoScytheProID)
+                if (projectile.type != KinetoScytheProID)
                     return;
 
                 if (projectile.ai[2] != 1f)
@@ -76,7 +76,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
                 Player player = Main.player[projectile.owner];
 
-                NPC target = FindClosestTarget(projectile, 600f);
+                NPC target = FindClosestTarget(projectile, 1800f);
 
                 Vector2 targetPos;
 
@@ -85,7 +85,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                 else
                     targetPos = player.Center;
 
-                float speed = 5f;
+                float speed = 6f;
                 float inertia = 10f;
 
                 Vector2 desiredVelocity = projectile.DirectionTo(targetPos) * speed;

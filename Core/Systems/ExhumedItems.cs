@@ -1,3 +1,5 @@
+using CalamityMod.UI.CalamitasEnchants;
+using InfernalEclipseAPI.Content.Items.Accessories;
 using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
 using InfernalEclipseAPI.Content.Items.SpawnItems;
 using InfernalEclipseAPI.Content.Items.Weapons.Donor;
@@ -6,13 +8,17 @@ namespace InfernalEclipseAPI.Core.Systems;
 
 public class ExhumedItems : ModSystem
 {
-    public override void AddRecipes()
+    public override void OnModLoad()
     {
-        if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
+        var dict = EnchantmentManager.ItemUpgradeRelationship;
+
+        dict[ModContent.ItemType<LoreProvi>()] = ModContent.ItemType<MysteriousDiary>();
+        dict[ModContent.ItemType<EmptyDemonicTome>()] = ModContent.ItemType<DemonicTome>();
+        dict[ItemID.Sign] = ModContent.ItemType<Streetsign>();
+
+        if (InfernalCrossmod.Clamity.Loaded)
         {
-            calamity.Call(["MakeItemExhumable", ModContent.ItemType<LoreProvi>(), ModContent.ItemType<MysteriousDiary>()]);
-            calamity.Call(["MakeItemExhumable", ModContent.ItemType<EmptyDemonicTome>(), ModContent.ItemType<DemonicTome>()]);
-            calamity.Call(["MakeItemExhumable", ItemID.Sign, ModContent.ItemType<Streetsign>()]);
+            dict[InfernalCrossmod.Clamity.Mod.Find<ModItem>("TheSubcommunity").Type] = ModContent.ItemType<ShatteredSubcommunity>();
         }
     }
 }

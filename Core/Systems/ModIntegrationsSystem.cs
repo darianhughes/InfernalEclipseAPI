@@ -426,6 +426,7 @@ namespace InfernalEclipseAPI.Core.Systems
                 newMiniBoss(findSOTSNPC("PermafrostSpirit"));
                 newMiniBoss(findSOTSNPC("TidalConstruct"));
                 newMiniBoss(findSOTSNPC("TidalSpirit"));
+                newMiniBoss(findSOTSNPC("Bridgeburner"));
             }
         }
     }

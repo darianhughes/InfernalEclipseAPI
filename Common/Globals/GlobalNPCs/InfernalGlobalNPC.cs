@@ -23,6 +23,9 @@ using InfernalEclipseAPI.Core.Utils;
 using CalamityMod.Buffs.StatDebuffs;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
 using Terraria;
+using CalamityMod.Events;
+using Terraria.GameContent.Events;
+using InfernalEclipseAPI.Content.Items.Consumables;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -53,6 +56,18 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
+            if (npc.type == NPCID.PartyGirl && BirthdayParty.GenuineParty)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i] == null || items[i].IsAir)
+                    {
+                        items[i] = new Item(ModContent.ItemType<BirthdayCake>());
+                        break;
+                    }
+                }
+            }
+
             if (npc.type == NPCID.GoblinTinkerer && InfernalConfig.Instance.BossKillCheckOnOres)
             {
                 // Replace Tinkerer's Workshop by filtering the Entries list
@@ -128,7 +143,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (InfernalWorld.RagnarokModeEnabled && npc.boss)
+            if (InfernalWorld.RagnarokModeEnabled && npc.boss && !BossRushEvent.BossRushActive)
             {
                 foreach (Player player in Main.player)
                 {
@@ -252,7 +267,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (npc.type == NPCID.Plantera)
             {
                 InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
-                InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
+                //InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
             }
             if (npc.type == ModContent.NPCType<BrimstoneElemental>() || npc.type == ModContent.NPCType<AquaticScourgeHead>())
             {
@@ -276,7 +291,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (npc.type == NPCID.Plantera)
             {
                 InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
-                InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
+                //InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
             }
             if (npc.type == ModContent.NPCType<BrimstoneElemental>() || npc.type == ModContent.NPCType<AquaticScourgeHead>())
             {

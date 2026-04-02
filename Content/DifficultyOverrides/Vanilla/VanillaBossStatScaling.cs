@@ -1,12 +1,7 @@
-﻿using CalamityMod.World;
-using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
+﻿using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Core.Systems;
-using InfernalEclipseAPI.Core.Utils;
-using InfernumMode.Core.GlobalInstances.Systems;
-using System.Reflection;
-using Terraria.DataStructures;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
 {
     public class VanillaBossStatScaling : GlobalNPC
     {
@@ -64,7 +59,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
                 if (npc.type == NPCID.BloodNautilus)
                 {
-                    npc.lifeMax += (npc.lifeMax / 2);
+                    npc.lifeMax += npc.lifeMax / 2;
                 }
 
                 if (npc.type == NPCID.CultistBoss)

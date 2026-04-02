@@ -223,6 +223,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     sotsPlayer.CritFrost = false;
                 }
 
+                if (item.type == ItemType<ShoeIce>())
+                {
+                    player.moveSpeed -= 0.25f;
+                    player.maxRunSpeed -= 0.4f;
+                }
+
+                if (item.type == ItemType<BagOfCharms>())
+                {
+                    player.GetModPlayer<InfernalPlayer>().bagOfCharms = true;
+                }
+
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
                 {
                     Mod sBH = InfernalCrossmod.SOTSBardHealer.Mod;
@@ -345,6 +356,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
             if (InfernalConfig.Instance.SOTSBalanceChanges)
             {
+                if (item.type == ItemType<ShatterShardChestplate>())
+                {
+                    item.defense = 5;
+                }
+
+
                 if (item.type == ItemType<FrostArtifactHelmet>())
                 {
                     item.defense = 13;
@@ -598,7 +615,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ItemType<BagOfCharms>())
                 {
-                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Nerf"));
+                    //InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Icosahedron.Charms.Nerf"));
                 }
 
                 if (item.type == ItemType<PlasmaShrimp>())
@@ -693,6 +710,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<Calculator>())
                 {
                     InfernalUtilities.AddTooltip(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional")}", InfernalRed);
+                }
+
+                if (item.type == ItemType<ShoeIce>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShoeIce.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShoeIce.Nerf"));
                 }
             }
         }

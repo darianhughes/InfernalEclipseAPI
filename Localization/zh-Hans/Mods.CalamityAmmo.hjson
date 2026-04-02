@@ -9,11 +9,20 @@ Items: {
 	}
 
 	WulfrumBullet: {
-		// DisplayName: Wulfrum Scrap Bullet
-		/* Tooltip:
+		DisplayName: 废钢弹
+		Tooltip:
 			'''
-			Radiates wulfrum energy beams with a slight homing ability
-			"Last Hamon, son."
-			''' */
+			发射具有轻微追踪能力的钨钢光线
+			“最后的波纹，小子”
+			'''
+	}
+
+	SoulBullet: {
+		DisplayName: 魂弹
+		 Tooltip:
+			'''
+			追踪最近的敌怪，造成一半伤害但穿透敌怪三次，每次造成的伤害递减
+			“由压入弹壳的悲惨灵魂所制成，可能会吸引同样可怜的灵魂”
+			'''
 	}
 }

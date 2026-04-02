@@ -191,7 +191,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 Player.armor[1].type == whiteDwarfPlate &&
                 Player.armor[2].type == whiteDwarfGreaves)
             {
-                Player.setBonus += "\nIvory flares spawn on a 2 second cooldown";
+                Player.setBonus += "\nIvory flares spawn on a 1 second cooldown";
             }
 
             if (dragonSetCooldown > 0)

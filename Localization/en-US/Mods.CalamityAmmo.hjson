@@ -16,4 +16,13 @@ Items: {
 			"Last Hamon, son."
 			'''
 	}
+
+	SoulBullet: {
+		DisplayName: Soul Bullet
+		Tooltip:
+			'''
+			Homes in on the nearest enemy, deals half damage however pierces three times with decreasing damage each hit
+			"Made by pressing miserable souls into shell casings, may attract the same pitiful souls."
+			'''
+	}
 }

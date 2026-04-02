@@ -501,12 +501,29 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.requiredTile.Clear();
                             recipe.AddTile(ModContent.TileType<DraedonsForge>());
                         }
-                        if (recipe.HasResult(calAmmo.Find<ModItem>("MushroomUnitedNations")))
+                    }
+
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("MushroomUnitedNations")))
+                    {
+                        recipe.RemoveIngredient(ItemID.ShroomiteBar);
+                        recipe.AddIngredient(ItemID.LunarBar, 10);
+                        recipe.AddIngredient(ItemID.FragmentVortex, 6);
+                    }
+
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("NapalmBullet")))
+                    {
+                        for (int i = 0; i < recipe.requiredItem.Count; i++)
                         {
-                            recipe.RemoveIngredient(ItemID.ShroomiteBar);
-                            recipe.AddIngredient(ItemID.LunarBar, 10);
-                            recipe.AddIngredient(ItemID.FragmentVortex, 6);
+                            if (recipe.requiredItem[i].type == ItemID.EmptyBullet)
+                            {
+                                recipe.requiredItem[i].stack = 100;
+                            }
                         }
+
+                        recipe.AddIngredient<UnholyCore>();
+
+                        int napalmType = calAmmo.Find<ModItem>("NapalmBullet").Type;
+                        recipe.ReplaceResult(napalmType, 100);
                     }
                 }
                 #endregion
@@ -742,7 +759,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddTile(TileID.MythrilAnvil);
                         }
 
-                        if (recipe.HasResult(ModContent.ItemType<TheSponge>()) || recipe.HasResult(ModContent.ItemType<TheAmalgam>()))
+                        if (recipe.HasResult(ModContent.ItemType<TheSponge>()) || recipe.HasResult(ModContent.ItemType<TheAmalgam>()) || recipe.HasResult(ModContent.ItemType<EclipseMirror>()))
                         {
                             recipe.AddIngredient(thorium.Find<ModItem>("DeathEssence").Type, 3);
                         }
@@ -750,6 +767,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(ModContent.ItemType<ChaliceOfTheBloodGod>()) || recipe.HasResult(ModContent.ItemType<AsgardianAegis>()))
                         {
                             recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence").Type, 3);
+                        }
+
+                        if (recipe.HasResult(ModContent.ItemType<StatisVoidSash>()))
+                        {
+                            recipe.AddIngredient(thorium.Find<ModItem>("OceanEssence").Type, 3);
                         }
 
                         if (InfernalCrossmod.SOTS.Loaded)
@@ -1364,6 +1386,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(sots.Find<ModItem>("CursedIcosahedron")))
                         {
                             recipe.AddIngredient(ItemID.Ectoplasm, 3);
+                        }
+
+                        if (recipe.HasResult(sots.Find<ModItem>("ShoeIce")))
+                        {
+                            recipe.RemoveTile(TileID.Anvils);
+                            recipe.AddTile(TileID.TinkerersWorkbench);
                         }
 
                         #region Soul of Plight Additions
