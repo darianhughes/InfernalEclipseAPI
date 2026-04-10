@@ -26,6 +26,7 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
             Item.rare = ItemRarityID.Purple;
             Item.consumable = false;
             Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.maxStack = 9999;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

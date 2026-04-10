@@ -1,8 +1,6 @@
 Buffs: {
-	NinjaBuff: {
-		DisplayName: Sleight of Hand
-		Description: Throwing velocity is increased by 20%, and throwing critical strike chance increased by 10%
-	}
+	NinjaBuff.Description: Throwing velocity is increased by 20%, and throwing critical strike chance increased by 10%
+	BloodRush.Description: 15% increased mining speed
 }
 
 Items: {
@@ -79,15 +77,6 @@ Items: {
 	HereticBreaker: {
 		DisplayName: Heretic Breaker
 		Tooltip: Steals 3 life
-	}
-
-	NinjaEmblem: {
-		DisplayName: Hero Emblem
-		Tooltip:
-			'''
-			10% increased damage
-			2% increased critical strike chance
-			'''
 	}
 
 	CrystalHoney: {

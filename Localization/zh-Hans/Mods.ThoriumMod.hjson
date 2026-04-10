@@ -1,8 +1,6 @@
 Buffs: {
-	NinjaBuff: {
-		DisplayName: 诡诈之手
-		Description: 增加20%投掷弹幕速度和10%投掷暴击率
-	}
+	NinjaBuff.Description: 增加20%投掷弹幕速度和10%投掷暴击率
+	// BloodRush.Description: 15% increased mining speed
 }
 
 Items: {
@@ -79,16 +77,6 @@ Items: {
 	HereticBreaker: {
 		DisplayName: 异教毁灭者
 		Tooltip: 吸取3生命值
-	}
-
-	NinjaEmblem: {
-		DisplayName: 英雄徽章
-		Tooltip:
-			'''
-			增加5%伤害
-			增加2%暴击率
-			增加5%攻击速度
-			'''
 	}
 
 	CrystalHoney: {

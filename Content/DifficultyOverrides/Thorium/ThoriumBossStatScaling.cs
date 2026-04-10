@@ -22,6 +22,7 @@ using Terraria;
 using ThoriumMod.Buffs;
 using CalamityMod.Buffs.DamageOverTime;
 using InfernalEclipseAPI.Core.World;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
@@ -301,7 +302,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 return;
             }
 
-            if (npc.ModNPC.Name.Contains("FallenBeholder"))
+            if (npc.ModNPC.Name.Contains("FallenBeholder") || npc.ModNPC.Name.Contains("BoreanStrider"))
                 return;
 
             if (IsWorldLegendary())
@@ -540,6 +541,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
             if (entity.ModProjectile.Name.Contains("AbyssBubble"))
                 entity.light = 0.25f;
+
+            if (entity.type == ModContent.ProjectileType<ViscountRipple>())
+            {
+                entity.tileCollide = false;
+            }
         }
 
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
@@ -622,6 +628,52 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
     [JITWhenModsEnabled("ThoriumMod")]
     [ExtendsFromMod("ThoriumMod")]
+    public class ViscountRippleGlobalProjectile : GlobalProjectile
+    {
+        public override bool InstancePerEntity => true;
+
+        private int spawnCollideTimer;
+        private int tileCollideTimer;
+
+        public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
+        {
+            return entity.type == ModContent.ProjectileType<ViscountRipple>();
+        }
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            spawnCollideTimer = 0;
+        }
+
+        public override void PostAI(Projectile projectile)
+        {
+            projectile.tileCollide = false;
+            
+            if (spawnCollideTimer < 30)
+                spawnCollideTimer++;
+            if (tileCollideTimer > 0)
+                tileCollideTimer--;
+
+            else if (!projectile.tileCollide)
+                projectile.tileCollide = true;
+        }
+
+        public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
+        {
+            if (spawnCollideTimer < 30)
+                return false;
+
+            if (tileCollideTimer > 0)
+                return false;
+
+            tileCollideTimer = 45;
+            return base.OnTileCollide(projectile, oldVelocity);
+        }
+    }
+
+
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
     public class ViscountBloodAccelerationGlobalProjectile : GlobalProjectile
     {
         public override bool InstancePerEntity => true;
@@ -652,6 +704,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            projectile.tileCollide = false;
+            return;
             /*
             if (Main.netMode != NetmodeID.Server)
                 Main.NewText($"ViscountBlood matched: {projectile.type}");
@@ -677,6 +731,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
         public override void AI(Projectile projectile)
         {
+            return;
+
             if (!initialized || targetSpeed <= 0f)
                 return;
 

@@ -860,7 +860,7 @@ namespace InfernalEclipseAPI.Core.Players
 
                 if (!bypassScalingArmorPen)
                 {
-                    modifiers.DefenseEffectiveness *= Main.hardMode ? 0.75f : 0.8f;
+                    modifiers.DefenseEffectiveness *= Main.hardMode ? 0.9f : 0.95f;
                 }
             }
 

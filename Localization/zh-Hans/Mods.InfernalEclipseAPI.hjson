@@ -1955,6 +1955,22 @@ Items: {
 		// DisplayName: Arkangel Dye
 		// Tooltip: ""
 	}
+
+	The454CasullandTheJackal: {
+		// DisplayName: .454 Casull and The Jackal
+		/* Tooltip:
+			'''
+			Shooting either gun will swap the first two bullet type ammos in your ammo slots
+			<left> to shoot The Jackal, a low-fire rate pistol meant for single-target damage
+			The Jackal will convert Musket Balls into High Velocity Bullets
+			<right> to shoot .454 Casull, a high-fire rate pistol meant for mobbing
+			The .454 Casull will convert Musket Balls into Meteor Shots
+			Bullets inflict [cbuff:CalamityMod/Laceration] and tear blood orbs out of targets on hit
+			Picking up these blood orbs reduces the duration of [cbuff:PotionSickness]
+			[c/7C0A02:'Even Jesus wept...']
+			[c/aaaaaa:Shift-<right> this item in your inventory to toggle the] [i:EndlessMusketPouch] [c/aaaaaa:ammo swap]
+			''' */
+	}
 }
 
 Projectiles: {
@@ -1996,6 +2012,7 @@ Projectiles: {
 	CelestialIlluminationBeam.DisplayName: 星界启明光束
 	CelestialIlluminationStar.DisplayName: 启明之星
 	// Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
+	// CasullandJackalProj.DisplayName: 454 Casull and The Jackal
 }
 
 DiaryTooltip:

@@ -1394,6 +1394,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddTile(TileID.TinkerersWorkbench);
                         }
 
+                        if (recipe.HasResult(sots.Find<ModItem>("BlinkPack")))
+                        {
+                            recipe.AddIngredient(ItemID.SoulofLight, 5);
+                            recipe.RemoveTile(sots.Find<ModTile>("HardlightFabricatorTile").Type);
+                            recipe.AddTile(TileID.MythrilAnvil);
+                        }
+
                         #region Soul of Plight Additions
                         if (recipe.HasResult(ItemID.TrueNightsEdge))
                             recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);

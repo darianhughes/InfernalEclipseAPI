@@ -57,7 +57,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows.Glo
 
         private static void ForceDespawn(NPC npc)
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+            if (Main.netMode == NetmodeID.MultiplayerClient || BossRushEvent.BossRushActive)
                 return;
 
             npc.active = false;

@@ -34,9 +34,89 @@ using SOTS.Items.Temple;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
 using SOTS.Items.Gems;
 using CalamityMod.Items.Potions.Alcohol;
+using CalamityMod.Enums;
+using Terraria.GameContent.ItemDropRules;
+using SOTS.Items.Fishing;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
+    [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
+    [ExtendsFromMod(InfernalCrossmod.SOTS.Name)]
+    public class SOTSCrateFix : GlobalItem
+    {
+        public override bool InstancePerEntity => false;
+
+        public override void ModifyItemLoot(Item item, ItemLoot loot)
+        {
+            Fraction fifteenPercent = new Fraction(15, 100);
+
+            if (item.type == ItemType<OtherworldCrate>())
+            {
+                RemoveHardmodeOresFromStandardCrates(loot);
+                RemoveHardmodeOresFromBiomeCrates(loot);
+                loot.AddHardmodeOresToCrates(HardmodeCrateType.Biome);
+            }
+        }
+
+        private static void RemoveHardmodeOresFromStandardCrates(ItemLoot loot)
+        {
+            List<IItemDropRule> rules = loot.Get(false);
+
+            // This is the primary rule which contains every drop
+            AlwaysAtleastOneSuccessDropRule mainRule = null;
+            foreach (IItemDropRule rule in rules)
+                if (rule is AlwaysAtleastOneSuccessDropRule a)
+                    mainRule = a;
+            if (mainRule is null)
+                return;
+
+            // Find ones that are supposed to be for the ore and not the other loot
+            foreach (IItemDropRule rule in mainRule.rules)
+            {
+                // Hardmode ores/bars are both nested within *another* nested rule
+                if (rule is SequentialRulesNotScalingWithLuckRule oreRule)
+                {
+                    // Confirm that this is for the ore/bar then pop the numerator for the big rule
+                    foreach (IItemDropRule nestedRule in oreRule.rules)
+                    {
+                        if (nestedRule is SequentialRulesNotScalingWithLuckRule s)
+                        {
+                            oreRule.chanceNumerator = 0;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void RemoveHardmodeOresFromBiomeCrates(ItemLoot loot)
+        {
+            List<IItemDropRule> rules = loot.Get(false);
+
+            // This is the primary rule which contains every drop
+            AlwaysAtleastOneSuccessDropRule mainRule = null;
+            foreach (IItemDropRule rule in rules)
+                if (rule is AlwaysAtleastOneSuccessDropRule a)
+                    mainRule = a;
+            if (mainRule is null)
+                return;
+
+            foreach (IItemDropRule rule in mainRule.rules)
+            {
+                // 2 rules, one for ore and another for bar, nested within *another* nested rule
+                if (rule is SequentialRulesNotScalingWithLuckRule oreRule)
+                {
+                    // Confirm that this is for the ore/bar then pop the numerator for the big rule
+                    foreach (IItemDropRule nestedRule in oreRule.rules)
+                    {
+                        if (nestedRule is OneFromRulesRule o)
+                            oreRule.chanceNumerator = 0;
+                    }
+                }
+            }
+        }
+    }
+
     [JITWhenModsEnabled("SOTS")]
     [ExtendsFromMod("SOTS")]
     public class SOTSGlobalItem : GlobalItem

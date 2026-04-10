@@ -17,10 +17,6 @@ using Microsoft.Xna.Framework;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod;
 using InfernumMode.Content.Items.Misc;
-using InfernumMode.Core.GlobalInstances.Players;
-using InfernumMode.Content.Items.Accessories;
-using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -28,6 +24,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
     {
         public override void SetStaticDefaults()
         {
+            /*
             InfernumPlayer.AccessoryUpdateEvent += (InfernumPlayer player) =>
             {
                 if (player.GetValue<bool>(Purity.FieldName))
@@ -53,6 +50,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     //generic
                 }
             };
+            */
         }
 
         public override void SetDefaults(Item item)

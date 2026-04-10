@@ -18,7 +18,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
                 Mod calamity = ModLoader.GetMod("CalamityMod");
                 if (calamity == null)
                 {
-                    Mod.Logger.Warn("CalamityMod not loaded, skipping GreatSandShark progression patch.");
+                    Mod.Logger.Warn("CalamityMod not loaded, skipping Calamity Boss Checklist patches.");
                     return;
                 }
 
@@ -46,6 +46,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
                 }
 
                 // Apply the change
+                /*
                 if (dict.ContainsKey("GreatSandShark"))
                 {
                     dict["GreatSandShark"] = 17.7f;
@@ -55,6 +56,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
                 {
                     Mod.Logger.Warn("GreatSandShark key not found in BossChecklistProgressionValues.");
                 }
+                */
 
                 if (dict.ContainsKey("BossRush"))
                 {
@@ -68,7 +70,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
             }
             catch (Exception ex)
             {
-                Mod.Logger.Error($"Failed to adjust GreatSandShark progression value: {ex}");
+                Mod.Logger.Error($"Failed to adjust Calamity Boss Checklist values: {ex}");
             }
         }
     }

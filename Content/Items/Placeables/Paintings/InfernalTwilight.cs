@@ -101,9 +101,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "brome",
             "WitherTaco",
             "Verveine",
-
-            //Content Creators
-            "Yardis",
+            "CrafterDaemon",
 
             //Other
             "Kes",
@@ -136,6 +134,9 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "rosé",
             "TechQueen22",
             "claw",
+            "ProSigmaSoul",
+            "Sir_Yeetus_III",
+            "Soopns",
 
             //Supporters
             "Lylittle",
@@ -149,12 +150,14 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
 
             //Special Thanks
             "N0t_UNowen",
+            "Blockaroz",
             "javyz",
             "habble",
             "Lucille Karma",
             "tomat",
             "Nycro",
-            "Cataclysmic Armageddon"
+            "Cataclysmic Armageddon",
+            "Yardis"
         };
 
         public static IList<string> teamList = new List<string>()

@@ -3,6 +3,8 @@
 namespace InfernalEclipseAPI.Common.Projectiles
 {
     //Provided by Wardrobe Hummus
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
     public class SyctheSoulEssenceBuff : GlobalProjectile
     {
         public override bool InstancePerEntity => false;

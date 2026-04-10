@@ -1,21 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using CalamityMod;
+using CalamityMod.Enums;
 using CalamityMod.Items.Weapons.Melee;
+using CalamityMod.Items.Weapons.Summon;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks;
 using InfernalEclipseAPI.Core.Utils;
-using InfernumMode.Content.Items.Accessories;
-using InfernumMode.Core.GlobalInstances.Players;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using ThoriumMod;
-using ThoriumMod.Items;
 using ThoriumMod.Items.ArcaneArmor;
 using ThoriumMod.Items.BasicAccessories;
 using ThoriumMod.Items.BossFallenBeholder;
@@ -41,6 +38,7 @@ using ThoriumMod.Items.Misc;
 using ThoriumMod.Items.NPCItems;
 using ThoriumMod.Items.Sandstone;
 using ThoriumMod.Items.Terrarium;
+using ThoriumMod.Items.Thorium;
 using ThoriumMod.Items.ThrownItems;
 using ThoriumMod.Items.Valadium;
 using ThoriumMod.Utilities;
@@ -50,10 +48,95 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
     [JITWhenModsEnabled(InfernalCrossmod.Thorium.Name)]
     [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
+    public class ThoriumCrateFix : GlobalItem
+    {
+        public override bool InstancePerEntity => false;
+
+        public override void ModifyItemLoot(Item item, ItemLoot loot)
+        {
+            Fraction fifteenPercent = new Fraction(15, 100);
+
+            if (item.type == ItemType<WondrousCrate>())
+            {
+                RemoveHardmodeOresFromStandardCrates(loot);
+                RemoveHardmodeOresFromBiomeCrates(loot);
+                loot.AddHardmodeOresToCrates(HardmodeCrateType.Titanium);
+            }
+
+            if (item.type == ItemType<AbyssalCrate>() || item.type == ItemType<SinisterCrate>())
+            {
+                RemoveHardmodeOresFromStandardCrates(loot);
+                RemoveHardmodeOresFromBiomeCrates(loot);
+                loot.AddHardmodeOresToCrates(HardmodeCrateType.Biome);
+            }
+        }
+
+        private static void RemoveHardmodeOresFromStandardCrates(ItemLoot loot)
+        {
+            List<IItemDropRule> rules = loot.Get(false);
+
+            // This is the primary rule which contains every drop
+            AlwaysAtleastOneSuccessDropRule mainRule = null;
+            foreach (IItemDropRule rule in rules)
+                if (rule is AlwaysAtleastOneSuccessDropRule a)
+                    mainRule = a;
+            if (mainRule is null)
+                return;
+
+            // Find ones that are supposed to be for the ore and not the other loot
+            foreach (IItemDropRule rule in mainRule.rules)
+            {
+                // Hardmode ores/bars are both nested within *another* nested rule
+                if (rule is SequentialRulesNotScalingWithLuckRule oreRule)
+                {
+                    // Confirm that this is for the ore/bar then pop the numerator for the big rule
+                    foreach (IItemDropRule nestedRule in oreRule.rules)
+                    {
+                        if (nestedRule is SequentialRulesNotScalingWithLuckRule s)
+                        {
+                            oreRule.chanceNumerator = 0;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void RemoveHardmodeOresFromBiomeCrates(ItemLoot loot)
+        {
+            List<IItemDropRule> rules = loot.Get(false);
+
+            // This is the primary rule which contains every drop
+            AlwaysAtleastOneSuccessDropRule mainRule = null;
+            foreach (IItemDropRule rule in rules)
+                if (rule is AlwaysAtleastOneSuccessDropRule a)
+                    mainRule = a;
+            if (mainRule is null)
+                return;
+
+            foreach (IItemDropRule rule in mainRule.rules)
+            {
+                // 2 rules, one for ore and another for bar, nested within *another* nested rule
+                if (rule is SequentialRulesNotScalingWithLuckRule oreRule)
+                {
+                    // Confirm that this is for the ore/bar then pop the numerator for the big rule
+                    foreach (IItemDropRule nestedRule in oreRule.rules)
+                    {
+                        if (nestedRule is OneFromRulesRule o)
+                            oreRule.chanceNumerator = 0;
+                    }
+                }
+            }
+        }
+    }
+
+    [JITWhenModsEnabled(InfernalCrossmod.Thorium.Name)]
+    [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
     public class ThoriumGlobalItem : GlobalItem
     {
         public override void SetStaticDefaults()
         {
+            /*
             InfernumPlayer.AccessoryUpdateEvent += (InfernumPlayer player) =>
             {
                 if (player.GetValue<bool>(Purity.FieldName))
@@ -68,6 +151,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     p.GetDamage<TrueDamage>() *= bonus;
                 }
             };
+            */
         }
 
         public override void SetDefaults(Item item)
@@ -491,7 +575,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         }
                     }
                 }
-
+                
+                /*
                 if (InfernalCrossmod.RagnarokMod.Loaded)
                 {
                     if (item.type == ItemType<NinjaEmblem>())
@@ -501,6 +586,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         player.GetAttackSpeed(DamageClass.Generic) -= 0.05f;
                     }
                 }
+                */
 
                 if (InfernalCrossmod.CalBardHealer.Loaded)
                 {

@@ -59,9 +59,9 @@ Created by the Infernal Eclipse of Ragnarok Team:
 Developers: Akira, Wardrobe Hummus, Advantaje
 Designers: Wardrobe Hummus, Yob, trembler
 Story: Akira, Yob
-Wiki Moderators: Akira, Wardrobe Hummus, Soltan
-Contributors: cheesenuggets, ma3allim, Yelmut, Pudd1ng, Pixus
-Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler, JuJiao
+Wiki Moderators: Akira, Wardrobe Hummus, Soltan, Arkangel
+Contributors: cheesenuggets, ma3allim, Yelmut, Pudd1ng, Pixus, Nicole
+Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, Tyr, JuJiao, Leo, IceSpider
 Composers: Peter Fung
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 

@@ -2,7 +2,7 @@ using CalamityMod.UI.CalamitasEnchants;
 using InfernalEclipseAPI.Content.Items.Accessories;
 using InfernalEclipseAPI.Content.Items.Lore.InfernalEclipse;
 using InfernalEclipseAPI.Content.Items.SpawnItems;
-using InfernalEclipseAPI.Content.Items.Weapons.Donor;
+using InfernalEclipseAPI.Content.Items.Weapons.Donor.Steetsign;
 
 namespace InfernalEclipseAPI.Core.Systems;
 
