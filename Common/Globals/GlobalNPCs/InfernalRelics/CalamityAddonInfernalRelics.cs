@@ -6,12 +6,14 @@ using CatalystMod.NPCs.Boss.Astrageldon;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Bosses.WoB.NPCs;
+using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Content.Items.Accessories;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.Clamity;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.World;
 using NoxusBoss.Assets;
 using NoxusBoss.Content.Items;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.SecondPhaseForm;
@@ -100,6 +102,12 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                         mp.rageModeActive = false;
                         mp.adrenaline = 0;
                         mp.adrenalineModeActive = false;
+
+                        if (InfernalWorld.RagnarokModeEnabled)
+                        {
+                            if (!player.ghost)
+                                player.AddBuff(ModContent.BuffType<BrimstoneDesperation>(), 2);
+                        }
                     }
                 }
             }

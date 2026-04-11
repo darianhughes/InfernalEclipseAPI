@@ -1,6 +1,8 @@
 ﻿using CalamityMod;
 using InfernalEclipseAPI.Core.Systems;
 using SOTS;
+using SOTS.Items.Wings;
+using SOTS.Void;
 using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
@@ -15,11 +17,12 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
         public bool sandwich;
         public bool glowJelly;
         public bool alchemistsCharm;
-
+        public bool bladeWings;
 
         public override void ResetEffects()
         {
             SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Player);
+            VoidPlayer voidPlayer = VoidPlayer.ModPlayer(Player);
 
             if (sotsPlayer.VigorDashes > 25)
             {
@@ -28,10 +31,15 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
 
             if (Player.GetModPlayer<InfernalPlayer>().singularityCore)
             {
-                Player.VoidPlayer().voidRegenSpeed += 0.1f;
+                voidPlayer.voidRegenSpeed += 0.1f;
             }
 
-            royalJelly = sandwich = glowJelly = alchemistsCharm = false;
+            if (Player.GetModPlayer<MachinaBoosterPlayer>().creativeFlight)
+            {
+                voidPlayer.flatVoidRegen -= bladeWings ? 16 : 28;
+            }
+
+            royalJelly = sandwich = glowJelly = alchemistsCharm = bladeWings = false;
         }
 
         public override void UpdateEquips()

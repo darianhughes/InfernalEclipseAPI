@@ -40,6 +40,8 @@ using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
 using SOTS.Common.GlobalNPCs;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
 using Terraria.DataStructures;
+using SOTS.NPCs.Town;
+using SOTS.Items.ChestItems;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -302,6 +304,21 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             }
         }
 
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
+        {
+            if (npc.type == ModContent.NPCType<Archaeologist>() && !NPC.downedDeerclops)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i] != null && !items[i].IsAir &&
+                        items[i].type == ModContent.ItemType<GlazeBow>())
+                    {
+                        items[i].TurnToAir();
+                    }
+                }
+            }
+        }
+
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == ModContent.NPCType<CrimsonTreasureSlime>() || npc.type == ModContent.NPCType<CorruptionTreasureSlime>())
@@ -467,6 +484,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
     {
         public bool canDoVoidDamage = false;
         public bool strongVoidDamge = false;
+        public bool strongerVoidDamage = false;
+
         public override bool InstancePerEntity => true;
 
         public override void SetDefaults(Projectile entity)
@@ -492,7 +511,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             if (projectile.type == ModContent.ProjectileType<SupremeCataclysmFist>() || projectile.type == ModContent.ProjectileType<SupremeCatastropheSlash>() || projectile.type == ModContent.ProjectileType<SupremeCataclysmFistOld>() || projectile.type == ModContent.ProjectileType<CatastropheSlash>()
                 || canDoVoidDamage)
             {
-                int damage = 1 + projectile.damage / (strongVoidDamge ? 3 : 6);
+                int damage = 1 + projectile.damage / (strongerVoidDamage ? 2 : strongVoidDamge ? 3 : 6);
                 VoidPlayer.VoidDamage(Mod, target, damage);
             }
         }

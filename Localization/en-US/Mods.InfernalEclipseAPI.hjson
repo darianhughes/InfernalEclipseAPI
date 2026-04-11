@@ -411,6 +411,7 @@ ItemTooltip: {
 		Nerf: 15% increased movement speed
 	}
 
+	SteamkeeperWatch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
 	DoesNotStack: Does not stack with downgrades
 	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "
@@ -686,18 +687,45 @@ ItemTooltip: {
 				Increases void gain by 1 and void regeneration speed by 25%
 				Doubles damage done to non-Lux spirit enemies
 				'''
-			OrigTooltip: Grants infinite wing and rocket boot flight
-			Replace: Increases wing flight time by 25%
+			Replace:
+				'''
+				Increases wing flight time by 33%
+				Increases movement speed by 7.5%, jump speed by 10%, and acceleration by 1.25x
+				Increases void gain by 1 and void regeneration speed by 25%
+				Doubles damage done to non-Lux spirit enemies
+				'''
 		}
 
 		AscendantInsignia:
 			'''
-			Increases movement and jump speed by 10% and acceleration by 1.1x
 			Pressing the Ascendant Insignia keybind will give you the power of ascension, providing infinite flight time for 4 seconds
 			Ascension has a 40 second cooldown
 			'''
-		GildedVoid: Increases void drain by 3 while active
-		CalSoaringNerf: "[Calamity]: No longer allows infinite flight"
+
+		MachinaBooster: {
+			Orig: Increases void drain by 3 while active
+			Replace:
+				'''
+				Allows flight and slow fall
+				Increases void gain by 1
+				Press '{0}' to gain fast, multidirectional flight at the cost of 5 void
+				Increases void drain by 32 while active
+				'''
+		}
+
+		GildedBladeWings: {
+			Orig: Allows infinite flight and slow fall
+			Replace:
+				'''
+				Increases wing flight time by 50%, movement and jump speed by 15%, and acceleration by 1.5x
+				Increases void gain by 3 and void regeneration speed by 25%
+				Doubles damage done to non-Lux spirit enemies
+				Press '{0}' to gain fast, multidirectional flight
+				Hold '{1}' to fly slower while in the special flight mode
+				'''
+		}
+
+		GildedVoid: Increases void drain by 16 while active
 		MonsterCharm: While in combat, your armor penetration, defense, and life recovery increase over time
 		GreedierRing:
 			'''
@@ -2290,6 +2318,15 @@ Configs: {
 				This setting doesn't do anything if Fargo's Souls isn't enabled.
 				'''
 		}
+
+		ForceRagnarokInfernumModeInSubworlds: {
+			Label: Force Ragnarok Mode and Infernum Mode In Subworlds
+			Tooltip:
+				'''
+				Automatically enables either Infernum Mode or Ragnarok Mode based on your worlds vanilla difficuly.
+				Expert Mode sets it to Infernum; Master Mode sets it to Ragnarok Mode.
+				'''
+		}
 	}
 
 	Difficulty: {
@@ -2566,8 +2603,8 @@ Buffs: {
 	}
 
 	BrimstoneDesperation: {
-		DisplayName: Brimstone Desperation
-		Description: Brimstone energy flows though the air, disabling many of your abilites!
+		DisplayName: Calamitous Desperation
+		Description: Energy of calamity flow though the air, disabling many of your abilites!
 	}
 }
 

@@ -152,6 +152,9 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         [ReloadRequired]
         public bool MoveDeerclopsChecklistEntry { get; set; }
+
+        [DefaultValue(true)]
+        public bool ForceRagnarokInfernumModeInSubworlds { get; set; }
         #endregion
 
         #region Secret

@@ -991,6 +991,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
+            if (ModLoader.TryGetMod("NoxusBoss", out Mod wrath))
+            {
+                if (UnsafeGetItem(wrath, "MetallicChunk", item))
+                {
+                    item.stack = Item.CommonMaxStack;
+                }
+            }
+            
             if (ModLoader.TryGetMod("NoxusPort", out Mod noxusPort))
             {
                 if (UnsafeGetItem(noxusPort, "EntropicBar", item))

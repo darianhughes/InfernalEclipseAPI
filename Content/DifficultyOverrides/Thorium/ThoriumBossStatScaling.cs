@@ -648,12 +648,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
         public override void PostAI(Projectile projectile)
         {
             projectile.tileCollide = false;
-            
+
             if (spawnCollideTimer < 30)
                 spawnCollideTimer++;
-            if (tileCollideTimer > 0)
+            else if (tileCollideTimer > 0)
                 tileCollideTimer--;
-
             else if (!projectile.tileCollide)
                 projectile.tileCollide = true;
         }
@@ -666,7 +665,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             if (tileCollideTimer > 0)
                 return false;
 
-            tileCollideTimer = 45;
+            tileCollideTimer = 20;
+
             return base.OnTileCollide(projectile, oldVelocity);
         }
     }

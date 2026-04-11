@@ -5,7 +5,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {
     public class SummonerRecipeChanges : ModSystem
     {
-        private Mod thorium
+        private static Mod thorium
         {
             get
             {
@@ -13,7 +13,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 return thor;
             }
         }
-        private Mod sots
+        private static Mod sots
         {
             get
             {
@@ -22,7 +22,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             }
         }
 
-        private Mod clamity
+        private static Mod clamity
         {
             get
             {
@@ -62,12 +62,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                     if (recipe.HasResult(ModContent.ItemType<Nucleogenesis>()))
                         if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
-
-                    if (recipe.HasResult<StarTaintedGenerator>())
-                    {
-                        recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
-                        recipe.AddIngredient<InfectedArmorPlating>(4);
-                    }
                 }
 
                 if (sots != null)
@@ -90,15 +84,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                             recipe.AddIngredient(clamity.Find<ModItem>("CyanPearl"));
                         }
 
-                        /*
-                        if (thorium != null && recipe.HasIngredient(ItemID.PygmyNecklace))
+                        if (thorium != null)
                         {
-                            recipe.RemoveIngredient(ItemID.PygmyNecklace);
-                            if (!recipe.HasIngredient(thorium.Find<ModItem>("NecroticSkull"))) recipe.AddIngredient(thorium.Find<ModItem>("NecroticSkull"));
+                            recipe.AddIngredient(thorium.Find<ModItem>("SteamkeeperWatch"));
                         }
-                        */
 
-                        recipe.AddIngredient<LifeAlloy>(2);
+                        recipe.AddIngredient(sots.Find<ModItem>("PhaseBar"), 3);
                     }
                 }
 

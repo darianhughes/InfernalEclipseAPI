@@ -410,11 +410,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //});
                 }
 
-                if (item.type == ModContent.ItemType<StarTaintedGenerator>())
-                {
-                    AddTooltip(tooltips, watchInfo, InfernalRed);
-                }
-
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
                     AddTooltip(tooltips, twoMoreSentries, InfernalRed);
@@ -425,7 +420,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     AddTooltip(tooltips, skullInfo, InfernalRed);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //AddTooltip(tooltips, fortressInfo, InfernalRed);
-                    AddTooltip(tooltips, watchInfo, InfernalRed);
+                    //AddTooltip(tooltips, watchInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "yuma", yumasInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
@@ -469,11 +464,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //});
                 }
 
-                if (item.type == ModContent.ItemType<StarTaintedGenerator>())
-                {
-                    AddTooltip(tooltips, watchInfo, InfernalRed);
-                }
-
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
                     AddTooltip(tooltips, threeMoreSentries, InfernalRed);
@@ -483,38 +473,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //});
                     AddTooltip(tooltips, skullInfo, InfernalRed);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
-                    AddTooltip(tooltips, watchInfo, InfernalRed);
+                    //AddTooltip(tooltips, watchInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "yuma", yumasInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
                     //AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
-                }
-            }
-            else if (sots != null)
-            {
-                //if (item.type == ModContent.ItemType<StatisBlessing>())
-                //{
-                //    tooltips.Add(new TooltipLine(Mod, "sentries", twoMoreSentries)
-                //    {
-                //        OverrideColor = new Color?(InfernalRed)
-                //    });
-                //    tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfoNoThor)
-                //    {
-                //        OverrideColor = new Color?(NoThorYellow)
-                //    });
-                //}
-
-                if (item.type == ModContent.ItemType<Nucleogenesis>())
-                {
-                    /*
-                    AddTooltip(tooltips, threeMoreSentries, InfernalRed);
-                    AddTooltip(tooltips, fortressInfoNoThor, NoThorYellow);
-
-
-                    if (InfernalCrossmod.Clamity.Loaded)
-                        AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
-                    */
                 }
             }
         }

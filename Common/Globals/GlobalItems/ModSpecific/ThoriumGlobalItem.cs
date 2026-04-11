@@ -37,6 +37,7 @@ using ThoriumMod.Items.Icy;
 using ThoriumMod.Items.Misc;
 using ThoriumMod.Items.NPCItems;
 using ThoriumMod.Items.Sandstone;
+using ThoriumMod.Items.SummonItems;
 using ThoriumMod.Items.Terrarium;
 using ThoriumMod.Items.Thorium;
 using ThoriumMod.Items.ThrownItems;
@@ -287,6 +288,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     player.GetModPlayer<InfernalPlayer>().gutWrench = true;
                 }
+            }
+
+            if (item.type == ItemType<SteamkeeperWatch>())
+            {
+                player.GetDamage(DamageClass.Summon) -= SteamkeeperWatch.DamageIncrease / 100f;
             }
         }
 
@@ -689,6 +695,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             }
         }
 
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (item.type == ItemType<GatewayGlass>() && player.Calamity().ZoneAbyss && !DownedBossSystem.downedYharon)
+                return false;
+
+            return base.CanUseItem(item, player);
+        }
+
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
             if (item.type == ItemType<ThePrimordialsTreasureBag>())
@@ -762,6 +776,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             if (item.type == ItemType<DemonBloodBreastPlate>())
             {
                 InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DemonBlood.Replace"));
+            }
+
+            if (item.type == ItemType<SteamkeeperWatch>())
+            {
+                InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SteamkeeperWatch"));
             }
 
             if (InfernalConfig.Instance.DisableDuplicateContent)

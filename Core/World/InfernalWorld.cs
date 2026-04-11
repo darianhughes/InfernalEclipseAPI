@@ -5,7 +5,8 @@ using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
-using System.ComponentModel;
+using SubworldLibrary;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -64,9 +65,17 @@ namespace InfernalEclipseAPI.Core.World
             if (RagnarokModeEnabled && !WorldSaveSystem.InfernumModeEnabled)
                 WorldSaveSystem.InfernumModeEnabled = true;
 
-            if (SubworldLibrary.SubworldSystem.AnyActive())
+            if (SubworldSystem.AnyActive())
             {
-                if (InfernalCrossmod.SOTS.Loaded) 
+                if (InfernalConfig.Instance.ForceRagnarokInfernumModeInSubworlds && !WorldSaveSystem.InfernumModeEnabled)
+                {
+                    if (Main.masterMode)
+                        RagnarokModeEnabled = true;
+                    else if (Main.expertMode)
+                        WorldSaveSystem.InfernumModeEnabled = true;
+                }
+
+                if (InfernalCrossmod.SOTS.Loaded)
                 {
                     foreach (Projectile projectile in Main.projectile)
                     {
