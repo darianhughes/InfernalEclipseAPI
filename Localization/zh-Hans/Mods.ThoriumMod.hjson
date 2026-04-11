@@ -1,6 +1,6 @@
 Buffs: {
 	NinjaBuff.Description: 增加20%投掷弹幕速度和10%投掷暴击率
-	// BloodRush.Description: 15% increased mining speed
+	BloodRush.Description: 挖掘速度增加15%
 }
 
 Items: {

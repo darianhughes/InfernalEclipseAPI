@@ -58,7 +58,11 @@ WelcomeMessage: {
 	TBRWarning: 警告：检测到未启用 Thorium Bosses Reworked！我们强烈建议您启用该模组，它重新平衡了瑟银模组的Boss，使其机制更贴合炼狱模式及灾厄模组的整体进程。
 	RagWarning: 警告：检测到未启用 Ragnarok！若未启用此模组，瑟银与灾厄可能无法良好协同。强烈建议启用此模组，以获得更完整、更平衡的游戏体验。
 	EventTrophyNotice: 注意：检测到您未启用更多圣物和纪念章和传颂之物!如果缺少此模组，任何非原版、灾厄或炼狱模式的 Boss 可能缺失传颂之物或炼狱开场动画。强烈建议您启用此模组，以获得更完整、更平滑的游戏体验。
-	SoulsWarning: 警告：检测到您已启用 Fargo魂石模组！请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
+	SoulsWarning: 
+		'''
+		警告：检测到您已启用 Fargo魂石模组！
+		请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
+		'''
 	OverhaulWarning: 警告：检测到您已启用灾厄大修模组！此模组有较多漏洞且会发生多种错误。我们强烈建议您关闭此模组。
 	RemnantsWarning: 警告：检测到您已启用古迹残存模组！此模组不兼容炼狱，如果该世界是在启用此模组的情况下生成的，请关闭本模组后重新生成世界，否则请不要提交任何有关世界生成的错误报告。
 	MasterPatchNotice: 注意：检测到您已启用 Infernum Master Patch 大师炼狱补丁 模组！此模组是多余的，可以禁用它。
@@ -432,7 +436,7 @@ ItemTooltip: {
 		cheese: cheesenuggets
 		Puzzles: Mr. Puzzles
 		cat: StarlightCat
-		// Arkangel: Arkangel
+		Arkangel: Arkangel
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -786,7 +790,7 @@ ItemTooltip: {
 		ND: 无名光神
 		Mars: 玛尔斯
 		EoL: 光之女皇
-		// Yharim: Yharim's
+		Yharim: 亚利姆
 	}
 
 	AstrageldonRelic: {
@@ -1000,268 +1004,263 @@ Items: {
 		LorePolaris: {
 			DisplayName: 极北灾星
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				When I had initially brought Draedon onto my army, he had immediately began work on a supposed  "secret project" that he refused to elaborate on.
-				Soon after, he presented his first grim death machine.
-				I knew it was fit for my army, however, his prowess shown was... promising. Very much so.
-				''' */
+				当初将嘉登招入麾下之时，他便立刻着手于一个“秘密计划”，关于内容他却拒绝多言。
+				不久之后，他便展现了那第一台阴森的死亡机械。
+				我立刻意识到它已足以在我的军队中服役，而他的天赋……更是令人期待。
+				'''
 		}
 
 		LoreAdvisor: {
 			DisplayName: 启示异械
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				Unlike most creatures, I know not of this "Advisor" or its origins
-				However, it seemed to be much in tune with the void energy lying deep within the crust of Terraria.
-				As who chained it to the Planetarium? I couldn't tell you. 
-				Maybe you could find the answers of that secret from the collector that absorbed its essence after its defeat.
-				''' */
+				我不知这所谓“启示”是什么，或是它如何诞生的，
+				但它似乎与泰拉瑞亚地壳深处的虚空能量颇为契合。
+				谁囚它于星象岛？我不得而知。
+				击败它后，也许你可以向吸收它残留精华的收藏家探得这个秘密。
+				'''
 		}
 
 		LoreGlowmoth: {
 			DisplayName: 荧灯蛾
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				This moth-like creature is interesting, as it makes its homes within the same glowing, mushroom‑infested caves as another similar beast.
-				It seems to emit some sort of bioluminescent glow, reminiscent of the void...
-				perhaps it resides in these caves for their latent void energy?
-				Whatever the case may be, it is beyond me.
-				''' */
+				这种蛾类生物相当有趣，它与另一种相似的怪兽一同栖息在那些幽暗而布满蘑菇的洞穴之中。
+				它似乎能散发出一钟生物荧光，让人不禁联想到虚空……
+				或许正是那些洞穴中潜藏的虚空能量吸引了它？
+				无论如何，这一切仍超出我的理解范围。
+				'''
 		}
 
 		LoreLux: {
 			DisplayName: 辉光圣魂
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				While the Hallow has many that protect it, chaos spirits have no equal.
-				None of them had ever been sufficiently weakened for intelligent use,
-				and Draedon ended up shoving them into constructs for the sole purpose of containment.
-				With this in mind, it is odd that collector once again came to absorb what was left of its energy after its defeat.
-				How quaint.
-				''' */
+				虽然辉光本身被神圣加护，混沌精灵却没有设下什么防御。
+				它们从未成功被无害化到可以被利用的地步，
+				嘉登因此将其封入人造的构造体中以作禁锢。
+				想来奇怪，收藏家竟然在它陨落后再度现身，吸收它残余的能量。
+				真是有趣。
+				'''
 		}
 
 		LorePharaoh: {
 			DisplayName: 法老咒魔
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				The product of yet another folly of the greed towards godhood.
-				Younger of the royal brothers, heir to the throne of the oasis.
-				Though unlike his accursed and vile older sibling, his heart was pure, yet he still faced a saddening fate.
-				The meddling of souls had poisoned his crypt into a pestilence, casting him in a deep painful slumber.
-				His followers and royal assistants tried to save him, but it was too late.
-				Try to mourn after this victory. He was too young to suffer the consequences of his lineage.
-				''' */
+				又一场觊觎神位之贪念所酿成的悲剧余波。
+				王室诸兄弟中最年幼者，绿洲王座的继承人。
+				不同于那受诅而卑劣的长兄，他心性纯净，却仍难逃无情命运。
+				灵魂的干预令他的陵寝化作瘟疫之源，将他拖入漫长而痛苦的沉眠。
+				信徒与王室侍从竭力相救，终究为时已晚。
+				待你赢得此战之后，请再为他哀悼……他尚且年少，不该承受血脉所带来的代价。
+				'''
 		}
 
 		LorePutrid: {
 			DisplayName: 腐蚀之粉
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				A failed experiment, it would seem.
-				It has a certain hunger for Peanuts that grow on the surface, though the reasoning is unknown.
-				It is nowhere near the strength of some of the other gelatinous threats of this world,
-				but it was still formidable irregardless.
-				''' */
+				看起来是一场失败的实验。
+				出于未知原因，它对地表生长的花生有一种执念。
+				它和这个世界里的某些凝胶生物相比，威胁性有着太大的差距。
+				当然，我不建议你小觑它的威胁。
+				'''
 		}
 
 		LoreSerpent: {
 			DisplayName: 亚空骇蟒
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				There lies tales of mysterious serpent‑like beings that roam the manifold between dimensions.
-				Many say that they are too dangerous to face alone,
-				and that they could kill anyone within an instant with the void energy they possess.
-				This one, however... is clearly juvenile.
-				''' */
+				传闻于维度交错的缝隙间，有神秘的蛇蟒生物游走其中。
+				人们都说，若非结伴而行，其恐怖无人能及
+				它们只凭虚空能量就可以瞬间取走任何人的性命。
+				然而这一只……显然只是幼体。
+				'''
 		}
 
 		LoreProvi: {
 			DisplayName: 星河
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				I dreamt of peace once. I don't know why I did.
-				Ever since I received word that there was something beyond this world,
-				I've have felt that womans presence in our world every now and again.
-				Now what Thorne wanted from her? Who knows.
-				But all the power is in your hands now, Terrarian.
-				''' */
+				我曾一度梦见和平……至于为何，我不得而知。
+				自从我得知天地之外另有天地，
+				我便时常感受到那名女子的气息，若隐若现地徘徊在我们的世界。
+				仁想从她那里获得什么？无人知晓。
+				但我相信，你会做出正确的抉择，泰拉人。
+				'''
 		}
 
 		LoreMirror: {
 			DisplayName: 镜像
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				I stared into it for a long while, but like any other mirror, I only saw myself.
-				But even then, something felt... different. It felt wrong, almost... twisted.
-				I disregarded it. But even now, I can feel the piercing gaze my reflection had... shooting directly through my skull.
-				Once you come so far, the hardest part of your journey is facing yourself.
-				''' */
+				我凝视它许久，却如同其它镜面一般，只见自身。
+				可即便如此，心底总觉有些……异样。它很诡异，几近扭曲的诡异。
+				我将其抛诸脑后。但直至今日，我仍能感受到镜中倒影那穿透骨髓的凝视。
+				经历过如此漫长的旅途，早该发现——最难的部分，便是直面你自己。
+				'''
 		}
 
 		LoreDylan: {
 			DisplayName: 迪伦
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				Hmm ... I'm surprised that you even know of that person.
-				The first time we found him we thought he was a god ... however, ends up he didn't actually have a auric soul.
-				We took him in and he showed us how to make powerful elemental imbued gear and bombs that wasn't just steel.
-				His ideas had helped increase my army's power by a lot, but he never fought himself.
+				嗯……你居然还知道他，真令人惊讶。
+				我们第一次发现他时，还以为他是一尊神明……然而，事实证明他并不拥有金源魄。
+				我们收留了他，他教会我们如何打造强大的元素附魔装备，以及不再局限于纯钢铸造的爆破物。
+				他的构想大幅提升了我的军队实力，可他本人却从未亲自上阵。
 
-				One day when I went to his room, but nothing was there expect from a note.
-				We couldn't translate his writing but from the pictures it was some sort of ring,
-				with one of the key ingredients appering to be a "Dark Sun Ring."
-				Perhaps that "Guide" could help you further decipher this note.
-				Regardless, I'm sure you'll figure out how to make it.
+				直到有一天，我走进他的房间，却只看到一张纸条。
+				我们无法破解上面的文字，但从图画来看，那似乎是一枚戒指，
+				且其中关键的材料似乎是「蚀日尊戒」。
+				或许那位向导能帮助你进一步解读这张纸条。
+				无论如何，我相信你终将找出它的制作方法。
 
-				–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
-				''' */
+				–敬请期待《诸神黄昏：炼狱蚀光》的未来篇章！–
+				'''
 		}
 
 		LoreMjolnir: {
 			DisplayName: 雷神之锤
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				Thor, one of the many gods that had managed to evade my crusade,
-				yet he wiill never forget what I had done to him and family.
-				Asgard was merely a land of sinners, so I mererly did what they had done to so many others.
-				Thor had escaped me and I belived he still ruled over Asgard to this day,
-				but with his hammer in your hands, perhaps it is no more.
-				''' */
+				索尔——那些曾侥幸逃过我圣战的诸神之一，
+				但他永远不会忘记我对他与他的家园所做的一切。
+				阿斯加德不过是罪人聚居之地，而我只是在以其人之道还治其人之身——正如他们曾加诸无数生灵的那般。
+				索尔从我手中逃脱，而我一直以为他至今仍统治着阿斯加德，
+				然而，如今他的锤落在你手中——或许，他的时代已经终结。
+				'''
 		}
 
 		LorePrimordials: {
 			DisplayName: 始源诸神
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				Before the world was formed, there were only the Primordials.
-				Each of them represents an aspect of this world, and protect the world from Ragnarok.
-				During my war, I had wanted to slay them thinking they were merely sinners like the other gods,
-				however no matter what I did I could not get there attention.
-				Was I not worthy of their attention despite all I had done to the world?
-				Don't tell me they think I'm a spec in this worlds history compared to you...
-				''' */
+				在世界成形之前，唯有始源存在。
+				祂们各自象征着这世界的一个侧面，并守护着世界免于诸神黄昏。
+				在我的战役中，我曾想将他们一并斩杀，将之视为与其他诸神一样的罪者。
+				然而无论我做了什么，都无法引起他们的注意。
+				难道在我对这世界所做的一切之后，仍不足以让他们正眼相待？
+				莫非在这世界的历史中，我竟连与你相比都不值一提……？
+				'''
 		}
 
 		LoreThunderBird: {
 			DisplayName: 惊雷王鹰
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				These birds were once great and fearsome adversaries, fine foes worth the hunt.
-				Thier feathers could can channel the sun's dormant energy into potent lightning, hense the name.
-				However, these great battles were fleeting; and soon by generation selection,
-				they had lost most of thier potent strength.
-				The one you bested is not but a mellowed runt in comparision to what I had once seen,
-				yet forevermore the title of the Grand Thunder Bird lives on.
-				''' */
+				这些鸟类曾是强大而令人畏惧的对手，堪称值得猎杀的劲敌。
+				它们的羽毛能够引导太阳沉眠的能量，并凝为炽烈雷光，因此得名。
+				然而那些壮烈的狩猎终究短暂。
+				世代更替，它们逐渐失去了昔日的强横之力。
+				你所击败的，不过是远不及我当年所见之姿的孱弱后裔，
+				但“惊雷王鹰”的名号——将永远流传。
+				'''
 		}
 
 		LoreRagnarok: {
 			DisplayName: 诸神黄昏
 			Tooltip: ""
-			/* Lore:
+			Lore:
 				'''
-				How curious.
-				Ragnarok, the fabled end of days, was a being rather than an event.
-				I had searched the world for how to start it, so I could destroy Asgard,
-				but in the end, I had found nothing.
-				The tales of serpents and fire were far from the truth,
-				but now Ragnarok lies in ruin just like Asgard itself.
+				真是有趣。
+				世人所传颂的终焉之时——诸神黄昏——竟非一场灾厄，而是一个实体。
+				我曾遍寻世间，只为找到引发它的方法，好将阿斯加德化为灰烬，
+				但最终，我却一无所获。
+				那些关于巨蛇与火焰的传说，与真相相去甚远。
+				而如今，诸神的黄昏也已如阿斯加德般化为废墟。
 
-				You are now seen as the hero for this land, 
-				and may you find peace in the new age you have created.
-				However, beware, for with every end comes a new beginning...
-				[c/7C0A02:Do not push your luck further, Terrarian.]
-				''' */
+				如今，人们将你视为这片土地的英雄，
+				愿你能在你所开创的新时代中获得安宁。
+				然而须警惕——每一个终结之中，都孕育着新的开端……
+				[c/7C0A02:不要试图逾越天命，泰拉人。]
+				'''
 		}
 
 		LoreMegalomaniac: {
-			// DisplayName: The Megalomaniac
-			// Tooltip: ""
-			/* Lore:
+			DisplayName: 自大狂
+			Tooltip: ""
+			Lore:
 				'''
-				The Devourer, the Dragon, and the Witch. All fell to your ambition. Your motive. Your drive.
-				I had an ambition similar. But never was I deemed hero.
-				I freed this world of tyranny, and yet I stand known as a tyrant.
-				Now one with a determination like mine arrives hell-bent on my destruction.
-				I will meet the same fate the oppressor I felled had.
-				Destined to be dispatched of by one with similar aspirations as themself.
-				I should have known, realized it sooner. It was always meant to be this way.
-				''' */
+				吞噬者、巨龙与女巫，都败在了你的野心、你的意志、你的执念之下。
+				我也曾怀有相似的野心，却从未被世人视作英雄。
+				我将这个世界从暴政中解放，可到头来，人们铭记的却是暴君之名。
+				如今，一个怀着与我相似决意之人，满怀毁灭我的执念而来。
+				我也将迎来与那被我亲手击倒的压迫者相同的命运————
+				被与自己怀着同样野心之人亲手了结。
+				我早该明白，早该更早看清这一点。这一切从一开始，就注定会是这样。
+				'''
 		}
 
 		LoreAnniversaryOne: {
-			// DisplayName: Infernal Eclipse of Ragnarok
-			// Tooltip: Greatly boosts passive luck while in your inventory
-			/* Lore:
+			DisplayName: 诸神黄昏：炼狱蚀光
+			Tooltip: 在你物品栏中时大幅提升你的幸运值
+			Lore:
 				'''
-				What started as a small project I put together just for myself and a few friends has slowly grown into something much bigger than I ever expected. 
-				Infernal Eclipse of Ragnarok began as a way to make a chaotic mix of mods actually feel playable together by
-				just tweaking things here and there so my playthrough at the time would fell smoother and more fun. 
-				But over time, those small fixes turned into full systems, then into reworks, and eventually into an entire framework for how the game should feel. 
-				I found myself not just patching things, but designing—rethinking progression, balancing classes across multiple mods, 
-				and building something that felt cohesive instead of stitched together. 
-				It's been a long process of trial, frustration, and iteration, especially learning how to make everything work in multiplayer 
-				and across so many different mods, but it's also been incredibly rewarding. 
-				What was once just a personal project has become a full-scale development effort with its own identity, and honestly, 
-				seeing it grow into something others can enjoy has been one of the most fulfilling parts of the journey.
-
-				Thank you to everyone who has supported the mod, given feedback, and been part of this community.
-				Here's to many more updates, features, and chaotic times in the world of Infernal Eclipse of Ragnarok!
-				''' */
+				这个原本只是我为自己和几位朋友随手做的小项目，却在不知不觉间，慢慢成长成了远超我预想的模样
+				《诸神黄昏：炼狱蚀光》最初只是为了让一堆混搭起来混乱不堪的模组真正变得“能玩”，所以我只是东改一点西调一点，好让当时那次流程玩起来更顺、更有趣
+				但随着时间推移，这些零碎的小修小补逐渐变成了完整的系统，接着变成了大规模重做，最终发展成了一整套对游戏体验的构想框架
+				我发现自己做的已经不只是打补丁，而是在真正进行设计——重新思考流程推进，平衡多个模组之间的职业体系，并打造出一种协调统一的体验，而不是把各种内容生硬拼凑在一起
+				这一路充满了反复尝试、挫折与迭代，尤其是在学习如何让这么多不同模组能在多人模式下正常运作时更是如此，但这一切也同样令人无比满足
+				曾经只是私人自用的小项目，如今已经成长为一个拥有自身独特风格的大型开发工程，说实话，能亲眼看到它成长成一个能让更多人享受其中的作品，已经成为这段旅程中最让我满足的事情之一
+				感谢每一位支持这个模组、提出反馈，以及一路陪伴这个社区走到现在的人
+				愿《诸神黄昏：炼狱蚀光》的世界今后还能迎来更多更新、更多内容，以及更多混乱又精彩的时刻！
+				'''
 		}
 
 		LoreAbominationn: {
 			DisplayName: 憎恶
-			// Tooltip: ""
-			/* Lore:
+			Tooltip: ""
+			Lore:
 				'''
-				The middle child of the eternal siblings, and one of the laziest people I've ever seen.
-				While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
-				he truly is super lazy, going to the point of even fusing his weapons to his hands.
-				His weapon has the ability to divide the soul itself, and has the ability to use all supernatural phenomena. 
-				Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
-				''' */
+				他是永恒兄妹中的次子，也是我所见过最懒散的人之一。
+				即使憎恶能够掌控风雨、驱逐来犯之敌，
+				他却懒到将武器直接与双手融为一体。
+				他的武器能分裂灵魂，也能操纵一切超自然之力。
+				幸好，他出于对突变体的敬重并未动用天象之术——否则，你的胜利恐怕无从谈起。
+				'''
 		}
 
 		LoreDeviantt: {
 			DisplayName: 戴薇安
-			// Tooltip: ""
-			/* Lore:
+			Tooltip: ""
+			Lore:
 				'''
-				The youngest of the eternal siblings, and also the weakest.
-				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
-				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
-				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while using a living axe made of evil.
-				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
-				''' */
+				她是永恒兄妹中最年幼、也最弱小的一个。
+				在旅途中，她收集了许多稀怪之物，兴致好时会将它们售与他人。
+				可若心情不在，她便会毫不掩饰那病态的施虐欲。
+				戴薇安能以始源之光与纯粹之爱施展法术，手中挥舞的却是一柄由邪恶孕育的活斧。
+				纵然你在战斗中击败了她，她似乎并不惧死——这也是我第一次见到她全力以赴。
+				'''
 		}
 
 		LoreMutant: {
 			DisplayName: 突变体
-			// Tooltip: ""
-			/* Lore:
+			Tooltip: ""
+			Lore:
 				'''
-				The oldest and strongest of the eternal siblings.
-				While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
-				He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift.
-				Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
-				Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
-				He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
-				''' */
+				他是永恒兄妹中最年长、也最强大的一位。
+				虽被其余兄妹称作兄长，他本人却始终拒绝确认性别。
+				他是永恒的守护者，化身终极之力，据说源自那维度裂隙之外的世界。
+				除你之外，他是这片泰拉大陆上最强的存在，精通一切战斗之道。
+				然而，纵有如此力量，他更愿旁观世间之战，而非亲自出手。
+				他常说自己在寻找值得一战之人……看来，如今他已找到了。
+				'''
 		}
 	}
 
@@ -1779,12 +1778,12 @@ Items: {
 			+3.5HP/s生命再生和2格最大仆从栏位
 			增加仆从击退力和钱币掉落
 			随着时间推移会获得多种强化
-			    在白天时+2 HP/s生命再生
-			    在夜晚时增加20点防御
-			    在日食时+1HP/s生命再生和10点防御
+			在白天时+2 HP/s生命再生
+			在夜晚时增加20点防御
+			在日食时+1HP/s生命再生和10点防御
 			增加20%最大飞行时间
 			'''
-		FlavorText: “于火焰与火花之后，若你凝视得足够深远，便能洞悉你的过去和未来”
+		FlavorText: “于炽炎与火花之后，若你凝视得足够深远，便能洞悉你的过去和未来”
 	}
 
 	InfernalTerraBladeRelic: {
@@ -1926,73 +1925,73 @@ Items: {
 	}
 
 	TyrantYharimsUltisword: {
-		// DisplayName: Tyrant's Penetrator
-		/* Tooltip:
+		DisplayName: 暴政穿杀
+		Tooltip:
 			'''
-			Throw a auric greatsword that impales, immolates, and slows enemies
-			Up to five blades can impale an enemy at a time, with further hits launching the previous impaled blades
-			Press <right> to enter a stance where you can use <left> to perform a colossal, devastating slash
-			While in the stance, you gain life and flight time regeneration and your dashes have a shorter cooldown
-			The devastating slash must recharge after being used
-			Striking an impaled enemy with the devastating slash launches all blades and readies another slash
-			The final enemy hit with a devastating slash has a death mark applied to them
-			When you exit the stance, the death mark explodes for massive damage
-			'The reward of becoming a godseeker...'
-			''' */
+			投出一把金源巨剑，刺穿、焚烧并减速敌人
+			同一敌人身上最多可同时刺入五把剑，继续命中会将先前刺入的剑击飞
+			按下右键进入架势，期间可用左键施展毁天灭地的巨型斩击
+			处于架势时，你会获得生命恢复与飞行时间恢复，且冲刺冷却更短
+			巨型斩击在使用后需要充能
+			用巨型斩击命中被刺穿的敌人时，会发射所有剑刃并立即准备好下一次斩击
+			被巨型斩击最后命中的敌人会被施加死亡标记
+			退出架势时，死亡标记会爆炸并造成巨额伤害
+			“成为寻神者的奖赏……”
+			'''
 	}
 
 	BirthdayCake: {
-		// DisplayName: Birthday Cake
-		// Tooltip: ""
-		/* DynamicTooltip:
+		DisplayName: 生日蛋糕
+		Tooltip: ""
+		DynamicTooltip:
 			'''
-			{0} improvements to all stats
-			Instantly activates adrenaline mode & inflicts potion sickness
-			Can not be consumed when a boss is alive
-			'Happy Birthday!'
-			''' */
-		// Stellar: Stellar
-		// Major: Major
+			所有属性提升{0}
+			立刻触发肾上腺素，并触发药水疾病
+			不能在Boss存活时使用
+			“Happy Birthday!”
+			'''
+		Stellar: 饱如巨星
+		Major: 精美毛绒玩具
 	}
 
 	ShatteredSubcommunity: {
-		// DisplayName: Shattered Subcommunity
-		/* Tooltip:
+		DisplayName: 幻灭子社区
+		Tooltip:
 			'''
-			'Ruined by toxicity, it still contains most of the part of The (Calamity) Community...'
-			Increases mining speed by 50%
-			Increases luck by 0.5 and fishing power by 50
-			Increases tile and wall placing speed by 50% and placing range by 5
-			''' */
+			“幻灭于网络戾气之中，它仍然保留着灾厄社区Remix的大部分力量”
+			采矿速度提升50%
+			幸运提升0.5，渔力提升50
+			物块与墙体放置速度提升50%，放置范围提升5
+			'''
 	}
 
-	// SoltanBullyingSlip.DisplayName: Dylan's Anti-Soltan Chipnote
-	// MysteriousDiary.DisplayName: Mysterious Diary
+	SoltanBullyingSlip.DisplayName: 迪伦的反索坦芯片
+	MysteriousDiary.DisplayName: 神秘日记
 
 	AngelDyeItem: {
-		// DisplayName: Angel Dye
-		// Tooltip: ""
+		DisplayName: 天使染料
+		Tooltip: ""
 	}
 
 	ArkangelDyeItem: {
-		// DisplayName: Arkangel Dye
-		// Tooltip: ""
+		DisplayName: 大天使染料
+		Tooltip: ""
 	}
 
 	The454CasullandTheJackal: {
-		// DisplayName: .454 Casull and The Jackal
-		/* Tooltip:
+		DisplayName: .454加斯尔和豺狼
+		Tooltip:
 			'''
-			Shooting either gun will swap the first two bullet type ammos in your ammo slots
-			<left> to shoot The Jackal, a low-fire rate pistol meant for single-target damage
-			The Jackal will convert Musket Balls into High Velocity Bullets
-			<right> to shoot .454 Casull, a high-fire rate pistol meant for mobbing
-			The .454 Casull will convert Musket Balls into Meteor Shots
-			Bullets inflict [cbuff:CalamityMod/Laceration] and tear blood orbs out of targets on hit
-			Picking up these blood orbs reduces the duration of [cbuff:PotionSickness]
-			[c/7C0A02:'Even Jesus wept...']
-			[c/aaaaaa:Shift-<right> this item in your inventory to toggle the] [i:EndlessMusketPouch] [c/aaaaaa:ammo swap]
-			''' */
+			使用任意两把枪射击时，会自动交替弹药栏中的前两种子弹类型
+			<left>使用豺狼进行射击，一把射速较低，但专注于对单体目标打击的手枪
+			豺狼会将火枪弹转换为高速弹
+			<right>使用.454加斯尔进行射击，一把高射速手枪，适合快速清除大量敌人
+			.454加斯尔会将火枪弹转换为流星弹
+			子弹会施加[cbuff:CalamityMod/Laceration]并从击中的目标身上撕裂出血珠
+			拾取血珠会降低[cbuff:PotionSickness]的持续时间
+			[c/7C0A02:“就连耶稣也曾哭泣过……”]
+			[c/aaaaaa:在物品栏中按住Shift右键切换] [i:EndlessMusketPouch] [c/aaaaaa:弹药交替]
+			'''
 	}
 }
 
@@ -2034,8 +2033,8 @@ Projectiles: {
 	EvilStrike.DisplayName: 邪恶打击
 	CelestialIlluminationBeam.DisplayName: 星界启明光束
 	CelestialIlluminationStar.DisplayName: 启明之星
-	// Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
-	// CasullandJackalProj.DisplayName: 454 Casull and The Jackal
+	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: 暴君亚利姆终极剑投掷
+	CasullandJackalProj.DisplayName: 454加斯尔和豺狼
 }
 
 DiaryTooltip:
