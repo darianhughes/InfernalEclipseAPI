@@ -487,6 +487,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.DisableRecipe();
                     }
 
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("DivineArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("DivineBullet")))
+                    {
+                        if (InfernalConfig.Instance.CalamityBalanceChanges)
+                            recipe.DisableRecipe();
+                    }
+
                     if (InfernalConfig.Instance.MergeCraftingTrees)
                     {
                         if (recipe.HasResult(calAmmo.Find<ModItem>("AutoCalculationCoil")))

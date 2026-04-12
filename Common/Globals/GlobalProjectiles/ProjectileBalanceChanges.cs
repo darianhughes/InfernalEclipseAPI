@@ -513,6 +513,15 @@ namespace InfernalEclipseAPI.Common.Projectiles
             {
                 projectile.damage /= 3;
             }
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "SOTS" && projectile.ModProjectile.Name == "RevolutionBolt" && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                projectile.damage /= 3;
+            }
+
+            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "SOTSBardHealer" && projectile.ModProjectile.Name == "TurboSlicerThrown" && InfernalConfig.Instance.SOTSBalanceChanges)
+            {
+                projectile.damage *= 2;
+            }
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
