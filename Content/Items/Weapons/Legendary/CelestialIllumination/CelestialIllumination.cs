@@ -12,6 +12,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
 {
     public class CelestialIllumination : ModItem
     {
+        //according to Ropro, this item is still not done yet.
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         readonly static int beam = ModContent.ProjectileType<CelestialIlluminationBeam>();
         readonly static int star = ModContent.ProjectileType<CelestialIlluminationStar>();
         public static int Tier()
