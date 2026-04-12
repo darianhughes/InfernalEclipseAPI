@@ -3,7 +3,7 @@ Items: {
 		DisplayName: Ring of the Mint Moon
 		Tooltip:
 			'''
-			Gives the Minty Freshness Buff
+			Gives the [cbuff:BlueMoon/MintyFreshnessBuff] Buff
 			Increasing damage and movement speed by 7%
 			'''
 	}
@@ -12,7 +12,7 @@ Items: {
 		DisplayName: Ring of the Cherry Moon
 		Tooltip:
 			'''
-			Gives the Floral Blessing Buff
+			Gives the [cbuff:BlueMoon/FloralBlessingBuff] Buff
 			Granting +2HP/s life regeneration
 			'''
 	}
@@ -21,7 +21,7 @@ Items: {
 		DisplayName: Ring of the Blue Moon
 		Tooltip:
 			'''
-			Gives the Lunar Empowerment Buff
+			Gives the [cbuff:BlueMoon/LunarEmpowermentBuff] Buff
 			Increasing the luck of the wearer, moreso in hardmode
 			'''
 	}
@@ -30,7 +30,7 @@ Items: {
 		DisplayName: Ring of the Harvest Moon
 		Tooltip:
 			'''
-			Gives the Bountiful Harvest Buff
+			Gives the [cbuff:BlueMoon/BountifulHarvestBuff] Buff
 			Increasing the amount of coins dropped by enemies by x1.5, x2 in hardmode
 			'''
 	}

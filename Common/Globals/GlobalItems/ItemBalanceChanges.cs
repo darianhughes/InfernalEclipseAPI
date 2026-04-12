@@ -5497,6 +5497,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 96;
                 }
 
+                if (GetItem(sots, "DreamLamp", item))
+                {
+                    item.damage = 26;
+                }
+
                 if (GetItem(sots, "DuneSplicer", item))
                 {
                     item.damage = 30;
@@ -5515,8 +5520,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sots, "RealityShatter", item))
                 {
-                    item.useTime = 12;
-                    item.useAnimation = 12;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
                     item.damage = 125;
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }
@@ -5776,7 +5781,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sotsBH, "UltrasonicBassBooster", item))
                 {
-                    item.damage = 52;
+                    item.damage = 60;
                 }
 
                 if (GetItem(sotsBH, "TwilightAscendance", item))
@@ -5804,6 +5809,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.damage = 402;
                 }
+
+                if (GetItem(sotsBH, "DeathThroesThrows", item))
+                {
+                    item.damage = 508;
+                }
             }
             #endregion
 
@@ -5813,6 +5823,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (UnsafeGetItem(console, "AlbinoMandible", item))
                 {
                     item.damage = 20;
+                }
+
+                if (UnsafeGetItem(console, "RomanCandle", item))
+                {
+                    item.useTime = 30;
+                    item.useAnimation = 30;
                 }
 
                 if (UnsafeGetItem(console, "EggCannon", item))

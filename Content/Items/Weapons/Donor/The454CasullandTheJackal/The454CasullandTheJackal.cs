@@ -30,7 +30,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.The454CasullandTheJacka
             Item.value = CalamityGlobalItem.RarityDarkBlueBuyPrice;
 
             Item.DamageType = DamageClass.Ranged;
-            Item.damage = 1725;
+            Item.damage = 1375;
             Item.knockBack = 7f;
             Item.crit = 26;
 

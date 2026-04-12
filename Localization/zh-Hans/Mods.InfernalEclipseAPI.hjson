@@ -58,7 +58,7 @@ WelcomeMessage: {
 	TBRWarning: 警告：检测到未启用 Thorium Bosses Reworked！我们强烈建议您启用该模组，它重新平衡了瑟银模组的Boss，使其机制更贴合炼狱模式及灾厄模组的整体进程。
 	RagWarning: 警告：检测到未启用 Ragnarok！若未启用此模组，瑟银与灾厄可能无法良好协同。强烈建议启用此模组，以获得更完整、更平衡的游戏体验。
 	EventTrophyNotice: 注意：检测到您未启用更多圣物和纪念章和传颂之物!如果缺少此模组，任何非原版、灾厄或炼狱模式的 Boss 可能缺失传颂之物或炼狱开场动画。强烈建议您启用此模组，以获得更完整、更平滑的游戏体验。
-	SoulsWarning: 
+	SoulsWarning:
 		'''
 		警告：检测到您已启用 Fargo魂石模组！
 		请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
@@ -411,7 +411,7 @@ ItemTooltip: {
 		Nerf: 增加15%移动速度
 	}
 
-	// SteamkeeperWatch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
+	SteamkeeperWatch: 你的哨兵可以永久存在并在2分钟内获得至多15%伤害提升
 	DoesNotStack: 不与下位效果叠加
 	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "
@@ -687,40 +687,45 @@ ItemTooltip: {
 				增加1点虚空恢复量和25%虚空恢复速度
 				对除了辉光圣魂以外的灵魂敌怪造成双倍伤害
 				'''
-			Replace: 增加25%翅膀飞行时间
+			Replace:
+				'''
+				翅膀飞行时间增加33%
+				移动速度提高7.5%，跳跃速度提高10%，加速度提升为1.25倍
+				增加1点虚空恢复量和25%虚空恢复速度
+				对除了辉光圣魂以外的灵魂敌怪造成双倍伤害
+				'''
 		}
 
 		AscendantInsignia:
 			'''
-			移动和跳跃速度提高10%，加速度提高至1.1倍
 			按下进升证章按键会给予你飞升之力，提供4秒的无限飞行时间
 			飞升有40秒冷却时间
 			'''
 
 		MachinaBooster: {
-			// Orig: Increases void drain by 3 while active
-			/* Replace:
+			Orig: 激活时会增加3点虚空流失值
+			Replace:
 				'''
-				Allows flight and slow fall
-				Increases void gain by 1
-				Press '{0}' to gain fast, multidirectional flight at the cost of 5 void
-				Increases void drain by 32 while active
-				''' */
+				可飞行和缓降
+				增加1点虚空恢复量
+				按下'{0}'键可消耗5点虚空值进行高速的多方向飞行
+				激活时会增加32点虚空流失值
+				'''
 		}
 
 		GildedBladeWings: {
-			// Orig: Allows infinite flight and slow fall
-			/* Replace:
+			Orig: 可无限飞行和缓降
+			Replace:
 				'''
-				Increases wing flight time by 50%, movement and jump speed by 15%, and acceleration by 1.5x
-				Increases void gain by 3 and void regeneration speed by 25%
-				Doubles damage done to non-Lux spirit enemies
-				Press '{0}' to gain fast, multidirectional flight
-				Hold '{1}' to fly slower while in the special flight mode
-				''' */
+				翅膀飞行时间增加50%、移动速度和跳跃速度增加15%，加速度提升为1.5倍
+				增加3点虚空恢复量，增加25%虚空恢复速度
+				对除了辉光圣魂以外的灵魂敌怪造成双倍伤害
+				按下'{0}'键进行高速的多方向飞行
+				按住'{1}'键可在特殊飞行模式下缓慢飞行
+				'''
 		}
 
-		GildedVoid: 激活时的虚空消耗值增加3
+		GildedVoid: 激活时会增加16点虚空流失值
 		MonsterCharm: 战斗中你的盔甲穿透，防御和生命恢复会随时间增加
 		GreedierRing:
 			'''
@@ -2313,12 +2318,12 @@ Configs: {
 		}
 
 		ForceRagnarokInfernumModeInSubworlds: {
-			// Label: Force Ragnarok Mode and Infernum Mode In Subworlds
-			/* Tooltip:
+			Label: 强制炼狱子世界为诸神黄昏难度
+			Tooltip:
 				'''
-				Automatically enables either Infernum Mode or Ragnarok Mode based on your worlds vanilla difficuly.
-				Expert Mode sets it to Infernum; Master Mode sets it to Ragnarok Mode.
-				''' */
+				根据主世界的原本难度自动启用炼狱模式或诸神黄昏模式
+				专家模式启用炼狱模式；大师模式启用诸神黄昏模式
+				'''
 		}
 	}
 
@@ -2596,8 +2601,8 @@ Buffs: {
 	}
 
 	BrimstoneDesperation: {
-		DisplayName: 硫火绝望
-		Description: 硫火能量在空气中流动，禁用了你的大多数能力！
+		DisplayName: 灾厄绝望
+		Description: 灾厄能量在空气中流动，禁用了你的大多数能力！
 	}
 }
 
