@@ -29,6 +29,8 @@ using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Ravager;
 using CalamityMod.NPCs.Providence;
 using System.Linq;
+using CalamityMod.NPCs.PrimordialWyrm;
+using CalamityMod.World;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -879,6 +881,11 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 modifiers.FinalDamage *= 0.1f;
             }
+
+            if ((target.type == ModContent.NPCType<PrimordialWyrmBody>() || target.type == ModContent.NPCType<PrimordialWyrmHead>() || target.type == ModContent.NPCType<PrimordialWyrmTail>() || target.type == ModContent.NPCType<PrimordialWyrmBodyAlt>()) && !DownedBossSystem.downedYharon)
+            {
+                modifiers.FinalDamage *= 0.1f;
+            }
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
@@ -891,6 +898,11 @@ namespace InfernalEclipseAPI.Core.Players
             }
 
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
+            {
+                modifiers.FinalDamage *= 0.1f;
+            }
+
+            if ((target.type == ModContent.NPCType<PrimordialWyrmBody>() || target.type == ModContent.NPCType<PrimordialWyrmHead>() || target.type == ModContent.NPCType<PrimordialWyrmTail>() || target.type == ModContent.NPCType<PrimordialWyrmBodyAlt>()) && !DownedBossSystem.downedYharon)
             {
                 modifiers.FinalDamage *= 0.1f;
             }
