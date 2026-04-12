@@ -5377,11 +5377,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 13;
                 }
 
-                if (GetItem(sots, "DreamLamp", item))
-                {
-                    item.damage = 68;
-                }
-
                 if (GetItem(sots, "IlluminantStaff", item))
                 {
                     item.damage = 13;
@@ -5499,7 +5494,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sots, "DreamLamp", item))
                 {
-                    item.damage = 26;
+                    //item.damage = 26;
                 }
 
                 if (GetItem(sots, "DuneSplicer", item))
@@ -5520,9 +5515,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sots, "RealityShatter", item))
                 {
-                    item.useTime = 20;
-                    item.useAnimation = 20;
-                    item.damage = 125;
+                    item.damage = 115;
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }
 
