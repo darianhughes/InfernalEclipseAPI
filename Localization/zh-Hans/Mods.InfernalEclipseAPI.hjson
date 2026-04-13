@@ -1,7 +1,8 @@
 UI: {
 	Cooldowns: {
 		ManaSteal: 剩余魔力吸取量
-		// TerminalLucidity: Terminal Lucidity
+		TerminalLucidity: 混乱的现实
+		LucidRetaliation: 恢复的现实
 	}
 
 	RagnarokIconText: 诸神黄昏模式已启用
@@ -143,12 +144,12 @@ ItemTooltip: {
 		'''
 	PhoenixStaff:
 		'''
-		右键喷射火焰流，对敌怪造成神圣之怒减益
+		右键喷射火焰流，对敌怪造成[cbuff:ThoriumMod/HolyGlare]减益
 		受影响的敌怪在减益持续时间内受到的伤害增加15%
 		'''
 	HolyGlare:
 		'''
-		被镰刀命中的敌人会受到神圣之怒减益
+		被镰刀命中的敌人会受到[cbuff:ThoriumMod/HolyGlare]减益
 		受影响的敌怪在减益持续时间内受到的伤害增加15%
 		'''
 	SandstonePortalDeviceInfo:
@@ -939,7 +940,7 @@ Items: {
 				'''
 			Plantera:
 				'''
-				击败嘉登的机械装置后，它现在会附加幻星感染减益
+				击败嘉登的机械装置后，它现在会附加[cbuff:CalamityMod/AstralInfectionDebuff]减益
 				击败丛林守护者以获得更多力量……
 				'''
 			Golem:
@@ -1464,7 +1465,7 @@ Items: {
 				'''
 			Mechs:
 				'''
-				随着血肉墙被击败，该武器发射的子弹可造成碎甲效果
+				随着血肉墙被击败，该武器发射的子弹可造成[cbuff:CalamityMod/Crumbling]效果
 				击败机械造物以获得更多力量……
 				'''
 			Plantera:
@@ -1510,7 +1511,7 @@ Items: {
 				'''
 			Providence:
 				'''
-				击败亵渎天神后，你的攻击会施加神圣之火
+				击败亵渎天神后，你的攻击会施加[cbuff:CalamityMod/HolyFlames]减益
 				击败噬魂集合体以获得更多力量……
 				'''
 			Polterghast:
@@ -1874,7 +1875,7 @@ Items: {
 		DynamicTooltip:
 			'''
 			提升所有属性值{0}{1}
-			立刻触发怒气模式，并触发药水疾病
+			立刻触发怒气模式，并触发[cbuff:PotionSickness]
 			“品尝我的怒火……和布丁！”
 			'''
 		VoidTooltip: 回复100点虚空值
@@ -1886,7 +1887,7 @@ Items: {
 		DisplayName: 奇异核心
 		Tooltip:
 			'''
-			永久增加100点最大虚空值和10%虚空恢复速度
+			永久增加50点最大虚空值和5%虚空恢复速度
 			只能使用一次
 			'''
 	}
@@ -2004,17 +2005,17 @@ Items: {
 	}
 
 	RuinousPlasmaInjection: {
-		// DisplayName: Ruinous Plasma Injection
-		/* Tooltip:
+		DisplayName: 毁灭等离子体注射器
+		Tooltip:
 			'''
-			Permanently increases max void by 10 and void regeneration speed by 1%
-			Can be used 5 times
-			''' */
+			永久增加10点最大虚空值和1%虚空恢复速度
+			可使用5次
+			'''
 	}
 
 	FinalFractalMusicBox: {
-		// DisplayName: Music Box (Terra Blade)
-		// Tooltip: Plays 'FINAL FRACTAL' by ENNWAY
+		DisplayName: 音乐盒 (泰拉刃)
+		Tooltip: 播放“FINAL FRACTAL” 作者：ENNWAY
 	}
 }
 
@@ -2591,7 +2592,7 @@ Buffs: {
 	BrokenOath: {
 		DisplayName: 破碎之誓
 		Description: “首先，不要伤害” - 希波克拉底誓言
-		// ItemTooltip: Reduces Bonus Healing bt 10 and Radiant damage by 50%
+		ItemTooltip: 减少10点额外治疗量并降低50%光辉伤害
 	}
 
 	BubbleShock: {
@@ -2638,7 +2639,7 @@ Tiles: {
 	GolemMusicBoxTile.MapEntry: 石巨人音乐盒
 	ProphecyMusicBoxTile.MapEntry: 预言音乐盒
 	MenuMusicBoxTile.MapEntry: 主题曲音乐盒
-	// FinalFractalMusicBoxTile.MapEntry: Final Fractal Music Box Tile
+	FinalFractalMusicBoxTile.MapEntry: 最终分形音乐盒
 }
 
 NPCs: {
