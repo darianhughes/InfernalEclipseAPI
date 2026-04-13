@@ -29,10 +29,16 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
                 sotsPlayer.VigorDashes = 25;
             }
 
+            float ieorPermVoidRegenSpeedIncrese = 0f;
+
             if (Player.GetModPlayer<InfernalPlayer>().singularityCore)
             {
-                voidPlayer.voidRegenSpeed += 0.1f;
+                ieorPermVoidRegenSpeedIncrese += 0.05f;
             }
+
+            ieorPermVoidRegenSpeedIncrese += Player.GetModPlayer<InfernalPlayer>().ruinousPlasmaInjection * 0.01f;
+
+            voidPlayer.voidRegenSpeed += ieorPermVoidRegenSpeedIncrese;
 
             if (Player.GetModPlayer<MachinaBoosterPlayer>().creativeFlight)
             {

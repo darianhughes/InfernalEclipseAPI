@@ -1,5 +1,10 @@
 UI: {
-	Cooldowns.ManaSteal: Mana Steal Remaining
+	Cooldowns: {
+		ManaSteal: Mana Steal Remaining
+		TerminalLucidity: Terminal Lucidity
+		LucidRetaliation: Lucid Retaliation
+	}
+
 	RagnarokIconText: Ragnarok Mode is enabled
 	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
 	NoRespawn2: Respawn prevented: Only {0} respawns per boss in {1} multiplayer!
@@ -1884,7 +1889,7 @@ Items: {
 		DisplayName: Singularity Core
 		Tooltip:
 			'''
-			Permanently increases max void by 100 and void regeneration speed by 10%
+			Permanently increases max void by 50 and void regeneration speed by 5%
 			Can only be used once
 			'''
 	}
@@ -1999,6 +2004,20 @@ Items: {
 			[c/7C0A02:'Even Jesus wept...']
 			[c/aaaaaa:Shift-<right> this item in your inventory to toggle the] [i:EndlessMusketPouch] [c/aaaaaa:ammo swap]
 			'''
+	}
+
+	RuinousPlasmaInjection: {
+		DisplayName: Ruinous Plasma Injection
+		Tooltip:
+			'''
+			Permanently increases max void by 10 and void regeneration speed by 1%
+			Can be used 5 times
+			'''
+	}
+
+	FinalFractalMusicBox: {
+		DisplayName: Music Box (Terra Blade)
+		Tooltip: Plays 'FINAL FRACTAL' by ENNWAY
 	}
 }
 
@@ -2622,6 +2641,7 @@ Tiles: {
 	GolemMusicBoxTile.MapEntry: Golem Music Box Tile
 	ProphecyMusicBoxTile.MapEntry: Prophecy Music Box Tile
 	MenuMusicBoxTile.MapEntry: Menu Music Box Tile
+	FinalFractalMusicBoxTile.MapEntry: Final Fractal Music Box Tile
 }
 
 NPCs: {

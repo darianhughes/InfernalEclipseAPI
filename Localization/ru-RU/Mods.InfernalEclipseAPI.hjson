@@ -1,5 +1,9 @@
 UI: {
-	// Cooldowns.ManaSteal: Mana Steal Remaining
+	Cooldowns: {
+		// ManaSteal: Mana Steal Remaining
+		// TerminalLucidity: Terminal Lucidity
+	}
+
 	RagnarokIconText: Рагнарёк активирован
 	NoRespawn: Возрождение предотвращено: Только одно возрождение в битве с боссом в {0} мультиплеере!
 	NoRespawn2: Возрождение предотвращено: Только {0} {^0:возрождение;возрождения;возрождений} в битве с боссом в {1} мультиплеере!
@@ -1473,7 +1477,7 @@ Items: {
 				''' */
 			/* Providence:
 				'''
-				With the defeat of Providence, your attacks inflict Holy Flames
+				With the defeat of Providence, your attacks inflict [cbuff:CalamityMod/HolyFlames]
 				Defeat the sentinels of the scourge to gain more power...
 				''' */
 			/* Polterghast:
@@ -1922,7 +1926,7 @@ Items: {
 		/* DynamicTooltip:
 			'''
 			{0} improvements to all stats
-			Instantly activates adrenaline mode & inflicts potion sickness
+			Instantly activates adrenaline mode & inflicts [cbuff:PotionSickness]
 			Can not be consumed when a boss is alive
 			'Happy Birthday!'
 			''' */
@@ -1968,6 +1972,20 @@ Items: {
 			[c/7C0A02:'Even Jesus wept...']
 			[c/aaaaaa:Shift-<right> this item in your inventory to toggle the] [i:EndlessMusketPouch] [c/aaaaaa:ammo swap]
 			''' */
+	}
+
+	RuinousPlasmaInjection: {
+		// DisplayName: Ruinous Plasma Injection
+		/* Tooltip:
+			'''
+			Permanently increases max void by 10 and void regeneration speed by 1%
+			Can be used 5 times
+			''' */
+	}
+
+	FinalFractalMusicBox: {
+		// DisplayName: Music Box (Terra Blade)
+		// Tooltip: Plays 'FINAL FRACTAL' by ENNWAY
 	}
 }
 
@@ -2543,6 +2561,7 @@ Buffs: {
 	BrokenOath: {
 		DisplayName: Нарушенная клятва
 		Description: Не нраведи - Гиппократ
+		// ItemTooltip: Reduces Bonus Healing bt 10 and Radiant damage by 50%
 	}
 
 	BubbleShock: {
@@ -2589,6 +2608,7 @@ Tiles: {
 	GolemMusicBoxTile.MapEntry: Музыкальная шкатулка
 	ProphecyMusicBoxTile.MapEntry: Музыкальная шкатулка
 	MenuMusicBoxTile.MapEntry: Музыкальная шкатулка
+	// FinalFractalMusicBoxTile.MapEntry: Final Fractal Music Box Tile
 }
 
 NPCs: {

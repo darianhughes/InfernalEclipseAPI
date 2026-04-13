@@ -1,6 +1,9 @@
 ﻿using System.Reflection;
+using CalamityMod;
+using InfernalEclipseAPI.Content.Cooldowns;
 using MonoMod.RuntimeDetour;
 using ThoriumMod;
+using ThoriumMod.NPCs.BossThePrimordials;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides
 {
@@ -26,6 +29,46 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides
             }
 
             initialized = true;
+        }
+
+        public override void PostUpdateBuffs()
+        {
+            if (!NPC.AnyNPCs(ModContent.NPCType<DreamEater>()))
+            {
+                if (Player.Calamity().cooldowns.TryGetValue(TerminalLucidity.ID, out var cooldown))
+                    cooldown.timeLeft = 0;
+
+                if (Player.Calamity().cooldowns.TryGetValue(LucidRetaliation.ID, out var cooldown2))
+                    cooldown2.timeLeft = 0;
+            }
+
+            if (Player.HasBuff<ThoriumRework.Buffs.TerminalLucidity>())
+            {
+                for (int i = 0; i < Player.MaxBuffs; i++)
+                {
+                    if (Player.buffType[i] == ModContent.BuffType<ThoriumRework.Buffs.TerminalLucidity>())
+                    {
+                        Player.AddCooldown(TerminalLucidity.ID, Player.buffTime[i], false);
+                    }
+                }
+
+                if (Player.Calamity().cooldowns.TryGetValue(LucidRetaliation.ID, out var cooldown))
+                    cooldown.timeLeft = 0;
+            }
+
+            if (Player.HasBuff<ThoriumRework.Buffs.LucidRetaliation>())
+            {
+                for (int i = 0; i < Player.MaxBuffs; i++)
+                {
+                    if (Player.buffType[i] == ModContent.BuffType<ThoriumRework.Buffs.LucidRetaliation>())
+                    {
+                        Player.AddCooldown(LucidRetaliation.ID, Player.buffTime[i], false);
+                    }
+                }
+
+                if (Player.Calamity().cooldowns.TryGetValue(TerminalLucidity.ID, out var cooldown))
+                    cooldown.timeLeft = 0;
+            }
         }
 
         public override void OnHitNPCWithProj(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)

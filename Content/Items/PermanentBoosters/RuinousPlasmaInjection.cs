@@ -1,15 +1,15 @@
 ﻿using CalamityMod.Items;
+using CalamityMod.Items.Materials;
+using CalamityMod.Rarities;
 using InfernalEclipseAPI.Core.Players;
 using SOTS;
-using SOTS.Items.Celestial;
-using SOTS.Items.Void;
 using SOTS.Void;
 
 namespace InfernalEclipseAPI.Content.Items.PermanentBoosters
 {
     [JITWhenModsEnabled("SOTS")]
     [ExtendsFromMod("SOTS")]
-    public class SingularityCore : ModItem
+    public class RuinousPlasmaInjection : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,11 +19,12 @@ namespace InfernalEclipseAPI.Content.Items.PermanentBoosters
 
         public override void SetDefaults()
         {
-            Item.width = Item.height = 36;
+            Item.width = 18;
+            Item.height = 32;
             Item.useAnimation = Item.useTime = 12;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.value = CalamityGlobalItem.RarityPurpleBuyPrice;
-            Item.rare = ItemRarityID.Purple;
+            Item.value = CalamityGlobalItem.RarityPureGreenBuyPrice;
+            Item.rare = ModContent.RarityType<PureGreen>();
             Item.maxStack = 9999;
             Item.autoReuse = false;
             Item.consumable = true;
@@ -33,26 +34,26 @@ namespace InfernalEclipseAPI.Content.Items.PermanentBoosters
 
         public override bool CanUseItem(Player player)
         {
-            return !player.GetModPlayer<InfernalPlayer>().singularityCore;
+            return player.GetModPlayer<InfernalPlayer>().ruinousPlasmaInjection < 5;
         }
 
         public override bool? UseItem(Player player)
         {
-            if (player.GetModPlayer<InfernalPlayer>().singularityCore == true)
+            if (player.GetModPlayer<InfernalPlayer>().ruinousPlasmaInjection >= 5)
                 return false;
 
-            player.VoidPlayer().voidMeterMax += 50;
-            VoidPlayer.VoidEffect(player, 50);
-            player.GetModPlayer<InfernalPlayer>().singularityCore = true;
+            player.VoidPlayer().voidMeterMax += 10;
+            VoidPlayer.VoidEffect(player, 10);
+            player.GetModPlayer<InfernalPlayer>().ruinousPlasmaInjection++;
             return true;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<SoulHeart>(2)
-                .AddIngredient(ItemID.LunarBar, 10)
-                .AddIngredient<SanguiteBar>(10)
+                .AddIngredient<ArmoredShell>()
+                .AddIngredient<DarkPlasma>()
+                .AddIngredient<RuinousSoul>()
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }

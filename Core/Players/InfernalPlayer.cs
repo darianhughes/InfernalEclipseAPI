@@ -205,6 +205,7 @@ namespace InfernalEclipseAPI.Core.Players
         public float inspirationSteal = Main.expertMode ? 5f : 10f;
 
         public bool singularityCore;
+        public int ruinousPlasmaInjection;
 
         public bool aniversaryYearOneLoreObtained = false;
 
@@ -212,6 +213,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             workshopHasBeenOwned = false;
             singularityCore = false;
+            ruinousPlasmaInjection = 0;
         }
 
         public override void SaveData(TagCompound tag)
@@ -230,6 +232,8 @@ namespace InfernalEclipseAPI.Core.Players
             boost.AddWithCondition("singularityCore", singularityCore);
 
             tag["IEORboost"] = boost;
+
+            tag.Add("ruinousPlasmaInjection", ruinousPlasmaInjection);
         }
 
         public override void LoadData(TagCompound tag)
@@ -240,6 +244,8 @@ namespace InfernalEclipseAPI.Core.Players
 
             var boost = tag.GetList<string>("IEORboost");
             singularityCore = boost.Contains("singularityCore");
+
+            ruinousPlasmaInjection = tag.Get<int>("ruinousPlasmaInjection");
         }
 
         public override bool CanUseItem(Item item)
