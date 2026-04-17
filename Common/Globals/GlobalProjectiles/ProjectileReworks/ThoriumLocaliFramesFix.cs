@@ -32,8 +32,9 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             int pro18type = thorium.Find<ModProjectile>("GaussFlingerPro")?.Type ?? -1;
             int pro19type = thorium.Find<ModProjectile>("KinetoscythePro")?.Type ?? -1;
             int pro20type = thorium.Find<ModProjectile>("KinetoscythePro2")?.Type ?? -1;
+            int pro21type = thorium.Find<ModProjectile>("OmenPro")?.Type ?? -1;
 
-            if (projectile.type == pro1Type || projectile.type == pro13type || projectile.type == pro3type || projectile.type == pro4type || projectile.type == pro5type)
+            if (projectile.type == pro1Type || projectile.type == pro13type || projectile.type == pro3type || projectile.type == pro4type || projectile.type == pro5type || projectile.type == pro21type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 20;

@@ -380,9 +380,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (item.type == ModContent.ItemType<LeviathanTeeth>())
                 {
-                    item.damage = 80;
-                    item.useTime = 14;
-                    item.useAnimation = 14;
+                    item.damage = 40;
+                    item.useTime = 12;
+                    item.useAnimation = 12;
                 }
                 #endregion
             }
@@ -2087,7 +2087,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "WyrmDecimator", item))
                     {
-                        item.damage = 600;
+                        item.damage = 300;
                     }
 
                     if (GetItem(thorium, "OmniBow", item))
@@ -2097,7 +2097,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "OmniCannon", item))
                     {
-                        item.damage = 590;
+                        item.damage = 370;
                     }
 
                     if (GetItem(thorium, "TheJavelin", item))
@@ -2109,7 +2109,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.useTime = 11;
                         item.useAnimation = 11;
-                        item.damage = 800;
+                        item.damage = 620;
                     }
                     #endregion
                     #endregion
@@ -2523,7 +2523,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "AlmanacofAgony", item))
                     {
-                        item.damage = 650;
+                        item.damage = 600;
                     }
 
                     if (GetItem(thorium, "DevilsClaw", item))
@@ -3418,7 +3418,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Omen
                     if (item.type == thorium.Find<ModItem>("Omen").Type)
                     {
-                        item.damage = 36;
+                        item.damage = 40;
+                        item.useTime = 20;
+                        item.useAnimation = 20;
                     }
 
                     //Bat Scythe
@@ -3685,7 +3687,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Lucidty
                     if (GetItem(thorium, "Lucidity", item))
                     {
-                        item.damage = 135;
+                        item.damage = 105;
                     }
 
                     //Reality Slasher
@@ -3712,6 +3714,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 100;
                         item.useTime = 30;
                         item.useAnimation = 30;
+                    }
+
+                    if (UnsafeGetItem(thorium, "PocketGuardian", item))
+                    {
+                        item.useTime = 28;
+                        item.useAnimation = 28;
                     }
                     #endregion
                     #endregion
@@ -4205,7 +4213,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Sousaphone
                     if (GetItem(thorium, "Sousaphone", item))
                     {
-                        item.damage = 950;
+                        item.damage = 750;
                     }
 
                     if (GetItem(thorium, "BlackMIDI", item))
@@ -4497,7 +4505,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(calBardHeal, "IrradiatedKusarigama", item))
                 {
-                    item.damage = 269;
+                    item.damage = 229;
                 }
 
                 //Purgatorium Pandemonium
@@ -4532,7 +4540,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Will of the Ragnarok
                 if (GetItem(calBardHeal, "WilloftheRagnarok", item))
                 {
-                    item.damage = 170;
+                    item.damage = 100;
                 }
 
                 //Cherubim Omega
@@ -4769,8 +4777,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 #region Healer
                 if (GetItem(rethorium, "RedCresent", item))
                 {
-                    item.useTime = 12;
-                    item.useAnimation = 12;
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                    item.damage = 45;
                 }
 
                 if (GetItem(rethorium, "LodeStoneMagnetMace", item))

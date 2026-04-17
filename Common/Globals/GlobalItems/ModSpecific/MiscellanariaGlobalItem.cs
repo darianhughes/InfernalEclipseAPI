@@ -2,7 +2,7 @@
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
-    public class MiscellanariaYouFirstFractal : GlobalItem
+    public class MiscellanariaFirstFractal : GlobalItem
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -19,6 +19,24 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             ItemID.Sets.Deprecated[ItemID.FirstFractal] = true;
             ItemID.Sets.ShimmerTransformToItem[ItemID.Zenith] = -1;
             ItemID.Sets.ShimmerTransformToItem[ItemID.FirstFractal] = -1;
+        }
+    }
+
+    public class MiscellanariaCultistBossBag : GlobalItem
+    {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return InfernalCrossmod.Thorium.Loaded && ModLoader.HasMod("Miscellanaria");
+        }
+
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+        {
+            return entity.type == ItemID.CultistBossBag;
+        }
+
+        public override void SetStaticDefaults()
+        {
+            ItemID.Sets.Deprecated[ItemID.CultistBossBag] = true;
         }
     }
 }

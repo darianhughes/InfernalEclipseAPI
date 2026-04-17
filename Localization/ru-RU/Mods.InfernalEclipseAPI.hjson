@@ -2,6 +2,7 @@ UI: {
 	Cooldowns: {
 		// ManaSteal: Mana Steal Remaining
 		// TerminalLucidity: Terminal Lucidity
+		// LucidRetaliation: Lucid Retaliation
 	}
 
 	RagnarokIconText: Рагнарёк активирован
@@ -117,6 +118,13 @@ ItemTooltip: {
 		// SOTSAdditional: Disables effects of Icosahedrons
 	}
 
+	// Calculator: Reduces summon damage by 20%
+	/* Wiesnbrau:
+		'''
+		Inflicts [cbuff:PotionSickness]
+		{$Mods.CalamityMod.Common.AlcoholWarning}
+		''' */
+
 	SoulAnchor: {
 		OrigTooltip1: Привязывает вашу душу и здоровье к текущей позиции
 		Replace1: Привязывает вашу душу и здоровье к текущей позиции на 20 секунд
@@ -191,6 +199,15 @@ ItemTooltip: {
 		Уменьшает урон истинного ближнего боя на 15%
 		Увеличивает максимальный запас пустоты на 50, но снижает эффективность лечебных зелий на 40
 		'''
+	/* SubspaceLocketThorium:
+		'''
+		Summons a Subspace Servant to assist in combat
+		Uses the item in your last inventory slot for you
+		Decreases damage by 50% multiplicatively
+		Decreases true melee damage by 20% and you can no longer stealth strike
+		Decreases heal bonus and inspiration regeneration bonus by 50%
+		Increases max void by 50, but reduces healing received from potions by 75
+		''' */
 	EyeOfChaos: Увеличивает шанс критического удара на 12%, не складывается с предыдущими улучшениями
 	EyeOfChaosThorium: Критические удары наносят на 15 ед. урона больше
 	SnakeEyes: Увеличивает шанс критического удара на 3%
@@ -407,6 +424,12 @@ ItemTooltip: {
 	}
 
 	// SteamkeeperWatch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
+
+	YumasPendant: {
+		// Orig: 10% increased summon damage
+		// Nerf: 5% increased summon damage
+	}
+
 	// DoesNotStack: Does not stack with downgrades
 	// NoBoss: Does not work while a boss is alive
 	// Disabled: "[DISABLED] "
@@ -1204,10 +1227,10 @@ Items: {
 			// Tooltip: ""
 			/* Lore:
 				'''
-				The middle child of the eternal siblings, and one of the laziest people I've ever seen.
+				The middle child of the eternal siblings, and one of the laziest beings I've ever seen.
 				While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
 				he truly is super lazy, going to the point of even fusing his weapons to his hands.
-				His weapon has the ability to divide the soul itself, and has the ability to use all supernatural phenomena. 
+				He weilds a weapon that has the ability to divide the soul itself, on top of being able to use all supernatural phenomena. 
 				Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
 				''' */
 		}
@@ -1220,7 +1243,7 @@ Items: {
 				The youngest of the eternal siblings, and also the weakest.
 				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
 				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
-				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while using a living axe made of evil.
+				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while weilding a living axe made of evil.
 				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
 				''' */
 		}
@@ -1236,6 +1259,52 @@ Items: {
 				Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
 				Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
 				He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
+				''' */
+		}
+
+		LoreLepus: {
+			// DisplayName: Lepus
+			// Tooltip: ""
+			/* Lore:
+				'''
+				What a perverse thing.
+				The hares of this world were symbols of thriving society.
+				In their abundacne, they brought many mirthful gifts. Food, fur, companionship.
+				Unlike ohter livestock, their life could withstand many of the harse conditions of the unforgiving underground tunnels
+				and the blights of dead gods, making them ideal units for trade between the misbegotten peasants and soldiers that help 
+				as bedrock for many kingdoms. With many of them now lost to time, the rabbits noww revel in an empty world.
+				This nuisance is one of many omens of the times of gold that have now passed by me.
+				''' */
+		}
+
+		LoreTurkor: {
+			// DisplayName: Turkor The Ungrateful
+			// Tooltip: ""
+			/* Lore:
+				'''
+				Vengeful spirits are curious beings.
+				Their avatars can take the form of anything, as long as the slain carry a sol within them.
+				The common avain would be among my furthest guesses, but yet, the can muster wrath beyond their hapless forms.
+				Alas, spirits never lie, and the consequence that lead to the unrest of this abomination 
+				ties back to the slaughters required in lengthy royal feasts.
+				It is grim to reflect on what we do to creatures deemed beneath us.
+				''' */
+		}
+
+		LoreOcram: {
+			// DisplayName: Ocram
+			// Tooltip: ""
+			/* Lore:
+				'''
+				Before the Gods had a firm grasp of the Underworld and Azafure was fully established,
+				there was a time where many parties vied for control over that fabled magma crevice.
+				The most notable being a powerful archdemon who commanded the demons into a clan of civilization-stomping ravagers.
+				When the Gods finally set their sights on the Underworld, his band was quashed, slaughtered one by one.
+				However, the archdemon survived no matter the Gods' attacks, much to their chagrin,
+				so they settled for torturously mutilating him in a way that drove him to insanity, and then he was discarded.
+				His name was long forgotten, to the point where I had never heard it spoken in my lifetime.
+				Yet, upon seeing that fiend, I am certain Ocram was that fallen archdemon from an age beyond my own.
+				If I had known of its continued existence during my glory days, I would have attempted to do what the Gods could not - or would not.
 				''' */
 		}
 	}

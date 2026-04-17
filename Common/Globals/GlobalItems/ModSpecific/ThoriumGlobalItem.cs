@@ -294,6 +294,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             {
                 player.GetDamage(DamageClass.Summon) -= SteamkeeperWatch.DamageIncrease / 100f;
             }
+
+            if (item.type == ItemType<YumasPendant>())
+            {
+                player.GetDamage(DamageClass.Generic) -= 0.04f;
+                player.GetDamage(DamageClass.Summon) -= 0.05f;
+            }
         }
 
         public override void UpdateEquip(Item item, Player player)
@@ -781,6 +787,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             if (item.type == ItemType<SteamkeeperWatch>())
             {
                 InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SteamkeeperWatch"));
+            }
+
+            if (item.type == ItemType<YumasPendant>())
+            {
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.YumasPendant.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.YumasPendant.Nerf"));
             }
 
             if (InfernalConfig.Instance.DisableDuplicateContent)

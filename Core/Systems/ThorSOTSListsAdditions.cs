@@ -4,8 +4,8 @@ using ThoriumMod.Projectiles;
 
 namespace InfernalEclipseAPI.Core.Systems
 {
-    [JITWhenModsEnabled("SOTS")]
-    [ExtendsFromMod("SOTS")]
+    [JITWhenModsEnabled("SOTS", "ThoriumMod")]
+    [ExtendsFromMod("SOTS", "ThoriumMod")]
     public class ThorSOTSListsAdditions : ModSystem
     {
         public override void Load()
@@ -40,4 +40,24 @@ namespace InfernalEclipseAPI.Core.Systems
         }
     }
 
+    [JITWhenModsEnabled("SOTS", "CalamityAmmo")]
+    [ExtendsFromMod("SOTS", "CalamityAmmo")]
+    public class AmmoSOTSListsAdditions : ModSystem
+    {
+        public override void Load()
+        {
+            if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))
+            {
+                int[] additions =
+                {
+                    calAmmo.Find<ModProjectile>("seaPrismShard").Type
+                };
+
+                SOTSPlayer.typhonBlacklist = SOTSPlayer.typhonBlacklist
+                    .Concat(additions)
+                    .Distinct()
+                    .ToArray();
+            }
+        }
+    }
 }

@@ -263,12 +263,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 {
                     if (entity.usesLocalNPCImmunity)
                     {
-                        entity.localNPCHitCooldown = 6;
+                        entity.localNPCHitCooldown = 12;
                     }
 
                     if (entity.usesIDStaticNPCImmunity)
                     {
-                        entity.idStaticNPCHitCooldown = 6;
+                        entity.idStaticNPCHitCooldown = 122;
                     }
                 }
 

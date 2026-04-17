@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod;
 using InfernumMode.Content.Items.Misc;
+using Terraria;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -256,6 +257,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             return base.OnPickup(item, player);
         }
 
+        public override void OnConsumeItem(Item item, Player player)
+        {
+            if (InfernalCrossmod.Consolaria.Loaded)
+            {
+                if (item.type == InfernalCrossmod.Consolaria.Mod.Find<ModItem>("Wiesnbrau").Type)
+                {
+                    player.AddBuff(BuffID.PotionSickness, player.pStone ? 30 * 60 : 45 * 60);
+                }
+            }
+        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             if ((item.type == ModContent.ItemType<GrapeBeer>() || item.type == ModContent.ItemType<Moonshine>()) && InfernalConfig.Instance.CalamityBalanceChanges)
@@ -268,6 +280,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             {
                 if (item.type == InfernalCrossmod.FargosMutant.Mod.Find<ModItem>("SuspiciousSkull").Type && !NPC.downedBoss3)
                     InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MutantSkeletron"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+            }
+
+            if (InfernalCrossmod.Consolaria.Loaded)
+            {
+                if (item.type == InfernalCrossmod.Consolaria.Mod.Find<ModItem>("Wiesnbrau").Type)
+                {
+                    InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Wiesnbrau"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Core.Systems;
+using Terraria.GameContent.ItemDropRules;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
 {
@@ -81,6 +82,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
                         npc.lifeMax *= 2;
                 }
             }
+        }
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            //TODO: make cultist not drop two bags
         }
     }
 

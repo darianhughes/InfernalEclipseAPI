@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Cooldowns;
+using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Cooldowns;
 using InfernumMode.Content.Items.Accessories;
 using InfernumMode.Content.Items.Weapons.Melee;
@@ -28,6 +29,11 @@ namespace InfernalEclipseAPI.Content.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.AddBuff(BuffID.ChaosState, 2);
+
+            if (InfernalCrossmod.Consolaria.Loaded)
+            {
+                player.ClearBuff(InfernalCrossmod.Consolaria.Mod.Find<ModBuff>("Drunk").Type);
+            }
 
             if (!player.name.ToLower().Contains("jareto15"))
             {

@@ -137,6 +137,8 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "ProSigmaSoul",
             "Sir_Yeetus_III",
             "Soopns",
+            "Samoh",
+            "darkwex",
 
             //Supporters
             "Lylittle",
@@ -144,6 +146,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Louhii",
             "joshuwham",
             "Lucy",
+            "Mando",
 
             //Helpers
             "fjiown",

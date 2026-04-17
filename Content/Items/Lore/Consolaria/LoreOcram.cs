@@ -1,0 +1,32 @@
+﻿using CalamityMod.Items.LoreItems;
+using InfernalEclipseAPI.Core.Systems;
+using Consolaria.Content.Items.Placeable;
+
+namespace InfernalEclipseAPI.Content.Items.Lore.Consolaria
+{
+    [JITWhenModsEnabled(InfernalCrossmod.Consolaria.Name)]
+    [ExtendsFromMod(InfernalCrossmod.Consolaria.Name)]
+    public class LoreOcram : LoreItem
+    {
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
+
+        public override void SetDefaults()
+        {
+            Item.width = 38;
+            Item.height = 26;
+            Item.rare = ItemRarityID.Lime;
+            Item.consumable = false;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<OcramTrophy>())
+                .AddTile(TileID.Bookcases)
+                .Register();
+        }
+    }
+}

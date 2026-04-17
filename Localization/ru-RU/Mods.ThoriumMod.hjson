@@ -49,7 +49,7 @@ Items: {
 		/* Tooltip:
 			'''
 			Rapidly spins a high tech scythe all around you
-			Right Click to generate a stationary spinning energy scythe
+			<right> to generate a stationary spinning energy scythe
 			Spin the scythe while the energy scythe is active to make it home onto enemies 
 			''' */
 	}

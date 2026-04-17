@@ -37,6 +37,8 @@ using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Enums;
 using Terraria.GameContent.ItemDropRules;
 using SOTS.Items.Fishing;
+using InfernalEclipseAPI.Content.RogueThrower;
+using InfernumMode.Content.Items.Accessories;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -132,6 +134,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             }
             return base.CanUseItem(item, player);
         }
+
+        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+        {
+            if ((equippedItem.type == ItemType<Calculator>() || equippedItem.type == ItemType<Purity>()) && (incomingItem.type == ItemType<Calculator>() || incomingItem.type == ItemType<Purity>()))
+                return false;
+
+            return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem, player);
+        }
+
         public override void UpdateAccessory(Item item, Player player, bool hidevisual)
         {
             InfernalPlayer modPlayer = player.GetModPlayer<InfernalPlayer>();
@@ -162,11 +173,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
                 }
 
-                if (item.type == ModContent.ItemType<SubspaceLocket>())
+                if (item.type == ItemType<SubspaceLocket>())
                 {
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
-                    local *= 0.675f;
-                    player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
+                    local *= 0.667f;
+                    player.GetDamage<TrueMeleeDamageClass>() -= 0.2f;
+                    sotsPlayer.additionalHeal -= 35;
+
+                    if (InfernalCrossmod.Thorium.Loaded)
+                    {
+                        player.GetModPlayer<RogueThrowerPlayer>().subspaceLocketThorClassNerf = true;
+                    }
                 }
 
                 if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.MergeCraftingTrees)
@@ -296,11 +313,18 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     var cplayer = player.Calamity();
                     cplayer.critDamage -= GrapeBeer.CritLoss * 0.01f;
                     player.GetCritChance(DamageClass.Generic) -= 30f;
+                    player.GetDamage(DamageClass.Summon) -= 0.2f;
+
                     sotsPlayer.CritBonusDamage = (int)(sotsPlayer.CritBonusDamage * 0.25f);
                     sotsPlayer.CritBonusMultiplier *= 0.75f;
                     sotsPlayer.CritCurseFire = false;
                     sotsPlayer.CritFire = false;
                     sotsPlayer.CritFrost = false;
+
+                    if (InfernalPlayer.PlayerHasPurity(player))
+                    {
+                        sotsPlayer.typhonRange = 0;
+                    }
                 }
 
                 if (item.type == ItemType<ShoeIce>())
@@ -566,7 +590,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ModContent.ItemType<SubspaceLocket>())
                 {
-                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SubspaceLocket"));
+                    InfernalUtilities.FullTooltipOveride(tooltips, InfernalCrossmod.Thorium.Loaded ? Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SubspaceLocketThorium") : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SubspaceLocket"));
                 }
 
                 if (item.type == ModContent.ItemType<EyeOfChaos>())
@@ -792,7 +816,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ItemType<Calculator>())
                 {
-                    InfernalUtilities.AddTooltip(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional")}", InfernalRed);
+                    InfernalUtilities.AddTooltip(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Calculator")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional")}", InfernalRed);
                 }
 
                 if (item.type == ItemType<ShoeIce>())
@@ -831,13 +855,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         {
             if (FakeModPlayer.ModPlayer(Player).servantActive == true)
             {
-                Player.Calamity().rogueStealthMax = 0;
+                Player.Calamity().rogueStealth = 0;
                 Player.Calamity().wearingRogueArmor = false;
             }
 
             if (Player.HasBuff<TesseractBuff>())
             {
-                Player.Calamity().rogueStealthMax = 0;
+                Player.Calamity().rogueStealth = 0;
                 Player.Calamity().wearingRogueArmor = false;
                 Player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
             }

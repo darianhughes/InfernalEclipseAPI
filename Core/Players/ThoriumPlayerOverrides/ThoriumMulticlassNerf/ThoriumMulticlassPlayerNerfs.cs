@@ -84,11 +84,13 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
 
         private static bool IsExcluded(Item item) =>
             item.CountsAsClass<LegendaryMelee>() || item.CountsAsClass<LegendaryRanged>() || item.CountsAsClass<LegendaryMagic>() ||
-            item.CountsAsClass<MythicMelee>() || item.CountsAsClass<MythicMagic>() || item.CountsAsClass<MythicRanged>() || item.CountsAsClass<MythicSummon>();
+            item.CountsAsClass<MythicMelee>() || item.CountsAsClass<MythicMagic>() || item.CountsAsClass<MythicRanged>() || item.CountsAsClass<MythicSummon>() 
+            || item.CountsAsClass<AverageDamageClass>();
 
         private static bool IsExcluded(Projectile proj) =>
             proj.CountsAsClass<LegendaryMelee>() || proj.CountsAsClass<LegendaryRanged>() || proj.CountsAsClass<LegendaryMagic>() ||
-            proj.CountsAsClass<MythicMelee>() || proj.CountsAsClass<MythicMagic>() || proj.CountsAsClass<MythicRanged>() || proj.CountsAsClass<MythicSummon>();
+            proj.CountsAsClass<MythicMelee>() || proj.CountsAsClass<MythicMagic>() || proj.CountsAsClass<MythicRanged>() || proj.CountsAsClass<MythicSummon>() ||
+            proj.CountsAsClass<AverageDamageClass>();
 
         private static bool ShouldIgnoreContext() => HasAllGemTech() || DD2Event.Ongoing;
 

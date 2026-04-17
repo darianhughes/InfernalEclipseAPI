@@ -1,10 +1,13 @@
 ﻿using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 using CalamityMod;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.Consolaria;
+using InfernalEclipseAPI.Content.Items.Lore.Consolaria;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {
-    public partial class ConsolariaInfernalRelics : GlobalNPC
+    [JITWhenModsEnabled("Consolaria")]
+    [ExtendsFromMod("Consolaria")]
+    public class ConsolariaInfernalRelics : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
@@ -13,14 +16,22 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                 bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
                 if (npc.type == console.Find<ModNPC>("Lepus").Type)
                 {
+                    bool firstLepusKill() => Consolaria.Common.ModSystems.DownedBossSystem.downedLepus;
+                    npcLoot.AddConditionalPerPlayer(firstLepusKill, ModContent.ItemType<LoreLepus>(), desc: DropHelper.FirstKillText);
+
                     npcLoot.AddIf(isInfernum, ModContent.ItemType<LepusRelic>());
                 }
                 if (npc.type == console.Find<ModNPC>("TurkortheUngrateful").Type)
                 {
+                    bool firstTurkorKill() => Consolaria.Common.ModSystems.DownedBossSystem.downedTurkor;
+
                     npcLoot.AddIf(isInfernum, ModContent.ItemType<TurkorTheUngratefulRelic>());
                 }
                 if (npc.type == console.Find<ModNPC>("Ocram").Type)
                 {
+                    bool firstOcramKill() => Consolaria.Common.ModSystems.DownedBossSystem.downedOcram;
+
+
                     npcLoot.AddIf(isInfernum, ModContent.ItemType<OcramRelic>());
                 }
             }

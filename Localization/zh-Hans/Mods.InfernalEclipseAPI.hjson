@@ -2,6 +2,7 @@ UI: {
 	Cooldowns: {
 		ManaSteal: 剩余魔力吸取量
 		// TerminalLucidity: Terminal Lucidity
+		// LucidRetaliation: Lucid Retaliation
 	}
 
 	RagnarokIconText: 诸神黄昏模式已启用
@@ -121,6 +122,13 @@ ItemTooltip: {
 		SOTSAdditional: 禁用所有二十面体的效果
 	}
 
+	// Calculator: Reduces summon damage by 20%
+	/* Wiesnbrau:
+		'''
+		Inflicts [cbuff:PotionSickness]
+		{$Mods.CalamityMod.Common.AlcoholWarning}
+		''' */
+
 	SoulAnchor: {
 		OrigTooltip1: 将你的灵魂和生命值锚定在当前位置
 		Replace1: 将你的灵魂和生命值锚定在当前位置，持续20秒
@@ -198,6 +206,15 @@ ItemTooltip: {
 		减少15%真近战伤害
 		增加50点最大虚空值，但会降低40点从药水治疗的生命值
 		'''
+	/* SubspaceLocketThorium:
+		'''
+		Summons a Subspace Servant to assist in combat
+		Uses the item in your last inventory slot for you
+		Decreases damage by 50% multiplicatively
+		Decreases true melee damage by 20% and you can no longer stealth strike
+		Decreases heal bonus and inspiration regeneration bonus by 50%
+		Increases max void by 50, but reduces healing received from potions by 75
+		''' */
 	EyeOfChaos: 增加12%暴击率，无法与下位饰品叠加
 	EyeOfChaosThorium: 暴击会造成15点额外伤害
 	SnakeEyes: 增加3%暴击率
@@ -416,6 +433,12 @@ ItemTooltip: {
 	}
 
 	SteamkeeperWatch: 你的哨兵可以永久存在并在2分钟内获得至多15%伤害提升
+
+	YumasPendant: {
+		// Orig: 10% increased summon damage
+		// Nerf: 5% increased summon damage
+	}
+
 	DoesNotStack: 不与下位效果叠加
 	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "
@@ -1270,6 +1293,52 @@ Items: {
 				然而，纵有如此力量，他更愿旁观世间之战，而非亲自出手。
 				他常说自己在寻找值得一战之人……看来，如今他已找到了。
 				'''
+		}
+
+		LoreLepus: {
+			// DisplayName: Lepus
+			// Tooltip: ""
+			/* Lore:
+				'''
+				What a perverse thing.
+				The hares of this world were symbols of thriving society.
+				In their abundacne, they brought many mirthful gifts. Food, fur, companionship.
+				Unlike ohter livestock, their life could withstand many of the harse conditions of the unforgiving underground tunnels
+				and the blights of dead gods, making them ideal units for trade between the misbegotten peasants and soldiers that help 
+				as bedrock for many kingdoms. With many of them now lost to time, the rabbits noww revel in an empty world.
+				This nuisance is one of many omens of the times of gold that have now passed by me.
+				''' */
+		}
+
+		LoreTurkor: {
+			// DisplayName: Turkor The Ungrateful
+			// Tooltip: ""
+			/* Lore:
+				'''
+				Vengeful spirits are curious beings.
+				Their avatars can take the form of anything, as long as the slain carry a sol within them.
+				The common avain would be among my furthest guesses, but yet, the can muster wrath beyond their hapless forms.
+				Alas, spirits never lie, and the consequence that lead to the unrest of this abomination 
+				ties back to the slaughters required in lengthy royal feasts.
+				It is grim to reflect on what we do to creatures deemed beneath us.
+				''' */
+		}
+
+		LoreOcram: {
+			// DisplayName: Ocram
+			// Tooltip: ""
+			/* Lore:
+				'''
+				Before the Gods had a firm grasp of the Underworld and Azafure was fully established,
+				there was a time where many parties vied for control over that fabled magma crevice.
+				The most notable being a powerful archdemon who commanded the demons into a clan of civilization-stomping ravagers.
+				When the Gods finally set their sights on the Underworld, his band was quashed, slaughtered one by one.
+				However, the archdemon survived no matter the Gods' attacks, much to their chagrin,
+				so they settled for torturously mutilating him in a way that drove him to insanity, and then he was discarded.
+				His name was long forgotten, to the point where I had never heard it spoken in my lifetime.
+				Yet, upon seeing that fiend, I am certain Ocram was that fallen archdemon from an age beyond my own.
+				If I had known of its continued existence during my glory days, I would have attempted to do what the Gods could not - or would not.
+				''' */
 		}
 	}
 

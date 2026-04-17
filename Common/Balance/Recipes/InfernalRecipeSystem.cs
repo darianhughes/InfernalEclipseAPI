@@ -1413,6 +1413,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddTile(TileID.MythrilAnvil);
                         }
 
+                        if (recipe.HasResult(sots.Find<ModItem>("DissolvingBrillianceBlock")))
+                        {
+                            recipe.AddTile(TileID.LunarCraftingStation);
+                        }
+
                         #region Soul of Plight Additions
                         if (recipe.HasResult(ItemID.TrueNightsEdge))
                             recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 3);

@@ -31,6 +31,8 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         public int dragonSetCooldown;
         public int demonBloodDodgeCooldown;
 
+        public bool subspaceLocketThorClassNerf;
+
         public override void ResetEffects()
         {
             if (whiteDwarfCooldown > 0)
@@ -196,6 +198,12 @@ namespace InfernalEclipseAPI.Content.RogueThrower
 
             if (dragonSetCooldown > 0)
                 Player.GetThoriumPlayer().dragonSet = false;
+
+            if (subspaceLocketThorClassNerf)
+            {
+                Player.GetThoriumPlayer().healBonus /= 2;
+                Player.GetThoriumPlayer().inspirationRegenBonus /= 2;
+            }
         }
 
         public bool HasExhaustionClearingAccessoryEquipped()
