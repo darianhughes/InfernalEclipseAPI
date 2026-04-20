@@ -22,6 +22,7 @@ using ThoriumMod.Items.BossLich;
 using ThoriumMod.Items.BossThePrimordials;
 using ThoriumMod.Items.BossThePrimordials.Aqua;
 using ThoriumMod.Items.BossThePrimordials.Dream;
+using ThoriumMod.Items.BossThePrimordials.Omni;
 using ThoriumMod.Items.BossThePrimordials.Slag;
 using ThoriumMod.Items.Bronze;
 using ThoriumMod.Items.Consumable;
@@ -326,6 +327,18 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) -= 0.08f;
                     player.GetCritChance(ThoriumDamageBase<HealerDamage>.Instance) -= 7f;
+                }
+
+                if (item.type == ItemType<MasterMarksmansScouter>() && InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    player.bulletDamage -= 0.24f;
+                    player.GetAttackSpeed(DamageClass.Ranged) -= 0.12f;
+                }
+
+                if (item.type == ItemType<AssassinsGuard>() && InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    player.GetAttackSpeed(DamageClass.Ranged) -= 0.2f;
+                    player.GetDamage(DamageClass.Ranged).Flat -= 20f;
                 }
 
                 if (item.type == ItemType<MagmaSeersMask>() && InfernalCrossmod.ThoriumRework.Loaded)

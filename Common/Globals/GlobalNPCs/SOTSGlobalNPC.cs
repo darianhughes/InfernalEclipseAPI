@@ -42,6 +42,7 @@ using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
 using Terraria.DataStructures;
 using SOTS.NPCs.Town;
 using SOTS.Items.ChestItems;
+using SOTS.Buffs.Debuffs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -280,11 +281,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
+            NerfDendroChain(npc, ref modifiers);
             NerfBlazingCurse(npc, ref modifiers);
         }
 
         public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
         {
+            NerfDendroChain(npc, ref modifiers);
             NerfBlazingCurse(npc, ref modifiers);
         }
 
@@ -301,6 +304,19 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
                 modifiers.SourceDamage /= orig;
                 modifiers.SourceDamage *= nerfed;
+            }
+        }
+
+        private static void NerfDendroChain(NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if (!InfernalConfig.Instance.SOTSBalanceChanges || npc.immortal) return;
+
+            if (!npc.HasBuff(ModContent.BuffType<Shattered>()))
+            {
+                if (npc.HasBuff<DendroChain>()) 
+                {
+                    modifiers.Defense.Flat += 15;
+                }
             }
         }
 

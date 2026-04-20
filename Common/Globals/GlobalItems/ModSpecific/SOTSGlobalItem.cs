@@ -39,6 +39,7 @@ using Terraria.GameContent.ItemDropRules;
 using SOTS.Items.Fishing;
 using InfernalEclipseAPI.Content.RogueThrower;
 using InfernumMode.Content.Items.Accessories;
+using SOTS.Void;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -336,6 +337,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<BagOfCharms>())
                 {
                     player.GetModPlayer<InfernalPlayer>().bagOfCharms = true;
+                }
+
+                if (item.type == ItemType<Hyperdrive>())
+                {
+                    sotsPlayer.attackSpeedMod -= 0.25f;
+                    player.GetAttackSpeed<VoidGeneric>() += 0.25f;
                 }
 
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
@@ -822,6 +829,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<ShoeIce>())
                 {
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShoeIce.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShoeIce.Nerf"));
+                }
+
+                if (item.type == ItemType<Hyperdrive>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Hyperdrive.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Hyperdrive.Nerf"));
                 }
             }
         }

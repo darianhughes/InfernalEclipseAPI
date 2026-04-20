@@ -55,15 +55,24 @@ namespace InfernalEclipseAPI.Core.Systems
                 return;
             }
 
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier6"), "Descent Of Divinities", "by psykomatic", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier5"), "Omiscience Of Gods", "by TheTrester", "Infernal Eclipse of Ragnarok");
+            //IEoR Original Music
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by Peter Fung", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/BereftVassal"), "Dead Kingdom's Champion", "by Techhy", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Interlude04"), "Calamity before the cynosure", "by theforge129", "Infernal Eclipse of Ragnarok");
+
+            //Boss Rush Themes
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier5"), "Descent Of Divinities", "by psykomatic", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/tier6"), "Omiscience Of Gods", "by TheTrester", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TWISTEDGARDENRemix"), "TWISTED GARDEN [Remix]", "by Kuudray", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "by CDMusic", "Infernal Eclipse of Ragnarok");
+
+            // Just for that one music box...
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
+
+            // Currently unused
             //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok"); <- Ported to YharimEX
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Interlude04"), "Calamity before the cynosure", "by theforge129", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LittleCatTheme"), "Demonic Little Grey Cat Theme Song", "by vivivivivi", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by Peter Fung", "Infernal Eclipse of Ragnarok");
+            
 
             if (ModLoader.TryGetMod("YouBoss", out _))
             {

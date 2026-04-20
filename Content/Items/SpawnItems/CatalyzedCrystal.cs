@@ -34,11 +34,7 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
             itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossItem;
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            bool allowMoreThanOneBoss = ModLoader.TryGetMod("Fargowiltas", out _) ? true : !NPC.AnyNPCs(ModContent.NPCType<SubspaceSerpentHead>());
-            return player.ZoneUnderworldHeight && allowMoreThanOneBoss && !BossRushEvent.BossRushActive;
-        }
+        public override bool CanUseItem(Player player) => player.ZoneUnderworldHeight && (ModLoader.HasMod("Fargowiltas") || !NPC.AnyNPCs(ModContent.NPCType<SubspaceSerpentHead>())) && !BossRushEvent.BossRushActive;
 
         public override bool? UseItem(Player player)
         {

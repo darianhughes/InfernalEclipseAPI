@@ -39,4 +39,5 @@ ItemDescriptions: {
 		Increases your max number of minions by 1
 		'''
 	MagmaSeersMask: 20% increased whip speed
+	MasterMarksmansScouter: ""
 }

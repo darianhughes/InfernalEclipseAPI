@@ -439,6 +439,11 @@ ItemTooltip: {
 		Nerf: 5% increased summon damage
 	}
 
+	Hyperdrive: {
+		Orig: Increases attack speed by 25% and melee damage by 5%
+		Nerf: Increases void attack speed by 25% and melee damage by 5%
+	}
+
 	DoesNotStack: Does not stack with downgrades
 	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "
@@ -1376,22 +1381,22 @@ Items: {
 
 	GrandThunderBirdRelic: {
 		DisplayName: Infernal Grand Thunder Bird Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BurriedChampionRelic: {
 		DisplayName: Infernal Buried Champion Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CorpseBloomRelic: {
 		DisplayName: Infernal Corpse Bloom Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	QueenJellyfishRelic: {
 		DisplayName: Infernal Queen Jellyfish Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ProphecyMusicBox: {
@@ -1410,117 +1415,112 @@ Items: {
 
 	AstrageldonRelic: {
 		DisplayName: Infernal Astrageldon Relic
-		Tooltip: ""
-	}
-
-	SubspaceSpawner: {
-		DisplayName: Subspace Spawner
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AvatarOfEmptinessRelic: {
 		DisplayName: Infernal Avatar Of Emptiness Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GoozmaRelic: {
 		DisplayName: Infernal Goozma Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NamelessDeityRelic: {
 		DisplayName: Infernal Nameless Deity Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LepusRelic: {
 		DisplayName: Infernal Lepus Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	OcramRelic: {
 		DisplayName: Infernal Ocram Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TurkorTheUngratefulRelic: {
 		DisplayName: Infernal Turkor The Ungrateful Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AdvisorRelic: {
 		DisplayName: Infernal Advisor Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ExcavatorRelic: {
 		DisplayName: Infernal Excavator Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GlowmothRelic: {
 		DisplayName: Infernal Glowmoth Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PolarisRelic: {
 		DisplayName: Infernal Polaris Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PutridPinkyRelic: {
 		DisplayName: Infernal Putrid Pinky Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	SubspaceSerpentRelic: {
 		DisplayName: Infernal Subspace Serpent Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BoreanStriderRelic: {
 		DisplayName: Infernal Borean Strider Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	FallenBeholderRelic: {
 		DisplayName: Infernal Fallen Beholder Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ForgottenOneRelic: {
 		DisplayName: Infernal Forgotten One Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GraniteEnergyStormRelic: {
 		DisplayName: Infernal Granite Energy Storm Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LichRelic: {
 		DisplayName: Infernal Lich Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PatchWerkRelic: {
 		DisplayName: Infernal Patch Werk Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PrimordialsRelic: {
 		DisplayName: Infernal Primordials Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	StarScouterRelic: {
 		DisplayName: Infernal Star Scouter Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ViscountRelic: {
 		DisplayName: Infernal Viscount Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	Lycanroc: {
@@ -1617,107 +1617,107 @@ Items: {
 
 	ClamitasRelic: {
 		DisplayName: Infernal Clamitas Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PyrogenRelic: {
 		DisplayName: Infernal Pyrogen Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	WallofBronzeRelic: {
 		DisplayName: Infernal Wall of Bronze Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NoxusRelic: {
 		DisplayName: Infernal Noxus Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AbominationnRelic: {
 		DisplayName: Infernal Abominationn Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BanishedBaronRelic: {
 		DisplayName: Infernal Banished Baron Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CursedCoffinRelic: {
 		DisplayName: Infernal Cursed Coffin Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DeathChampionRelic: {
 		DisplayName: Infernal Champion of Death Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DevianttRelic: {
 		DisplayName: Infernal Deviantt Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	EarthChampionRelic: {
 		DisplayName: Infernal Champion of Earth Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	EridanusRelic: {
 		DisplayName: Infernal Eridanus, Champion of Cosmos Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LifeChampionRelic: {
 		DisplayName: Infernal Champion of Life Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LifelightRelic: {
 		DisplayName: Infernal Lifelight Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	MutantRelic: {
 		DisplayName: Infernal Mutant Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NatureChampionRelic: {
 		DisplayName: Infernal Champion of Nature Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	SpiritChampionRelic: {
 		DisplayName: Infernal Champion of Spirit Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TerraChampionRelic: {
 		DisplayName: Infernal Champion of Terra Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TrojanSquirrelRelic: {
 		DisplayName: Infernal Trojan Squirrel Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	WillChampionRelic: {
 		DisplayName: Infernal Champion of Will Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LuxRelic: {
 		DisplayName: Infernal Lux Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PharohsCurseRelic: {
 		DisplayName: Infernal Pharaoh's Curse Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CatalyzedCrystal: {
@@ -1868,7 +1868,7 @@ Items: {
 
 	InfernalTerraBladeRelic: {
 		DisplayName: Infernal Terra Blade Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DemonicTome: {
@@ -1935,7 +1935,7 @@ Items: {
 			While holding this weapon, you have a improbability bar
 			The bar charges by dealing or taking damage
 			When the bar is full, press {0} to gain increased combat stats and movement speed for 1 minute
-			[c/7C0A02: YOU DO NOT KILL CLOWN!!! CLOWN KILLS YOU!!!]
+			[c/7C0A02:YOU DO NOT KILL CLOWN!!! CLOWN KILLS YOU!!!]
 			'''
 	}
 
@@ -1995,8 +1995,8 @@ Items: {
 	}
 
 	MaulerRelic: {
-		DisplayName: Mauler Relic
-		Tooltip: ""
+		DisplayName: Infernal Mauler Relic
+		Tooltip: "{0}"
 	}
 
 	DreamEssence: {
@@ -2087,6 +2087,16 @@ Items: {
 		DisplayName: Music Box (Terra Blade)
 		Tooltip: Plays 'FINAL FRACTAL' by ENNWAY
 	}
+
+	CragmawMireRelic: {
+		DisplayName: Infernal Cragmaw Mire Relic
+		Tooltip: "{0}"
+	}
+
+	IllusionistRelic: {
+		DisplayName: Infernal Illusionist Relic
+		Tooltip: "{0}"
+	}
 }
 
 Projectiles: {
@@ -2170,10 +2180,15 @@ Configs: {
 			MultiplayerAdjustments: Multiplayer Adjustments & Utilities
 			Main: Main
 			Secret: Secret Settings
+			Music: Music Toggles
 		}
 
 		ThoriumBalanceChangess: {
-			Tooltip: Modifies Thorium and mutliple Thorium addon items to be in tune with Calamity's balance.
+			Tooltip:
+				'''
+				Modifies Thorium and mutliple Thorium addon items to be in tune with Calamity's balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Thorium Balance Changes
 		}
 
@@ -2187,6 +2202,7 @@ Configs: {
 				'''
 				Modifies Calamity and mutliple Calamity addon items that are either undertuned or overtuned.
 				Also adjusts a few cross-mod recipes to mantain balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
 				'''
 			Label: Calamity Balance Changes
 		}
@@ -2196,12 +2212,17 @@ Configs: {
 				'''
 				Makes changes to certain items to make them unobtainable until their intended tier.
 				Prevents certain ores & tiles from being mined until you kill certain bosses.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
 				'''
 			Label: Maintain Calamity Tier Progression
 		}
 
 		VanillaBalanceChanges: {
-			Tooltip: Modifies a few Vanilla items to be in tune with Calamity's balance.
+			Tooltip:
+				'''
+				Modifies a few Vanilla items to be in tune with Calamity's balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Vanilla Balance Changes
 		}
 
@@ -2223,17 +2244,29 @@ Configs: {
 		}
 
 		SOTSBalanceChanges: {
-			Tooltip: Modifies Secrets of the Shadows items to be in tune with Calamity's balance.
+			Tooltip:
+				'''
+				Modifies Secrets of the Shadows items to be in tune with Calamity's balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Secrets of the Shadows Balance Changes
 		}
 
 		ConsolariaBalanceChanges: {
-			Tooltip: Modifies Consolaria items to be in tune with Calamity's balance.
+			Tooltip:
+				'''
+				Modifies Consolaria items to be in tune with Calamity's balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Consolaria Balance Changes
 		}
 
 		InfernumRecipeTweaks: {
-			Tooltip: Adjusts a few Infernum recipes.
+			Tooltip:
+				'''
+				Adjusts a few Infernum recipes.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Infernum Recipe Tweaks
 		}
 
@@ -2269,12 +2302,20 @@ Configs: {
 
 		AdditonalVanillaBossAdjustments: {
 			Label: Additonal Vanilla Boss Adjustments
-			Tooltip: Slighty adjusts the stats of some vanilla bosses to be more of a challenge.
+			Tooltip:
+				'''
+				Slighty adjusts the stats of some vanilla bosses to be more of a challenge.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 		}
 
 		MergeCraftingTrees: {
 			Label: Merge Crafting Trees
-			Tooltip: Merges the crafting trees for similar items from multiple mods & adds cross-mod crafting materials to certain items.
+			Tooltip:
+				'''
+				Merges the crafting trees for similar items from multiple mods & adds cross-mod crafting materials to certain items.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 		}
 
 		BloodOrbPotionDuplication: {
@@ -2293,10 +2334,10 @@ Configs: {
 		}
 
 		EnableInterlude4: {
-			Label: Enable Interlude 4
+			Label: Interlude 4
 			Tooltip:
 				'''
-				Enables/Disables the 4th Interlude theme. 
+				Togggles the 4th Interlude theme. 
 				This interlude will play after both the Exo Mechs & Supreme Calamitas have been defeated.
 				This song will override Their Fabricator & Acceptance when it plays.
 				'''
@@ -2324,12 +2365,20 @@ Configs: {
 
 		MultiplayerRespawnsAllowed: {
 			Label: Multiplayer Respawns Allowed
-			Tooltip: The number of respawns allowed during boss fights.
+			Tooltip:
+				'''
+				The number of respawns allowed during boss fights.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being set to 1.]
+				'''
 		}
 
 		NerfThoriumMulticlass: {
 			Label: Nerf Thorium Multiclass
-			Tooltip: Adds some systems to prevent Bard & Healer from multiclassing and getting too strong.
+			Tooltip:
+				'''
+				Adds some systems to prevent Bard & Healer from multiclassing and getting too strong.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 		}
 
 		ColoredRelics: {
@@ -2354,33 +2403,16 @@ Configs: {
 
 		DontEnableThis: {
 			Label: Don't Enable This
-			Tooltip: Don't enable this. It will probably give you the wrong idea and it will lead to unbalanced & broken gameplay.
+			Tooltip:
+				'''
+				Don't enable this. It will probably give you the wrong idea and it will lead to unbalanced & broken gameplay.
+				[c/7C0A02:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being OFF.]
+				'''
 		}
 
 		CalamityExpertAccessories: {
 			Label: Calamity Expert Accessories
 			Tooltip: Toggles certain drops from Calamity bosses being expert rarity.
-		}
-
-		AutomaticallyReforgeThoriumRogueItems: {
-			Label: Automatically Reforge Thorium Rogue Items
-			Tooltip:
-				'''
-				Automatically adds the stat bonuses of the "Flawless" prefix onto all non-consumable Thorium Rogue Items. 
-				Can help Thorium items catch up to Calamity items with prefixes as Throium Rogue items can't be reforged.
-				Only works when Ragnarok or Unofficial Calamity Bard & Healer are enabled.
-				This setting does nothing if Merge Thrower Into Rogue is enabled.
-				'''
-		}
-
-		MergeThrowerIntoRogue: {
-			Label: Merge Thrower Into Rogue
-			Tooltip:
-				'''
-				Merges the Thrower & Rogue class into one refined class. 
-				Allows converted thrower weapons to still recieve thier orginal reforges.
-				Also keeps the stealth bar damage scaling intact.
-				'''
 		}
 
 		ThereIsNoReasonDisableThis: {
@@ -2389,21 +2421,13 @@ Configs: {
 				'''
 				There is no reason to disable this as it disables difficulties that are buggy and unbalanced when merged with Infernum.
 				Only disable this config if you know the consequences, and do not report bugs with this config disabled.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
 				'''
 		}
 
 		DeveloperMode: {
 			Label: Developer Mode
 			Tooltip: Toggles the availablity of tools useful for development.
-		}
-
-		UseAprilFoolsMutant: {
-			Label: Use April Fools Mutant
-			Tooltip:
-				'''
-				Converts the Mutant from Fargo's Souls to Yharim.
-				This setting doesn't do anything if Fargo's Souls isn't enabled.
-				'''
 		}
 
 		ForceRagnarokInfernumModeInSubworlds: {
@@ -2413,6 +2437,11 @@ Configs: {
 				Automatically enables either Infernum Mode or Ragnarok Mode based on your worlds vanilla difficuly.
 				Expert Mode sets it to Infernum; Master Mode sets it to Ragnarok Mode.
 				'''
+		}
+
+		BereftVassalRagnarok: {
+			Label: Ragnarok Bereft Vassal Theme
+			Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal fight in Ragnarok Mode.
 		}
 	}
 
@@ -2696,20 +2725,15 @@ Buffs: {
 	}
 }
 
-SpawnInfo: {
-	Dreadnautilus: Has a chance to spawn while fishing during a blood moon.
-	PrimordialWyrmHead: An ancient relic lies at the bottom of the Abyss...
-}
-
 Tiles: {
-	CatastrophicFabricationsMusicBoxTile.MapEntry: Catastrophic Fabrications Music Box Tile
-	EyeMusicBoxTile.MapEntry: Eye Music Box Tile
-	BeeMusicBoxTile.MapEntry: Bee Music Box Tile
-	CultistMusicBoxTile.MapEntry: Cultist Music Box Tile
-	GolemMusicBoxTile.MapEntry: Golem Music Box Tile
-	ProphecyMusicBoxTile.MapEntry: Prophecy Music Box Tile
-	MenuMusicBoxTile.MapEntry: Menu Music Box Tile
-	FinalFractalMusicBoxTile.MapEntry: Final Fractal Music Box Tile
+	CatastrophicFabricationsMusicBoxTile.MapEntry: Music Box
+	EyeMusicBoxTile.MapEntry: Music Box
+	BeeMusicBoxTile.MapEntry: Music Box
+	CultistMusicBoxTile.MapEntry: Music Box
+	GolemMusicBoxTile.MapEntry: Music Box
+	ProphecyMusicBoxTile.MapEntry: Music Box
+	MenuMusicBoxTile.MapEntry: Music Box
+	FinalFractalMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {

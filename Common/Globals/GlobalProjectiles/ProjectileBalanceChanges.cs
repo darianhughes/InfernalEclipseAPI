@@ -39,6 +39,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int morningDewType = -1;
         private static int kinetoType = -1;
         private static int sarsType = -1;
+        private static int palmType = -1;
+        private static int paperType = -1;
 
         public override void SetStaticDefaults()
         {
@@ -64,6 +66,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 terraType = thorium.Find<ModProjectile>("TerraScythePro")?.Type ?? -1;
                 morningDewType = thorium.Find<ModProjectile>("MorningDewPro")?.Type ?? -1;
                 kinetoType = thorium.Find<ModProjectile>("KinetoscythePro2")?.Type ?? -1;
+                palmType = thorium.Find<ModProjectile>("StonePalmPro")?.Type ?? -1;
+                paperType = thorium.Find<ModProjectile>("PaperExplosivePro2")?.Type ?? -1;
 
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
                 {
@@ -102,6 +106,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
             var t when t == morningDewType => 1.5f,
             var t when t == kinetoType => 1.5f,
             var t when t == sarsType => 1.5f,
+            var t when t == paperType => 3f,
+            var t when t == palmType => 2f,
             _ => 1f,
         };
 
@@ -140,7 +146,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 moltenThresherType, batScytheType, batScytheType2,
                 fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
                 trueBloodHarvestType, theBlackScytheType, titanScytheType,
-                boneBatonType, trueHallowedType,
+                boneBatonType, trueHallowedType, palmType, paperType,
                 crimsonType, iceType, darkType, terraType, morningDewType, kinetoType, sarsType
             };
 

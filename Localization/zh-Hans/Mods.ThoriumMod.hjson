@@ -44,6 +44,19 @@ Items: {
 		Tooltip: “充满许多灵魂的精华”
 	}
 
+	/* MasterMarksmansScouter.Tooltip:
+		'''
+		'Gun powder will cull the weak'
+		The nearest enemy is scouted and takes 10% more damage from all sources
+		Your ranged damage applies cursed flames to enemies
+		''' */
+	/* AssassinsGuard.Tooltip:
+		'''
+		16% increased ranged damage
+		15% increased ranged critical strike chance
+		25% decreased chance to consume ammo
+		''' */
+
 	Kinetoscythe: {
 		DisplayName: 动能镰刀
 		Tooltip:
@@ -542,4 +555,34 @@ Items: {
 		最大仆从数量和哨兵数量增加2
 		增加仆从击退
 		'''
+}
+
+ThrowerTechniques: {
+	Decoy: {
+		// DisplayName: Decoy
+		/* Description:
+			'''
+			Call in an enemy decoy and gain increased attack speed for a second
+			The decoy will attempt to grab the attention of nearby enemies
+			''' */
+	}
+
+	BloodLotus: {
+		// DisplayName: Blood Lotus
+		/* Description:
+			'''
+			Stop in place and release a torrent of knives at the nearest enemy
+			Every knife heals you up to 10% of the damage dealt
+			The torrent grants the player 100 defence but fades on taking damage
+			''' */
+	}
+
+	SmokeBomb: {
+		// DisplayName: Smoke Bomb
+		/* Description:
+			'''
+			Release a smoke bomb
+			Smoke bombs briefly grant you damage immunity and increased attack speed for 2 seconds
+			''' */
+	}
 }

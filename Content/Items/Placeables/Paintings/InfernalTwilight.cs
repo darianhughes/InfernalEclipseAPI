@@ -93,9 +93,12 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Mr. Puzzles",
             "Dandel",
             "Nobody",
-            "Peter Fung",
             "Pudd1ng",
             "Eduarrdo",
+
+            //Composers
+            "Peter Fung",
+            "Techhy",
 
             //Partners
             "brome",
@@ -114,6 +117,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "LeEr206",
             "Pil",
             "Yelmut",
+            "yfn",
             "Aizen522",
             "De1tA5",
             "Suu",

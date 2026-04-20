@@ -1,12 +1,12 @@
-﻿using InfernalEclipseAPI.Content.Tiles.Relics.Thorium;
+﻿using InfernalEclipseAPI.Content.Tiles.Relics;
 using InfernumMode.Content.Items.Relics;
 using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.Thorium
+namespace InfernalEclipseAPI.Content.Items.Placeables.Relics
 {
-    public class ViscountRelic : BaseRelicItem
+    public class CragmawMireRelic : BaseRelicItem
     {
         public override LocalizedText Tooltip => Language.GetOrRegister(InfernalEclipseAPI.Instance.GetLocalizationKey($"Items.{this.Name}.Tooltip")).WithFormatArgs(PersonalMessage);
-        public override int TileID => ModContent.TileType <ViscountRelicTile>();
+        public override int TileID => ModContent.TileType<CragmawMireRelicTile>();
     }
 }

@@ -439,6 +439,11 @@ ItemTooltip: {
 		// Nerf: 5% increased summon damage
 	}
 
+	Hyperdrive: {
+		// Orig: Increases attack speed by 25% and melee damage by 5%
+		// Nerf: Increases void attack speed by 25% and melee damage by 5%
+	}
+
 	DoesNotStack: 不与下位效果叠加
 	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "
@@ -1411,11 +1416,6 @@ Items: {
 		Tooltip: ""
 	}
 
-	SubspaceSpawner: {
-		DisplayName: 亚空间生成装置
-		Tooltip: ""
-	}
-
 	AvatarOfEmptinessRelic: {
 		DisplayName: 虚无化身炼狱圣物
 		Tooltip: ""
@@ -2085,6 +2085,16 @@ Items: {
 		// DisplayName: Music Box (Terra Blade)
 		// Tooltip: Plays 'FINAL FRACTAL' by ENNWAY
 	}
+
+	CragmawMireRelic: {
+		// DisplayName: Infernal Cragmaw Mire Relic
+		// Tooltip: "{0}"
+	}
+
+	IllusionistRelic: {
+		// DisplayName: Infernal Illusionist Relic
+		// Tooltip: "{0}"
+	}
 }
 
 Projectiles: {
@@ -2168,6 +2178,7 @@ Configs: {
 			MultiplayerAdjustments: 多人游戏调整
 			Main: 主要
 			Secret: 秘密设置
+			// Music: Music Toggles
 		}
 
 		ThoriumBalanceChangess: {
@@ -2360,27 +2371,6 @@ Configs: {
 			Tooltip: 切换灾厄模组Boss的部分掉落物是否为专家模式专属
 		}
 
-		AutomaticallyReforgeThoriumRogueItems: {
-			Label: 自动重铸瑟银盗贼武器
-			Tooltip:
-				'''
-				自动将“化境”修饰语的属性加成附加到所有非消耗瑟银盗贼物品上
-				可帮助瑟银物品在拥有前缀时追赶灾厄物品的强度，因为瑟银盗贼物品无法重铸
-				仅在启用诸神的黄昏或非官方灾厄吟游诗人&牧师生效
-				若启用融合盗贼和投手则此设置无效
-				'''
-		}
-
-		MergeThrowerIntoRogue: {
-			Label: 融合盗贼和投手
-			Tooltip:
-				'''
-				将投手与盗贼职业合并为一个更加完善的职业
-				允许转换后的投手武器仍然获得其原有重铸效果
-				同时保留潜行值条的伤害加成机制
-				'''
-		}
-
 		ThereIsNoReasonDisableThis: {
 			Label: 不建议禁用此选项
 			Tooltip:
@@ -2395,15 +2385,6 @@ Configs: {
 			Tooltip: 切换用于开发的有用工具的启用状态
 		}
 
-		UseAprilFoolsMutant: {
-			Label: 使用愚人节突变体
-			Tooltip:
-				'''
-				将 Fargo's Souls 的突变体转变为亚利姆
-				如果 Fargo's Souls 未启用，则该设置不会生效
-				'''
-		}
-
 		ForceRagnarokInfernumModeInSubworlds: {
 			Label: 强制炼狱子世界为诸神黄昏难度
 			Tooltip:
@@ -2411,6 +2392,11 @@ Configs: {
 				根据主世界的原本难度自动启用炼狱模式或诸神黄昏模式
 				专家模式启用炼狱模式；大师模式启用诸神黄昏模式
 				'''
+		}
+
+		BereftVassalRagnarok: {
+			// Label: Ragnarok Bereft Vassal Theme
+			// Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal fight in Ragnarok Mode.
 		}
 	}
 
@@ -2694,11 +2680,6 @@ Buffs: {
 	}
 }
 
-SpawnInfo: {
-	Dreadnautilus: 在血月钓鱼有概率生成
-	PrimordialWyrmHead: 在深渊最深处，潜藏着一件古老的遗物……
-}
-
 Tiles: {
 	CatastrophicFabricationsMusicBoxTile.MapEntry: 铸灾神械音乐盒
 	EyeMusicBoxTile.MapEntry: 克苏鲁之眼音乐盒
@@ -2707,7 +2688,7 @@ Tiles: {
 	GolemMusicBoxTile.MapEntry: 石巨人音乐盒
 	ProphecyMusicBoxTile.MapEntry: 预言音乐盒
 	MenuMusicBoxTile.MapEntry: 主题曲音乐盒
-	// FinalFractalMusicBoxTile.MapEntry: Final Fractal Music Box Tile
+	// FinalFractalMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {

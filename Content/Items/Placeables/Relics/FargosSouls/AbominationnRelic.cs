@@ -11,11 +11,11 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.FargosSouls
     public class AbominationnRelic : BaseRelicItem
     {
         public override bool IsLoadingEnabled(Mod mod) => InfernalConfig.Instance.DontEnableThis;
-        public override string DisplayNameToUse => "Infernal Abominationn Relic";
-
         public override int TileID => ModContent.TileType<AbominationnRelicTile>();
 
         public override Color? PersonalMessageColor => Color.Orange;
+
+        public override LocalizedText Tooltip => Language.GetOrRegister(InfernalEclipseAPI.Instance.GetLocalizationKey($"Items.{this.Name}.Tooltip")).WithFormatArgs(PersonalMessage);
 
         public override string PersonalMessage => Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AbomRelic");
     }

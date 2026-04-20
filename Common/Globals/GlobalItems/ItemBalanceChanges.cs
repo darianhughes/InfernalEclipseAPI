@@ -1787,8 +1787,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Granite Crossbow
                     if (item.type == thorium.Find<ModItem>("GraniteCrossbow").Type)
                     {
-                        item.useAnimation = 10;
-                        item.useTime = 10;
+                        item.useAnimation = 20;
+                        item.useTime = 20;
                     }
 
                     //Energy Storm Bolter
@@ -2082,7 +2082,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                     if (GetItem(thorium, "TerrariumPulseRifle", item))
                     {
-                        item.damage = 104;
+                        item.damage = 94;
                     }
 
                     if (GetItem(thorium, "WyrmDecimator", item))

@@ -33,6 +33,8 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             int pro19type = thorium.Find<ModProjectile>("KinetoscythePro")?.Type ?? -1;
             int pro20type = thorium.Find<ModProjectile>("KinetoscythePro2")?.Type ?? -1;
             int pro21type = thorium.Find<ModProjectile>("OmenPro")?.Type ?? -1;
+            int pro22type = thorium.Find<ModProjectile>("PaperExplosivePro")?.Type ?? -1;
+            int pro23type = thorium.Find<ModProjectile>("PaperExplosivePro2")?.Type ?? -1;
 
             if (projectile.type == pro1Type || projectile.type == pro13type || projectile.type == pro3type || projectile.type == pro4type || projectile.type == pro5type || projectile.type == pro21type)
             {
@@ -41,7 +43,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
                 projectile.usesIDStaticNPCImmunity = false;
             }
 
-            if (projectile.type == pro2Type || projectile.type == pro16type || projectile.type == pro19type || projectile.type == pro20type)
+            if (projectile.type == pro2Type || projectile.type == pro16type || projectile.type == pro19type || projectile.type == pro20type || projectile.type == pro23type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 10;
@@ -49,7 +51,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             }
 
             if (projectile.type == pro6type || projectile.type == pro7type || projectile.type == pro8type || projectile.type == pro9type || projectile.type == pro10type || projectile.type == pro11type || projectile.type == pro12type || projectile.type == pro14type || 
-                projectile.type == pro15type || projectile.type == pro17type || projectile.type == pro18type)
+                projectile.type == pro15type || projectile.type == pro17type || projectile.type == pro18type || projectile.type == pro22type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 40;

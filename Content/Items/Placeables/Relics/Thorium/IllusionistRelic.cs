@@ -4,9 +4,9 @@ using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.Thorium
 {
-    public class ViscountRelic : BaseRelicItem
+    public class IllusionistRelic : BaseRelicItem
     {
         public override LocalizedText Tooltip => Language.GetOrRegister(InfernalEclipseAPI.Instance.GetLocalizationKey($"Items.{this.Name}.Tooltip")).WithFormatArgs(PersonalMessage);
-        public override int TileID => ModContent.TileType <ViscountRelicTile>();
+        public override int TileID => ModContent.TileType <IllusionistRelicTile>();
     }
 }
