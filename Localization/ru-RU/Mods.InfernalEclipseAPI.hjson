@@ -2616,7 +2616,7 @@ Buffs: {
 	BrokenOath: {
 		DisplayName: Нарушенная клятва
 		Description: Не нраведи - Гиппократ
-		// ItemTooltip: Reduces Bonus Healing bt 10 and Radiant damage by 50%
+		// ItemTooltip: Reduces Bonus Healing by 10 and Radiant damage by 50%
 	}
 
 	BubbleShock: {

@@ -15,10 +15,12 @@ Items: {
 			'''
 	}
 
+	/*
 	ScryingGlass: {
-	DisplayName: 全知水晶球
-	Tooltip: 按下'{$Keybinds.AccessoryAbility.DisplayName}'键可以开启/关闭增大视野范围的效果
+	DisplayName: Scrying Glass
+	Tooltip: Pressing the '{$Keybinds.AccessoryAbility.DisplayName}' key will toggle an increased range of view
 	}
+	*/
 	
 	ShootingStarHat.SetBonus:
 		'''
