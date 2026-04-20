@@ -63,17 +63,17 @@ Items: {
 		'''
 
 	IntergelacticProtectorHelm: {
-		/* Tooltip:
+		Tooltip:
 			'''
-			11% increased radiant damage, critical strike chance and casting speed
-			33% decreased non-radiant damage
-			''' */
-		/* SetBonus:
+			增加11%光辉伤害，暴击率和施法速度
+			减少33%的非光辉伤害
 			'''
-			22% increased radiant damage
-			Healing spells will heal an additional 6 life
-			Asteroids have a 20 % chance to heal {0} life upon hitting enemies
-			''' */
+		SetBonus:
+			'''
+			增加22%光辉伤害
+			治疗法术会额外治疗6点生命值
+			小行星在命中敌怪时有20%概率治疗你{0}生命值
+			'''
 	}
 
 	ElementalBloom.Tooltip:

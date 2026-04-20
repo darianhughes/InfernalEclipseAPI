@@ -15,12 +15,10 @@ Items: {
 			'''
 	}
 
-	/*
 	ScryingGlass: {
-	DisplayName: Scrying Glass
-	Tooltip: Pressing the '{$Keybinds.AccessoryAbility.DisplayName}' key will toggle an increased range of view
+	DisplayName: 全知水晶球
+	Tooltip: 按下'{$Keybinds.AccessoryAbility.DisplayName}'键可以开启/关闭增大视野范围的效果
 	}
-	*/
 	
 	ShootingStarHat.SetBonus:
 		'''
@@ -77,14 +75,14 @@ Items: {
 	}
 
 	DreamCatcher: {
-		// DisplayName: Dream Catcher
-		/* Tooltip:
+		DisplayName: 梦境捕捉器
+		Tooltip:
 			'''
-			Summons up to one dream catcher at the cursor's location
-			Staying within the dream catcher will heal you for 20% of max life if you take fatal damage
-			Revived players will have temporarily reduced stats and will be unable to revive again for 2 minutes
-			'To catch and cradle the hopes of the world...'
-			''' */
+			在光标位置召唤至多一个梦境捕捉器
+			待在梦境捕捉器内会在受到致命伤害时治疗你最大生命值的20%
+			复活的玩家会被暂时削弱所有属性，并且2分钟内无法再次复活
+			“为了抓住世界的希望并将其置于摇篮之中……”
+			'''
 	}
 
 	HereticBreaker: {
