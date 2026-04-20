@@ -100,6 +100,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
     }
     public class CelestialIlluminationStarReset : GlobalNPC
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.boss;
         public override void OnSpawn(NPC npc, IEntitySource source)
         {

@@ -2100,10 +2100,8 @@ Items: {
 		// DisplayName: Catlight
 		/* Tooltip:
 			'''
-			Are bosses too hard?
-			Then buy Catlight Industries' Catlight!
-			Buy our product now.
-			☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭
+			'Are bosses too hard? Then buy Catlight Industries' Catlight!'
+			[c/7C0A02:Buy our product now]
 			''' */
 	}
 }
@@ -2149,8 +2147,8 @@ Projectiles: {
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: 暴君亚利姆终极剑投掷
 	CasullandJackalProj.DisplayName: 454加斯尔和豺狼
 	// CatlightDeathray.DisplayName: Catlight Deathray
-	// CatlightDeathrayJR.DisplayName: Catlight Deathray J R
-	// CatlightDeathrayJRR.DisplayName: Catlight Deathray J R R
+	// CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
+	// CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
 }
 
 DiaryTooltip:

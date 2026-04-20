@@ -3,6 +3,11 @@ using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using CalamityMod;
+using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.CalamityItemHooks;
+using InfernumMode.Content.Rarities.InfernumRarities;
+using Microsoft.Xna.Framework.Input;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
 {
@@ -16,7 +21,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
             Item.channel = true;
             Item.width = 40;
             Item.height = 40;
-            Item.rare = ItemRarityID.Purple;
+            Item.rare = ModContent.RarityType<InfernumRedSparkRarity>();
             Item.DamageType = CatlightDamage.Instance;
             Item.damage = 1;
             Item.damage = 740;
@@ -27,6 +32,19 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
         {
             static int GetProgression()
             {
+                if (DownedBossSystem.downedBossRush) return 12;
+
+                if (DownedBossSystem.downedExoMechs && DownedBossSystem.downedCalamitas)
+                {
+                    if (ModLoader.HasMod("CalamityHunt"))
+                    {
+                        if (StormMaidenConditionOverride.DownedGoozma())
+                            return 11;
+                    }
+                    else
+                        return 11;
+                }
+
                 if (NPC.downedMoonlord) return 10;
                 if (NPC.downedAncientCultist) return 9;
                 if (NPC.downedGolemBoss) return 8;
@@ -119,15 +137,34 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
 
             return false;
         }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.cat"))}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor")}");
+                line5.OverrideColor = new(50, 205, 50);
+                tooltips.Add(line5);
+            }
+            else
+            {
+                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor"));
+                line5.OverrideColor = new(50, 205, 50);
+                tooltips.Add(line5);
+            }
+        }
+
         public override void AddRecipes()
         {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.SpellTome);
-            recipe.AddIngredient(ItemID.Catfish);
-            recipe.AddIngredient(ItemID.FallenStar, 3996);
-            recipe.Register();
+            CreateRecipe()
+                .AddIngredient(ItemID.SpellTome)
+                .AddIngredient(ItemID.Catfish)
+                .AddIngredient(ItemID.FallenStar, 3996)
+                .AddTile(TileID.Bookcases)
+                .Register();
         }
     }
+
     public class CatlightDamage : DamageClass
     {
         internal static CatlightDamage? Instance;
@@ -136,6 +173,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass) => StatInheritanceData.None;
         public override bool GetEffectInheritance(DamageClass damageClass) => true;
     }
+
     public struct VertexInfo : IVertexType
     {
         private static VertexDeclaration _vertexDeclaration = new VertexDeclaration(new VertexElement(0, VertexElementFormat.Vector2, VertexElementUsage.Position, 0), new VertexElement(8, VertexElementFormat.Color, VertexElementUsage.Color, 0), new VertexElement(12, VertexElementFormat.Vector3, VertexElementUsage.TextureCoordinate, 0));
@@ -155,6 +193,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
             Color = color;
         }
     }
+
     public class CatlightDeathray : ModProjectile
     {
         private Vector2[] lasersTop = new Vector2[140];
@@ -450,6 +489,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
                 player.heldProj = Projectile.whoAmI;
             }
         }
+
         public override bool PreDraw(ref Color lightColor)
         {
             List<VertexInfo> vertices = new List<VertexInfo>();
@@ -498,7 +538,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
             return false;
         }
     }
-
 
     //pre hm
     public class CatlightDeathrayJRR : ModProjectile
@@ -616,6 +655,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
                 player.heldProj = Projectile.whoAmI;
             }
         }
+
         public override bool PreDraw(ref Color lightColor)
         {
             List<VertexInfo> vertices = new List<VertexInfo>();
@@ -663,5 +703,4 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
             return false;
         }
     }
-
 }

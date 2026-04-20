@@ -18,6 +18,7 @@ using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod;
 using InfernumMode.Content.Items.Misc;
 using Terraria;
+using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -137,11 +138,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 itemLoot.Add(ItemDropRule.ByCondition(new CheesePlayerCondition(), ModContent.ItemType<DeathWhistle>()));
 
-                itemLoot.Add(ItemDropRule.ByCondition(new devListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
-
                 itemLoot.Add(ItemDropRule.ByCondition(new AkiraPlayerCondition(), ModContent.ItemType<PhantomMask>()));
                 itemLoot.Add(ItemDropRule.ByCondition(new AkiraPlayerCondition(), ModContent.ItemType<PhantomSuitCoat>()));
                 itemLoot.Add(ItemDropRule.ByCondition(new AkiraPlayerCondition(), ModContent.ItemType<PhantomSuitPants>()));
+
+                itemLoot.Add(ItemDropRule.ByCondition(new CatPlayerCondition(), ModContent.ItemType<Catlight>()));
+
+                itemLoot.Add(ItemDropRule.ByCondition(new devListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
             }
 
             /*
@@ -379,6 +382,24 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             {
                 Player player = Main.player[i];
                 if (player.active && player.name == "Akira")
+                    return true;
+            }
+            return false;
+        }
+
+        public bool CanShowItemDropInUI() => false;
+        public string GetConditionDescription() => "A certain person must be present...";
+    }
+
+    public class CatPlayerCondition : IItemDropRuleCondition
+    {
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            // Loop through all players in the world
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.active && player.name == "StarlightCat")
                     return true;
             }
             return false;
