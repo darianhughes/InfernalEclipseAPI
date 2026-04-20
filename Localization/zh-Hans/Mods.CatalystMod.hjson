@@ -42,5 +42,5 @@ Items: {
 ArmorSetBonus.IntergelacticRanged:
 	'''
 	造成远程伤害会召唤10%伤害的星辰
-	你的攻击会造成星辉凋亡减益，并使你免疫该减益
+	你的攻击会造成[cbuff:CatalystMod/AstralBlight]减益，并使你免疫该减益
 	'''
