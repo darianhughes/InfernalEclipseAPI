@@ -30,6 +30,7 @@ using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
+using CalamityMod.Items.Weapons.Ranged;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -433,6 +434,27 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
 
+                if (thorium != null)
+                {
+                    if (recipe.HasResult<TheAmalgam>())
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 5);
+                    }
+
+                    if (recipe.HasResult<OpalStriker>())
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("Opal"), 3);
+                    }
+                }
+
+                if (InfernalCrossmod.SOTS.Loaded)
+                {
+                    if (recipe.HasResult<ThePointer>() && recipe.HasIngredient(ItemID.Glass))
+                    {
+                        recipe.DisableRecipe();
+                    }
+                }
+
                 if (InfernalConfig.Instance.CalamityBalanceChanges)
                 {
                     if (recipe.HasResult<Moonshine>())
@@ -443,22 +465,6 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult<GrapeBeer>())
                     {
                         recipe.AddIngredient<StarblightSoot>(5);
-                    }
-                }
-
-                if (InfernalConfig.Instance.CalamityRecipeTweaks)
-                {
-                    if (recipe.HasResult<TheAmalgam>() && thorium != null)
-                    {
-                        recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 5);
-                    }
-                }
-
-                if (InfernalCrossmod.SOTS.Loaded)
-                {
-                    if (recipe.HasResult<ThePointer>() && recipe.HasIngredient(ItemID.Glass))
-                    {
-                        recipe.DisableRecipe();
                     }
                 }
 
@@ -477,6 +483,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.DecraftConditions.Add(Condition.DownedGolem);
 
+                        if (InfernalConfig.Instance.CalamityBalanceChanges)
+                            recipe.DisableRecipe();
+                    }
+
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("DivineArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("DivineBullet")))
+                    {
                         if (InfernalConfig.Instance.CalamityBalanceChanges)
                             recipe.DisableRecipe();
                     }
@@ -1392,6 +1404,18 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         {
                             recipe.RemoveTile(TileID.Anvils);
                             recipe.AddTile(TileID.TinkerersWorkbench);
+                        }
+
+                        if (recipe.HasResult(sots.Find<ModItem>("BlinkPack")))
+                        {
+                            recipe.AddIngredient(ItemID.SoulofLight, 5);
+                            recipe.RemoveTile(sots.Find<ModTile>("HardlightFabricatorTile").Type);
+                            recipe.AddTile(TileID.MythrilAnvil);
+                        }
+
+                        if (recipe.HasResult(sots.Find<ModItem>("DissolvingBrillianceBlock")))
+                        {
+                            recipe.AddTile(TileID.LunarCraftingStation);
                         }
 
                         #region Soul of Plight Additions

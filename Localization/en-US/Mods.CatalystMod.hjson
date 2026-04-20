@@ -33,7 +33,7 @@ Items: {
 		{$Mods.CatalystMod.Tooltips.WhipTooltip}
 		Swinging the whip costs health
 		Hitting enemies stores a blood charge. Up to 20 charges may be stored
-		Right Clicking activates the charges, temporarily empowering Catharsis and restoring the health lost
+		<right> activates the charges, temporarily empowering Catharsis and restoring the health lost
 		[c/c61b40:The purifying light, forsaken and consumed by pain,]
 		[c/c61b40:Returned to this realm as obliterating shadow.]
 		'''
@@ -42,5 +42,5 @@ Items: {
 ArmorSetBonus.IntergelacticRanged:
 	'''
 	Ranged weapons summon stars for 10% damage
-	You are immune to the Astral Blight and your attacks inflict it
+	You are immune to the [cbuff:CatalystMod/AstralBlight] and your attacks inflict it
 	'''

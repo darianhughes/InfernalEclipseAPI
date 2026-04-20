@@ -41,8 +41,8 @@ namespace InfernalEclipseAPI.Content.Items.PermanentBoosters
             if (player.GetModPlayer<InfernalPlayer>().singularityCore == true)
                 return false;
 
-            player.VoidPlayer().voidMeterMax += 100;
-            VoidPlayer.VoidEffect(player, 100);
+            player.VoidPlayer().voidMeterMax += 50;
+            VoidPlayer.VoidEffect(player, 50);
             player.GetModPlayer<InfernalPlayer>().singularityCore = true;
             return true;
         }

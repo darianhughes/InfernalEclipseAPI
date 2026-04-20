@@ -39,6 +39,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int morningDewType = -1;
         private static int kinetoType = -1;
         private static int sarsType = -1;
+        private static int palmType = -1;
+        private static int paperType = -1;
 
         public override void SetStaticDefaults()
         {
@@ -64,6 +66,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 terraType = thorium.Find<ModProjectile>("TerraScythePro")?.Type ?? -1;
                 morningDewType = thorium.Find<ModProjectile>("MorningDewPro")?.Type ?? -1;
                 kinetoType = thorium.Find<ModProjectile>("KinetoscythePro2")?.Type ?? -1;
+                palmType = thorium.Find<ModProjectile>("StonePalmPro")?.Type ?? -1;
+                paperType = thorium.Find<ModProjectile>("PaperExplosivePro2")?.Type ?? -1;
 
                 if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
                 {
@@ -102,6 +106,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
             var t when t == morningDewType => 1.5f,
             var t when t == kinetoType => 1.5f,
             var t when t == sarsType => 1.5f,
+            var t when t == paperType => 3f,
+            var t when t == palmType => 2f,
             _ => 1f,
         };
 
@@ -140,7 +146,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 moltenThresherType, batScytheType, batScytheType2,
                 fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
                 trueBloodHarvestType, theBlackScytheType, titanScytheType,
-                boneBatonType, trueHallowedType,
+                boneBatonType, trueHallowedType, palmType, paperType,
                 crimsonType, iceType, darkType, terraType, morningDewType, kinetoType, sarsType
             };
 
@@ -263,12 +269,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 {
                     if (entity.usesLocalNPCImmunity)
                     {
-                        entity.localNPCHitCooldown = 6;
+                        entity.localNPCHitCooldown = 12;
                     }
 
                     if (entity.usesIDStaticNPCImmunity)
                     {
-                        entity.idStaticNPCHitCooldown = 6;
+                        entity.idStaticNPCHitCooldown = 122;
                     }
                 }
 
@@ -481,37 +487,68 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "ThoriumMod" && projectile.ModProjectile.Name == "TideDagger" && InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)
+            if (projectile.ModProjectile != null)
             {
-                projectile.damage /= 10;
-            }
-            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "ThoriumMod" && projectile.ModProjectile.Name == "InfernoLordsFocusPro" && InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)
-            {
-                if (projectile.owner == Main.myPlayer && Main.LocalPlayer.ownedProjectileCounts[projectile.type] >= 7)
+                if (projectile.ModProjectile.Mod.Name == "ThoriumMod" && InfernalConfig.Instance.ThoriumBalanceChangess && !Hummus.Loaded)
                 {
-                    projectile.damage = 0;
-                    projectile.active = false;
+                    if (projectile.ModProjectile.Name == "TideDagger")
+                    {
+                        projectile.damage /= 10;
+                    }
+
+                    if (projectile.ModProjectile.Name == "InfernoLordsFocusPro")
+                    {
+                        if (projectile.owner == Main.myPlayer && Main.LocalPlayer.ownedProjectileCounts[projectile.type] >= 7)
+                        {
+                            projectile.damage = 0;
+                            projectile.active = false;
+                        }
+                        else
+                            projectile.damage /= 3;
+                    }
                 }
-                else
-                    projectile.damage /= 3;
-            }
 
-            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "CalamityAmmo" && projectile.ModProjectile.Name == "Shroomere" && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                projectile.damage /= 6;
-            }
-            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "CalamityAmmo" && (projectile.ModProjectile.Name == "Crabulon_Spore" || projectile.ModProjectile.Name == "Spore1" || projectile.ModProjectile.Name == "Spore2" || projectile.ModProjectile.Name == "Spore3") && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                projectile.damage /= 2;
-            }
-            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "CalamityAmmo" && projectile.ModProjectile.Name == "SoulBullet_Proj" && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                projectile.damage /= 2;
-            }
+                if (projectile.ModProjectile.Mod.Name == "CalamityAmmo" && InfernalConfig.Instance.CalamityBalanceChanges) 
+                {
+                    if (projectile.ModProjectile.Name == "Shroomere")
+                    {
+                        projectile.damage /= 6;
+                    }
 
-            if (projectile.ModProjectile != null && projectile.ModProjectile.Mod.Name == "SOTS" && projectile.ModProjectile.Name == "RevolutionBoltDay" && InfernalConfig.Instance.SOTSBalanceChanges)
-            {
-                projectile.damage /= 3;
+                    if (projectile.ModProjectile.Name == "Crabulon_Spore" || projectile.ModProjectile.Name == "Spore1" || projectile.ModProjectile.Name == "Spore2" || projectile.ModProjectile.Name == "Spore3")
+                    {
+                        projectile.damage /= 2;
+                    }
+
+                    if (projectile.ModProjectile.Name == "SoulBullet_Proj")
+                    {
+                        projectile.damage /= 2;
+                    }
+                }
+
+                if (InfernalConfig.Instance.SOTSBalanceChanges) 
+                {
+                    if (projectile.ModProjectile.Mod.Name == "SOTS") 
+                    {
+                        if (projectile.ModProjectile.Name == "RevolutionBoltDay")
+                        {
+                            projectile.damage /= 3;
+                        }
+
+                        if (projectile.ModProjectile.Name == "RevolutionBolt")
+                        {
+                            projectile.damage /= 3;
+                        }
+                    }
+
+                    if (projectile.ModProjectile.Mod.Name == "SOTSBardHealer") 
+                    {
+                        if (projectile.ModProjectile.Name == "TurboSlicerThrown")
+                        {
+                            projectile.damage *= 2;
+                        }
+                    }
+                }
             }
         }
 

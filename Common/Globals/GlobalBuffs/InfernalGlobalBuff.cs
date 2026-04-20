@@ -14,7 +14,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
                 player.GetCritChance(DamageClass.Generic) -= 30f;
             }
 
-                if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)
+            if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 if (type == InfernalCrossmod.NoxusBoss.Mod.Find<ModBuff>("StarstrikinglySatiated").Type)
                 {
@@ -47,6 +47,16 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
 
                 if (type == thorium.Find<ModBuff>("BloodRush").Type)
                     player.moveSpeed -= 0.15f;
+            }
+
+            if (InfernalCrossmod.Consolaria.Loaded)
+            {
+                Mod console = InfernalCrossmod.Consolaria.Mod;
+
+                if (type == console.Find<ModBuff>("Drunk").Type)
+                {
+                    player.Calamity().alcoholPoisonLevel++;
+                }
             }
         }
     }

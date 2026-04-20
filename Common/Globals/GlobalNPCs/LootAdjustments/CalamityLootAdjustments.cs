@@ -4,32 +4,43 @@ using CalamityMod.NPCs.AcidRain;
 using CalamityMod;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics;
 using InfernumMode.Core.GlobalInstances.Systems;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
-    [ExtendsFromMod("RagnarokMod")]
     public class CalamityLootAdjustments : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            foreach (IItemDropRule rule in npcLoot.Get())
+            if (InfernalCrossmod.RagnarokMod.Loaded)
             {
-                if (rule is CommonDrop drop && drop.itemId == ModContent.ItemType<Virusprayer>() && ModLoader.TryGetMod("InfernalEclipseWeaponsDLC", out _))
+                foreach (IItemDropRule rule in npcLoot.Get())
                 {
-                    npcLoot.Remove(drop);
+                    if (rule is CommonDrop drop && drop.itemId == InfernalCrossmod.RagnarokMod.Mod.Find<ModItem>("Virusprayer").Type && InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+                    {
+                        npcLoot.Remove(drop);
+                    }
                 }
             }
 
+            static bool isInfernum() => WorldSaveSystem.InfernumModeEnabled;
+
             if (npc.type == ModContent.NPCType<Mauler>())
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Virusprayer>(), 2, 1, 1));
+                if (InfernalCrossmod.RagnarokMod.Loaded && InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+                    npcLoot.Add(ItemDropRule.Common(InfernalCrossmod.RagnarokMod.Mod.Find<ModItem>("Virusprayer").Type, 2, 1, 1));
 
-                bool isInfernum() => WorldSaveSystem.InfernumModeEnabled;
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<MaulerRelic>());
+            }
+
+            if (npc.type == ModContent.NPCType<CragmawMire>())
+            {
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<CragmawMireRelic>());
             }
         }
     }
 
+    [JITWhenModsEnabled("RagnarokMod")]
     [ExtendsFromMod("RagnarokMod")]
     public class CalamityLootBagAdjustments : GlobalItem
     {
@@ -37,7 +48,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
         {
             foreach (IItemDropRule rule in itemLoot.Get())
             {
-                if (rule is CommonDrop drop && drop.itemId == ModContent.ItemType<Virusprayer>() && ModLoader.TryGetMod("InfernalEclipseWeaponsDLC", out _))
+                if (rule is CommonDrop drop && drop.itemId == ModContent.ItemType<Virusprayer>() && InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
                 {
                     itemLoot.Remove(drop);
                 }

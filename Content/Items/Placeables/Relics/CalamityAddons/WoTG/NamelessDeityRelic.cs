@@ -9,8 +9,6 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG
     [ExtendsFromMod("NoxusBoss")]
     public class NamelessDeityRelic : BaseRelicItem
     {
-        public override string DisplayNameToUse => "Infernal Nameless Deity Relic";
-
         public override int TileID => ModContent.TileType<NamelessDeityRelicTile>();
 
         public override void SetDefaults()
@@ -18,7 +16,11 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons.WoTG
             base.SetDefaults();
             Item.rare = ModContent.RarityType<NamelessDeityRarity>();
         }
+
         public override Color? PersonalMessageColor => Color.Red;
+
+        public override LocalizedText Tooltip => Language.GetOrRegister(InfernalEclipseAPI.Instance.GetLocalizationKey($"Items.{this.Name}.Tooltip")).WithFormatArgs(PersonalMessage);
+
         public override string PersonalMessage => Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.NamelessRelic");
     }
 }

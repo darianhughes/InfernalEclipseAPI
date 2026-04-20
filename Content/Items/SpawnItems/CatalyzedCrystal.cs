@@ -26,6 +26,7 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
             Item.rare = ItemRarityID.Purple;
             Item.consumable = false;
             Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.maxStack = 9999;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
@@ -33,11 +34,7 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
             itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossItem;
         }
 
-        public override bool CanUseItem(Player player)
-        {
-            bool allowMoreThanOneBoss = ModLoader.TryGetMod("Fargowiltas", out _) ? true : !NPC.AnyNPCs(ModContent.NPCType<SubspaceSerpentHead>());
-            return player.ZoneUnderworldHeight && allowMoreThanOneBoss && !BossRushEvent.BossRushActive;
-        }
+        public override bool CanUseItem(Player player) => player.ZoneUnderworldHeight && (ModLoader.HasMod("Fargowiltas") || !NPC.AnyNPCs(ModContent.NPCType<SubspaceSerpentHead>())) && !BossRushEvent.BossRushActive;
 
         public override bool? UseItem(Player player)
         {

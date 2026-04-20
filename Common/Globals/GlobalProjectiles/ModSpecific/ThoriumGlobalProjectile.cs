@@ -60,6 +60,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            if (projectile.Name.Contains("Super Plasma Cannon Pro"))
+            {
+                if (projectile.damage > 500)
+                    projectile.damage = 500;
+            }
+
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && !InfernalCrossmod.Hummus.Loaded)
             {
                 int spiritBenderProj = thorium.Find<ModProjectile>("SpiritBendersStaffPro")?.Type ?? -1;

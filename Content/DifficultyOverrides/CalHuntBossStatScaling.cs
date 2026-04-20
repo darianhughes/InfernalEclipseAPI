@@ -66,13 +66,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     ModNPC modNPC14 = npc.ModNPC;
                     if ((modNPC14 != null ? (modNPC14.Name.Contains("Goozma") ? 1 : 0) : 0) != 0)
                     {
-                        npc.lifeMax *= 10;
+                        npc.lifeMax += npc.lifeMax / 4;
                     }
                 }
 
                 if (InfernumActive.InfernumActive)
                 {
-                    npc.lifeMax += (int)(((double)1.5) * (double)npc.lifeMax);
+                    npc.lifeMax += (int)(((double)1.35) * (double)npc.lifeMax);
                 }
 
                 npc.life = npc.lifeMax;
@@ -307,7 +307,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if (baseP2LifeMax <= 0)
                 return 1;
 
-            float mult = BossRushEvent.BossRushActive ? 5f : 2.5f;
+            float mult = BossRushEvent.BossRushActive ? 3f : 2.35f;
 
             // Clamp so we never end up at 0 due to rounding or weirdness.
             int result = (int)MathF.Round(baseP2LifeMax * mult);

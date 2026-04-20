@@ -1,12 +1,12 @@
 ﻿using InfernalEclipseAPI.Content.Tiles.Relics.Thorium;
 using InfernumMode.Content.Items.Relics;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.Thorium
 {
     public class ViscountRelic : BaseRelicItem
     {
-        public override string DisplayNameToUse => "Infernal Viscount Relic";
-
+        public override LocalizedText Tooltip => Language.GetOrRegister(InfernalEclipseAPI.Instance.GetLocalizationKey($"Items.{this.Name}.Tooltip")).WithFormatArgs(PersonalMessage);
         public override int TileID => ModContent.TileType <ViscountRelicTile>();
     }
 }

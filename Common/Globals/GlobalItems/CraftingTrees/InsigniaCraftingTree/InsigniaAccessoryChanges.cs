@@ -6,21 +6,17 @@ using CalamityMod.CalPlayer;
 using Microsoft.Xna.Framework;
 using CalamityMod.Items.Accessories;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Utils;
+using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
+using Terraria.GameInput;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTree
 {
+    [JITWhenModsEnabled("SOTS")]
     [ExtendsFromMod("SOTS")]
     public class InsigniaAccessoryChanges : GlobalItem
     {
-        private Mod calamity
-        {
-            get
-            {
-                ModLoader.TryGetMod("CalamityMod", out Mod cal);
-                return cal;
-            }
-        }
-        private Mod sots
+        private static Mod sots
         {
             get
             {
@@ -29,33 +25,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
             }
         }
 
-        public Mod fargosSouls
-        {
-            get
-            {
-                ModLoader.TryGetMod("FargowiltasSouls", out Mod fargosSouls);
-                return fargosSouls;
-            }
-        }
-
-        public Mod calFargo
-        {
-            get
-            {
-                ModLoader.TryGetMod("FargowiltasCrossmod", out Mod fargoCrossmod);
-                return fargoCrossmod;
-            }
-        }
-
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            if (!InfernalConfig.Instance.MergeCraftingTrees)
-                return;
-
             if (item.ModItem != null &&
                 item.ModItem.Mod.Name == "CalamityMod" &&
                 item.ModItem.Name == "AscendantInsignia" &&
-                sots != null)
+                sots != null &&
+                InfernalConfig.Instance.MergeCraftingTrees)
             {
                 SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(player);
                 VoidPlayer voidPlayer = VoidPlayer.ModPlayer(player);
@@ -69,27 +45,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
                 item.ModItem.Name == "GildedBladeWings" &&
                 sots != null)
             {
-                var CalPlayer = player.GetModPlayer<CalamityPlayer>();
-                CalPlayer.ascendantInsignia = true;
+                if (InfernalConfig.Instance.MergeCraftingTrees)
+                {
+                    var CalPlayer = player.GetModPlayer<CalamityPlayer>();
+                    CalPlayer.ascendantInsignia = true;
+                }
                 MachinaBoosterPlayer modPlayer = player.GetModPlayer<MachinaBoosterPlayer>();
                 modPlayer.CreativeFlightTier2 = false;
                 player.wingTimeMax = 350;
                 player.wingAccRunSpeed = 11f;
                 player.wingRunAccelerationMult = 2f;
-            }
-
-            if (sots != null & calFargo != null)
-            {
-                if (item.type == fargosSouls.Find<ModItem>("FlightMasterySoul").Type)
-                {
-                    SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(player);
-                    VoidPlayer voidPlayer = VoidPlayer.ModPlayer(player);
-                    voidPlayer.bonusVoidGain += 3f;
-                    voidPlayer.voidRegenSpeed += 0.25f;
-                    sotsPlayer.SpiritSymphony = true;
-                    MachinaBoosterPlayer modPlayer = player.GetModPlayer<MachinaBoosterPlayer>();
-                    modPlayer.canCreativeFlight = true;
-                }
+                player.GetModPlayer<SOTSPlayerAdjustments>().bladeWings = true;
             }
         }
 
@@ -121,7 +87,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
             if (maxTooltipIndex != -1)
             {
                 int insertIndex = maxTooltipIndex + 1;
-                TooltipLine customLine = new TooltipLine(Mod, "StealthTooltip", stealthTooltip);
+                TooltipLine customLine = new(Mod, "StealthTooltip", stealthTooltip);
                 if (InfernalRedActive)
                     customLine.OverrideColor = InfernalRed;
                 if (CalNerf)
@@ -133,48 +99,44 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTr
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (!InfernalConfig.Instance.MergeCraftingTrees || sots == null)
-                return;
-
-            Color InfernalRed = Color.Lerp(
-               Color.White,
-               new Color(255, 80, 0), // Infernal red/orange
-               (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
-            );
             string spirtInfo1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SpiritInsignia.Effect");
-            string accendInfo1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.AscendantInsignia");
 
-            string gildedInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Gilded");
-
-            if (item.type == sots.Find<ModItem>("SpiritInsignia").Type)
+            if (item.type == sots.Find<ModItem>("SpiritInsignia").Type && InfernalConfig.Instance.MergeCraftingTrees)
             {
-                foreach (TooltipLine tooltip in tooltips)
-                {
-                    if (tooltip.Text.Contains(Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SpiritInsignia.OrigTooltip")))
-                    {
-                        tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SpiritInsignia.Replace");
-                    }
-                }
+                InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.SpiritInsignia.Replace"));
             }
 
-            if (item.type == ModContent.ItemType<AscendantInsignia>())
+            if (item.type == ModContent.ItemType<AscendantInsignia>() && InfernalConfig.Instance.MergeCraftingTrees)
             {
                 AddTooltip(tooltips, spirtInfo1, true);
             }
 
-            if (item.type == sots.Find<ModItem>("GildedBladeWings").Type)
+            string str1 = Language.GetTextValue("Mods.SOTS.Common.Unbound");
+            string str2 = str1;
+            using (List<string>.Enumerator enumerator = SOTS.SOTS.MachinaBoosterHotKey.GetAssignedKeys((InputMode)0).GetEnumerator())
             {
-                AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.GildedVoid"), true);
-                AddTooltip(tooltips, accendInfo1, true);
-                AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CalSoaringNerf"), CalNerf: true);
+                if (enumerator.MoveNext())
+                    str1 = enumerator.Current;
+            }
+            using (List<string>.Enumerator enumerator = SOTS.SOTS.SlowFlightHotKey.GetAssignedKeys((InputMode)0).GetEnumerator())
+            {
+                if (enumerator.MoveNext())
+                    str2 = enumerator.Current;
             }
 
-            if (calFargo != null)
-            { 
-                if (item.type == fargosSouls.Find<ModItem>("FlightMasterySoul").Type)
+            if (item.type == ModContent.ItemType<MachinaBooster>())
+            {
+                InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MachinaBooster.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.MachinaBooster.Replace", str1));
+            }
+
+            if (item.type == sots.Find<ModItem>("GildedBladeWings").Type)
+            {
+                if (InfernalConfig.Instance.MergeCraftingTrees)
                 {
-                    AddTooltip(tooltips, gildedInfo, true);
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.GildedBladeWings.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.GildedBladeWings.Replace", str1, str2));
                 }
+                AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.AscendantInsignia"), true);
+                AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.GildedVoid"), true);
             }
         }
     }

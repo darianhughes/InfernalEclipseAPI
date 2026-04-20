@@ -1,4 +1,5 @@
-﻿using InfernalEclipseAPI.Core.Systems;
+﻿using CalamityMod.Events;
+using InfernalEclipseAPI.Core.Systems;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria.OcramOverridess
 {
@@ -29,7 +30,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria.OcramOverrid
             {
                 if (npc.type == InfernalCrossmod.Consolaria.Mod.Find<ModNPC>("Ocram").Type)
                 {
-                    if (!Main.bloodMoon)
+                    if (!Main.bloodMoon && BossRushEvent.BossRushActive)
                     {
                         Main.bloodMoon = true;
                         bloodmoonStartedByOcram = true;

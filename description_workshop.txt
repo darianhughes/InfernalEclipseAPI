@@ -59,16 +59,17 @@ Created by the Infernal Eclipse of Ragnarok Team:
 Developers: Akira, Wardrobe Hummus, Advantaje
 Designers: Wardrobe Hummus, Yob, trembler
 Story: Akira, Yob
-Wiki Moderators: Akira, Wardrobe Hummus, Soltan
-Contributors: cheesenuggets, ma3allim, Yelmut, Pudd1ng, Pixus
-Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, trembler, JuJiao
-Composers: Peter Fung
+Wiki Moderators: Akira, Wardrobe Hummus, Soltan, Arkangel
+Contributors: cheesenuggets, ma3allim, Yelmut, Pudd1ng, Pixus, Nicole, Dandel
+Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel
+Composers: Peter Fung, Techhy
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
 And special thanks to the following creators for the music in this mod:
-CDMusic: "Ensemble of Fools (Encore Mix)"
-Kuudray: "TWISTED GARDEN [Remix]"
 Peter Fung: "Teardrops of Dragonfire"
-psykomatic: "Descent Of Divinities"
+Techhy: "Dead Kinddom's Champion"
 theforge128: "Calamity Before the Cynosure"
+CDMusic: "Ensemble of Fools (Encore Mix)"
+psykomatic: "Descent Of Divinities"
 TheTrester: "Omiscience Of Gods"
+Kuudray: "TWISTED GARDEN [Remix]"

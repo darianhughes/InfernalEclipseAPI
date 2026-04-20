@@ -1,6 +1,7 @@
 ﻿using InfernalEclipseAPI.Content.Tiles.Relics.FargosSouls;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Relics;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.FargosSouls
 {
@@ -9,8 +10,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.FargosSouls
     public class LifelightRelic : BaseRelicItem
     {
         public override bool IsLoadingEnabled(Mod mod) => InfernalConfig.Instance.DontEnableThis;
-        public override string DisplayNameToUse => "Infernal Lifelight Relic";
-
+        public override LocalizedText Tooltip => Language.GetOrRegister(InfernalEclipseAPI.Instance.GetLocalizationKey($"Items.{this.Name}.Tooltip")).WithFormatArgs(PersonalMessage);
         public override int TileID => ModContent.TileType<LifelightRelicTile>();
     }
 }

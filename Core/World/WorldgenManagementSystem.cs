@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
+using SOTS.Items.Fragments;
 using SOTS.Items.Invidia;
+using SOTS.Items.Planetarium.FromChests;
+using SOTS.Items.Planetarium.Furniture;
 using SOTS.WorldgenHelpers;
 using Terraria.GameContent.Generation;
 using Terraria.WorldBuilding;
@@ -48,6 +51,7 @@ namespace InfernalEclipseAPI.Core.World
             {
                 SOTSWorldGenModifications.EmeraldGemChestNoHellstone();
                 SOTSWorldGenModifications.InvidiaChestHealingPotionNerf();
+                SOTSWorldGenModifications.ReplaceBlinkPackInSpecialChests();
             }
         }
     }
@@ -116,6 +120,47 @@ namespace InfernalEclipseAPI.Core.World
                     int stack = item.stack;
                     item.SetDefaults(ItemID.HealingPotion);
                     item.stack = stack;
+                }
+            }
+        }
+
+        public static void ReplaceBlinkPackInSpecialChests()
+        {
+            int blinkPackType = ModContent.ItemType<BlinkPack>();
+            int replacementType = ModContent.ItemType<FragmentOfChaos>();
+
+            for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
+            {
+                Chest chest = Main.chest[chestIndex];
+                if (chest is null)
+                    continue;
+
+                int x = chest.x;
+                int y = chest.y;
+
+                if (!WorldGen.InWorld(x, y, 1))
+                    continue;
+
+                Tile tile = Framing.GetTileSafely(x, y);
+                ushort tileType = tile.TileType;
+
+                bool validChest =
+                    tileType == ModContent.TileType<LockedStrangeChest>() ||
+                    tileType == ModContent.TileType<LockedSkywareChest>() ||
+                    tileType == ModContent.TileType<LockedMeteoriteChest>();
+
+                if (!validChest)
+                    continue;
+
+                for (int slot = 0; slot < Chest.maxItems; slot++)
+                {
+                    Item item = chest.item[slot];
+
+                    if (item == null || item.IsAir || item.type != blinkPackType)
+                        continue;
+
+                    item.SetDefaults(replacementType);
+                    item.stack = 3;
                 }
             }
         }

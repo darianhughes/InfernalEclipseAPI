@@ -18,14 +18,20 @@ namespace InfernalEclipseAPI
         public bool DisplayWorldEntryMessages { get; set; }
 
         [DefaultValue(true)]
-        public bool EnableInterlude4 { get; set; }
-
-        [DefaultValue(true)]
         public bool ForceMenu { get; set; }
 
         [DefaultValue(false)]
         [ReloadRequired]
         public bool ColoredRelics { get; set; }
+        #endregion
+
+        #region Music
+        [Header("Music")]
+        [DefaultValue(true)]
+        public bool BereftVassalRagnarok { get; set; }
+
+        [DefaultValue(true)]
+        public bool EnableInterlude4 { get; set; }
         #endregion
 
         #region Balance Changess
@@ -152,6 +158,9 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         [ReloadRequired]
         public bool MoveDeerclopsChecklistEntry { get; set; }
+
+        [DefaultValue(true)]
+        public bool ForceRagnarokInfernumModeInSubworlds { get; set; }
         #endregion
 
         #region Secret

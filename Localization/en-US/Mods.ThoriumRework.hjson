@@ -1,7 +1,7 @@
 Items: {
 	ImpulseAmplifier.Tooltip:
 		'''
-		Electronic instrument projectiles are significantly faster and inflict electrified on first hit
+		Electronic instrument projectiles are significantly faster and inflict [cbuff:Electrified] on first hit
 		Electronic instrument projectiles also on first hit chain lightning for 10% damage to the nearest close enemy
 		'''
 	FanDonations.Tooltip:
@@ -10,21 +10,21 @@ Items: {
 		Piercing string instrument attacks increase in speed every hit and no longer lose damage
 		Certain string instrument attacks that trigger effects on tile collision also trigger on hit
 		Percussion instrument attacks launch hammers upward that eventually fall down
-		Electronic instrument projectiles are significantly faster and inflict electrified on first hit
+		Electronic instrument projectiles are significantly faster and inflict [cbuff:Electrified] on first hit
 		Electronic instrument projectiles also on first hit chain lightning for 10% damage to the nearest close enemy
 		Increases max inspiration by 5
 		'''
 	LunateCharm.Tooltip:
 		'''
 		Negates non-radiant damage penalties caused by healer armor
-		Removes the radiant damage penalty from the Broken Oath debuff
+		Removes the radiant damage penalty from the [cbuff:InfernalEclipseAPI/BrokenOath] debuff
 		'''
 	SealedContract.Tooltip:
 		'''
 		Maximum life increased by 60
 		Healing spells grant an additional 5 life
 		Negates non-radiant damage penalties caused by healer armor
-		Removes the radiant damage penalty from the Broken Oath debuff
+		Removes the radiant damage penalty from the [cbuff:InfernalEclipseAPI/BrokenOath] debuff
 		Gaining soul essence with radiant scythes grant a stack of aggregate charge
 		Radiant damage from scythe projectiles or non-scythe weapons consume aggregate charge to grant soul essence
 		"Seal the deal!"
@@ -39,4 +39,5 @@ ItemDescriptions: {
 		Increases your max number of minions by 1
 		'''
 	MagmaSeersMask: 20% increased whip speed
+	MasterMarksmansScouter: ""
 }

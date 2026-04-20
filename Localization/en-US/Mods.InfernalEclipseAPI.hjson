@@ -1,5 +1,10 @@
 UI: {
-	Cooldowns.ManaSteal: Mana Steal Remaining
+	Cooldowns: {
+		ManaSteal: Mana Steal Remaining
+		TerminalLucidity: Terminal Lucidity
+		LucidRetaliation: Lucid Retaliation
+	}
+
 	RagnarokIconText: Ragnarok Mode is enabled
 	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
 	NoRespawn2: Respawn prevented: Only {0} respawns per boss in {1} multiplayer!
@@ -58,7 +63,11 @@ WelcomeMessage: {
 	TBRWarning: WARNING: It is detected that you do not have Thorium Bosses Reworked enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.
 	RagWarning: WARNING: It is detected that you do not have Ragnarok enabled! Without this mod, Thorium & Calamity may not work well together. It is heavily recommended you enable this mod for a more complete & balanced experience
 	EventTrophyNotice: NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience.
-	SoulsWarning: WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok! Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.
+	SoulsWarning:
+		'''
+		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok! 
+		Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.
+		'''
 	OverhaulWarning: WARNING: It is detected that you have the Calamity Overhaul enabled! This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
 	RemnantsWarning: WARNING: It is detected that you have the Remnants mod enabled! This mod is NOT compatible with Infernum If this world was generated with the mod, please regenerate it with this mod off, or otherwise do not report bugs about world generation.
 	MasterPatchNotice: NOTICE: It is detected that you have the Infernum Master Patch mod enabled. This mod is redunant with this mod and can be disabled.
@@ -113,6 +122,13 @@ ItemTooltip: {
 		SOTSAdditional: Disables effects of Icosahedrons
 	}
 
+	Calculator: Reduces summon damage by 20%
+	Wiesnbrau:
+		'''
+		Inflicts [cbuff:PotionSickness]
+		{$Mods.CalamityMod.Common.AlcoholWarning}
+		'''
+
 	SoulAnchor: {
 		OrigTooltip1: Anchors your soul and health to your current position
 		Replace1: Anchors your soul and health to your current position for 20 seconds
@@ -135,12 +151,12 @@ ItemTooltip: {
 		'''
 	PhoenixStaff:
 		'''
-		Right click to spew a stream of flames that inflict 'Holy Glare'
+		Right Click to spew a stream of flames that inflict [cbuff:ThoriumMod/HolyGlare]
 		All damage done against holy glared enemies is increased by 15%
 		'''
 	HolyGlare:
 		'''
-		Enemies hit with the scythe will be inflicted with 'Holy Glare'
+		Enemies hit with the scythe will be inflicted with [cbuff:ThoriumMod/HolyGlare]
 		All damage done against holy glared enemies is increased by 15%
 		'''
 	SandstonePortalDeviceInfo:
@@ -187,8 +203,17 @@ ItemTooltip: {
 		Summons a Subspace Servant to assist in combat
 		Uses the item in your last inventory slot for you
 		Decreases damage by 50% multiplicatively
-		Decreases true melee damage by 15%
-		Increases max void by 50, but reduces healing received from potions by 40
+		Decreases true melee damage by 20% and you can no longer stealth strike
+		Increases max void by 50, but reduces healing received from potions by 75
+		'''
+	SubspaceLocketThorium:
+		'''
+		Summons a Subspace Servant to assist in combat
+		Uses the item in your last inventory slot for you
+		Decreases damage by 50% multiplicatively
+		Decreases true melee damage by 20% and you can no longer stealth strike
+		Decreases heal bonus and inspiration regeneration bonus by 50%
+		Increases max void by 50, but reduces healing received from potions by 75
 		'''
 	EyeOfChaos: Increases critical strike chance by 12%, does not stack with downgrades
 	EyeOfChaosThorium: Critical strikes deal 15 more damage
@@ -405,6 +430,18 @@ ItemTooltip: {
 	ShoeIce: {
 		Orig: 40% increased movement speed
 		Nerf: 15% increased movement speed
+	}
+
+	SteamkeeperWatch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
+
+	YumasPendant: {
+		Orig: 10% increased summon damage
+		Nerf: 5% increased summon damage
+	}
+
+	Hyperdrive: {
+		Orig: Increases attack speed by 25% and melee damage by 5%
+		Nerf: Increases void attack speed by 25% and melee damage by 5%
 	}
 
 	DoesNotStack: Does not stack with downgrades
@@ -665,7 +702,7 @@ ItemTooltip: {
 
 		OmniIns: Increase maximum inspiration by 5
 		OmniEmp: Each unique empowerment you have increases movement speed by 2% and playing speed by 1%
-		ShinobiNerf: This effect has a cooldowwn of 2 seconds
+		ShinobiNerf: This effect has a cooldown of 2 seconds
 		ShinobiEffect:
 			'''
 			6% increased throwing critical strike chance
@@ -682,18 +719,45 @@ ItemTooltip: {
 				Increases void gain by 1 and void regeneration speed by 25%
 				Doubles damage done to non-Lux spirit enemies
 				'''
-			OrigTooltip: Grants infinite wing and rocket boot flight
-			Replace: Increases wing flight time by 25%
+			Replace:
+				'''
+				Increases wing flight time by 33%
+				Increases movement speed by 7.5%, jump speed by 10%, and acceleration by 1.25x
+				Increases void gain by 1 and void regeneration speed by 25%
+				Doubles damage done to non-Lux spirit enemies
+				'''
 		}
 
 		AscendantInsignia:
 			'''
-			Increases movement and jump speed by 10% and acceleration by 1.1x
 			Pressing the Ascendant Insignia keybind will give you the power of ascension, providing infinite flight time for 4 seconds
 			Ascension has a 40 second cooldown
 			'''
-		GildedVoid: Increases void drain by 3 while active
-		CalSoaringNerf: "[Calamity]: No longer allows infinite flight"
+
+		MachinaBooster: {
+			Orig: Increases void drain by 3 while active
+			Replace:
+				'''
+				Allows flight and slow fall
+				Increases void gain by 1
+				Press '{0}' to gain fast, multidirectional flight at the cost of 5 void
+				Increases void drain by 32 while active
+				'''
+		}
+
+		GildedBladeWings: {
+			Orig: Allows infinite flight and slow fall
+			Replace:
+				'''
+				Increases wing flight time by 50%, movement and jump speed by 15%, and acceleration by 1.5x
+				Increases void gain by 3 and void regeneration speed by 25%
+				Doubles damage done to non-Lux spirit enemies
+				Press '{0}' to gain fast, multidirectional flight
+				Hold '{1}' to fly slower while in the special flight mode
+				'''
+		}
+
+		GildedVoid: Increases void drain by 16 while active
 		MonsterCharm: While in combat, your armor penetration, defense, and life recovery increase over time
 		GreedierRing:
 			'''
@@ -903,7 +967,7 @@ Items: {
 				'''
 			Plantera:
 				'''
-				With the defeat of Draedon's machines, it now inflicts Astral Infection
+				With the defeat of Draedon's machines, it now inflicts [cbuff:CalamityMod/AstralInfectionDebuff]
 				Defeat the guardian of the jungle to gain more power...
 				'''
 			Golem:
@@ -1203,10 +1267,10 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				The middle child of the eternal siblings, and one of the laziest people I've ever seen.
+				The middle child of the eternal siblings, and one of the laziest beings I've ever seen.
 				While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
 				he truly is super lazy, going to the point of even fusing his weapons to his hands.
-				His weapon has the ability to divide the soul itself, and has the ability to use all supernatural phenomena. 
+				He weilds a weapon that has the ability to divide the soul itself, on top of being able to use all supernatural phenomena. 
 				Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
 				'''
 		}
@@ -1219,7 +1283,7 @@ Items: {
 				The youngest of the eternal siblings, and also the weakest.
 				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
 				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
-				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while using a living axe made of evil.
+				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while weilding a living axe made of evil.
 				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
 				'''
 		}
@@ -1235,6 +1299,52 @@ Items: {
 				Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
 				Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
 				He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
+				'''
+		}
+
+		LoreLepus: {
+			DisplayName: Lepus
+			Tooltip: ""
+			Lore:
+				'''
+				What a perverse thing.
+				The hares of this world were symbols of thriving society.
+				In their abundacne, they brought many mirthful gifts. Food, fur, companionship.
+				Unlike ohter livestock, their life could withstand many of the harse conditions of the unforgiving underground tunnels
+				and the blights of dead gods, making them ideal units for trade between the misbegotten peasants and soldiers that help 
+				as bedrock for many kingdoms. With many of them now lost to time, the rabbits noww revel in an empty world.
+				This nuisance is one of many omens of the times of gold that have now passed by me.
+				'''
+		}
+
+		LoreTurkor: {
+			DisplayName: Turkor The Ungrateful
+			Tooltip: ""
+			Lore:
+				'''
+				Vengeful spirits are curious beings.
+				Their avatars can take the form of anything, as long as the slain carry a sol within them.
+				The common avain would be among my furthest guesses, but yet, the can muster wrath beyond their hapless forms.
+				Alas, spirits never lie, and the consequence that lead to the unrest of this abomination 
+				ties back to the slaughters required in lengthy royal feasts.
+				It is grim to reflect on what we do to creatures deemed beneath us.
+				'''
+		}
+
+		LoreOcram: {
+			DisplayName: Ocram
+			Tooltip: ""
+			Lore:
+				'''
+				Before the Gods had a firm grasp of the Underworld and Azafure was fully established,
+				there was a time where many parties vied for control over that fabled magma crevice.
+				The most notable being a powerful archdemon who commanded the demons into a clan of civilization-stomping ravagers.
+				When the Gods finally set their sights on the Underworld, his band was quashed, slaughtered one by one.
+				However, the archdemon survived no matter the Gods' attacks, much to their chagrin,
+				so they settled for torturously mutilating him in a way that drove him to insanity, and then he was discarded.
+				His name was long forgotten, to the point where I had never heard it spoken in my lifetime.
+				Yet, upon seeing that fiend, I am certain Ocram was that fallen archdemon from an age beyond my own.
+				If I had known of its continued existence during my glory days, I would have attempted to do what the Gods could not - or would not.
 				'''
 		}
 	}
@@ -1271,22 +1381,22 @@ Items: {
 
 	GrandThunderBirdRelic: {
 		DisplayName: Infernal Grand Thunder Bird Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BurriedChampionRelic: {
 		DisplayName: Infernal Buried Champion Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CorpseBloomRelic: {
 		DisplayName: Infernal Corpse Bloom Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	QueenJellyfishRelic: {
 		DisplayName: Infernal Queen Jellyfish Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ProphecyMusicBox: {
@@ -1305,117 +1415,112 @@ Items: {
 
 	AstrageldonRelic: {
 		DisplayName: Infernal Astrageldon Relic
-		Tooltip: ""
-	}
-
-	SubspaceSpawner: {
-		DisplayName: Subspace Spawner
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AvatarOfEmptinessRelic: {
 		DisplayName: Infernal Avatar Of Emptiness Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GoozmaRelic: {
 		DisplayName: Infernal Goozma Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NamelessDeityRelic: {
 		DisplayName: Infernal Nameless Deity Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LepusRelic: {
 		DisplayName: Infernal Lepus Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	OcramRelic: {
 		DisplayName: Infernal Ocram Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TurkorTheUngratefulRelic: {
 		DisplayName: Infernal Turkor The Ungrateful Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AdvisorRelic: {
 		DisplayName: Infernal Advisor Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ExcavatorRelic: {
 		DisplayName: Infernal Excavator Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GlowmothRelic: {
 		DisplayName: Infernal Glowmoth Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PolarisRelic: {
 		DisplayName: Infernal Polaris Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PutridPinkyRelic: {
 		DisplayName: Infernal Putrid Pinky Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	SubspaceSerpentRelic: {
 		DisplayName: Infernal Subspace Serpent Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BoreanStriderRelic: {
 		DisplayName: Infernal Borean Strider Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	FallenBeholderRelic: {
 		DisplayName: Infernal Fallen Beholder Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ForgottenOneRelic: {
 		DisplayName: Infernal Forgotten One Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GraniteEnergyStormRelic: {
 		DisplayName: Infernal Granite Energy Storm Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LichRelic: {
 		DisplayName: Infernal Lich Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PatchWerkRelic: {
 		DisplayName: Infernal Patch Werk Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PrimordialsRelic: {
 		DisplayName: Infernal Primordials Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	StarScouterRelic: {
 		DisplayName: Infernal Star Scouter Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ViscountRelic: {
 		DisplayName: Infernal Viscount Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	Lycanroc: {
@@ -1430,7 +1535,7 @@ Items: {
 				'''
 			Mechs:
 				'''
-				With the defeat of the Wall of Flesh, bullets shot by this weapon inflict crumbling
+				With the defeat of the Wall of Flesh, bullets shot by this weapon inflict [cbuff:CalamityMod/Crumbling]
 				Defeat the mechanical beasts to gain more power...
 				'''
 			Plantera:
@@ -1476,7 +1581,7 @@ Items: {
 				'''
 			Providence:
 				'''
-				With the defeat of Providence, your attacks inflict Holy Flames
+				With the defeat of Providence, your attacks inflict [cbuff:CalamityMod/HolyFlames]
 				Defeat the sentinels of the scourge to gain more power...
 				'''
 			Polterghast:
@@ -1512,107 +1617,107 @@ Items: {
 
 	ClamitasRelic: {
 		DisplayName: Infernal Clamitas Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PyrogenRelic: {
 		DisplayName: Infernal Pyrogen Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	WallofBronzeRelic: {
 		DisplayName: Infernal Wall of Bronze Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NoxusRelic: {
 		DisplayName: Infernal Noxus Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AbominationnRelic: {
 		DisplayName: Infernal Abominationn Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BanishedBaronRelic: {
 		DisplayName: Infernal Banished Baron Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CursedCoffinRelic: {
 		DisplayName: Infernal Cursed Coffin Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DeathChampionRelic: {
 		DisplayName: Infernal Champion of Death Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DevianttRelic: {
 		DisplayName: Infernal Deviantt Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	EarthChampionRelic: {
 		DisplayName: Infernal Champion of Earth Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	EridanusRelic: {
 		DisplayName: Infernal Eridanus, Champion of Cosmos Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LifeChampionRelic: {
 		DisplayName: Infernal Champion of Life Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LifelightRelic: {
 		DisplayName: Infernal Lifelight Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	MutantRelic: {
 		DisplayName: Infernal Mutant Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NatureChampionRelic: {
 		DisplayName: Infernal Champion of Nature Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	SpiritChampionRelic: {
 		DisplayName: Infernal Champion of Spirit Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TerraChampionRelic: {
 		DisplayName: Infernal Champion of Terra Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TrojanSquirrelRelic: {
 		DisplayName: Infernal Trojan Squirrel Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	WillChampionRelic: {
 		DisplayName: Infernal Champion of Will Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LuxRelic: {
 		DisplayName: Infernal Lux Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PharohsCurseRelic: {
 		DisplayName: Infernal Pharaoh's Curse Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CatalyzedCrystal: {
@@ -1763,7 +1868,7 @@ Items: {
 
 	InfernalTerraBladeRelic: {
 		DisplayName: Infernal Terra Blade Relic
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DemonicTome: {
@@ -1830,7 +1935,7 @@ Items: {
 			While holding this weapon, you have a improbability bar
 			The bar charges by dealing or taking damage
 			When the bar is full, press {0} to gain increased combat stats and movement speed for 1 minute
-			[c/7C0A02: YOU DO NOT KILL CLOWN!!! CLOWN KILLS YOU!!!]
+			[c/7C0A02:YOU DO NOT KILL CLOWN!!! CLOWN KILLS YOU!!!]
 			'''
 	}
 
@@ -1840,7 +1945,7 @@ Items: {
 		DynamicTooltip:
 			'''
 			{0}{1} improvements to all stats
-			Instantly activates rage mode & inflicts potion sickness
+			Instantly activates rage mode & inflicts [cbuff:PotionSickness]
 			'品尝我的怒火……和布丁！'
 			'''
 		VoidTooltip: Heals 100 void
@@ -1852,7 +1957,7 @@ Items: {
 		DisplayName: Singularity Core
 		Tooltip:
 			'''
-			Permanently increases max void by 100 and void regeneration speed by 10%
+			Permanently increases max void by 50 and void regeneration speed by 5%
 			Can only be used once
 			'''
 	}
@@ -1890,8 +1995,8 @@ Items: {
 	}
 
 	MaulerRelic: {
-		DisplayName: Mauler Relic
-		Tooltip: ""
+		DisplayName: Infernal Mauler Relic
+		Tooltip: "{0}"
 	}
 
 	DreamEssence: {
@@ -1921,7 +2026,7 @@ Items: {
 		DynamicTooltip:
 			'''
 			{0} improvements to all stats
-			Instantly activates adrenaline mode & inflicts potion sickness
+			Instantly activates adrenaline mode & inflicts [cbuff:PotionSickness]
 			Can not be consumed when a boss is alive
 			'Happy Birthday!'
 			'''
@@ -1951,6 +2056,46 @@ Items: {
 	ArkangelDyeItem: {
 		DisplayName: Arkangel Dye
 		Tooltip: ""
+	}
+
+	The454CasullandTheJackal: {
+		DisplayName: .454 Casull and The Jackal
+		Tooltip:
+			'''
+			Shooting either gun will swap the first two bullet type ammos in your ammo slots
+			<left> to shoot The Jackal, a low-fire rate pistol meant for single-target damage
+			The Jackal will convert Musket Balls into High Velocity Bullets
+			<right> to shoot .454 Casull, a high-fire rate pistol meant for mobbing
+			The .454 Casull will convert Musket Balls into Meteor Shots
+			Bullets inflict [cbuff:CalamityMod/Laceration] and tear blood orbs out of targets on hit
+			Picking up these blood orbs reduces the duration of [cbuff:PotionSickness]
+			[c/7C0A02:'Even Jesus wept...']
+			[c/aaaaaa:Shift-<right> this item in your inventory to toggle the] [i:EndlessMusketPouch] [c/aaaaaa:ammo swap]
+			'''
+	}
+
+	RuinousPlasmaInjection: {
+		DisplayName: Ruinous Plasma Injection
+		Tooltip:
+			'''
+			Permanently increases max void by 10 and void regeneration speed by 1%
+			Can be used 5 times
+			'''
+	}
+
+	FinalFractalMusicBox: {
+		DisplayName: Music Box (Terra Blade)
+		Tooltip: Plays 'FINAL FRACTAL' by ENNWAY
+	}
+
+	CragmawMireRelic: {
+		DisplayName: Infernal Cragmaw Mire Relic
+		Tooltip: "{0}"
+	}
+
+	IllusionistRelic: {
+		DisplayName: Infernal Illusionist Relic
+		Tooltip: "{0}"
 	}
 }
 
@@ -1993,6 +2138,7 @@ Projectiles: {
 	CelestialIlluminationBeam.DisplayName: Celestial Illumination Beam
 	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
+	CasullandJackalProj.DisplayName: 454 Casull and The Jackal
 }
 
 DiaryTooltip:
@@ -2034,10 +2180,15 @@ Configs: {
 			MultiplayerAdjustments: Multiplayer Adjustments & Utilities
 			Main: Main
 			Secret: Secret Settings
+			Music: Music Toggles
 		}
 
 		ThoriumBalanceChangess: {
-			Tooltip: Modifies Thorium and mutliple Thorium addon items to be in tune with Calamity's balance.
+			Tooltip:
+				'''
+				Modifies Thorium and mutliple Thorium addon items to be in tune with Calamity's balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Thorium Balance Changes
 		}
 
@@ -2051,6 +2202,7 @@ Configs: {
 				'''
 				Modifies Calamity and mutliple Calamity addon items that are either undertuned or overtuned.
 				Also adjusts a few cross-mod recipes to mantain balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
 				'''
 			Label: Calamity Balance Changes
 		}
@@ -2060,12 +2212,17 @@ Configs: {
 				'''
 				Makes changes to certain items to make them unobtainable until their intended tier.
 				Prevents certain ores & tiles from being mined until you kill certain bosses.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
 				'''
 			Label: Maintain Calamity Tier Progression
 		}
 
 		VanillaBalanceChanges: {
-			Tooltip: Modifies a few Vanilla items to be in tune with Calamity's balance.
+			Tooltip:
+				'''
+				Modifies a few Vanilla items to be in tune with Calamity's balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Vanilla Balance Changes
 		}
 
@@ -2087,17 +2244,29 @@ Configs: {
 		}
 
 		SOTSBalanceChanges: {
-			Tooltip: Modifies Secrets of the Shadows items to be in tune with Calamity's balance.
+			Tooltip:
+				'''
+				Modifies Secrets of the Shadows items to be in tune with Calamity's balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Secrets of the Shadows Balance Changes
 		}
 
 		ConsolariaBalanceChanges: {
-			Tooltip: Modifies Consolaria items to be in tune with Calamity's balance.
+			Tooltip:
+				'''
+				Modifies Consolaria items to be in tune with Calamity's balance.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Consolaria Balance Changes
 		}
 
 		InfernumRecipeTweaks: {
-			Tooltip: Adjusts a few Infernum recipes.
+			Tooltip:
+				'''
+				Adjusts a few Infernum recipes.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 			Label: Infernum Recipe Tweaks
 		}
 
@@ -2133,12 +2302,20 @@ Configs: {
 
 		AdditonalVanillaBossAdjustments: {
 			Label: Additonal Vanilla Boss Adjustments
-			Tooltip: Slighty adjusts the stats of some vanilla bosses to be more of a challenge.
+			Tooltip:
+				'''
+				Slighty adjusts the stats of some vanilla bosses to be more of a challenge.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 		}
 
 		MergeCraftingTrees: {
 			Label: Merge Crafting Trees
-			Tooltip: Merges the crafting trees for similar items from multiple mods & adds cross-mod crafting materials to certain items.
+			Tooltip:
+				'''
+				Merges the crafting trees for similar items from multiple mods & adds cross-mod crafting materials to certain items.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 		}
 
 		BloodOrbPotionDuplication: {
@@ -2157,10 +2334,10 @@ Configs: {
 		}
 
 		EnableInterlude4: {
-			Label: Enable Interlude 4
+			Label: Interlude 4
 			Tooltip:
 				'''
-				Enables/Disables the 4th Interlude theme. 
+				Togggles the 4th Interlude theme. 
 				This interlude will play after both the Exo Mechs & Supreme Calamitas have been defeated.
 				This song will override Their Fabricator & Acceptance when it plays.
 				'''
@@ -2188,12 +2365,20 @@ Configs: {
 
 		MultiplayerRespawnsAllowed: {
 			Label: Multiplayer Respawns Allowed
-			Tooltip: The number of respawns allowed during boss fights.
+			Tooltip:
+				'''
+				The number of respawns allowed during boss fights.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being set to 1.]
+				'''
 		}
 
 		NerfThoriumMulticlass: {
 			Label: Nerf Thorium Multiclass
-			Tooltip: Adds some systems to prevent Bard & Healer from multiclassing and getting too strong.
+			Tooltip:
+				'''
+				Adds some systems to prevent Bard & Healer from multiclassing and getting too strong.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
+				'''
 		}
 
 		ColoredRelics: {
@@ -2218,33 +2403,16 @@ Configs: {
 
 		DontEnableThis: {
 			Label: Don't Enable This
-			Tooltip: Don't enable this. It will probably give you the wrong idea and it will lead to unbalanced & broken gameplay.
+			Tooltip:
+				'''
+				Don't enable this. It will probably give you the wrong idea and it will lead to unbalanced & broken gameplay.
+				[c/7C0A02:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being OFF.]
+				'''
 		}
 
 		CalamityExpertAccessories: {
 			Label: Calamity Expert Accessories
 			Tooltip: Toggles certain drops from Calamity bosses being expert rarity.
-		}
-
-		AutomaticallyReforgeThoriumRogueItems: {
-			Label: Automatically Reforge Thorium Rogue Items
-			Tooltip:
-				'''
-				Automatically adds the stat bonuses of the "Flawless" prefix onto all non-consumable Thorium Rogue Items. 
-				Can help Thorium items catch up to Calamity items with prefixes as Throium Rogue items can't be reforged.
-				Only works when Ragnarok or Unofficial Calamity Bard & Healer are enabled.
-				This setting does nothing if Merge Thrower Into Rogue is enabled.
-				'''
-		}
-
-		MergeThrowerIntoRogue: {
-			Label: Merge Thrower Into Rogue
-			Tooltip:
-				'''
-				Merges the Thrower & Rogue class into one refined class. 
-				Allows converted thrower weapons to still recieve thier orginal reforges.
-				Also keeps the stealth bar damage scaling intact.
-				'''
 		}
 
 		ThereIsNoReasonDisableThis: {
@@ -2253,6 +2421,7 @@ Configs: {
 				'''
 				There is no reason to disable this as it disables difficulties that are buggy and unbalanced when merged with Infernum.
 				Only disable this config if you know the consequences, and do not report bugs with this config disabled.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
 				'''
 		}
 
@@ -2261,13 +2430,18 @@ Configs: {
 			Tooltip: Toggles the availablity of tools useful for development.
 		}
 
-		UseAprilFoolsMutant: {
-			Label: Use April Fools Mutant
+		ForceRagnarokInfernumModeInSubworlds: {
+			Label: Force Ragnarok Mode and Infernum Mode In Subworlds
 			Tooltip:
 				'''
-				Converts the Mutant from Fargo's Souls to Yharim.
-				This setting doesn't do anything if Fargo's Souls isn't enabled.
+				Automatically enables either Infernum Mode or Ragnarok Mode based on your worlds vanilla difficuly.
+				Expert Mode sets it to Infernum; Master Mode sets it to Ragnarok Mode.
 				'''
+		}
+
+		BereftVassalRagnarok: {
+			Label: Ragnarok Bereft Vassal Theme
+			Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal fight in Ragnarok Mode.
 		}
 	}
 
@@ -2517,6 +2691,7 @@ Buffs: {
 	BrokenOath: {
 		DisplayName: Broken Oath
 		Description: Do no harm - Hippocrates
+		ItemTooltip: Reduces Bonus Healing by 10 and Radiant damage by 50%
 	}
 
 	BubbleShock: {
@@ -2545,24 +2720,20 @@ Buffs: {
 	}
 
 	BrimstoneDesperation: {
-		DisplayName: Brimstone Desperation
-		Description: Brimstone energy flows though the air, disabling many of your abilites!
+		DisplayName: Calamitous Desperation
+		Description: Energy of calamity flow though the air, disabling many of your abilites!
 	}
 }
 
-SpawnInfo: {
-	Dreadnautilus: Has a chance to spawn while fishing during a blood moon.
-	PrimordialWyrmHead: An ancient relic lies at the bottom of the Abyss...
-}
-
 Tiles: {
-	CatastrophicFabricationsMusicBoxTile.MapEntry: Catastrophic Fabrications Music Box Tile
-	EyeMusicBoxTile.MapEntry: Eye Music Box Tile
-	BeeMusicBoxTile.MapEntry: Bee Music Box Tile
-	CultistMusicBoxTile.MapEntry: Cultist Music Box Tile
-	GolemMusicBoxTile.MapEntry: Golem Music Box Tile
-	ProphecyMusicBoxTile.MapEntry: Prophecy Music Box Tile
-	MenuMusicBoxTile.MapEntry: Menu Music Box Tile
+	CatastrophicFabricationsMusicBoxTile.MapEntry: Music Box
+	EyeMusicBoxTile.MapEntry: Music Box
+	BeeMusicBoxTile.MapEntry: Music Box
+	CultistMusicBoxTile.MapEntry: Music Box
+	GolemMusicBoxTile.MapEntry: Music Box
+	ProphecyMusicBoxTile.MapEntry: Music Box
+	MenuMusicBoxTile.MapEntry: Music Box
+	FinalFractalMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {

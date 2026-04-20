@@ -1,5 +1,10 @@
 UI: {
-	Cooldowns.ManaSteal: 剩余魔力吸取量
+	Cooldowns: {
+		ManaSteal: 剩余魔力吸取量
+		TerminalLucidity: 混乱的现实
+		LucidRetaliation: 恢复的现实
+	}
+
 	RagnarokIconText: 诸神黄昏模式已启用
 	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
 	NoRespawn2: 复活受限：在 {1} 人联机时，每场 Boss 战中每位玩家只有 {0} 次重生机会！
@@ -58,7 +63,11 @@ WelcomeMessage: {
 	TBRWarning: 警告：检测到未启用 Thorium Bosses Reworked！我们强烈建议您启用该模组，它重新平衡了瑟银模组的Boss，使其机制更贴合炼狱模式及灾厄模组的整体进程。
 	RagWarning: 警告：检测到未启用 Ragnarok！若未启用此模组，瑟银与灾厄可能无法良好协同。强烈建议启用此模组，以获得更完整、更平衡的游戏体验。
 	EventTrophyNotice: 注意：检测到您未启用更多圣物和纪念章和传颂之物!如果缺少此模组，任何非原版、灾厄或炼狱模式的 Boss 可能缺失传颂之物或炼狱开场动画。强烈建议您启用此模组，以获得更完整、更平滑的游戏体验。
-	SoulsWarning: 警告：检测到您已启用 Fargo魂石模组！请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
+	SoulsWarning:
+		'''
+		警告：检测到您已启用 Fargo魂石模组！
+		请注意，炼狱模式与永恒模式不兼容，同时启用可能会导致严重错误。
+		'''
 	OverhaulWarning: 警告：检测到您已启用灾厄大修模组！此模组有较多漏洞且会发生多种错误。我们强烈建议您关闭此模组。
 	RemnantsWarning: 警告：检测到您已启用古迹残存模组！此模组不兼容炼狱，如果该世界是在启用此模组的情况下生成的，请关闭本模组后重新生成世界，否则请不要提交任何有关世界生成的错误报告。
 	MasterPatchNotice: 注意：检测到您已启用 Infernum Master Patch 大师炼狱补丁 模组！此模组是多余的，可以禁用它。
@@ -113,6 +122,13 @@ ItemTooltip: {
 		SOTSAdditional: 禁用所有二十面体的效果
 	}
 
+	// Calculator: Reduces summon damage by 20%
+	/* Wiesnbrau:
+		'''
+		Inflicts [cbuff:PotionSickness]
+		{$Mods.CalamityMod.Common.AlcoholWarning}
+		''' */
+
 	SoulAnchor: {
 		OrigTooltip1: 将你的灵魂和生命值锚定在当前位置
 		Replace1: 将你的灵魂和生命值锚定在当前位置，持续20秒
@@ -135,12 +151,12 @@ ItemTooltip: {
 		'''
 	PhoenixStaff:
 		'''
-		右键喷射火焰流，对敌怪造成神圣之怒减益
+		右键喷射火焰流，对敌怪造成[cbuff:ThoriumMod/HolyGlare]减益
 		受影响的敌怪在减益持续时间内受到的伤害增加15%
 		'''
 	HolyGlare:
 		'''
-		被镰刀命中的敌人会受到神圣之怒减益
+		被镰刀命中的敌人会受到[cbuff:ThoriumMod/HolyGlare]减益
 		受影响的敌怪在减益持续时间内受到的伤害增加15%
 		'''
 	SandstonePortalDeviceInfo:
@@ -190,6 +206,15 @@ ItemTooltip: {
 		减少15%真近战伤害
 		增加50点最大虚空值，但会降低40点从药水治疗的生命值
 		'''
+	/* SubspaceLocketThorium:
+		'''
+		Summons a Subspace Servant to assist in combat
+		Uses the item in your last inventory slot for you
+		Decreases damage by 50% multiplicatively
+		Decreases true melee damage by 20% and you can no longer stealth strike
+		Decreases heal bonus and inspiration regeneration bonus by 50%
+		Increases max void by 50, but reduces healing received from potions by 75
+		''' */
 	EyeOfChaos: 增加12%暴击率，无法与下位饰品叠加
 	EyeOfChaosThorium: 暴击会造成15点额外伤害
 	SnakeEyes: 增加3%暴击率
@@ -405,6 +430,18 @@ ItemTooltip: {
 	ShoeIce: {
 		Orig: 增加40%移动速度
 		Nerf: 增加15%移动速度
+	}
+
+	SteamkeeperWatch: 你的哨兵可以永久存在并在2分钟内获得至多15%伤害提升
+
+	YumasPendant: {
+		// Orig: 10% increased summon damage
+		// Nerf: 5% increased summon damage
+	}
+
+	Hyperdrive: {
+		// Orig: Increases attack speed by 25% and melee damage by 5%
+		// Nerf: Increases void attack speed by 25% and melee damage by 5%
 	}
 
 	DoesNotStack: 不与下位效果叠加
@@ -682,18 +719,45 @@ ItemTooltip: {
 				增加1点虚空恢复量和25%虚空恢复速度
 				对除了辉光圣魂以外的灵魂敌怪造成双倍伤害
 				'''
-			OrigTooltip: 使你获得无限的翅膀和火箭靴飞行时间
-			Replace: 增加25%翅膀飞行时间
+			Replace:
+				'''
+				翅膀飞行时间增加33%
+				移动速度提高7.5%，跳跃速度提高10%，加速度提升为1.25倍
+				增加1点虚空恢复量和25%虚空恢复速度
+				对除了辉光圣魂以外的灵魂敌怪造成双倍伤害
+				'''
 		}
 
 		AscendantInsignia:
 			'''
-			移动和跳跃速度提高10%，加速度提高至1.1倍
 			按下进升证章按键会给予你飞升之力，提供4秒的无限飞行时间
 			飞升有40秒冷却时间
 			'''
-		GildedVoid: 激活时的虚空消耗值增加3
-		CalSoaringNerf: "[灾厄]：不再允许无限飞行"
+
+		MachinaBooster: {
+			Orig: 激活时会增加3点虚空流失值
+			Replace:
+				'''
+				可飞行和缓降
+				增加1点虚空恢复量
+				按下'{0}'键可消耗5点虚空值进行高速的多方向飞行
+				激活时会增加32点虚空流失值
+				'''
+		}
+
+		GildedBladeWings: {
+			Orig: 可无限飞行和缓降
+			Replace:
+				'''
+				翅膀飞行时间增加50%、移动速度和跳跃速度增加15%，加速度提升为1.5倍
+				增加3点虚空恢复量，增加25%虚空恢复速度
+				对除了辉光圣魂以外的灵魂敌怪造成双倍伤害
+				按下'{0}'键进行高速的多方向飞行
+				按住'{1}'键可在特殊飞行模式下缓慢飞行
+				'''
+		}
+
+		GildedVoid: 激活时会增加16点虚空流失值
 		MonsterCharm: 战斗中你的盔甲穿透，防御和生命恢复会随时间增加
 		GreedierRing:
 			'''
@@ -903,7 +967,7 @@ Items: {
 				'''
 			Plantera:
 				'''
-				击败嘉登的机械装置后，它现在会附加幻星感染减益
+				击败嘉登的机械装置后，它现在会附加[cbuff:CalamityMod/AstralInfectionDebuff]减益
 				击败丛林守护者以获得更多力量……
 				'''
 			Golem:
@@ -1014,7 +1078,6 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				How quaint.
 				虽然辉光本身被神圣加护，混沌精灵却没有设下什么防御。
 				它们从未成功被无害化到可以被利用的地步，
 				嘉登因此将其封入人造的构造体中以作禁锢。
@@ -1236,6 +1299,52 @@ Items: {
 				他常说自己在寻找值得一战之人……看来，如今他已找到了。
 				'''
 		}
+
+		LoreLepus: {
+			// DisplayName: Lepus
+			// Tooltip: ""
+			/* Lore:
+				'''
+				What a perverse thing.
+				The hares of this world were symbols of thriving society.
+				In their abundacne, they brought many mirthful gifts. Food, fur, companionship.
+				Unlike ohter livestock, their life could withstand many of the harse conditions of the unforgiving underground tunnels
+				and the blights of dead gods, making them ideal units for trade between the misbegotten peasants and soldiers that help 
+				as bedrock for many kingdoms. With many of them now lost to time, the rabbits noww revel in an empty world.
+				This nuisance is one of many omens of the times of gold that have now passed by me.
+				''' */
+		}
+
+		LoreTurkor: {
+			// DisplayName: Turkor The Ungrateful
+			// Tooltip: ""
+			/* Lore:
+				'''
+				Vengeful spirits are curious beings.
+				Their avatars can take the form of anything, as long as the slain carry a sol within them.
+				The common avain would be among my furthest guesses, but yet, the can muster wrath beyond their hapless forms.
+				Alas, spirits never lie, and the consequence that lead to the unrest of this abomination 
+				ties back to the slaughters required in lengthy royal feasts.
+				It is grim to reflect on what we do to creatures deemed beneath us.
+				''' */
+		}
+
+		LoreOcram: {
+			// DisplayName: Ocram
+			// Tooltip: ""
+			/* Lore:
+				'''
+				Before the Gods had a firm grasp of the Underworld and Azafure was fully established,
+				there was a time where many parties vied for control over that fabled magma crevice.
+				The most notable being a powerful archdemon who commanded the demons into a clan of civilization-stomping ravagers.
+				When the Gods finally set their sights on the Underworld, his band was quashed, slaughtered one by one.
+				However, the archdemon survived no matter the Gods' attacks, much to their chagrin,
+				so they settled for torturously mutilating him in a way that drove him to insanity, and then he was discarded.
+				His name was long forgotten, to the point where I had never heard it spoken in my lifetime.
+				Yet, upon seeing that fiend, I am certain Ocram was that fallen archdemon from an age beyond my own.
+				If I had known of its continued existence during my glory days, I would have attempted to do what the Gods could not - or would not.
+				''' */
+		}
 	}
 
 	CatastrophicFabricationsMusicBox: {
@@ -1304,11 +1413,6 @@ Items: {
 
 	AstrageldonRelic: {
 		DisplayName: 末世星史莱姆炼狱圣物
-		Tooltip: ""
-	}
-
-	SubspaceSpawner: {
-		DisplayName: 亚空间生成装置
 		Tooltip: ""
 	}
 
@@ -1429,7 +1533,7 @@ Items: {
 				'''
 			Mechs:
 				'''
-				随着血肉墙被击败，该武器发射的子弹可造成碎甲效果
+				随着血肉墙被击败，该武器发射的子弹可造成[cbuff:CalamityMod/Crumbling]效果
 				击败机械造物以获得更多力量……
 				'''
 			Plantera:
@@ -1475,7 +1579,7 @@ Items: {
 				'''
 			Providence:
 				'''
-				击败亵渎天神后，你的攻击会施加神圣之火
+				击败亵渎天神后，你的攻击会施加[cbuff:CalamityMod/HolyFlames]减益
 				击败噬魂集合体以获得更多力量……
 				'''
 			Polterghast:
@@ -1839,7 +1943,7 @@ Items: {
 		DynamicTooltip:
 			'''
 			提升所有属性值{0}{1}
-			立刻触发怒气模式，并触发药水疾病
+			立刻触发怒气模式，并触发[cbuff:PotionSickness]
 			“品尝我的怒火……和布丁！”
 			'''
 		VoidTooltip: 回复100点虚空值
@@ -1851,7 +1955,7 @@ Items: {
 		DisplayName: 奇异核心
 		Tooltip:
 			'''
-			永久增加100点最大虚空值和10%虚空恢复速度
+			永久增加50点最大虚空值和5%虚空恢复速度
 			只能使用一次
 			'''
 	}
@@ -1951,6 +2055,46 @@ Items: {
 		DisplayName: 大天使染料
 		Tooltip: ""
 	}
+
+	The454CasullandTheJackal: {
+		DisplayName: .454加斯尔和豺狼
+		Tooltip:
+			'''
+			使用任意两把枪射击时，会自动交替弹药栏中的前两种子弹类型
+			<left>使用豺狼进行射击，一把射速较低，但专注于对单体目标打击的手枪
+			豺狼会将火枪弹转换为高速弹
+			<right>使用.454加斯尔进行射击，一把高射速手枪，适合快速清除大量敌人
+			.454加斯尔会将火枪弹转换为流星弹
+			子弹会施加[cbuff:CalamityMod/Laceration]并从击中的目标身上撕裂出血珠
+			拾取血珠会降低[cbuff:PotionSickness]的持续时间
+			[c/7C0A02:“就连耶稣也曾哭泣过……”]
+			[c/aaaaaa:在物品栏中按住Shift右键切换] [i:EndlessMusketPouch] [c/aaaaaa:弹药交替]
+			'''
+	}
+
+	RuinousPlasmaInjection: {
+		DisplayName: 毁灭等离子体注射器
+		Tooltip:
+			'''
+			永久增加10点最大虚空值和1%虚空恢复速度
+			可使用5次
+			'''
+	}
+
+	FinalFractalMusicBox: {
+		DisplayName: 音乐盒 (泰拉刃)
+		Tooltip: 播放“FINAL FRACTAL” 作者：ENNWAY
+	}
+
+	CragmawMireRelic: {
+		// DisplayName: Infernal Cragmaw Mire Relic
+		// Tooltip: "{0}"
+	}
+
+	IllusionistRelic: {
+		// DisplayName: Infernal Illusionist Relic
+		// Tooltip: "{0}"
+	}
 }
 
 Projectiles: {
@@ -1992,6 +2136,7 @@ Projectiles: {
 	CelestialIlluminationBeam.DisplayName: 星界启明光束
 	CelestialIlluminationStar.DisplayName: 启明之星
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: 暴君亚利姆终极剑投掷
+	CasullandJackalProj.DisplayName: 454加斯尔和豺狼
 }
 
 DiaryTooltip:
@@ -2033,6 +2178,7 @@ Configs: {
 			MultiplayerAdjustments: 多人游戏调整
 			Main: 主要
 			Secret: 秘密设置
+			// Music: Music Toggles
 		}
 
 		ThoriumBalanceChangess: {
@@ -2225,27 +2371,6 @@ Configs: {
 			Tooltip: 切换灾厄模组Boss的部分掉落物是否为专家模式专属
 		}
 
-		AutomaticallyReforgeThoriumRogueItems: {
-			Label: 自动重铸瑟银盗贼武器
-			Tooltip:
-				'''
-				自动将“化境”修饰语的属性加成附加到所有非消耗瑟银盗贼物品上
-				可帮助瑟银物品在拥有前缀时追赶灾厄物品的强度，因为瑟银盗贼物品无法重铸
-				仅在启用诸神的黄昏或非官方灾厄吟游诗人&牧师生效
-				若启用融合盗贼和投手则此设置无效
-				'''
-		}
-
-		MergeThrowerIntoRogue: {
-			Label: 融合盗贼和投手
-			Tooltip:
-				'''
-				将投手与盗贼职业合并为一个更加完善的职业
-				允许转换后的投手武器仍然获得其原有重铸效果
-				同时保留潜行值条的伤害加成机制
-				'''
-		}
-
 		ThereIsNoReasonDisableThis: {
 			Label: 不建议禁用此选项
 			Tooltip:
@@ -2260,13 +2385,18 @@ Configs: {
 			Tooltip: 切换用于开发的有用工具的启用状态
 		}
 
-		UseAprilFoolsMutant: {
-			Label: 使用愚人节突变体
+		ForceRagnarokInfernumModeInSubworlds: {
+			Label: 强制炼狱子世界为诸神黄昏难度
 			Tooltip:
 				'''
-				将 Fargo's Souls 的突变体转变为亚利姆
-				如果 Fargo's Souls 未启用，则该设置不会生效
+				根据主世界的原本难度自动启用炼狱模式或诸神黄昏模式
+				专家模式启用炼狱模式；大师模式启用诸神黄昏模式
 				'''
+		}
+
+		BereftVassalRagnarok: {
+			// Label: Ragnarok Bereft Vassal Theme
+			// Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal fight in Ragnarok Mode.
 		}
 	}
 
@@ -2516,6 +2646,7 @@ Buffs: {
 	BrokenOath: {
 		DisplayName: 破碎之誓
 		Description: “首先，不要伤害” - 希波克拉底誓言
+		ItemTooltip: 减少10点额外治疗量并降低50%光辉伤害
 	}
 
 	BubbleShock: {
@@ -2544,14 +2675,9 @@ Buffs: {
 	}
 
 	BrimstoneDesperation: {
-		DisplayName: 硫火绝望
-		Description: 硫火能量在空气中流动，禁用了你的大多数能力！
+		DisplayName: 灾厄绝望
+		Description: 灾厄能量在空气中流动，禁用了你的大多数能力！
 	}
-}
-
-SpawnInfo: {
-	Dreadnautilus: 在血月钓鱼有概率生成
-	PrimordialWyrmHead: 在深渊最深处，潜藏着一件古老的遗物……
 }
 
 Tiles: {
@@ -2562,6 +2688,7 @@ Tiles: {
 	GolemMusicBoxTile.MapEntry: 石巨人音乐盒
 	ProphecyMusicBoxTile.MapEntry: 预言音乐盒
 	MenuMusicBoxTile.MapEntry: 主题曲音乐盒
+	FinalFractalMusicBoxTile.MapEntry: 最终分形音乐盒
 }
 
 NPCs: {

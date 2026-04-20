@@ -29,6 +29,8 @@ using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Ravager;
 using CalamityMod.NPCs.Providence;
 using System.Linq;
+using CalamityMod.NPCs.PrimordialWyrm;
+using CalamityMod.World;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -203,6 +205,7 @@ namespace InfernalEclipseAPI.Core.Players
         public float inspirationSteal = Main.expertMode ? 5f : 10f;
 
         public bool singularityCore;
+        public int ruinousPlasmaInjection;
 
         public bool aniversaryYearOneLoreObtained = false;
 
@@ -210,6 +213,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             workshopHasBeenOwned = false;
             singularityCore = false;
+            ruinousPlasmaInjection = 0;
         }
 
         public override void SaveData(TagCompound tag)
@@ -228,6 +232,8 @@ namespace InfernalEclipseAPI.Core.Players
             boost.AddWithCondition("singularityCore", singularityCore);
 
             tag["IEORboost"] = boost;
+
+            tag.Add("ruinousPlasmaInjection", ruinousPlasmaInjection);
         }
 
         public override void LoadData(TagCompound tag)
@@ -238,6 +244,8 @@ namespace InfernalEclipseAPI.Core.Players
 
             var boost = tag.GetList<string>("IEORboost");
             singularityCore = boost.Contains("singularityCore");
+
+            ruinousPlasmaInjection = tag.Get<int>("ruinousPlasmaInjection");
         }
 
         public override bool CanUseItem(Item item)
@@ -860,7 +868,7 @@ namespace InfernalEclipseAPI.Core.Players
 
                 if (!bypassScalingArmorPen)
                 {
-                    modifiers.DefenseEffectiveness *= Main.hardMode ? 0.75f : 0.8f;
+                    modifiers.DefenseEffectiveness *= Main.hardMode ? 0.9f : 0.95f;
                 }
             }
 
@@ -879,6 +887,11 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 modifiers.FinalDamage *= 0.1f;
             }
+
+            if ((target.type == ModContent.NPCType<PrimordialWyrmBody>() || target.type == ModContent.NPCType<PrimordialWyrmHead>() || target.type == ModContent.NPCType<PrimordialWyrmTail>() || target.type == ModContent.NPCType<PrimordialWyrmBodyAlt>()) && !DownedBossSystem.downedYharon)
+            {
+                modifiers.FinalDamage *= 0.1f;
+            }
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
@@ -891,6 +904,11 @@ namespace InfernalEclipseAPI.Core.Players
             }
 
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
+            {
+                modifiers.FinalDamage *= 0.1f;
+            }
+
+            if ((target.type == ModContent.NPCType<PrimordialWyrmBody>() || target.type == ModContent.NPCType<PrimordialWyrmHead>() || target.type == ModContent.NPCType<PrimordialWyrmTail>() || target.type == ModContent.NPCType<PrimordialWyrmBodyAlt>()) && !DownedBossSystem.downedYharon)
             {
                 modifiers.FinalDamage *= 0.1f;
             }

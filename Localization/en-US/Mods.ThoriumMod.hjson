@@ -1,8 +1,6 @@
 Buffs: {
-	NinjaBuff: {
-		DisplayName: Sleight of Hand
-		Description: Throwing velocity is increased by 20%, and throwing critical strike chance increased by 10%
-	}
+	NinjaBuff.Description: Throwing velocity is increased by 20%, and throwing critical strike chance increased by 10%
+	BloodRush.Description: 15% increased mining speed
 }
 
 Items: {
@@ -46,12 +44,25 @@ Items: {
 		Tooltip: "'Charged with the essence of many souls'"
 	}
 
+	MasterMarksmansScouter.Tooltip:
+		'''
+		'Gun powder will cull the weak'
+		The nearest enemy is scouted and takes 10% more damage from all sources
+		Your ranged damage applies cursed flames to enemies
+		'''
+	AssassinsGuard.Tooltip:
+		'''
+		16% increased ranged damage
+		15% increased ranged critical strike chance
+		25% decreased chance to consume ammo
+		'''
+
 	Kinetoscythe: {
 		DisplayName: Kineto-scythe
 		Tooltip:
 			'''
 			Rapidly spins a high tech scythe all around you
-			Right Click to generate a stationary spinning energy scythe
+			<right> to generate a stationary spinning energy scythe
 			Spin the scythe while the energy scythe is active to make it home onto enemies 
 			'''
 	}
@@ -79,15 +90,6 @@ Items: {
 	HereticBreaker: {
 		DisplayName: Heretic Breaker
 		Tooltip: Steals 3 life
-	}
-
-	NinjaEmblem: {
-		DisplayName: Hero Emblem
-		Tooltip:
-			'''
-			10% increased damage
-			2% increased critical strike chance
-			'''
 	}
 
 	CrystalHoney: {
@@ -541,4 +543,34 @@ Items: {
 		Increases your max number of minions and sentries by 2
 		Increases minion knockback
 		'''
+}
+
+ThrowerTechniques: {
+	Decoy: {
+		DisplayName: Decoy
+		Description:
+			'''
+			Call in an enemy decoy and gain increased attack speed for a second
+			The decoy will attempt to grab the attention of nearby enemies
+			'''
+	}
+
+	BloodLotus: {
+		DisplayName: Blood Lotus
+		Description:
+			'''
+			Stop in place and release a torrent of knives at the nearest enemy
+			Every knife heals you up to 10% of the damage dealt
+			The torrent grants the player 100 defence but fades on taking damage
+			'''
+	}
+
+	SmokeBomb: {
+		DisplayName: Smoke Bomb
+		Description:
+			'''
+			Release a smoke bomb
+			Smoke bombs briefly grant you damage immunity and increased attack speed for 2 seconds
+			'''
+	}
 }

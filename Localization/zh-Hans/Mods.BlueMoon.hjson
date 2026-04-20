@@ -3,7 +3,7 @@ Items: {
 		DisplayName: 薄荷月华指环
 		Tooltip:
 			'''
-			赋予「薄荷清香」增益
+			赋予[cbuff:BlueMoon/MintyFreshnessBuff]增益
 			提高7%的攻击伤害和移动速度
 			'''
 	}
@@ -12,7 +12,7 @@ Items: {
 		DisplayName: 樱花月华指环
 		Tooltip:
 			'''
-			赋予「花之祝福」增益
+			赋予[cbuff:BlueMoon/FloralBlessingBuff]增益
 			+2HP/s生命回复
 			'''
 	}
@@ -21,7 +21,7 @@ Items: {
 		DisplayName: 蔚蓝月华指环
 		Tooltip:
 			'''
-			赋予「月亮赋能」增益
+			赋予[cbuff:BlueMoon/LunarEmpowermentBuff]增益
 			增加穿戴者的幸运值，困难模式下增加更多幸运
 			'''
 	}
@@ -30,7 +30,7 @@ Items: {
 		DisplayName: 丰收月华指环
 		Tooltip:
 			'''
-			赋予「丰收之祝」增益
+			赋予[cbuff:BlueMoon/BountifulHarvestBuff]增益
 			敌怪掉落的钱币x1.5倍，困难模式下为x2倍
 			'''
 	}

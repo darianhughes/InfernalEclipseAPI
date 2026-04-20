@@ -40,6 +40,9 @@ using InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind;
 using SOTS.Common.GlobalNPCs;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
 using Terraria.DataStructures;
+using SOTS.NPCs.Town;
+using SOTS.Items.ChestItems;
+using SOTS.Buffs.Debuffs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -278,11 +281,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
+            NerfDendroChain(npc, ref modifiers);
             NerfBlazingCurse(npc, ref modifiers);
         }
 
         public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
         {
+            NerfDendroChain(npc, ref modifiers);
             NerfBlazingCurse(npc, ref modifiers);
         }
 
@@ -299,6 +304,34 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
                 modifiers.SourceDamage /= orig;
                 modifiers.SourceDamage *= nerfed;
+            }
+        }
+
+        private static void NerfDendroChain(NPC npc, ref NPC.HitModifiers modifiers)
+        {
+            if (!InfernalConfig.Instance.SOTSBalanceChanges || npc.immortal) return;
+
+            if (!npc.HasBuff(ModContent.BuffType<Shattered>()))
+            {
+                if (npc.HasBuff<DendroChain>()) 
+                {
+                    modifiers.Defense.Flat += 15;
+                }
+            }
+        }
+
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
+        {
+            if (npc.type == ModContent.NPCType<Archaeologist>() && !NPC.downedDeerclops)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i] != null && !items[i].IsAir &&
+                        items[i].type == ModContent.ItemType<GlazeBow>())
+                    {
+                        items[i].TurnToAir();
+                    }
+                }
             }
         }
 
@@ -467,6 +500,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
     {
         public bool canDoVoidDamage = false;
         public bool strongVoidDamge = false;
+        public bool strongerVoidDamage = false;
+
         public override bool InstancePerEntity => true;
 
         public override void SetDefaults(Projectile entity)
@@ -492,7 +527,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             if (projectile.type == ModContent.ProjectileType<SupremeCataclysmFist>() || projectile.type == ModContent.ProjectileType<SupremeCatastropheSlash>() || projectile.type == ModContent.ProjectileType<SupremeCataclysmFistOld>() || projectile.type == ModContent.ProjectileType<CatastropheSlash>()
                 || canDoVoidDamage)
             {
-                int damage = 1 + projectile.damage / (strongVoidDamge ? 3 : 6);
+                int damage = 1 + projectile.damage / (strongerVoidDamage ? 2 : strongVoidDamge ? 3 : 6);
                 VoidPlayer.VoidDamage(Mod, target, damage);
             }
         }

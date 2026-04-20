@@ -45,6 +45,12 @@ namespace InfernalEclipseAPI.Common.Balance
                     }
                 }
 
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    if (tile == InfernalCrossmod.Thorium.Mod.Find<ModTile>("Aquaite").Type)
+                        return NPC.downedBoss2 || Main.hardMode;
+                }
+
                 switch (tile)
                 {
                     case 37:

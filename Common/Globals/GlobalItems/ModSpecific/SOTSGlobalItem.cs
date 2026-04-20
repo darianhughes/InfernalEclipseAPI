@@ -34,9 +34,92 @@ using SOTS.Items.Temple;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
 using SOTS.Items.Gems;
 using CalamityMod.Items.Potions.Alcohol;
+using CalamityMod.Enums;
+using Terraria.GameContent.ItemDropRules;
+using SOTS.Items.Fishing;
+using InfernalEclipseAPI.Content.RogueThrower;
+using InfernumMode.Content.Items.Accessories;
+using SOTS.Void;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
+    [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
+    [ExtendsFromMod(InfernalCrossmod.SOTS.Name)]
+    public class SOTSCrateFix : GlobalItem
+    {
+        public override bool InstancePerEntity => false;
+
+        public override void ModifyItemLoot(Item item, ItemLoot loot)
+        {
+            Fraction fifteenPercent = new Fraction(15, 100);
+
+            if (item.type == ItemType<OtherworldCrate>())
+            {
+                RemoveHardmodeOresFromStandardCrates(loot);
+                RemoveHardmodeOresFromBiomeCrates(loot);
+                loot.AddHardmodeOresToCrates(HardmodeCrateType.Biome);
+            }
+        }
+
+        private static void RemoveHardmodeOresFromStandardCrates(ItemLoot loot)
+        {
+            List<IItemDropRule> rules = loot.Get(false);
+
+            // This is the primary rule which contains every drop
+            AlwaysAtleastOneSuccessDropRule mainRule = null;
+            foreach (IItemDropRule rule in rules)
+                if (rule is AlwaysAtleastOneSuccessDropRule a)
+                    mainRule = a;
+            if (mainRule is null)
+                return;
+
+            // Find ones that are supposed to be for the ore and not the other loot
+            foreach (IItemDropRule rule in mainRule.rules)
+            {
+                // Hardmode ores/bars are both nested within *another* nested rule
+                if (rule is SequentialRulesNotScalingWithLuckRule oreRule)
+                {
+                    // Confirm that this is for the ore/bar then pop the numerator for the big rule
+                    foreach (IItemDropRule nestedRule in oreRule.rules)
+                    {
+                        if (nestedRule is SequentialRulesNotScalingWithLuckRule s)
+                        {
+                            oreRule.chanceNumerator = 0;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void RemoveHardmodeOresFromBiomeCrates(ItemLoot loot)
+        {
+            List<IItemDropRule> rules = loot.Get(false);
+
+            // This is the primary rule which contains every drop
+            AlwaysAtleastOneSuccessDropRule mainRule = null;
+            foreach (IItemDropRule rule in rules)
+                if (rule is AlwaysAtleastOneSuccessDropRule a)
+                    mainRule = a;
+            if (mainRule is null)
+                return;
+
+            foreach (IItemDropRule rule in mainRule.rules)
+            {
+                // 2 rules, one for ore and another for bar, nested within *another* nested rule
+                if (rule is SequentialRulesNotScalingWithLuckRule oreRule)
+                {
+                    // Confirm that this is for the ore/bar then pop the numerator for the big rule
+                    foreach (IItemDropRule nestedRule in oreRule.rules)
+                    {
+                        if (nestedRule is OneFromRulesRule o)
+                            oreRule.chanceNumerator = 0;
+                    }
+                }
+            }
+        }
+    }
+
     [JITWhenModsEnabled("SOTS")]
     [ExtendsFromMod("SOTS")]
     public class SOTSGlobalItem : GlobalItem
@@ -52,6 +135,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             }
             return base.CanUseItem(item, player);
         }
+
+        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+        {
+            if ((equippedItem.type == ItemType<Calculator>() || equippedItem.type == ItemType<Purity>()) && (incomingItem.type == ItemType<Calculator>() || incomingItem.type == ItemType<Purity>()))
+                return false;
+
+            return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem, player);
+        }
+
         public override void UpdateAccessory(Item item, Player player, bool hidevisual)
         {
             InfernalPlayer modPlayer = player.GetModPlayer<InfernalPlayer>();
@@ -82,11 +174,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
                 }
 
-                if (item.type == ModContent.ItemType<SubspaceLocket>())
+                if (item.type == ItemType<SubspaceLocket>())
                 {
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
-                    local *= 0.675f;
-                    player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
+                    local *= 0.667f;
+                    player.GetDamage<TrueMeleeDamageClass>() -= 0.2f;
+                    sotsPlayer.additionalHeal -= 35;
+
+                    if (InfernalCrossmod.Thorium.Loaded)
+                    {
+                        player.GetModPlayer<RogueThrowerPlayer>().subspaceLocketThorClassNerf = true;
+                    }
                 }
 
                 if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.MergeCraftingTrees)
@@ -216,11 +314,18 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     var cplayer = player.Calamity();
                     cplayer.critDamage -= GrapeBeer.CritLoss * 0.01f;
                     player.GetCritChance(DamageClass.Generic) -= 30f;
+                    player.GetDamage(DamageClass.Summon) -= 0.2f;
+
                     sotsPlayer.CritBonusDamage = (int)(sotsPlayer.CritBonusDamage * 0.25f);
                     sotsPlayer.CritBonusMultiplier *= 0.75f;
                     sotsPlayer.CritCurseFire = false;
                     sotsPlayer.CritFire = false;
                     sotsPlayer.CritFrost = false;
+
+                    if (InfernalPlayer.PlayerHasPurity(player))
+                    {
+                        sotsPlayer.typhonRange = 0;
+                    }
                 }
 
                 if (item.type == ItemType<ShoeIce>())
@@ -232,6 +337,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<BagOfCharms>())
                 {
                     player.GetModPlayer<InfernalPlayer>().bagOfCharms = true;
+                }
+
+                if (item.type == ItemType<Hyperdrive>())
+                {
+                    sotsPlayer.attackSpeedMod -= 0.25f;
+                    player.GetAttackSpeed<VoidGeneric>() += 0.25f;
                 }
 
                 if (InfernalCrossmod.SOTSBardHealer.Loaded)
@@ -486,7 +597,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ModContent.ItemType<SubspaceLocket>())
                 {
-                    InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SubspaceLocket"));
+                    InfernalUtilities.FullTooltipOveride(tooltips, InfernalCrossmod.Thorium.Loaded ? Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SubspaceLocketThorium") : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SubspaceLocket"));
                 }
 
                 if (item.type == ModContent.ItemType<EyeOfChaos>())
@@ -683,7 +794,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     if (InfernalConfig.Instance.MergeCraftingTrees)
                     {
                         if (InfernalCrossmod.Thorium.Loaded)
+                        {
                             InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull"), InfernalRed);
+                            InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Watch"), InfernalRed);
+                        }
                         if (InfernalCrossmod.Clamity.Loaded)
                             InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CyanPearl"), InfernalRed);
                     }
@@ -709,12 +823,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ItemType<Calculator>())
                 {
-                    InfernalUtilities.AddTooltip(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional")}", InfernalRed);
+                    InfernalUtilities.AddTooltip(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.Nerf")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Calculator")}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GrapeBeer.SOTSAdditional")}", InfernalRed);
                 }
 
                 if (item.type == ItemType<ShoeIce>())
                 {
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShoeIce.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.ShoeIce.Nerf"));
+                }
+
+                if (item.type == ItemType<Hyperdrive>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Hyperdrive.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Hyperdrive.Nerf"));
                 }
             }
         }
@@ -748,13 +867,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         {
             if (FakeModPlayer.ModPlayer(Player).servantActive == true)
             {
-                Player.Calamity().rogueStealthMax = 0;
+                Player.Calamity().rogueStealth = 0;
                 Player.Calamity().wearingRogueArmor = false;
             }
 
             if (Player.HasBuff<TesseractBuff>())
             {
-                Player.Calamity().rogueStealthMax = 0;
+                Player.Calamity().rogueStealth = 0;
                 Player.Calamity().wearingRogueArmor = false;
                 Player.GetDamage<TrueMeleeDamageClass>() -= 0.15f;
             }

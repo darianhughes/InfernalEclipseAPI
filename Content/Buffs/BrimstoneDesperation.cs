@@ -1,5 +1,10 @@
 ﻿using CalamityMod;
 using CalamityMod.Cooldowns;
+using InfernalEclipseAPI.Core.Systems;
+using InfernumMode.Content.Cooldowns;
+using InfernumMode.Content.Items.Accessories;
+using InfernumMode.Content.Items.Weapons.Melee;
+using InfernumMode.Core.GlobalInstances.Players;
 using SOTS.Buffs.Debuffs;
 using ThoriumMod;
 using ThoriumMod.Buffs;
@@ -25,9 +30,27 @@ namespace InfernalEclipseAPI.Content.Buffs
         {
             player.AddBuff(BuffID.ChaosState, 2);
 
+            if (InfernalCrossmod.Consolaria.Loaded)
+            {
+                player.ClearBuff(InfernalCrossmod.Consolaria.Mod.Find<ModBuff>("Drunk").Type);
+            }
+
+            if (!player.name.ToLower().Contains("jareto15"))
+            {
+                player.GetModPlayer<InfernumPlayer>().SetValue<bool>("EggShieldActive", false);
+                player.GetModPlayer<InfernumPlayer>().SetValue<int>("CurrentEggShieldHits", 0);
+            }
+            if (!player.name.ToLower().Contains("myra"))
+                player.GetModPlayer<InfernumPlayer>().SetValue<bool>("BrimstoneCrescentForcefieldIsActive", false);
+
+            player.GetModPlayer<InfernumPlayer>().SetValue<bool>("SealocketMechanicalEffectsApply", false);
+
             player.AddCooldown(PermafrostConcoction.ID, CalamityUtils.SecondsToFrames(180));
             player.AddCooldown(GlobalDodge.ID, CalamityUtils.SecondsToFrames(180));
             player.AddCooldown(CalamityMod.Cooldowns.ChaosState.ID, CalamityUtils.SecondsToFrames(180));
+
+            player.AddCooldown(EggShieldRecharge.ID, CallUponTheEggs.EggShieldCooldown);
+            player.AddCooldown(SealocketForcefieldRecharge.ID, CalamityUtils.SecondsToFrames(CherishedSealocket.ForcefieldRechargeSeconds));
         }
     }
 
@@ -38,6 +61,8 @@ namespace InfernalEclipseAPI.Content.Buffs
         public static void DisableThoriumEffects(Player player)
         {
             ThoriumPlayer mp = player.GetThoriumPlayer();
+
+            player.AddBuff(ModContent.BuffType<RevivalExhaustion>(), 2);
 
             mp.debuffRevivalExhaustion = true;
 

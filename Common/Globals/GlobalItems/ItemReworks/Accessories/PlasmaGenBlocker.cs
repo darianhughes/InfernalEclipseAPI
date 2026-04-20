@@ -101,7 +101,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
 
             if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))
             {
-                if (NPC.AnyNPCs(wotg.Find<ModNPC>("NamelessDeityBoss").Type))
+                if (NPC.AnyNPCs(wotg.Find<ModNPC>("NamelessDeityBoss").Type) || NPC.AnyNPCs(wotg.Find<ModNPC>("AvatarOfEmptiness").Type))
                 {
                     foreach (int genItem in generatorTypes)
                     {

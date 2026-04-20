@@ -93,17 +93,18 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Mr. Puzzles",
             "Dandel",
             "Nobody",
-            "Peter Fung",
             "Pudd1ng",
             "Eduarrdo",
+
+            //Composers
+            "Peter Fung",
+            "Techhy",
 
             //Partners
             "brome",
             "WitherTaco",
             "Verveine",
-
-            //Content Creators
-            "Yardis",
+            "CrafterDaemon",
 
             //Other
             "Kes",
@@ -116,6 +117,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "LeEr206",
             "Pil",
             "Yelmut",
+            "yfn",
             "Aizen522",
             "De1tA5",
             "Suu",
@@ -136,6 +138,11 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "rosé",
             "TechQueen22",
             "claw",
+            "ProSigmaSoul",
+            "Sir_Yeetus_III",
+            "Soopns",
+            "Samoh",
+            "darkwex",
 
             //Supporters
             "Lylittle",
@@ -143,18 +150,21 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Louhii",
             "joshuwham",
             "Lucy",
+            "Mando",
 
             //Helpers
             "fjiown",
 
             //Special Thanks
             "N0t_UNowen",
+            "Blockaroz",
             "javyz",
             "habble",
             "Lucille Karma",
             "tomat",
             "Nycro",
-            "Cataclysmic Armageddon"
+            "Cataclysmic Armageddon",
+            "Yardis"
         };
 
         public static IList<string> teamList = new List<string>()

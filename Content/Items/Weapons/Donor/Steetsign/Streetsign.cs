@@ -13,7 +13,7 @@ using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.Localization;
 
-namespace InfernalEclipseAPI.Content.Items.Weapons.Donor
+namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.Steetsign
 {
     public class Streetsign : ModItem
     {
@@ -61,7 +61,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor
                 state.pendingShoot = true;
             }
 
-            state.useDirection = (Main.MouseWorld.X >= player.Center.X) ? 1 : -1;
+            state.useDirection = Main.MouseWorld.X >= player.Center.X ? 1 : -1;
             player.direction = state.useDirection;
 
             state.useRotation = player.Center.AngleTo(Main.MouseWorld);
@@ -335,7 +335,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor
 
             Vector2 barOrigin = barBG.Size() * 0.5f;
             float barScale = 0.95f;
-            Vector2 drawPos = player.Top + Vector2.UnitY * (-16f) - Main.screenPosition;
+            Vector2 drawPos = player.Top + Vector2.UnitY * -16f - Main.screenPosition;
 
             Rectangle frameCrop = new Rectangle(0, 0, (int)(modPlayer.improbabilityCharge / 100f * barFG.Width), barFG.Height);
 
@@ -485,7 +485,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor
 
             // Position below the item slot
             float yOffset = 40f;
-            Vector2 drawPos = position + Vector2.UnitY * scale * ((float)frame.Height - yOffset);
+            Vector2 drawPos = position + Vector2.UnitY * scale * (frame.Height - yOffset);
 
             // Crop the foreground based on charge
             Rectangle frameCrop = new Rectangle(0, 0, (int)(charge / 100f * barFG.Width), barFG.Height);

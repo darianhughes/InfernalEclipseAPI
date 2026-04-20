@@ -33,8 +33,6 @@ using ThoriumMod.NPCs.BossQueenJellyfish;
 using ThoriumMod.NPCs.BossViscount;
 using InfernumMode.Core.GlobalInstances.Systems;
 using InfernalEclipseAPI.Content.Items.SpawnItems;
-using Terraria.Graphics.Effects;
-using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -126,11 +124,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 }
             }
 
-            #region Infernal Relics
+            #region Infernal Relics & Lore
             bool isInfernum() => WorldSaveSystem.InfernumModeEnabled;
             if (npc.type == ModContent.NPCType<TheGrandThunderBird>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<GrandThunderBirdRelic>());
+
+                bool firstBirdKill() => !ThoriumWorld.downedTheGrandThunderBird;
+                npcLoot.AddConditionalPerPlayer(firstBirdKill, ModContent.ItemType<LoreThunderBird>(), desc: DropHelper.FirstKillText);
             }
             if (npc.type == ModContent.NPCType<PatchWerk>())
             {
@@ -147,6 +148,10 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (npc.type == ModContent.NPCType<CorpseBloom>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<CorpseBloomRelic>());
+            }
+            if (npc.type == ModContent.NPCType<Illusionist>())
+            {
+                npcLoot.AddIf(isInfernum, ModContent.ItemType<IllusionistRelic>());
             }
             if (npc.type == ModContent.NPCType<GraniteEnergyStorm>())
             {
@@ -179,6 +184,10 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (npc.type == ModContent.NPCType<DreamEater>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<PrimordialsRelic>());
+
+                bool firstPrimordialKill() => !ThoriumWorld.downedThePrimordials;
+                npcLoot.AddConditionalPerPlayer(firstPrimordialKill, ModContent.ItemType<LorePrimordials>(), desc: DropHelper.FirstKillText);
+                npcLoot.AddConditionalPerPlayer(firstPrimordialKill, ModContent.ItemType<LoreRagnarok>(), desc: DropHelper.FirstKillText);
             }
             #endregion
 
@@ -191,19 +200,6 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             if (npc.type == ModContent.NPCType<HellBringerMimic>())
             {
                 npcLoot.Add(ModContent.ItemType<UnderworldBiomeKey>(), 10);
-            }
-
-            if (npc.type == ModContent.NPCType<TheGrandThunderBird>())
-            {
-                bool firstBirdKill() => !ThoriumWorld.downedTheGrandThunderBird;
-                npcLoot.AddConditionalPerPlayer(firstBirdKill, ModContent.ItemType<LoreThunderBird>(), desc: DropHelper.FirstKillText);
-            }
-
-            if (npc.type == ModContent.NPCType<DreamEater>())
-            {
-                bool firstPrimordialKill() => !ThoriumWorld.downedThePrimordials;
-                npcLoot.AddConditionalPerPlayer(firstPrimordialKill, ModContent.ItemType<LorePrimordials>(), desc: DropHelper.FirstKillText);
-                npcLoot.AddConditionalPerPlayer(firstPrimordialKill, ModContent.ItemType<LoreRagnarok>(), desc: DropHelper.FirstKillText);
             }
             #endregion
         }

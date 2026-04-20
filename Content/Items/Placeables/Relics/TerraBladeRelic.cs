@@ -13,10 +13,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics
             Item.master = true;
         }
 
-        public override string Texture
-        {
-            get => "InfernalEclipseAPI/Content/Items/Placeables/Relics/" + textureName();
-        }
+        public override string Texture  => "InfernalEclipseAPI/Content/Items/Placeables/Relics/" + textureName();
 
         private string textureName()
         {
