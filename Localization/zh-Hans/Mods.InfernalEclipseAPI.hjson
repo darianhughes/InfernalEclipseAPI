@@ -2095,6 +2095,17 @@ Items: {
 		DisplayName: 幻术师炼狱圣物
 		Tooltip: "{0}"
 	}
+
+	Catlight: {
+		// DisplayName: Catlight
+		/* Tooltip:
+			'''
+			Are bosses too hard?
+			Then buy Catlight Industries' Catlight!
+			Buy our product now.
+			☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭
+			''' */
+	}
 }
 
 Projectiles: {
@@ -2137,6 +2148,9 @@ Projectiles: {
 	CelestialIlluminationStar.DisplayName: 启明之星
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: 暴君亚利姆终极剑投掷
 	CasullandJackalProj.DisplayName: 454加斯尔和豺狼
+	// CatlightDeathray.DisplayName: Catlight Deathray
+	// CatlightDeathrayJR.DisplayName: Catlight Deathray J R
+	// CatlightDeathrayJRR.DisplayName: Catlight Deathray J R R
 }
 
 DiaryTooltip:
@@ -2183,7 +2197,7 @@ Configs: {
 
 		ThoriumBalanceChangess: {
 			Tooltip:
-				''' 
+				'''
 				修改了瑟银及其附属的部分物品以匹配灾厄平衡性
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
 				'''
@@ -2216,7 +2230,7 @@ Configs: {
 		}
 
 		VanillaBalanceChanges: {
-			Tooltip: 
+			Tooltip:
 				'''
 				修改了一些原版物品以匹配灾厄平衡性
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
@@ -2242,7 +2256,7 @@ Configs: {
 		}
 
 		SOTSBalanceChanges: {
-			Tooltip: 
+			Tooltip:
 				'''
 				修改了暗影奥秘的部分物品以匹配灾厄平衡性
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
@@ -2251,7 +2265,7 @@ Configs: {
 		}
 
 		ConsolariaBalanceChanges: {
-			Tooltip: 
+			Tooltip:
 				'''
 				修改了Consolaria的部分物品以匹配灾厄平衡性
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
@@ -2260,7 +2274,7 @@ Configs: {
 		}
 
 		InfernumRecipeTweaks: {
-			Tooltip: 
+			Tooltip:
 				'''
 				修改了炼狱模式物品的部分配方
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
@@ -2300,7 +2314,7 @@ Configs: {
 
 		AdditonalVanillaBossAdjustments: {
 			Label: 额外原版Boss调整
-			Tooltip: 
+			Tooltip:
 				'''
 				小幅度调整了部分原版Boss的数值，让它们变得更有挑战性
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
@@ -2309,7 +2323,7 @@ Configs: {
 
 		MergeCraftingTrees: {
 			Label: 融合制作树
-			Tooltip: 
+			Tooltip:
 				'''
 				将不同模组的相似物品制作树融合起来，并加入跨模组的制作材料
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
@@ -2363,7 +2377,7 @@ Configs: {
 
 		MultiplayerRespawnsAllowed: {
 			Label: 多人游戏允许复活
-			Tooltip: 
+			Tooltip:
 				'''
 				Boss战中允许复活的次数
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以将这个数值设置为“1”而展开的]
@@ -2401,7 +2415,7 @@ Configs: {
 
 		DontEnableThis: {
 			Label: 不要启用这个
-			Tooltip: 
+			Tooltip:
 				'''
 				请勿启用此选项，它可能会造成误解，并导致游戏玩法失衡甚至出现问题
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“禁用”这个设置而展开的]
@@ -2504,6 +2518,7 @@ DamageClasses: {
 	LegendaryMagic.DisplayName: 传说魔法伤害
 	MeleeWhip.DisplayName: 近战鞭子伤害
 	MythicSummon.DisplayName: 神话召唤伤害
+	// CatlightDamage.DisplayName: Catlight Damage
 }
 
 BossRushIntroText1:

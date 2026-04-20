@@ -9,22 +9,25 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
 {
     public class CelestialIlluminationPlayer : ModPlayer
     {
-        readonly static int beam = ModContent.ProjectileType<CelestialIlluminationBeam>(), star = ModContent.ProjectileType<CelestialIlluminationStar>();
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+        static int Beam => ModContent.ProjectileType<CelestialIlluminationBeam>();
+        static int Star => ModContent.ProjectileType<CelestialIlluminationStar>();
+        static int CI => ModContent.ItemType<CelestialIllumination>();
         public int StarCount = 0, StarTimer;
         public const int MaxStars = 13;
         static int Tier => CelestialIllumination.Tier();
         public override void ResetEffects()
         {
-            //    Main.NewText(StarTimer);
-            //    Main.NewText(number);
-
-            if (Player.HeldItem.type != ModContent.ItemType<CelestialIllumination>())
+            if (Player.HeldItem.type != CI)
             {
                 StarCount = 0;
                 StarTimer = 0;
             }
 
-            if (Player.HeldItem.type == ModContent.ItemType<CelestialIllumination>())
+            if (Player.HeldItem.type == CI)
             {
                 if (StarCount > 0)
                     if (StarTimer++ > 360)
@@ -33,10 +36,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
         }
         public override void OnHitNPCWithProj(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (Player.HeldItem.type != ModContent.ItemType<CelestialIllumination>())
+            if (Player.HeldItem.type != CI)
                 return;
 
-            if (projectile.type == beam || projectile.type == star)
+            if (projectile.type == Beam || projectile.type == Star)
             {
                 if (Tier >= CelestialIllumination.Providence)
                 {
@@ -44,7 +47,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
                 }
             }
 
-            if (projectile.type == ModContent.ProjectileType<CelestialIlluminationStar>() && StarCount < MaxStars && projectile.ai[2] == 0)
+            if (projectile.type == Star && StarCount < MaxStars && projectile.ai[2] == 0)
             {
                 StarCount++;
                 projectile.ai[2] = 1;
@@ -52,7 +55,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
-            if (Player.HeldItem.type != ModContent.ItemType<CelestialIllumination>())
+            if (Player.HeldItem.type != CI)
                 return;
 
             Vector2 center = Player.Center - Main.screenPosition;
@@ -100,13 +103,9 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.boss;
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            foreach (Player player in Main.player)
+            foreach (Player player in Main.ActivePlayers)
             {
-                if (!player.active || player is null)
-                    continue;
-                CelestialIlluminationPlayer modPlayer = player.GetModPlayer<CelestialIlluminationPlayer>();
-                if (modPlayer.StarCount is not 0 && !player.dead)
-                    modPlayer.StarCount = 0;
+                player.GetModPlayer<CelestialIlluminationPlayer>().StarCount = 0;
             }
         }
     }

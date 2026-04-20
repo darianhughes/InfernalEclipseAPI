@@ -2066,6 +2066,17 @@ Items: {
 		// DisplayName: Infernal Illusionist Relic
 		// Tooltip: "{0}"
 	}
+
+	Catlight: {
+		// DisplayName: Catlight
+		/* Tooltip:
+			'''
+			Are bosses too hard?
+			Then buy Catlight Industries' Catlight!
+			Buy our product now.
+			☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭
+			''' */
+	}
 }
 
 Projectiles: {
@@ -2108,6 +2119,9 @@ Projectiles: {
 	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 	// Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
 	// CasullandJackalProj.DisplayName: 454 Casull and The Jackal
+	// CatlightDeathray.DisplayName: Catlight Deathray
+	// CatlightDeathrayJR.DisplayName: Catlight Deathray J R
+	// CatlightDeathrayJRR.DisplayName: Catlight Deathray J R R
 }
 
 DiaryTooltip:
@@ -2431,6 +2445,7 @@ DamageClasses: {
 	LegendaryMagic.DisplayName: ед. легендарного магического урона
 	MeleeWhip.DisplayName: ед. урона хлыстом
 	MythicSummon.DisplayName: ед. мифического урона призывателя
+	// CatlightDamage.DisplayName: Catlight Damage
 }
 
 BossRushIntroText1:
@@ -2616,7 +2631,7 @@ Buffs: {
 	BrokenOath: {
 		DisplayName: Нарушенная клятва
 		Description: Не нраведи - Гиппократ
-		// ItemTooltip: Reduces Bonus Healing bt 10 and Radiant damage by 50%
+		// ItemTooltip: Reduces Bonus Healing by 10 and Radiant damage by 50%
 	}
 
 	BubbleShock: {

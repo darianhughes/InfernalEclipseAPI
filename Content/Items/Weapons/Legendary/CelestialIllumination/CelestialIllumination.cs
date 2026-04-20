@@ -17,9 +17,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
         {
             return false;
         }
-
-        readonly static int beam = ModContent.ProjectileType<CelestialIlluminationBeam>();
-        readonly static int star = ModContent.ProjectileType<CelestialIlluminationStar>();
+        static int Beam => ModContent.ProjectileType<CelestialIlluminationBeam>();
+        static int Star => ModContent.ProjectileType<CelestialIlluminationStar>();
         public static int Tier()
         {
             // Ternary statements? What are those?
@@ -71,13 +70,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
         }
         public override bool AltFunctionUse(Player player) => Tier() >= Polterghast && player.GetModPlayer<CelestialIlluminationPlayer>().StarCount >= CelestialIlluminationPlayer.MaxStars;
-        public override void HoldItem(Player player)
-        {
-            if (Tier() >= Polterghast)
-            {
-                player.Calamity().rightClickListener = true;
-            }
-        }
+        public override void HoldItem(Player player) => player.Calamity().rightClickListener = Tier() >= Polterghast;
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             if (Tier() >= MoonLord)
@@ -93,6 +86,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
             }
             else
             {
+                Item.shoot = Star;
                 Item.UseSound = SoundID.Item9;
                 return true;
             }
@@ -141,18 +135,19 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
                 OverrideColor = new Color(50, 205, 50)
             };
             tooltips.Add(contributor);
-        }
-        private static string GetProgressionTooltip()
-        {
-            return Tier() switch
+
+            static string GetProgressionTooltip()
             {
-                5 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Full"),
-                4 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Sentinels"),
-                3 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Providence"),
-                2 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.ProfanedGuardians"),
-                1 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.MoonLord"),
-                _ => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Deus"),
-            };
+                return Tier() switch
+                {
+                    5 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Full"),
+                    4 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Sentinels"),
+                    3 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Providence"),
+                    2 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.ProfanedGuardians"),
+                    1 => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.MoonLord"),
+                    _ => Language.GetTextValue("Mods.InfernalEclipseAPI.Items.CelestialIllumination.Progression.Deus"),
+                };
+            }
         }
     }
 }

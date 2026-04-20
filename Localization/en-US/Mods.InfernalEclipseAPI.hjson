@@ -2097,6 +2097,17 @@ Items: {
 		DisplayName: Infernal Illusionist Relic
 		Tooltip: "{0}"
 	}
+
+	Catlight: {
+		DisplayName: Catlight
+		Tooltip:
+			'''
+			Are bosses too hard?
+			Then buy Catlight Industries' Catlight!
+			Buy our product now.
+			☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭☭
+			'''
+	}
 }
 
 Projectiles: {
@@ -2139,6 +2150,9 @@ Projectiles: {
 	CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
 	CasullandJackalProj.DisplayName: 454 Casull and The Jackal
+	CatlightDeathray.DisplayName: Catlight Deathray
+	CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
+	CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
 }
 
 DiaryTooltip:
@@ -2506,6 +2520,7 @@ DamageClasses: {
 	LegendaryMagic.DisplayName: legendary magic damage
 	MeleeWhip.DisplayName: melee whip damage
 	MythicSummon.DisplayName: mythic summon damage
+	CatlightDamage.DisplayName: Catlight Damage
 }
 
 BossRushIntroText1:

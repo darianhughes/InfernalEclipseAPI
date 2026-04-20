@@ -15,10 +15,12 @@ Items: {
 			'''
 	}
 
+	/*
 	ScryingGlass: {
-	DisplayName: 全知水晶球
-	Tooltip: 按下'{$Keybinds.AccessoryAbility.DisplayName}'键可以开启/关闭增大视野范围的效果
+	DisplayName: Scrying Glass
+	Tooltip: Pressing the '{$Keybinds.AccessoryAbility.DisplayName}' key will toggle an increased range of view
 	}
+	*/
 	
 	ShootingStarHat.SetBonus:
 		'''
@@ -558,11 +560,11 @@ Items: {
 ThrowerTechniques: {
 	Decoy: {
 		DisplayName: 引敌诱饵
-		/Description:
+		/* Description:
 			'''
-			召唤一个敌怪诱饵并提升攻击速度，持续1秒
-			诱饵会试图吸引附近敌怪的注意力
-			'''
+			Call in an enemy decoy and gain increased attack speed for a second
+			The decoy will attempt to grab the attention of nearby enemies
+			''' */
 	}
 
 	BloodLotus: {
