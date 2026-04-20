@@ -42,18 +42,18 @@ Items: {
 		Tooltip: “充满许多灵魂的精华”
 	}
 
-	/* MasterMarksmansScouter.Tooltip:
+	MasterMarksmansScouter.Tooltip:
 		'''
-		'Gun powder will cull the weak'
-		The nearest enemy is scouted and takes 10% more damage from all sources
-		Your ranged damage applies cursed flames to enemies
-		''' */
-	/* AssassinsGuard.Tooltip:
+		“火药会淘汰弱者”
+		最近的敌怪会被狙击并多受各种来源10%伤害
+		你的远程伤害会对敌怪施加诅咒火焰
 		'''
-		16% increased ranged damage
-		15% increased ranged critical strike chance
-		25% decreased chance to consume ammo
-		''' */
+	AssassinsGuard.Tooltip:
+		'''
+		增加16%远程伤害
+		增加15%远程暴击率
+		降低25%消耗弹药的概率
+		'''
 
 	Kinetoscythe: {
 		DisplayName: 动能镰刀
@@ -557,30 +557,30 @@ Items: {
 
 ThrowerTechniques: {
 	Decoy: {
-		// DisplayName: Decoy
-		/* Description:
+		DisplayName: 引敌诱饵
+		/Description:
 			'''
-			Call in an enemy decoy and gain increased attack speed for a second
-			The decoy will attempt to grab the attention of nearby enemies
-			''' */
+			召唤一个敌怪诱饵并提升攻击速度，持续1秒
+			诱饵会试图吸引附近敌怪的注意力
+			'''
 	}
 
 	BloodLotus: {
-		// DisplayName: Blood Lotus
-		/* Description:
+		DisplayName: 绽血莲华
+		Description:
 			'''
-			Stop in place and release a torrent of knives at the nearest enemy
-			Every knife heals you up to 10% of the damage dealt
-			The torrent grants the player 100 defence but fades on taking damage
-			''' */
+			原地静止，向最近的敌怪释放刀刃洪流
+			每个刀刃命中时都会为你回复10%伤害的生命值
+			刀刃洪流使玩家获得100点防御，但是防御会在玩家受击时消失
+			'''
 	}
 
 	SmokeBomb: {
-		// DisplayName: Smoke Bomb
-		/* Description:
+		DisplayName: 匿踪迷弹
+		Description:
 			'''
-			Release a smoke bomb
-			Smoke bombs briefly grant you damage immunity and increased attack speed for 2 seconds
-			''' */
+			扔出一个烟雾弹
+			获得短暂的无敌帧并提升攻击速度，持续2秒
+			'''
 	}
 }

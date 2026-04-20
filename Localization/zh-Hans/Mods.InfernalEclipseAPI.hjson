@@ -122,12 +122,12 @@ ItemTooltip: {
 		SOTSAdditional: 禁用所有二十面体的效果
 	}
 
-	// Calculator: Reduces summon damage by 20%
-	/* Wiesnbrau:
+	Calculator: 降低20%召唤伤害
+	Wiesnbrau:
 		'''
-		Inflicts [cbuff:PotionSickness]
+		施加[cbuff:PotionSickness]减益
 		{$Mods.CalamityMod.Common.AlcoholWarning}
-		''' */
+		'''
 
 	SoulAnchor: {
 		OrigTooltip1: 将你的灵魂和生命值锚定在当前位置
@@ -203,18 +203,18 @@ ItemTooltip: {
 		召唤一只亚空之仆协助战斗
 		亚空之仆会为你使用最后一格物品栏的物品
 		会成倍降低50%伤害
-		减少15%真近战伤害
-		增加50点最大虚空值，但会降低40点从药水治疗的生命值
+		减少20%真近战伤害，并且你再也无法造成潜伏攻击
+		增加50点最大虚空值，但会降低75点从药水治疗的生命值
 		'''
-	/* SubspaceLocketThorium:
+	SubspaceLocketThorium:
 		'''
-		Summons a Subspace Servant to assist in combat
-		Uses the item in your last inventory slot for you
-		Decreases damage by 50% multiplicatively
-		Decreases true melee damage by 20% and you can no longer stealth strike
-		Decreases heal bonus and inspiration regeneration bonus by 50%
-		Increases max void by 50, but reduces healing received from potions by 75
-		''' */
+		召唤一只亚空之仆协助战斗
+		亚空之仆会为你使用最后一格物品栏的物品
+		会成倍降低50%伤害
+		减少20%真近战伤害，并且你再也无法造成潜伏攻击
+		降低50%额外治疗量和灵感值恢复速度
+		增加50点最大虚空值，但会降低75点从药水治疗的生命值
+		'''
 	EyeOfChaos: 增加12%暴击率，无法与下位饰品叠加
 	EyeOfChaosThorium: 暴击会造成15点额外伤害
 	SnakeEyes: 增加3%暴击率
@@ -435,13 +435,13 @@ ItemTooltip: {
 	SteamkeeperWatch: 你的哨兵可以永久存在并在2分钟内获得至多15%伤害提升
 
 	YumasPendant: {
-		// Orig: 10% increased summon damage
-		// Nerf: 5% increased summon damage
+		Orig: 增加10%召唤伤害
+		Nerf: 增加5%召唤伤害
 	}
 
 	Hyperdrive: {
-		// Orig: Increases attack speed by 25% and melee damage by 5%
-		// Nerf: Increases void attack speed by 25% and melee damage by 5%
+		Orig: 增加25%攻击速度和5%近战伤害
+		Nerf: 增加25%虚空攻击速度和5%近战伤害
 	}
 
 	DoesNotStack: 不与下位效果叠加
@@ -1265,10 +1265,10 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				他是永恒兄妹中的次子，也是我所见过最懒散的人之一。
+				他是永恒兄妹中的次子，也是我所见过最懒散的存在之一。
 				即使憎恶能够掌控风雨、驱逐来犯之敌，
 				他却懒到将武器直接与双手融为一体。
-				他的武器能分裂灵魂，也能操纵一切超自然之力。
+				他挥舞着一把能分裂灵魂武器，持此之外还有着操纵一切超自然之力。
 				幸好，他出于对突变体的敬重并未动用天象之术——否则，你的胜利恐怕无从谈起。
 				'''
 		}
@@ -1301,9 +1301,9 @@ Items: {
 		}
 
 		LoreLepus: {
-			// DisplayName: Lepus
-			// Tooltip: ""
-			/* Lore:
+			DisplayName: 天兔
+			Tooltip: ""
+			Lore:
 				'''
 				What a perverse thing.
 				The hares of this world were symbols of thriving society.
@@ -1312,13 +1312,13 @@ Items: {
 				and the blights of dead gods, making them ideal units for trade between the misbegotten peasants and soldiers that help 
 				as bedrock for many kingdoms. With many of them now lost to time, the rabbits noww revel in an empty world.
 				This nuisance is one of many omens of the times of gold that have now passed by me.
-				''' */
+				'''
 		}
 
 		LoreTurkor: {
-			// DisplayName: Turkor The Ungrateful
-			// Tooltip: ""
-			/* Lore:
+			DisplayName: 不感恩的火鸡
+			Tooltip: ""
+			Lore:
 				'''
 				Vengeful spirits are curious beings.
 				Their avatars can take the form of anything, as long as the slain carry a sol within them.
@@ -1326,13 +1326,13 @@ Items: {
 				Alas, spirits never lie, and the consequence that lead to the unrest of this abomination 
 				ties back to the slaughters required in lengthy royal feasts.
 				It is grim to reflect on what we do to creatures deemed beneath us.
-				''' */
+				'''
 		}
 
 		LoreOcram: {
-			// DisplayName: Ocram
-			// Tooltip: ""
-			/* Lore:
+			DisplayName: 奥库瑞姆
+			Tooltip: ""
+			Lore:
 				'''
 				Before the Gods had a firm grasp of the Underworld and Azafure was fully established,
 				there was a time where many parties vied for control over that fabled magma crevice.
@@ -1343,7 +1343,7 @@ Items: {
 				His name was long forgotten, to the point where I had never heard it spoken in my lifetime.
 				Yet, upon seeing that fiend, I am certain Ocram was that fallen archdemon from an age beyond my own.
 				If I had known of its continued existence during my glory days, I would have attempted to do what the Gods could not - or would not.
-				''' */
+				'''
 		}
 	}
 
@@ -1379,22 +1379,22 @@ Items: {
 
 	GrandThunderBirdRelic: {
 		DisplayName: 惊雷王鹰炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BurriedChampionRelic: {
 		DisplayName: 英灵遗骸炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CorpseBloomRelic: {
 		DisplayName: 绝命花炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	QueenJellyfishRelic: {
 		DisplayName: 水母皇后炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ProphecyMusicBox: {
@@ -1413,112 +1413,112 @@ Items: {
 
 	AstrageldonRelic: {
 		DisplayName: 末世星史莱姆炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AvatarOfEmptinessRelic: {
 		DisplayName: 虚无化身炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GoozmaRelic: {
 		DisplayName: 古泽玛炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NamelessDeityRelic: {
 		DisplayName: 无名光神炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LepusRelic: {
 		DisplayName: 天兔炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	OcramRelic: {
 		DisplayName: 奥库瑞姆炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TurkorTheUngratefulRelic: {
 		DisplayName: 不感恩的火鸡炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AdvisorRelic: {
 		DisplayName: 启示异械炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ExcavatorRelic: {
 		DisplayName: 掘地重蝎炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GlowmothRelic: {
 		DisplayName: 荧灯蛾炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PolarisRelic: {
 		DisplayName: 极北灾星炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PutridPinkyRelic: {
 		DisplayName: 腐蚀之粉炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	SubspaceSerpentRelic: {
 		DisplayName: 亚空骇蟒炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BoreanStriderRelic: {
 		DisplayName: 极地遁蛛炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	FallenBeholderRelic: {
 		DisplayName: 堕落注视者炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ForgottenOneRelic: {
 		DisplayName: 遗忘之主炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GraniteEnergyStormRelic: {
 		DisplayName: 花岗岩流能风暴炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LichRelic: {
 		DisplayName: 巫妖炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PatchWerkRelic: {
 		DisplayName: 缝合人炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PrimordialsRelic: {
 		DisplayName: 始生灾灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	StarScouterRelic: {
 		DisplayName: 星际监察者炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ViscountRelic: {
 		DisplayName: 蝙蝠子爵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	Lycanroc: {
@@ -1615,107 +1615,107 @@ Items: {
 
 	ClamitasRelic: {
 		DisplayName: 至尊巨蛤，蛤拉米塔斯炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PyrogenRelic: {
 		DisplayName: 热源之灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	WallofBronzeRelic: {
 		DisplayName: 青铜之墙炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NoxusRelic: {
 		DisplayName: 诺克萨斯炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AbominationnRelic: {
 		DisplayName: 憎恶炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BanishedBaronRelic: {
 		DisplayName: 放逐遗爵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CursedCoffinRelic: {
 		DisplayName: 咒缚灵棺炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DeathChampionRelic: {
 		DisplayName: 死亡英灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DevianttRelic: {
 		DisplayName: 戴薇安炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	EarthChampionRelic: {
 		DisplayName: 大地英灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	EridanusRelic: {
 		DisplayName: 厄里达诺斯，宇宙英灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LifeChampionRelic: {
 		DisplayName: 生命英灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LifelightRelic: {
 		DisplayName: 飘渺游光炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	MutantRelic: {
 		DisplayName: 突变体炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NatureChampionRelic: {
 		DisplayName: 自然英灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	SpiritChampionRelic: {
 		DisplayName: 心灵英灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TerraChampionRelic: {
 		DisplayName: 泰拉英灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TrojanSquirrelRelic: {
 		DisplayName: 特洛伊松鼠炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	WillChampionRelic: {
 		DisplayName: 意志英灵炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LuxRelic: {
 		DisplayName: 辉光圣魂炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PharohsCurseRelic: {
 		DisplayName: 法老咒魔炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CatalyzedCrystal: {
@@ -1866,7 +1866,7 @@ Items: {
 
 	InfernalTerraBladeRelic: {
 		DisplayName: 泰拉刃炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DemonicTome: {
@@ -1994,7 +1994,7 @@ Items: {
 
 	MaulerRelic: {
 		DisplayName: 渊海狂鲨炼狱圣物
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DreamEssence: {
@@ -2087,13 +2087,13 @@ Items: {
 	}
 
 	CragmawMireRelic: {
-		// DisplayName: Infernal Cragmaw Mire Relic
-		// Tooltip: "{0}"
+		DisplayName: 峭咽潭炼狱圣物
+		Tooltip: "{0}"
 	}
 
 	IllusionistRelic: {
-		// DisplayName: Infernal Illusionist Relic
-		// Tooltip: "{0}"
+		DisplayName: 幻术师炼狱圣物
+		Tooltip: "{0}"
 	}
 }
 
@@ -2178,11 +2178,15 @@ Configs: {
 			MultiplayerAdjustments: 多人游戏调整
 			Main: 主要
 			Secret: 秘密设置
-			// Music: Music Toggles
+			Music: 音乐设置
 		}
 
 		ThoriumBalanceChangess: {
-			Tooltip: 修改了瑟银及其附属的部分物品以匹配灾厄平衡性
+			Tooltip:
+				''' 
+				修改了瑟银及其附属的部分物品以匹配灾厄平衡性
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
+				'''
 			Label: 瑟银平衡修改
 		}
 
@@ -2196,6 +2200,7 @@ Configs: {
 				'''
 				对部分数值过低或过高的灾厄及其附属的物品进行调整  
 				同时修改部分跨模组的合成配方以保持平衡
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
 				'''
 			Label: 灾厄平衡修改
 		}
@@ -2205,12 +2210,17 @@ Configs: {
 				'''
 				修改了部分物品，使其在达到预期游戏阶段之前无法获得
 				直到你击败指定的Boss前，阻止你挖掘特定的矿石以及物品
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
 				'''
 			Label: 保持灾厄模组的游戏阶段进度
 		}
 
 		VanillaBalanceChanges: {
-			Tooltip: 修改了一些原版物品以匹配灾厄平衡性
+			Tooltip: 
+				'''
+				修改了一些原版物品以匹配灾厄平衡性
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
+				'''
 			Label: 原版平衡修改
 		}
 
@@ -2232,17 +2242,29 @@ Configs: {
 		}
 
 		SOTSBalanceChanges: {
-			Tooltip: 修改了暗影奥秘的部分物品以匹配灾厄平衡性
+			Tooltip: 
+				'''
+				修改了暗影奥秘的部分物品以匹配灾厄平衡性
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
+				'''
 			Label: 暗影奥秘平衡修改
 		}
 
 		ConsolariaBalanceChanges: {
-			Tooltip: 修改了Consolaria的部分物品以匹配灾厄平衡性
+			Tooltip: 
+				'''
+				修改了Consolaria的部分物品以匹配灾厄平衡性
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
+				'''
 			Label: Consolaria平衡修改
 		}
 
 		InfernumRecipeTweaks: {
-			Tooltip: 修改了炼狱模式物品的部分配方
+			Tooltip: 
+				'''
+				修改了炼狱模式物品的部分配方
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
+				'''
 			Label: 炼狱配方修改
 		}
 
@@ -2278,12 +2300,20 @@ Configs: {
 
 		AdditonalVanillaBossAdjustments: {
 			Label: 额外原版Boss调整
-			Tooltip: 小幅度调整了部分原版Boss的数值，让它们变得更有挑战性
+			Tooltip: 
+				'''
+				小幅度调整了部分原版Boss的数值，让它们变得更有挑战性
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
+				'''
 		}
 
 		MergeCraftingTrees: {
 			Label: 融合制作树
-			Tooltip: 将不同模组的相似物品制作树融合起来，并加入跨模组的制作材料
+			Tooltip: 
+				'''
+				将不同模组的相似物品制作树融合起来，并加入跨模组的制作材料
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
+				'''
 		}
 
 		BloodOrbPotionDuplication: {
@@ -2302,10 +2332,10 @@ Configs: {
 		}
 
 		EnableInterlude4: {
-			Label: 启用插曲4
+			Label: 插曲4
 			Tooltip:
 				'''
-				启用/禁用第四插曲的播放
+				切换启用第4插曲的播放
 				此插曲会在星流巨械与至尊灾厄都被击败后播放
 				该曲目播放时会覆盖“Their Fabricator”与“Acceptance”两首插曲
 				'''
@@ -2323,22 +2353,30 @@ Configs: {
 
 		MultiplayerBossRespawnTimer: {
 			Label: 多人游戏Boss战复活计时器
-			Tooltip: ""
+			Tooltip: 决定Boss战需要多久时间复活
 		}
 
 		MinimumDifficultyToPreventRespawns: {
 			Label: 限制复活的最低难度
-			Tooltip: ""
+			Tooltip: 启用限制复活系统所需最低难度
 		}
 
 		MultiplayerRespawnsAllowed: {
 			Label: 多人游戏允许复活
-			Tooltip: ""
+			Tooltip: 
+				'''
+				Boss战中允许复活的次数
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以将这个数值设置为“1”而展开的]
+				'''
 		}
 
 		NerfThoriumMulticlass: {
 			Label: 削弱瑟银的多职业物品
-			Tooltip: ""
+			Tooltip:
+				'''
+				增加部分机制调整避免 吟游诗人&牧师 因多职业物品变得过于强大
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
+				'''
 		}
 
 		ColoredRelics: {
@@ -2363,7 +2401,11 @@ Configs: {
 
 		DontEnableThis: {
 			Label: 不要启用这个
-			Tooltip: 请勿启用此选项，它可能会造成误解，并导致游戏玩法失衡甚至出现问题
+			Tooltip: 
+				'''
+				请勿启用此选项，它可能会造成误解，并导致游戏玩法失衡甚至出现问题
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“禁用”这个设置而展开的]
+				'''
 		}
 
 		CalamityExpertAccessories: {
@@ -2377,6 +2419,7 @@ Configs: {
 				'''
 				不要禁用此选项，因为它会自动禁用与炼狱模式合并后存在漏洞或严重失衡的难度
 				除非你清楚可能产生的后果，否则不要禁用此配置。若禁用后出现问题，请勿提交漏洞反馈
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
 				'''
 		}
 
@@ -2395,8 +2438,8 @@ Configs: {
 		}
 
 		BereftVassalRagnarok: {
-			// Label: Ragnarok Bereft Vassal Theme
-			// Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal fight in Ragnarok Mode.
+			Label: 无邦封臣诸神黄昏模式主题曲
+			Tooltip: 切换是否在诸神黄昏模式下，无邦封臣Boss战播放 “Dead Kingdom's Champion” 作者：Techhy
 		}
 	}
 
@@ -2681,14 +2724,14 @@ Buffs: {
 }
 
 Tiles: {
-	CatastrophicFabricationsMusicBoxTile.MapEntry: 铸灾神械音乐盒
-	EyeMusicBoxTile.MapEntry: 克苏鲁之眼音乐盒
-	BeeMusicBoxTile.MapEntry: 蜂后音乐盒
-	CultistMusicBoxTile.MapEntry: 拜月教邪教徒音乐盒
-	GolemMusicBoxTile.MapEntry: 石巨人音乐盒
-	ProphecyMusicBoxTile.MapEntry: 预言音乐盒
-	MenuMusicBoxTile.MapEntry: 主题曲音乐盒
-	FinalFractalMusicBoxTile.MapEntry: 最终分形音乐盒
+	CatastrophicFabricationsMusicBoxTile.MapEntry: 音乐盒
+	EyeMusicBoxTile.MapEntry: 音乐盒
+	BeeMusicBoxTile.MapEntry: 音乐盒
+	CultistMusicBoxTile.MapEntry: 音乐盒
+	GolemMusicBoxTile.MapEntry: 音乐盒
+	ProphecyMusicBoxTile.MapEntry: 音乐盒
+	MenuMusicBoxTile.MapEntry: 音乐盒
+	FinalFractalMusicBoxTile.MapEntry: 音乐盒
 }
 
 NPCs: {

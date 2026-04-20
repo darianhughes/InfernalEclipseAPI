@@ -41,5 +41,5 @@ ItemDescriptions: {
 		最大召唤物数量增加1
 		'''
 	MagmaSeersMask: 提高20%鞭子攻速
-	// MasterMarksmansScouter: ""
+	MasterMarksmansScouter: ""
 }
