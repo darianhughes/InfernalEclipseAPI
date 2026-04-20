@@ -42,8 +42,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria
 
         public override void SetDefaults(NPC entity)
         {
-            if (entity.type == ModContent.NPCType<Ocram>() || entity.type == ModContent.NPCType<ServantofOcram>())
-                entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
+            if (InfernalCrossmod.SOTS.Loaded)
+            {
+                if (entity.type == ModContent.NPCType<Ocram>() || entity.type == ModContent.NPCType<ServantofOcram>())
+                    entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
+            }
 
             entity.Calamity().canBreakPlayerDefense = true;
         }
@@ -202,8 +205,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria
 
         public override void SetDefaults(Projectile entity)
         {
-            if (entity.type != ModContent.ProjectileType<ManaDrain>())
-                entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+            if (InfernalCrossmod.SOTS.Loaded)
+            {
+                if (entity.type != ModContent.ProjectileType<ManaDrain>())
+                    entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
+            }
         }
 
         public override bool PreAI(Projectile projectile)
