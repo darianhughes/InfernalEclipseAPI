@@ -143,6 +143,8 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Soopns",
             "Samoh",
             "darkwex",
+            "Imagiknight_Parad0xical",
+            "Imagiknight Orpheus",
 
             //Supporters
             "Lylittle",
@@ -151,6 +153,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "joshuwham",
             "Lucy",
             "Mando",
+            "Romain TISSERAND",
 
             //Helpers
             "fjiown",
