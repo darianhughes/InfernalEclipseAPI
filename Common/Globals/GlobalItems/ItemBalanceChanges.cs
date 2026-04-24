@@ -618,12 +618,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
-            bool hasCalHunt = false;
             #region Calamity: Hunt of the Old God
             if (ModLoader.TryGetMod("CalamityHunt", out Mod calHunt))
             {
-                hasCalHunt = true;
-
+                /*
                 if (InfernalConfig.Instance.CalamityBalanceChanges)
                 {
                     #region Melee
@@ -672,8 +670,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     }
                     #endregion
                 }
+                */
 
-                /* Implemented by catalyst after cal 2.1
+                /* Implemented by hunt after cal 2.1
                 if (InfernalConfig.Instance.CalamityExpertAccessories)
                 {
                     if (GetItem(calHunt, "SplendorJam", item))
@@ -4556,7 +4555,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Times Old Roman
-                if (hasCalHunt)
+                if (calHunt != null)
                 {
                     if (GetItem(calBardHeal, "TimesOldRoman", item))
                     {
@@ -4711,7 +4710,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 333;
                 }
 
-                if (hasCalHunt)
+                if (calHunt != null)
                 {
                     if (GetItem(calBardHeal, "HarmonyoftheOldGod", item))
                     {
