@@ -706,6 +706,21 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
+            #region War Machine Invasion
+            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachineInvasion) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (UnsafeGetItem(draedonExpansion, "WulfrumLuncher", item))
+                {
+                    item.damage = 34;
+                }
+
+                if (UnsafeGetItem(draedonExpansion, "WulfrumBook", item))
+                {
+                    item.damage = 48;
+                }
+            }
+            #endregion
+
             #region Calamity Ranger Expansion
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
@@ -5502,7 +5517,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sots, "DreamLamp", item))
                 {
-                    //item.damage = 26;
+                    item.damage = 18;
                 }
 
                 if (GetItem(sots, "DuneSplicer", item))
