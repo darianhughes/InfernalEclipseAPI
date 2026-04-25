@@ -1305,13 +1305,13 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				What a perverse thing.
-				The hares of this world were symbols of thriving society.
-				In their abundacne, they brought many mirthful gifts. Food, fur, companionship.
-				Unlike ohter livestock, their life could withstand many of the harse conditions of the unforgiving underground tunnels
-				and the blights of dead gods, making them ideal units for trade between the misbegotten peasants and soldiers that help 
-				as bedrock for many kingdoms. With many of them now lost to time, the rabbits noww revel in an empty world.
-				This nuisance is one of many omens of the times of gold that have now passed by me.
+				多么反常之物。
+				世上的野兔曾是社会繁荣的象征。
+				它们的繁衍生息，带来了许多欢愉的馈赠——食物、毛皮、陪伴。
+				不像其他牲畜，它们的生命能够承受那无情的地底隧道中的诸多严酷环境以及死神般的瘟疫，
+				这使得它们成为遗弃的农民与守护王国的士兵之间理想的交易之物。
+				然而随着他们大多于时光中消逝，现在只有兔群空寂的世界中狂欢。
+				这烦扰只是诸多征兆之一，昭示着黄金时代已然从我身边逝去。
 				'''
 		}
 
@@ -1320,12 +1320,11 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				Vengeful spirits are curious beings.
-				Their avatars can take the form of anything, as long as the slain carry a sol within them.
-				The common avain would be among my furthest guesses, but yet, the can muster wrath beyond their hapless forms.
-				Alas, spirits never lie, and the consequence that lead to the unrest of this abomination 
-				ties back to the slaughters required in lengthy royal feasts.
-				It is grim to reflect on what we do to creatures deemed beneath us.
+				复仇之灵是奇异的存在。
+				它们的化身可以呈现任何形态，只要被杀者体内曾寄宿灵魂。
+				普通的飞禽本是我猜测最不可能的，然而它们却能在羸弱的形体中迸发出超越自身的怒火。
+				唉，灵魂从不欺瞒，致使憎恶之物动荡不安的源头，来自那漫长皇家盛宴中所需的大量屠杀。
+				回想我们对那些被我们视为低等生物的所作所为，实属令人心寒。
 				'''
 		}
 
@@ -1334,15 +1333,15 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				Before the Gods had a firm grasp of the Underworld and Azafure was fully established,
-				there was a time where many parties vied for control over that fabled magma crevice.
-				The most notable being a powerful archdemon who commanded the demons into a clan of civilization-stomping ravagers.
-				When the Gods finally set their sights on the Underworld, his band was quashed, slaughtered one by one.
-				However, the archdemon survived no matter the Gods' attacks, much to their chagrin,
-				so they settled for torturously mutilating him in a way that drove him to insanity, and then he was discarded.
-				His name was long forgotten, to the point where I had never heard it spoken in my lifetime.
-				Yet, upon seeing that fiend, I am certain Ocram was that fallen archdemon from an age beyond my own.
-				If I had known of its continued existence during my glory days, I would have attempted to do what the Gods could not - or would not.
+				在众神尚未牢牢掌控地狱以及阿萨福勒还未被完全建立之前，
+				曾有一段时期，许多势力争夺那传说中的熔岩裂谷。
+				其中最显著的，是一位强大的大恶魔，它率领成群恶魔组成一支践踏文明的掠夺之族。
+				当众神终于将目光投向地狱时，他的部族旋即遭到镇压，被逐一屠戮殆尽。
+				然而，令众神极为恼怒的是，那大恶魔在任何攻击下都杀不死，
+				于是，众神选择以酷刑肢解他，使其陷入疯狂，随后将其弃置。
+				他的名字早已被遗忘，以至于我一生中从未听闻过。
+				可是，当我亲眼见到那魔物时，我确信奥瑞库姆正是那位来自远早于我之时代的堕落大恶魔。
+				如果在我辉煌岁月时便知道它依然存世，我定会去完成众神所不能——或是不愿——去做的事。
 				'''
 		}
 	}
