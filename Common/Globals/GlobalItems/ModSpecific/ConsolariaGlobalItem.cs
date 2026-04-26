@@ -50,12 +50,12 @@ using static Terraria.ModLoader.ModContent;
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
     [JITWhenModsEnabled(InfernalCrossmod.Consolaria.Name)]
-    [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
+    [ExtendsFromMod(InfernalCrossmod.Consolaria.Name)]
     public class ConsolariaGlobalItem : GlobalItem
     {
         public override void UpdateEquip(Item item, Player player)
         {
-            if (InfernalConfig.Instance.ConsolariaBalanceChanges)
+            if (InfernalConfig.Instance.ConsolariaBalanceChanges && InfernalCrossmod.Thorium.Loaded)
             {
                 if (item.type == ItemType<ViperHelmet>())
                 {

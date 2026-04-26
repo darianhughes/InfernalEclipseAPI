@@ -312,7 +312,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
             }
             #endregion
 
-            /* #region Ragnarok
+            #region Ragnarok
+            /*
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
                 if (entity.type == ragnarok.Find<ModProjectile>("GelScythePro2").Type)
@@ -379,7 +380,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.penetrate = 6;
                 }
             }
-            #endregion */
+            */
+            #endregion
 
             #region Unofficial Calamity Bard and Healer
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && InfernalConfig.Instance.ThoriumBalanceChangess)
@@ -586,7 +588,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 }
             }
         }
-        private bool PlayerHasProjectile(int owner, int projType)
+
+        private static bool PlayerHasProjectile(int owner, int projType)
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
@@ -597,7 +600,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             return false;
         }
 
-        private void KillPlayerProjectiles(int owner, int projType)
+        private static void KillPlayerProjectiles(int owner, int projType)
         {
             if (projType <= 0) return;
 

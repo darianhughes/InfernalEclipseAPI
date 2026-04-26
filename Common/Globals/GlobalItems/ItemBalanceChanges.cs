@@ -1029,12 +1029,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
 
-            bool hasThorium = false;
             #region Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
-                hasThorium = true;
-
                 if (GetItem(thorium, "EnchantedPickaxe", item))
                 {
                     item.pick = 60;
@@ -5906,7 +5903,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }
 
-                if (hasThorium)
+                if (thorium != null)
                 {
                     if (UnsafeGetItem(console, "ScytheFantasma", item))
                     {
