@@ -8,4 +8,14 @@ Items: {
 			При прыжке вылетают 5 пронзающих ножей
 			'''
 	}
+
+	JadeSeal: {
+		// DisplayName: Jade Seal
+		/* Tooltip:
+			'''
+			Left click to summon a golden lantern that slowly hovers towards the cursor and heals allies
+			Right click to summon a jade lantern that hovers in place, boosting the damage and defense of allies in radius
+			Only one lantern can exist at a time
+			''' */
+	}
 }

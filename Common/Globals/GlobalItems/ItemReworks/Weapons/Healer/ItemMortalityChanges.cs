@@ -81,4 +81,31 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             initialized = true;
         }
     }
+
+    public class MortalityProjectileChanges : GlobalProjectile
+    {
+        public override void AI(Projectile projectile)
+        {
+            if (!ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+                return;
+
+            if (!ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+                return;
+
+            if (!thorium.TryFind("Mortality", out ModBuff mortality))
+                return;
+
+            int buffetUse = consolaria.Find<ModProjectile>("FiveStarBuffet_Use").Type;
+
+            if (projectile.type == buffetUse)
+            {
+                Player player = Main.player[projectile.owner];
+
+                if (player.channel)
+                {
+                    player.AddBuff(mortality.Type, 2);
+                }
+            }
+        }
+    }
 }

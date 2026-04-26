@@ -709,12 +709,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #region War Machine Invasion
             if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachineInvasion) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
-                if (UnsafeGetItem(draedonExpansion, "WulfrumLuncher", item))
+                if (UnsafeGetItem(warMachineInvasion, "WulfrumLuncher", item))
                 {
-                    item.damage = 34;
+                    item.damage = 20;
                 }
 
-                if (UnsafeGetItem(draedonExpansion, "WulfrumBook", item))
+                if (UnsafeGetItem(warMachineInvasion, "WulfrumBook", item))
                 {
                     item.damage = 48;
                 }
@@ -1029,9 +1029,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
 
+            bool hasThorium = false;
             #region Thorium
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
+                hasThorium = true;
+
                 if (GetItem(thorium, "EnchantedPickaxe", item))
                 {
                     item.pick = 60;
@@ -5901,6 +5904,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 26;
                     item.damage = 132;
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (hasThorium)
+                {
+                    if (UnsafeGetItem(console, "ScytheFantasma", item))
+                    {
+                        item.damage = 140;
+                    }
+
+                    if (UnsafeGetItem(console, "Omunikodo", item))
+                    {
+                        item.damage = 70;
+                    }
+
+                    if (UnsafeGetItem(console, "UtensilPoker", item))
+                    {
+                        ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
+                    }
                 }
             }
             #endregion

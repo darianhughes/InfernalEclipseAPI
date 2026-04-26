@@ -11,6 +11,7 @@ using InfernalEclipseAPI.Core.Systems;
 using Terraria;
 using System.Security.Policy;
 using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using ThoriumMod.Items.BardItems;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -564,6 +565,48 @@ namespace InfernalEclipseAPI.Common.Projectiles
                             projectile.damage *= 2;
                         }
                     }
+                }
+
+                if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+                {
+                    int JadeLampID = consolaria.Find<ModProjectile>("JadeSeal_Lamp").Type;
+                    int GoldLampID = consolaria.Find<ModProjectile>("JadeSeal_GoldenLamp").Type;
+
+                    if (projectile.ModProjectile.Name == "JadeSeal_Lamp")
+                    {
+                        if (PlayerHasProjectile(projectile.owner, GoldLampID))
+                            KillPlayerProjectiles(projectile.owner, GoldLampID);
+                    }
+
+                    if (projectile.ModProjectile.Name == "JadeSeal_GoldenLamp")
+                    {
+                        if (PlayerHasProjectile(projectile.owner, JadeLampID))
+                            KillPlayerProjectiles(projectile.owner, JadeLampID);
+                    }
+                }
+            }
+        }
+        private bool PlayerHasProjectile(int owner, int projType)
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.owner == owner && proj.type == projType)
+                    return true;
+            }
+            return false;
+        }
+
+        private void KillPlayerProjectiles(int owner, int projType)
+        {
+            if (projType <= 0) return;
+
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.owner == owner && proj.type == projType)
+                {
+                    proj.Kill();
                 }
             }
         }

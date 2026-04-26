@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using ThoriumMod.Projectiles.Scythe;
@@ -39,6 +40,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             {
                 //if (entity.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) return true;
                 //if (entity.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) return true;
+            }
+
+            if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+            {
+                if (entity.type == consolaria.Find<ModItem>("ScytheFantasma").Type) return true;
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calbardhealer))
@@ -85,6 +91,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             {
                 //if (item.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) ThrowDistance = 250f;
                 //if (item.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) ThrowDistance = 75f;
+            }
+
+            if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+            {
+                if (item.type == consolaria.Find<ModItem>("ScytheFantasma").Type) ThrowDistance = 120f;
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calbardhealer))
@@ -193,6 +204,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             {
                 //if (item.type == ragnarok.Find<ModItem>("ProfanedScythe").Type) isThrowableScythe = true;
                 //if (item.type == ragnarok.Find<ModItem>("ScoriaDualscythe").Type) isThrowableScythe = true;
+            }
+
+            if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+            {
+                if (item.type == consolaria.Find<ModItem>("ScytheFantasma").Type) isThrowableScythe = true;
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calbardhealer))
