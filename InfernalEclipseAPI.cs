@@ -2,6 +2,8 @@ global using Terraria;
 global using Terraria.ModLoader;
 global using Terraria.ID;
 global using System;
+global using static System.MathF;
+global using static Microsoft.Xna.Framework.MathHelper;
 global using LumUtils = Luminance.Common.Utilities.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;

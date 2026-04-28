@@ -1,6 +1,7 @@
-﻿using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
+﻿using CalamityMod;
+using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Core.Systems;
-using Terraria.GameContent.ItemDropRules;
+using InfernalEclipseAPI.Core.World;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
 {
@@ -17,6 +18,23 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
         }
 
         public override bool InstancePerEntity => true;
+
+        public override void SetDefaults(NPC entity)
+        {
+            if (InfernalWorld.RagnarokModeEnabled)
+            {
+                if (entity.type == NPCID.WallofFleshEye)
+                {
+                    entity.damage = 150;
+                    entity.Calamity().canBreakPlayerDefense = true;
+
+                    if (InfernalCrossmod.SOTS.Loaded)
+                    {
+                        entity.GetGlobalNPC<SOTSGlobalNPC>().canDoVoidDamage = true;
+                    }
+                }
+            }
+        }
 
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
@@ -84,6 +102,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
             }
         }
 
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.type == NPCID.WallofFleshEye && InfernalWorld.RagnarokModeEnabled)
+                npc.damage = 150;
+
+            return base.PreAI(npc);
+        }
+
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             //TODO: make cultist not drop two bags
@@ -96,7 +122,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
         {
             int[] types =
             [
-                ProjectileID.BloodShot
+                ProjectileID.BloodShot,
+                ProjectileID.EyeLaser,
             ];
 
             foreach (int type in types)
@@ -112,7 +139,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
         {
             if (InfernalCrossmod.SOTS.Loaded)
             {
-                if (entity.type == ProjectileID.BloodShot)
+                if (entity.type == ProjectileID.BloodShot || entity.type == ProjectileID.EyeLaser)
                 {
                     entity.GetGlobalProjectile<VoidDamageProjectile>().canDoVoidDamage = true;
                 }

@@ -2317,6 +2317,7 @@ Configs: {
 			Tooltip:
 				'''
 				Slighty adjusts the stats of some vanilla bosses to be more of a challenge.
+				This setting does not remove any Ragnarok Mode exclusive AI changes added to vanilla bosses.
 				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being ON.]
 				'''
 		}
@@ -2367,7 +2368,11 @@ Configs: {
 
 		MultiplayerBossRespawnTimer: {
 			Label: Multiplayer Boss Respawn Timer
-			Tooltip: How long it takes to respawn during a boss fight.
+			Tooltip:
+				'''
+				How long it takes to respawn during a boss fight.
+				[c/FFFF00:The Infernal Eclipse of Ragnarok mod pack is balanced around this setting being set to 60.]
+				'''
 		}
 
 		MinimumDifficultyToPreventRespawns: {

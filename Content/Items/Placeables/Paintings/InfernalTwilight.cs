@@ -123,6 +123,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Suu",
             "fiend",
             "JuJiao",
+            "IceSpider",
 
             //Playtesters
             "Tencvin",
@@ -145,6 +146,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "darkwex",
             "Imagiknight_Parad0xical",
             "Imagiknight Orpheus",
+            "un5",
 
             //Supporters
             "Lylittle",

@@ -46,6 +46,7 @@ namespace InfernalEclipseAPI
         public bool PreventBossCheese { get; set; }
 
         [DefaultValue(true)]
+        [ReloadRequired]
         public bool AdditonalVanillaBossAdjustments { get; set; }
 
         [DefaultValue(true)]

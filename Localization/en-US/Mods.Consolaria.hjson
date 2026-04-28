@@ -21,65 +21,65 @@ Items: {
 	}
 
 	OldViperChestplate: {
-				DisplayName: Ancient Viper Jacket
-				Tooltip:
-					'''
-					10% increased throwing damage
-					20% increased throwing velocity
-					'''
-			}
+		DisplayName: Ancient Viper Jacket
+		Tooltip:
+			'''
+			10% increased throwing damage
+			20% increased throwing velocity
+			'''
+	}
 
-			OldViperHelmet: {
-				DisplayName: Ancient Viper Helmet
-				Tooltip:
-					'''
-					10% increased throwing damage
-					33% chance not to consume thrown items
-					Increases your maximum technique points by 2
-					'''
-			}
+	OldViperHelmet: {
+		DisplayName: Ancient Viper Helmet
+		Tooltip:
+			'''
+			10% increased throwing damage
+			33% chance not to consume thrown items
+			Increases your maximum technique points by 2
+			'''
+	}
 
-			OldViperLegs: {
-				DisplayName: Ancient Viper Pants
-				Tooltip:
-					'''
-					10% increased throwing damage
-					15% increased throwing critical strike chance
-					15% increased movement speed
-					'''
-			}
+	OldViperLegs: {
+		DisplayName: Ancient Viper Pants
+		Tooltip:
+			'''
+			10% increased throwing damage
+			15% increased throwing critical strike chance
+			15% increased movement speed
+			'''
+	}
 
 	ViperChestplate: {
-				DisplayName: Viper Jacket
-				Tooltip:
-					'''
-					10% increased throwing damage
-					20% increased throwing velocity
-					'''
-			}
+		DisplayName: Viper Jacket
+		Tooltip:
+			'''
+			10% increased throwing damage
+			20% increased throwing velocity
+			'''
+	}
 
-			ViperHelmet: {
-				DisplayName: Viper Helmet
-				Tooltip:
-					'''
-					10% increased throwing damage
-					33% chance not to consume thrown items
-					Increases your maximum technique points by 2
-					'''
-				SetBonus:
-					'''
-					Throwing damage has a 10% chance to poison enemies
-					Nearby enemies take extra damage from poison and venom
-					'''
-			}
+	ViperHelmet: {
+		DisplayName: Viper Helmet
+		Tooltip:
+			'''
+			10% increased throwing damage
+			33% chance not to consume thrown items
+			Increases your maximum technique points by 2
+			'''
+		SetBonus:
+			'''
+			Throwing damage has a 10% chance to poison enemies
+			Nearby enemies take extra damage from poison and venom
+			'''
+	}
 
-			ViperLegs: {
-				DisplayName: Viper Pants
-				Tooltip:
-					'''
-					10% increased throwing damage
-					15% increased throwing critical strike chance
-					15% increased movement speed
-					'''
-			}
+	ViperLegs: {
+		DisplayName: Viper Pants
+		Tooltip:
+			'''
+			10% increased throwing damage
+			15% increased throwing critical strike chance
+			15% increased movement speed
+			'''
+	}
 }
