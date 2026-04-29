@@ -1040,9 +1040,11 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				When I had initially brought Draedon onto my army, he had immediately began work on a supposed  "secret project" that he refused to elaborate on.
-				Soon after, he presented his first grim death machine.
-				I knew it was fit for my army, however, his prowess shown was... promising. Very much so.
+				Every time Draedon invented a new technology, he would apply it to his passion: making deadly machines of war.
+				This was one of his first creations after arriving on this planet and my service, having just created stable levitation to imbue his machines.
+				While a novelty at the time, it soon revealed itself to be impractical for any real use on a battlefield.
+				As such, I ordered Permafrost to get rid of it. It would seem instead of destroying it, he sealed it away in a prison of ice, locked away for eternity.
+				Ironic, isn’t it? The fate that we push unto others often becomes our own.
 				'''
 		}
 
@@ -1051,10 +1053,10 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				Unlike most creatures, I know not of this "Advisor" or its origins
-				However, it seemed to be much in tune with the void energy lying deep within the crust of Terraria.
-				As who chained it to the Planetarium? I couldn't tell you. 
-				Maybe you could find the answers of that secret from the collector that absorbed its essence after its defeat.
+				During his early experiments attempting to interact with, contain, and exploit the natural spirits that inhabit these lands, 
+				Draedon found early success with the spirits that lingered in the upper atmosphere of our planet.
+				Naming them ‘Otherworldly’ spirits as a homage to his origins, he aimed higher, making a more powerful body for the spirit to inhabit, 
+				but the experiment backfired, and left with no choice, he had several other constructs keep it in place and constantly drain it of it’s power. 
 				'''
 		}
 
@@ -1063,10 +1065,10 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				This moth-like creature is interesting, as it makes its homes within the same glowing, mushroom‑infested caves as another similar beast.
-				It seems to emit some sort of bioluminescent glow, reminiscent of the void...
-				perhaps it resides in these caves for their latent void energy?
-				Whatever the case may be, it is beyond me.
+				It’s no surprise that you would find one of these creatures here.
+				The mushrooms provide energy for the moth, and the moth helps to spread the mushrooms; in balance, as nature should be...
+				Although, there does seem to be some latent void energy surrounding the creature.
+				How... peculiar.
 				'''
 		}
 
@@ -1088,12 +1090,12 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				The product of yet another folly of the greed towards godhood.
-				Younger of the royal brothers, heir to the throne of the oasis.
-				Though unlike his accursed and vile older sibling, his heart was pure, yet he still faced a saddening fate.
-				The meddling of souls had poisoned his crypt into a pestilence, casting him in a deep painful slumber.
-				His followers and royal assistants tried to save him, but it was too late.
-				Try to mourn after this victory. He was too young to suffer the consequences of his lineage.
+				Upon their older sister - Otonilou, the Goddess of Electricity — meeting her end at the hands of Calamitas, 
+				her younger brother was left to lead Ilmeris on his own.
+				Unlike his sister, who slayed a dragon for her power, his heart was pure, yet still shares a saddening fate.
+				His people surrounded on all sides by kingdoms lead by dragon slayers with stolen power, in desperation he instead turned to that 'void' magic.
+				The meddling of his void haunts him even after death; him and his people bound to his tomb.
+				This marks the beginning of the true downfall of Ilmeris, of which I played a large role in.
 				'''
 		}
 
@@ -1102,10 +1104,12 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				A failed experiment, it would seem.
-				It has a certain hunger for Peanuts that grow on the surface, though the reasoning is unknown.
-				It is nowhere near the strength of some of the other gelatinous threats of this world,
-				but it was still formidable irregardless.
+				One of Draedon's experiments. 
+				This creature is one of his attempts to understand the inherent divinity that is present is all slimes, 
+				no matter how minuscule it might be.
+				He did manage to successfully draw out the latent energy, but somehow in the process, 
+				gave the creature an endless hunger for peanuts of all things, and it provoked rapid and uncontrollable growth.
+				It quickly escaped containment, and then you know the rest.
 				'''
 		}
 
@@ -1198,12 +1202,13 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				These birds were once great and fearsome adversaries, fine foes worth the hunt.
-				Thier feathers could can channel the sun's dormant energy into potent lightning, hense the name.
-				However, these great battles were fleeting; and soon by generation selection,
-				they had lost most of thier potent strength.
-				The one you bested is not but a mellowed runt in comparision to what I had once seen,
-				yet forevermore the title of the Grand Thunder Bird lives on.
+				First spotted near the conclusion of the draconic era, it was assumed that these birds,
+				like many other creatures being discovered at the time, had draconic blood in them;
+				a fact that was hard to disprove given the way they absorbed the pure light from Zeratros’ sun, 
+				and converted the energy into lightning.
+				At the time, they were likely the strongest non-divine creatures on the planet.
+				Alas… a combination of a lack of predators and the Traitor Almighty taking control over the sun 
+				has left this once magnificent species a husk of their former selves.
 				'''
 		}
 
@@ -1307,13 +1312,8 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				What a perverse thing.
-				The hares of this world were symbols of thriving society.
-				In their abundacne, they brought many mirthful gifts. Food, fur, companionship.
-				Unlike ohter livestock, their life could withstand many of the harse conditions of the unforgiving underground tunnels
-				and the blights of dead gods, making them ideal units for trade between the misbegotten peasants and soldiers that help 
-				as bedrock for many kingdoms. With many of them now lost to time, the rabbits noww revel in an empty world.
-				This nuisance is one of many omens of the times of gold that have now passed by me.
+				The bunnies of this world are strangely adaptable. They can take on many forms, and absorb all sorts of energy.
+				This one in particular seems to have been a pet of a minor god of revelry and celebration before he was slain by my army’s hand.
 				'''
 		}
 
@@ -1322,12 +1322,13 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				Vengeful spirits are curious beings.
-				Their avatars can take the form of anything, as long as the slain carry a sol within them.
-				The common avain would be among my furthest guesses, but yet, the can muster wrath beyond their hapless forms.
-				Alas, spirits never lie, and the consequence that lead to the unrest of this abomination 
-				ties back to the slaughters required in lengthy royal feasts.
-				It is grim to reflect on what we do to creatures deemed beneath us.
+				Vengeful souls are curious beings.
+				For a soul to remain in this life after death without external magic requires either an extraordinary strong will, or a burning rage within.
+				I know not whom this was in life, nor how they perished.
+				While spirits can exert force on their own, it is only when they take a vessel that they gain true power.
+				This soul is no different, their power amplified by the unjust killing of this turkey; that was once destined for a royal feast, 
+				with food that most commoners would never have the chance to try.
+				Be wary of wrathful souls, for when you are the target of their rage, their power can rival or even surpass gods.
 				'''
 		}
 

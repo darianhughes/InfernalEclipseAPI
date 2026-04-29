@@ -122,6 +122,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "De1tA5",
             "Suu",
             "fiend",
+            "JalapenoDance",
             "JuJiao",
             "IceSpider",
 
