@@ -67,7 +67,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
             CreateRecipe()
                 .AddIngredient<ChaosBlaster>()
                 .AddIngredient<PrimordialOrchid>(5)
-                .AddIngredient<MetallicChunk>()
                 .AddIngredient<Rock>()
                 .AddTile<StarlitForgeTile>()
                 .Register();

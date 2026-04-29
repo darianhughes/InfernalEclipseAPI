@@ -179,6 +179,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     local *= 0.667f;
                     player.GetDamage<TrueMeleeDamageClass>() -= 0.2f;
+                    player.stealthTimer = 0;
+                    player.stealth = 1f;
                     sotsPlayer.additionalHeal -= 35;
 
                     if (InfernalCrossmod.Thorium.Loaded)

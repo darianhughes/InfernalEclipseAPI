@@ -115,6 +115,7 @@ ItemTooltip: {
 	ThorsHammerPro: Inflcts electrified for 3 seconds on hits.
 	BountifulHarvest: Fires piercing stingers in an alternating pattern
 	TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
+	HornScale: Heal amount scales with progression
 
 	GrapeBeer: {
 		Orig: 75% reduced critical strike damage
@@ -2107,6 +2108,11 @@ Items: {
 			[c/7C0A02:Buy our product now]
 			'''
 	}
+
+	AlloyofEden: {
+		DisplayName: Alloy of Eden
+		Tooltip: An alloy composed of the strongest materials from multiple universes
+	}
 }
 
 Projectiles: {
@@ -2693,7 +2699,7 @@ InfernumIntegration: {
 
 Buffs: {
 	StarboundHorrification: {
-		Description: You cannot escape Astrageldon...
+		Description: You cannot escape the cosmic entity...
 		DisplayName: Starbound Horrification
 	}
 

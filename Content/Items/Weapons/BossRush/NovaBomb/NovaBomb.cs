@@ -11,6 +11,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using CalamityMod;
 using Microsoft.Xna.Framework.Input;
+using InfernalEclipseAPI.Content.Items.Materials;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
 {
@@ -85,13 +86,16 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient<AshesofAnnihilation>(3);
             recipe.AddIngredient<MiracleMatter>(3);
-            if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt) && calamityHunt.TryFind("ChromaticMass", out ModItem ChormaticMass))
+            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient<AlloyofEden>();
+            else
             {
-                recipe.AddIngredient(ChormaticMass.Type, 3);
+                if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt) && calamityHunt.TryFind("ChromaticMass", out ModItem ChormaticMass))
+                {
+                    recipe.AddIngredient(ChormaticMass.Type, 3);
+                }
+                else recipe.AddIngredient<ShadowspecBar>(3);
+                if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
             }
-            else recipe.AddIngredient<ShadowspecBar>(3);
-            if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
-            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient(wotg.Find<ModItem>("MetallicChunk").Type);
             recipe.AddIngredient<DarkPlasma>(10);
             recipe.AddIngredient<MeldConstruct>(15);
             recipe.AddIngredient<Voidstone>(10);

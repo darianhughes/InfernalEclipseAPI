@@ -64,8 +64,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Ranged.ExoDisintegrator
         {
             CreateRecipe()
                 .AddIngredient<ChaosBlaster>()
-                .AddIngredient<MiracleMatter>()
                 .AddIngredient<ShadowspecBar>(3)
+                .AddIngredient<MiracleMatter>()
                 .AddIngredient<Rock>()
                 .AddTile<StarlitForgeTile>()
                 .Register();

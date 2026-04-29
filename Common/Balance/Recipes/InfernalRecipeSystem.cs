@@ -87,9 +87,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 Recipe.Create(ModContent.ItemType<Rock>(), 2)
                     .AddIngredient<Rock>()
                     .AddIngredient(ItemID.StoneBlock, 30)
+                    .AddIngredient<AlloyofEden>()
                     .AddIngredient<YharonSoulFragment>(5)
-                    .AddIngredient(noxus.Find<ModItem>("MetallicChunk"))
-                    .AddIngredient<PrimordialOrchid>()
                     .AddTile(noxus.Find<ModTile>("StarlitForgeTile"))
                     .DisableDecraft()
                     .Register();
@@ -1308,9 +1307,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(sots.Find<ModItem>("Tesseract")))
                         {
                             recipe.RemoveIngredient(ModContent.ItemType<AuricBar>());
-                            recipe.AddIngredient<ShadowspecBar>(5);
-                            if (InfernalCrossmod.NoxusBoss.Loaded)
-                                recipe.AddIngredient<PrimordialOrchid>(3);
+                            recipe.AddIngredient<AlloyofEden>(3);
                             recipe.AddIngredient<Rock>();
                         }
 

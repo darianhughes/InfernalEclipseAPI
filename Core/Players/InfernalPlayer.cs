@@ -417,7 +417,7 @@ namespace InfernalEclipseAPI.Core.Players
                 if (distanceMoved > 1000f || usedTeleportItem)
                 {
                     SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
-                    Player.KillMe(PlayerDeathReason.ByCustomReason(NetworkText.FromLiteral($"{Player.name} tried to escape the multiversal terror.")), 9999.0, 0);
+                    Player.KillMe(PlayerDeathReason.ByCustomReason(NetworkText.FromLiteral($"{Player.name} tried to escape the cosmic entity.")), 9999.0, 0);
                 }
 
                 previousPos = Player.position;

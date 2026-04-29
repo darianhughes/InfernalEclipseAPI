@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using CalamityMod;
 using CalamityMod.Items;
 using CalamityMod.Items.Placeables;
+using CalamityMod.World;
 using InfernalEclipseAPI.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using NoxusBoss.Content.Items;
@@ -74,7 +76,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
             // If not flying, fire a beam toward the mouse
             if (!modPlayer.IsFlying)
             {
-                const int projDamage = 1750;
+                int projDamage = (DownedBossSystem.downedBossRush ? 1750 : 500);
                 const float projKnockback = 6f;
 
                 Vector2 dir = (Main.MouseWorld - player.Center).SafeNormalize(Vector2.UnitX);
@@ -157,12 +159,9 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
 
         public override void AddRecipes()
         {
-            CreateRecipe(2)
-                .AddIngredient<ChaosBlaster>()
+            CreateRecipe()
+                .AddIngredient<AlloyofEden>()
                 .AddIngredient(ItemID.FallenStar, 30)
-                .AddIngredient<MetallicChunk>()
-                .AddIngredient<PrimordialOrchid>()
-                .AddIngredient<Rock>()
                 .AddTile<StarlitForgeTile>()
                 .DisableDecraft()
                 .Register();

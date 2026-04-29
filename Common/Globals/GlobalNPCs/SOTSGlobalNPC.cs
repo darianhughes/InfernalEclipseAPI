@@ -43,6 +43,7 @@ using Terraria.DataStructures;
 using SOTS.NPCs.Town;
 using SOTS.Items.ChestItems;
 using SOTS.Buffs.Debuffs;
+using InfernalEclipseAPI.Content.Buffs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -166,6 +167,18 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
             if (debuffNPC.AnomalyCurse > MaxAnomalyCurseStacks)
                 debuffNPC.AnomalyCurse = MaxAnomalyCurseStacks;
+
+            if (npc.type == ModContent.NPCType<SubspaceSerpentHead>() && InfernalConfig.Instance.PreventBossCheese)
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    Player player = Main.player[i];
+                    if (player.active && !player.dead && npc.Distance(player.Center) < 12000f)
+                    {
+                        player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 60);
+                    }
+                }
+            }
 
             if (npc.immortal || npc.realLife != -1)
                 return;

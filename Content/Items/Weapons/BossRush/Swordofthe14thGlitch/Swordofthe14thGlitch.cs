@@ -13,6 +13,7 @@ using CalamityMod.Items.Placeables;
 using Microsoft.Xna.Framework.Input;
 using Terraria.Localization;
 using System.Collections.Generic;
+using InfernalEclipseAPI.Content.Items.Materials;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 {
@@ -136,9 +137,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             recipe.AddIngredient<ArkoftheCosmos>();
             recipe.AddIngredient<AshesofAnnihilation>(3);
             recipe.AddIngredient<MiracleMatter>(3);
-            if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt)) recipe.AddIngredient(calamityHunt.Find<ModItem>("ChromaticMass").Type, 3);
-            if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
-            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient(wotg.Find<ModItem>("MetallicChunk").Type);
+            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient<AlloyofEden>();
+            else
+            {
+                if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt)) recipe.AddIngredient(calamityHunt.Find<ModItem>("ChromaticMass").Type, 3);
+                if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
+            }
             recipe.AddIngredient<Rock>();
             recipe.AddTile<SCalAltar>();
             recipe.Register();

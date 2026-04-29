@@ -1,4 +1,5 @@
 ﻿using CalamityMod.NPCs.Providence;
+using InfernalEclipseAPI.Core.World;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
 {
@@ -25,6 +26,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
                     {
                         if (player.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)
                             player.mount.Dismount(player);
+
+                        if (InfernalWorld.RagnarokModeEnabled)
+                            player.RemoveAllGrapplingHooks();
                     }
                 }
             }

@@ -31,6 +31,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             "Illusionist",
         };
 
+        private static readonly HashSet<string> SOTSBossNames = new()
+        {
+            "SubspaceSerpentHead"
+        };
+
         private static readonly HashSet<string> ConsolariaBossNames = new()
         {
             "Lepus",
@@ -44,8 +49,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 return;
 
             if ((npc.ModNPC.Mod.Name == "ThoriumMod" && ThoriumBossNames.Contains(npc.ModNPC.Name)) ||
-                (npc.ModNPC.Mod.Name == "Consolaria" && ConsolariaBossNames.Contains(npc.ModNPC.Name)))
-
+                (npc.ModNPC.Mod.Name == "Consolaria" && ConsolariaBossNames.Contains(npc.ModNPC.Name)) ||
+                (npc.ModNPC.Mod.Name == "SOTS" && SOTSBossNames.Contains(npc.ModNPC.Name))
+                )
             {
                 ApplyBossEffects(npc);
             }
@@ -61,10 +67,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     if (!player.active || player.dead)
                         continue;
 
-                    if (Vector2.Distance(player.Center, npc.Center) < 6400f)
+                    if (Vector2.Distance(player.Center, npc.Center) < (npc.ModNPC.Name == "SubspaceSerpentHead" ? 12000 : 6400f))
                     {
                         // give at least 1 second to confirm it’s being applied
-                        player.AddBuff(ModContent.BuffType<BossEffects>(), 60, true, false);
+                        player.AddBuff(ModContent.BuffType<BossEffects>(), 60);
                     }
                 }
             }

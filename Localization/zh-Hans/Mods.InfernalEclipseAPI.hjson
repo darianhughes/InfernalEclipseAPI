@@ -115,6 +115,7 @@ ItemTooltip: {
 	ThorsHammerPro: 命中时施加3秒的带电
 	BountifulHarvest: 交替射出穿透毒刺
 	TwoAlchs: 在酒精中毒效果中被视为两种酒
+	// HornScale: Heal amount scales with progression
 
 	GrapeBeer: {
 		Orig: 降低75%暴击伤害
@@ -2102,6 +2103,11 @@ Items: {
 			'Are bosses too hard? Then buy Catlight Industries' Catlight!'
 			[c/7C0A02:Buy our product now]
 			''' */
+	}
+
+	AlloyofEden: {
+		// DisplayName: Alloy of Eden
+		// Tooltip: An alloy composed of the strongest materials from multiple universes
 	}
 }
 
