@@ -31,6 +31,7 @@ using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.Weapons.Ranged;
+using InfernalEclipseAPI.Content.Items.Other;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -89,6 +90,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     .AddIngredient(ItemID.StoneBlock, 30)
                     .AddIngredient<AlloyofEden>()
                     .AddIngredient<YharonSoulFragment>(5)
+                    .AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition)
                     .AddTile(noxus.Find<ModTile>("StarlitForgeTile"))
                     .DisableDecraft()
                     .Register();
@@ -1149,6 +1151,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             {
                                 recipe.AddIngredient(ModContent.ItemType<ChaosBlaster>());
                                 recipe.AddIngredient(ModContent.ItemType<NebulaGigabeam>());
+                                recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
                             }
                             recipe.AddIngredient(ModContent.ItemType<ChromaticMassInABottle>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
@@ -1307,8 +1310,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(sots.Find<ModItem>("Tesseract")))
                         {
                             recipe.RemoveIngredient(ModContent.ItemType<AuricBar>());
-                            recipe.AddIngredient<AlloyofEden>(3);
+                            recipe.RemoveTile(TileID.LunarCraftingStation);
                             recipe.AddIngredient<Rock>();
+                            if (InfernalCrossmod.NoxusBoss.Loaded)
+                            {
+                                recipe.AddIngredient<AlloyofEden>(3);
+                                recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
+                            }
+                            recipe.AddTile(ModContent.TileType<DraedonsForge>());
                         }
 
                         if (recipe.HasResult(sots.Find<ModItem>("PurpleJellyfishStaff")))

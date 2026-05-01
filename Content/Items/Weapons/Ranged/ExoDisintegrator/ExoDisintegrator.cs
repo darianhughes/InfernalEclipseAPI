@@ -2,6 +2,7 @@
 using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
+using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using InfernalEclipseAPI.Core.Systems;
@@ -67,6 +68,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Ranged.ExoDisintegrator
                 .AddIngredient<ShadowspecBar>(3)
                 .AddIngredient<MiracleMatter>()
                 .AddIngredient<Rock>()
+                .AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition)
                 .AddTile<StarlitForgeTile>()
                 .Register();
         }

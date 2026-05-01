@@ -14,7 +14,7 @@ Infernal Eclipse of Ragnarok is an ultra-modded Infernum Mode addon which curren
 
 This API currently adds the following:
 [list]
-	[*] Over 500+ Toggleable balance changes to many of the weapons and items from the included mods in the main pack to help the experience flow together better.
+	[*] Over 1000+ Toggleable balance changes to many of the weapons and items from the included mods in the main pack to help the experience flow together better.
 	[*] Merged crafting trees for many accessories trees.
 	[*]	Cross-mod Infernum intros for any bosses that didn't already have one.
 	[*] Boss stat adjustments for Infernum mode to keep the difficulty consistent.
@@ -29,14 +29,14 @@ This API currently adds the following:
 It also includes some built-in systems such as:
 [list]
 	[*] A new rogue/thrower class merge system with custom stealth strikes for crossmod thrower weapons using [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3535746309] Thrower Unification[/url].
-	[*] A highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
+	[*] A highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode and higher).
 	[*] A system that allows you to lock the Calamity difficulty.
 	[*] A system that allows Astrageldon to be spawned even if Moon Lord has already been defeated.
 [/list]
 
 In the future, this will be a content mod that has its own story, including each of the mods in the mod pack in the future, with a functional reworked boss progression using the QuestBookUI & tPackBuilder.
 
-The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as I am still testing and developing it.
+The mod pack was designed with Multiplayer compatibility in mind, but there are still no promises that this will work fully yet, as we are still testing and developing it.
 
 If you have any other issues please report them in the [url=https://discord.gg/tc5nZdRvaU] Discord server[/url]. 
 
@@ -51,7 +51,7 @@ Check out some of our other offical DLC & commpatability mods:
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url], a Calamity/Thorium balancing mod that this mod gets most of its balance changes from.
 [/list]
 
-Very special thanks to the Calamity Mod, Fargo's Souls, Bereft Souls, & Community Souls Expansion teams, our donors, as well as each of the individuals for each mod in the mod pack for making this possible.
+Very special thanks to the Calamity Mod, Fargo's Souls, Bereft Souls, our donors, as well as each of the individual mod developers of each mod in the mod pack for making this possible.
 
 Scythe throwing code provided by [url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen[/url]
 
@@ -60,16 +60,17 @@ Developers: Akira, Wardrobe Hummus, Advantaje
 Designers: Wardrobe Hummus, Yob, trembler
 Story: Akira, Yob
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan, Arkangel
-Contributors: cheesenuggets, ma3allim, Yelmut, Pudd1ng, Pixus, Nicole, Dandel
+Contributors: cheesenuggets, ma3allim, Yelmut, Pudd1ng, Pixus, Nicole, Dandel, Ropro
 Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel
 Composers: Peter Fung, Techhy
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
-And special thanks to the following creators for the music in this mod:
-Peter Fung: "Teardrops of Dragonfire"
-Techhy: "Dead Kinddom's Champion"
-theforge128: "Calamity Before the Cynosure"
-CDMusic: "Ensemble of Fools (Encore Mix)"
-psykomatic: "Descent Of Divinities"
-TheTrester: "Omiscience Of Gods"
-Kuudray: "TWISTED GARDEN [Remix]"
+Music Credits:
+"Teardrops of Dragonfire" by Peter Fung
+"Dead Kingdom's Champion" by Techhy
+"Last Battle (Ballos Mix)" by DM DOKURO
+"Calamity Before the Cynosure" by theforge128
+"Ensemble of Fools (Encore Mix)" by CDMusic
+"Descent Of Divinities" by psykomatic
+"Omiscience Of Gods" by TheTrester
+"TWISTED GARDEN [Remix]" by Kuudray

@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Players;
+using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using SOTS.Items.Void;
 using SOTS.Void;
-using ThoriumMod.Gores;
-using ThoriumMod.Items.BossFallenBeholder;
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
 {
@@ -61,6 +61,21 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
             VoidPlayer voidPlayer = VoidPlayer.ModPlayer(player);
             int num1 = 0;
             int num2 = voidPlayer.voidMeterMax2 - voidPlayer.lootingSouls - voidPlayer.VoidMinionConsumption - self.GetVoidAmt();
+
+            if (player.HasBuff(ModContent.BuffType<VoidSickness2>()))
+            {
+                int buffIndex = player.FindBuffIndex(ModContent.BuffType<VoidSickness2>());
+
+                if (buffIndex != -1 && player.buffTime[buffIndex] >= 10 * 60)
+                {
+                    if (player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown <= 0)
+                    {
+                        CombatText.NewText(player.Hitbox, Color.Lerp(Color.Red, Color.Magenta, 0.5f), "You don't have the appetite for that!", true);
+                        player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown = 60 * 5;
+                    }
+                    return;
+                }
+            }
 
             while (player?.active == true && voidPlayer.voidMeter <= num1 && num2 >= 0 && self.Item.stack > 0 && self.CanUseItem(player))
             {

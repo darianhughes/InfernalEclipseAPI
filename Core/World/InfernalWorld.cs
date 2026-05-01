@@ -7,6 +7,7 @@ using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
 using SubworldLibrary;
 using System.Security.Policy;
+using InfernalEclipseAPI.Content.Items.Other;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -113,6 +114,10 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void SaveWorldData(TagCompound tag)
         {
+            var infernalDowned = new System.Collections.Generic.List<string>();
+
+            InfernalRecipeUnlockHandler.Save(infernalDowned);
+
             tag["dreadonDestroyerDialoguePlayed"] = dreadonDestroyerDialoguePlayed;
             tag["dreadonDestroyer2DialoguePlayed"] = dreadonDestroyer2DialoguePlayed;
             tag["jungleSubshockPlanteraDialoguePlayed"] = jungleSubshockPlanteraDialoguePlayed;
@@ -130,6 +135,10 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void LoadWorldData(TagCompound tag)
         {
+            var infernalDowned = tag.GetList<string>("infernalDowned");
+
+            InfernalRecipeUnlockHandler.Load(infernalDowned);
+
             GetData(ref dreadonDestroyerDialoguePlayed, "dreadonDestroyerDialoguePlayed", tag);
             GetData(ref dreadonDestroyer2DialoguePlayed, "dreadonDestroyerDialoguePlayed", tag);
             GetData(ref jungleSubshockPlanteraDialoguePlayed, "junglePlanteraDialoguePlayed", tag);
@@ -160,6 +169,8 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void NetSend(BinaryWriter writer)
         {
+            InfernalRecipeUnlockHandler.SendData(writer);
+
             writer.Write(dreadonDestroyerDialoguePlayed);
             writer.Write(dreadonDestroyer2DialoguePlayed);
             writer.Write(jungleSubshockPlanteraDialoguePlayed);
@@ -177,6 +188,8 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void NetReceive(BinaryReader reader)
         {
+            InfernalRecipeUnlockHandler.ReceiveData(reader);
+
             dreadonDestroyerDialoguePlayed = reader.ReadBoolean();
             dreadonDestroyer2DialoguePlayed = reader.ReadBoolean();
             jungleSubshockPlanteraDialoguePlayed =reader.ReadBoolean();

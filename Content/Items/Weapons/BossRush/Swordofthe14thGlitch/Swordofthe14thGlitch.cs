@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Input;
 using Terraria.Localization;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Content.Items.Materials;
+using InfernalEclipseAPI.Content.Items.Other;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 {
@@ -137,7 +138,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             recipe.AddIngredient<ArkoftheCosmos>();
             recipe.AddIngredient<AshesofAnnihilation>(3);
             recipe.AddIngredient<MiracleMatter>(3);
-            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient<AlloyofEden>();
+            if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))
+            {
+                recipe.AddIngredient<AlloyofEden>();
+                recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
+            }
             else
             {
                 if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt)) recipe.AddIngredient(calamityHunt.Find<ModItem>("ChromaticMass").Type, 3);

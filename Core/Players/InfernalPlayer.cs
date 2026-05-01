@@ -31,6 +31,7 @@ using CalamityMod.NPCs.Providence;
 using System.Linq;
 using CalamityMod.NPCs.PrimordialWyrm;
 using CalamityMod.World;
+using InfernalEclipseAPI.Content.Items.Other;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -199,6 +200,7 @@ namespace InfernalEclipseAPI.Core.Players
         public int RingofRestCooldown;
         public bool CritNightmare;
         public bool bagOfCharms;
+        public int voidSicknessTextCooldown;
 
         public float manaSteal = Main.expertMode ? 40f : 50f;
         public float voidSteal = Main.expertMode ? 45f : 55f;
@@ -292,6 +294,9 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (boostCooldownTime > 0)
                 boostCooldownTime--;
+
+            if (voidSicknessTextCooldown > 0)
+                voidSicknessTextCooldown--;
 
             if (manaSteal < (Main.expertMode ? 40f : 50f))
                 manaSteal++;
@@ -479,6 +484,8 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PostUpdateMiscEffects()
         {
+            CheckIfMouseItemIsSpellbook();
+
             if (soltanBullying)
             {
                 float emptySummonSlots = Player.maxMinions - Player.slotsMinions;
@@ -501,6 +508,31 @@ namespace InfernalEclipseAPI.Core.Players
                     return true;
             }
             return false;
+        }
+
+        public void CheckIfMouseItemIsSpellbook()
+        {
+            if (!ModLoader.HasMod("NoxusBoss")) return;
+
+            if (Main.myPlayer != Player.whoAmI)
+                return;
+
+            bool shouldSync = false;
+
+            // ActiveItem doesn't need to be checked as the other possibility involves
+            // the item in question already being in the inventory.
+            if (Main.mouseItem != null && !Main.mouseItem.IsAir)
+            {
+                if (Main.mouseItem.type == ModContent.ItemType<SolynsSpellbook>() && !InfernalRecipeUnlockHandler.HasFoundSolynSpellbook)
+                {
+                    InfernalRecipeUnlockHandler.HasFoundSolynSpellbook = true;
+                    shouldSync = true;
+                }
+
+            }
+
+            if (shouldSync)
+                CalamityNetcode.SyncWorld();
         }
 
         public override void PostUpdateEquips()
@@ -897,8 +929,7 @@ namespace InfernalEclipseAPI.Core.Players
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
         {
             if ((proj.type == ModContent.ProjectileType<CelestusProj>() || proj.type == ModContent.ProjectileType<CelestusMiniScythe>()) &&
-                (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()) &&
-                InfernalConfig.Instance.PreventBossCheese)
+                (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()))
             {
                 modifiers.FinalDamage *= 0.01f;
             }
@@ -913,13 +944,12 @@ namespace InfernalEclipseAPI.Core.Players
                 modifiers.FinalDamage *= 0.1f;
             }
 
-            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()) &&
-                InfernalConfig.Instance.PreventBossCheese)
+            if (target.type == ModContent.NPCType<Yharon>() && target.life < target.lifeMax / 4 && (proj.type == ModContent.ProjectileType<GalaxySmasherHammer>() || proj.type == ModContent.ProjectileType<GalaxySmasherBlast>() || proj.type == ModContent.ProjectileType<GalaxySmasherEcho>() || proj.type == ModContent.ProjectileType<GalaxySmasherMini>()))
             {
                 modifiers.FinalDamage /= 2;
             }
 
-            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail &&  InfernalConfig.Instance.PreventBossCheese)
+            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail)
             {
                 if (proj.type == ModContent.ProjectileType<SubmarineShockerProj>())
                     modifiers.FinalDamage *= 0.2f;

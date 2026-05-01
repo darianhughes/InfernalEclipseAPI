@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
+using SOTS.Items.AbandonedVillage;
 using SOTS.Items.Fragments;
 using SOTS.Items.Invidia;
 using SOTS.Items.Planetarium.FromChests;
@@ -100,6 +101,7 @@ namespace InfernalEclipseAPI.Core.World
         public static void InvidiaChestHealingPotionNerf()
         {
             ushort invidiaChestTileType = (ushort)ModContent.TileType<InvidiaChestTile>();
+            ushort ruinedChestTileType = (ushort)ModContent.TileType<RuinedChestTile>();
 
             for (int i = 0; i < Main.maxChests; i++)
             {
@@ -108,7 +110,7 @@ namespace InfernalEclipseAPI.Core.World
                     continue;
 
                 Tile tile = Main.tile[chest.x, chest.y];
-                if (tile == null || tile.TileType != invidiaChestTileType)
+                if (tile == null || (tile.TileType != invidiaChestTileType && tile.TileType != ruinedChestTileType))
                     continue;
 
                 for (int slot = 0; slot < chest.item.Length; slot++)

@@ -3,6 +3,7 @@ using Terraria.Localization;
 using InfernalEclipseAPI.Content.Tiles.Relics.Thorium;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons
 {
@@ -15,6 +16,13 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons
         public override LocalizedText Tooltip => Language.GetOrRegister(InfernalEclipseAPI.Instance.GetLocalizationKey($"Items.{this.Name}.Tooltip")).WithFormatArgs(PersonalMessage);
 
         public override string PersonalMessage => Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.GoozmaRelic");
+
+        public override void SetStaticDefaults()
+        {
+            if (ModLoader.HasMod("CalamityHunt"))
+                ItemID.Sets.ShimmerTransformToItem[Type] = ModLoader.GetMod("CalamityHunt").Find<ModItem>("GoozmaInfernumRelic").Type;
+            base.SetStaticDefaults();
+        }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

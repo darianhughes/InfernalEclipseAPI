@@ -445,6 +445,7 @@ ItemTooltip: {
 		Nerf: Increases void attack speed by 25% and melee damage by 5%
 	}
 
+	Oneirophobia: Turns into a sentient synthesizer minion when stowed, attacking enemies
 	DoesNotStack: Does not stack with downgrades
 	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "
@@ -2113,6 +2114,16 @@ Items: {
 		DisplayName: Alloy of Eden
 		Tooltip: An alloy composed of the strongest materials from multiple universes
 	}
+
+	SolynsSpellbook: {
+		DisplayName: Solyn's Spellbook
+		Tooltip:
+			'''
+			A book that appeared in Solyn's old tent after the defeat of the Nameless Deity and completion of her bookshelf
+			Finely detailed diagrams of numerous magical artifacts fill up the book's pages
+			Picking up this item or holding it in your inventory permanently unlocks new recipes
+			'''
+	}
 }
 
 Projectiles: {
@@ -2467,6 +2478,16 @@ Configs: {
 			Label: Ragnarok Bereft Vassal Theme
 			Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal fight in Ragnarok Mode.
 		}
+
+		DoGRagnarok: {
+			Label: Ragnarok Devourer of Gods Final Phase Theme
+			Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods final phase and desperation in Ragnaork Mode
+		}
+
+		WarMachineBossInBossRush: {
+			Label: Wulfrum Mothership In Boss Rush
+			Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
+		}
 	}
 
 	Difficulty: {
@@ -2514,6 +2535,25 @@ Configs: {
 
 		Ragnarok: {
 			Label: Ragnarok
+			Tooltip: ""
+		}
+	}
+
+	DoGSong: {
+		Tooltip: ""
+
+		Off: {
+			Label: Off
+			Tooltip: ""
+		}
+
+		DesperationOnly: {
+			Label: Desperation Only
+			Tooltip: ""
+		}
+
+		On: {
+			Label: On
 			Tooltip: ""
 		}
 	}
@@ -2790,4 +2830,9 @@ Events: {
 	BossRushTierFiveEndText_1: We have reached the finale, Terrarian.
 	BossRushTierFiveEndText_2: All that stands between you and the end of this trial are what are and once were once gods of this world.
 	BossRushTierFiveEndText_3: Show me the strength of someone with nothing to lose now. Do not falter now.
+}
+
+Misc: {
+	SolynSpellbookRecipeCondition: Place the spellbook owned by Solyn in your inventory at least once
+	SpellbookRecipeCondition: View an spellbook owned by Solyn
 }

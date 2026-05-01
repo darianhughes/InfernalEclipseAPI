@@ -445,6 +445,7 @@ ItemTooltip: {
 		Nerf: 增加25%虚空攻击速度和5%近战伤害
 	}
 
+	// Oneirophobia: Turns into a sentient synthesizer minion when stowed, attacking enemies
 	DoesNotStack: 不与下位效果叠加
 	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "
@@ -2109,6 +2110,16 @@ Items: {
 		// DisplayName: Alloy of Eden
 		// Tooltip: An alloy composed of the strongest materials from multiple universes
 	}
+
+	SolynsSpellbook: {
+		// DisplayName: Solyn's Spellbook
+		/* Tooltip:
+			'''
+			A book that appeared in Solyn's old tent after the defeat of the Nameless Deity and completion of her bookshelf
+			Finely detailed diagrams of numerous magical artifacts fill up the book's pages
+			Picking up this item or holding it in your inventory permanently unlocks new recipes
+			''' */
+	}
 }
 
 Projectiles: {
@@ -2458,6 +2469,16 @@ Configs: {
 			Label: 无邦封臣诸神黄昏模式主题曲
 			Tooltip: 切换是否在诸神黄昏模式下，无邦封臣Boss战播放 “Dead Kingdom's Champion” 作者：Techhy
 		}
+
+		DoGRagnarok: {
+			// Label: Ragnarok Devourer of Gods Final Phase Theme
+			// Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods final phase and desperation in Ragnaork Mode
+		}
+
+		WarMachineBossInBossRush: {
+			// Label: War Machine Boss In Boss Rush
+			// Tooltip: ""
+		}
 	}
 
 	Difficulty: {
@@ -2506,6 +2527,25 @@ Configs: {
 		Ragnarok: {
 			Label: 诸神黄昏
 			Tooltip: ""
+		}
+	}
+
+	DoGSong: {
+		// Tooltip: ""
+
+		Off: {
+			// Label: Off
+			// Tooltip: ""
+		}
+
+		DesperationOnly: {
+			// Label: Desperation Only
+			// Tooltip: ""
+		}
+
+		On: {
+			// Label: On
+			// Tooltip: ""
 		}
 	}
 }
@@ -2781,4 +2821,9 @@ Events: {
 	BossRushTierFiveEndText_1: 我们已抵达终幕了，泰拉人。
 	BossRushTierFiveEndText_2: 如今横亘在你与试炼终点之间的，是这个世界过去和现在存在的神明
 	BossRushTierFiveEndText_3: 现在，让我看看一个已无退路之人的力量。别在这里倒下。
+}
+
+Misc: {
+	// SolynSpellbookRecipeCondition: Place the spellbook owned by Solyn in your inventory at least once
+	// SpellbookRecipeCondition: View an spellbook owned by Solyn
 }

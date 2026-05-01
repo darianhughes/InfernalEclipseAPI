@@ -40,6 +40,11 @@ using SOTS.Items.Fishing;
 using InfernalEclipseAPI.Content.RogueThrower;
 using InfernumMode.Content.Items.Accessories;
 using SOTS.Void;
+using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using Steamworks;
+using SOTS.Items.Secrets;
+using SOTS.Items.Void;
+using InfernalEclipseAPI.Content.Buffs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -133,6 +138,25 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     return false;
                 }
             }
+
+            if (item.ModItem is VoidConsumable)
+            {
+                if (player.HasBuff(BuffType<VoidSickness2>()))
+                {
+                    int buffIndex = player.FindBuffIndex(BuffType<VoidSickness2>());
+
+                    if (buffIndex != -1 && player.buffTime[buffIndex] >= 10 * 60)
+                    {
+                        if (player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown <= 0)
+                        {
+                            CombatText.NewText(player.Hitbox, Color.Lerp(Color.Red, Color.Magenta, 0.5f), "You don't have the appetite for that!", true);
+                            player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown = 60 * 5;
+                        }
+                        return false;
+                    }
+                }
+            }
+
             return base.CanUseItem(item, player);
         }
 
@@ -541,6 +565,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<InfernoHook>())
                 {
                     item.shootSpeed = 14;
+                }
+
+                if (item.type == ItemType<DreamLamp>() && SOTSWorld.DreamLampSolved)
+                {
+                    item.damage = 18;
                 }
             }
         }

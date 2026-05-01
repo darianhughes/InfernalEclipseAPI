@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items;
 using CalamityMod.Items.Materials;
+using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Core.Systems;
 using NoxusBoss.Content.Items;
 using NoxusBoss.Content.Rarities;
@@ -36,6 +37,7 @@ namespace InfernalEclipseAPI.Content.Items.Materials
             if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type);
             recipe.AddIngredient<MetallicChunk>();
             recipe.AddIngredient<PrimordialOrchid>();
+            recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
             recipe.AddTile<StarlitForgeTile>();
             recipe.Register();
         }

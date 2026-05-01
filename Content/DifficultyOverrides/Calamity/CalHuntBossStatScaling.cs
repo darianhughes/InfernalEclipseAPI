@@ -13,7 +13,7 @@ using MonoMod.Cil;
 using Terraria.DataStructures;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
 {
     [JITWhenModsEnabled("CalamityHunt")]
     [ExtendsFromMod("CalamityHunt")]
@@ -64,7 +64,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 if ((num1 & num2) != 0)
                 {
                     ModNPC modNPC14 = npc.ModNPC;
-                    if ((modNPC14 != null ? (modNPC14.Name.Contains("Goozma") ? 1 : 0) : 0) != 0)
+                    if ((modNPC14 != null ? modNPC14.Name.Contains("Goozma") ? 1 : 0 : 0) != 0)
                     {
                         npc.lifeMax += npc.lifeMax / 4;
                     }
@@ -72,7 +72,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
 
                 if (InfernumActive.InfernumActive)
                 {
-                    npc.lifeMax += (int)(((double)1.35) * (double)npc.lifeMax);
+                    npc.lifeMax += (int)((double)1.35 * npc.lifeMax);
                 }
 
                 npc.life = npc.lifeMax;
@@ -203,7 +203,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
             GameModeData data = (GameModeData)findInfo.GetValue(null);
-            return (Main.getGoodWorld && data.IsMasterMode);
+            return Main.getGoodWorld && data.IsMasterMode;
         }
 
         public override void SetDefaults(Projectile entity)
@@ -295,7 +295,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                         {
                             c.Index++; // move AFTER ldfld (stack: [baseP2:int])
 
-                            c.EmitDelegate<Func<int, int>>(AdjustP2LifeMax);
+                            c.EmitDelegate(AdjustP2LifeMax);
                         }
                     });
                 }
@@ -310,7 +310,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             float mult = BossRushEvent.BossRushActive ? 3f : 2.35f;
 
             // Clamp so we never end up at 0 due to rounding or weirdness.
-            int result = (int)MathF.Round(baseP2LifeMax * mult);
+            int result = (int)Round(baseP2LifeMax * mult);
             return result < 1 ? 1 : result;
         }
 
@@ -328,7 +328,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     if (il[i] != 0x7B)
                         continue;
 
-                    int token = il[i + 1] | (il[i + 2] << 8) | (il[i + 3] << 16) | (il[i + 4] << 24);
+                    int token = il[i + 1] | il[i + 2] << 8 | il[i + 3] << 16 | il[i + 4] << 24;
                     if (token == fieldMetadataToken)
                         return true;
                 }

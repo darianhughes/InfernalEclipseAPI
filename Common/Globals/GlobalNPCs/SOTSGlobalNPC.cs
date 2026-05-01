@@ -168,7 +168,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             if (debuffNPC.AnomalyCurse > MaxAnomalyCurseStacks)
                 debuffNPC.AnomalyCurse = MaxAnomalyCurseStacks;
 
-            if (npc.type == ModContent.NPCType<SubspaceSerpentHead>() && InfernalConfig.Instance.PreventBossCheese)
+            if (npc.type == ModContent.NPCType<SubspaceSerpentHead>())
             {
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {

@@ -5515,11 +5515,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 96;
                 }
 
-                if (GetItem(sots, "DreamLamp", item))
-                {
-                    item.damage = 18;
-                }
-
                 if (GetItem(sots, "DuneSplicer", item))
                 {
                     item.damage = 30;

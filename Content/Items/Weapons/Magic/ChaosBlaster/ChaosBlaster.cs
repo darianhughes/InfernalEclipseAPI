@@ -4,6 +4,7 @@ using CalamityMod.Items;
 using CalamityMod.Items.Placeables;
 using CalamityMod.World;
 using InfernalEclipseAPI.Content.Items.Materials;
+using InfernalEclipseAPI.Content.Items.Other;
 using Microsoft.Xna.Framework;
 using NoxusBoss.Content.Items;
 using NoxusBoss.Content.Rarities;
@@ -163,6 +164,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
                 .AddIngredient<AlloyofEden>()
                 .AddIngredient(ItemID.FallenStar, 30)
                 .AddTile<StarlitForgeTile>()
+                .AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition)
                 .DisableDecraft()
                 .Register();
         }

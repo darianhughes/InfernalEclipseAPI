@@ -30,6 +30,10 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         public bool BereftVassalRagnarok { get; set; }
 
+        [DrawTicks]
+        [DefaultValue(DoGSong.On)]
+        public DoGSong DoGRagnarok { get; set; }
+
         [DefaultValue(true)]
         public bool EnableInterlude4 { get; set; }
         #endregion
@@ -40,10 +44,6 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         [ReloadRequired]
         public bool BossKillCheckOnOres { get; set; }
-
-        [DefaultValue(false)]
-        [ReloadRequired]
-        public bool PreventBossCheese { get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]
@@ -102,6 +102,10 @@ namespace InfernalEclipseAPI
 
         #region Boss Rush Changes
         [Header("BossRushChanges")]
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool WarMachineBossInBossRush { get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]
@@ -180,6 +184,13 @@ namespace InfernalEclipseAPI
         #endregion
     }
 
+    public enum DoGSong : byte
+    {
+        Off,
+        DesperationOnly,
+        On
+    }
+
     public enum Difficulty : byte
     {
         AlwaysOff,
@@ -190,6 +201,6 @@ namespace InfernalEclipseAPI
         Revengence,
         Death,
         Infernum,
-        Ragnarok,
+        Ragnarok
     }
 }

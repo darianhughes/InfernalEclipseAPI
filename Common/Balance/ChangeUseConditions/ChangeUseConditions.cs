@@ -49,27 +49,28 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 
             CanUseItemEvent += ModifyDungeonCurseUseConditions;
 
+            /*
             if (InfernalConfig.Instance.PreventBossCheese)
             {
                 ModLoader.TryGetMod("CalamityMod", out Mod cal);
-                /*
+
                 if (cal.TryFind("SubmarineShocker", out ModItem shocker))
                     ShockerID = shocker.Type;
 
                 CanUseItemEvent += ModifySubmarineShockerUseConditions;
-                */
+
 
                 if (cal.TryFind("CosmicDischarge", out ModItem discharge))
                     DischargeID = discharge.Type;
 
                 CanUseItemEvent += ModifyCosmicDischargeUseConditions;
 
-                /*
+
                 if (cal.TryFind("GalaxySmasher", out ModItem smahser))
                     SmasherID = smahser.Type;
 
                 CanUseItemEvent += ModifyGalaxySmasherUseConditions;
-                */
+
 
                 if (ModLoader.TryGetMod("ThoriumMod", out Mod thor))
                 {
@@ -79,6 +80,7 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
                     CanUseItemEvent += ModifyLodeStoneStaffUseConditions;
                 }
             }
+            */
 
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
@@ -147,7 +149,6 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             }
             return true;
         }
-        */
 
         private bool ModifyLodeStoneStaffUseConditions(Item item, Player player)
         {
@@ -188,7 +189,6 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
             return true;
         }
 
-        /*
         private bool ModifyGalaxySmasherUseConditions(Item item, Player player)
         {
             if (item.type == SmasherID)

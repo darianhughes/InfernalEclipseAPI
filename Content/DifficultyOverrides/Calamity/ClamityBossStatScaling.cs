@@ -5,7 +5,7 @@ using InfernalEclipseAPI.Core.Systems;
 using Terraria.DataStructures;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
 {
     [JITWhenModsEnabled(InfernalCrossmod.Clamity.Name)]
     [ExtendsFromMod(InfernalCrossmod.Clamity.Name)]
@@ -29,7 +29,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         {
             FieldInfo findInfo = typeof(Main).GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
             GameModeData data = (GameModeData)findInfo.GetValue(null);
-            return (Main.getGoodWorld && data.IsMasterMode);
+            return Main.getGoodWorld && data.IsMasterMode;
         }
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation)
         {
@@ -61,7 +61,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                 }
                 if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
                 {
-                    npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                    npc.lifeMax += (int)((double).35 * npc.lifeMax);
                 }
                 else
                 {
@@ -110,7 +110,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
         public override void PostAI(NPC npc)
         {
             ModNPC modNPC14 = npc.ModNPC;
-            if (!((modNPC14 != null ? (((ModType)modNPC14).Name.Contains("ClamitasBoss") ? 1 : 0) : 0) != 0) && npc.type != ModContent.NPCType<PyrogenBoss>())
+            if (!((modNPC14 != null ? modNPC14.Name.Contains("ClamitasBoss") ? 1 : 0 : 0) != 0) && npc.type != ModContent.NPCType<PyrogenBoss>())
             {
                 npc.position += npc.velocity * 0.1f;
 

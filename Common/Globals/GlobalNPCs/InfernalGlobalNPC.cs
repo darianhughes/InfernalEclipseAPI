@@ -209,7 +209,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
                 }
 
-                if (InfernalConfig.Instance.PreventBossCheese && npc.type == ModContent.NPCType<HealerShieldCrystal>())
+                if (npc.type == ModContent.NPCType<HealerShieldCrystal>())
                 {
                     player.ClearBuff(ModContent.BuffType<RageMode>());
                     player.ClearBuff(ModContent.BuffType<AdrenalineMode>());

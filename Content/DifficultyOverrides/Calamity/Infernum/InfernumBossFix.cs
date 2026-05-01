@@ -25,7 +25,7 @@ using InfernumMode.Core.GlobalInstances.Systems;
 using Luminance.Core.Balancing;
 using System.Collections.Generic;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum
 {
     public class InfernumBossFix : BalancingManager
     {
@@ -155,7 +155,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             yield return new NPCHPBalancingChange(139, AccountForExpertHP1Point4((int)(560.0 * Boost)), (BalancePriority)10, InfernumFirstMechCondition);
             yield return new NPCHPBalancingChange(139, AccountForExpertHP1Point4((int)(630.0 * Boost)), (BalancePriority)10, InfernumSecondMechCondition);
             yield return new NPCHPBalancingChange(139, AccountForExpertHP1Point4(700 * Boost), (BalancePriority)10, InfernumFinalMechCondition);
-            yield return CreateBaseChangeModded(ModContent.NPCType<CalamityMod.NPCs.BrimstoneElemental.BrimstoneElemental>(), 85515 * Boost);
+            yield return CreateBaseChangeModded(ModContent.NPCType<BrimstoneElemental>(), 85515 * Boost);
             yield return CreateBaseChangeModded(ModContent.NPCType<CalamitasClone>(), 76250 * Boost);
             yield return CreateBaseChangeModded(ModContent.NPCType<Cataclysm>(), 20600 * Boost);
             yield return CreateBaseChangeModded(ModContent.NPCType<Catastrophe>(), 13000 * Boost);
@@ -242,7 +242,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             yield return CreateBossRushChange(131, 346000 * Boost);
             yield return CreateBossRushChange(134, 1110580 * Boost);
             yield return CreateBossRushChange(139, 30000 * Boost);
-            yield return CreateBossRushChange(ModContent.NPCType<CalamityMod.NPCs.BrimstoneElemental.BrimstoneElemental>(), 1105000 * Boost);
+            yield return CreateBossRushChange(ModContent.NPCType<BrimstoneElemental>(), 1105000 * Boost);
             yield return CreateBossRushChange(ModContent.NPCType<CalamitasClone>(), 985000 * Boost);
             yield return CreateBossRushChange(ModContent.NPCType<Cataclysm>(), 193380 * Boost);
             yield return CreateBossRushChange(ModContent.NPCType<Catastrophe>(), 176085 * Boost);
