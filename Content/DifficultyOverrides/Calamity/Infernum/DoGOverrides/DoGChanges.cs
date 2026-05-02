@@ -92,6 +92,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
             if (DesperationHasTriggered || DesperationCanDie)
             {
+                npc.Calamity().CanHaveBossHealthBar = true;
+
                 foreach (NPC segment in Main.ActiveNPCs)
                 {
                     if (segment.type == ModContent.NPCType<DevourerofGodsBody>() ||

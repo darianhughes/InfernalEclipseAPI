@@ -446,6 +446,13 @@ ItemTooltip: {
 	}
 
 	// Oneirophobia: Turns into a sentient synthesizer minion when stowed, attacking enemies
+	/* PlagueLordFlask:
+		'''
+		15% increased throwing damage
+		15% increased throwing velocity
+		Using a throwing item has a 20% chance to unleash two Blight Daggers
+		Blight Daggers home in on enemies and apply a highly contagious disease
+		''' */
 	DoesNotStack: 不与下位效果叠加
 	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "
@@ -2476,8 +2483,8 @@ Configs: {
 		}
 
 		WarMachineBossInBossRush: {
-			// Label: War Machine Boss In Boss Rush
-			// Tooltip: ""
+			// Label: Wulfrum Mothership In Boss Rush
+			// Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
 		}
 	}
 

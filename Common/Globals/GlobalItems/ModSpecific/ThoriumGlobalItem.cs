@@ -136,26 +136,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
     [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
     public class ThoriumGlobalItem : GlobalItem
     {
-        public override void SetStaticDefaults()
-        {
-            /*
-            InfernumPlayer.AccessoryUpdateEvent += (InfernumPlayer player) =>
-            {
-                if (player.GetValue<bool>(Purity.FieldName))
-                {
-                    Player p = player.Player;
-                    float bonus = 1.4f;
-
-                    p.GetDamage<BardDamage>() *= bonus;
-                    p.GetDamage<HealerDamage>() *= bonus;
-                    p.GetDamage<HealerTool>() *= bonus;
-                    p.GetDamage<HealerToolDamageHybrid>() *= bonus;
-                    p.GetDamage<TrueDamage>() *= bonus;
-                }
-            };
-            */
-        }
-
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemType<IceLance>() ||
@@ -300,6 +280,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             {
                 player.GetDamage(DamageClass.Generic) -= 0.04f;
                 player.GetDamage(DamageClass.Summon) -= 0.05f;
+            }
+
+            if (item.type == ItemType<PlagueLordFlask>())
+            {
+                player.GetDamage(DamageClass.Throwing) += 0.05f;
+                player.ThrownVelocity += 0.05f;
+                player.GetAttackSpeed(DamageClass.Throwing) -= 0.1f;
             }
         }
 
@@ -805,6 +792,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             if (item.type == ItemType<YumasPendant>())
             {
                 InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.YumasPendant.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.YumasPendant.Nerf"));
+            }
+
+            if (item.type == ItemType<PlagueLordFlask>())
+            {
+                InfernalUtilities.FullTooltipOveride(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.PlagueLordFlask"));
             }
 
             if (InfernalConfig.Instance.DisableDuplicateContent)

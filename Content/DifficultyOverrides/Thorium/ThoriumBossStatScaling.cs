@@ -18,11 +18,9 @@ using ThoriumRework.Buffs;
 using CalamityMod.CalPlayer;
 using ThoriumMod.NPCs.BossFallenBeholder;
 using ThoriumMod.NPCs.BossForgottenOne;
-using Terraria;
 using ThoriumMod.Buffs;
 using CalamityMod.Buffs.DamageOverTime;
 using InfernalEclipseAPI.Core.World;
-using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {

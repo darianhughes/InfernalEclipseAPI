@@ -4,6 +4,7 @@ using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss;
 using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss.Projectiles;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Events;
+using InfernalEclipseAPI.Common.GlobalNPCs;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Systems;
@@ -139,6 +140,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
                 }
             }
         }
+
+        public override bool CheckDead(NPC npc)
+        {
+            if (npc.type == ModContent.NPCType<Goozma>() && InfernalWorld.RagnarokModeEnabled)
+            {
+                InfernalGlobalNPC.ClearRageAndAdrenaline();
+            }
+            return base.CheckDead(npc);
+        }
     }
 
     [JITWhenModsEnabled("CalamityHunt")]
@@ -242,14 +252,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
             if (!ModLoader.TryGetMod("CalamityHunt", out Mod hunt))
                 return;
 
-            GoozmaP2LifeMaxMultiplier.PatchAllP2LifeMaxReads(hunt.Code);
+            PatchAllP2LifeMaxReads(hunt.Code);
         }
-    }
 
-    [JITWhenModsEnabled("CalamityHunt")]
-    [ExtendsFromMod("CalamityHunt")]
-    public static class GoozmaP2LifeMaxMultiplier
-    {
         public static void PatchAllP2LifeMaxReads(Assembly huntAsm)
         {
             PatchAllInstanceFieldReads(

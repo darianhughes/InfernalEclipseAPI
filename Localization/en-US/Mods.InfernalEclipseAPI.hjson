@@ -446,6 +446,13 @@ ItemTooltip: {
 	}
 
 	Oneirophobia: Turns into a sentient synthesizer minion when stowed, attacking enemies
+	PlagueLordFlask:
+		'''
+		15% increased throwing damage
+		15% increased throwing velocity
+		Using a throwing item has a 20% chance to unleash two Blight Daggers
+		Blight Daggers home in on enemies and apply a highly contagious disease
+		'''
 	DoesNotStack: Does not stack with downgrades
 	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "

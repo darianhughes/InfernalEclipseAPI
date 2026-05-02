@@ -151,14 +151,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 {
                     if (player.active && !player.dead)
                     {
-                        player.ClearBuff(ModContent.BuffType<RageMode>());
-                        player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
-
-                        CalamityPlayer mp = player.Calamity();
-                        mp.rage = 0;
-                        mp.rageModeActive = false;
-                        mp.adrenaline = 0;
-                        mp.adrenalineModeActive = false;
+                        ClearRageAndAdrenaline(player);
 
                         if (InfernalCrossmod.Thorium.Loaded)
                         {
@@ -184,6 +177,37 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 }
             }
         }
+
+        public static void ClearRageAndAdrenaline()
+        {
+            foreach (Player player in Main.player)
+            {
+                if (player.active && !player.dead)
+                {
+                    player.ClearBuff(ModContent.BuffType<RageMode>());
+                    player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+
+                    CalamityPlayer mp = player.Calamity();
+                    mp.rage = 0;
+                    mp.rageModeActive = false;
+                    mp.adrenaline = 0;
+                    mp.adrenalineModeActive = false;
+                }
+            }
+        }
+
+        public static void ClearRageAndAdrenaline(Player player)
+        {
+            player.ClearBuff(ModContent.BuffType<RageMode>());
+            player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+
+            CalamityPlayer mp = player.Calamity();
+            mp.rage = 0;
+            mp.rageModeActive = false;
+            mp.adrenaline = 0;
+            mp.adrenalineModeActive = false;
+        }
+
 
         public override bool PreAI(NPC npc)
         {
