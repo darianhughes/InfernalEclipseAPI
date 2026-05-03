@@ -588,7 +588,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                     damageMod *= 1.375f;
                 else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
                          projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
-                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam") || projectile.ModProjectile.Name.Contains("AbyssalApparition"))
+                         projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam") || projectile.ModProjectile.Name.Contains("AbyssalApparition") ||
+                         projectile.ModProjectile.Name.Contains("DyingReality"))
                     damageMod *= 1.35f;
                 else
                     damageMod *= 2.2f;
@@ -601,7 +602,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
                          projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
                          projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam") || projectile.ModProjectile.Name.Contains("AbyssalApparition") ||
-                         (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp")))
+                         (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp")) ||
+                         projectile.ModProjectile.Name.Contains("DyingReality"))
                     damageMod *= 1.25f;
                 else
                     damageMod *= 1.675f;
@@ -614,7 +616,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 else if (projectile.ModProjectile.Name.Contains("Blizzard") || projectile.ModProjectile.Name.Contains("Ice") || projectile.ModProjectile.Name.Contains("Glacier") ||
                          projectile.ModProjectile.Name.Contains("Beholder") || projectile.ModProjectile.Name.Contains("VoidEye") || projectile.ModProjectile.Name.Contains("SoulSteal") ||
                          projectile.ModProjectile.Name.Contains("EradicationRay") || projectile.ModProjectile.Name.Contains("EradicationBeam") || projectile.ModProjectile.Name.Contains("AbyssalApparition") ||
-                         (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp")))
+                         (projectile.ModProjectile.Name.Contains("Viscount") && !projectile.ModProjectile.Name.Contains("Rock") && !projectile.ModProjectile.Name.Contains("Stomp")) ||
+                         projectile.ModProjectile.Name.Contains("DyingReality"))
                     damageMod *= 1.1f;
                 else
                     damageMod *= 1.15f;

@@ -33,6 +33,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         public static bool DesperationCanDie = false;
         public static bool DesperationEnteringPortal = false;
         public static bool DesperationHasEmergedFromFirstPortal = false;
+        public static bool HasDisplayedPhase2Text = false;
         public static int DesperationEntryTimer = 0;
         public static int DesperationChargeTimer = 0;
         public static int DesperationEntryPortalIndex = -1;
@@ -61,6 +62,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             DesperationEntryPortalIndex = -1;
             DesperationHeadEnteredPortal = false;
             DesperationPostEntryTimer = 0;
+
+            HasDisplayedPhase2Text = false;
         }
 
         public override bool PreAI(NPC npc)
@@ -88,6 +91,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
                 if (npc.Distance(destination) > 2400f)
                     npc.velocity += SafeNormalize(destination - npc.Center, Vector2.UnitY) * turnSpeed;
+            }
+
+            if (npc.Infernum().ExtraAI[Phase2IntroductionAnimationTimerIndex] >= DoGPhase2IntroPortalGate.Phase2AnimationTime && !HasDisplayedPhase2Text)
+            {
+                LumUtils.BroadcastLocalizedText("Mods.CalamityMod.Status.Boss.DoGPhase2", Color.Cyan);
+                DialogueDisplaySystem.StartDialogue("Mods.CalamityMod.DevourerOfGods.Phases", npc, 2, 120, false, new BossText());
+                HasDisplayedPhase2Text = true;
             }
 
             if (DesperationHasTriggered || DesperationCanDie)
@@ -437,8 +447,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                         npc.damage = npc.defDamage;
 
                         SpawnDesperationFireballs(npc, target);
-                        SelfDamageAndLaserWall(npc, target, ref attackTimer, ref damageImmunityCountdown);
-                        SpawnExitChargeGate(npc, portalTelegraphTime);
+                        SelfDamageAndLaserWall(npc, target, ref attackTimer, ref damageImmunityCountdown, ref portalTelegraphTime);
 
                         // mark that desperation is active (no special-case logic anymore)
                         DesperationHasEmergedFromFirstPortal = true;
@@ -477,25 +486,42 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             }
         }
 
-        private static void SelfDamageAndLaserWall(NPC npc, Player target, ref float teleportTimer, ref float postTeleportTimer)
+        private static void SelfDamageAndLaserWall(NPC npc, Player target, ref float teleportTimer, ref float postTeleportTimer, ref float portalTelegraphTime)
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
 
-            int damageDone = BossRushEvent.BossRushActive ? 15000 : 7200;
+            float lifeRatio = npc.life / (float)npc.lifeMax;
+
+            int damageDone = BossRushEvent.BossRushActive ? 18000 : 10000;
 
             npc.life -= damageDone;
 
             CombatText.NewText(npc.Hitbox, CombatText.DamagedHostile, damageDone, true);
             npc.HitEffect(0, damageDone);
 
+            int bType = Main.rand.Next(0, (lifeRatio < 0.05f ? 6 : 2));
+
+            float size = MathHelper.Max(300 * (lifeRatio * 10), 170f);
+            //Main.NewText(size);
+
+            Projectile.NewProjectile(
+                npc.GetSource_FromAI(),
+                target.Center + Main.rand.NextVector2CircularEdge(600f, 600f),
+                Vector2.Zero,
+                ModContent.ProjectileType<DoGLaserWalls>(),
+                DevourerofGodsHead.LaserWallDamage,
+                0f,
+                Main.myPlayer,
+                0.35f,
+                size,
+                bType
+            );
+
             if (npc.life <= 1000 && DesperationHasEmergedFromFirstPortal)
             {
                 DesperationCanDie = true;
-                DesperationHasTriggered = false;
 
-                npc.dontTakeDamage = true;
-                npc.damage = 0;
                 npc.life = 1;
 
                 npc.Infernum().ExtraAI[PerformingSpecialAttackFlagIndex] = 0f;
@@ -517,25 +543,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                 }
 
                 PreDesperationProjectileCleanup();
-
-                npc.netUpdate = true;
                 return;
             }
 
-            int bType = Main.rand.Next(0, 2);
-
-            Projectile.NewProjectile(
-                npc.GetSource_FromAI(),
-                target.Center + Main.rand.NextVector2CircularEdge(600f, 600f),
-                Vector2.Zero,
-                ModContent.ProjectileType<DoGLaserWalls>(),
-                DevourerofGodsHead.LaserWallDamage,
-                0f,
-                Main.myPlayer,
-                0.45f,
-                170f,
-                bType
-            );
+            SpawnExitChargeGate(npc, portalTelegraphTime);
 
             npc.netUpdate = true;
         }
@@ -606,10 +617,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
         private static void SpawnDesperationFireballs(NPC npc, Player target)
         {
-            int fireballCount = 10;
+            int fireballCount = 6;
 
+            /*
             if (npc.life / (float)npc.lifeMax < 0.05f)
                 fireballCount -= 2;
+            */
 
             float flameBurstOffsetAngle = Main.rand.NextFloat(MathHelper.TwoPi);
 
@@ -705,6 +718,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             DesperationPostEntryTimer = 0;
 
             PreDesperationProjectileCleanup();
+            LumUtils.BroadcastLocalizedText("Mods.CalamityMod.Status.Boss.DoGHeadDeath2", Color.Cyan);
             DialogueDisplaySystem.StartDialogueOnClient("Mods.CalamityMod.DevourerOfGods.Death", npc, 1, 60, false, new BossText());
 
             SoundEngine.PlaySound(DevourerofGodsHead.SpawnSound, head.Center);
@@ -783,6 +797,24 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             return entity.type == ModContent.NPCType<DevourerofGodsHead>() ||
                    entity.type == ModContent.NPCType<DevourerofGodsBody>() ||
                    entity.type == ModContent.NPCType<DevourerofGodsTail>();
+        }
+
+        public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
+        {
+            if (npc.type == ModContent.NPCType<DevourerofGodsHead>()) return base.CanHitPlayer(npc, target, ref cooldownSlot);
+
+            if (!DoGChanges.DesperationHasTriggered) return base.CanHitPlayer(npc, target, ref cooldownSlot);
+
+            return false;
+        }
+
+        public override void PostAI(NPC npc)
+        {
+            if (npc.type == ModContent.NPCType<DevourerofGodsHead>()) return;
+
+            if (!DoGChanges.DesperationHasTriggered) return;
+
+            npc.immortal = true;
         }
 
         public override void ModifyIncomingHit(NPC npc, ref NPC.HitModifiers modifiers)

@@ -23,7 +23,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                     ref float hasEnteredFinalPhaseFlag =  ref dog.Infernum().ExtraAI[DoGPhase1HeadBehaviorOverride.HasEnteredFinalPhaseFlagIndex];
 
                     if (DoGChanges.DesperationHasTriggered || DoGChanges.DesperationCanDie)
-                        return MusicLoader.GetMusicSlot(Mod, "Assets/Music/LastBattleDesperation");
+                        return MusicLoader.GetMusicSlot(Mod, "Assets/Music/LastBattleDesperationCut");
 
                     if (hasEnteredFinalPhaseFlag == 1f && InfernalConfig.Instance.DoGRagnarok == DoGSong.On)
                         return MusicLoader.GetMusicSlot(Mod, "Assets/Music/LastBattle");
