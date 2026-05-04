@@ -283,51 +283,6 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             }
         }
 
-        public override void OnKill(NPC npc)
-        {
-            if (npc.type == NPCID.TheDestroyer)
-            {
-                InfernalWorld.dreadonDestroyerDialoguePlayed = false;
-                InfernalWorld.dreadonDestroyer2DialoguePlayed = false;
-            }
-            if (npc.type == NPCID.Plantera)
-            {
-                InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
-                //InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
-            }
-            if (npc.type == ModContent.NPCType<BrimstoneElemental>() || npc.type == ModContent.NPCType<AquaticScourgeHead>())
-            {
-                InfernalWorld.sulfurScourgeDialoguePlayed = false;
-                InfernalWorld.brimstoneDialoguePlayed = false;
-            }
-            if (npc.type == ModContent.NPCType<Yharon>())
-            {
-                InfernalWorld.yharonDischarge = false;
-                InfernalWorld.yharonSmasher = false;
-            }
-        }
-
-        public override bool CheckDead(NPC npc)
-        {
-            if (npc.type == NPCID.TheDestroyer)
-            {
-                InfernalWorld.dreadonDestroyerDialoguePlayed = false;
-                InfernalWorld.dreadonDestroyer2DialoguePlayed = false;
-            }
-            if (npc.type == NPCID.Plantera)
-            {
-                InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
-                //InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
-            }
-            if (npc.type == ModContent.NPCType<BrimstoneElemental>() || npc.type == ModContent.NPCType<AquaticScourgeHead>())
-            {
-                InfernalWorld.sulfurScourgeDialoguePlayed = false;
-                InfernalWorld.brimstoneDialoguePlayed = false;
-            }
-
-            return base.CheckDead(npc);
-        }
-
         public static bool TwoMechsDowned()
         {
             return (NPC.downedMechBoss1 && NPC.downedMechBoss2) || (NPC.downedMechBoss1 && NPC.downedMechBoss3) || (NPC.downedMechBoss2 && NPC.downedMechBoss3);

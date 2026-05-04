@@ -2479,12 +2479,17 @@ Configs: {
 
 		DoGRagnarok: {
 			// Label: Ragnarok Devourer of Gods Final Phase Theme
-			// Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods final phase and desperation in Ragnaork Mode
+			// Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods' final phase and desperation in Ragnaork Mode
 		}
 
 		WarMachineBossInBossRush: {
 			// Label: Wulfrum Mothership In Boss Rush
 			// Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
+		}
+
+		MothershipMusic: {
+			// Label: Wulfrum Mothership Music
+			// Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
 		}
 	}
 
@@ -2542,17 +2547,41 @@ Configs: {
 
 		Off: {
 			// Label: Off
-			// Tooltip: ""
+			// Tooltip: The phase 3 theme will not play
 		}
 
 		DesperationOnly: {
 			// Label: Desperation Only
-			// Tooltip: ""
+			// Tooltip: The phase 3 theme will only play during the desperation attack
 		}
 
 		On: {
 			// Label: On
-			// Tooltip: ""
+			// Tooltip: The phase 3 theme will play
+		}
+	}
+
+	MothershipSong: {
+		// Tooltip: ""
+
+		Vanilla: {
+			// Label: Vanilla
+			// Tooltip: "'Boss 1' will play"
+		}
+
+		WarMachine: {
+			// Label: War Machine
+			// Tooltip: The original theme will play
+		}
+
+		Thorium: {
+			// Label: Thorium
+			// Tooltip: "'Stronger Foe' will play"
+		}
+
+		Infernum: {
+			// Label: Infernum
+			// Tooltip: "'Misanthropic Encounters' will play"
 		}
 	}
 }

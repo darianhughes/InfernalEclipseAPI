@@ -27,6 +27,10 @@ namespace InfernalEclipseAPI
 
         #region Music
         [Header("Music")]
+        [DrawTicks]
+        [DefaultValue(MothershipSong.Infernum)]
+        public MothershipSong MothershipMusic { get; set; }
+
         [DefaultValue(true)]
         public bool BereftVassalRagnarok { get; set; }
 
@@ -189,6 +193,14 @@ namespace InfernalEclipseAPI
         Off,
         DesperationOnly,
         On
+    }
+
+    public enum MothershipSong : byte
+    {
+        Vanilla,
+        WarMachine,
+        Thorium,
+        Infernum
     }
 
     public enum Difficulty : byte

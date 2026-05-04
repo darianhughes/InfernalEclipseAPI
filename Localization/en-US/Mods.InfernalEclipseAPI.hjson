@@ -2483,17 +2483,22 @@ Configs: {
 
 		BereftVassalRagnarok: {
 			Label: Ragnarok Bereft Vassal Theme
-			Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal fight in Ragnarok Mode.
+			Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal boss fight in Ragnarok Mode.
 		}
 
 		DoGRagnarok: {
 			Label: Ragnarok Devourer of Gods Final Phase Theme
-			Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods final phase and desperation in Ragnaork Mode
+			Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods' final phase and desperation in Ragnaork Mode
 		}
 
 		WarMachineBossInBossRush: {
 			Label: Wulfrum Mothership In Boss Rush
 			Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
+		}
+
+		MothershipMusic: {
+			Label: Wulfrum Mothership Music
+			Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
 		}
 	}
 
@@ -2502,47 +2507,47 @@ Configs: {
 
 		AlwaysOff: {
 			Label: Always Off
-			Tooltip: ""
+			Tooltip: Respawns will never be prevented
 		}
 
 		AlwaysOn: {
 			Label: Always On
-			Tooltip: ""
+			Tooltip: Respawns will always be prevented
 		}
 
 		Expert: {
 			Label: Expert
-			Tooltip: ""
+			Tooltip: Respawns will be prevented in Expert+ worlds
 		}
 
 		Master: {
 			Label: Master
-			Tooltip: ""
+			Tooltip: Respawns will be prevented in Master+ worlds
 		}
 
 		Legendary: {
 			Label: Legendary
-			Tooltip: ""
+			Tooltip: Respawns will be prevented in Legendary worlds
 		}
 
 		Revengence: {
 			Label: Revengence
-			Tooltip: ""
+			Tooltip: Respawns will be prevented in Revengence+ difficulty
 		}
 
 		Death: {
 			Label: Death
-			Tooltip: ""
+			Tooltip: Respawns will be prevented in Death+ difficulty
 		}
 
 		Infernum: {
 			Label: Infernum
-			Tooltip: ""
+			Tooltip: Respawns will be prevented in Infernum+ difficulty
 		}
 
 		Ragnarok: {
 			Label: Ragnarok
-			Tooltip: ""
+			Tooltip: Respawns will be prevented in Ragnarok difficulty
 		}
 	}
 
@@ -2551,17 +2556,41 @@ Configs: {
 
 		Off: {
 			Label: Off
-			Tooltip: ""
+			Tooltip: The phase 3 theme will not play
 		}
 
 		DesperationOnly: {
 			Label: Desperation Only
-			Tooltip: ""
+			Tooltip: The phase 3 theme will only play during the desperation attack
 		}
 
 		On: {
 			Label: On
-			Tooltip: ""
+			Tooltip: The phase 3 theme will play
+		}
+	}
+
+	MothershipSong: {
+		Tooltip: ""
+
+		Vanilla: {
+			Label: Vanilla
+			Tooltip: "'Boss 1' will play"
+		}
+
+		WarMachine: {
+			Label: War Machine
+			Tooltip: The original theme will play
+		}
+
+		Thorium: {
+			Label: Thorium
+			Tooltip: "'Stronger Foe' will play"
+		}
+
+		Infernum: {
+			Label: Infernum
+			Tooltip: "'Misanthropic Encounters' will play"
 		}
 	}
 }
