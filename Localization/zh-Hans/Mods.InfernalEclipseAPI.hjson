@@ -839,12 +839,35 @@ ItemTooltip: {
 		Yharim: 亚利姆
 	}
 
+	/* PutridRelic:
+		'''
+		While your first attempt may reach farther than the next, it was only raw reaction that got you there
+		Strategize, plan out your moves, and the enemy will fall to your skill, not luck
+		''' */
+	/* TurkorRelic:
+		'''
+		Underestimating your opponent might be your fatal mistake
+		May you learn from it for the rest of your journey
+		''' */
+	/* SubspaceRelic:
+		'''
+		You saw the circle for what it is: predictable, finite, stagnating
+		When you recognize its flow, keep every turn in your mind; memorize the pattern you see before you
+		All it takes to escape the circle is to bend the line in just the right direction
+		Move forward and breach through infinity
+		''' */
+
 	AstrageldonRelic: {
 		Line1: 你为自己选择了巨大的苦难。
 		Line2: 即便这一抉择时常痛苦艰难，
 		Line3: 你所克服的逆境终将结出可贵的硕果。
 	}
 
+	/* PrimordialsRelic:
+		'''
+		You've done well, taking down Thorium. Only ten remain.
+		Remember to not force yourself to keep going. Take breaks when needed, and it will make a world of difference.
+		''' */
 	AvatarRelic:
 		'''
 		你做得很好。

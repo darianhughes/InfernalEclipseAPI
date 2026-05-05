@@ -501,12 +501,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
-            bool hasCatalyst = false;
             #region Catalyst
             if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
             {
-                hasCatalyst = true;
-
                 if (InfernalConfig.Instance.CalamityBalanceChanges)
                 {
                     #region Ranger
@@ -4444,7 +4441,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Birthplace of Stars
                 if (calBardHeal.TryFind("StarBirth", out ModItem starBirth))
                 {
-                    if (item.type == starBirth.Type && hasCatalyst)
+                    if (item.type == starBirth.Type && catalyst != null)
                     {
                         TrySetHealAmmount(item, 2);
                         item.autoReuse = true;
@@ -4497,7 +4494,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Singularity
-                if (hasCatalyst)
+                if (catalyst != null)
                 {
                     if (GetItem(calBardHeal, "Singularity", item))
                     {
@@ -4575,7 +4572,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     if (GetItem(calBardHeal, "TimesOldRoman", item))
                     {
                         item.crit = 0;
-                        item.damage = 400;
+                        item.damage = 1000;
                         item.useTime = 24;
                         item.useAnimation = 24;
                     }
@@ -4660,7 +4657,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Supercluster
-                if (hasCatalyst)
+                if (catalyst != null)
                 {
                     if (GetItem(calBardHeal, "Supercluster", item))
                     {
@@ -4736,7 +4733,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 #endregion
 
                 #region Armor
-                if (hasCatalyst)
+                if (catalyst != null)
                 {
                     if (GetItem(calBardHeal, "IntergelacticCloche", item))
                     {
@@ -4752,12 +4749,29 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
-            #region Thorium Bosses Reworked
+            #region Thorium Helheim
             if (ModLoader.TryGetMod("ThoriumRework", out Mod rethorium) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
                 if (GetItem(rethorium, "HeadHunter", item))
                 {
                     item.damage = 60;
+                }
+
+                if (GetItem(rethorium, "BiterofSouls", item))
+                {
+                    item.damage = 45;
+                    item.useTime = 8;
+                    item.useAnimation = 8;
+                }
+
+                if (GetItem(rethorium, "EaterPiper", item))
+                {
+                    item.damage = 66;
+                }
+
+                if (GetItem(rethorium, "FluteofCurses", item))
+                {
+                    item.damage = 40;
                 }
 
                 #region Melee

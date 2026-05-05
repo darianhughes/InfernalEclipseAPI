@@ -2,6 +2,7 @@
 using System.Reflection;
 using CalamityMod;
 using CalamityMod.Enums;
+using CalamityMod.Items.Armor.Demonshade;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Summon;
 using InfernalEclipseAPI.Content.Items.Materials;
@@ -170,6 +171,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ItemType<TheBurningSky>())
                 {
+                    item.damage = 259;
                     item.DamageType = ThoriumDamageBase<HealerDamage>.Instance;
                     item.mana = 35;
                 }
@@ -642,6 +644,16 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         "BonusHealerHealBonus",
                         player,
                         -11
+                        });
+                    }
+
+                    if (item.type == ItemType<DemonshadeGreaves>())
+                    {
+                        InfernalCrossmod.Thorium.Mod.Call(new object[]
+                        {
+                            "BonusHealerHealBonus",
+                            player,
+                            -15
                         });
                     }
 

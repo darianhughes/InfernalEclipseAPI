@@ -21,6 +21,7 @@ using ThoriumMod.NPCs.BossForgottenOne;
 using ThoriumMod.Buffs;
 using CalamityMod.Buffs.DamageOverTime;
 using InfernalEclipseAPI.Core.World;
+using ThoriumMod.NPCs.BossGraniteEnergyStorm;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
@@ -89,15 +90,15 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             {
                 if (entity.type == ModContent.NPCType<BoreanStrider>())
                 {
-                    entity.defense = 125;
+                    entity.defense = 100;
                 }
                 if (entity.type == ModContent.NPCType<BoreanStriderPopped>())
                 {
-                    entity.defense = 20;
+                    entity.defense = 18;
                 }
                 if (entity.type == ModContent.NPCType<BoreanHopper>())
                 {
-                    entity.defense = 125;
+                    entity.defense = 100;
                 }
             }
 
@@ -119,7 +120,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
-            //Boss Rush, 
+            //Boss Rush
             if (GetCalDifficulty("bossrush"))
             {
                 string name = npc.ModNPC?.Name ?? "";
@@ -158,25 +159,22 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                if (npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
-                {
-                    npc.lifeMax += (int)(npc.lifeMax * 1.9f);
-                }
-                if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
+                if (npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish") )
                 {
                     npc.lifeMax += npc.lifeMax;
                 }
-                if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
-                {
-                    npc.lifeMax += (int)(0.75 * npc.lifeMax);
-                }
-                if (npc.type == ModContent.NPCType<FallenBeholder>() || npc.type == ModContent.NPCType<FallenBeholder2>())
+                if (npc.type == ModContent.NPCType<FallenBeholder>() || npc.type == ModContent.NPCType<FallenBeholder2>() ||
+                    npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
                 {
                     npc.lifeMax += (int)(npc.lifeMax * 0.5f);
                 }
                 if (npc.type == ModContent.NPCType<ForgottenOne>() || npc.type == ModContent.NPCType<ForgottenOneCracked>() || npc.type == ModContent.NPCType<ForgottenOneReleased>())
                 {
                     npc.lifeMax += (int)(npc.lifeMax * 0.25f);
+                }
+                if (npc.type == ModContent.NPCType<GraniteEnergyStorm>() || npc.ModNPC?.Name?.Contains("StarScouter") == true)
+                {
+                    npc.lifeMax += (int)(npc.lifeMax * 0.05f);
                 }
                 string name = npc.ModNPC?.Name ?? "";
                 if (name.Contains("SlagFury") || name.Contains("Aquaius") || name.Contains("Omnicide") || name.Contains("DreamEater"))
@@ -186,53 +184,24 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             }
             else
             {
-                if (GetFargoDifficullty("EternityMode"))
+                if (GetCalDifficulty("death"))
                 {
                     if (npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
                     {
-                        npc.lifeMax += (int)(npc.lifeMax * 1.65f);
+                        npc.lifeMax += (int)(npc.lifeMax * 0.25f);
                     }
-                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
-                    {
-                        npc.lifeMax += (int)(0.75 * npc.lifeMax);
-                    }
-                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
+                    if (npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
                     {
                         npc.lifeMax += (int)(0.5 * npc.lifeMax);
-                    }
-
-                    npc.lifeMax += (int)(0.25 * npc.lifeMax);
-                }
-                else if (GetCalDifficulty("death"))
-                {
-                    if (npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
-                    {
-                        npc.lifeMax += (int)(npc.lifeMax * 1.4f);
-                    }
-                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
-                    {
-                        npc.lifeMax += (int)(0.5 * npc.lifeMax);
-                    }
-                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
-                    {
-                        npc.lifeMax += (int)(0.375 * npc.lifeMax);
                     }
 
                     npc.lifeMax += (int)(0.2 * npc.lifeMax);
                 }
                 else if (GetCalDifficulty("revengeance"))
                 {
-                    if (npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
-                    {
-                        npc.lifeMax += (int)(npc.lifeMax * 1.15f);
-                    }
-                    if (npc.ModNPC?.Name?.Contains("GraniteEnergyStorm") == true || npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
+                    if (npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
                     {
                         npc.lifeMax += (int)(0.25 * npc.lifeMax);
-                    }
-                    if (npc.ModNPC?.Name?.Contains("StarScouter") == true)
-                    {
-                        npc.lifeMax += (int)(0.1875 * npc.lifeMax);
                     }
 
                     npc.lifeMax += (int)(0.1 * npc.lifeMax);
