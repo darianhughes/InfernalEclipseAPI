@@ -11,6 +11,7 @@ using InfernalEclipseAPI.Core.Systems;
 using Terraria;
 using System.Security.Policy;
 using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using ThoriumMod.Items.BardItems;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -194,11 +195,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         public override void SetDefaults(Projectile entity)
         {
+            #region Vanilla
             if (entity.type == ProjectileID.PewMaticHornShot && InfernalConfig.Instance.VanillaBalanceChanges)
             {
                 entity.penetrate = 2;
             }
+            #endregion
 
+            #region Clamity
             if (ModLoader.TryGetMod("Clamity", out Mod clam))
             {
                 if (entity.type == clam.Find<ModProjectile>("FireBarrage").Type)
@@ -222,7 +226,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.damage = 150;
                 }
             }
+            #endregion
 
+            #region Thorium
             if (ModLoader.TryGetMod("Thorium", out Mod thorium) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
                 if (entity.type == thorium.Find<ModProjectile>("SeashellCastanettessPro1").Type)
@@ -303,8 +309,10 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     //    entity.idStaticNPCHitCooldown = 1;
                     //}
                 }
-            } 
+            }
+            #endregion
 
+            #region Ragnarok
             /*
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
@@ -373,7 +381,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 }
             }
             */
+            #endregion
 
+            #region Unofficial Calamity Bard and Healer
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
                 if (entity.type == calBardHeal.Find<ModProjectile>("ExoSound").Type)
@@ -389,7 +399,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     }
                 }
 
-                if (ModLoader.TryGetMod("CatalystMod", out _))
+                if (ModLoader.HasMod("CatalystMod"))
                 {
                     if (entity.type == calBardHeal.Find<ModProjectile>("StarBirth").Type)
                     {
@@ -397,7 +407,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     }
                 }
             }
+            #endregion
 
+            #region Thorium Helhiem
             if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && InfernalConfig.Instance.ThoriumBalanceChangess)
             {
                 if (GetProj(entity, thorRework, "DemonBloodSword") ||
@@ -440,7 +452,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.penetrate = 5;
                 }
             }
+            #endregion
 
+            #region Secrets of the Shadows
             if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
             {
                 if (GetProj(entity, sots, "BetrayersSlash"))
@@ -456,7 +470,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.usesLocalNPCImmunity = true;
                 }
             }
+            #endregion
 
+            #region Unofficial SOTS Bard, Healer, and Thrower
             if (ModLoader.TryGetMod("SOTSBardHealer", out Mod sotsBH) && InfernalConfig.Instance.SOTSBalanceChanges)
             {
                 if (GetProj(entity, sotsBH, "DualStylophonePro"))
@@ -475,7 +491,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     if (InfernalConfig.Instance.SOTSThrowerToRogue) entity.DamageType = ModContent.GetInstance<VoidRogue>();
                 }
             }
+            #endregion
 
+            #region Consolaria
             if (InfernalCrossmod.Consolaria.Loaded && InfernalConfig.Instance.ConsolariaBalanceChanges)
             {
                 if (GetProj(entity, InfernalCrossmod.Consolaria.Mod, "TonbogiriSpear"))
@@ -483,6 +501,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }
             }
+            #endregion
         }
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
@@ -549,11 +568,55 @@ namespace InfernalEclipseAPI.Common.Projectiles
                         }
                     }
                 }
+
+                if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+                {
+                    int JadeLampID = consolaria.Find<ModProjectile>("JadeSeal_Lamp").Type;
+                    int GoldLampID = consolaria.Find<ModProjectile>("JadeSeal_GoldenLamp").Type;
+
+                    if (projectile.ModProjectile.Name == "JadeSeal_Lamp")
+                    {
+                        if (PlayerHasProjectile(projectile.owner, GoldLampID))
+                            KillPlayerProjectiles(projectile.owner, GoldLampID);
+                    }
+
+                    if (projectile.ModProjectile.Name == "JadeSeal_GoldenLamp")
+                    {
+                        if (PlayerHasProjectile(projectile.owner, JadeLampID))
+                            KillPlayerProjectiles(projectile.owner, JadeLampID);
+                    }
+                }
+            }
+        }
+
+        private static bool PlayerHasProjectile(int owner, int projType)
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.owner == owner && proj.type == projType)
+                    return true;
+            }
+            return false;
+        }
+
+        private static void KillPlayerProjectiles(int owner, int projType)
+        {
+            if (projType <= 0) return;
+
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (proj.active && proj.owner == owner && proj.type == projType)
+                {
+                    proj.Kill();
+                }
             }
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            #region Secrets of the Shadows
             if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
             {
                 bool SOTSProj(string name, out int type)
@@ -634,6 +697,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     target.AddBuff(ModContent.BuffType<BrainRot>(), 60);
                 }
             }
+            #endregion
         }
 
         private static bool GetProj(Projectile entity, Mod mod, string item)

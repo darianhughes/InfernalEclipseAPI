@@ -1,5 +1,7 @@
 ﻿using CalamityMod;
+using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Cooldowns;
+using CalamityMod.Items.Armor.Silva;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Cooldowns;
 using InfernumMode.Content.Items.Accessories;
@@ -46,6 +48,9 @@ namespace InfernalEclipseAPI.Content.Buffs
             player.GetModPlayer<InfernumPlayer>().SetValue<bool>("SealocketMechanicalEffectsApply", false);
 
             player.AddCooldown(PermafrostConcoction.ID, CalamityUtils.SecondsToFrames(180));
+            player.AddCooldown(SilvaRevive.ID, SilvaArmor.ReviveCooldown);
+            player.AddCooldown(NebulousCore.ID, CalamityUtils.SecondsToFrames(90));
+
             player.AddCooldown(GlobalDodge.ID, CalamityUtils.SecondsToFrames(180));
             player.AddCooldown(CalamityMod.Cooldowns.ChaosState.ID, CalamityUtils.SecondsToFrames(180));
 

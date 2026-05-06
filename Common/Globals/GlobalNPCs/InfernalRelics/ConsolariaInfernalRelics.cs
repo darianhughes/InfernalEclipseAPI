@@ -24,13 +24,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                 if (npc.type == console.Find<ModNPC>("TurkortheUngrateful").Type)
                 {
                     bool firstTurkorKill() => Consolaria.Common.ModSystems.DownedBossSystem.downedTurkor;
+                    npcLoot.AddConditionalPerPlayer(firstTurkorKill, ModContent.ItemType<LoreTurkor>(), desc: DropHelper.FirstKillText);
 
                     npcLoot.AddIf(isInfernum, ModContent.ItemType<TurkorTheUngratefulRelic>());
                 }
                 if (npc.type == console.Find<ModNPC>("Ocram").Type)
                 {
                     bool firstOcramKill() => Consolaria.Common.ModSystems.DownedBossSystem.downedOcram;
-
+                    npcLoot.AddConditionalPerPlayer(firstOcramKill, ModContent.ItemType<LoreOcram>(), desc: DropHelper.FirstKillText);
 
                     npcLoot.AddIf(isInfernum, ModContent.ItemType<OcramRelic>());
                 }

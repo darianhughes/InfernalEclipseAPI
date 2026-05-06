@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Utils;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Multi
 {
@@ -71,20 +72,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Mult
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            Mod mod;
-            ModItem modItem;
-            if (!ModLoader.TryGetMod("ThoriumRework", out mod) || !mod.TryFind("Oneirophobia", out modItem) || item.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
+            if (!ModLoader.TryGetMod("ThoriumRework", out Mod mod) || !mod.TryFind("Oneirophobia", out ModItem modItem) || item.type != modItem.Type || !InfernalConfig.Instance.ThoriumBalanceChangess || ModLoader.TryGetMod("WHummusMultiModBalancing", out Mod WHBalance))
                 return;
+
             string str = Main.LocalPlayer.slotsMinions > 0.0 ? Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ScytheSummonOn") : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ScytheSummon");
-            Color color = Color.Lerp(Color.White, new Color(30, 144, byte.MaxValue), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
-            tooltips.Add(new TooltipLine(Mod, "OneirophobiaInfo1", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.OneirophobiaSummon"))
-            {
-                OverrideColor = new Color?(color)
-            });
-            tooltips.Add(new TooltipLine(Mod, "OneirophobiaInfo2", str)
-            {
-                OverrideColor = new Color?(color)
-            });
+            //Color color = Color.Lerp(Color.White, new Color(30, 144, byte.MaxValue), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
+
+            InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Oneirophobia"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.OneirophobiaSummon") + "\n" + str, true);
         }
     }
 }

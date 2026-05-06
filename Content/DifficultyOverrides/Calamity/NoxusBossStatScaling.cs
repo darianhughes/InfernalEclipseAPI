@@ -1,13 +1,10 @@
 ﻿using System.Reflection;
-using System.Security.Policy;
 using CalamityMod;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Core.GlobalInstances.Systems;
-using NoxusBoss.Content.NPCs.Bosses.Avatar.FirstPhaseForm;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.Projectiles;
-using NoxusBoss.Content.NPCs.Bosses.Avatar.Projectiles.SolynProjectiles;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.SecondPhaseForm;
 using NoxusBoss.Content.NPCs.Bosses.Draedon;
 using NoxusBoss.Content.NPCs.Bosses.Draedon.Projectiles;
@@ -16,7 +13,7 @@ using NoxusBoss.Content.NPCs.Bosses.NamelessDeity.Projectiles;
 using Terraria.DataStructures;
 using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
 {
     [JITWhenModsEnabled(InfernalCrossmod.NoxusBoss.Name)]
     [ExtendsFromMod(InfernalCrossmod.NoxusBoss.Name)]
@@ -54,14 +51,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if ((num1 & num2) != 0)
             {
                 ModNPC modNpc1 = npc.ModNPC;
-                if ((modNpc1 != null ? (((ModType)modNpc1).Name.Contains("MarsBody") ? 1 : 0) : 0) != 0)
+                if ((modNpc1 != null ? modNpc1.Name.Contains("MarsBody") ? 1 : 0 : 0) != 0)
                 {
                     npc.lifeMax += (int)(npc.lifeMax * 0.25f);
                 }
                 else
                 {
                     ModNPC modNpc3 = npc.ModNPC;
-                    if ((modNpc3 != null ? (((ModType)modNpc3).Name.Contains("NamelessDeityBoss") ? 1 : 0) : 0) != 0)
+                    if ((modNpc3 != null ? modNpc3.Name.Contains("NamelessDeityBoss") ? 1 : 0 : 0) != 0)
                     {
                         npc.lifeMax += (int)(npc.lifeMax * 0.25f);
                     }
@@ -75,7 +72,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
                     npc.lifeMax += (int)(0.20 * npc.lifeMax);
                 }
                 else
-                    npc.lifeMax += (int)(((double).35) * (double)npc.lifeMax);
+                    npc.lifeMax += (int)((double).35 * npc.lifeMax);
             }
         }
 

@@ -1,4 +1,7 @@
-﻿using CalamityHunt.Common.Players;
+﻿using CalamityHunt.Common.DropRules;
+using CalamityHunt;
+using System.Linq;
+using CalamityHunt.Common.Players;
 using CalamityMod;
 using CalamityMod.CalPlayer;
 using CalamityMod.Items.Mounts;
@@ -37,6 +40,8 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
         }
     }
 
+    [JITWhenModsEnabled("CalamityHunt")]
+    [ExtendsFromMod("CalamityHunt")]
     public class HuntInfernalRelics : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
@@ -47,6 +52,24 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                 if (npc.type == hunt.Find<ModNPC>("Goozma").Type)
                 {
                     npcLoot.AddIf(isInfernum, ModContent.ItemType<GoozmaRelic>());
+
+                    int relic = ModContent.ItemType<CalamityHunt.Content.Items.Placeable.GoozmaInfernumRelic>();
+
+                    npcLoot.RemoveWhere(rule =>
+                    {
+                        if (rule is CommonDrop directDrop && directDrop.itemId == relic)
+                            return true;
+
+                        if (rule is LeadingConditionRule leading)
+                        {
+                            return leading.ChainedRules.Any(chain =>
+                                chain.RuleToChain is CommonDrop drop &&
+                                drop.itemId == relic
+                            );
+                        }
+
+                        return false;
+                    });
                 }
             }
         }

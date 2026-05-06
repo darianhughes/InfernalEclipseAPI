@@ -151,14 +151,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 {
                     if (player.active && !player.dead)
                     {
-                        player.ClearBuff(ModContent.BuffType<RageMode>());
-                        player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
-
-                        CalamityPlayer mp = player.Calamity();
-                        mp.rage = 0;
-                        mp.rageModeActive = false;
-                        mp.adrenaline = 0;
-                        mp.adrenalineModeActive = false;
+                        ClearRageAndAdrenaline(player);
 
                         if (InfernalCrossmod.Thorium.Loaded)
                         {
@@ -185,6 +178,37 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             }
         }
 
+        public static void ClearRageAndAdrenaline()
+        {
+            foreach (Player player in Main.player)
+            {
+                if (player.active && !player.dead)
+                {
+                    player.ClearBuff(ModContent.BuffType<RageMode>());
+                    player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+
+                    CalamityPlayer mp = player.Calamity();
+                    mp.rage = 0;
+                    mp.rageModeActive = false;
+                    mp.adrenaline = 0;
+                    mp.adrenalineModeActive = false;
+                }
+            }
+        }
+
+        public static void ClearRageAndAdrenaline(Player player)
+        {
+            player.ClearBuff(ModContent.BuffType<RageMode>());
+            player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+
+            CalamityPlayer mp = player.Calamity();
+            mp.rage = 0;
+            mp.rageModeActive = false;
+            mp.adrenaline = 0;
+            mp.adrenalineModeActive = false;
+        }
+
+
         public override bool PreAI(NPC npc)
         {
             if (!npc.active) return base.PreAI(npc);
@@ -209,7 +233,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
                 }
 
-                if (InfernalConfig.Instance.PreventBossCheese && npc.type == ModContent.NPCType<HealerShieldCrystal>())
+                if (npc.type == ModContent.NPCType<HealerShieldCrystal>())
                 {
                     player.ClearBuff(ModContent.BuffType<RageMode>());
                     player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
@@ -257,51 +281,6 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     pool.Remove(InfernalCrossmod.SOTS.Mod.Find<ModNPC>("HallowTreasureSlime").Type);
                 }
             }
-        }
-
-        public override void OnKill(NPC npc)
-        {
-            if (npc.type == NPCID.TheDestroyer)
-            {
-                InfernalWorld.dreadonDestroyerDialoguePlayed = false;
-                InfernalWorld.dreadonDestroyer2DialoguePlayed = false;
-            }
-            if (npc.type == NPCID.Plantera)
-            {
-                InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
-                //InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
-            }
-            if (npc.type == ModContent.NPCType<BrimstoneElemental>() || npc.type == ModContent.NPCType<AquaticScourgeHead>())
-            {
-                InfernalWorld.sulfurScourgeDialoguePlayed = false;
-                InfernalWorld.brimstoneDialoguePlayed = false;
-            }
-            if (npc.type == ModContent.NPCType<Yharon>())
-            {
-                InfernalWorld.yharonDischarge = false;
-                InfernalWorld.yharonSmasher = false;
-            }
-        }
-
-        public override bool CheckDead(NPC npc)
-        {
-            if (npc.type == NPCID.TheDestroyer)
-            {
-                InfernalWorld.dreadonDestroyerDialoguePlayed = false;
-                InfernalWorld.dreadonDestroyer2DialoguePlayed = false;
-            }
-            if (npc.type == NPCID.Plantera)
-            {
-                InfernalWorld.jungleSubshockPlanteraDialoguePlayed = false;
-                //InfernalWorld.jungleSlagspitterPlateraDiaglougePlayer = false;
-            }
-            if (npc.type == ModContent.NPCType<BrimstoneElemental>() || npc.type == ModContent.NPCType<AquaticScourgeHead>())
-            {
-                InfernalWorld.sulfurScourgeDialoguePlayed = false;
-                InfernalWorld.brimstoneDialoguePlayed = false;
-            }
-
-            return base.CheckDead(npc);
         }
 
         public static bool TwoMechsDowned()

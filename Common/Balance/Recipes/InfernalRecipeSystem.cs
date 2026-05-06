@@ -31,6 +31,7 @@ using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.Weapons.Ranged;
+using InfernalEclipseAPI.Content.Items.Other;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -87,9 +88,9 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 Recipe.Create(ModContent.ItemType<Rock>(), 2)
                     .AddIngredient<Rock>()
                     .AddIngredient(ItemID.StoneBlock, 30)
+                    .AddIngredient<AlloyofEden>()
                     .AddIngredient<YharonSoulFragment>(5)
-                    .AddIngredient(noxus.Find<ModItem>("MetallicChunk"))
-                    .AddIngredient<PrimordialOrchid>()
+                    .AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition)
                     .AddTile(noxus.Find<ModTile>("StarlitForgeTile"))
                     .DisableDecraft()
                     .Register();
@@ -204,13 +205,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             .Register();
                     }
 
-                    thorium.TryFind("ManaBerry", out ModItem manaberry);
+
                     if (thorRework.TryFind("InspirationRegenerationPotion", out ModItem inspRegenPotion))
                     {
                         Recipe.Create(thorRework.Find<ModItem>("InspirationRegenerationPotion").Type)
                             .AddIngredient(ItemID.BottledWater)
                             .AddIngredient<BloodOrb>(10)
-                            .AddIngredient(manaberry.Type)
+                            .AddIngredient(thorium.Find<ModItem>("ManaBerry").Type)
                             .AddTile(TileID.AlchemyTable)
                             .AddCondition(Condition.DownedSkeletron)
                             .Register();
@@ -1150,6 +1151,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             {
                                 recipe.AddIngredient(ModContent.ItemType<ChaosBlaster>());
                                 recipe.AddIngredient(ModContent.ItemType<NebulaGigabeam>());
+                                recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
                             }
                             recipe.AddIngredient(ModContent.ItemType<ChromaticMassInABottle>(), 1);
                             recipe.AddIngredient(ModContent.ItemType<Rock>(), 1);
@@ -1194,7 +1196,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 }
                 #endregion
 
-                #region Thorium Helheim (Thorium Bosses Reworked)
+                #region Thorium Helheim
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && InfernalConfig.Instance.ThoriumBalanceChangess)
                 {
                     if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
@@ -1213,6 +1215,16 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             {
                                 recipe.RemoveIngredient(ItemID.Wire);
                                 recipe.AddIngredient(ModContent.ItemType<StormlionMandible>(), 1);
+                            }
+                        }
+
+                        if (thorRework.TryFind("GildedFlyingFlute", out ModItem gff))
+                        {
+                            if (recipe.HasResult(gff))
+                            {
+                                recipe.AddIngredient(ItemID.SoulofSight, 3);
+                                recipe.AddIngredient(ItemID.SoulofMight, 3);
+                                recipe.AddIngredient(ItemID.SoulofFright, 3);
                             }
                         }
                     }
@@ -1308,10 +1320,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         if (recipe.HasResult(sots.Find<ModItem>("Tesseract")))
                         {
                             recipe.RemoveIngredient(ModContent.ItemType<AuricBar>());
-                            recipe.AddIngredient<ShadowspecBar>(5);
-                            if (InfernalCrossmod.NoxusBoss.Loaded)
-                                recipe.AddIngredient<PrimordialOrchid>(3);
+                            recipe.RemoveTile(TileID.LunarCraftingStation);
                             recipe.AddIngredient<Rock>();
+                            if (InfernalCrossmod.NoxusBoss.Loaded)
+                            {
+                                recipe.AddIngredient<AlloyofEden>(3);
+                                recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
+                            }
+                            recipe.AddTile(ModContent.TileType<DraedonsForge>());
                         }
 
                         if (recipe.HasResult(sots.Find<ModItem>("PurpleJellyfishStaff")))

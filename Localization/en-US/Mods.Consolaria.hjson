@@ -9,4 +9,77 @@ Items: {
 			You can do this consecutively up to 5 times, with knives reseting every 3 seconds
 			'''
 	}
+
+	JadeSeal: {
+		DisplayName: Jade Seal
+		Tooltip:
+			'''
+			Left click to summon a golden lantern that slowly hovers towards the cursor and heals allies
+			Right click to summon a jade lantern that hovers in place, boosting the damage and defense of allies in radius
+			Only one lantern can exist at a time
+			'''
+	}
+
+	OldViperChestplate: {
+		DisplayName: Ancient Viper Jacket
+		Tooltip:
+			'''
+			10% increased throwing damage
+			20% increased throwing velocity
+			'''
+	}
+
+	OldViperHelmet: {
+		DisplayName: Ancient Viper Helmet
+		Tooltip:
+			'''
+			10% increased throwing damage
+			33% chance not to consume thrown items
+			Increases your maximum technique points by 2
+			'''
+	}
+
+	OldViperLegs: {
+		DisplayName: Ancient Viper Pants
+		Tooltip:
+			'''
+			10% increased throwing damage
+			15% increased throwing critical strike chance
+			15% increased movement speed
+			'''
+	}
+
+	ViperChestplate: {
+		DisplayName: Viper Jacket
+		Tooltip:
+			'''
+			10% increased throwing damage
+			20% increased throwing velocity
+			'''
+	}
+
+	ViperHelmet: {
+		DisplayName: Viper Helmet
+		Tooltip:
+			'''
+			10% increased throwing damage
+			33% chance not to consume thrown items
+			Increases your maximum technique points by 2
+			'''
+		SetBonus:
+			'''
+			Throwing damage has a 10% chance to poison enemies
+			Nearby enemies take extra damage from poison and venom
+			'''
+	}
+
+	ViperLegs: {
+		DisplayName: Viper Pants
+		Tooltip:
+			'''
+			10% increased throwing damage
+			15% increased throwing critical strike chance
+			15% increased movement speed
+			'''
+	}
 }

@@ -10,7 +10,7 @@ Infernal Eclipse of Ragnarok is a ultra modded Infernum Mode addon which current
 	- Consolaria
 
 This API currently adds the following:
-	- Over 500+ Toggleable balance changes to many of the weapons and items from the included mods in the main pack to help the experience flow together better.
+	- Over 1000+ Toggleable balance changes to many of the weapons and items from the included mods in the main pack to help the experience flow together better.
 	- Merged crafting trees for many accessories trees.
 	- Cross-mod Infernum intros for any bosses that didn't already have one.
 	- Boss stat adjustments for Infernum mode to keep the difficulty consistent.
@@ -23,7 +23,7 @@ This API currently adds the following:
 
 It also includes some built-in systems such as:
 	- A new rogue/thrower class merge system with custom stealth strikes for crossmod thrower weapons using Thrower Unification.
-	- A highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode).
+	- A highly configurable mutliplayer respawn system that lets you set the number of respawns each player has during a bossfight (defaulted to 1 respawn in Infernum Mode and higher).
 	- A system that allows you to lock the Calamity difficulty.
 	- A system that allows Astrageldon to be spawned even if Moon Lord has already been defeated.
 
@@ -33,6 +33,6 @@ The mod pack was designed with Multiplayer compatibility in mind, but there are 
 
 If you have any other issues please report them in the discord (https://discord.gg/tc5nZdRvaU). 
 
-Very special thanks to the Calamity Mod, Fargo's Souls, Bereft Souls, & Community Souls Expansion teams, our donors, as well as each of the individuals for each mod in the mod pack for making this possible!
+Very special thanks to the Calamity Mod, Fargo's Souls, Bereft Souls, our donors, as well as each of the individual mod developers of each mod in the mod pack for making this possible.
 
 Created by the Infernal Eclipse of Ragnarok Team

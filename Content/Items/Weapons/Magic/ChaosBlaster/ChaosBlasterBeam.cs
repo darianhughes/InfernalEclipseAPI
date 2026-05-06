@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CalamityMod;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using Luminance.Assets;
 using Luminance.Common.Utilities;
@@ -42,7 +43,14 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster
             Projectile.usesLocalNPCImmunity = true;
             Projectile.hide = true;
             Projectile.DamageType = MythicMagic.Instance;
-            Projectile.ArmorPenetration = 500;
+            Projectile.ArmorPenetration = 75;
+        }
+
+        public override bool PreAI()
+        {
+            if (DownedBossSystem.downedBossRush)
+                Projectile.ArmorPenetration *= 10;
+            return base.PreAI();
         }
 
         public override void AI()

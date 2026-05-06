@@ -2,6 +2,7 @@
 using InfernalEclipseAPI.Common.Projectiles;
 using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
 using ThoriumMod;
 using ThoriumMod.Projectiles.Scythe;
@@ -40,6 +41,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             {
                 //if (entity.type == ragnarok.Find<ModProjectile>("ProfanedScythePro").Type) return true;
                 //if (entity.type == ragnarok.Find<ModProjectile>("ScoriaDualscythePro").Type) return true;
+            }
+
+            if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+            {
+                if (entity.type == consolaria.Find<ModProjectile>("ScytheFantasma_Use").Type) return true;
             }
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calbardhealer))
@@ -256,9 +262,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                 if (projectile.type == thorium.Find<ModProjectile>("MorningDewPro").Type) return 1.15f;
                 if (projectile.type == thorium.Find<ModProjectile>("ChristmasCheerPro").Type) return 1.00f;
             }
-            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
+            if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
             {
-                //add custom for ragnarok heights here
+                if (projectile.type == consolaria.Find<ModProjectile>("ScytheFantasma_Use").Type) return 1.0f;
             }
             return 1.5f; //default
         }

@@ -6,6 +6,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
 {
     public class CelestialIlluminationBeam : ModProjectile
     {
+
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public Player Owner => Main.player[Projectile.owner];
         public override string Texture => "InfernalEclipseAPI/Content/Items/Weapons/Legendary/CelestialIllumination/CelestialIllumination";
         public override void SetDefaults()

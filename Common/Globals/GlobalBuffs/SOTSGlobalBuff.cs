@@ -2,7 +2,8 @@
 using InfernalEclipseAPI.Core.Players;
 using SOTS;
 using SOTS.Buffs;
-using SOTS.Buffs.MinionBuffs;
+using SOTS.Buffs.Mount;
+using SOTS.Void;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
 {
@@ -25,6 +26,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
             {
                 player.SOTSPlayer().CritNightmare = false;
                 player.GetModPlayer<InfernalPlayer>().CritNightmare = true;
+            }
+
+            if (type == ModContent.BuffType<SpiritSurfer>())
+            {
+                VoidPlayer.ModPlayer(player).flatVoidRegen -= 30f;
             }
         }
     }

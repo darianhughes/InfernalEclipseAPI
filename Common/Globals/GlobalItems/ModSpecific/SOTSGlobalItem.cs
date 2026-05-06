@@ -40,6 +40,11 @@ using SOTS.Items.Fishing;
 using InfernalEclipseAPI.Content.RogueThrower;
 using InfernumMode.Content.Items.Accessories;
 using SOTS.Void;
+using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using Steamworks;
+using SOTS.Items.Secrets;
+using SOTS.Items.Void;
+using InfernalEclipseAPI.Content.Buffs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -133,6 +138,25 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     return false;
                 }
             }
+
+            if (item.ModItem is VoidConsumable)
+            {
+                if (player.HasBuff(BuffType<VoidSickness2>()))
+                {
+                    int buffIndex = player.FindBuffIndex(BuffType<VoidSickness2>());
+
+                    if (buffIndex != -1 && player.buffTime[buffIndex] >= 10 * 60)
+                    {
+                        if (player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown <= 0)
+                        {
+                            CombatText.NewText(player.Hitbox, Color.Lerp(Color.Red, Color.Magenta, 0.5f), "You don't have the appetite for that!", true);
+                            player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown = 60 * 5;
+                        }
+                        return false;
+                    }
+                }
+            }
+
             return base.CanUseItem(item, player);
         }
 
@@ -179,6 +203,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     local *= 0.667f;
                     player.GetDamage<TrueMeleeDamageClass>() -= 0.2f;
+                    player.stealthTimer = 0;
+                    player.stealth = 1f;
                     sotsPlayer.additionalHeal -= 35;
 
                     if (InfernalCrossmod.Thorium.Loaded)
@@ -540,6 +566,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     item.shootSpeed = 14;
                 }
+
+                if (item.type == ItemType<DreamLamp>() && SOTSWorld.DreamLampSolved)
+                {
+                    item.damage = 18;
+                }
             }
         }
 
@@ -834,6 +865,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<Hyperdrive>())
                 {
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Hyperdrive.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Hyperdrive.Nerf"));
+                }
+
+                if (item.type == ItemType<SpiritSurfer>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SpiritSurfer.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SpiritSurfer.Replace"));
                 }
             }
         }

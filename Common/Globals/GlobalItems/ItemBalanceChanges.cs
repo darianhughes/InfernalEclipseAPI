@@ -501,12 +501,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
-            bool hasCatalyst = false;
             #region Catalyst
             if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
             {
-                hasCatalyst = true;
-
                 if (InfernalConfig.Instance.CalamityBalanceChanges)
                 {
                     #region Ranger
@@ -618,12 +615,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
-            bool hasCalHunt = false;
             #region Calamity: Hunt of the Old God
             if (ModLoader.TryGetMod("CalamityHunt", out Mod calHunt))
             {
-                hasCalHunt = true;
-
+                /*
                 if (InfernalConfig.Instance.CalamityBalanceChanges)
                 {
                     #region Melee
@@ -672,8 +667,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     }
                     #endregion
                 }
+                */
 
-                /* Implemented by catalyst after cal 2.1
+                /* Implemented by hunt after cal 2.1
                 if (InfernalConfig.Instance.CalamityExpertAccessories)
                 {
                     if (GetItem(calHunt, "SplendorJam", item))
@@ -703,6 +699,21 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useTime = 24;
                     item.useAnimation = 24;
                     item.damage = 16;
+                }
+            }
+            #endregion
+
+            #region War Machine Invasion
+            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachineInvasion) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (UnsafeGetItem(warMachineInvasion, "WulfrumLuncher", item))
+                {
+                    item.damage = 20;
+                }
+
+                if (UnsafeGetItem(warMachineInvasion, "WulfrumBook", item))
+                {
+                    item.damage = 48;
                 }
             }
             #endregion
@@ -4430,7 +4441,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 //Birthplace of Stars
                 if (calBardHeal.TryFind("StarBirth", out ModItem starBirth))
                 {
-                    if (item.type == starBirth.Type && hasCatalyst)
+                    if (item.type == starBirth.Type && catalyst != null)
                     {
                         TrySetHealAmmount(item, 2);
                         item.autoReuse = true;
@@ -4483,7 +4494,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Singularity
-                if (hasCatalyst)
+                if (catalyst != null)
                 {
                     if (GetItem(calBardHeal, "Singularity", item))
                     {
@@ -4556,12 +4567,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Times Old Roman
-                if (hasCalHunt)
+                if (calHunt != null)
                 {
                     if (GetItem(calBardHeal, "TimesOldRoman", item))
                     {
                         item.crit = 0;
-                        item.damage = 400;
+                        item.damage = 1000;
                         item.useTime = 24;
                         item.useAnimation = 24;
                     }
@@ -4646,7 +4657,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
 
                 //Supercluster
-                if (hasCatalyst)
+                if (catalyst != null)
                 {
                     if (GetItem(calBardHeal, "Supercluster", item))
                     {
@@ -4711,7 +4722,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 333;
                 }
 
-                if (hasCalHunt)
+                if (calHunt != null)
                 {
                     if (GetItem(calBardHeal, "HarmonyoftheOldGod", item))
                     {
@@ -4722,7 +4733,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 #endregion
 
                 #region Armor
-                if (hasCatalyst)
+                if (catalyst != null)
                 {
                     if (GetItem(calBardHeal, "IntergelacticCloche", item))
                     {
@@ -4738,12 +4749,29 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
-            #region Thorium Bosses Reworked
+            #region Thorium Helheim
             if (ModLoader.TryGetMod("ThoriumRework", out Mod rethorium) && ModContent.GetInstance<InfernalConfig>().ThoriumBalanceChangess)
             {
                 if (GetItem(rethorium, "HeadHunter", item))
                 {
                     item.damage = 60;
+                }
+
+                if (GetItem(rethorium, "BiterofSouls", item))
+                {
+                    item.damage = 45;
+                    item.useTime = 8;
+                    item.useAnimation = 8;
+                }
+
+                if (GetItem(rethorium, "EaterPiper", item))
+                {
+                    item.damage = 66;
+                }
+
+                if (GetItem(rethorium, "FluteofCurses", item))
+                {
+                    item.damage = 40;
                 }
 
                 #region Melee
@@ -5501,11 +5529,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 96;
                 }
 
-                if (GetItem(sots, "DreamLamp", item))
-                {
-                    //item.damage = 26;
-                }
-
                 if (GetItem(sots, "DuneSplicer", item))
                 {
                     item.damage = 30;
@@ -5887,6 +5910,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 26;
                     item.damage = 132;
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+
+                if (thorium != null)
+                {
+                    if (UnsafeGetItem(console, "ScytheFantasma", item))
+                    {
+                        item.damage = 140;
+                    }
+
+                    if (UnsafeGetItem(console, "Omunikodo", item))
+                    {
+                        item.damage = 70;
+                    }
+
+                    if (UnsafeGetItem(console, "UtensilPoker", item))
+                    {
+                        ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
+                    }
                 }
             }
             #endregion

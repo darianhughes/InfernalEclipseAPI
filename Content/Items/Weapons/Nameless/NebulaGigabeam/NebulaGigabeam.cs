@@ -11,6 +11,7 @@ using InfernalEclipseAPI.Content.Items.Materials;
 using NoxusBoss.Content.Items;
 using NoxusBoss.Content.Tiles;
 using CalamityMod.Items.Placeables;
+using InfernalEclipseAPI.Content.Items.Other;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
 {
@@ -67,8 +68,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
             CreateRecipe()
                 .AddIngredient<ChaosBlaster>()
                 .AddIngredient<PrimordialOrchid>(5)
-                .AddIngredient<MetallicChunk>()
                 .AddIngredient<Rock>()
+                .AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition)
                 .AddTile<StarlitForgeTile>()
                 .Register();
         }

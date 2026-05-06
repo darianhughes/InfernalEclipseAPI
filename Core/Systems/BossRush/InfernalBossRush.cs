@@ -145,6 +145,13 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                                                 NPCType<KingSlimeJewelRuby>(), NPCType<Ninja>() }));
             }
 
+            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine) && InfernalConfig.Instance.WarMachineBossInBossRush)
+            {
+                Bosses.Add(new Boss(warMachine.Find<ModNPC>("WulfrumMothership").Type,
+                    permittedNPCs: new int[] { NPCType<WulfrumDrone>(), NPCType<WulfrumHovercraft>(), NPCType<WulfrumRover>(), NPCType<WulfrumGyrator>(),
+                        warMachine.Find<ModNPC>("WulfrumTank").Type, warMachine.Find<ModNPC>("WulfrumWormBody").Type, warMachine.Find<ModNPC>("WulfrumWormHead").Type, warMachine.Find<ModNPC>("WulfrumWormTail").Type}));
+            }
+
             if (InfernalCrossmod.Consolaria.Loaded)
             {
                 Bosses.Add(new Boss(ConsolariaNPC("Lepus"), permittedNPCs: new int[] { ConsolariaNPC("DisasterBunny") }));

@@ -1,7 +1,7 @@
 ﻿using CalamityMod.NPCs.GreatSandShark;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.GreatSandShark;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum
 {
     public class InfernumBossRushStatScaling : GlobalNPC
     {
@@ -24,7 +24,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides
             if ((num1 & num2) != 0)
             {
                 ModNPC modNPC14 = npc.ModNPC;
-                if ((modNPC14 != null ? (modNPC14.Name.Contains("BereftVassal") ? 1 : 0) : 0) != 0)
+                if ((modNPC14 != null ? modNPC14.Name.Contains("BereftVassal") ? 1 : 0 : 0) != 0)
                 {
                     npc.lifeMax *= 5;
                 }

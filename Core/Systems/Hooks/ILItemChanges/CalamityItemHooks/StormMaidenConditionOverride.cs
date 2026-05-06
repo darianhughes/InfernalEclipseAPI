@@ -30,18 +30,12 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.CalamityItemHooks
         }
         private static bool SpearCanBeSummonedDetour(Func<bool> orig)
         {
-            if (!ExtraSpearCondition())
+            if (!DownedGoozma())
                 return false;
 
             return orig();
         }
 
-        private static bool ExtraSpearCondition()
-        {
-            if (!BossDownedSystem.Instance.GoozmaDowned)
-                return false;
-
-            return true;
-        }
+        public static bool DownedGoozma() => BossDownedSystem.Instance.GoozmaDowned;
     }
 }

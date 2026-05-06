@@ -6,7 +6,6 @@ using CalamityMod.NPCs.ExoMechs.Artemis;
 using CalamityMod.NPCs.ExoMechs.Thanatos;
 using CalamityMod.NPCs.ProfanedGuardians;
 using CalamityMod.NPCs.SupremeCalamitas;
-using ThoriumMod.Items.Donate;
 using ThoriumMod.Utilities;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
@@ -16,12 +15,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
     {
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            int[] generatorTypes =
-            {
-                ModContent.ItemType<PlasmaGenerator>(),
-                ModContent.ItemType<AsgardianAegis>(),
-            };
-
             int[] blockedBosses =
             {
                 ModContent.NPCType<Apollo>(),
@@ -43,19 +36,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
             {
                 if (NPC.AnyNPCs(boss))
                 {
-                    foreach (int genItem in generatorTypes)
-                    {
-                        if (item.type == genItem)
-                        {
-                            player.GetThoriumPlayer().accPlasmaGenerator = false;
-                        }
-                    }
-
-                    if (ModLoader.TryGetMod("Clamity", out Mod clam))
-                    {
-                        if (item.type == clam.Find<ModItem>("SupremeBarrier").Type)
-                            player.GetThoriumPlayer().accPlasmaGenerator = false;
-                    }
+                    player.GetThoriumPlayer().accPlasmaGenerator = false;
                 }
             }
 
@@ -63,19 +44,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
             {
                 if (NPC.AnyNPCs(catalyst.Find<ModNPC>("Astrageldon").Type))
                 {
-                    foreach (int genItem in generatorTypes)
-                    {
-                        if (item.type == genItem)
-                        {
-                            player.GetThoriumPlayer().accPlasmaGenerator = false;
-                        }
-                    }
-
-                    if (ModLoader.TryGetMod("Clamity", out Mod clam))
-                    {
-                        if (item.type == clam.Find<ModItem>("SupremeBarrier").Type)
-                            player.GetThoriumPlayer().accPlasmaGenerator = false;
-                    }
+                    player.GetThoriumPlayer().accPlasmaGenerator = false;
                 }
             }
 
@@ -83,19 +52,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
             {
                 if (NPC.AnyNPCs(calHunt.Find<ModNPC>("Goozma").Type))
                 {
-                    foreach (int genItem in generatorTypes)
-                    {
-                        if (item.type == genItem)
-                        {
-                            player.GetThoriumPlayer().accPlasmaGenerator = false;
-                        }
-                    }
-
-                    if (ModLoader.TryGetMod("Clamity", out Mod clam))
-                    {
-                        if (item.type == clam.Find<ModItem>("SupremeBarrier").Type)
-                            player.GetThoriumPlayer().accPlasmaGenerator = false;
-                    }
+                    player.GetThoriumPlayer().accPlasmaGenerator = false;
                 }
             }
 
@@ -103,19 +60,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Accessories
             {
                 if (NPC.AnyNPCs(wotg.Find<ModNPC>("NamelessDeityBoss").Type) || NPC.AnyNPCs(wotg.Find<ModNPC>("AvatarOfEmptiness").Type))
                 {
-                    foreach (int genItem in generatorTypes)
-                    {
-                        if (item.type == genItem)
-                        {
-                            player.GetThoriumPlayer().accPlasmaGenerator = false;
-                        }
-                    }
-
-                    if (ModLoader.TryGetMod("Clamity", out Mod clam))
-                    {
-                        if (item.type == clam.Find<ModItem>("SupremeBarrier").Type)
-                            player.GetThoriumPlayer().accPlasmaGenerator = false;
-                    }
+                    player.GetThoriumPlayer().accPlasmaGenerator = false;
                 }
             }
         }

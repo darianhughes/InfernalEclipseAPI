@@ -9,6 +9,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.CelestialIlluminati
 {
     public class CelestialIlluminationStar : ModProjectile
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public override string Texture => "InfernalEclipseAPI/Assets/Textures/Backgrounds/BlankPixel";
         public override string GlowTexture => "InfernalEclipseAPI/Assets/Glow";
         public static int SplitStarCount

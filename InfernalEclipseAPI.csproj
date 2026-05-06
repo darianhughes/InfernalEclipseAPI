@@ -45,6 +45,9 @@
 		<Reference Include="FargowiltasSouls">
 			<HintPath>..\ModAssemblies\FargowiltasSouls_v1.7.3.6.dll</HintPath>
 		</Reference>
+		<Reference Include="InfernalEclipseWeaponsDLC">
+		  <HintPath>lib\Assemblies\InfernalEclipseWeaponsDLC.dll</HintPath>
+		</Reference>
 		<Reference Include="InfernumMasterPatch">
 		  <HintPath>lib\Assemblies\InfernumMasterPatch.dll</HintPath>
 		</Reference>

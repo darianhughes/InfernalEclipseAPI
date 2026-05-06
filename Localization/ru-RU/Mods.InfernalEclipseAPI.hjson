@@ -100,6 +100,8 @@ ItemTooltip: {
 	OmniShield: -Омни щит-
 	Playtester: - Предмет тестировщика -
 	Contributor: - Предмет участника -
+	// NamelessDowned: You must pass the test
+	// DisabledBossRush: The effects will not work in Boss Rush
 	SBeamUsage: Удерживайте ЛКМ, чтобы зарядить луч, наносящий мифический магический урон
 	NBeamUsage: Удерживайте ЛКМ, чтобы выпустить гига-луч туманности, наносящий мифический магический урон
 	MBeamUsage: Удерживайте ЛКМ, чтобы выпустить луч экзо-дезинтегратора, наносящий мифический стрелковый урон
@@ -111,6 +113,7 @@ ItemTooltip: {
 	ThorsHammerPro: Накладывает дебафф [cbuff:Electrified] на 3 секунды.
 	BountifulHarvest: Стреляет пронзающими жалами в чередующейся последовательности
 	// TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
+	// HornScale: Heal amount scales with progression
 
 	GrapeBeer: {
 		// Orig: 75% reduced critical strike damage
@@ -433,6 +436,20 @@ ItemTooltip: {
 	Hyperdrive: {
 		// Orig: Increases attack speed by 25% and melee damage by 5%
 		// Nerf: Increases void attack speed by 25% and melee damage by 5%
+	}
+
+	// Oneirophobia: Turns into a sentient synthesizer minion when stowed, attacking enemies
+	/* PlagueLordFlask:
+		'''
+		15% increased throwing damage
+		15% increased throwing velocity
+		Using a throwing item has a 20% chance to unleash two Blight Daggers
+		Blight Daggers home in on enemies and apply a highly contagious disease
+		''' */
+
+	SpiritSurfer: {
+		// Orig: Increases void drain by 6 while active
+		// Replace: Increases void drain by 36 while active
 	}
 
 	// DoesNotStack: Does not stack with downgrades
@@ -802,12 +819,43 @@ ItemTooltip: {
 		// Yharim: Yharim's
 	}
 
+	/* PutridRelic:
+		'''
+		While your first attempt may reach farther than the next, it was only raw reaction that got you there
+		Strategize, plan out your moves, and the enemy will fall to your skill, not luck
+		''' */
+	/* TurkorRelic:
+		'''
+		Underestimating your opponent might be your fatal mistake
+		May you learn from it for the rest of your journey
+		''' */
+	/* PyrogenRelic:
+		'''
+		Familiarity is a useful tool.
+		It is not uncommon for some battles to incorporate similar aspects as others. 
+		Keep pushing, it is likely you will use these skills again.
+		''' */
+	/* SubspaceRelic:
+		'''
+		You saw the circle for what it is: predictable, finite, stagnating
+		When you recognize its flow, keep every turn in your mind; 
+		memorize the pattern you see before you
+		All it takes to escape the circle is to bend the line in just the right direction
+		Move forward and breach through infinity
+		''' */
+
 	AstrageldonRelic: {
 		Line1: Ты избрал для себя великие страдания.
 		Line2: И хотя выбор этот порою был болезненным и трудным,
 		Line3: Преодолённые тобой невзгоды принесут достойные плоды.
 	}
 
+	/* PrimordialsRelic:
+		'''
+		You've done well, taking down Thorium. Only ten remain
+		Remember to not force yourself to keep going
+		Take breaks when needed, and it will make a world of difference
+		''' */
 	AvatarRelic:
 		'''
 		Ты хорошо поработал.
@@ -1005,9 +1053,11 @@ Items: {
 			Tooltip: ""
 			/* Lore:
 				'''
-				When I had initially brought Draedon onto my army, he had immediately began work on a supposed  "secret project" that he refused to elaborate on.
-				Soon after, he presented his first grim death machine.
-				I knew it was fit for my army, however, his prowess shown was... promising. Very much so.
+				Every time Draedon invented a new technology, he would apply it to his passion: making deadly machines of war.
+				This was one of his first creations after arriving on this planet and my service, having just created stable levitation to imbue his machines.
+				While a novelty at the time, it soon revealed itself to be impractical for any real use on a battlefield.
+				As such, I ordered Permafrost to get rid of it. It would seem instead of destroying it, he sealed it away in a prison of ice, locked away for eternity.
+				Ironic, isn’t it? The fate that we push unto others often becomes our own.
 				''' */
 		}
 
@@ -1016,10 +1066,10 @@ Items: {
 			Tooltip: ""
 			/* Lore:
 				'''
-				Unlike most creatures, I know not of this "Advisor" or its origins
-				However, it seemed to be much in tune with the void energy lying deep within the crust of Terraria.
-				As who chained it to the Planetarium? I couldn't tell you. 
-				Maybe you could find the answers of that secret from the collector that absorbed its essence after its defeat.
+				During his early experiments attempting to interact with, contain, and exploit the natural spirits that inhabit these lands, 
+				Draedon found early success with the spirits that lingered in the upper atmosphere of our planet.
+				Naming them ‘Otherworldly’ spirits as a homage to his origins, he aimed higher, making a more powerful body for the spirit to inhabit, 
+				but the experiment backfired, and left with no choice, he had several other constructs keep it in place and constantly drain it of it’s power. 
 				''' */
 		}
 
@@ -1028,10 +1078,10 @@ Items: {
 			Tooltip: ""
 			/* Lore:
 				'''
-				This moth-like creature is interesting, as it makes its homes within the same glowing, mushroom‑infested caves as another similar beast.
-				It seems to emit some sort of bioluminescent glow, reminiscent of the void...
-				perhaps it resides in these caves for their latent void energy?
-				Whatever the case may be, it is beyond me.
+				It’s no surprise that you would find one of these creatures here.
+				The mushrooms provide energy for the moth, and the moth helps to spread the mushrooms; in balance, as nature should be...
+				Although, there does seem to be some latent void energy surrounding the creature.
+				How... peculiar.
 				''' */
 		}
 
@@ -1053,12 +1103,12 @@ Items: {
 			Tooltip: ""
 			/* Lore:
 				'''
-				The product of yet another folly of the greed towards godhood.
-				Younger of the royal brothers, heir to the throne of the oasis.
-				Though unlike his accursed and vile older sibling, his heart was pure, yet he still faced a saddening fate.
-				The meddling of souls had poisoned his crypt into a pestilence, casting him in a deep painful slumber.
-				His followers and royal assistants tried to save him, but it was too late.
-				Try to mourn after this victory. He was too young to suffer the consequences of his lineage.
+				Upon their older sister - Otonilou, the Goddess of Electricity — meeting her end at the hands of Calamitas, 
+				her younger brother was left to lead Ilmeris on his own.
+				Unlike his sister, who slayed a dragon for her power, his heart was pure, yet still shares a saddening fate.
+				His people surrounded on all sides by kingdoms lead by dragon slayers with stolen power, in desperation he instead turned to that 'void' magic.
+				The meddling of his void haunts him even after death; him and his people bound to his tomb.
+				This marks the beginning of the true downfall of Ilmeris, of which I played a large role in.
 				''' */
 		}
 
@@ -1067,10 +1117,12 @@ Items: {
 			Tooltip: ""
 			/* Lore:
 				'''
-				A failed experiment, it would seem.
-				It has a certain hunger for Peanuts that grow on the surface, though the reasoning is unknown.
-				It is nowhere near the strength of some of the other gelatinous threats of this world,
-				but it was still formidable irregardless.
+				One of Draedon's experiments. 
+				This creature is one of his attempts to understand the inherent divinity that is present is all slimes, 
+				no matter how minuscule it might be.
+				He did manage to successfully draw out the latent energy, but somehow in the process, 
+				gave the creature an endless hunger for peanuts of all things, and it provoked rapid and uncontrollable growth.
+				It quickly escaped containment, and then you know the rest.
 				''' */
 		}
 
@@ -1137,7 +1189,7 @@ Items: {
 			/* Lore:
 				'''
 				Thor, one of the many gods that had managed to evade my crusade,
-				yet he wiill never forget what I had done to him and family.
+				yet he will never forget what I had done to him and family.
 				Asgard was merely a land of sinners, so I mererly did what they had done to so many others.
 				Thor had escaped me and I belived he still ruled over Asgard to this day,
 				but with his hammer in your hands, perhaps it is no more.
@@ -1163,12 +1215,13 @@ Items: {
 			Tooltip: ""
 			/* Lore:
 				'''
-				These birds were once great and fearsome adversaries, fine foes worth the hunt.
-				Thier feathers could can channel the sun's dormant energy into potent lightning, hense the name.
-				However, these great battles were fleeting; and soon by generation selection,
-				they had lost most of thier potent strength.
-				The one you bested is not but a mellowed runt in comparision to what I had once seen,
-				yet forevermore the title of the Grand Thunder Bird lives on.
+				First spotted near the conclusion of the draconic era, it was assumed that these birds,
+				like many other creatures being discovered at the time, had draconic blood in them;
+				a fact that was hard to disprove given the way they absorbed the pure light from Zeratros’ sun, 
+				and converted the energy into lightning.
+				At the time, they were likely the strongest non-divine creatures on the planet.
+				Alas… a combination of a lack of predators and the Traitor Almighty taking control over the sun 
+				has left this once magnificent species a husk of their former selves.
 				''' */
 		}
 
@@ -1272,13 +1325,8 @@ Items: {
 			// Tooltip: ""
 			/* Lore:
 				'''
-				What a perverse thing.
-				The hares of this world were symbols of thriving society.
-				In their abundacne, they brought many mirthful gifts. Food, fur, companionship.
-				Unlike ohter livestock, their life could withstand many of the harse conditions of the unforgiving underground tunnels
-				and the blights of dead gods, making them ideal units for trade between the misbegotten peasants and soldiers that help 
-				as bedrock for many kingdoms. With many of them now lost to time, the rabbits noww revel in an empty world.
-				This nuisance is one of many omens of the times of gold that have now passed by me.
+				The bunnies of this world are strangely adaptable. They can take on many forms, and absorb all sorts of energy.
+				This one in particular seems to have been a pet of a minor god of revelry and celebration before he was slain by my army’s hand.
 				''' */
 		}
 
@@ -1287,12 +1335,13 @@ Items: {
 			// Tooltip: ""
 			/* Lore:
 				'''
-				Vengeful spirits are curious beings.
-				Their avatars can take the form of anything, as long as the slain carry a sol within them.
-				The common avain would be among my furthest guesses, but yet, the can muster wrath beyond their hapless forms.
-				Alas, spirits never lie, and the consequence that lead to the unrest of this abomination 
-				ties back to the slaughters required in lengthy royal feasts.
-				It is grim to reflect on what we do to creatures deemed beneath us.
+				Vengeful souls are curious beings.
+				For a soul to remain in this life after death without external magic requires either an extraordinary strong will, or a burning rage within.
+				I know not whom this was in life, nor how they perished.
+				While spirits can exert force on their own, it is only when they take a vessel that they gain true power.
+				This soul is no different, their power amplified by the unjust killing of this turkey; that was once destined for a royal feast, 
+				with food that most commoners would never have the chance to try.
+				Be wary of wrathful souls, for when you are the target of their rage, their power can rival or even surpass gods.
 				''' */
 		}
 
@@ -2066,6 +2115,30 @@ Items: {
 		// DisplayName: Infernal Illusionist Relic
 		// Tooltip: "{0}"
 	}
+
+	Catlight: {
+		// DisplayName: Catlight
+		/* Tooltip:
+			'''
+			'Are bosses too hard? Then buy Catlight Industries' Catlight!'
+			[c/7C0A02:Buy our product now]
+			''' */
+	}
+
+	AlloyofEden: {
+		// DisplayName: Alloy of Eden
+		// Tooltip: An alloy composed of the strongest materials from multiple universes
+	}
+
+	SolynsSpellbook: {
+		// DisplayName: Solyn's Spellbook
+		/* Tooltip:
+			'''
+			A book that appeared in Solyn's old tent after the defeat of the Nameless Deity and completion of her bookshelf
+			Finely detailed diagrams of numerous magical artifacts fill up the book's pages
+			Picking up this item or holding it in your inventory permanently unlocks new recipes
+			''' */
+	}
 }
 
 Projectiles: {
@@ -2108,6 +2181,9 @@ Projectiles: {
 	// CelestialIlluminationStar.DisplayName: Celestial Illumination Star
 	// Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
 	// CasullandJackalProj.DisplayName: 454 Casull and The Jackal
+	// CatlightDeathray.DisplayName: Catlight Deathray
+	// CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
+	// CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
 }
 
 DiaryTooltip:
@@ -2366,7 +2442,22 @@ Configs: {
 
 		BereftVassalRagnarok: {
 			// Label: Ragnarok Bereft Vassal Theme
-			// Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal fight in Ragnarok Mode.
+			// Tooltip: Toggles if 'Dead Kingdom's Champion' by Techhy plays during the Bereft Vassal boss fight in Ragnarok Mode.
+		}
+
+		DoGRagnarok: {
+			// Label: Ragnarok Devourer of Gods Final Phase Theme
+			// Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods' final phase and desperation in Ragnaork Mode
+		}
+
+		WarMachineBossInBossRush: {
+			// Label: Wulfrum Mothership In Boss Rush
+			// Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
+		}
+
+		MothershipMusic: {
+			// Label: Wulfrum Mothership Music
+			// Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
 		}
 	}
 
@@ -2418,6 +2509,49 @@ Configs: {
 			Tooltip: ""
 		}
 	}
+
+	DoGSong: {
+		// Tooltip: ""
+
+		Off: {
+			// Label: Off
+			// Tooltip: The phase 3 theme will not play
+		}
+
+		DesperationOnly: {
+			// Label: Desperation Only
+			// Tooltip: The phase 3 theme will only play during the desperation attack
+		}
+
+		On: {
+			// Label: On
+			// Tooltip: The phase 3 theme will play
+		}
+	}
+
+	MothershipSong: {
+		// Tooltip: ""
+
+		Vanilla: {
+			// Label: Vanilla
+			// Tooltip: "'Boss 1' will play"
+		}
+
+		WarMachine: {
+			// Label: War Machine
+			// Tooltip: The original theme will play
+		}
+
+		Thorium: {
+			// Label: Thorium
+			// Tooltip: "'Stronger Foe' will play"
+		}
+
+		Infernum: {
+			// Label: Infernum
+			// Tooltip: "'Misanthropic Encounters' will play"
+		}
+	}
 }
 
 DamageClasses: {
@@ -2431,6 +2565,7 @@ DamageClasses: {
 	LegendaryMagic.DisplayName: ед. легендарного магического урона
 	MeleeWhip.DisplayName: ед. урона хлыстом
 	MythicSummon.DisplayName: ед. мифического урона призывателя
+	// CatlightDamage.DisplayName: Catlight Damage
 }
 
 BossRushIntroText1:
@@ -2690,4 +2825,9 @@ Events: {
 	BossRushTierFiveEndText_1: Мы достигли финала, Террариец.
 	BossRushTierFiveEndText_2: Всё, что стоит между тобой и окончанием этого испытания, — это те, кто есть и те, кто когда-то были богами этого мира.
 	BossRushTierFiveEndText_3: Покажи мне силу того, кому сейчас нечего терять. Не время колебаться.
+}
+
+Misc: {
+	// SolynSpellbookRecipeCondition: Place the spellbook owned by Solyn in your inventory at least once
+	// SpellbookRecipeCondition: View an spellbook owned by Solyn
 }

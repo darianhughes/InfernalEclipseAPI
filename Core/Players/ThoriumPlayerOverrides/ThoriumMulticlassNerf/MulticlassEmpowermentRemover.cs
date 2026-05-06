@@ -4,12 +4,33 @@ using System.Reflection;
 using CalamityMod.CalPlayer;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseWeaponsDLC.Content.Items.Armor.Ocram.Necrosinger;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {
     [ExtendsFromMod("ThoriumMod")]
     public class MulticlassEmpowermentRemover : GlobalItem
     {
+        public override string IsArmorSet(Item head, Item body, Item legs)
+        {
+            if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded && InfernalConfig.Instance.NerfThoriumMulticlass)
+            {
+                if (WeaponsDLCHelper.HasNecrosingerSet(head, body, legs))
+                    return "Necrosinger";
+            }
+            return base.IsArmorSet(head, body, legs);
+        }
+
+        public override void UpdateArmorSet(Player player, string set)
+        {
+            if (set == "Necrosinger")
+            {
+                player.setBonus += "\n" + Language.GetTextValue("Mods.InfernalEclipseWeaponsDLC.Items.NecrosingerSkull.SetBonusExtra");
+            }
+        }
+
         public override bool? UseItem(Item item, Player player)
         {
             if (item == null || item.IsAir || !InfernalConfig.Instance.NerfThoriumMulticlass)
@@ -17,11 +38,17 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
 
             var mp = player.GetModPlayer<ThoriumMulticlassPlayerNerfs>();
 
+            bool hasNecrosinger = false;
+            if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+            {
+                hasNecrosinger = WeaponsDLCHelper.GetNecrosingerEquiped(player);
+            }
+
             if (ThoriumHelpers.IsBardWeapon(item))
             {
                 mp.MarkBardUse();
             }
-            else if (ThoriumHelpers.IsNonBardCombatWeapon(item) && mp.InWindow)
+            else if (ThoriumHelpers.IsNonBardCombatWeapon(item) && mp.InWindow && !hasNecrosinger)
             {
                 // clear locally
                 ThoriumHelpers.ClearAllEmpowerments(player);
@@ -47,9 +74,15 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
 
             var mp = player.GetModPlayer<ThoriumMulticlassPlayerNerfs>();
 
+            bool hasNecrosinger = false;
+            if (InfernalCrossmod.InfernalEclipseWeaponsDLC.Loaded)
+            {
+                hasNecrosinger = WeaponsDLCHelper.GetNecrosingerEquiped(player);
+            }
+
             if (ThoriumHelpers.IsBardWeapon(item))
                 mp.MarkBardUse();
-            else if (ThoriumHelpers.IsNonBardCombatWeapon(item) && mp.InWindow)
+            else if (ThoriumHelpers.IsNonBardCombatWeapon(item) && mp.InWindow && !hasNecrosinger)
             {
                 ThoriumHelpers.ClearAllEmpowerments(player);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -69,6 +102,15 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
     public enum ThoriumEmpowermentMsg : byte
     {
         ClearEmpowerments = 1
+    }
+
+    [JITWhenModsEnabled(InfernalCrossmod.InfernalEclipseWeaponsDLC.Name)]
+    [ExtendsFromMod(InfernalCrossmod.InfernalEclipseWeaponsDLC.Name)]
+    public class WeaponsDLCHelper
+    {
+        public static bool GetNecrosingerEquiped(Player player) => player.GetModPlayer<NecrosingerPlayer>().NecrosingerSet;
+
+        public static bool HasNecrosingerSet(Item head, Item body, Item legs) => head.type == ModContent.ItemType<NecrosingerSkull>() && body.type == ModContent.ItemType<NecrosingerRibs>() && legs.type == ModContent.ItemType<NecrosingerAnkles>();
     }
 
     [ExtendsFromMod("ThoriumMod")]
