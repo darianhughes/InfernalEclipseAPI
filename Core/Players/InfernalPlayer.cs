@@ -32,6 +32,9 @@ using System.Linq;
 using CalamityMod.NPCs.PrimordialWyrm;
 using CalamityMod.World;
 using InfernalEclipseAPI.Content.Items.Other;
+using Terraria;
+using InfernumMode.Common.DataStructures;
+using InfernumMode;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -494,6 +497,23 @@ namespace InfernalEclipseAPI.Core.Players
 
                 ref StatModifier summon = ref Player.GetDamage(DamageClass.Summon);
                 summon -= (float)(0.1 * Player.slotsMinions);
+            }
+
+            if (BossRushEvent.BossRushActive)
+            {
+                if (!(Main.LocalPlayer.name == "Dominic" || Main.LocalPlayer.name == "Lucille"))
+                {
+                    if (Player.Infernum().GetValue<bool>("CyberneticImmortalityIsActive"))
+                    {
+                        Referenced<bool> cyberneticImmortality = Player.Infernum().GetRefValue<bool>("CyberneticImmortalityIsActive");
+                        cyberneticImmortality.Value = !cyberneticImmortality.Value;
+                    }
+
+                    if (Player.Infernum().GetValue<bool>("PhysicsDefianceIsEnabled"))
+                    {
+                        Player.Infernum().SetValue<bool>("PhysicsDefianceIsEnabled", false);
+                    }
+                }
             }
         }
 

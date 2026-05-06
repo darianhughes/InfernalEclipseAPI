@@ -866,6 +866,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 {
                     InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Hyperdrive.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Hyperdrive.Nerf"));
                 }
+
+                if (item.type == ItemType<SpiritSurfer>())
+                {
+                    InfernalUtilities.ReplaceTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SpiritSurfer.Orig"), Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.SpiritSurfer.Replace"));
+                }
             }
         }
     }

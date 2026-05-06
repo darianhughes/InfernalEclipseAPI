@@ -1,4 +1,5 @@
-﻿using CalamityMod;
+﻿using System.Security.Policy;
+using CalamityMod;
 using CalamityMod.Buffs.Alcohol;
 using InfernalEclipseAPI.Core.Systems;
 
@@ -29,7 +30,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
                 Mod thorium = InfernalCrossmod.Thorium.Mod;
 
                 if (type == thorium.Find<ModBuff>("Bubbled").Type)
-                    player.AddBuff(BuffID.Suffocation, 1);
+                {
+                    player.AddBuff(BuffID.Suffocation, 2);
+
+                    if (player.mount.Active)
+                        player.mount.Dismount(player);
+                }
 
                 if (type == thorium.Find<ModBuff>("FrenzyPotionBuff").Type)
                 {

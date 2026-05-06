@@ -104,6 +104,8 @@ ItemTooltip: {
 	OmniShield: -至高神盾-
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
+	// NamelessDowned: You must pass the test
+	// DisabledBossRush: The effects will not work in Boss Rush
 	SBeamUsage: 长按左键，发射神话魔法伤害的光束
 	NBeamUsage: 长按左键，发射寰宇死光，造成神话魔法伤害
 	MBeamUsage: 长按左键，发射星流解离炮，造成神话远程伤害
@@ -453,6 +455,12 @@ ItemTooltip: {
 		Using a throwing item has a 20% chance to unleash two Blight Daggers
 		Blight Daggers home in on enemies and apply a highly contagious disease
 		''' */
+
+	SpiritSurfer: {
+		// Orig: Increases void drain by 6 while active
+		// Replace: Increases void drain by 36 while active
+	}
+
 	DoesNotStack: 不与下位效果叠加
 	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "
@@ -849,10 +857,17 @@ ItemTooltip: {
 		Underestimating your opponent might be your fatal mistake
 		May you learn from it for the rest of your journey
 		''' */
+	/* PyrogenRelic:
+		'''
+		Familiarity is a useful tool.
+		It is not uncommon for some battles to incorporate similar aspects as others. 
+		Keep pushing, it is likely you will use these skills again.
+		''' */
 	/* SubspaceRelic:
 		'''
 		You saw the circle for what it is: predictable, finite, stagnating
-		When you recognize its flow, keep every turn in your mind; memorize the pattern you see before you
+		When you recognize its flow, keep every turn in your mind; 
+		memorize the pattern you see before you
 		All it takes to escape the circle is to bend the line in just the right direction
 		Move forward and breach through infinity
 		''' */
@@ -865,8 +880,9 @@ ItemTooltip: {
 
 	/* PrimordialsRelic:
 		'''
-		You've done well, taking down Thorium. Only ten remain.
-		Remember to not force yourself to keep going. Take breaks when needed, and it will make a world of difference.
+		You've done well, taking down Thorium. Only ten remain
+		Remember to not force yourself to keep going
+		Take breaks when needed, and it will make a world of difference
 		''' */
 	AvatarRelic:
 		'''

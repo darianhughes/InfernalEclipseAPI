@@ -104,6 +104,8 @@ ItemTooltip: {
 	OmniShield: -Omni Shield-
 	Playtester: - Playtester Item -
 	Contributor: - Contributor Item -
+	NamelessDowned: You must pass the test
+	DisabledBossRush: The effects will not work in Boss Rush
 	SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
 	NBeamUsage: Hold Left-Click to release a Nebula Gigabam that deals mythic magic damage
 	MBeamUsage: Hold Left-Click to release a Exo Disintegrator beam that deals mythic ranged damage
@@ -453,6 +455,12 @@ ItemTooltip: {
 		Using a throwing item has a 20% chance to unleash two Blight Daggers
 		Blight Daggers home in on enemies and apply a highly contagious disease
 		'''
+
+	SpiritSurfer: {
+		Orig: Increases void drain by 6 while active
+		Replace: Increases void drain by 36 while active
+	}
+
 	DoesNotStack: Does not stack with downgrades
 	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "
@@ -848,6 +856,12 @@ ItemTooltip: {
 		'''
 		Underestimating your opponent might be your fatal mistake
 		May you learn from it for the rest of your journey
+		'''
+	PyrogenRelic:
+		'''
+		Familiarity is a useful tool.
+		It is not uncommon for some battles to incorporate similar aspects as others. 
+		Keep pushing, it is likely you will use these skills again.
 		'''
 	SubspaceRelic:
 		'''

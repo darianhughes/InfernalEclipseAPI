@@ -24,37 +24,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
     public class InfernalGlobalItem : GlobalItem
     {
-        public override void SetStaticDefaults()
-        {
-            /*
-            InfernumPlayer.AccessoryUpdateEvent += (InfernumPlayer player) =>
-            {
-                if (player.GetValue<bool>(Purity.FieldName))
-                {
-                    Player p = player.Player;
-                    float bonus = 0.57f; //close enough i guess
-
-                    p.GetDamage<MythicMagic>() *= bonus;
-                    p.GetDamage<MythicMelee>() *= bonus;
-                    p.GetDamage<MythicRanged>() *= bonus;
-                    p.GetDamage<MythicSummon>() *= bonus;
-                    //rogue
-                    //bard
-                    //healer
-                    //generic
-
-                    p.GetDamage<LegendaryMelee>() *= bonus;
-                    p.GetDamage<LegendaryRanged>() *= bonus;
-                    p.GetDamage<LegendaryMagic>() *= bonus;
-                    //summoner
-                    //bard
-                    //healer
-                    //generic
-                }
-            };
-            */
-        }
-
         public override void SetDefaults(Item item)
         {
             if (item.type == ModContent.ItemType<Moonshine>() && InfernalConfig.Instance.CalamityBalanceChanges)

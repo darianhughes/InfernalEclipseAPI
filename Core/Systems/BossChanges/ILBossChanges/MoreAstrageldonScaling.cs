@@ -4,10 +4,10 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using CalamityMod.Events;
-using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 using CatalystMod.Tiles.Ores;
 using CatalystMod;
 using InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges;
+using InfernumMode.Core.GlobalInstances.Systems;
 
 namespace InfernalEclipseAPI.Core.Systems.BossChanges.ILBossChanges
 {
@@ -73,7 +73,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossChanges.ILBossChanges
 
                 if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
                 {
-                    bool infernum = InfernumActive.InfernumActive is bool b && b;
+                    bool infernum = WorldSaveSystem.InfernumModeEnabled;
                     bool bossRush = BossRushEvent.BossRushActive is bool b2 && b2;
 
                     if (bossRush)

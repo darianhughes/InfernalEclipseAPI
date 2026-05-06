@@ -681,6 +681,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 Main.NewText($"ViscountBlood matched: {projectile.type}");
             */
 
+            /*
             timer = 0f;
             initialized = false;
 
@@ -697,12 +698,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
             projectile.velocity = storedDirection * (targetSpeed * StartingSpeedMultiplier);
             initialized = true;
+            */
         }
 
         public override void AI(Projectile projectile)
         {
             return;
 
+            /*
             if (!initialized || targetSpeed <= 0f)
                 return;
 
@@ -718,6 +721,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             );
 
             projectile.velocity = storedDirection * currentSpeed;
+            */
         }
     }
 

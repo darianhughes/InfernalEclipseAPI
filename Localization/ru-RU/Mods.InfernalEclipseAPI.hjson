@@ -100,6 +100,8 @@ ItemTooltip: {
 	OmniShield: -Омни щит-
 	Playtester: - Предмет тестировщика -
 	Contributor: - Предмет участника -
+	// NamelessDowned: You must pass the test
+	// DisabledBossRush: The effects will not work in Boss Rush
 	SBeamUsage: Удерживайте ЛКМ, чтобы зарядить луч, наносящий мифический магический урон
 	NBeamUsage: Удерживайте ЛКМ, чтобы выпустить гига-луч туманности, наносящий мифический магический урон
 	MBeamUsage: Удерживайте ЛКМ, чтобы выпустить луч экзо-дезинтегратора, наносящий мифический стрелковый урон
@@ -444,6 +446,12 @@ ItemTooltip: {
 		Using a throwing item has a 20% chance to unleash two Blight Daggers
 		Blight Daggers home in on enemies and apply a highly contagious disease
 		''' */
+
+	SpiritSurfer: {
+		// Orig: Increases void drain by 6 while active
+		// Replace: Increases void drain by 36 while active
+	}
+
 	// DoesNotStack: Does not stack with downgrades
 	// NoBoss: Does not work while a boss is alive
 	// Disabled: "[DISABLED] "
@@ -821,10 +829,17 @@ ItemTooltip: {
 		Underestimating your opponent might be your fatal mistake
 		May you learn from it for the rest of your journey
 		''' */
+	/* PyrogenRelic:
+		'''
+		Familiarity is a useful tool.
+		It is not uncommon for some battles to incorporate similar aspects as others. 
+		Keep pushing, it is likely you will use these skills again.
+		''' */
 	/* SubspaceRelic:
 		'''
 		You saw the circle for what it is: predictable, finite, stagnating
-		When you recognize its flow, keep every turn in your mind; memorize the pattern you see before you
+		When you recognize its flow, keep every turn in your mind; 
+		memorize the pattern you see before you
 		All it takes to escape the circle is to bend the line in just the right direction
 		Move forward and breach through infinity
 		''' */
@@ -837,8 +852,9 @@ ItemTooltip: {
 
 	/* PrimordialsRelic:
 		'''
-		You've done well, taking down Thorium. Only ten remain.
-		Remember to not force yourself to keep going. Take breaks when needed, and it will make a world of difference.
+		You've done well, taking down Thorium. Only ten remain
+		Remember to not force yourself to keep going
+		Take breaks when needed, and it will make a world of difference
 		''' */
 	AvatarRelic:
 		'''
