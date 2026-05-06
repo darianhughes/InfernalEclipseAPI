@@ -164,7 +164,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
                 .Register();
         }
 
-        public override bool WeaponPrefix() => true;
+        public override bool WeaponPrefix() => false;
         public override bool MeleePrefix() => false;
         public override bool MagicPrefix() => false;
         public override bool RangedPrefix() => false;
