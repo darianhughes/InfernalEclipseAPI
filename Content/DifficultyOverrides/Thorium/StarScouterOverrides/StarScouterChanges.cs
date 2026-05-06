@@ -15,6 +15,8 @@ using ThoriumRework.Projectiles;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.StarScouterOverrides
 {
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
     public class StarScouterChanges : GlobalNPC
     {
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
@@ -35,6 +37,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.StarScouterOver
         }
     }
 
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
     public class StarScouterProjectileChanges : GlobalProjectile
     {
         public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)

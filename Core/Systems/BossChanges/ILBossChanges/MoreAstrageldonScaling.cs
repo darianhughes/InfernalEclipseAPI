@@ -83,7 +83,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossChanges.ILBossChanges
                         if (infernum)
                             multiplier *= 0.35f;
                         if (NPC.downedMoonlord)
-                            multiplier += 0.35f;
+                            multiplier += 0.25f;
                     }
                 }
 

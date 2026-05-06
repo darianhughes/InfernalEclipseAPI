@@ -23,7 +23,6 @@ using InfernalEclipseAPI.Content.Items.Materials;
 using CalamityMod.Items.Placeables;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb;
-using ThoriumRework.Projectiles;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
 using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
 using InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam;
@@ -73,7 +72,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
                     if (!textPlayer.active)
                         continue;
 
-                    CombatText.NewText(textPlayer.Hitbox, Color.Cyan, CalamityUtils.GetTextValue("Misc.LearnedSchematic"), true);
+                    CombatText.NewText(textPlayer.Hitbox, Color.Magenta, CalamityUtils.GetTextValue("Misc.LearnedSchematic"), true);
                 }
 
                 InfernalRecipeUnlockHandler.HasUnlockedSolynBookRecipes = true;
@@ -242,7 +241,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
                 Item.NewItem(new EntitySource_WorldEvent(), Main.LocalPlayer.Center, ModContent.ItemType<SolynsSpellbook>());
                 SpellbookManager.HasReceivedSpellbook = true;
 
-                PacketManager.SendPacket<HandwrittenNotePacket>();
+                PacketManager.SendPacket<SpellbookPacket>();
             }
         }
     }

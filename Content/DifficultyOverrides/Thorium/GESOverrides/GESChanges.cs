@@ -11,6 +11,8 @@ using GESRework = ThoriumRework.BossChanges.GraniteEnergyStormRework;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.GESOverrides
 {
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
     public class GESProjectileChanges : GlobalProjectile
     {
         public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
