@@ -147,11 +147,8 @@ ItemTooltip: {
 		Player2: Soul Anchor set. You have 20 seconds to return.
 	}
 
-	WhiteDwarfSetBonus:
-		'''
+	WhiteDwarfSetBonus: Ivory flares spawn on a 2 second cooldown
 
-		Ivory flares spawn on a 2 second cooldown
-		'''
 	PhoenixStaff:
 		'''
 		Right Click to spew a stream of flames that inflict [cbuff:ThoriumMod/HolyGlare]

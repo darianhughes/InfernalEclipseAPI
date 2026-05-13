@@ -32,7 +32,11 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 if (cdPlayer.whiteDwarfCooldown > 0)
                 {
                     thoriumPlayer.setWhiteDwarf = false;
-                    GetRagnarokModPlayerField.SetWhiteDwarf(player, false);
+
+                    /*
+                    if (InfernalCrossmod.RagnarokMod.Loaded)
+                        GetRagnarokModPlayerField.SetWhiteDwarf(player, false);
+                    */
                 }
                 else
                 {
