@@ -2179,7 +2179,7 @@ Items: {
 	}
 
 	WulfrumMothershipRelic: {
-		// DisplayName: Wulfrum Mothership Relic
+		// DisplayName: Infernal Wulfrum Mothership Relic
 		// Tooltip: "{0}"
 	}
 }
