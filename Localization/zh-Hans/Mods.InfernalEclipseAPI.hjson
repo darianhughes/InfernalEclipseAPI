@@ -2180,7 +2180,7 @@ Items: {
 
 	WulfrumMothershipRelic: {
 		// DisplayName: Wulfrum Mothership Relic
-		// Tooltip: Mods.InfernalEclipseAPI.Items.WulfrumMothershipRelic.Tooltip
+		// Tooltip: "{0}"
 	}
 }
 
@@ -2818,7 +2818,11 @@ InfernumIntegration: {
 		混沌具形
 		恶魔小灰猫
 		'''
-	// WulfrumMothership: Mods.InfernalEclipseAPI.InfernumIntegration.WulfrumMothership
+	/* WulfrumMothership:
+		'''
+		Heart of the Wulfrum Machines
+		Wulfrum Mothership
+		''' */
 }
 
 Buffs: {
