@@ -2152,8 +2152,8 @@ Items: {
 	}
 
 	WulfrumMothershipRelic: {
-		// DisplayName: Wulfrum Mothership Relic
-		// Tooltip: Mods.InfernalEclipseAPI.Items.WulfrumMothershipRelic.Tooltip
+		// DisplayName: Infernal Wulfrum Mothership Relic
+		// Tooltip: "{0}"
 	}
 }
 
@@ -2747,7 +2747,11 @@ InfernumIntegration: {
 		ВОПЛОЩЕНИЕ ХАОСА
 		МАЛЕНЬКИЙ ДЕМОНИЧЕСКИЙ СЕРЫЙ КОТ
 		'''
-	// WulfrumMothership: Mods.InfernalEclipseAPI.InfernumIntegration.WulfrumMothership
+	/* WulfrumMothership:
+		'''
+		Heart of the Wulfrum Machines
+		Wulfrum Mothership
+		''' */
 }
 
 Buffs: {
