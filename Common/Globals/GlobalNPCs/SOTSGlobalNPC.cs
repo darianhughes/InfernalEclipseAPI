@@ -44,6 +44,7 @@ using SOTS.NPCs.Town;
 using SOTS.Items.ChestItems;
 using SOTS.Buffs.Debuffs;
 using InfernalEclipseAPI.Content.Buffs;
+using CalamityMod.Events;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -173,7 +174,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
                     Player player = Main.player[i];
-                    if (player.active && !player.dead && npc.Distance(player.Center) < 12000f)
+                    if (player.active && !player.dead && npc.Distance(player.Center) < 12000f && !BossRushEvent.BossRushActive)
                     {
                         player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 60);
                     }

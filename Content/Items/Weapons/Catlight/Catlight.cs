@@ -163,6 +163,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
                 .AddTile(TileID.Bookcases)
                 .Register();
         }
+
+        public override bool WeaponPrefix() => false;
+        public override bool MeleePrefix() => false;
+        public override bool MagicPrefix() => false;
+        public override bool RangedPrefix() => false;
     }
 
     public class CatlightDamage : DamageClass

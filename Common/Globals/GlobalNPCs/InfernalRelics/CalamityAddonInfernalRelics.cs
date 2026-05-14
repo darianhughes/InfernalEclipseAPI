@@ -24,6 +24,7 @@ using NoxusBoss.Content.NPCs.Bosses.NamelessDeity;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
+using InfernalEclipseAPI.Content.Items.Placeables.Relics;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {
@@ -199,6 +200,21 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (npc.type == ModContent.NPCType<WallOfBronze>())
             {
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<WallofBronzeRelic>());
+            }
+        }
+    }
+
+    public class WarMachineInfernalRelic : GlobalNPC
+    {
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
+            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine))
+            {
+                if (npc.type == warMachine.Find<ModNPC>("WulfrumMothership").Type)
+                {
+                    npcLoot.AddIf(isInfernum, ModContent.ItemType<WulfrumMothershipRelic>());
+                }
             }
         }
     }

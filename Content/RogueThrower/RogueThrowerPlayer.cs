@@ -2,6 +2,7 @@
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using ThoriumMod.Items.Terrarium;
 using ThoriumMod.NPCs;
 using ThoriumMod.Utilities;
@@ -183,7 +184,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
         {
             Mod thorium; 
             ModLoader.TryGetMod("ThoriumMod", out thorium);
-            if (thorium == null || InfernalCrossmod.Hummus.Loaded) return;
+            if (thorium == null || InfernalCrossmod.Hummus.Loaded || InfernalCrossmod.RagnarokMod.Loaded) return;
 
             int whiteDwarfHelm = thorium.Find<ModItem>("WhiteDwarfMask").Type;
             int whiteDwarfPlate = thorium.Find<ModItem>("WhiteDwarfGuard").Type;
@@ -193,7 +194,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
                 Player.armor[1].type == whiteDwarfPlate &&
                 Player.armor[2].type == whiteDwarfGreaves)
             {
-                Player.setBonus += "\nIvory flares spawn on a 1 second cooldown";
+                Player.setBonus += $"\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.WhiteDwarfSetBonus")}";
             }
 
             if (dragonSetCooldown > 0)

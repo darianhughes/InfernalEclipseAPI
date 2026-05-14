@@ -441,6 +441,18 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
                         float chargeSpeed = 85f + npc.Distance(target.Center) * 0.0127f;
 
+                        int segmentCount = 0;
+                        for (int i = 0; i < Main.maxNPCs; i++)
+                        {
+                            if (Main.npc[i].active && (Main.npc[i].type == ModContent.NPCType<DevourerofGodsBody>() || Main.npc[i].type == ModContent.NPCType<DevourerofGodsTail>()))
+                            {
+                                Main.npc[i].Center = npc.Center;
+                                Main.npc[i].Opacity = Utils.GetLerpValue(15f, 0f, segmentCount, true);
+                                Main.npc[i].netUpdate = true;
+                                segmentCount++;
+                            }
+                        }
+
                         npc.velocity = CalamityUtils.SafeDirectionTo(npc, destination) * chargeSpeed;
                         npc.Opacity = 1f;
                         npc.dontTakeDamage = false;

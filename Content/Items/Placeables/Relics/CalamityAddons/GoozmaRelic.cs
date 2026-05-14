@@ -3,7 +3,6 @@ using Terraria.Localization;
 using InfernalEclipseAPI.Content.Tiles.Relics.Thorium;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.CalamityAddons
 {

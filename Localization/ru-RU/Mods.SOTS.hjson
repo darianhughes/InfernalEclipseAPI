@@ -37,6 +37,7 @@ NPCs.CorpseBloom.DisplayName: Гнилоцвет
 Items: {
 	Sharanga.DisplayName: Коданда
 	Dreamcatcher.DisplayName: Талисман грёз
+	// EnchantedPickaxe.DisplayName: Mystic Pickaxe
 	VigorPotion.Tooltip: Позволяет совершить рывок 25 раз
 	HarvestersScythe.Tooltip:
 		'''

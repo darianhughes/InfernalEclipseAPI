@@ -292,6 +292,10 @@ namespace InfernalEclipseAPI.Core.Systems
             {
                 MakeCard(hypnos.Find<ModNPC>("HypnosBoss").Type, (horz, anim) => Color.Lerp(Color.DeepPink, Color.MistyRose, anim), "HypnosBoss", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"), 240);
             }
+            if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine))
+            {
+                MakeCard(warMachine.Find<ModNPC>("WulfrumMothership").Type, (horz, anim) => Color.Lerp(Color.YellowGreen, Color.GreenYellow, anim), "WulfrumMothership", SoundID.NPCHit4, new("CalamityMod/Sounds/Custom/RoverDriveActivate"), 240);
+            }
             if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst) && !ModLoader.TryGetMod("CnI", out _))
             {
                 int astrageldonType = catalyst.Find<ModNPC>("Astrageldon").Type;

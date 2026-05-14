@@ -1189,7 +1189,7 @@ Items: {
 			/* Lore:
 				'''
 				Thor, one of the many gods that had managed to evade my crusade,
-				yet he wiill never forget what I had done to him and family.
+				yet he will never forget what I had done to him and family.
 				Asgard was merely a land of sinners, so I merely did what they had done to so many others.
 				Thor had escaped me and I belived he still ruled over Asgard to this day,
 				but with his hammer in your hands, perhaps it is no more.
@@ -2139,6 +2139,22 @@ Items: {
 			Picking up this item or holding it in your inventory permanently unlocks new recipes
 			''' */
 	}
+
+	TheChickenWing: {
+		// DisplayName: The Chicken Wing
+		/* Tooltip:
+			'''
+			Inflicts [cbuff:Oiled] on enemies
+			Grows more powerful the better fed you are
+			Defeating enemies temporarily grants [cbuff:HeartyMeal]
+			'Not the part you think it is.'
+			''' */
+	}
+
+	WulfrumMothershipRelic: {
+		// DisplayName: Wulfrum Mothership Relic
+		// Tooltip: Mods.InfernalEclipseAPI.Items.WulfrumMothershipRelic.Tooltip
+	}
 }
 
 Projectiles: {
@@ -2184,6 +2200,7 @@ Projectiles: {
 	// CatlightDeathray.DisplayName: Catlight Deathray
 	// CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
 	// CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
+	// ChickenWingHoldout.DisplayName: The Chicken Wing
 }
 
 DiaryTooltip:
@@ -2730,6 +2747,7 @@ InfernumIntegration: {
 		ВОПЛОЩЕНИЕ ХАОСА
 		МАЛЕНЬКИЙ ДЕМОНИЧЕСКИЙ СЕРЫЙ КОТ
 		'''
+	// WulfrumMothership: Mods.InfernalEclipseAPI.InfernumIntegration.WulfrumMothership
 }
 
 Buffs: {

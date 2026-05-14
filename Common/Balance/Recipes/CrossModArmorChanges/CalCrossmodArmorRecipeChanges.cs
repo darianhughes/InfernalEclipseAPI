@@ -7,28 +7,6 @@
         {
             ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
             ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHealer);
-            /*
-            if (ragnarok != null && InfernalConfig.Instance.DisableUnfinisedContent)
-            {
-                int[] nightFallen =
-                {
-                    GetItemID("NightfallenBreastplate", ragnarok),
-                    GetItemID("NightfallenGreaves", ragnarok),
-                    GetItemID("NightfallenHelmet", ragnarok)
-                };
-
-                foreach (var recipe in Main.recipe)
-                {
-                    foreach (int itemID in nightFallen)
-                    {
-                        if (recipe.HasResult(itemID))
-                        {
-                            recipe.DisableRecipe();
-                        }
-                    }
-                }
-            }
-            */
 
             if (ragnarok != null && calBardHealer != null)
             {

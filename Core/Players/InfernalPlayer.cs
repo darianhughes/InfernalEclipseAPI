@@ -392,6 +392,12 @@ namespace InfernalEclipseAPI.Core.Players
 
         public int defenseGain;
 
+        public override void UpdateDead()
+        {
+            Player.ClearBuff(ModContent.BuffType<WarpJammed>());
+            Player.ClearBuff(ModContent.BuffType<StarboundHorrification>());
+        }
+
         public override void PostUpdate()
         {
             if (Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
