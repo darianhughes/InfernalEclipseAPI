@@ -37,6 +37,7 @@ NPCs.CorpseBloom.DisplayName: Rotbloom
 Items: {
 	Sharanga.DisplayName: Kodanda
 	Dreamcatcher.DisplayName: Dream Talisman
+	EnchantedPickaxe.DisplayName: Mystic Pickaxe
 	VigorPotion.Tooltip: Grants the ability to dash 25 times
 	HarvestersScythe.Tooltip:
 		'''

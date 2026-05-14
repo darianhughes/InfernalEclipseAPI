@@ -46,7 +46,7 @@ If you want to support the development team, see our pateron page: https://www.p
 
 Check out some of our other offical DLC & commpatability mods:
 [list]
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010] Infernal Eclipse of Ragnarok: Weapons DLC[/url], an official DLC that adds new weapons to the mod.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010] Infernal Arsenal[/url], an official DLC that adds new weapons and accessories to the mod.
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnarok] Homeward Ragnarok[/url], an official DLC that adds support for Homeward Journey.
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url], a Calamity/Thorium balancing mod that this mod gets most of its balance changes from.
 [/list]

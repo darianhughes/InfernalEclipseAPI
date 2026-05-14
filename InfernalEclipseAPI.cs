@@ -142,11 +142,6 @@ namespace InfernalEclipseAPI
 
         public override void PostSetupContent()
         {
-            if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
-            {
-                //BossRushInjection(calamity);
-            }
-
             #region Forced Menu Theme
             if (InfernalConfig.Instance.ForceMenu)
             {

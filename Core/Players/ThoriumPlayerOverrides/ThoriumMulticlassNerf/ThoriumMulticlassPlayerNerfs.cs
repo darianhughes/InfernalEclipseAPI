@@ -8,6 +8,7 @@ using CalamityMod;
 using ThoriumMod.Utilities;
 using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Buffs;
+using Terraria;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {
@@ -219,6 +220,26 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 melee += (float)(0.02 * emptySummonSlots);
                 ref StatModifier ranged = ref Player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance);
                 ranged += (float)(0.02 * emptySummonSlots);
+            }
+
+            if (Player.HeldItem.CountsAsClass<LegendaryMelee>() || Player.HeldItem.CountsAsClass<LegendaryRanged>() || Player.HeldItem.CountsAsClass<LegendaryMagic>() ||
+                Player.HeldItem.CountsAsClass<MythicMelee>() || Player.HeldItem.CountsAsClass<MythicRanged>() || Player.HeldItem.CountsAsClass<MythicMagic>() || Player.HeldItem.CountsAsClass<MythicSummon>())
+            {
+                bool hasLunateCharm = false;
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    hasLunateCharm = LunateCharmChecker.PlayerHasLunateCharm(Player);
+                }
+
+                if (!hasLunateCharm)
+                {
+                    StatModifier healerModifier = Player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance);
+
+                    float transferAmount = (healerModifier.Additive - 1f) * healerModifier.Multiplicative / 2f;
+
+                    Player.GetDamage(DamageClass.Generic) += transferAmount;
+                    Player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) -= transferAmount;
+                }
             }
         }
 

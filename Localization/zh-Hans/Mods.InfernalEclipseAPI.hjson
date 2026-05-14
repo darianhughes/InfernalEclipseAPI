@@ -2166,6 +2166,22 @@ Items: {
 			Picking up this item or holding it in your inventory permanently unlocks new recipes
 			''' */
 	}
+
+	TheChickenWing: {
+		// DisplayName: The Chicken Wing
+		/* Tooltip:
+			'''
+			Inflicts [cbuff:Oiled] on enemies
+			Grows more powerful the better fed you are
+			Defeating enemies temporarily grants [cbuff:HeartyMeal]
+			'Not the part you think it is.'
+			''' */
+	}
+
+	WulfrumMothershipRelic: {
+		// DisplayName: Wulfrum Mothership Relic
+		// Tooltip: Mods.InfernalEclipseAPI.Items.WulfrumMothershipRelic.Tooltip
+	}
 }
 
 Projectiles: {
@@ -2211,6 +2227,7 @@ Projectiles: {
 	// CatlightDeathray.DisplayName: Catlight Deathray
 	// CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
 	// CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
+	// ChickenWingHoldout.DisplayName: The Chicken Wing
 }
 
 DiaryTooltip:
@@ -2801,6 +2818,7 @@ InfernumIntegration: {
 		混沌具形
 		恶魔小灰猫
 		'''
+	// WulfrumMothership: Mods.InfernalEclipseAPI.InfernumIntegration.WulfrumMothership
 }
 
 Buffs: {

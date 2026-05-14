@@ -61,6 +61,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
         public override void AddRecipes()
         {
             #region Vanilla
+            /*
             Recipe.Create(ItemID.Terragrim)
                 .AddIngredient(ItemID.EnchantedSword, 1)
                 .AddIngredient(ItemID.JungleSpores, 5)
@@ -69,6 +70,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 .AddIngredient(ItemID.FossilOre, 3)
                 .AddTile(TileID.Anvils)
                 .Register();
+            */
 
             Recipe.Create(ItemID.TinkerersWorkshop)
                 .AddIngredient<AbandonedWorkshop>()
@@ -326,7 +328,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             foreach (var recipe in Main.recipe)
             {
                 #region tPackBuilder Subsititons
-                if (!ModLoader.TryGetMod("PackBuilder", out Mod tPack))
+                if (!ModLoader.HasMod("PackBuilder"))
                 {
                     if (recipe.HasResult(ModContent.ItemType<Kevin>()))
                     {

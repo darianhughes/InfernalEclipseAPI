@@ -148,7 +148,6 @@ ItemTooltip: {
 	}
 
 	WhiteDwarfSetBonus: Ivory flares spawn on a 2 second cooldown
-
 	PhoenixStaff:
 		'''
 		Right Click to spew a stream of flames that inflict [cbuff:ThoriumMod/HolyGlare]
@@ -2167,6 +2166,22 @@ Items: {
 			Picking up this item or holding it in your inventory permanently unlocks new recipes
 			'''
 	}
+
+	TheChickenWing: {
+		DisplayName: The Chicken Wing
+		Tooltip:
+			'''
+			Inflicts [cbuff:Oiled] on enemies
+			Grows more powerful the better fed you are
+			Defeating enemies temporarily grants [cbuff:HeartyMeal]
+			'Not the part you think it is.'
+			'''
+	}
+
+	WulfrumMothershipRelic: {
+		DisplayName: Wulfrum Mothership Relic
+		Tooltip: "{0}"
+	}
 }
 
 Projectiles: {
@@ -2212,6 +2227,7 @@ Projectiles: {
 	CatlightDeathray.DisplayName: Catlight Deathray
 	CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
 	CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
+	ChickenWingHoldout.DisplayName: The Chicken Wing
 }
 
 DiaryTooltip:
@@ -2806,6 +2822,11 @@ InfernumIntegration: {
 		'''
 		Chaos Incarnate
 		Demonic Little Grey Cat
+		'''
+	WulfrumMothership:
+		'''
+		Heart of the Wulfrum Machines
+		Wulfrum Mothership
 		'''
 }
 
