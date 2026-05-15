@@ -957,7 +957,7 @@ namespace InfernalEclipseAPI.Core.Players
             if ((proj.type == ModContent.ProjectileType<CelestusProj>() || proj.type == ModContent.ProjectileType<CelestusMiniScythe>()) &&
                 (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()))
             {
-                modifiers.FinalDamage *= 0.01f;
+                modifiers.FinalDamage *= 0.001f;
             }
 
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
