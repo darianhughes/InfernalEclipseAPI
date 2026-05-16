@@ -16,6 +16,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             "BuriedChampion",
             "StarScouter",
             "BoreanStrider",
+            "BoreanStriderPopped",
             "FallenBeholder",
             "Lich",
             "LichHeadless",
