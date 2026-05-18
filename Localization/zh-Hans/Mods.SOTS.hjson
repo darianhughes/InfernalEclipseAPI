@@ -36,7 +36,7 @@ NPCs.CorpseBloom.DisplayName: 腐尸之花
 Items: {
 	Sharanga.DisplayName: 考丹达
 	Dreamcatcher.DisplayName: 梦境护符
-	// EnchantedPickaxe.DisplayName: Mystic Pickaxe
+	EnchantedPickaxe.DisplayName: 奥秘镐
 	VigorPotion.Tooltip: 获得25次冲刺的能力
 	HarvestersScythe.Tooltip:
 		'''

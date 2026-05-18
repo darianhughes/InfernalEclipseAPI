@@ -11,75 +11,75 @@ Items: {
 	}
 
 	JadeSeal: {
-		// DisplayName: Jade Seal
-		/* Tooltip:
+		DisplayName: 金翠玺杖
+		Tooltip:
 			'''
-			Left click to summon a golden lantern that slowly hovers towards the cursor and heals allies
-			Right click to summon a jade lantern that hovers in place, boosting the damage and defense of allies in radius
-			Only one lantern can exist at a time
-			''' */
+			左键召唤一盏跟随光标缓慢移动的金黄灯笼，提升盟友的伤害与防御
+			右键召唤一盏悬浮在原地的翠绿灯笼，恢复盟友生命
+			同一时间内只能存在一盏灯笼
+			'''
 	}
 
 	OldViperChestplate: {
-		// DisplayName: Ancient Viper Jacket
-		/* Tooltip:
+		DisplayName: 远古蝰蛇外套
+		Tooltip:
 			'''
-			10% increased throwing damage
-			20% increased throwing velocity
-			''' */
+			增加10%投掷伤害
+			增加20%投掷弹幕速度
+			'''
 	}
 
 	OldViperHelmet: {
-		// DisplayName: Ancient Viper Helmet
-		/* Tooltip:
+		DisplayName: 远古蝰蛇头盔
+		Tooltip:
 			'''
-			10% increased throwing damage
-			33% chance not to consume thrown items
-			Increases your maximum technique points by 2
-			''' */
+			增加10%投掷伤害
+			33%概率不消耗投掷物品
+			最大技巧值增加2
+			'''
 	}
 
 	OldViperLegs: {
-		// DisplayName: Ancient Viper Pants
-		/* Tooltip:
+		DisplayName: 远古蝰蛇护腿
+		Tooltip:
 			'''
-			10% increased throwing damage
-			15% increased throwing critical strike chance
-			15% increased movement speed
-			''' */
+			增加10%投掷伤害
+			增加15%投掷暴击率
+			增加15%移动速度
+			'''
 	}
 
 	ViperChestplate: {
-		// DisplayName: Viper Jacket
-		/* Tooltip:
+		DisplayName: 蝰蛇外套
+		Tooltip:
 			'''
-			10% increased throwing damage
-			20% increased throwing velocity
-			''' */
+			增加10%投掷伤害
+			增加20%投掷弹幕速度
+			'''
 	}
 
 	ViperHelmet: {
-		// DisplayName: Viper Helmet
-		/* Tooltip:
+		DisplayName: 蝰蛇头盔
+		Tooltip:
 			'''
-			10% increased throwing damage
-			33% chance not to consume thrown items
-			Increases your maximum technique points by 2
-			''' */
-		/* SetBonus:
+			增加10%投掷伤害
+			33%概率不消耗投掷物品
+			最大技巧值增加2
 			'''
-			Throwing damage has a 10% chance to poison enemies
-			Nearby enemies take extra damage from poison and venom
-			''' */
+		SetBonus:
+			'''
+			投掷伤害有10%概率使敌人中毒
+			附近的敌怪会受到额外的中毒和酸性毒液伤害
+			'''
 	}
 
 	ViperLegs: {
-		// DisplayName: Viper Pants
-		/* Tooltip:
+		DisplayName: 蝰蛇护腿
+		Tooltip:
 			'''
-			10% increased throwing damage
-			15% increased throwing critical strike chance
-			15% increased movement speed
-			''' */
+			增加10%投掷伤害
+			增加15%投掷暴击率
+			增加15%移动速度
+			'''
 	}
 }
