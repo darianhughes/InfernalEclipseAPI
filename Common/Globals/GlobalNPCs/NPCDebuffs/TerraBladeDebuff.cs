@@ -5,6 +5,7 @@ using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSy
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
 {
+    [JITWhenModsEnabled("YouBoss")]
     [ExtendsFromMod("YouBoss")]
     public class TerraBladeDebuff : GlobalNPC
     {
@@ -33,5 +34,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
             WorldSaveSystem.HasDefeatedYourself = true;
             CalamityNetcode.SyncWorld();
         }
+
+        public static bool DownedYou => WorldSaveSystem.HasDefeatedYourself;
     }
 }

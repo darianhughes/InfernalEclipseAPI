@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using Microsoft.Xna.Framework;
@@ -21,6 +22,18 @@ namespace InfernalEclipseAPI.Content.Items.Other
         public class MusicUIIcon
         {
             public bool RequiresWoTG
+            {
+                get;
+                set;
+            }
+
+            public bool RequiresYou
+            {
+                get;
+                set;
+            }
+
+            public bool RequiresThorium
             {
                 get;
                 set;
@@ -180,11 +193,29 @@ namespace InfernalEclipseAPI.Content.Items.Other
 
             new()
             {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.You"),
+                TrackName = "FINALFRACTAL",
+                HoverTextColor = () =>  Color.Yellow,
+                UnlockCondition = () => InfernalCrossmod.YouBoss.Loaded ? TerraBladeDebuff.DownedYou : false,
+                BossIconTexture = TextureAssets.Item[ItemID.TerraBlade],
+            },
+
+            new()
+            {
                 HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.DoG"),
                 TrackName = "LastBattle",
                 HoverTextColor = () => Color.Lerp(Color.Cyan, Color.Fuchsia, (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)),
                 UnlockCondition = () => DownedBossSystem.downedDoG,
                 BossIconTexture = ModContent.Request<Texture2D>("InfernumMode/Content/BehaviorOverrides/BossAIs/DoG/DoGP2HeadMapIcon")
+            },
+
+            new()
+            {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.Ragnarok"),
+                TrackName = "RealitysEnd",
+                HoverTextColor = () => new(205, 150, 255),
+                UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "ThePrimordials") : false,
+                BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossThePrimordials/DreamEater_Head_Boss") : TextureAssets.MagicPixel,
             },
 
             new()
@@ -231,6 +262,15 @@ namespace InfernalEclipseAPI.Content.Items.Other
                 HoverTextColor = () => Color.YellowGreen,
                 UnlockCondition = () => DownedBossSystem.downedBossRush,
                 BossIconTexture = ModContent.Request<Texture2D>("CalamityMod/UI/MiscTextures/BossRushIcon"),
+            },
+
+            new()
+            {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.LittleCat"),
+                TrackName = "LittleCatTheme",
+                HoverTextColor = () => Color.LightGray,
+                UnlockCondition = () => false,
+                BossIconTexture = TextureAssets.NpcHead[27],
             },
         };
 
@@ -392,6 +432,10 @@ namespace InfernalEclipseAPI.Content.Items.Other
             {
                 if (ui.RequiresWoTG && !InfernalCrossmod.NoxusBoss.Loaded)
                     return false;
+                if (ui.RequiresYou && !InfernalCrossmod.YouBoss.Loaded)
+                    return false;
+                if (ui.RequiresThorium && !InfernalCrossmod.Thorium.Loaded)
+                    return false;
 
                 return true;
             }).ToList();
@@ -510,7 +554,18 @@ namespace InfernalEclipseAPI.Content.Items.Other
             get
             {
                 string trackName = Main.LocalPlayer.GetModPlayer<CustomMusicPlayer>().CurrentTrackName;
-                return MusicLoader.GetMusicSlot(Mod, $"Assets/Music/{trackName}");
+
+                switch (trackName)
+                {
+                    case "FINALFRACTAL":
+                        if (!InfernalCrossmod.YouBoss.Loaded) return -1;
+                        return MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You");
+                    case "RealitysEnd":
+                        if (!InfernalCrossmod.Thorium.Loaded) return -1;
+                        return MusicLoader.GetMusicSlot(InfernalCrossmod.Thorium.Mod, "Sounds/Music/Realitys_End");
+                    default:
+                        return MusicLoader.GetMusicSlot(Mod, $"Assets/Music/{trackName}");
+                }
             }
         }
 

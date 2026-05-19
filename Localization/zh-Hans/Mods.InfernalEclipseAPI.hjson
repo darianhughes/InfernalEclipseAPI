@@ -2455,7 +2455,7 @@ Configs: {
 		MultiplayerBossRespawnTimer: {
 			Label: 多人游戏Boss战复活计时器
 			Tooltip:
-				''' 
+				'''
 				决定Boss战需要多久时间复活
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以将这个数值设置为“60”而展开的]
 				'''
@@ -2669,6 +2669,7 @@ DamageClasses: {
 	MythicSummon.DisplayName: 神话召唤伤害
 	CatlightDamage.DisplayName: 星光猫伤害
 }
+
 BossRushIntroText1:
 	'''
 	克希罗克的挑战
@@ -2950,4 +2951,7 @@ BossName: {
 	// Tier6: Omiscience Of Gods - Boss Rush (Tier 6)
 	// TierNameless: TWISTED GARDEN [Remix] - Nameless Deity (Boss Rush)
 	// Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
+	// You: FINAL FRACTAL - Terra Blade
+	// Ragnarok: Reality's End - Dream Eater, the Ragnarok
+	// LittleCat: Coming Soon... - ???
 }

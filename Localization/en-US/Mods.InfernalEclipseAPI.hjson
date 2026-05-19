@@ -2187,7 +2187,7 @@ Items: {
 		DisplayName: Soul-Driven Headphones (Eclipse Edition)
 		Tooltip:
 			'''
-			Allows you to pick and play custom Infernal Eclipse of Ragnarok music
+			Allows you to pick and play custom Infernal Eclipse of Ragnarok music, as well as some other unique themes
 			As you hold onto them, you vaguely feel an otherworldly presence
 			You can also hear the sounds of instruments passionately playing
 			'''
@@ -2953,4 +2953,7 @@ BossName: {
 	Tier6: Omiscience Of Gods - Boss Rush (Tier 6)
 	TierNameless: TWISTED GARDEN [Remix] - Nameless Deity (Boss Rush)
 	Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
+	You: FINAL FRACTAL - Terra Blade
+	Ragnarok: Reality's End - Dream Eater, the Ragnarok
+	LittleCat: Coming Soon... - ???
 }

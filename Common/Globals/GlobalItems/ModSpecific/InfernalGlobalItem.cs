@@ -19,6 +19,7 @@ using CalamityMod;
 using InfernumMode.Content.Items.Misc;
 using Terraria;
 using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
+using InfernalEclipseAPI.Content.Items.Other;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -99,6 +100,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 }
 
                 itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MenuMusicBox>()));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulDrivenHeadphonesEclipse>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<LoreProvi>()));
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<MysteriousDiary>()));
@@ -113,7 +115,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 itemLoot.Add(ItemDropRule.ByCondition(new CatPlayerCondition(), ModContent.ItemType<Catlight>()));
 
-                itemLoot.Add(ItemDropRule.ByCondition(new devListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
+                itemLoot.Add(ItemDropRule.ByCondition(new DevListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
             }
 
             /*
@@ -264,7 +266,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         }
     }
 
-    public class devListPlayerCondition : IItemDropRuleCondition
+    public class DevListPlayerCondition : IItemDropRuleCondition
     {
         public bool CanDrop(DropAttemptInfo info)
         {
