@@ -847,8 +847,6 @@ ItemTooltip: {
 		'''
 		你的第一次尝试或许比下一次更顺利，但那只是本能的反射  
 		制定策略、规划行动，如此敌人将败倒在你的技巧之下，而非运气
-		While your first attempt may reach farther than the next, it was only raw reaction that got you there
-		Strategize, plan out your moves, and the enemy will fall to your skill, not luck
 		'''
 	TurkorRelic:
 		'''
@@ -2181,13 +2179,13 @@ Items: {
 	}
 
 	SoulDrivenHeadphonesEclipse: {
-		// DisplayName: Soul-Driven Headphones (Eclipse Edition)
-		/* Tooltip:
+		DisplayName: 驱魂耳机 （蚀光版本）
+		Tooltip:
 			'''
-			Allows you to pick and play custom Infernal Eclipse of Ragnarok music
-			As you hold onto them, you vaguely feel an otherworldly presence
-			You can also hear the sounds of instruments passionately playing
-			''' */
+			允许你挑选并播放《诸神黄昏：炼狱蚀光》的专属音乐
+			当你拿起耳机时，你隐约感受到一种异界的存在
+			你还可以听到充满激情的乐器演奏声
+			'''
 	}
 }
 
@@ -2235,7 +2233,7 @@ Projectiles: {
 	CatlightDeathrayJR.DisplayName: 星光猫死亡射线前摇
 	CatlightDeathrayJRR.DisplayName: 星光猫死亡射线前摇的前摇
 	ChickenWingHoldout.DisplayName: 鸡翅
-	// EclipseHeadphonesProj.DisplayName: Eclipse Headphones Proj
+	EclipseHeadphonesProj.DisplayName: 蚀光耳机弹幕
 }
 
 DiaryTooltip:
@@ -2937,16 +2935,16 @@ Misc: {
 	SpellbookRecipeCondition: 查看索琳的魔法书
 }
 
-// HeadphonesText.1: Now playing {0}!
+HeadphonesText.1: 正在播放 {0}！
 
 BossName: {
-	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
-	// TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
-	// BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
-	// DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
-	// Interlude4: Calamity before the cynosure - Interlude 4
-	// Tier5: Descent Of Divinities - Boss Rush (Tier 5)
-	// Tier6: Omiscience Of Gods - Boss Rush (Tier 6)
-	// TierNameless: TWISTED GARDEN [Remix] - Nameless Deity (Boss Rush)
-	// Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
+	// 写给之后做汉化的，别把将下列曲目的“-”改为其他符号，代码会无法查询运行导致报错
+	TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
+	BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
+	DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
+	Interlude4: Calamity before the cynosure - Interlude 4
+	Tier5: Descent Of Divinities - Boss Rush (Tier 5)
+	Tier6: Omiscience Of Gods - Boss Rush (Tier 6)
+	TierNameless: TWISTED GARDEN [Remix] - Nameless Deity (Boss Rush)
+	Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
 }
