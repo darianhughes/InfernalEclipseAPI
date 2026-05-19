@@ -2,6 +2,7 @@
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
+using InfernumMode;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
 {
@@ -104,7 +105,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
 
         public override bool PreAI(NPC npc)
         {
-            if (npc.type == NPCID.WallofFleshEye && InfernalWorld.RagnarokModeEnabled)
+            if (npc.type == NPCID.WallofFleshEye && InfernalWorld.RagnarokModeEnabled && npc.Infernum().ExtraAI[2] != 1f)
                 npc.damage = 150;
 
             return base.PreAI(npc);

@@ -9,6 +9,7 @@ using ThoriumMod.Utilities;
 using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Buffs;
 using Terraria;
+using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {
@@ -267,6 +268,21 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
             {
                 if (inspirationGainTimer != 0)
                     inspirationGainTimer = 0;
+            }
+        }
+
+        public override void PostUpdateEquips()
+        {
+            if (!InfernalConfig.Instance.NerfThoriumMulticlass) return;
+
+            if (Player.HasBuff<BrokenOath>())
+            {
+                ThoriumPlayer thor = Player.GetThoriumPlayer();
+
+                thor.healBonus -= 10;
+
+                if (thor.healBonus < 0)
+                    thor.healBonus = 0;
             }
         }
     }

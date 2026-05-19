@@ -10,6 +10,7 @@ using CalamityMod.UI.DialogueDisplay.DisplayEffects;
 using CalamityMod.World;
 using FargowiltasSouls.Content.Bosses.MutantBoss;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
@@ -793,7 +794,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             {
                 Player player = Main.player[i];
 
-                if (player.active && !player.dead)
+                if (player.active && !player.dead && player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
                 {
                     player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 2);
                     player.DoInfiniteFlightCheck(Color.Magenta);

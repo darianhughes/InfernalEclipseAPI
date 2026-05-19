@@ -69,11 +69,8 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TWISTEDGARDENRemix"), "TWISTED GARDEN [Remix]", "by Kuudray", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "by CDMusic", "Infernal Eclipse of Ragnarok");
 
-            // Just for that one music box...
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
-
             // Currently unused
-            //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok"); <- Ported to YharimEX
+            //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LittleCatTheme"), "Demonic Little Grey Cat Theme Song", "by vivivivivi", "Infernal Eclipse of Ragnarok");
             
 
@@ -99,15 +96,18 @@ namespace InfernalEclipseAPI.Core.Systems
             if (!ModLoader.TryGetMod("BossChecklist", out mod1) || mod1.Version < new Version(1, 6))
                 return;
 
-            mod1.Call(new object[3]
+            if (ModLoader.HasMod("InfernumModeMusic"))
             {
+                mod1.Call(new object[3]
+                {
                 "AddToBossCollection",
                 "CalamityMod Exo Mechs",
                 new List<int>()
                 {
                     ModContent.ItemType<CatastrophicFabricationsMusicBox>()
                 }
-            });
+                });
+            }
         }
 
         internal void AddInfernumCards()

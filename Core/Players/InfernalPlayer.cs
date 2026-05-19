@@ -30,9 +30,7 @@ using CalamityMod.NPCs.Ravager;
 using CalamityMod.NPCs.Providence;
 using System.Linq;
 using CalamityMod.NPCs.PrimordialWyrm;
-using CalamityMod.World;
 using InfernalEclipseAPI.Content.Items.Other;
-using Terraria;
 using InfernumMode.Common.DataStructures;
 using InfernumMode;
 
@@ -204,6 +202,7 @@ namespace InfernalEclipseAPI.Core.Players
         public bool CritNightmare;
         public bool bagOfCharms;
         public int voidSicknessTextCooldown;
+        public int teleportRespawnKilldown;
 
         public float manaSteal = Main.expertMode ? 40f : 50f;
         public float voidSteal = Main.expertMode ? 45f : 55f;
@@ -282,6 +281,9 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (!Player.HasBuff(ModContent.BuffType<WarpJammed>()))
                 jamTimer = 0;
+
+            if (teleportRespawnKilldown > 0)
+                teleportRespawnKilldown--;
 
             if (namelessDialogueCooldown > 0)
                 namelessDialogueCooldown--;
@@ -396,6 +398,8 @@ namespace InfernalEclipseAPI.Core.Players
         {
             Player.ClearBuff(ModContent.BuffType<WarpJammed>());
             Player.ClearBuff(ModContent.BuffType<StarboundHorrification>());
+
+            teleportRespawnKilldown = 30;
         }
 
         public override void PostUpdate()

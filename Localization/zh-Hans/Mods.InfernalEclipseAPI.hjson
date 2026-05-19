@@ -2182,6 +2182,16 @@ Items: {
 		// DisplayName: Infernal Wulfrum Mothership Relic
 		// Tooltip: "{0}"
 	}
+
+	SoulDrivenHeadphonesEclipse: {
+		// DisplayName: Soul-Driven Headphones (Eclipse Edition)
+		/* Tooltip:
+			'''
+			Allows you to pick and play custom Infernal Eclipse of Ragnarok music
+			As you hold onto them, you vaguely feel an otherworldly presence
+			You can also hear the sounds of instruments passionately playing
+			''' */
+	}
 }
 
 Projectiles: {
@@ -2228,6 +2238,7 @@ Projectiles: {
 	// CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
 	// CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
 	// ChickenWingHoldout.DisplayName: The Chicken Wing
+	// EclipseHeadphonesProj.DisplayName: Eclipse Headphones Proj
 }
 
 DiaryTooltip:
@@ -2922,5 +2933,19 @@ Events: {
 
 Misc: {
 	// SolynSpellbookRecipeCondition: Place the spellbook owned by Solyn in your inventory at least once
-	// SpellbookRecipeCondition: View an spellbook owned by Solyn
+	// SpellbookRecipeCondition: View a spellbook owned by Solyn
+}
+
+// HeadphonesText.1: Now playing {0}!
+
+BossName: {
+	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
+	// TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
+	// BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
+	// DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
+	// Interlude4: Calamity before the cynosure - Interlude 4
+	// Tier5: Descent Of Divinities - Boss Rush (Tier 5)
+	// Tier6: Omiscience Of Gods - Boss Rush (Tier 6)
+	// TierNameless: TWISTED GARDEN [Remix] - Nameless Deity (Boss Rush)
+	// Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
 }

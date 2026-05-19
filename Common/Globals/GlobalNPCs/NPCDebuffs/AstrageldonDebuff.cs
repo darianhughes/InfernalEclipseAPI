@@ -1,6 +1,7 @@
 ﻿using CalamityMod.Items.Mounts;
 using CatalystMod.NPCs.Boss.Astrageldon;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Players;
 
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
@@ -53,7 +54,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
-                if (player.active && !player.dead && npc.Distance(player.Center) < 8000f)
+                if (player.active && !player.dead && npc.Distance(player.Center) < 8000f && player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
                 {
                     player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 60);
                 }

@@ -8,14 +8,48 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Consolaria.OcramOverrid
         private static bool bloodmoonStartedByOcram = false;
         private static bool bloodmoonStartedByDreadnaut = false;
 
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
+        {
+            if (InfernalCrossmod.Consolaria.Loaded) 
+            {
+                if (entity.type == InfernalCrossmod.Consolaria.Mod.Find<ModNPC>("Ocram").Type)
+                    return true;
+            }
+
+            return entity.type == NPCID.BloodNautilus;
+        }
+
         public override bool PreAI(NPC npc)
         {
-            if (InfernumActive.InfernumActive && npc.type == NPCID.BloodNautilus && !Main.bloodMoon)
+            if (npc.type == NPCID.BloodNautilus)
             {
-                Main.bloodMoon = true;
-                bloodmoonStartedByDreadnaut = true;
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendData(MessageID.WorldData); // sync the blood moon
+                if (InfernumActive.InfernumActive && !Main.bloodMoon)
+                {
+                    Main.bloodMoon = true;
+                    bloodmoonStartedByDreadnaut = true;
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendData(MessageID.WorldData); // sync the blood moon
+                }
+
+                if (Main.bloodMoon && bloodmoonStartedByDreadnaut)
+                {
+                    bool aPlayerIsAliveAndInRange = false;
+                    foreach (Player player in Main.player)
+                    {
+                        if (aPlayerIsAliveAndInRange)
+                            continue;
+
+                        if (player.active && !player.dead && npc.Distance(player.Center) < 10000f)
+                        {
+                            aPlayerIsAliveAndInRange = true;
+                        }
+                    }
+
+                    if (!aPlayerIsAliveAndInRange)
+                    {
+                        DisableBloodMoon();
+                    }
+                }
             }
 
             return base.PreAI(npc);

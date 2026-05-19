@@ -23,7 +23,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                     ref float hasEnteredFinalPhaseFlag =  ref dog.Infernum().ExtraAI[DoGPhase1HeadBehaviorOverride.HasEnteredFinalPhaseFlagIndex];
 
                     if (DoGChanges.DesperationHasTriggered || DoGChanges.DesperationCanDie)
-                        return MusicLoader.GetMusicSlot(Mod, "Assets/Music/LastBattleDesperationCut");
+                        return MusicLoader.GetMusicSlot(Mod, (Main.netMode == NetmodeID.MultiplayerClient ? "Assets/Music/LastBattleDesperation" : "Assets/Music/LastBattleDesperationCut")); //plays the longer theme in multiplayer... yes this is my justification for keeping it in the mod.
 
                     if (hasEnteredFinalPhaseFlag == 1f && InfernalConfig.Instance.DoGRagnarok == DoGSong.On)
                         return MusicLoader.GetMusicSlot(Mod, "Assets/Music/LastBattle");
