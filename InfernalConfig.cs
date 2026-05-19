@@ -115,9 +115,11 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool DreadnautillusInBossRush { get; set; }
 
+        /*
         [DefaultValue(false)]
         [ReloadRequired]
         public bool BetsyInBossRush { get; set; }
+        */
 
         [DefaultValue(true)]
         [ReloadRequired]

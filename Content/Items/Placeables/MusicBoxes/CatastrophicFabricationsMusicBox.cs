@@ -5,6 +5,11 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
 {
     public class CatastrophicFabricationsMusicBox : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.HasMod("InfernumModeMusic");
+        }
+
         public override void SetStaticDefaults()
         {
             if (Main.dedServ)
@@ -12,7 +17,9 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.CanGetPrefixes[Type] = false;
             ItemID.Sets.ShimmerTransformToItem[Type] = 576;
-            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Assets/Music/CatastrophicFabrications"), ModContent.ItemType<CatastrophicFabricationsMusicBox>(), ModContent.TileType<CatastrophicFabricationsMusicBoxTile>(), 0);
+
+            Mod InfernumMusic = ModLoader.GetMod("InfernumModeMusic");
+            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(InfernumMusic, "Sounds/Music/ExoMechBosses"), ModContent.ItemType<CatastrophicFabricationsMusicBox>(), ModContent.TileType<CatastrophicFabricationsMusicBoxTile>(), 0);
         }
 
         public override void SetDefaults()

@@ -56,6 +56,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst
         {
             if (player.altFunctionUse == 2)
             {
+                player.RemoveAllGrapplingHooks();
                 if (player.mount.Active)
                     player.mount.Dismount(player);
                 Item.noUseGraphic = true;
@@ -72,7 +73,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst
         public override bool? UseItem(Player player)
         {
             if (player.mount.Active && player.altFunctionUse == 2)
+            {
+                player.RemoveAllGrapplingHooks();
                 player.mount.Dismount(player);
+            }
             return base.UseItem(player);
         }
 

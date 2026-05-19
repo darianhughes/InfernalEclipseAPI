@@ -8,6 +8,11 @@ namespace InfernalEclipseAPI.Content.Tiles.MusicBoxes
 {
     public class CatastrophicFabricationsMusicBoxTile : ModTile
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.HasMod("InfernumModeMusic");
+        }
+
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;

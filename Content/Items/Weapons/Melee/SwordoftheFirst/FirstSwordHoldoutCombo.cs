@@ -136,6 +136,19 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst
             Rotation = new(x, y, z, w);
         }
 
+        public override bool PreAI()
+        {
+            Player player = Main.player[Projectile.owner];
+
+            if (player.mount.Active && player.altFunctionUse == 2)
+            {
+                player.mount.Dismount(player);
+            }
+            player.RemoveAllGrapplingHooks();
+
+            return base.PreAI();
+        }
+
         public override void AI()
         {
             if (HorizontalDirection == 0f)
