@@ -560,11 +560,11 @@ Items: {
 ThrowerTechniques: {
 	Decoy: {
 		DisplayName: 引敌诱饵
-		/* Description:
+		Description:
 			'''
-			Call in an enemy decoy and gain increased attack speed for a second
-			The decoy will attempt to grab the attention of nearby enemies
-			''' */
+			召唤一个敌怪诱饵，并提升攻击速度，持续1秒
+			诱饵会试图吸引附近敌怪的注意力
+			'''
 	}
 
 	BloodLotus: {

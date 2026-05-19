@@ -104,8 +104,8 @@ ItemTooltip: {
 	OmniShield: -至高神盾-
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
-	// NamelessDowned: You must pass the test
-	// DisabledBossRush: The effects will not work in Boss Rush
+	NamelessDowned: 你必须通过考验
+	DisabledBossRush: 该效果在Boss Rush中不生效
 	SBeamUsage: 长按左键，发射神话魔法伤害的光束
 	NBeamUsage: 长按左键，发射寰宇死光，造成神话魔法伤害
 	MBeamUsage: 长按左键，发射星流解离炮，造成神话远程伤害
@@ -117,7 +117,7 @@ ItemTooltip: {
 	ThorsHammerPro: 命中时施加3秒的带电
 	BountifulHarvest: 交替射出穿透毒刺
 	TwoAlchs: 在酒精中毒效果中被视为两种酒
-	// HornScale: Heal amount scales with progression
+	HornScale: 治疗量随游戏进度而增加
 
 	GrapeBeer: {
 		Orig: 降低75%暴击伤害
@@ -147,11 +147,7 @@ ItemTooltip: {
 		Player2: 定魂锚已设置，你有20秒的时间返回。
 	}
 
-	WhiteDwarfSetBonus:
-		'''
-
-		象牙状火焰触发后有2秒冷却时间
-		'''
+	WhiteDwarfSetBonus: 象牙状火焰触发后有2秒冷却时间
 	PhoenixStaff:
 		'''
 		右键喷射火焰流，对敌怪造成[cbuff:ThoriumMod/HolyGlare]减益
@@ -447,18 +443,18 @@ ItemTooltip: {
 		Nerf: 增加25%虚空攻击速度和5%近战伤害
 	}
 
-	// Oneirophobia: Turns into a sentient synthesizer minion when stowed, attacking enemies
-	/* PlagueLordFlask:
+	Oneirophobia: 不使用武器时，生成幻影仆从为你而战
+	PlagueLordFlask:
 		'''
-		15% increased throwing damage
-		15% increased throwing velocity
-		Using a throwing item has a 20% chance to unleash two Blight Daggers
-		Blight Daggers home in on enemies and apply a highly contagious disease
-		''' */
+		增加15%投掷伤害
+		增加15%投掷弹幕速度
+		使用投掷物品有20%概率释放两道枯萎飞刀
+		枯萎飞刀追踪敌怪并施加高度感染的疾病
+		'''
 
 	SpiritSurfer: {
-		// Orig: Increases void drain by 6 while active
-		// Replace: Increases void drain by 36 while active
+		Orig: 激活时会增加6点虚空流失速度
+		Replace: 激活时会增加36点虚空流失速度
 	}
 
 	DoesNotStack: 不与下位效果叠加
@@ -847,30 +843,32 @@ ItemTooltip: {
 		Yharim: 亚利姆
 	}
 
-	/* PutridRelic:
+	PutridRelic:
 		'''
+		你的第一次尝试或许比下一次更顺利，但那只是本能的反射  
+		制定策略、规划行动，如此敌人将败倒在你的技巧之下，而非运气
 		While your first attempt may reach farther than the next, it was only raw reaction that got you there
 		Strategize, plan out your moves, and the enemy will fall to your skill, not luck
-		''' */
-	/* TurkorRelic:
 		'''
-		Underestimating your opponent might be your fatal mistake
-		May you learn from it for the rest of your journey
-		''' */
-	/* PyrogenRelic:
+	TurkorRelic:
 		'''
-		Familiarity is a useful tool.
-		It is not uncommon for some battles to incorporate similar aspects as others. 
-		Keep pushing, it is likely you will use these skills again.
-		''' */
-	/* SubspaceRelic:
+		轻敌可能成为你致命的失误
+		愿你在接下来的旅途中从中汲取教训
 		'''
-		You saw the circle for what it is: predictable, finite, stagnating
-		When you recognize its flow, keep every turn in your mind; 
-		memorize the pattern you see before you
-		All it takes to escape the circle is to bend the line in just the right direction
-		Move forward and breach through infinity
-		''' */
+	PyrogenRelic:
+		'''
+		熟悉是一件强大的工具
+		许多战斗之间并不乏相似之处
+		继续前行吧，你将会再次用上这些技巧
+		'''
+	SubspaceRelic:
+		'''
+		你看清了那道循环的本质：可预见、有限、逐渐停止
+		当你理解了它的流向，就把每一次变化铭记于心
+		记住你眼前所见的所有轨迹
+		要突破循环，只需在正确的方向上改变轨迹
+		向前迈进，突破所谓无限的壁障
+		'''
 
 	AstrageldonRelic: {
 		Line1: 你为自己选择了巨大的苦难。
@@ -878,12 +876,12 @@ ItemTooltip: {
 		Line3: 你所克服的逆境终将结出可贵的硕果。
 	}
 
-	/* PrimordialsRelic:
+	PrimordialsRelic:
 		'''
-		You've done well, taking down Thorium. Only ten remain
-		Remember to not force yourself to keep going
-		Take breaks when needed, and it will make a world of difference
-		''' */
+		你做得很好，成功击败了《瑟银》。现在还剩十个
+		牢记，切莫强逼自己一路硬撑
+		在需要时停下来休息，这会带来巨大的改变
+		'''
 	AvatarRelic:
 		'''
 		你做得很好。
@@ -2144,43 +2142,43 @@ Items: {
 	}
 
 	Catlight: {
-		// DisplayName: Catlight
-		/* Tooltip:
+		DisplayName: 星光猫之书
+		Tooltip:
 			'''
-			'Are bosses too hard? Then buy Catlight Industries' Catlight!'
-			[c/7C0A02:Buy our product now]
-			''' */
+			“Boss太难打了？那就购买星光猫工业的星光猫之书！”
+			[c/7C0A02:立刻购买我们的产品]
+			'''
 	}
 
 	AlloyofEden: {
-		// DisplayName: Alloy of Eden
-		// Tooltip: An alloy composed of the strongest materials from multiple universes
+		DisplayName: 伊甸合金
+		Tooltip: 由多个宇宙中最强材料凝聚而成的合金
 	}
 
 	SolynsSpellbook: {
-		// DisplayName: Solyn's Spellbook
-		/* Tooltip:
+		DisplayName: 索琳的魔法书
+		Tooltip:
 			'''
-			A book that appeared in Solyn's old tent after the defeat of the Nameless Deity and completion of her bookshelf
-			Finely detailed diagrams of numerous magical artifacts fill up the book's pages
-			Picking up this item or holding it in your inventory permanently unlocks new recipes
-			''' */
+			在击败无名光神并补全索琳旧帐篷的书架后，这本书便随之出现
+			书页上满是对无数魔法圣物的精致详尽的描绘构图
+			拾取或将其放在物品栏中即可永久解锁新的配方
+			'''
 	}
 
 	TheChickenWing: {
-		// DisplayName: The Chicken Wing
-		/* Tooltip:
+		DisplayName: 鸡翅
+		Tooltip:
 			'''
-			Inflicts [cbuff:Oiled] on enemies
-			Grows more powerful the better fed you are
-			Defeating enemies temporarily grants [cbuff:HeartyMeal]
-			'Not the part you think it is.'
-			''' */
+			施加敌怪[cbuff:Oiled]减益
+			你吃得越饱，它就越强大
+			击败敌怪暂时获得[cbuff:HeartyMeal]
+			“并不是你以为的那一部分”
+			'''
 	}
 
 	WulfrumMothershipRelic: {
-		// DisplayName: Infernal Wulfrum Mothership Relic
-		// Tooltip: "{0}"
+		DisplayName: 钨钢母舰炼狱圣物
+		Tooltip: "{0}"
 	}
 
 	SoulDrivenHeadphonesEclipse: {
@@ -2234,10 +2232,10 @@ Projectiles: {
 	CelestialIlluminationStar.DisplayName: 启明之星
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: 暴君亚利姆终极剑投掷
 	CasullandJackalProj.DisplayName: 454加斯尔和豺狼
-	// CatlightDeathray.DisplayName: Catlight Deathray
-	// CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
-	// CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
-	// ChickenWingHoldout.DisplayName: The Chicken Wing
+	CatlightDeathray.DisplayName: 星光猫死亡射线
+	CatlightDeathrayJR.DisplayName: 星光猫死亡射线前摇
+	CatlightDeathrayJRR.DisplayName: 星光猫死亡射线前摇的前摇
+	ChickenWingHoldout.DisplayName: 鸡翅
 	// EclipseHeadphonesProj.DisplayName: Eclipse Headphones Proj
 }
 
@@ -2405,6 +2403,7 @@ Configs: {
 			Tooltip:
 				'''
 				小幅度调整了部分原版Boss的数值，让它们变得更有挑战性
+				该设置不会移除诸神黄昏模式中为原版Boss添加的专属AI
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
 				'''
 		}
@@ -2455,7 +2454,11 @@ Configs: {
 
 		MultiplayerBossRespawnTimer: {
 			Label: 多人游戏Boss战复活计时器
-			Tooltip: 决定Boss战需要多久时间复活
+			Tooltip:
+				''' 
+				决定Boss战需要多久时间复活
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以将这个数值设置为“60”而展开的]
+				'''
 		}
 
 		MinimumDifficultyToPreventRespawns: {
@@ -2540,23 +2543,23 @@ Configs: {
 		}
 
 		BereftVassalRagnarok: {
-			Label: 无邦封臣诸神黄昏模式主题曲
+			Label: 无邦封臣诸-神黄昏模式主题曲
 			Tooltip: 切换是否在诸神黄昏模式下，无邦封臣Boss战播放 “Dead Kingdom's Champion” 作者：Techhy
 		}
 
 		DoGRagnarok: {
-			// Label: Ragnarok Devourer of Gods Final Phase Theme
-			// Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods' final phase and desperation in Ragnaork Mode
+			Label: 神明吞噬者-诸神黄昏模式最终阶段主题曲
+			Tooltip: 切换是否在诸神黄昏模式下，神明吞噬者最终阶段以及绝望尾杀播放 “Last Battle (Ballos Mix)” 作者：DM DOKURO
 		}
 
 		WarMachineBossInBossRush: {
-			// Label: Wulfrum Mothership In Boss Rush
-			// Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
+			Label: 为Boss Rush添加钨钢母舰
+			Tooltip: Boss Rush添加钨钢母舰
 		}
 
 		MothershipMusic: {
-			// Label: Wulfrum Mothership Music
-			// Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
+			Label: 钨钢母舰音乐
+			Tooltip: 切换钨钢母舰Boss战中的播放的主题曲
 		}
 	}
 
@@ -2610,45 +2613,45 @@ Configs: {
 	}
 
 	DoGSong: {
-		// Tooltip: ""
+		Tooltip: ""
 
 		Off: {
-			// Label: Off
-			// Tooltip: The phase 3 theme will not play
+			Label: 关闭
+			Tooltip: 不会播放第三阶段主题曲
 		}
 
 		DesperationOnly: {
-			// Label: Desperation Only
-			// Tooltip: The phase 3 theme will only play during the desperation attack
+			Label: 仅绝望尾杀
+			Tooltip: 第三阶段主题曲只会在绝望尾杀时播放
 		}
 
 		On: {
-			// Label: On
-			// Tooltip: The phase 3 theme will play
+			Label: On
+			Tooltip: 播放第三阶段主题曲
 		}
 	}
 
 	MothershipSong: {
-		// Tooltip: ""
+		Tooltip: ""
 
 		Vanilla: {
-			// Label: Vanilla
-			// Tooltip: "'Boss 1' will play"
+			Label: 原版
+			Tooltip: 播放 “Boss 1”
 		}
 
 		WarMachine: {
-			// Label: War Machine
-			// Tooltip: The original theme will play
+			Label: 战争机器
+			Tooltip: 播放原主题曲
 		}
 
 		Thorium: {
-			// Label: Thorium
-			// Tooltip: "'Stronger Foe' will play"
+			Label: 瑟银
+			Tooltip: 播放 “Stronger Foe”
 		}
 
 		Infernum: {
-			// Label: Infernum
-			// Tooltip: "'Misanthropic Encounters' will play"
+			Label: 炼狱
+			Tooltip: 播放 “Misanthropic Encounters”
 		}
 	}
 }
@@ -2664,9 +2667,8 @@ DamageClasses: {
 	LegendaryMagic.DisplayName: 传说魔法伤害
 	MeleeWhip.DisplayName: 近战鞭子伤害
 	MythicSummon.DisplayName: 神话召唤伤害
-	// CatlightDamage.DisplayName: Catlight Damage
+	CatlightDamage.DisplayName: 星光猫伤害
 }
-
 BossRushIntroText1:
 	'''
 	克希罗克的挑战
@@ -2829,16 +2831,16 @@ InfernumIntegration: {
 		混沌具形
 		恶魔小灰猫
 		'''
-	/* WulfrumMothership:
+	WulfrumMothership:
 		'''
-		Heart of the Wulfrum Machines
-		Wulfrum Mothership
-		''' */
+		钨钢机械之心
+		钨钢母舰
+		'''
 }
 
 Buffs: {
 	StarboundHorrification: {
-		Description: 你无法逃脱末世星史莱姆……
+		Description: 你无法逃脱宇宙实体……
 		DisplayName: 星界惊惧
 	}
 
@@ -2932,8 +2934,8 @@ Events: {
 }
 
 Misc: {
-	// SolynSpellbookRecipeCondition: Place the spellbook owned by Solyn in your inventory at least once
-	// SpellbookRecipeCondition: View a spellbook owned by Solyn
+	SolynSpellbookRecipeCondition: 至少将索琳的魔法书放入你的物品栏一次
+	SpellbookRecipeCondition: 查看索琳的魔法书
 }
 
 // HeadphonesText.1: Now playing {0}!
