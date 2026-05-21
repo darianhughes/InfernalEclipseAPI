@@ -5,6 +5,7 @@ UI: {
 		LucidRetaliation: 恢复的现实
 	}
 
+	NoVoidConsumable: 你现在可吃不下那个！
 	RagnarokIconText: 诸神黄昏模式已启用
 	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
 	NoRespawn2: 复活受限：在 {1} 人联机时，每场 Boss 战中每位玩家只有 {0} 次重生机会！

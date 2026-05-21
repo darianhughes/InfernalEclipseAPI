@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using SOTS.Items.Void;
 using SOTS.Void;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
 {
@@ -70,7 +71,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks
                 {
                     if (player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown <= 0)
                     {
-                        CombatText.NewText(player.Hitbox, Color.Lerp(Color.Red, Color.Magenta, 0.5f), "You don't have the appetite for that!", true);
+                        CombatText.NewText(player.Hitbox, Color.Lerp(Color.Red, Color.Magenta, 0.5f), Language.GetTextValue("Mods.InfernalEclipseAPI.UI.NoVoidConsumable"), true);
                         player.GetModPlayer<InfernalPlayer>().voidSicknessTextCooldown = 60 * 5;
                     }
                     return;
