@@ -2566,47 +2566,47 @@ Configs: {
 
 		AlwaysOff: {
 			Label: 保持关闭
-			Tooltip: ""
+			Tooltip: 重生不会被阻止
 		}
 
 		AlwaysOn: {
 			Label: 保持开启
-			Tooltip: ""
+			Tooltip: 重生总是会被阻止
 		}
 
 		Expert: {
 			Label: 专家
-			Tooltip: ""
+			Tooltip: 重生会在专家及以上难度的世界中被阻止
 		}
 
 		Master: {
 			Label: 大师
-			Tooltip: ""
+			Tooltip: 重生会在大师及以上难度的世界中被阻止
 		}
 
 		Legendary: {
 			Label: 传奇
-			Tooltip: ""
+			Tooltip: 重生会在传奇难度的世界中被阻止
 		}
 
 		Revengence: {
 			Label: 复仇
-			Tooltip: ""
+			Tooltip: 重生会在复仇及以上难度的世界中被阻止
 		}
 
 		Death: {
 			Label: 死亡
-			Tooltip: ""
+			Tooltip: 重生会在死亡及以上难度的世界中被阻止
 		}
 
 		Infernum: {
 			Label: 炼狱
-			Tooltip: ""
+			Tooltip: 重生会在炼狱及以上难度的世界中被阻止
 		}
 
 		Ragnarok: {
 			Label: 诸神黄昏
-			Tooltip: ""
+			Tooltip: 重生会在诸神黄昏难度的世界中被阻止
 		}
 	}
 
@@ -2624,7 +2624,7 @@ Configs: {
 		}
 
 		On: {
-			Label: On
+			Label: 启用
 			Tooltip: 播放第三阶段主题曲
 		}
 	}
@@ -2940,7 +2940,7 @@ Misc: {
 HeadphonesText.1: 正在播放 {0}！
 
 BossName: {
-	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
+	// 若翻译请不要将“-”删除或换成别的符号，这会导致代码无法查询导致报错
 	// TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
 	// BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
 	// DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
