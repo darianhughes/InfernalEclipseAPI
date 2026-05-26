@@ -2188,6 +2188,11 @@ Items: {
 			你还可以听到充满激情的乐器演奏声
 			'''
 	}
+
+	SplitFirebrand: {
+		// DisplayName: Split Firebrand
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -2235,6 +2240,7 @@ Projectiles: {
 	CatlightDeathrayJRR.DisplayName: 星光猫死亡射线前摇的前摇
 	ChickenWingHoldout.DisplayName: 鸡翅
 	EclipseHeadphonesProj.DisplayName: 蚀光耳机弹幕
+	// SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
 }
 
 DiaryTooltip:
@@ -2666,6 +2672,7 @@ DamageClasses: {
 	MeleeWhip.DisplayName: 近战鞭子伤害
 	MythicSummon.DisplayName: 神话召唤伤害
 	CatlightDamage.DisplayName: 星光猫伤害
+	// LegendarySummon.DisplayName: legendary summon damage
 }
 
 BossRushIntroText1:
@@ -2940,7 +2947,7 @@ Misc: {
 HeadphonesText.1: 正在播放 {0}！
 
 BossName: {
-	// 若翻译请不要将“-”删除或换成别的符号，这会导致代码无法查询导致报错
+	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
 	// TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
 	// BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
 	// DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)

@@ -2193,6 +2193,11 @@ Items: {
 			You can also hear the sounds of instruments passionately playing
 			'''
 	}
+
+	SplitFirebrand: {
+		DisplayName: Split Firebrand
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -2240,6 +2245,7 @@ Projectiles: {
 	CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
 	ChickenWingHoldout.DisplayName: The Chicken Wing
 	EclipseHeadphonesProj.DisplayName: Eclipse Headphones Proj
+	SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
 }
 
 DiaryTooltip:
@@ -2671,6 +2677,7 @@ DamageClasses: {
 	MeleeWhip.DisplayName: melee whip damage
 	MythicSummon.DisplayName: mythic summon damage
 	CatlightDamage.DisplayName: Catlight Damage
+	LegendarySummon.DisplayName: legendary summon damage
 }
 
 BossRushIntroText1:

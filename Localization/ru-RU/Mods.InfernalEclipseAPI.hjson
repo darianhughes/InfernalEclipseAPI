@@ -5,7 +5,7 @@ UI: {
 		// LucidRetaliation: Lucid Retaliation
 	}
 
-	//NoVoidConsumable: You don't have the appetite for that!
+	// NoVoidConsumable: You don't have the appetite for that!
 	RagnarokIconText: Рагнарёк активирован
 	NoRespawn: Возрождение предотвращено: Только одно возрождение в битве с боссом в {0} мультиплеере!
 	NoRespawn2: Возрождение предотвращено: Только {0} {^0:возрождение;возрождения;возрождений} в битве с боссом в {1} мультиплеере!
@@ -2161,10 +2161,15 @@ Items: {
 		// DisplayName: Soul-Driven Headphones (Eclipse Edition)
 		/* Tooltip:
 			'''
-			Allows you to pick and play custom Infernal Eclipse of Ragnarok music
+			Allows you to pick and play custom Infernal Eclipse of Ragnarok music, as well as some other unique themes
 			As you hold onto them, you vaguely feel an otherworldly presence
 			You can also hear the sounds of instruments passionately playing
 			''' */
+	}
+
+	SplitFirebrand: {
+		// DisplayName: Split Firebrand
+		// Tooltip: ""
 	}
 }
 
@@ -2213,6 +2218,7 @@ Projectiles: {
 	// CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
 	// ChickenWingHoldout.DisplayName: The Chicken Wing
 	// EclipseHeadphonesProj.DisplayName: Eclipse Headphones Proj
+	// SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
 }
 
 DiaryTooltip:
@@ -2595,6 +2601,7 @@ DamageClasses: {
 	MeleeWhip.DisplayName: ед. урона хлыстом
 	MythicSummon.DisplayName: ед. мифического урона призывателя
 	// CatlightDamage.DisplayName: Catlight Damage
+	// LegendarySummon.DisplayName: legendary summon damage
 }
 
 BossRushIntroText1:
