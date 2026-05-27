@@ -5,6 +5,7 @@ UI: {
 		// LucidRetaliation: Lucid Retaliation
 	}
 
+	//NoVoidConsumable: You don't have the appetite for that!
 	RagnarokIconText: Рагнарёк активирован
 	NoRespawn: Возрождение предотвращено: Только одно возрождение в битве с боссом в {0} мультиплеере!
 	NoRespawn2: Возрождение предотвращено: Только {0} {^0:возрождение;возрождения;возрождений} в битве с боссом в {1} мультиплеере!
