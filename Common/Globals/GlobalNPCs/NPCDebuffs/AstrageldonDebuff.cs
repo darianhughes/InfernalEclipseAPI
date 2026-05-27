@@ -2,6 +2,7 @@
 using CatalystMod.NPCs.Boss.Astrageldon;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Systems;
 
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
@@ -9,14 +10,6 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
     [ExtendsFromMod("CatalystMod")]
     public class AstrageldonDebuff : GlobalNPC
     {
-        private Mod clamity
-        {
-            get
-            {
-                ModLoader.TryGetMod("Clamity", out Mod clam);
-                return clam;
-            }
-        }
         public override bool PreAI(NPC npc)
         {
             if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active || npc.type != ModContent.NPCType<Astrageldon>()) return base.PreAI(npc);
@@ -30,14 +23,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
                         player.mount.Dismount(player);
                 }
             }
-            if (clamity != null)
+            if (InfernalCrossmod.Clamity.Loaded)
             {
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
                     Player player = Main.player[i];
                     if (player.active && !player.dead)
                     {
-                        if (player.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)
+                        if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
                             player.mount.Dismount(player);
                     }
                 }
@@ -54,7 +47,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
-                if (player.active && !player.dead && npc.Distance(player.Center) < 8000f && player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
+                if (player.active && !player.dead && npc.WithinRange(player.Center, 8000f) && player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
                 {
                     player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 60);
                 }

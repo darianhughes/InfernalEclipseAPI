@@ -60,6 +60,9 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if (InfernalCrossmod.NoxusBoss.Loaded)
             {
+                if (NPC.AnyNPCs(InfernalCrossmod.NoxusBoss.Mod.Find<ModNPC>("AvatarOfEmptiness").Type))
+                    return false;
+
                 if (NPC.AnyNPCs(InfernalCrossmod.NoxusBoss.Mod.Find<ModNPC>("NamelessDeityBoss").Type))
                     return true;
             }

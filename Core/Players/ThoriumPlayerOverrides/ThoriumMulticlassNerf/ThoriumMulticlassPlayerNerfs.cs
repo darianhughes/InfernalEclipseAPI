@@ -8,11 +8,10 @@ using CalamityMod;
 using ThoriumMod.Utilities;
 using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Buffs;
-using Terraria;
-using System.Security.Policy;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {
+    [JITWhenModsEnabled("ThoriumMod")]
     [ExtendsFromMod("ThoriumMod")]
     public class ThoriumMulticlassPlayerNerfs : ModPlayer
     {
@@ -30,16 +29,23 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 switchToHealerPenaltyTimer--;
 
             Player.buffImmune[ModContent.BuffType<KineticPotionBuff>()] = true;
+            Player.ClearBuff(ModContent.BuffType<KineticPotionBuff>());
 
             if (InfernalCrossmod.SOTS.Loaded)
+            {
                 Player.buffImmune[ModContent.BuffType<FrenzyPotionBuff>()] = true;
+                Player.ClearBuff(ModContent.BuffType<FrenzyPotionBuff>());
+            }
 
             if (InfernalConfig.Instance.ThoriumBalanceChangess)
             {
                 if (InfernalCrossmod.ThoriumRework.Loaded)
                 {
                     if (InfernalCrossmod.ThoriumRework.Mod.TryFind("Deathsinger", out ModBuff deathsinger))
+                    {
                         Player.buffImmune[deathsinger.Type] = true;
+                        Player.ClearBuff(deathsinger.Type);
+                    }
                 }
             }
 
@@ -50,6 +56,12 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 Player.buffImmune[ModContent.BuffType<GorgonCoatingBuff>()] = true;
                 Player.buffImmune[ModContent.BuffType<SporeCoatingBuff>()] = true;
                 Player.buffImmune[ModContent.BuffType<ToxicCoatingBuff>()] = true;
+
+                Player.ClearBuff(ModContent.BuffType<DeepFreezeCoatingBuff>());
+                Player.ClearBuff(ModContent.BuffType<ExplosiveCoatingBuff>());
+                Player.ClearBuff(ModContent.BuffType<GorgonCoatingBuff>());
+                Player.ClearBuff(ModContent.BuffType<SporeCoatingBuff>());
+                Player.ClearBuff(ModContent.BuffType<ToxicCoatingBuff>());
             }
         }
 

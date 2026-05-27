@@ -1,7 +1,5 @@
-﻿using System.Security.Policy;
-using CalamityMod.Tiles.Ores;
+﻿using CalamityMod.Tiles.Ores;
 using InfernalEclipseAPI.Core.Systems;
-using Terraria;
 using Terraria.ObjectData;
 
 namespace InfernalEclipseAPI.Common.Balance
@@ -10,10 +8,22 @@ namespace InfernalEclipseAPI.Common.Balance
     {
         public override void SetStaticDefaults()
         {
+            TileID.Sets.Ore[TileID.LunarOre] = true;
+
             if (InfernalConfig.Instance.BossKillCheckOnOres)
             {
                 TileID.Sets.CanBeClearedDuringOreRunner[TileID.Meteorite] = true;
                 TileID.Sets.CanBeClearedDuringOreRunner[ModContent.TileType<ExodiumOre>()] = true;
+            }
+
+            if (InfernalCrossmod.SOTS.Loaded)
+            {
+                Mod sots = InfernalCrossmod.SOTS.Mod;
+
+                TileID.Sets.Ore[sots.Find<ModTile>("VibrantOreTile").Type] = true;
+                TileID.Sets.Ore[sots.Find<ModTile>("FrigidIceTile").Type] = true;
+                TileID.Sets.Ore[sots.Find<ModTile>("FrigidIceTileSafe").Type] = true;
+                TileID.Sets.Ore[sots.Find<ModTile>("PhaseOreTile").Type] = true;
             }
         }
 

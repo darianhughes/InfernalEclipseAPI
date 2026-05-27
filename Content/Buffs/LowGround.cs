@@ -15,8 +15,6 @@ namespace InfernalEclipseAPI.Content.Buffs
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            player.buffImmune[BuffID.Featherfall] = true;
-
             player.Calamity().weakPetrification = true;
 
             if (player.grapCount > 0)

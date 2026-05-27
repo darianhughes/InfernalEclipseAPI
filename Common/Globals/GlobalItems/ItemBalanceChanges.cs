@@ -1006,7 +1006,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 if (UnsafeGetItem(wrath, "MetallicChunk", item))
                 {
-                    item.stack = Item.CommonMaxStack;
+                    item.maxStack = Item.CommonMaxStack;
                 }
             }
             

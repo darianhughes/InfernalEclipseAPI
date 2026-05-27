@@ -1,22 +1,13 @@
 ﻿using CalamityMod.NPCs.SupremeCalamitas;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
-using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.SupremeCalamitas;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
 {
     public class SupremeCalamitasDebuffs : GlobalNPC
     {
-        private Mod clamity
-        {
-            get
-            {
-                ModLoader.TryGetMod("Clamity", out Mod clam);
-                return clam;
-            }
-        }
-
         public override bool InstancePerEntity => true;
         
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
@@ -29,14 +20,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
             if (!npc.active)
                 return base.PreAI(npc);
 
-            if (clamity != null)
+            if (InfernalCrossmod.Clamity.Loaded)
             {
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
                     Player player = Main.player[i];
                     if (player.active && !player.dead)
                     {
-                        if (player.mount?.Type == clamity.Find<ModMount>("PlagueChairMount").Type)
+                        if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
                             player.mount.Dismount(player);
                     }
                 }
