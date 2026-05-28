@@ -2824,6 +2824,11 @@ Buffs: {
 		// DisplayName: Calamitous Desperation
 		// Description: Energy of calamity flow though the air, disabling many of your abilites!
 	}
+
+	SplitFirebrandTag1: {
+		// DisplayName: Split Firebrand Tag1
+		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag1.Description
+	}
 }
 
 Tiles: {

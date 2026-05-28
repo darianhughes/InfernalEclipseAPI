@@ -2895,6 +2895,11 @@ Buffs: {
 		DisplayName: 灾厄绝望
 		Description: 灾厄能量在空气中流动，禁用了你的大多数能力！
 	}
+
+	SplitFirebrandTag1: {
+		// DisplayName: Split Firebrand Tag1
+		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag1.Description
+	}
 }
 
 Tiles: {

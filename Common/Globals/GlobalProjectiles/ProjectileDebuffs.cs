@@ -1,5 +1,5 @@
 ﻿using CalamityMod.Projectiles.Melee.MaceFlails;
-using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Content.Buffs.Tag;
 using ThoriumMod;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles
