@@ -1,6 +1,8 @@
 ﻿using CalamityMod.Projectiles.Melee.MaceFlails;
 using InfernalEclipseAPI.Content.Buffs.Tag;
 using ThoriumMod;
+using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
+using WHummusMultiModBalancing;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles
 {
@@ -237,38 +239,52 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                 }
             }
 
-            if (ModLoader.TryGetMod("CatalystMod", out Mod catalysyt))
+            if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
             {
-                if (projectile.type == (catalysyt.Find<ModProjectile>("CoralCrusherProjectile")?.Type ?? -1))
+                if (projectile.type == (catalyst.Find<ModProjectile>("CoralCrusherProjectile")?.Type ?? -1))
                 {
-                    target.AddBuff(ModContent.BuffType<DefaultSummonTag>(), 300);
-                    target.GetGlobalNPC<TaggedNPC>().summonTagDamage = 4f;
+                    target.AddBuff(ModContent.BuffType<CoralCrusherTag>(), 240);
                 }
 
-                if (projectile.type == (catalysyt.Find<ModProjectile>("ResonantStrikerProjectile")?.Type ?? -1))
+                if (projectile.type == (catalyst.Find<ModProjectile>("PrismBreakProjectile")?.Type ?? -1))
                 {
-                    target.AddBuff(ModContent.BuffType<DefaultSummonTag>(), 300);
-                    target.GetGlobalNPC<TaggedNPC>().summonTagDamage = 8f;
+                    target.AddBuff(ModContent.BuffType<PrismBreakTag>(), 240);
+                }
+                if (projectile.type == (catalyst.Find<ModProjectile>("CongeledCorruptProjectile")?.Type ?? -1)
+                    || projectile.type == (catalyst.Find<ModProjectile>("CongeledCrimsonProjectile")?.Type ?? -1))
+                {
+                    target.AddBuff(ModContent.BuffType<CongeledDuoWhipTag>(), 240);
                 }
 
-                if (projectile.type == (catalysyt.Find<ModProjectile>("BlossomsBlessingProjectile")?.Type ?? -1))
+                if (projectile.type == (catalyst.Find<ModProjectile>("UnderbiteSkull")?.Type ?? -1))
                 {
-                    target.AddBuff(ModContent.BuffType<DefaultSummonTag>(), 300);
-                    target.GetGlobalNPC<TaggedNPC>().summonTagDamage = 12f;
+                    target.AddBuff(ModContent.BuffType<UnderBiteTag>(), 240);
                 }
 
-                if (projectile.type == (catalysyt.Find<ModProjectile>("UnrelentingTormentProjectile")?.Type ?? -1))
+                if (projectile.type == (catalyst.Find<ModProjectile>("SandstoneReignsProjectile")?.Type ?? -1))
                 {
-                    target.AddBuff(ModContent.BuffType<DefaultSummonTag>(), 300);
-                    target.GetGlobalNPC<TaggedNPC>().summonTagDamage = 10f;
+                    target.AddBuff(ModContent.BuffType<SandstoneReignsTag>(), 240);
                 }
 
-                if (projectile.type == (catalysyt.Find<ModProjectile>("CatharsisProjectile")?.Type ?? -1)
-                    || projectile.type == (catalysyt.Find<ModProjectile>("HighCatharsisDown")?.Type ?? -1)
-                    || projectile.type == (catalysyt.Find<ModProjectile>("HighCatharsisUp")?.Type ?? -1))
+                if (projectile.type == (catalyst.Find<ModProjectile>("ResonantStrikerProjectile")?.Type ?? -1))
                 {
-                    target.AddBuff(ModContent.BuffType<DefaultSummonTag>(), 300);
-                    target.GetGlobalNPC<TaggedNPC>().summonTagDamage = 12f;
+                    target.AddBuff(ModContent.BuffType<ResonantStrikerTag>(), 240);
+                }
+
+                if (projectile.type == (catalyst.Find<ModProjectile>("BlossomsBlessingProjectile")?.Type ?? -1))
+                {
+                    target.AddBuff(ModContent.BuffType<BlossomsBlessingTag>(), 240);
+                }
+
+                if (projectile.type == (catalyst.Find<ModProjectile>("UnrelentingTormentProjectile")?.Type ?? -1))
+                {
+                    target.AddBuff(ModContent.BuffType<UnrelentingTormentTag>(), 240);
+                }
+                if (projectile.type == (catalyst.Find<ModProjectile>("CatharsisProjectile")?.Type ?? -1)
+                || projectile.type == (catalyst.Find<ModProjectile>("HighCatharsisDown")?.Type ?? -1)
+                    || projectile.type == (catalyst.Find<ModProjectile>("HighCatharsisUp")?.Type ?? -1))
+                {
+                    target.AddBuff(ModContent.BuffType<CatharsisTag>(), 240);
                 }
             }
         }
