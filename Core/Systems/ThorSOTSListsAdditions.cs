@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using SOTS;
 using ThoriumMod.Projectiles;
 
@@ -27,10 +28,12 @@ namespace InfernalEclipseAPI.Core.Systems
             {
                 Mod rework = InfernalCrossmod.ThoriumRework.Mod;
 
-                int[] reworkAdditions =
+                List<int> reworkAdditions = new();
+
+                if (rework.TryFind("TerrariumPulseRay", out ModProjectile pulseRay))
                 {
-                    rework.Find<ModProjectile>("TerrariumPulseRay").Type
-                };
+                    reworkAdditions.Add(pulseRay.Type);
+                }
 
                 SOTSPlayer.typhonBlacklist = SOTSPlayer.typhonBlacklist
                     .Concat(reworkAdditions)

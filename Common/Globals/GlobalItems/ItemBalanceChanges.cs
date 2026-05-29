@@ -4815,24 +4815,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 70;
                 }
 
-                if (UnsafeGetItem(rethorium, "SoulSnatcher", item))
+                if (GetItem(rethorium, "SoulSnatcher", item))
                 {
                     item.damage = 150;
                 }
 
-                if (UnsafeGetItem(rethorium, "ThoriumBludgeon", item))
+                if (GetItem(rethorium, "ThoriumBludgeon", item))
                 {
                     item.damage = 15;
                 }
 
-                if (UnsafeGetItem(rethorium, "ValadiumHeavyScythe", item))
+                if (GetItem(rethorium, "ValadiumHeavyScythe", item))
                 {
                     item.damage = 100;
                     item.useTime = 24;
                     item.useAnimation = 24;
                 }
 
-                if (UnsafeGetItem(rethorium, "TerrariumSoulScourge", item))
+                if (GetItem(rethorium, "TerrariumSoulScourge", item))
                 {
                     item.damage = 132;
                 }
@@ -4865,11 +4865,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(rethorium, "FanDonations", item))
                 {
                     item.defense = 0;
-                }
-
-                if (UnsafeGetItem(rethorium, "ZephyrWingsCosmetic", item))
-                {
-                    item.vanity = false;
                 }
             }
             #endregion

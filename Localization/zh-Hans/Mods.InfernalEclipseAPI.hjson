@@ -2940,7 +2940,7 @@ Misc: {
 HeadphonesText.1: 正在播放 {0}！
 
 BossName: {
-	// 若翻译请不要将“-”删除或换成别的符号，这会导致代码无法查询导致报错
+	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
 	// TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
 	// BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
 	// DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
