@@ -58,7 +58,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
                 NPC modNPC14 = npc;
                 if (modNPC14.type == NPCID.BloodNautilus)
                 {
-                    npc.lifeMax *= 65;
+                    npc.lifeMax *= 50;
                 }
                 else
                 {

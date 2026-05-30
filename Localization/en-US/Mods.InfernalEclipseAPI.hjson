@@ -49,8 +49,9 @@ DifficultyUI: {
 		'''
 	ExpandedDescription:
 		'''
-		[c/B32E81:Seemlessly merges both Death Mode and Infernum mode.]
-		[c/B32E81:Enemies & bosses will now have very high base stats and scale more agressively in multiplayer.]
+		[c/B32E81:Seemlessly merges both Death and Infernum mode, combining many of their changes.]
+		[c/B32E81:Many major foes will have unique behavior patterns on top of their Infernum AI.]
+		[c/B32E81:Foes will have very high base stats and scale more agressively in multiplayer.]
 		[c/FF0055:Can you master the Infernal Eclipse of Ragnarok?]
 		'''
 	Activation: The Infernal Eclipse has risen...

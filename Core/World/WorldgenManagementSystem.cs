@@ -102,6 +102,7 @@ namespace InfernalEclipseAPI.Core.World
         {
             ushort invidiaChestTileType = (ushort)ModContent.TileType<InvidiaChestTile>();
             ushort ruinedChestTileType = (ushort)ModContent.TileType<RuinedChestTile>();
+            ushort gulaVaultTileType = (ushort)ModContent.TileType<GulaVaultTile>();
 
             for (int i = 0; i < Main.maxChests; i++)
             {
@@ -110,7 +111,7 @@ namespace InfernalEclipseAPI.Core.World
                     continue;
 
                 Tile tile = Main.tile[chest.x, chest.y];
-                if (tile == null || (tile.TileType != invidiaChestTileType && tile.TileType != ruinedChestTileType))
+                if (tile == null || (tile.TileType != invidiaChestTileType && tile.TileType != ruinedChestTileType && tile.TileType != gulaVaultTileType))
                     continue;
 
                 for (int slot = 0; slot < chest.item.Length; slot++)

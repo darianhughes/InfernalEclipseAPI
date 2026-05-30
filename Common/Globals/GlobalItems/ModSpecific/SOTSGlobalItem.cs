@@ -40,11 +40,11 @@ using SOTS.Items.Fishing;
 using InfernalEclipseAPI.Content.RogueThrower;
 using InfernumMode.Content.Items.Accessories;
 using SOTS.Void;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
-using Steamworks;
 using SOTS.Items.Secrets;
 using SOTS.Items.Void;
 using InfernalEclipseAPI.Content.Buffs;
+using SOTS.Items.Fragments;
+using CalamityMod.Items.TreasureBags;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -602,6 +602,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetDamage(DamageClass.Melee) -= 0.2f;
                     player.GetDamage(DamageClass.Summon) -= 0.2f;
                 }
+            }
+        }
+
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            if (item.type == ItemType<CryogenBag>())
+            {
+                itemLoot.Add(ItemDropRule.Common(ItemType<FragmentOfPermafrost>(), 1, 15, 21));
             }
         }
 

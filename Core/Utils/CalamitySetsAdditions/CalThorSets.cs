@@ -1,4 +1,5 @@
-﻿using CalamityMod.Systems.Collections;
+﻿using System.Collections.Generic;
+using CalamityMod.Systems.Collections;
 using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Projectiles;
 
@@ -27,10 +28,12 @@ namespace InfernalEclipseAPI.Core.Utils.CalamitySetsAdditions
             {
                 Mod rework = InfernalCrossmod.ThoriumRework.Mod;
 
-                int[] noHomingWithGrapeBeerRework =
+                List<int> noHomingWithGrapeBeerRework = new();
+
+                if (rework.TryFind("TerrariumPulseRay", out ModProjectile pulseRay))
                 {
-                    rework.Find<ModProjectile>("TerrariumPulseRay").Type
-                };
+                    noHomingWithGrapeBeerRework.Add(pulseRay.Type);
+                }
 
                 foreach (int proj in noHomingWithGrapeBeerRework)
                 {

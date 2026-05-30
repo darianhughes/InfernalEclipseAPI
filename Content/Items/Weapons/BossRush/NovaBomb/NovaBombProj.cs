@@ -12,6 +12,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
 {
     public class NovaBombProj : ModProjectile
     {
+        private const float DetectRadiusSquared = DetectRadius * DetectRadius;
+        private const int HomingRetargetRate = 6;
+
+        private int cachedTargetIndex = -1;
+
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.NebulaBlaze1;
 
         // Tuning
@@ -36,7 +41,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 5;
-            Projectile.DamageType = DamageClass.Magic;
+            Projectile.DamageType = ModLoader.TryGetMod("SOTS", out Mod sots) ? sots.Find<DamageClass>("VoidMagic") : DamageClass.Magic;
             Projectile.ignoreWater = true;
         }
 
@@ -60,25 +65,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
             }
 
             // Home to nearest valid NPC
-            NPC target = null;
-            float dist = DetectRadius;
-            for (int n = 0; n < Main.maxNPCs; n++)
-            {
-                NPC npc = Main.npc[n];
-                if (!npc.active || !npc.CanBeChasedBy(this)) continue;
-                float d2 = Vector2.Distance(Projectile.Center, npc.Center);
-                if (d2 < dist && Collision.CanHitLine(Projectile.Center, 1, 1, npc.Center, 1, 1))
-                {
-                    dist = d2;
-                    target = npc;
-                }
-            }
-
-            if (target != null)
-            {
-                Vector2 desired = Projectile.DirectionTo(target.Center) * HomingSpeed;
-                Projectile.velocity = (Projectile.velocity * HomingInertia + desired) / (HomingInertia + 1f);
-            }
+            DoHoming();
 
             Projectile.rotation += 0.2f * Math.Sign(Projectile.velocity.X == 0 ? 1 : Projectile.velocity.X);
         }
@@ -91,6 +78,70 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
         public override void OnKill(int timeLeft)
         {
             SpawnBlackHole();
+        }
+
+        private NPC FindHomingTarget()
+        {
+            if (cachedTargetIndex >= 0 && cachedTargetIndex < Main.maxNPCs)
+            {
+                NPC cachedTarget = Main.npc[cachedTargetIndex];
+
+                if (IsValidHomingTarget(cachedTarget))
+                    return cachedTarget;
+            }
+
+            NPC closestTarget = null;
+            float closestDistanceSquared = DetectRadiusSquared;
+            Vector2 projectileCenter = Projectile.Center;
+
+            foreach (NPC npc in Main.ActiveNPCs)
+            {
+                if (!IsValidHomingTarget(npc))
+                    continue;
+
+                float distanceSquared = Vector2.DistanceSquared(projectileCenter, npc.Center);
+
+                if (distanceSquared >= closestDistanceSquared)
+                    continue;
+
+                if (!Collision.CanHitLine(projectileCenter, 1, 1, npc.Center, 1, 1))
+                    continue;
+
+                closestDistanceSquared = distanceSquared;
+                closestTarget = npc;
+            }
+
+            cachedTargetIndex = closestTarget?.whoAmI ?? -1;
+            return closestTarget;
+        }
+
+        private bool IsValidHomingTarget(NPC npc)
+        {
+            if (!npc.active || !npc.CanBeChasedBy(Projectile))
+                return false;
+
+            if (Vector2.DistanceSquared(Projectile.Center, npc.Center) > DetectRadiusSquared)
+                return false;
+
+            return Collision.CanHitLine(Projectile.Center, 1, 1, npc.Center, 1, 1);
+        }
+
+        private void DoHoming()
+        {
+            NPC target;
+
+            if (Projectile.localAI[1]++ % HomingRetargetRate == 0)
+                target = FindHomingTarget();
+            else if (cachedTargetIndex >= 0 && cachedTargetIndex < Main.maxNPCs)
+                target = IsValidHomingTarget(Main.npc[cachedTargetIndex]) ? Main.npc[cachedTargetIndex] : FindHomingTarget();
+            else
+                target = FindHomingTarget();
+
+            if (target is null)
+                return;
+
+            Vector2 desiredVelocity = Projectile.DirectionTo(target.Center) * HomingSpeed;
+            Projectile.velocity = (Projectile.velocity * HomingInertia + desiredVelocity) / (HomingInertia + 1f);
         }
 
         private void SpawnBlackHole()
@@ -176,7 +227,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
             Projectile.timeLeft = 600;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
-            Projectile.DamageType = DamageClass.Magic;
+            Projectile.DamageType = ModLoader.TryGetMod("SOTS", out Mod sots) ? sots.Find<DamageClass>("VoidMagic") : DamageClass.Magic;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 5;
             Projectile.hide = true;

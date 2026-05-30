@@ -8,12 +8,19 @@ using InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.CalamityItemHooks;
 using InfernumMode.Content.Rarities.InfernumRarities;
 using Microsoft.Xna.Framework.Input;
 using Terraria.Localization;
+using ReLogic.Content;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
 {
     public class Catlight : ModItem
     {
         internal const string Path = "InfernalEclipseAPI/Content/Items/Weapons/Catlight/";
+
+        private static readonly int[] ProgressionDamage =
+        [
+            15, 20, 30, 45, 50, 55, 60, 75, 90, 120, 200, 7400, 74000
+        ];
+
         public override void SetDefaults()
         {
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -23,135 +30,69 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
             Item.height = 40;
             Item.rare = ModContent.RarityType<InfernumRedSparkRarity>();
             Item.DamageType = CatlightDamage.Instance;
-            Item.damage = 1;
             Item.damage = 740;
             Item.crit = 10;
             Item.shoot = ModContent.ProjectileType<CatlightDeathray>();
         }
+
+        private static int GetProgression()
+        {
+            if (DownedBossSystem.downedBossRush)
+                return 12;
+
+            if (DownedBossSystem.downedExoMechs && DownedBossSystem.downedCalamitas)
+            {
+                if (!ModLoader.HasMod("CalamityHunt") || StormMaidenConditionOverride.DownedGoozma())
+                    return 11;
+            }
+
+            if (NPC.downedMoonlord) return 10;
+            if (NPC.downedAncientCultist) return 9;
+            if (NPC.downedGolemBoss) return 8;
+            if (NPC.downedPlantBoss) return 7;
+            if (NPC.downedMechBoss3) return 6;
+            if (NPC.downedMechBoss2) return 5;
+            if (NPC.downedMechBoss1) return 4;
+            if (Main.hardMode) return 3;
+            if (NPC.downedBoss3) return 2;
+            if (NPC.downedBoss2) return 1;
+
+            return 0;
+        }
+
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
-            static int GetProgression()
-            {
-                if (DownedBossSystem.downedBossRush) return 12;
-
-                if (DownedBossSystem.downedExoMechs && DownedBossSystem.downedCalamitas)
-                {
-                    if (ModLoader.HasMod("CalamityHunt"))
-                    {
-                        if (StormMaidenConditionOverride.DownedGoozma())
-                            return 11;
-                    }
-                    else
-                        return 11;
-                }
-
-                if (NPC.downedMoonlord) return 10;
-                if (NPC.downedAncientCultist) return 9;
-                if (NPC.downedGolemBoss) return 8;
-                if (NPC.downedPlantBoss) return 7;
-                if (NPC.downedMechBoss3) return 6;
-                if (NPC.downedMechBoss2) return 5;
-                if (NPC.downedMechBoss1) return 4;
-                if (Main.hardMode) return 3;
-                if (NPC.downedBoss3) return 2; // Skele
-                if (NPC.downedBoss2) return 1; // Evil
-                return 0;
-            }
-
-            switch (GetProgression())
-            {
-                case 0:
-                    damage.Flat = 15;
-                    Item.damage = 15;
-                    break;
-                case 1:
-                    damage.Flat = 20;
-                    Item.damage = 20;
-                    break;
-                case 2:
-                    damage.Flat = 30;
-                    Item.damage = 30;
-                    break;
-                case 3:
-                    damage.Flat = 45;
-                    Item.damage = 45;
-                    break;
-                case 4:
-                    damage.Flat = 50;
-                    Item.damage = 50;
-                    break;
-                case 5:
-                    damage.Flat = 55;
-                    Item.damage = 55;
-                    break;
-                case 6:
-                    damage.Flat = 60;
-                    Item.damage = 60;
-                    break;
-                case 7:
-                    damage.Flat = 75;
-                    Item.damage = 75;
-                    break;
-                case 8:
-                    damage.Flat = 90;
-                    Item.damage = 90;
-                    break;
-                case 9:
-                    damage.Flat = 120;
-                    Item.damage = 120;
-                    break;
-                case 10:
-                    damage.Flat = 200;
-                    Item.damage = 200;
-                    break;
-                case 11:
-                    damage.Flat = 7400;
-                    Item.damage = 7400;
-                    break;
-                case 12:
-                    damage.Flat = 74000;
-                    Item.damage = 74000;
-                    break;
-
-            }
-
-            damage.Flat *= 0.75f;
-            Item.damage = (int)(Item.damage * 0.75f);
+            int baseDamage = ProgressionDamage[GetProgression()];
+            damage.Flat = baseDamage * 0.75f;
         }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            int typeProj = ModContent.ProjectileType<CatlightDeathrayJRR>();
+            int projectileType = ModContent.ProjectileType<CatlightDeathrayJRR>();
 
             if (NPC.downedMoonlord)
-            {
-                typeProj = ModContent.ProjectileType<CatlightDeathray>();
-            }
-            else if (Main.hardMode && !NPC.downedMoonlord)
-            {
-                typeProj = ModContent.ProjectileType<CatlightDeathrayJR>();
-            }
+                projectileType = ModContent.ProjectileType<CatlightDeathray>();
+            else if (Main.hardMode)
+                projectileType = ModContent.ProjectileType<CatlightDeathrayJR>();
 
-            Projectile.NewProjectile(source, position, velocity, typeProj, damage, knockback, player.whoAmI);
-
-            SoundEngine.PlaySound(new(Path + "CatlightExplosion"), player.Center);
+            Projectile.NewProjectile(source, position, velocity, projectileType, damage, knockback, player.whoAmI);
+            SoundEngine.PlaySound(new SoundStyle(Path + "CatlightExplosion"), player.Center);
 
             return false;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+            string text = Main.keyState.IsKeyDown(Keys.LeftShift)
+                ? $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.cat"))}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor")}"
+                : Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor");
+
+            TooltipLine line = new(Mod, "DedicatedItem", text)
             {
-                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.cat"))}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor")}");
-                line5.OverrideColor = new(50, 205, 50);
-                tooltips.Add(line5);
-            }
-            else
-            {
-                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Contributor"));
-                line5.OverrideColor = new(50, 205, 50);
-                tooltips.Add(line5);
-            }
+                OverrideColor = new Color(50, 205, 50)
+            };
+
+            tooltips.Add(line);
         }
 
         public override void AddRecipes()
@@ -199,13 +140,25 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
         }
     }
 
-    public class CatlightDeathray : ModProjectile
+    #region Projectiles
+    public abstract class CatlightDeathrayBase : ModProjectile
     {
-        private Vector2[] lasersTop = new Vector2[140];
+        private const int LaserPointCount = 140;
+        private const float LaserSpacing = 15f;
+        private const float LaserLength = 2400f;
+        private const float LaserCollisionWidth = 200f;
 
-        private Vector2[] lasersBot = new Vector2[140];
+        private readonly Vector2[] lasersTop = new Vector2[LaserPointCount];
+        private readonly Vector2[] lasersBot = new Vector2[LaserPointCount];
+        private readonly VertexInfo[] vertices = new VertexInfo[LaserPointCount * 2];
 
-        private BlendState blendStatef = new BlendState
+        private static readonly float[] CachedX = new float[LaserPointCount];
+        private static readonly float[] CachedPow = new float[LaserPointCount];
+
+        private static Asset<Texture2D> FadedGlowStreakTexture;
+        private static Asset<Texture2D> DevInnerStreakTexture;
+
+        private static readonly BlendState CatlightBlendState = new()
         {
             AlphaBlendFunction = BlendState.AlphaBlend.AlphaBlendFunction,
             AlphaDestinationBlend = BlendState.AlphaBlend.AlphaDestinationBlend,
@@ -220,492 +173,267 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Catlight
             BlendFactor = Color.White,
             MultiSampleMask = -1
         };
-        //placeholder bc ray use another texture
+
+        protected virtual int NPCImmunityTime => 0;
+        protected virtual bool DrawInnerStreak => true;
+        protected virtual Color OuterTopColor => Color.Red;
+        protected virtual Color OuterBottomColor => Color.DarkRed;
+        protected virtual Color InnerTopColor => new(Main.DiscoR, 0, 0);
+        protected virtual Color InnerBottomColor => new(255 - Main.DiscoR, 0, 0);
+
         public override string Texture => "InfernalEclipseAPI/Assets/Textures/Backgrounds/BlankPixel";
+
+        public override void Load()
+        {
+            FadedGlowStreakTexture ??= ModContent.Request<Texture2D>(Catlight.Path + "FadedGlowStreak");
+            DevInnerStreakTexture ??= ModContent.Request<Texture2D>(Catlight.Path + "DevInnerStreak");
+
+            for (int i = 0; i < LaserPointCount; i++)
+            {
+                float x = i * LaserSpacing;
+                CachedX[i] = x;
+                CachedPow[i] = Pow(0.1f * x, 0.45f);
+            }
+        }
+
+        public override void Unload()
+        {
+            FadedGlowStreakTexture = null;
+            DevInnerStreakTexture = null;
+        }
 
         public override void SetStaticDefaults()
         {
-            //long ray
             ProjectileID.Sets.DrawScreenCheckFluff[Type] = 5000;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.height = 10;
             Projectile.timeLeft = 550;
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;
-            Projectile.DamageType = DamageClass.Magic;
+            Projectile.DamageType = CatlightDamage.Instance;
             Projectile.ignoreWater = true;
             Projectile.friendly = true;
             Projectile.hostile = false;
         }
 
+        public override bool ShouldUpdatePosition() => false;
+
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            float point = 0f;
             if (Projectile.localAI[0] <= 4.8f || Projectile.timeLeft < 15)
-            {
                 return false;
-            }
-            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + Projectile.rotation.ToRotationVector2() * 2400f, 200f, ref point);
-        }
 
-        public override bool ShouldUpdatePosition()
-        {
-            return false;
+            float point = 0f;
+            Vector2 direction = Projectile.rotation.ToRotationVector2();
+
+            return Collision.CheckAABBvLineCollision(
+                targetHitbox.TopLeft(),
+                targetHitbox.Size(),
+                Projectile.Center,
+                Projectile.Center + direction * LaserLength,
+                LaserCollisionWidth,
+                ref point
+            );
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.immune[Projectile.owner] = 0;
-            //target.SimpleStrikeNPC((int)Projectile.owner.ToPlayer().GetDamage<GenericDamageClass>().ApplyTo(745), 0);
-            //Projectile.owner.ToPlayer().addDPS((int)Projectile.owner.ToPlayer().GetDamage<GenericDamageClass>().ApplyTo(745));
+            target.immune[Projectile.owner] = NPCImmunityTime;
         }
+
         public override void AI()
         {
-            //Main.LocalPlayer.CSE().Screenshake = 1;
-            Projectile.velocity = Projectile.rotation.ToRotationVector2() * 6f;
             Player player = Main.player[Projectile.owner];
-            for (int i = 0; i < 140; i++)
-            {
-                float x = (float)i * 15f;
-                float y = 29f * (0.08f * Projectile.localAI[0]) * (float)Math.Pow(0.1f * x, 0.45);
-                lasersTop[i] = new Vector2(x, y);
-                lasersBot[i] = new Vector2(x, 0f - y);
-            }
-            float x2 = 4500f;
-            float y2 = 19f * (0.08f * Projectile.localAI[0]) * (float)Math.Pow(210.0, 0.45);
+
+            Vector2 direction = Projectile.rotation.ToRotationVector2();
+            Projectile.velocity = direction * 6f;
+
+            UpdateLaserShape();
+
             if (Projectile.localAI[0] <= 8f && player.channel)
-            {
                 Projectile.localAI[0] += 0.5f;
-            }
-            if (!player.channel)
-            {
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.localAI[0] -= 1f;
-                if (Projectile.localAI[0] < 0f)
-                {
-                    //fade sound?
-                    Projectile.Kill();
-                }
-            }
+
+            bool shouldFade = !player.channel || Projectile.localAI[2] == 1f;
+
             if (Projectile.ai[2] % 5f == 0f && !player.CheckMana(player.HeldItem, 8, pay: true))
-            {
                 Projectile.localAI[2] = 1f;
-            }
-            if (Projectile.localAI[2] == 1f)
+
+            if (shouldFade)
             {
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.localAI[0] -= 1f;
-                if (Projectile.localAI[0] < 0f)
-                {
-                    //fade sound?
-                    Projectile.Kill();
-                }
+                FadeOut(player, direction);
+                return;
             }
+
             if (player.channel)
+                Channel(player);
+        }
+
+        private void UpdateLaserShape()
+        {
+            float strength = 29f * (0.08f * Projectile.localAI[0]);
+
+            for (int i = 0; i < LaserPointCount; i++)
             {
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.timeLeft = 55;
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                Projectile.ai[2] += 1f;
-                if (Projectile.ai[2] % 50f == 1f)
-                {
-                    //SoundEngine.PlaySound(new("ssm/Assets/Sounds/CatlightRay"), Projectile.Center);
-                }
-                Projectile.rotation = Projectile.rotation.AngleLerp(Projectile.AngleTo(Main.MouseWorld), 0.06f);
-                Projectile.velocity = Projectile.rotation.ToRotationVector2();
-                if (player.direction == 1)
-                {
-                    player.itemRotation = Projectile.velocity.ToRotation();
-                }
-                else
-                {
-                    player.itemRotation = Projectile.velocity.ToRotation() + 3.1415925f;
-                }
-                player.heldProj = Projectile.whoAmI;
+                float x = CachedX[i];
+                float y = strength * CachedPow[i];
+
+                lasersTop[i] = new Vector2(x, y);
+                lasersBot[i] = new Vector2(x, -y);
             }
         }
+
+        private void FadeOut(Player player, Vector2 direction)
+        {
+            Projectile.Center = player.Center + direction * 40f;
+            player.itemTime = player.itemAnimation = 2;
+
+            Projectile.localAI[0] -= 1f;
+
+            if (Projectile.localAI[0] < 0f)
+                Projectile.Kill();
+        }
+
+        private void Channel(Player player)
+        {
+            player.itemTime = player.itemAnimation = 2;
+            Projectile.timeLeft = 55;
+
+            Projectile.rotation = Projectile.rotation.AngleLerp(Projectile.AngleTo(Main.MouseWorld), 0.06f);
+
+            Vector2 direction = Projectile.rotation.ToRotationVector2();
+
+            Projectile.Center = player.Center + direction * 40f;
+            Projectile.velocity = direction;
+            Projectile.ai[2]++;
+
+            player.itemRotation = direction.ToRotation();
+
+            if (player.direction != 1)
+                player.itemRotation += Pi;
+
+            player.heldProj = Projectile.whoAmI;
+        }
+
+        private static Vector2 Rotate(Vector2 vector, float cos, float sin)
+        {
+            return new Vector2(
+                vector.X * cos - vector.Y * sin,
+                vector.X * sin + vector.Y * cos
+            );
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
-            List<VertexInfo> vertices = new List<VertexInfo>();
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, blendStatef, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-            //    Main.graphics.GraphicsDevice.Textures[0] = ModContent.Request<Texture2D>("ssm/Assets/ExtraTextures/FadedGlowStreak").Value;
-            Main.graphics.GraphicsDevice.Textures[0] = ModContent.Request<Texture2D>(Catlight.Path + "FadedGlowStreak").Value;
-            vertices.Clear();
-            float MoveFactor = Main.GlobalTimeWrappedHourly / 0.7f;
-            for (int i = 0; i < 140; i++)
+            SpriteBatch spriteBatch = Main.spriteBatch;
+            GraphicsDevice graphicsDevice = Main.graphics.GraphicsDevice;
+
+            float rotation = Projectile.rotation;
+            float cos = Cos(rotation);
+            float sin = Sin(rotation);
+            float moveFactor = Main.GlobalTimeWrappedHourly / 0.7f;
+            Vector2 origin = Projectile.Center - Main.screenPosition;
+
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Immediate, CatlightBlendState, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+
+            graphicsDevice.Textures[0] = FadedGlowStreakTexture.Value;
+
+            int vertexCount = 0;
+
+            for (int i = 0; i < LaserPointCount; i++)
             {
-                if (lasersTop[i] + Main.LocalPlayer.Center != Vector2.Zero)
+                float progress = 1f - i / 70f;
+
+                vertices[vertexCount++] = new VertexInfo(
+                    Rotate(lasersTop[i], cos, sin) + origin,
+                    new Vector3(0f, progress + moveFactor, progress),
+                    OuterTopColor
+                );
+
+                vertices[vertexCount++] = new VertexInfo(
+                    Rotate(lasersBot[i], cos, sin) + origin,
+                    new Vector3(1f, progress + moveFactor, progress),
+                    OuterBottomColor
+                );
+            }
+
+            if (vertexCount >= 3)
+                graphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices, 0, vertexCount - 2);
+
+            if (DrawInnerStreak)
+            {
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+
+                graphicsDevice.Textures[0] = DevInnerStreakTexture.Value;
+
+                for (int j = 0; j < 3; j += 2)
                 {
-                    vertices.Add(new VertexInfo(lasersTop[i].RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(0f, 1f - (float)i / 70f + MoveFactor, 1f - (float)i / 70f), Color.DarkRed));
-                    vertices.Add(new VertexInfo(lasersBot[i].RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f, 1f - (float)i / 70f + MoveFactor, 1f - (float)i / 70f), Color.White));
+                    vertexCount = 0;
+
+                    for (int i = 0; i < LaserPointCount; i += 2)
+                    {
+                        float fac = 0.13f * i;
+                        float sinFactor = 0.545f * Sin((1.1f - 0.03f * fac) * fac - Main.GlobalTimeWrappedHourly * 9.15f) * (j - 1);
+                        float progress = 1f - i / 70f;
+
+                        Vector2 top = new(lasersTop[i].X, lasersTop[i].Y * sinFactor + 84f);
+                        Vector2 bot = new(lasersTop[i].X, lasersTop[i].Y * sinFactor - 84f);
+
+                        vertices[vertexCount++] = new VertexInfo(
+                            Rotate(top, cos, sin) + origin,
+                            new Vector3(progress + moveFactor, 0f, progress),
+                            InnerTopColor
+                        );
+
+                        vertices[vertexCount++] = new VertexInfo(
+                            Rotate(bot, cos, sin) + origin,
+                            new Vector3(progress + moveFactor, 1f, progress),
+                            InnerBottomColor
+                        );
+                    }
+
+                    if (vertexCount >= 3)
+                        graphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices, 0, vertexCount - 2);
                 }
             }
-            if (vertices.Count >= 3)
-            {
-                Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices.ToArray(), 0, vertices.Count - 2);
-            }
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-            // Not 2.0    Main.graphics.GraphicsDevice.Textures[0] = FargosTextureRegistry.DevInnerStreak.Value;
-            Main.graphics.GraphicsDevice.Textures[0] = ModContent.Request<Texture2D>(Catlight.Path + "DevInnerStreak").Value;
-            for (int j = 0; j < 3; j += 2)
-            {
-                _ = j * (float)Math.PI / 1f;
-                vertices.Clear();
-                for (int i = 0; i < 140; i += 2)
-                {
-                    float fac = 0.13f * i;
-                    float sinfactor = 0.545f * (float)Math.Sin((1.1f - 0.03f * fac) * fac - Main.GlobalTimeWrappedHourly * 9.15f) * (float)(j - 1);
-                    Vector2 top = new Vector2(lasersTop[i].X, lasersTop[i].Y * sinfactor + 84f);
-                    Vector2 bot = new Vector2(lasersTop[i].X, lasersTop[i].Y * sinfactor - 84f);
-                    vertices.Add(new VertexInfo(top.RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f - (float)i / 70f + MoveFactor, 0f, 1f - (float)i / 70f), new(Main.DiscoR, 0, 0)));
-                    vertices.Add(new VertexInfo(bot.RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f - (float)i / 70f + MoveFactor, 1f, 1f - (float)i / 70f), new(255 - Main.DiscoR, 0, 0)));
-                }
-                if (vertices.Count >= 3)
-                {
-                    Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices.ToArray(), 0, vertices.Count - 2);
-                }
-            }
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+
             return false;
         }
+    }
+    public class CatlightDeathray : CatlightDeathrayBase
+    {
+        protected override int NPCImmunityTime => 0;
+        protected override Color OuterTopColor => Color.DarkRed;
+        protected override Color OuterBottomColor => Color.White;
+        protected override Color InnerTopColor => new(Main.DiscoR, 0, 0);
+        protected override Color InnerBottomColor => new(255 - Main.DiscoR, 0, 0);
     }
 
     //pre ml
-    public class CatlightDeathrayJR : ModProjectile
+    public class CatlightDeathrayJR : CatlightDeathrayBase
     {
-        private Vector2[] lasersTop = new Vector2[140];
-
-        private Vector2[] lasersBot = new Vector2[140];
-
-        //placeholder bc ray use another texture
-        public override string Texture => "InfernalEclipseAPI/Assets/Textures/Backgrounds/BlankPixel";
-
-        public override void SetStaticDefaults()
-        {
-            //long ray
-            ProjectileID.Sets.DrawScreenCheckFluff[Type] = 5000;
-        }
-
-        public override void SetDefaults()
-        {
-            Projectile.width = (Projectile.height = 10);
-            Projectile.timeLeft = 550;
-            Projectile.tileCollide = false;
-            Projectile.penetrate = -1;
-            Projectile.DamageType = DamageClass.Magic;
-            Projectile.ignoreWater = true;
-            Projectile.friendly = true;
-            Projectile.hostile = false;
-        }
-
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
-        {
-            float point = 0f;
-            if (Projectile.localAI[0] <= 4.8f || Projectile.timeLeft < 15)
-            {
-                return false;
-            }
-            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + Projectile.rotation.ToRotationVector2() * 2400f, 200f, ref point);
-        }
-
-        public override bool ShouldUpdatePosition()
-        {
-            return false;
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            target.immune[Projectile.owner] = 5;
-            //target.SimpleStrikeNPC((int)Projectile.owner.ToPlayer().GetDamage<GenericDamageClass>().ApplyTo(745), 0);
-            //Projectile.owner.ToPlayer().addDPS((int)Projectile.owner.ToPlayer().GetDamage<GenericDamageClass>().ApplyTo(745));
-        }
-        public override void AI()
-        {
-            //Main.LocalPlayer.CSE().Screenshake = 1;
-            Projectile.velocity = Projectile.rotation.ToRotationVector2() * 6f;
-            Player player = Main.player[Projectile.owner];
-            for (int i = 0; i < 140; i++)
-            {
-                float x = (float)i * 15f;
-                float y = 29f * (0.08f * Projectile.localAI[0]) * (float)Math.Pow(0.1f * x, 0.45);
-                lasersTop[i] = new Vector2(x, y);
-                lasersBot[i] = new Vector2(x, 0f - y);
-            }
-            float x2 = 4500f;
-            float y2 = 19f * (0.08f * Projectile.localAI[0]) * (float)Math.Pow(210.0, 0.45);
-            if (Projectile.localAI[0] <= 8f && player.channel)
-            {
-                Projectile.localAI[0] += 0.5f;
-            }
-            if (!player.channel)
-            {
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.localAI[0] -= 1f;
-                if (Projectile.localAI[0] < 0f)
-                {
-                    //fade sound?
-                    Projectile.Kill();
-                }
-            }
-            if (Projectile.ai[2] % 5f == 0f && !player.CheckMana(player.HeldItem, 8, pay: true))
-            {
-                Projectile.localAI[2] = 1f;
-            }
-            if (Projectile.localAI[2] == 1f)
-            {
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.localAI[0] -= 1f;
-                if (Projectile.localAI[0] < 0f)
-                {
-                    //fade sound?
-                    Projectile.Kill();
-                }
-            }
-            if (player.channel)
-            {
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.timeLeft = 55;
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                Projectile.ai[2] += 1f;
-                if (Projectile.ai[2] % 50f == 1f)
-                {
-                    //SoundEngine.PlaySound(new("ssm/Assets/Sounds/CatlightRay"), Projectile.Center);
-                }
-                Projectile.rotation = Projectile.rotation.AngleLerp(Projectile.AngleTo(Main.MouseWorld), 0.06f);
-                Projectile.velocity = Projectile.rotation.ToRotationVector2();
-                if (player.direction == 1)
-                {
-                    player.itemRotation = Projectile.velocity.ToRotation();
-                }
-                else
-                {
-                    player.itemRotation = Projectile.velocity.ToRotation() + 3.1415925f;
-                }
-                player.heldProj = Projectile.whoAmI;
-            }
-        }
-
-        public override bool PreDraw(ref Color lightColor)
-        {
-            List<VertexInfo> vertices = new List<VertexInfo>();
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-        //    Main.graphics.GraphicsDevice.Textures[0] = ModContent.Request<Texture2D>("ssm/Assets/ExtraTextures/FadedGlowStreak").Value;
-            Main.graphics.GraphicsDevice.Textures[0] = ModContent.Request<Texture2D>(Catlight.Path + "FadedGlowStreak").Value;
-            vertices.Clear();
-            float MoveFactor = Main.GlobalTimeWrappedHourly / 0.7f;
-            for (int i = 0; i < 140; i++)
-            {
-                if (lasersTop[i] + Main.LocalPlayer.Center != Vector2.Zero)
-                {
-                    vertices.Add(new VertexInfo(lasersTop[i].RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(0f, 1f - (float)i / 70f + MoveFactor, 1f - (float)i / 70f), Color.Red));
-                    vertices.Add(new VertexInfo(lasersBot[i].RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f, 1f - (float)i / 70f + MoveFactor, 1f - (float)i / 70f), Color.DarkRed));
-                }
-            }
-            if (vertices.Count >= 3)
-            {
-                Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices.ToArray(), 0, vertices.Count - 2);
-            }
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-            // Not 2.0    Main.graphics.GraphicsDevice.Textures[0] = FargosTextureRegistry.DevInnerStreak.Value;
-            Main.graphics.GraphicsDevice.Textures[0] = ModContent.Request<Texture2D>(Catlight.Path + "DevInnerStreak").Value;
-            for (int j = 0; j < 3; j += 2)
-            {
-                _ = j * (float)Math.PI / 1f;
-                vertices.Clear();
-                for (int i = 0; i < 140; i += 2)
-                {
-                    float fac = 0.13f * i;
-                    float sinfactor = 0.545f * (float)Math.Sin((1.1f - 0.03f * fac) * fac - Main.GlobalTimeWrappedHourly * 9.15f) * (float)(j - 1);
-                    Vector2 top = new Vector2(lasersTop[i].X, lasersTop[i].Y * sinfactor + 84f);
-                    Vector2 bot = new Vector2(lasersTop[i].X, lasersTop[i].Y * sinfactor - 84f);
-                    vertices.Add(new VertexInfo(top.RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f - (float)i / 70f + MoveFactor, 0f, 1f - (float)i / 70f), Color.MediumVioletRed /*new(Main.DiscoR, 0, 0)*/));
-                    vertices.Add(new VertexInfo(bot.RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f - (float)i / 70f + MoveFactor, 1f, 1f - (float)i / 70f), Color.OrangeRed /*new(255 - Main.DiscoR, 0, 0)*/));
-                }
-                if (vertices.Count >= 3)
-                {
-                    Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices.ToArray(), 0, vertices.Count - 2);
-                }
-            }
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-            return false;
-        }
+        protected override int NPCImmunityTime => 5;
+        protected override Color OuterTopColor => Color.Red;
+        protected override Color OuterBottomColor => Color.DarkRed;
+        protected override Color InnerTopColor => Color.MediumVioletRed;
+        protected override Color InnerBottomColor => Color.OrangeRed;
     }
 
     //pre hm
-    public class CatlightDeathrayJRR : ModProjectile
+    public class CatlightDeathrayJRR : CatlightDeathrayBase
     {
-        private Vector2[] lasersTop = new Vector2[140];
-
-        private Vector2[] lasersBot = new Vector2[140];
-
-        //placeholder bc ray use another texture
-        public override string Texture => "InfernalEclipseAPI/Assets/Textures/Backgrounds/BlankPixel";
-
-        public override void SetStaticDefaults()
-        {
-            //long ray
-            ProjectileID.Sets.DrawScreenCheckFluff[Type] = 5000;
-        }
-
-        public override void SetDefaults()
-        {
-            Projectile.width = (Projectile.height = 10);
-            Projectile.timeLeft = 550;
-            Projectile.tileCollide = false;
-            Projectile.penetrate = -1;
-            Projectile.DamageType = DamageClass.Magic;
-            Projectile.ignoreWater = true;
-            Projectile.friendly = true;
-            Projectile.hostile = false;
-        }
-
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
-        {
-            float point = 0f;
-            if (Projectile.localAI[0] <= 4.8f || Projectile.timeLeft < 15)
-            {
-                return false;
-            }
-            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + Projectile.rotation.ToRotationVector2() * 2400f, 200f, ref point);
-        }
-
-        public override bool ShouldUpdatePosition()
-        {
-            return false;
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            target.immune[Projectile.owner] = 10;
-            //target.SimpleStrikeNPC((int)Projectile.owner.ToPlayer().GetDamage<GenericDamageClass>().ApplyTo(745), 0);
-            //Projectile.owner.ToPlayer().addDPS((int)Projectile.owner.ToPlayer().GetDamage<GenericDamageClass>().ApplyTo(745));
-        }
-        public override void AI()
-        {
-            //Main.LocalPlayer.CSE().Screenshake = 1;
-            Projectile.velocity = Projectile.rotation.ToRotationVector2() * 6f;
-            Player player = Main.player[Projectile.owner];
-            for (int i = 0; i < 140; i++)
-            {
-                float x = (float)i * 15f;
-                float y = 29f * (0.08f * Projectile.localAI[0]) * (float)Math.Pow(0.1f * x, 0.45);
-                lasersTop[i] = new Vector2(x, y);
-                lasersBot[i] = new Vector2(x, 0f - y);
-            }
-            float x2 = 4500f;
-            float y2 = 19f * (0.08f * Projectile.localAI[0]) * (float)Math.Pow(210.0, 0.45);
-            if (Projectile.localAI[0] <= 8f && player.channel)
-            {
-                Projectile.localAI[0] += 0.5f;
-            }
-            if (!player.channel)
-            {
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.localAI[0] -= 1f;
-                if (Projectile.localAI[0] < 0f)
-                {
-                    //fade sound?
-                    Projectile.Kill();
-                }
-            }
-            if (Projectile.ai[2] % 5f == 0f && !player.CheckMana(player.HeldItem, 8, pay: true))
-            {
-                Projectile.localAI[2] = 1f;
-            }
-            if (Projectile.localAI[2] == 1f)
-            {
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.localAI[0] -= 1f;
-                if (Projectile.localAI[0] < 0f)
-                {
-                    //fade sound?
-                    Projectile.Kill();
-                }
-            }
-            if (player.channel)
-            {
-                player.itemTime = (player.itemAnimation = 2);
-                Projectile.timeLeft = 55;
-                Projectile.Center = player.Center + Projectile.rotation.ToRotationVector2() * 40f;
-                Projectile.ai[2] += 1f;
-                if (Projectile.ai[2] % 50f == 1f)
-                {
-                    //SoundEngine.PlaySound(new("ssm/Assets/Sounds/CatlightRay"), Projectile.Center);
-                }
-                Projectile.rotation = Projectile.rotation.AngleLerp(Projectile.AngleTo(Main.MouseWorld), 0.06f);
-                Projectile.velocity = Projectile.rotation.ToRotationVector2();
-                if (player.direction == 1)
-                {
-                    player.itemRotation = Projectile.velocity.ToRotation();
-                }
-                else
-                {
-                    player.itemRotation = Projectile.velocity.ToRotation() + 3.1415925f;
-                }
-                player.heldProj = Projectile.whoAmI;
-            }
-        }
-
-        public override bool PreDraw(ref Color lightColor)
-        {
-            List<VertexInfo> vertices = new List<VertexInfo>();
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-        //    Main.graphics.GraphicsDevice.Textures[0] = ModContent.Request<Texture2D>("ssm/Assets/ExtraTextures/FadedGlowStreak").Value;
-            Main.graphics.GraphicsDevice.Textures[0] = ModContent.Request<Texture2D>(Catlight.Path + "FadedGlowStreak").Value;
-            vertices.Clear();
-            float MoveFactor = Main.GlobalTimeWrappedHourly / 0.7f;
-            for (int i = 0; i < 140; i++)
-            {
-                if (lasersTop[i] + Main.LocalPlayer.Center != Vector2.Zero)
-                {
-                    vertices.Add(new VertexInfo(lasersTop[i].RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(0f, 1f - (float)i / 70f + MoveFactor, 1f - (float)i / 70f), Color.Red));
-                    vertices.Add(new VertexInfo(lasersBot[i].RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f, 1f - (float)i / 70f + MoveFactor, 1f - (float)i / 70f), Color.DarkRed));
-                }
-            }
-            if (vertices.Count >= 3)
-            {
-                Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices.ToArray(), 0, vertices.Count - 2);
-            }
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.PointWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-            //Main.graphics.GraphicsDevice.Textures[0] = FargosTextureRegistry.DevInnerStreak.Value;
-            //for (int j = 0; j < 3; j += 2)
-            //{
-            //    _ = j * (float)Math.PI / 1f;
-            //    vertices.Clear();
-            //    for (int i = 0; i < 140; i += 2)
-            //    {
-            //        float fac = 0.13f * i;
-            //        float sinfactor = 0.545f * (float)Math.Sin((1.1f - 0.03f * fac) * fac - Main.GlobalTimeWrappedHourly * 9.15f) * (float)(j - 1);
-            //        Vector2 top = new Vector2(lasersTop[i].X, lasersTop[i].Y * sinfactor + 84f);
-            //        Vector2 bot = new Vector2(lasersTop[i].X, lasersTop[i].Y * sinfactor - 84f);
-            //        vertices.Add(new VertexInfo(top.RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f - (float)i / 70f + MoveFactor, 0f, 1f - (float)i / 70f), new(Main.DiscoR, 0, 0)));
-            //        vertices.Add(new VertexInfo(bot.RotatedBy(Projectile.rotation) + Projectile.Center - Main.screenPosition, new Vector3(1f - (float)i / 70f + MoveFactor, 1f, 1f - (float)i / 70f), new(255 - Main.DiscoR, 0, 0)));
-            //    }
-            //    if (vertices.Count >= 3)
-            //    {
-            //        Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices.ToArray(), 0, vertices.Count - 2);
-            //    }
-            //}
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
-            return false;
-        }
+        protected override int NPCImmunityTime => 10;
+        protected override bool DrawInnerStreak => false;
+        protected override Color OuterTopColor => Color.Red;
+        protected override Color OuterBottomColor => Color.DarkRed;
     }
+    #endregion
 }

@@ -218,11 +218,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
             if (item.type == ModContent.ItemType<LichTreasureBag>() && InfernalCrossmod.ThoriumRework.Loaded && !InfernalCrossmod.Hummus.Loaded)
             {
-                var rule = new CommonDropNotScalingWithLuck(InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("SoulSnatcher").Type, 5, 1, 1)
+                if (InfernalCrossmod.ThoriumRework.Mod.TryFind("SoulSnatcher", out ModItem soulSnacter)) 
                 {
-                    chanceNumerator = 2 // 2/5 = 40%
-                };
-                itemLoot.Add(rule);
+                    var rule = new CommonDropNotScalingWithLuck(soulSnacter.Type, 5, 1, 1)
+                    {
+                        chanceNumerator = 2 // 2/5 = 40%
+                    };
+                    itemLoot.Add(rule);
+                }
             }
         }
     }

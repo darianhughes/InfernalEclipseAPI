@@ -13,11 +13,14 @@ using CalamityMod;
 using Microsoft.Xna.Framework.Input;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Core.Interfaces;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
 {
-    public class NovaBomb : ModItem
+    public class NovaBomb : ModItem, IVoidHybrid
     {
+        public int VoidCost => 50;
+
         public override void SetDefaults()
         {
             Item.width = 53;

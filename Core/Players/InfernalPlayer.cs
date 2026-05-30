@@ -33,6 +33,7 @@ using CalamityMod.NPCs.PrimordialWyrm;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernumMode.Common.DataStructures;
 using InfernumMode;
+using Terraria;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -525,6 +526,13 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
+
+            if (Player.HasBuff<LowGround>() || Player.HasBuff<CrimulanAura>())
+            {
+                Player.buffImmune[BuffID.Featherfall] = true;
+                Player.ClearBuff(BuffID.Featherfall);
+                Player.slowFall = false;
+            }
         }
 
         public static bool PlayerHasPurity(Player player)
@@ -887,48 +895,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if (scalingArmorPenetration)
             {
-                bool bypassScalingArmorPen = false;
-
-                int[] bypassScalingArmorPenCal =
-                [
-                    ModContent.NPCType<Providence>()
-                ];
-
-                if (bypassScalingArmorPenCal.Contains(target.type))
-                    bypassScalingArmorPen = true;
-
-                if (InfernalCrossmod.Thorium.Loaded)
-                {
-                    Mod thor = InfernalCrossmod.Thorium.Mod;
-
-                    int[] bypassScalingAmorPenThor =
-                    [
-                        thor.Find<ModNPC>("BoreanStrider").Type,
-                        thor.Find<ModNPC>("BoreanStriderPopped").Type,
-                        thor.Find<ModNPC>("BoreanHopper").Type,
-                        thor.Find<ModNPC>("BoreanStrider").Type,
-                        thor.Find<ModNPC>("ForgottenOne").Type,
-                        thor.Find<ModNPC>("ForgottenOneCracked").Type,
-                        thor.Find<ModNPC>("ForgottenOneReleased").Type,
-                    ];
-
-                    if (bypassScalingAmorPenThor.Contains(target.target))
-                        bypassScalingArmorPen = true;
-                }
-
-                if (InfernalCrossmod.Clamity.Loaded)
-                {
-                    Mod clam = InfernalCrossmod.Clamity.Mod;
-                    int[] bypassScaliingAmorPenClam =
-                    [
-                        clam.Find<ModNPC>("ClamitasBoss").Type
-                    ];
-
-                    if (bypassScaliingAmorPenClam.Contains(target.target))
-                        bypassScalingArmorPen = true;
-                }
-
-                if (!bypassScalingArmorPen)
+                if (!BypassesScalingArmorPen(target.type))
                 {
                     modifiers.DefenseEffectiveness *= Main.hardMode ? 0.9f : 0.95f;
                 }
@@ -941,6 +908,38 @@ namespace InfernalEclipseAPI.Core.Players
                     modifiers.FinalDamage *= 0.2f;
                 }
             }
+        }
+
+        private static bool BypassesScalingArmorPen(int type)
+        {
+            if (type == ModContent.NPCType<Providence>())
+                return true;
+
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                Mod thor = InfernalCrossmod.Thorium.Mod;
+
+                if (type == thor.Find<ModNPC>("BoreanStrider").Type ||
+                    type == thor.Find<ModNPC>("BoreanStriderPopped").Type ||
+                    type == thor.Find<ModNPC>("BoreanHopper").Type ||
+                    type == thor.Find<ModNPC>("BoreanStrider").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOne").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOneCracked").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOneReleased").Type)
+                {
+                    return true;
+                }
+            }
+
+            if (InfernalCrossmod.Clamity.Loaded)
+            {
+                Mod clam = InfernalCrossmod.Clamity.Mod;
+
+                if (type == clam.Find<ModNPC>("ClamitasBoss").Type)
+                    return true;
+            }
+
+            return false;
         }
 
         public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
