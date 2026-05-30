@@ -40,4 +40,5 @@ ItemDescriptions: {
 		'''
 	MagmaSeersMask: Увеличивает скорость атаки хлыстов на 20%
 	// MasterMarksmansScouter: ""
+	// AssassinsGuard: ""
 }

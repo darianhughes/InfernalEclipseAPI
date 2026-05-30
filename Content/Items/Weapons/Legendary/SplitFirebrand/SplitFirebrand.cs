@@ -7,6 +7,8 @@ using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using CalamityMod;
 using Microsoft.Xna.Framework.Input;
 using Terraria.DataStructures;
+using InfernumMode;
+using System.Drawing;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
@@ -31,6 +33,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             Item.noMelee = true;
             Item.noUseGraphic = true;
 
+            Item.Infernum_Tooltips().DeveloperItem = true;
         }
 
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
@@ -100,12 +103,15 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             recipe.Register();
         }
 
-        /*
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Color lerpedColor = Color.Lerp(Color.White, new Color(30, 144, 255), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
+            Microsoft.Xna.Framework.Color lerpedColor = Microsoft.Xna.Framework.Color.Lerp(Microsoft.Xna.Framework.Color.White, new Microsoft.Xna.Framework.Color(30, 144, 255), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5));
 
-            TooltipLine line4 = new(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Lore"));
+            TooltipLine line = new(Mod, "TagDebuff", GetTagDebuffTooltip());
+            line.OverrideColor = Microsoft.Xna.Framework.Color.White;
+            tooltips.Add(line);
+
+            TooltipLine line4 = new(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Lore"));
             tooltips.Add(line4);
 
             if (!NPC.downedMoonlord)
@@ -115,20 +121,16 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 tooltips.Add(line3);
             }
 
-            TooltipLine line = new(Mod, "Progression", GetProgressionTooltip());
-            line.OverrideColor = lerpedColor;
-            tooltips.Add(line);
+            TooltipLine line2 = new(Mod, "Progression", GetProgressionTooltip());
+            line2.OverrideColor = lerpedColor;
+            tooltips.Add(line2);
+
+            Microsoft.Xna.Framework.Color color = CalamityUtils.ColorSwap(Microsoft.Xna.Framework.Color.OrangeRed, Microsoft.Xna.Framework.Color.DarkRed, 2f);
 
             if (Main.keyState.IsKeyDown(Keys.LeftShift))
             {
-                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Jill"))}\n{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Playtester")}");
-                line5.OverrideColor = lerpedColor;
-                tooltips.Add(line5);
-            }
-            else
-            {
-                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Playtester"));
-                line5.OverrideColor = lerpedColor;
+                TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Soltan"))}");
+                line5.OverrideColor = color;
                 tooltips.Add(line5);
             }
         }
@@ -136,19 +138,35 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         private string GetProgressionTooltip()
         {
             if (NPC.downedMoonlord)
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Full");
-            if (NPC.downedAncientCultist)
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.MoonLord");
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Progression.Full");
             if (NPC.downedGolemBoss)
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Cultist");
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Progression.MoonLord");
             if (NPC.downedPlantBoss)
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Golem");
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Progression.Golem");
             if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Plantera");
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Progression.Plantera");
             if (Main.hardMode)
-                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.Mechs");
-            return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.StellarSabre.Progression.WoF");
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Progression.Mechs");
+            if (NPC.downedBoss3)
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Progression.WoF");
+            return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Progression.Skeletron");
         }
-        */
+
+        private string GetTagDebuffTooltip()
+        {
+            if (NPC.downedMoonlord)
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.Full");
+            if (NPC.downedGolemBoss)
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.MoonLord");
+            if (NPC.downedPlantBoss)
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.Golem");
+            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.Plantera");
+            if (Main.hardMode)
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.Mechs");
+            if (NPC.downedBoss3)
+                return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.WoF");
+            return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.Skeletron");
+        }
     }
 }

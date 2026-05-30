@@ -2170,6 +2170,89 @@ Items: {
 	SplitFirebrand: {
 		// DisplayName: Split Firebrand
 		// Tooltip: ""
+
+		Progression: {
+			/* Skeletron:
+				'''
+				This firey Whip that you've made burns through iron and foes alike
+				Yet it was the potential to burn brighter, defeat the curse of the dungeon to fuel the fire
+				''' */
+			/* WoF:
+				'''
+				A spark has grown larger, making it wild
+				There's more to set ablaze...Defeat the gate of the underworld to fuel the fire
+				''' */
+			/* Mechs:
+				'''
+				When the fire goes wilder, it doesn't suddenly calm, there's more to be reached and more to be ashed
+				Melt the metal overseers to fuel the fire
+				''' */
+			/* Plantera:
+				'''
+				Can you feel it? Your hands burning, sweat turning into mist...Yet it must burn hotter
+				Defeat the Predator of the Jungle to fuel the fire
+				''' */
+			/* Golem:
+				'''
+				Even when you move, you can feel the fire dance on your skin, a deadly dance but beautiful none the less
+				Defeat the guardian of the lizhard temple
+				''' */
+			/* MoonLord:
+				'''
+				Strike again and again, never stop till flames touch the stars
+				Beat the moon's harbinger to fuel the fire
+				''' */
+			/* Full:
+				'''
+				A new potential unlocked, something truly hidden from most but pried open by you
+				It's evolution is done, but not yours, keep going even if you have to discard it
+				''' */
+		}
+
+		TagDebuff: {
+			/* Skeletron:
+				'''
+				3 summon tag damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* WoF:
+				'''
+				3 summon tag damage but post Skeletron
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* Mechs:
+				'''
+				3 summon tag damage but post WoF
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* Plantera:
+				'''
+				3 summon tag damage but post Mechs
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* Golem:
+				'''
+				3 summon tag damage but post Plantera
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* MoonLord:
+				'''
+				3 summon tag damage but post Golem
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* Full:
+				'''
+				3 summon tag damage but maxed out
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+		}
+
+		/* Lore:
+			'''
+			'When Dylan first came, he seemed to have brought some weapons from his home world'
+			'These were used by those who opposed the tyrannical rule of those who's power matched God's'
+			'Now that you've managed to replicate one of these crafts, maybe it will grow into something wonderful'
+			''' */
 	}
 }
 
@@ -2828,6 +2911,61 @@ Buffs: {
 	SplitFirebrandTag1: {
 		// DisplayName: Split Firebrand Tag1
 		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag1.Description
+	}
+
+	SoulBurn: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 10 DPS
+			25% increased Heat debuff damage
+			''' */
+	}
+
+	BlossomsBlessingTag: {
+		// DisplayName: Blossoms Blessing Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.BlossomsBlessingTag.Description
+	}
+
+	CatharsisTag: {
+		// DisplayName: Catharsis Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CatharsisTag.Description
+	}
+
+	CongeledDuoWhipTag: {
+		// DisplayName: Congeled Duo Whip Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CongeledDuoWhipTag.Description
+	}
+
+	CoralCrusherTag: {
+		// DisplayName: Coral Crusher Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CoralCrusherTag.Description
+	}
+
+	ResonantStrikerTag: {
+		// DisplayName: Resonant Striker Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.ResonantStrikerTag.Description
+	}
+
+	SandstoneReignsTag: {
+		// DisplayName: Sandstone Reigns Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.SandstoneReignsTag.Description
+	}
+
+	UnderBiteTag: {
+		// DisplayName: Under Bite Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.UnderBiteTag.Description
+	}
+
+	UnrelentingTormentTag: {
+		// DisplayName: Unrelenting Torment Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.UnrelentingTormentTag.Description
+	}
+
+	PrismBreakTag: {
+		// DisplayName: Prism Break Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.PrismBreakTag.Description
 	}
 }
 

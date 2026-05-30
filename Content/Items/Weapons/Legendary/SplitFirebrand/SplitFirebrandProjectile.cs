@@ -5,12 +5,14 @@ using CalamityMod.Items.Materials;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Content.Buffs.Tag;
+using InfernalEclipseAPI.Content.Buffs;
 using CalamityMod;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.GameContent;
 using System.Runtime.InteropServices;
+using Terraria;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
@@ -43,10 +45,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
             Projectile.DamageType = LegendarySummon.Instance;
-            Projectile.width = 40;
-            Projectile.height = 40;
+            Projectile.width =12;
+            Projectile.height = 12;
             Projectile.WhipSettings.Segments = 5;
-            Projectile.WhipSettings.RangeMultiplier = 0.8f;
+            Projectile.WhipSettings.RangeMultiplier = 0.6f;
 
             whipSegment = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandSegment").Value;
             whipTip = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandTip").Value;
@@ -127,7 +129,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (Projectile.damage < 1)
                 Projectile.damage = 1;
 
+            var modNPC = target.GetGlobalNPC<SoulBurnNPC>();
+
             target.AddBuff(ModContent.BuffType<SplitFirebrandTag1>(), 240);
+            target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
 
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
