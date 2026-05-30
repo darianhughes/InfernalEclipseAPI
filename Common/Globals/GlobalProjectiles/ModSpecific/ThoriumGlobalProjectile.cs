@@ -7,12 +7,85 @@ using Terraria.DataStructures;
 using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Projectiles.Thrower;
 using System.Collections.Generic;
+using Terraria.Audio;
+using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 {
     [ExtendsFromMod("ThoriumMod")]
     public class ThoriumGlobalProjectile : GlobalProjectile
     {
+        public override bool InstancePerEntity => true;
+
+        private bool triggeredGuaranteedProc;
+
+        // Auto-detected Thorium-style flails
+        private static readonly HashSet<int> FlailProjectiles = new();
+
+        // Manual additions
+        private static readonly HashSet<int> ManualFlailProjectiles = new();
+        private static readonly HashSet<int> GuaranteedOnlyProjectiles = new();
+
+        public override void Load()
+        {
+            FlailProjectiles.Clear();
+            ManualFlailProjectiles.Clear();
+
+            // AUTO THORIUM-STYLE FLAIL DETECTION
+
+            foreach (Item item in ContentSamples.ItemsByType.Values)
+            {
+                if (
+                    item.maxStack == 1 &&
+                    item.damage > 0 &&
+                    item.channel &&
+                    item.noUseGraphic &&
+                    item.useStyle == ItemUseStyleID.Shoot &&
+                    item.shoot > ProjectileID.None &&
+                    item.CountsAsClass(DamageClass.Melee)
+                )
+                {
+                    Projectile proj = ContentSamples.ProjectilesByType[item.shoot];
+
+                    if (proj.aiStyle == ProjAIStyleID.Flail)
+                    {
+                        FlailProjectiles.Add(proj.type);
+                    }
+                }
+            }
+
+            // MANUAL PROJECTILE ADDITIONS
+
+            AddManualProjectile("CalamityMod", "UrchinMaceProj");
+            AddManualProjectile("CalamityMod", "YateveoBloomMace");
+            AddManualProjectile("CalamityMod", "BallOFuguProj");
+            AddManualProjectile("CalamityMod", "ClamCrusherFlail");
+            AddManualProjectile("CalamityMod", "TumbleweedFlail");
+            AddManualProjectile("CalamityMod", "CrescentMoonFlail");
+            AddManualProjectile("CalamityMod", "DragonPowFlail");
+            AddManualProjectile("CalamityMod", "PulseDragonProjectile");
+            AddManualProjectile("CalamityMod", "RemsRevengeProj");
+
+            AddManualProjectile("Clamity", "ClamitasCrusherProjectile");
+
+            AddManualProjectile("SOTS", "Shattershine");
+            AddManualProjectile("SOTS", "AtenProj");
+            AddManualProjectile("SOTS", "NorthStar");
+
+            GuaranteedOnlyProjectiles.Add(ProjectileID.Flairon);
+        }
+
+        private static void AddManualProjectile(string modName, string projectileName)
+        {
+            if (!ModLoader.TryGetMod(modName, out Mod mod))
+                return;
+
+            if (mod.TryFind(projectileName, out ModProjectile projectile))
+            {
+                ManualFlailProjectiles.Add(projectile.Type);
+            }
+        }
+
         public override void SetDefaults(Projectile entity)
         {
             if (entity.type == ModContent.ProjectileType<IceLancePro>() ||
@@ -130,6 +203,97 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
                         }
                     }
                 }
+            }
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (FlailProjectiles.Contains(projectile.type) || ManualFlailProjectiles.Contains(projectile.type) || GuaranteedOnlyProjectiles.Contains(projectile.type))
+            {
+                Player player = Main.player[projectile.owner];
+
+                ThoriumPlayer thoriumPlayer =
+                    player.GetModPlayer<ThoriumPlayer>();
+
+                Vector2 launchVelocity = projectile.velocity * 0.5f;
+
+                if (launchVelocity == Vector2.Zero)
+                {
+                    launchVelocity = Main.MouseWorld - player.Center;
+                    launchVelocity.Normalize();
+                    launchVelocity *= 6f;
+                }
+
+                IEntitySource source = projectile.GetSource_OnHit(target);
+
+                // GUARANTEED FIRST PROC
+                if (!triggeredGuaranteedProc)
+                {
+                    SpawnFlailCores(projectile, thoriumPlayer, source, launchVelocity);
+                    triggeredGuaranteedProc = true;
+                }
+
+                // EXTRA 25% PROC FOR MANUAL ADDITIONS LIKE VANILLA THORIUM
+                if (ManualFlailProjectiles.Contains(projectile.type) && Main.rand.NextBool(4))
+                {
+                    SpawnFlailCores(projectile, thoriumPlayer, source, launchVelocity);
+                }
+            }
+        }
+
+        private static void SpawnFlailCores(Projectile projectile, ThoriumPlayer thoriumPlayer, IEntitySource source, Vector2 launchVelocity)
+        {
+            // Iron Flail Core
+            if (thoriumPlayer.accIronFlailCore)
+            {
+                SoundEngine.PlaySound(SoundID.Item1, projectile.Center);
+
+                Projectile.NewProjectile(
+                    source,
+                    projectile.Center,
+                    launchVelocity,
+                    ModContent.ProjectileType<IronFlailCorePro>(),
+                    (int)(projectile.damage * 0.35),
+                    projectile.knockBack,
+                    projectile.owner);
+            }
+
+            // Cursed Flail Core
+            if (thoriumPlayer.accCursedFlailCore)
+            {
+                SoundEngine.PlaySound(SoundID.Item1, projectile.Center);
+
+                Projectile.NewProjectile(
+                    source,
+                    projectile.Center,
+                    launchVelocity,
+                    ModContent.ProjectileType<CursedFlailCorePro>(),
+                    (int)(projectile.damage * 0.65),
+                    projectile.knockBack,
+                    projectile.owner);
+            }
+
+            // Vile Flail Core
+            if (thoriumPlayer.accVileFlailCore)
+            {
+                SoundEngine.PlaySound(SoundID.Item1, projectile.Center);
+
+                Projectile.NewProjectile(
+                    source,
+                    projectile.Center,
+                    launchVelocity,
+                    ModContent.ProjectileType<VileFlailCorePro>(),
+                    (int)(projectile.damage * 0.65),
+                    projectile.knockBack,
+                    projectile.owner);
+            }
+        }
+
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if (projectile.type == ModContent.ProjectileType<OmniArrow3>())
+            {
+                modifiers.DisableCrit();
             }
         }
     }
