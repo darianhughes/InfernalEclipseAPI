@@ -48,7 +48,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             Projectile.width =12;
             Projectile.height = 12;
             Projectile.WhipSettings.Segments = 5;
-            Projectile.WhipSettings.RangeMultiplier = 0.6f;
+            Projectile.WhipSettings.RangeMultiplier = GetFirebrandRange();
 
             whipSegment = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandSegment").Value;
             whipTip = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandTip").Value;
@@ -131,7 +131,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
             var modNPC = target.GetGlobalNPC<SoulBurnNPC>();
 
-            target.AddBuff(ModContent.BuffType<SplitFirebrandTag1>(), 240);
+            target.AddBuff(ModContent.BuffType<SplitFirebrandTag>(), 240);
             target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
 
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
@@ -301,5 +301,28 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 pos += diff;
             }
         }
+
+
+        public static float GetFirebrandRange()
+        {
+            if (NPC.downedMoonlord)
+                return 1.1f;
+            if (NPC.downedGolemBoss)
+                return 1f;
+            if (NPC.downedPlantBoss)
+                return 0.9f;
+            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                return 0.8f;
+            if (Main.hardMode)
+                return 0.7f;
+            if (NPC.downedBoss3)
+                return 0.6f;
+            return 0.5f;
+        }
+    }
+
+    public class SplitFirebrandPlayer : ModPlayer
+    {
+        public bool ReverseNextSwing;
     }
 }

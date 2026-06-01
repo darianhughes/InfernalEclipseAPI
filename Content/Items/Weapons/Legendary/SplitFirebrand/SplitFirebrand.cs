@@ -168,5 +168,22 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.WoF");
             return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.Skeletron");
         }
+
+        public static float GetFirebrandRange()
+        {
+            if (NPC.downedMoonlord)
+                return 15;
+            if (NPC.downedGolemBoss)
+                return 12;
+            if (NPC.downedPlantBoss)
+                return 9;
+            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                return 6;
+            if (Main.hardMode)
+                return 5;
+            if (NPC.downedBoss3)
+                return 4;
+            return 0.6f;
+        }
     }
 }

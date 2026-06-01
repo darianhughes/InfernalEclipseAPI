@@ -2239,32 +2239,32 @@ Items: {
 				''' */
 			/* WoF:
 				'''
-				3 summon tag damage but post Skeletron
+				4 summon tag damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* Mechs:
 				'''
-				3 summon tag damage but post WoF
+				5 summon tag damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* Plantera:
 				'''
-				3 summon tag damage but post Mechs
+				6 summon tag damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* Golem:
 				'''
-				3 summon tag damage but post Plantera
+				9 summon tag damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* MoonLord:
 				'''
-				3 summon tag damage but post Golem
+				12 summon tag damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* Full:
 				'''
-				3 summon tag damage but maxed out
+				15 summon tag damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 		}
@@ -2982,6 +2982,11 @@ Buffs: {
 	SplitFirebrandTag1: {
 		// DisplayName: Split Firebrand Tag1
 		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag1.Description
+	}
+
+	SplitFirebrandTag: {
+		// DisplayName: Split Firebrand Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag.Description
 	}
 
 	SoulBurn: {

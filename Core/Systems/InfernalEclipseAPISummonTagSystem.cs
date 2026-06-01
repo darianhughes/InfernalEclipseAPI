@@ -35,10 +35,9 @@ namespace InfernalEclipseAPI.Core.Systems
             entries.Add(new SummonTagEntry
             {
                 ItemType = () => ModContent.ItemType<SplitFirebrand>(),
-                BuffType = () => ModContent.BuffType<SplitFirebrandTag1>(),
+                BuffType = () => ModContent.BuffType<SplitFirebrandTag>(),
                 Setup = delegate (SummonTag summonTag)
                 {
-                    summonTag.FlatTagDamage = 3;
                     summonTag.AutoDrawTooltip = false;
                     summonTag.TagTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand", (AssetRequestMode)1);
                 }

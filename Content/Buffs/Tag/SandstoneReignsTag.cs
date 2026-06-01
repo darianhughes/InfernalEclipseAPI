@@ -11,7 +11,7 @@ namespace InfernalEclipseAPI.Content.Buffs.Tag
 {
     public class SandstoneReignsTag : ModBuff
     {
-        public override string Texture => "WHummusMultiModBalancing/Content/Empty";
+        public override string Texture => "InfernalEclipseAPI/Assets/Textures/Empty";
 
         public override void SetStaticDefaults()
         {

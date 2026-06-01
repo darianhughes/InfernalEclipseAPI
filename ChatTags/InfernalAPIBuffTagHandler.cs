@@ -30,7 +30,7 @@ namespace InfernalEclipseAPI.ChatTags
 
             private static Dictionary<int, Color> BuffColorOverrides => _buffColorOverrides ??= new()
             {
-                [ModContent.BuffType<SoulBurn>()] = Color.OrangeRed,
+                [ModContent.BuffType<SoulBurn>()] = Color.DarkOrange,
             };
 
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = new Vector2(), Color color = new Color(), float scale = 1)
