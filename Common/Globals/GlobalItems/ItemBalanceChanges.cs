@@ -718,6 +718,40 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
+            #region Calamity Simple Whip Addon
+            if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (UnsafeGetItem(simpleWhipAddon, "RapierWhip", item))
+                {
+                    item.damage = 9;
+                    item.useAnimation = 30;
+                    item.useTime = 30;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Droptide", item))
+                {
+                    item.damage = 28;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "DarkMandibleLash", item))
+                {
+                    item.damage = 20;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "BreezePiercer", item))
+                {
+                    item.damage = 21;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "AncientBonds", item))
+                {
+                    item.useAnimation = 42;
+                    item.useTime = 42;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Gelxyribose", item))
+                {
+                    item.useAnimation = 40;
+                    item.useTime = 40;
+                }
+            }
+            #endregion
+
             #region Calamity Ranger Expansion
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
