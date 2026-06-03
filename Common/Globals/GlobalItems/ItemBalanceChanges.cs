@@ -721,6 +721,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #region Calamity Simple Whip Addon
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
+                //Pre-Hardmode
                 if (UnsafeGetItem(simpleWhipAddon, "RapierWhip", item))
                 {
                     item.damage = 9;
@@ -748,6 +749,94 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.useAnimation = 40;
                     item.useTime = 40;
+                }
+                //Hardmode
+                if (UnsafeGetItem(simpleWhipAddon, "NightButterfly", item))
+                {
+                    item.useAnimation = 36;
+                    item.useTime = 36;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "GlitterGutter", item))
+                {
+                    item.useAnimation = 19;
+                    item.useTime = 19;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "ActiasAliena", item))
+                {
+                    item.useAnimation = 42;
+                    item.useTime = 42;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Loadout", item))
+                {
+                    item.useAnimation = 36;
+                    item.useTime = 36;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Ectopia", item))
+                {
+                    item.useAnimation = 18;
+                    item.useTime = 18;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Unfathomable", item))
+                {
+                    item.damage = 250;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "DestructionChain", item))
+                {
+                    item.useAnimation = 32;
+                    item.useTime = 32;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "GoldRush", item))
+                {
+                    item.useAnimation = 40;
+                    item.useTime = 40;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "ExistenceBonds", item))
+                {
+                    item.useAnimation = 26;
+                    item.useTime = 26;
+                }
+                //Post Moonlord
+                if (UnsafeGetItem(simpleWhipAddon, "ButterflyEffect", item))
+                {
+                    item.useAnimation = 42;
+                    item.useTime = 42;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Satellite", item))
+                {
+                    item.useAnimation = 12;
+                    item.useTime = 12;
+                    item.damage = 120;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "EntwinedBranches", item))
+                {
+                    item.damage = 270;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "ShieldConduitMkIV", item))
+                {
+                    item.useAnimation = 40;
+                    item.useTime = 40;
+                    item.damage = 200;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "GildedReliquary", item))
+                {
+                    item.useAnimation = 44;
+                    item.useTime = 44;
+                    item.damage = 216;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "EtaCarinae", item))
+                {
+                    item.useAnimation = 36;
+                    item.useTime = 36;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "ResonantVoid", item))
+                {
+                    item.useAnimation = 31;
+                    item.useTime = 31;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Milkyway", item))
+                {
+                    item.useAnimation = 44;
+                    item.useTime = 44;
                 }
             }
             #endregion

@@ -551,6 +551,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient<SandstoneIngot>(8);
                     }
+                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("AurelianSanctum")))
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<ShadowspecBar>());
+                        recipe.AddIngredient<AlloyofEden>(3);
+                        recipe.AddIngredient<Rock>(1);
+                    }
                 }
                 #endregion
 
