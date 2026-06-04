@@ -13,6 +13,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using System.Runtime.InteropServices;
 using Terraria;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
@@ -24,12 +25,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         public int? swingDust = DustID.Torch;
         public int dustAmount = 1;
         public SoundStyle? whipCrackSound = new SoundStyle?(SoundID.Item153);
-        private List<Vector2> whipPoints;
+        public List<Vector2> whipPoints;
         public float multihitModifier = 0.8f;
         public float segmentRotation;
         private bool runOnce = true;
 
-        private Texture2D handleTex;
+        public Texture2D handleTex;
         private Texture2D whipSegment;
         private Texture2D whipTip;
 
@@ -241,6 +242,74 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             }
         }
 
+        public class SplitFirebrandWhipHandleLayer : PlayerDrawLayer
+        {
+            public override Position GetDefaultPosition()
+                => new BeforeParent(PlayerDrawLayers.ArmOverItem);
+
+            protected override void Draw(ref PlayerDrawSet drawInfo)
+            {
+                Player player = drawInfo.drawPlayer;
+
+                Projectile projInstance = null;
+
+                for (int i = 0; i < Main.maxProjectiles; i++)
+                {
+                    Projectile p = Main.projectile[i];
+
+                    if (!p.active)
+                        continue;
+
+                    if (p.owner == player.whoAmI &&
+                        p.ModProjectile is SplitFirebrandProjectile)
+                    {
+                        projInstance = p;
+                        break;
+                    }
+                }
+
+                if (projInstance?.ModProjectile is not SplitFirebrandProjectile proj)
+                    return;
+
+                if (proj.whipPoints == null || proj.whipPoints.Count < 2)
+                    return;
+
+                proj.UpdateWhipTextures();
+
+                Vector2 handlePos = proj.whipPoints[0];
+                Vector2 nextPos = proj.whipPoints[1];
+
+                Vector2 dir = Vector2.Normalize(nextPos - handlePos);
+
+                float handleForwardOffset = 12f;
+
+                if (NPC.downedMoonlord)
+                {
+                    handleForwardOffset = 16f;
+                }
+                else
+                {
+                    handleForwardOffset = 6f;
+                }
+
+                handlePos += dir * handleForwardOffset;
+
+                float rot = dir.ToRotation() + MathHelper.Pi;
+
+                drawInfo.DrawDataCache.Add(new DrawData(
+                    proj.handleTex,
+                    handlePos - Main.screenPosition,
+                    null,
+                    Lighting.GetColor(handlePos.ToTileCoordinates()),
+                    rot,
+                    proj.handleTex.Size() * 0.5f,
+                    1f,
+                    SpriteEffects.FlipHorizontally,
+                    0
+                ));
+            }
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
             if (whipPoints == null || whipPoints.Count < 1)
@@ -252,29 +321,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
             SpriteEffects effect = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             Vector2 pos = whipPoints[1];
-
-            //Handle
-            Vector2 handleOrigin = handleTex.Size() / 2f;
-
-            Vector2 handlePos = whipPoints[0];
-            Vector2 nextPos = whipPoints[1];
-
-            Vector2 dir = nextPos - handlePos;
-            float handleRotation = dir.ToRotation() + MathHelper.PiOver2;
-
-            handleRotation -= (MathHelper.Pi / 2);
-
-            Main.EntitySpriteDraw(
-                handleTex,
-                handlePos - Main.screenPosition,
-                null,
-                Lighting.GetColor(handlePos.ToTileCoordinates()),
-                handleRotation,
-                handleOrigin,
-                1f,
-                SpriteEffects.None,
-                0f
-            );
 
             //Segments
             for (int i = 1; i < whipPoints.Count - 1; i++)

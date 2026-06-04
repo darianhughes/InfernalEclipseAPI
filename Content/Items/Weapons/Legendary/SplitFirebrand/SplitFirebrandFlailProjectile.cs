@@ -396,11 +396,26 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 Vector2 handlePos = proj.RopePoints[0];
                 Vector2 nextPos = proj.RopePoints[1];
 
+                Vector2 dir = Vector2.Normalize(nextPos - handlePos);
+
+                float handleForwardOffset = 20f;
+
+                if (NPC.downedMoonlord)
+                {
+                    handleForwardOffset = 20f;
+                }
+                else
+                {
+                    handleForwardOffset = 12f;
+                }
+
+                handlePos += dir * handleForwardOffset;
+
+                float rot = dir.ToRotation();
+
                 Texture2D tex = proj.handleTex;
                 if (tex == null)
                     return;
-
-                float rot = (nextPos - handlePos).ToRotation();
 
                 drawInfo.DrawDataCache.Add(new DrawData(
                     tex,
@@ -487,7 +502,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3) ? 29f :
                 Main.hardMode ? 25f :
                 NPC.downedBoss3 ? 19f :
-                17f;
+                16f;
 
             return baseRange * player.whipRangeMultiplier;
         }
