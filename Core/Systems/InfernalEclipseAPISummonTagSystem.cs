@@ -10,6 +10,8 @@ using ThoriumMod.Buffs.Summon;
 using ThoriumMod.Items.SummonItems;
 using WHummusMultiModBalancing;
 using InfernalEclipseAPI.Common.GlobalItems;
+using InfernumMode.Content.Items.Weapons.Summoner;
+using InfernumMode.Content.Buffs;
 
 namespace InfernalEclipseAPI.Core.Systems
 {
@@ -47,21 +49,50 @@ namespace InfernalEclipseAPI.Core.Systems
             //Also you can't register multiple tag entrys to the same item so we'll roll with mine for now
             if (!WHummusEnabled)
             {
-                // THORIUM ENTRY
-
-                entries.Add(new SummonTagEntry
+                if (ModLoader.TryGetMod("InfernumMode", out Mod infernum))
                 {
-                    ItemType = () => ModContent.ItemType<Thrombosis>(),
-                    BuffType = () => ModContent.BuffType<ThrombosisDebuff>(),
-                    Setup = delegate (SummonTag summonTag)
+                    entries.Add(new SummonTagEntry
                     {
-                        summonTag.AutoDrawTooltip = false;
-                        summonTag.TagTexture = ModContent.Request<Texture2D>("ThoriumMod/Items/SummonItems/Thrombosis", AssetRequestMode.ImmediateLoad);
-                    }
-                });
+                        ItemType = () => ModContent.ItemType<Perditus>(),
+                        BuffType = () => ModContent.BuffType<PerditusTagBuff>(),
+                        Setup = delegate (SummonTag summonTag)
+                        {
+                            summonTag.AutoDrawTooltip = false;
+                            summonTag.TagTexture = ModContent.Request<Texture2D>("InfernumMode/Content/Items/Weapons/Summoner/Perditus", AssetRequestMode.ImmediateLoad);
+                        }
+                    });
+                }
 
                 // OPTIONAL MOD SUPPORT
-
+                if (ModLoader.TryGetMod("ThoriumMod", out Mod thor))
+                {
+                    entries.Add(new SummonTagEntry
+                    {
+                        ItemType = () => ModContent.ItemType<Thrombosis>(),
+                        BuffType = () => ModContent.BuffType<ThrombosisDebuff>(),
+                        Setup = delegate (SummonTag summonTag)
+                        {
+                            summonTag.AutoDrawTooltip = false;
+                            summonTag.TagTexture = ModContent.Request<Texture2D>("ThoriumMod/Items/SummonItems/Thrombosis", AssetRequestMode.ImmediateLoad);
+                        }
+                    });
+                }
+                if (ModLoader.TryGetMod("ThoriumRework", out Mod helh))
+                {
+                    if (helh.TryFind("LichWhip", out ModItem item) && helh.TryFind("SoulBleed", out ModBuff buff))
+                    {
+                        entries.Add(new SummonTagEntry
+                        {
+                            ItemType = () => item.Type,
+                            BuffType = () => buff.Type,
+                            Setup = delegate (SummonTag summonTag)
+                            {
+                                summonTag.AutoDrawTooltip = false;
+                                summonTag.TagTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/Textures/Items/LichWhip", AssetRequestMode.ImmediateLoad);
+                            }
+                        });
+                    }
+                }
                 if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
                 {
                     if (catalyst.TryFind("CoralCrusher", out ModItem item))
