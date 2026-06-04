@@ -23,7 +23,7 @@ namespace InfernalEclipseAPI.Content.Buffs.Tag
             {
                 if (npc.HasBuff<SplitFirebrandTag>() && projectile.IsMinionOrSentryRelated)
                 {
-                    modifiers.FinalDamage = modifiers.FinalDamage + GetFirebrandTagDamage();
+                    modifiers.FlatBonusDamage += GetFirebrandTagDamage();
                 }
             }
         }

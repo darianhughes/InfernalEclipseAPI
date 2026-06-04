@@ -54,26 +54,20 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
         private Vector2 aimDir;
 
-        public override void SetStaticDefaults() => ProjectileID.Sets.IsAWhip[Type] = true;
-
         public override void SetDefaults()
         {
-            ProjectileID.Sets.IsAWhip[Type] = true;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = -1;
+            Projectile.localNPCHitCooldown = 10;
 
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
             Projectile.ownerHitCheck = false;
             Projectile.extraUpdates = 1;
-            Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = -1;
             Projectile.DamageType = LegendarySummon.Instance;
-            Projectile.width = 12;
-            Projectile.height = 12;
-            Projectile.WhipSettings.Segments = 5;
-            Projectile.WhipSettings.RangeMultiplier = GetFirebrandFlailRange();
+            Projectile.width = 42;
+            Projectile.height = 42;
+            Projectile.WhipSettings.RangeMultiplier = GetFirebrandFlailRange(Main.player[Projectile.owner]);
 
             whipSegment = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandSegment").Value;
             whipTip = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandTip").Value;
@@ -94,6 +88,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
+
+            if (player.itemAnimation <= 0)
+            {
+                Projectile.Kill();
+                return;
+            }
 
             // init state
             if (Projectile.localAI[0] == 0f)
@@ -136,7 +136,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
             // visuals + logic
             BuildFlailSegments();
-            CheckChainHitboxes();
 
             // cooldown cleanup
             List<int> keys = new(localHitCooldown.Keys);
@@ -146,6 +145,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 if (localHitCooldown[k] <= 0)
                     localHitCooldown.Remove(k);
             }
+
+            WhipSFX(lightingColor, swingDust, dustAmount, whipCrackSound);
         }
 
         private void DoExtend(Player player, Vector2 dir)
@@ -155,14 +156,20 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             float rawProgress = 1f - (player.itemAnimation / (float)player.itemAnimationMax);
             rawProgress = MathHelper.Clamp(rawProgress, 0f, 1f);
 
-            extendProgress = MathHelper.Lerp(extendProgress, rawProgress, 0.25f);
+            float speedScale = GetAttackSpeedScale(player);
+
+            extendProgress = MathHelper.Lerp(
+                extendProgress,
+                rawProgress,
+                MathHelper.Clamp(0.25f * speedScale, 0f, 1f));
 
             float eased = 1f - MathF.Pow(1f - extendProgress, 3f);
 
-            float range = 16f * GetFirebrandFlailRange();
+            float range = 16f * GetFirebrandFlailRange(player);
 
             Projectile.Center = player.MountedCenter + dir * range * eased;
-            Projectile.velocity = dir * (GetFirebrandFlailRange() * 1.5f);
+
+            Projectile.velocity = dir * (GetFirebrandFlailRange(player) * 1.5f * speedScale);
 
             float halfTime = player.itemAnimationMax * 0.5f;
 
@@ -190,10 +197,15 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             float pullStrength = 1f; // tweak this for "weight"
 
             // slowly bend velocity toward player (flail rope tension feel)
+            float speedScale = GetAttackSpeedScale(player);
+
             Projectile.velocity = Vector2.Lerp(
                 Projectile.velocity,
-                toPlayer * 10f,
-                pullStrength * 0.05f
+                toPlayer * (10f * speedScale),
+                MathHelper.Clamp(
+                    pullStrength * 0.05f * speedScale,
+                    0f,
+                    1f)
             );
 
             // collision with player = start return
@@ -220,7 +232,13 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             toPlayer.Normalize();
 
             // smooth acceleration instead of constant speed
-            float returnSpeed = MathHelper.Clamp(distance * 0.12f, 10f, 56f);
+            float speedScale = GetAttackSpeedScale(player);
+
+            float returnSpeed =
+                MathHelper.Clamp(
+                    distance * 0.12f * speedScale,
+                    10f * speedScale,
+                    56f * speedScale);
 
             Projectile.velocity = Vector2.Lerp(Projectile.velocity, toPlayer * returnSpeed, 0.3f);
         }
@@ -237,7 +255,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
             Vector2 dir = (end - start).SafeNormalize(Vector2.UnitX);
 
-            int segments = 12;
+            int segments = 24;
 
             for (int i = 0; i <= segments; i++)
             {
@@ -257,11 +275,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             player.heldProj = Projectile.whoAmI;
 
             Vector2 tipPos = GetTipPosition();
-            if (Timer == totalTime / 2f && sound.HasValue)
-                SoundEngine.PlaySound(sound.Value, tipPos);
-
-            if (Timer < totalTime * 0.5f)
-                return;
 
             if (dustID.HasValue)
             {
@@ -286,67 +299,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
             return ropePoints[ropePoints.Count - 2];
         }
-
-        private void CheckChainHitboxes()
+        public override bool? CanHitNPC(NPC target)
         {
-            if (ropePoints == null || ropePoints.Count < 2) return;
-            
-            Player player = Main.player[Projectile.owner];
-            
-            for (int i = 0; i < ropePoints.Count - 1; i++)
-            {
-                Vector2 start = ropePoints[i]; Vector2 end = ropePoints[i + 1];
-                
-                // Treat each segment as a line hitbox with thickness
-        
-                float collisionWidth = 18f;
+            //if (Projectile.Hitbox.Intersects(target.Hitbox))
+              //  Main.NewText($"Can hit {target.FullName}");
 
-        
-                Rectangle npcHitbox = new Rectangle(
-            
-                    (int)Projectile.position.X - 200,
-            
-                    (int)Projectile.position.Y - 200,
-            
-                    400,
-            
-                    400
-                );
-
-        foreach (NPC npc in Main.npc)
-        {
-            if (!npc.active || npc.dontTakeDamage)
-                continue;
-
-                    float collisionPoint = 0f;
-
-                    if (Collision.CheckAABBvLineCollision(
-                        npc.Hitbox.TopLeft(),
-                        npc.Hitbox.Size(),
-                        start,
-                        end,
-                        18f,
-                        ref collisionPoint))
-                    {
-                        HitNPCFromChain(npc);
-                    }
-                }
-            }
-        }
-
-        private void HitNPCFromChain(NPC npc)
-        {
-            if (localHitCooldown.TryGetValue(npc.whoAmI, out int cd) && cd > 0)
-                return;
-
-            localHitCooldown[npc.whoAmI] = 20;
-
-            int damage = Projectile.damage;
-
-            npc.SimpleStrikeNPC(damage, 0);
-
-            npc.AddBuff(ModContent.BuffType<SplitFirebrandTag>(), 240);
-            npc.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
+            return true;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -520,22 +478,23 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             }
         }
 
-
-        public static float GetFirebrandFlailRange()
+        public static float GetFirebrandFlailRange(Player player)
         {
-            if (NPC.downedMoonlord)
-                return 58f;
-            if (NPC.downedGolemBoss)
-                return 42f;
-            if (NPC.downedPlantBoss)
-                return 36f;
-            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                return 30f;
-            if (Main.hardMode)
-                return 24f;
-            if (NPC.downedBoss3)
-                return 18f;
-            return 13f;
+            float baseRange =
+                NPC.downedMoonlord ? 41f :
+                NPC.downedGolemBoss ? 35f :
+                NPC.downedPlantBoss ? 31f :
+                (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3) ? 29f :
+                Main.hardMode ? 25f :
+                NPC.downedBoss3 ? 19f :
+                17f;
+
+            return baseRange * player.whipRangeMultiplier;
+        }
+
+        private float GetAttackSpeedScale(Player player)
+        {
+            return 24f / player.itemAnimationMax;
         }
     }
 }

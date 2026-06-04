@@ -8,13 +8,15 @@ using CalamityMod;
 using Microsoft.Xna.Framework.Input;
 using Terraria.DataStructures;
 using InfernumMode;
-using System.Drawing;
-using InfernalEclipseWeaponsDLC.Content.Projectiles.MagicPro.GrandAmplifier;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
     public class SplitFirebrand : ModItem
     {
+        static Asset<Texture2D> inventoryTexture;
+
         public override void SetDefaults()
         {
             Item.damage = 20;
@@ -124,10 +126,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (modPlayer.comboCounter != 2)
             {
                 Item.useStyle = ItemUseStyleID.Swing;
+                Item.UseSound = SoundID.Item152;
             }
             else
             {
                 Item.useStyle = ItemUseStyleID.Shoot;
+                Item.UseSound = SoundID.Item116;
             }
 
             return true;
@@ -225,6 +229,55 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (NPC.downedBoss3)
                 return 4;
             return 0.6f;
+        }
+
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Microsoft.Xna.Framework.Rectangle frame, Microsoft.Xna.Framework.Color drawColor, Microsoft.Xna.Framework.Color itemColor, Vector2 origin, float scale)
+        {
+            DrawTexture(spriteBatch, position, drawColor, scale);
+            return false;
+        }
+
+        public override bool PreDrawInWorld(
+    SpriteBatch spriteBatch,
+    Microsoft.Xna.Framework.Color lightColor,
+    Color alphaColor,
+    ref float rotation,
+    ref float scale,
+    int whoAmI)
+        {
+            DrawTexture(
+                spriteBatch,
+                Item.Center - Main.screenPosition,
+                lightColor,
+                scale);
+
+            return false;
+        }
+
+        private void DrawTexture(SpriteBatch spriteBatch, Vector2 position, Color color, float scale)
+        {
+            Texture2D tex =
+                NPC.downedMoonlord
+                ? ModContent.Request<Texture2D>(
+                    "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandCrescendo"
+                  ).Value
+                : ModContent.Request<Texture2D>(
+                    "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand"
+                  ).Value;
+
+            Vector2 origin = tex.Size() * 0.5f;
+
+            spriteBatch.Draw(
+                tex,
+                position,
+                null,
+                color,
+                0f,
+                origin,
+                scale,
+                SpriteEffects.None,
+                0f
+            );
         }
     }
 

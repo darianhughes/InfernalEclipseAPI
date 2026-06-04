@@ -2202,7 +2202,7 @@ Items: {
 			/* WoF:
 				'''
 				A spark has grown larger, making it wild
-				There's more to set ablaze...Defeat the gate of the underworld to fuel the fire
+				There's more to set ablaze... Defeat the gate of the underworld to fuel the fire
 				''' */
 			/* Mechs:
 				'''
@@ -2211,7 +2211,7 @@ Items: {
 				''' */
 			/* Plantera:
 				'''
-				Can you feel it? Your hands burning, sweat turning into mist...Yet it must burn hotter
+				Can you feel it? Your hands burning, sweat turning into mist... Yet it must burn hotter
 				Defeat the Predator of the Jungle to fuel the fire
 				''' */
 			/* Golem:
@@ -2235,36 +2235,43 @@ Items: {
 			/* Skeletron:
 				'''
 				3 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* WoF:
 				'''
 				4 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* Mechs:
 				'''
 				5 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* Plantera:
 				'''
 				6 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* Golem:
 				'''
 				9 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* MoonLord:
 				'''
 				12 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 			/* Full:
 				'''
 				15 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
 		}
@@ -2324,6 +2331,7 @@ Projectiles: {
 	ChickenWingHoldout.DisplayName: 鸡翅
 	EclipseHeadphonesProj.DisplayName: 蚀光耳机弹幕
 	// SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
+	// SplitFirebrandFlailProjectile.DisplayName: Split Firebrand Flail Projectile
 }
 
 DiaryTooltip:

@@ -296,4 +296,36 @@ namespace InfernalEclipseAPI.Core.Systems
             }
         }
     }
+
+    public class SplitFirebrandSystem : ModSystem
+    {
+        private bool lastMoonlordState;
+
+        public override void OnWorldLoad()
+        {
+            lastMoonlordState = NPC.downedMoonlord;
+        }
+
+        public override void PostUpdateWorld()
+        {
+            if (lastMoonlordState == NPC.downedMoonlord)
+                return;
+
+            lastMoonlordState = NPC.downedMoonlord;
+
+            if (CalamityBuffSets.SummonTagDebuff == null)
+                return;
+
+            if (!CalamityBuffSets.SummonTagDebuff.TryGetValue(
+                ModContent.BuffType<SplitFirebrandTag>(),
+                out SummonTag tag))
+                return;
+
+            tag.TagTexture = ModContent.Request<Texture2D>(
+                NPC.downedMoonlord
+                    ? "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandCrescendo"
+                    : "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand"
+            );
+        }
+    }
 }

@@ -52,7 +52,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             Projectile.DamageType = LegendarySummon.Instance;
             Projectile.width =12;
             Projectile.height = 12;
-            Projectile.WhipSettings.Segments = 5;
+            Projectile.WhipSettings.Segments = 10;
             Projectile.WhipSettings.RangeMultiplier = GetFirebrandRange();
 
             whipSegment = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandSegment").Value;
@@ -176,7 +176,13 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             set => Projectile.localAI[0] = value;
         }
 
-        private Vector2 GetTipPosition() => whipPoints[whipPoints.Count - 2];
+        private Vector2 GetTipPosition()
+        {
+            if (whipPoints == null || whipPoints.Count < 2)
+                return Projectile.Center;
+
+            return whipPoints[whipPoints.Count - 2];
+        }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -370,17 +376,17 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         public static float GetFirebrandRange()
         {
             if (NPC.downedMoonlord)
-                return 1.1f;
-            if (NPC.downedGolemBoss)
-                return 1f;
-            if (NPC.downedPlantBoss)
-                return 0.9f;
-            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
                 return 0.8f;
-            if (Main.hardMode)
-                return 0.7f;
-            if (NPC.downedBoss3)
+            if (NPC.downedGolemBoss)
+                return 0.675f;
+            if (NPC.downedPlantBoss)
                 return 0.6f;
+            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                return 0.55f;
+            if (Main.hardMode)
+                return 0.45f;
+            if (NPC.downedBoss3)
+                return 0.35f;
             return 0.3f;
         }
     }
