@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Terraria.DataStructures;
 using InfernumMode;
 using System.Drawing;
+using InfernalEclipseWeaponsDLC.Content.Projectiles.MagicPro.GrandAmplifier;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
@@ -71,12 +72,16 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (player.ownedProjectileCounts[type] >= 1)
+            var modPlayer = player.GetModPlayer<SplitFirebrandPlayer>();
+
+            if (player.itemAnimation < player.itemAnimationMax - 1)
                 return false;
 
             float ai2 = NPC.downedMoonlord ? 1f : 0f;
 
-            Projectile.NewProjectile(
+            if (modPlayer.comboCounter != 2)
+            {
+                Projectile.NewProjectile(
                 source,
                 position,
                 velocity,
@@ -84,12 +89,48 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 damage,
                 knockback,
                 player.whoAmI,
-                0f, // ai0
-                0f, // ai1
-                ai2 // ai2
-            );
+                0f,
+                0f,
+                ai2
+                );
+            }
+            else
+            {
+                Projectile.NewProjectile(
+                source,
+                position,
+                velocity,
+                ModContent.ProjectileType<SplitFirebrandFlailProjectile>(),
+                (int)(damage * 1.5f),
+                knockback,
+                player.whoAmI,
+                0f,
+                0f,
+                ai2
+                );
+            }
+
+            modPlayer.comboCounter++;
+            if (modPlayer.comboCounter > 2)
+                modPlayer.comboCounter = 0;
 
             return false;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            var modPlayer = player.GetModPlayer<SplitFirebrandPlayer>();
+
+            if (modPlayer.comboCounter != 2)
+            {
+                Item.useStyle = ItemUseStyleID.Swing;
+            }
+            else
+            {
+                Item.useStyle = ItemUseStyleID.Shoot;
+            }
+
+            return true;
         }
 
         public override void AddRecipes()
@@ -184,6 +225,16 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (NPC.downedBoss3)
                 return 4;
             return 0.6f;
+        }
+    }
+
+    public class SplitFirebrandPlayer : ModPlayer
+    {
+        public int comboCounter;
+
+        public override void ResetEffects()
+        {
+            
         }
     }
 }

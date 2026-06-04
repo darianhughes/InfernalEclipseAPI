@@ -33,10 +33,15 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         private Texture2D whipSegment;
         private Texture2D whipTip;
 
+        public bool ReverseSwing => Projectile.ai[1] == 1f;
+        private bool initialized;
+
         public override void SetStaticDefaults() => ProjectileID.Sets.IsAWhip[Type] = true;
 
         public override void SetDefaults()
         {
+            Projectile.DefaultToWhip();
+
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
@@ -56,11 +61,47 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
         public override bool PreAI()
         {
-            if (Timer % 2 == 0)
+            Player player = Main.player[Projectile.owner];
+            var modPlayer = player.GetModPlayer<SplitFirebrandPlayer>();
+
+            if (modPlayer.comboCounter == 1)
             {
-                List<Vector2> newPoints = new();
-                Projectile.FillWhipControlPoints(Projectile, newPoints);
-                whipPoints = newPoints;
+                if (Timer % 2 == 0)
+                {
+                    List<Vector2> newPoints = new();
+                    Projectile.FillWhipControlPoints(Projectile, newPoints);
+                    whipPoints = newPoints;
+                }
+
+                return true;
+            }
+            else if (modPlayer.comboCounter == 2)
+            {
+                if (Projectile.ai[1] == 1f)
+                    return true;
+
+                if (Projectile.ai[0] == 0f && Projectile.localAI[0] == 0f)
+                {
+                    Projectile.localAI[0] = 1f;
+                    Projectile.ai[0] = Main.player[Projectile.owner].itemAnimationMax * Projectile.MaxUpdates - 1f;
+
+                    return false;
+                }
+
+                float swingTime = Projectile.ai[0] / (Main.player[Projectile.owner].itemAnimationMax * Projectile.MaxUpdates);
+
+                swingTime = MathHelper.Lerp(
+                    0f,
+                    2f,
+                    MathHelper.Lerp(1f, 0f, swingTime * swingTime * swingTime)
+                );
+
+                if ((Projectile.ai[0] -= 1f) <= 0f)
+                    Projectile.Kill();
+                else
+                    Projectile.ai[0] -= swingTime;
+
+                return true;
             }
 
             return true;
@@ -68,6 +109,16 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
         public override void AI()
         {
+            Player player = Main.player[Projectile.owner];
+            var modPlayer = player.GetModPlayer<SplitFirebrandPlayer>();
+
+            // lock combo at spawn moment only
+            if (Projectile.localAI[0] == 0f)
+            {
+                Projectile.localAI[0] = 1f;
+                Projectile.localAI[1] = modPlayer.comboCounter;
+            }
+
             WhipAIMotion();
             WhipSFX(lightingColor, swingDust, dustAmount, whipCrackSound);
         }
@@ -76,6 +127,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         {
             Player player = Main.player[Projectile.owner];
             float totalTime = player.itemAnimationMax * Projectile.MaxUpdates;
+
+            whipPoints ??= new List<Vector2>();
+            whipPoints.Clear();
+            Projectile.FillWhipControlPoints(Projectile, whipPoints);
 
             if (runOnce)
             {
@@ -117,8 +172,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
         private float Timer
         {
-            get => Projectile.ai[0];
-            set => Projectile.ai[0] = value;
+            get => Projectile.localAI[0];
+            set => Projectile.localAI[0] = value;
         }
 
         private Vector2 GetTipPosition() => whipPoints[whipPoints.Count - 2];
@@ -175,20 +230,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
                     whipTip = ModContent.Request<Texture2D>(
                         "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandCrescendoTip"
-                    ).Value;
-                    break;
-
-                case 2:
-                    handleTex = ModContent.Request<Texture2D>(
-                        "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/FireHandle"
-                    ).Value;
-
-                    whipSegment = ModContent.Request<Texture2D>(
-                        "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/FireSegment"
-                    ).Value;
-
-                    whipTip = ModContent.Request<Texture2D>(
-                        "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/FireTip"
                     ).Value;
                     break;
             }
@@ -248,21 +289,44 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 Vector2 diff = whipPoints[i + 1] - whipPoints[i];
                 float rot = diff.ToRotation();
 
-                SpriteEffects drawEffect;
+                SpriteEffects drawEffect = SpriteEffects.None;
 
-                // Tip segment
-                if (i == whipPoints.Count - 2)
+                Player player = Main.player[Projectile.owner];
+                var modPlayer = player.GetModPlayer<SplitFirebrandPlayer>();
+
+                if (modPlayer.comboCounter == 1)
                 {
-                    drawEffect = Projectile.spriteDirection < 0
-                        ? SpriteEffects.FlipVertically
-                        : SpriteEffects.None;
+                    if (i == whipPoints.Count - 2)
+                    {
+                        // Tip segment
+                        drawEffect = Projectile.spriteDirection < 0
+                            ? SpriteEffects.FlipVertically
+                            : SpriteEffects.None;
+                    }
+                    else
+                    {
+                        // Body segments
+                        drawEffect = Projectile.spriteDirection < 0
+                            ? SpriteEffects.None
+                            : SpriteEffects.None;
+                    }
                 }
-                else
+                else if (modPlayer.comboCounter == 2)
                 {
-                    // Body segments
-                    drawEffect = Projectile.spriteDirection < 0
-                        ? SpriteEffects.None
-                        : SpriteEffects.None;
+                    if (i == whipPoints.Count - 2)
+                    {
+                        // Tip segment
+                        drawEffect = Projectile.spriteDirection < 0
+                            ? SpriteEffects.None
+                            : SpriteEffects.FlipVertically;
+                    }
+                    else
+                    {
+                        // Body segments
+                        drawEffect = Projectile.spriteDirection < 0
+                            ? SpriteEffects.FlipVertically
+                            : SpriteEffects.None;
+                    }
                 }
 
                 Main.EntitySpriteDraw(
@@ -317,12 +381,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 return 0.7f;
             if (NPC.downedBoss3)
                 return 0.6f;
-            return 0.5f;
+            return 0.3f;
         }
-    }
-
-    public class SplitFirebrandPlayer : ModPlayer
-    {
-        public bool ReverseNextSwing;
     }
 }
