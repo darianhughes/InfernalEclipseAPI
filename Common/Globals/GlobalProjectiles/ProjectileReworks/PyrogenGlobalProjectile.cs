@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
+using Clamity.Content.Bosses.Pyrogen.NPCs;
 using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
@@ -18,6 +19,9 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
+            if (!NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()))
+                return;
+
             applyDebuff = false;
             int intendedDamage;
 

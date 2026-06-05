@@ -34,6 +34,7 @@ using InfernalEclipseAPI.Content.Items.Other;
 using InfernumMode.Common.DataStructures;
 using InfernumMode;
 using Terraria;
+using CalamityMod.Items.Weapons.Rogue;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -491,6 +492,9 @@ namespace InfernalEclipseAPI.Core.Players
                 nightmareArmCD--;
             else
                 nightmareArmCD = 0;
+
+            if (BossRushEvent.BossRushActive && Player.statLifeMax2 > 1111)
+                Player.statLifeMax2 = 1111;
         }
 
         public bool soltanBullying = false;
@@ -532,6 +536,11 @@ namespace InfernalEclipseAPI.Core.Players
                 Player.buffImmune[BuffID.Featherfall] = true;
                 Player.ClearBuff(BuffID.Featherfall);
                 Player.slowFall = false;
+
+                if (InfernalCrossmod.QoLC.Loaded)
+                {
+                    InfernalCrossmod.QoLC.RemoveQoLCompendiumInfiniteBuff(Player, BuffID.Featherfall);
+                }
             }
         }
 
@@ -999,10 +1008,22 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
-            if ((target.type == ModContent.NPCType<PlaguebringerGoliath>() || target.type == ModContent.NPCType<RavagerBody>() || target.type == ModContent.NPCType<RavagerClawLeft>() || target.type == ModContent.NPCType<RavagerClawRight>() || target.type == ModContent.NPCType<RavagerHead>() ||
-                target.type == ModContent.NPCType<RavagerHead2>() || target.type == ModContent.NPCType<RavagerLegLeft>() || target.type == ModContent.NPCType<RavagerLegRight>()) && (proj.type == ModContent.ProjectileType<DukesDecapitatorProj>() || proj.type == ModContent.ProjectileType<DukesDecapitatorBubble>()))
+            if (proj.type == ModContent.ProjectileType<DukesDecapitatorProj>() || proj.type == ModContent.ProjectileType<DukesDecapitatorBubble>())
             {
-                modifiers.FinalDamage *= 0.1f;
+
+                if ((target.type == ModContent.NPCType<PlaguebringerGoliath>() || target.type == ModContent.NPCType<RavagerBody>() || target.type == ModContent.NPCType<RavagerClawLeft>() || target.type == ModContent.NPCType<RavagerClawRight>() 
+                  || target.type == ModContent.NPCType<RavagerHead>() ||target.type == ModContent.NPCType<RavagerHead2>() || target.type == ModContent.NPCType<RavagerLegLeft>() || target.type == ModContent.NPCType<RavagerLegRight>()))
+                {
+                    modifiers.FinalDamage *= 0.1f;
+                }
+
+                if (InfernalCrossmod.SOTS.Loaded)
+                {
+                    if ((target.type == InfernalCrossmod.SOTS.Mod.Find<ModNPC>("Lux").Type))
+                    {
+                        modifiers.FinalDamage *= 0.5f;
+                    }
+                }
             }
         }
 

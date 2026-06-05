@@ -2277,6 +2277,7 @@ Configs: {
 			Main: 主要
 			Secret: 秘密设置
 			Music: 音乐设置
+			// CompatibilityChanges: Compatibility Changes Header
 		}
 
 		ThoriumBalanceChangess: {
@@ -2558,6 +2559,11 @@ Configs: {
 		MothershipMusic: {
 			Label: 钨钢母舰音乐
 			Tooltip: 切换钨钢母舰Boss战中的播放的主题曲
+		}
+
+		MaxVoidOnRespawn: {
+			// Tooltip: ""
+			// Label: Max Void On Respawn
 		}
 	}
 

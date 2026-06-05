@@ -57,11 +57,11 @@ Scythe throwing code provided by [url=https://steamcommunity.com/profiles/765611
 
 Created by the Infernal Eclipse of Ragnarok Team:
 Developers: Akira, Wardrobe Hummus, Advantaje
-Designers: Wardrobe Hummus, Yob, trembler
+Designers: Wardrobe Hummus, Yob, Tyr, ma3allim
 Story: Akira, Yob
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan, Arkangel
-Contributors: cheesenuggets, ma3allim, Yelmut, Pudd1ng, Pixus, Nicole, Dandel, Ropro
-Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel
+Contributors: cheesenuggets, Pudd1ng, Pixus, Nicole, Dandel, Ropro, JalapenoDance,
+Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel, Uncle Sciz
 Composers: Peter Fung, Techhy
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 
@@ -69,7 +69,7 @@ Music Credits:
 "Teardrops of Dragonfire" by Peter Fung
 "Dead Kingdom's Champion" by Techhy
 "Last Battle (Ballos Mix)" by DM DOKURO
-"Calamity Before the Cynosure" by theforge128
+"Calamity before the Cynosure" by theforge128
 "Ensemble of Fools (Encore Mix)" by CDMusic
 "Descent Of Divinities" by psykomatic
 "Omiscience Of Gods" by TheTrester

@@ -2283,6 +2283,7 @@ Configs: {
 			Main: Main
 			Secret: Secret Settings
 			Music: Music Toggles
+			CompatibilityChanges: Compatibility Changes
 		}
 
 		ThoriumBalanceChangess: {
@@ -2541,7 +2542,7 @@ Configs: {
 			Label: Force Ragnarok Mode and Infernum Mode In Subworlds
 			Tooltip:
 				'''
-				Automatically enables either Infernum Mode or Ragnarok Mode based on your worlds vanilla difficuly.
+				Automatically enables either Infernum Mode or Ragnarok Mode based on your worlds vanilla difficuly upon entering a subworld.
 				Expert Mode sets it to Infernum; Master Mode sets it to Ragnarok Mode.
 				'''
 		}
@@ -2564,6 +2565,11 @@ Configs: {
 		MothershipMusic: {
 			Label: Wulfrum Mothership Music
 			Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
+		}
+
+		MaxVoidOnRespawn: {
+			Tooltip: Toggles if you respawn with max void or the default amount
+			Label: Max Void On Respawn
 		}
 	}
 

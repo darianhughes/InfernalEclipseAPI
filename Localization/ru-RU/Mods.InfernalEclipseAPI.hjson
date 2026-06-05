@@ -2255,6 +2255,7 @@ Configs: {
 			Main: Главное
 			Secret: Секретные настройки
 			// Music: Music Toggles
+			// CompatibilityChanges: Compatibility Changes Header
 		}
 
 		ThoriumBalanceChangess: {
@@ -2487,6 +2488,11 @@ Configs: {
 		MothershipMusic: {
 			// Label: Wulfrum Mothership Music
 			// Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
+		}
+
+		MaxVoidOnRespawn: {
+			// Tooltip: ""
+			// Label: Max Void On Respawn
 		}
 	}
 

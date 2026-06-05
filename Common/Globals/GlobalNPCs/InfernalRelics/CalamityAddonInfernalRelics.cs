@@ -26,6 +26,7 @@ using Terraria.GameContent.ItemDropRules;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics;
 using CalamityMod.Events;
+using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {
@@ -140,10 +141,22 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 
                     if (npc.type == ModContent.NPCType<AvatarOfEmptiness>())
                     {
-                        if (player.Distance(Main.player[npc.target].Center) >= 10000f)
+                        if (InfernumSaveSystem.InfernumModeEnabled)
                         {
-                            player.position = Main.player[npc.target].Center;
-                            SoundEngine.PlaySound(BossRushEvent.TeleportSound with { Volume = 1.6f }, player.Center);
+                            if (player.mount.Active)
+                            {
+                                player.mount.Dismount(player);
+                                CombatText.NewText(player.Hitbox, Color.BlueViolet, "Can't do that right now!", true);
+                            }
+                        }
+
+                        if (npc.HasValidTarget)
+                        {
+                            if (player.Distance(Main.player[npc.target].Center) >= 10000f)
+                            {
+                                player.position = Main.player[npc.target].Center;
+                                SoundEngine.PlaySound(BossRushEvent.TeleportSound with { Volume = 1.6f }, player.Center);
+                            }
                         }
                     }
                 }

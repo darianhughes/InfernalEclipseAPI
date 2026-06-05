@@ -596,7 +596,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 if (item.type == ItemType<AstroBeetleHusk>())
                 {
-                    player.GetThoriumPlayer().MetalShieldMax += 5 0;
+                    player.GetThoriumPlayer().MetalShieldMax += 50;
                 }
 
                 if (InfernalCrossmod.ThoriumRework.Loaded)
