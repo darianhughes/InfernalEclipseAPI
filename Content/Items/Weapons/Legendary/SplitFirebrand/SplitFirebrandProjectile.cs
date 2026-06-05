@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.GameContent;
+using InfernalEclipseAPI.Content.Buffs.SoulBurn;
+using InfernalEclipseAPI.Content.Buffs.Tag;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
@@ -130,7 +132,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (Projectile.damage < 1)
                 Projectile.damage = 1;
 
-            //target.AddBuff(ModContent.BuffType<DefaultSummonTag>(), 300);
+            target.AddBuff(ModContent.BuffType<SplitFirebrandTag>(), 240);
+            GetSoulBurn(target);
 
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
@@ -298,6 +301,26 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 Main.EntitySpriteDraw(tex, pos - Main.screenPosition, frame, lightCol, rot, origin, scale, SpriteEffects.None, 0f);
                 pos += diff;
             }
+        }
+
+        public void GetSoulBurn(NPC target)
+        {
+            if (NPC.downedMoonlord)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedAncientCultist)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedGolemBoss)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedPlantBoss)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (Main.hardMode)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedBoss3)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else
+                target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
         }
     }
 }

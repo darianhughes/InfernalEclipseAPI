@@ -9,12 +9,23 @@ using Terraria.GameInput;
 using Terraria.Localization;
 using Terraria.UI.Chat;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Content.Buffs.SoulBurn;
 using System.Linq;
 
 namespace InfernalEclipseAPI.Core.ChatTags
 {
     public sealed class InfernalAPIBuffTagHandler : AbstractTagHandler<InfernalAPIBuffTagHandler>
     {
+        public static Color FireDebuffColor => new Color(253, 107, 2);
+        public static Color SicknessDebuffColor => new Color(136, 198, 10);
+        public static Color WaterDebuffColor => new Color(105, 147, 255);
+        public static Color ColdDebuffColor => new Color(159, 230, 252);
+        public static Color ElectricDebuffColor => new Color(255, 245, 0);
+        public static Color BuffColor => new Color(255, 105, 237);
+        public static Color TypelessDebuffColor => new Color(230, 202, 250);
+        public static Color VulnHexDebuffColor => new Color(196, 35, 43);
+        public static Color MiracleBlightDebuffColor => Main.DiscoColor;
+
         public sealed class Snippet(int buffId) : TextSnippet
         {
             private const float IconSize = 26f;
@@ -28,7 +39,8 @@ namespace InfernalEclipseAPI.Core.ChatTags
 
             private static Dictionary<int, Color> BuffColorOverrides => _buffColorOverrides ??= new()
             {
-                [ModContent.BuffType<SoulBurn>()] = Color.DarkOrange,
+                [ModContent.BuffType<SoulBurn>()] = FireDebuffColor,
+                [ModContent.BuffType<SoulBurn2>()] = FireDebuffColor,
             };
 
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = new Vector2(), Color color = new Color(), float scale = 1)

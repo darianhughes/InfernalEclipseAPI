@@ -2248,7 +2248,7 @@ Items: {
 				'''
 				4 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn2] debuff to incinerate foes
 				'''
 			Mechs:
 				'''
@@ -2776,6 +2776,7 @@ DamageClasses: {
 	MythicSummon.DisplayName: mythic summon damage
 	CatlightDamage.DisplayName: Catlight Damage
 	LegendarySummon.DisplayName: legendary summon damage
+	LegendarySummonMeleeSpeed.DisplayName: Legendary Summon Melee Speed
 }
 
 BossRushIntroText1:
@@ -3015,6 +3016,16 @@ Buffs: {
 		ItemTooltip:
 			'''
 			Heat - 10 DPS
+			25% increased Heat debuff damage
+			'''
+	}
+
+	SoulBurn2: {
+		DisplayName: Soul Burn
+		Description: Your mortality is showing...
+		ItemTooltip:
+			'''
+			Heat - 15 DPS
 			25% increased Heat debuff damage
 			'''
 	}

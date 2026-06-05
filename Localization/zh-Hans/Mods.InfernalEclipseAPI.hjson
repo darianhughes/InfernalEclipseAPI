@@ -2242,7 +2242,7 @@ Items: {
 				'''
 				4 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn2] debuff to incinerate foes
 				''' */
 			/* Mechs:
 				'''
@@ -2374,7 +2374,7 @@ Configs: {
 			Main: 主要
 			Secret: 秘密设置
 			Music: 音乐设置
-			// CompatibilityChanges: Compatibility Changes Header
+			// CompatibilityChanges: Compatibility Changes
 		}
 
 		ThoriumBalanceChangess: {
@@ -2659,7 +2659,7 @@ Configs: {
 		}
 
 		MaxVoidOnRespawn: {
-			// Tooltip: ""
+			// Tooltip: Toggles if you respawn with max void or the default amount
 			// Label: Max Void On Respawn
 		}
 	}
@@ -2770,6 +2770,7 @@ DamageClasses: {
 	MythicSummon.DisplayName: 神话召唤伤害
 	CatlightDamage.DisplayName: 星光猫伤害
 	// LegendarySummon.DisplayName: legendary summon damage
+	// LegendarySummonMeleeSpeed.DisplayName: Legendary Summon Melee Speed
 }
 
 BossRushIntroText1:
@@ -3009,6 +3010,16 @@ Buffs: {
 		/* ItemTooltip:
 			'''
 			Heat - 10 DPS
+			25% increased Heat debuff damage
+			''' */
+	}
+
+	SoulBurn2: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 15 DPS
 			25% increased Heat debuff damage
 			''' */
 	}

@@ -8,17 +8,19 @@ using CalamityMod.DataStructures;
 using Microsoft.Xna.Framework;
 using CalamityMod.Particles;
 
-namespace InfernalEclipseAPI.Content.Buffs
+namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
 {
-    public class SoulBurn : ModBuff
+    public class SoulBurn2 : ModBuff
     {
+        public override string Texture => "InfernalEclipseAPI/Content/Buffs/SoulBurn/SoulBurn";
+
         public int damage;
         public int buffRevision;
         private int lastBuffHash;
 
         public static DebuffData debuffData = new DebuffData
         {
-            EnemyLostRegen = 20f,
+            EnemyLostRegen = 30f,
             HeatDebuffScaling = 1f,
             DrawAboveNPC = true
         };
@@ -32,7 +34,6 @@ namespace InfernalEclipseAPI.Content.Buffs
             BuffDatasets.DebuffDataset[Type] = debuffData;
         }
 
-        // ONLY APPLY CONTRIBUTION
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<SoulBurnPlayer>().hasSoulBurn = true;
@@ -86,45 +87,6 @@ namespace InfernalEclipseAPI.Content.Buffs
             }
 
             Lighting.AddLight(npc.position, 0.25f, 0.25f, 0.1f);
-        }
-    }
-
-    public class SoulBurnPlayer : ModPlayer
-    {
-        public bool hasSoulBurn;
-
-        public override void ResetEffects()
-        {
-            // reset each frame automatically
-            hasSoulBurn = false;
-        }
-
-        public override void PostUpdate()
-        {
-            if (hasSoulBurn)
-            {
-                Player.Calamity().HeatDebuffMultiplier -= 0.25f;
-            }
-        }
-    }
-
-    public class SoulBurnNPC : GlobalNPC
-    {
-        public override bool InstancePerEntity => true;
-
-        public bool hasSoulBurn;
-
-        public override void ResetEffects(NPC npc)
-        {
-            hasSoulBurn = false;
-        }
-
-        public override void PostAI(NPC npc)
-        {
-            if (hasSoulBurn)
-            {
-                npc.Calamity().HeatDebuffMultiplier -= 0.25f;
-            }
         }
     }
 }
