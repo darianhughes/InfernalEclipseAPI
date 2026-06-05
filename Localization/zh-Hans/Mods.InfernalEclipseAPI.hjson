@@ -2770,7 +2770,7 @@ DamageClasses: {
 	MythicSummon.DisplayName: 神话召唤伤害
 	CatlightDamage.DisplayName: 星光猫伤害
 	// LegendarySummon.DisplayName: legendary summon damage
-	// LegendarySummonMeleeSpeed.DisplayName: Legendary Summon Melee Speed
+	// LegendarySummonMeleeSpeed.DisplayName: legendary summon damage
 }
 
 BossRushIntroText1:

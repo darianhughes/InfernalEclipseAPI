@@ -314,10 +314,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (Projectile.damage < 1)
                 Projectile.damage = 1;
 
-            var modNPC = target.GetGlobalNPC<SoulBurnNPC>();
-
             target.AddBuff(ModContent.BuffType<SplitFirebrandTag>(), 240);
-            target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
+            GetSoulBurn(target);
 
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
@@ -506,6 +504,26 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 16f;
 
             return baseRange * player.whipRangeMultiplier;
+        }
+
+        public void GetSoulBurn(NPC target)
+        {
+            if (NPC.downedMoonlord)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedAncientCultist)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedGolemBoss)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedPlantBoss)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (Main.hardMode)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else if (NPC.downedBoss3)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else
+                target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
         }
 
         private float GetAttackSpeedScale(Player player)
