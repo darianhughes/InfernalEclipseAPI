@@ -1,28 +1,26 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using InfernumMode.Content.Rarities.InfernumRarities;
 using CalamityMod.Items.Materials;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Content.Buffs.Tag;
+using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Content.Buffs.SoulBurn;
 using CalamityMod;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.GameContent;
+using System.Runtime.InteropServices;
 using Terraria;
+using static CalamityMod.Projectiles.BaseProjectiles.BaseMaceFlailProjectile;
 using Terraria.DataStructures;
-using ThoriumMod.Empowerments;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
     public class SplitFirebrandFlailProjectile : ModProjectile
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return InfernalConfig.Instance.DeveloperMode && !InfernalConfig.Instance.DisableUnfinisedContent;
-        }
-
         public override string Texture => "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandProjectile";
 
         public Color fishingLineColor = Color.DarkRed;
@@ -316,8 +314,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (Projectile.damage < 1)
                 Projectile.damage = 1;
 
+            var modNPC = target.GetGlobalNPC<SoulBurnNPC>();
+
             target.AddBuff(ModContent.BuffType<SplitFirebrandTag>(), 240);
-            GetSoulBurn(target);
+            target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
 
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
@@ -506,26 +506,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 16f;
 
             return baseRange * player.whipRangeMultiplier;
-        }
-
-        public void GetSoulBurn(NPC target)
-        {
-            if (NPC.downedMoonlord)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
-            else if (NPC.downedAncientCultist)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
-            else if (NPC.downedGolemBoss)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
-            else if (NPC.downedPlantBoss)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
-            else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
-            else if (Main.hardMode)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
-            else if (NPC.downedBoss3)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
-            else 
-                target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
         }
 
         private float GetAttackSpeedScale(Player player)

@@ -2776,7 +2776,7 @@ DamageClasses: {
 	MythicSummon.DisplayName: mythic summon damage
 	CatlightDamage.DisplayName: Catlight Damage
 	LegendarySummon.DisplayName: legendary summon damage
-	LegendarySummonMeleeSpeed.DisplayName: Legendary Summon Melee Speed
+	LegendarySummonMeleeSpeed.DisplayName: legendary summon damage
 }
 
 BossRushIntroText1:
