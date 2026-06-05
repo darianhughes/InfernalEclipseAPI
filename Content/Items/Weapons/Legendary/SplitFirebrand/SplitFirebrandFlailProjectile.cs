@@ -138,6 +138,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             // visuals + logic
             BuildFlailSegments();
 
+            if (Main.hardMode || NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord)
+            {
+                EmpowerNearbyMinions();
+            }
+
             // cooldown cleanup
             List<int> keys = new(localHitCooldown.Keys);
             foreach (int k in keys)
@@ -492,6 +497,40 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             }
         }
 
+        private void EmpowerNearbyMinions()
+        {
+            foreach (Projectile other in Main.ActiveProjectiles)
+            {
+                if (!other.active)
+                    continue;
+
+                if (other.owner != Projectile.owner)
+                    continue;
+
+                if (!other.IsMinionOrSentryRelated)
+                    continue;
+
+                if (other.whoAmI == Projectile.whoAmI)
+                    continue;
+
+                foreach (Vector2 point in ropePoints)
+                {
+                    Rectangle whipRect = new Rectangle(
+                        (int)point.X - 8,
+                        (int)point.Y - 8,
+                        16,
+                        16);
+
+                    if (whipRect.Intersects(other.Hitbox))
+                    {
+                        other.GetGlobalProjectile<AblazeGlobalProjectile>().ablazeTime = 240;
+
+                        break;
+                    }
+                }
+            }
+        }
+
         public static float GetFirebrandFlailRange(Player player)
         {
             float baseRange =
@@ -509,17 +548,15 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         public void GetSoulBurn(NPC target)
         {
             if (NPC.downedMoonlord)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
-            else if (NPC.downedAncientCultist)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+                target.AddBuff(ModContent.BuffType<SoulBurn7>(), 240);
             else if (NPC.downedGolemBoss)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+                target.AddBuff(ModContent.BuffType<SoulBurn6>(), 240);
             else if (NPC.downedPlantBoss)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+                target.AddBuff(ModContent.BuffType<SoulBurn5>(), 240);
             else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+                target.AddBuff(ModContent.BuffType<SoulBurn4>(), 240);
             else if (Main.hardMode)
-                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+                target.AddBuff(ModContent.BuffType<SoulBurn3>(), 240);
             else if (NPC.downedBoss3)
                 target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
             else

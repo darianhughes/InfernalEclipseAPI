@@ -2248,31 +2248,36 @@ Items: {
 				'''
 				5 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn3] debuff to incinerate foes
+				Attacking minions will set them ablaze! Causing them to deal 1.05x damage and inflict [iebuff:OnFire3]
 				''' */
 			/* Plantera:
 				'''
 				6 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn4] debuff to incinerate foes
+				Attacking minions will set them ablaze! Causing them to deal 1.1x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
 				''' */
 			/* Golem:
 				'''
 				9 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn5] debuff to incinerate foes
+				Attacking minions will set them ablaze! Causing them to deal 1.15x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
 				''' */
 			/* MoonLord:
 				'''
 				12 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn6] debuff to incinerate foes
+				Attacking minions will set them ablaze! Causing them to deal 1.2x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
 				''' */
 			/* Full:
 				'''
 				15 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn7] debuff to incinerate foes
+				Attacking minions will set them ablaze! Causing them to deal 1.25x damage and inflict both [iebuff:CalamityMod/BrimstoneFlames] and [iebuff:CalamityMod/StaticDischarge]
 				''' */
 		}
 
@@ -3021,6 +3026,56 @@ Buffs: {
 			'''
 			Heat - 15 DPS
 			25% increased Heat debuff damage
+			''' */
+	}
+
+	SoulBurn3: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 25 DPS
+			25% increased Heat debuff damage
+			''' */
+	}
+
+	SoulBurn4: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 40 DPS
+			25% increased Heat debuff damage
+			''' */
+	}
+
+	SoulBurn5: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 75 DPS
+			25% increased Heat debuff damage
+			''' */
+	}
+
+	SoulBurn6: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 140 DPS
+			25% increased Heat debuff damage
+			''' */
+	}
+
+	SoulBurn7: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat and Electric - 140 DPS
+			25% increased Heat and Electric debuff damage
 			''' */
 	}
 

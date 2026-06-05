@@ -10,6 +10,7 @@ using Terraria.DataStructures;
 using InfernumMode;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using ThoriumMod.Empowerments;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
@@ -47,8 +48,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         {
             if (NPC.downedMoonlord)
                 damage += 3.75f;
-            else if (NPC.downedAncientCultist)
-                damage += 2.00f;
             else if (NPC.downedGolemBoss)
                 damage += 1.35f;
             else if (NPC.downedPlantBoss)
@@ -57,14 +56,14 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 damage += 5.50f;
             else if (Main.hardMode)
                 damage += 1.75f;
+            else if (NPC.downedBoss3)
+                damage += 0.25f;
         }
 
         public override void ModifyWeaponKnockback(Player player, ref StatModifier knockback)
         {
             if (NPC.downedMoonlord)
                 knockback += 3;
-            else if (NPC.downedAncientCultist)
-                knockback += 2.5f;
             else if (NPC.downedGolemBoss)
                 knockback += 2;
             else if (NPC.downedPlantBoss)
@@ -73,6 +72,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 knockback += 1;
             else if (Main.hardMode)
                 knockback += 0.5f;
+            else if (NPC.downedBoss3)
+                knockback += 0.25f;
         }
         public override bool MeleePrefix() => true;
 
@@ -160,7 +161,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             line.OverrideColor = Microsoft.Xna.Framework.Color.White;
             tooltips.Add(line);
 
-            TooltipLine line4 = new(Mod, "Lore", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Lore"));
+            TooltipLine line4 = new(Mod, "Lore", GetLoreTooltip());
             tooltips.Add(line4);
 
             if (!NPC.downedMoonlord)
@@ -218,21 +219,21 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.TagDebuff.Skeletron");
         }
 
-        public static float GetFirebrandRange()
+        private string GetLoreTooltip()
         {
             if (NPC.downedMoonlord)
-                return 15;
+                return "";
             if (NPC.downedGolemBoss)
-                return 12;
+                return "";
             if (NPC.downedPlantBoss)
-                return 9;
+                return "";
             if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                return 6;
+                return "";
             if (Main.hardMode)
-                return 5;
+                return "";
             if (NPC.downedBoss3)
-                return 4;
-            return 0.6f;
+                return "";
+            return Language.GetTextValue("Mods.InfernalEclipseAPI.Items.SplitFirebrand.Lore");
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Microsoft.Xna.Framework.Rectangle frame, Microsoft.Xna.Framework.Color drawColor, Microsoft.Xna.Framework.Color itemColor, Vector2 origin, float scale)

@@ -41,6 +41,11 @@ namespace InfernalEclipseAPI.Core.ChatTags
             {
                 [ModContent.BuffType<SoulBurn>()] = FireDebuffColor,
                 [ModContent.BuffType<SoulBurn2>()] = FireDebuffColor,
+                [ModContent.BuffType<SoulBurn3>()] = FireDebuffColor,
+                [ModContent.BuffType<SoulBurn4>()] = FireDebuffColor,
+                [ModContent.BuffType<SoulBurn5>()] = FireDebuffColor,
+                [ModContent.BuffType<SoulBurn6>()] = FireDebuffColor,
+                [ModContent.BuffType<SoulBurn7>()] = FireDebuffColor,
             };
 
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = new Vector2(), Color color = new Color(), float scale = 1)
@@ -60,10 +65,26 @@ namespace InfernalEclipseAPI.Core.ChatTags
                         position.X += IconSize;
                     }
                     Color buffColor;
-                    if (BuffColorOverrides.TryGetValue(buffId, out Color overrideColor))
+
+                    //Special heat + electric debuff lerp
+                    if (buffId == ModContent.BuffType<SoulBurn7>())
+                    {
+                        float t = (float)((Math.Sin(Main.GlobalTimeWrappedHourly * 3f) + 1f) * 0.5f);
+
+                        buffColor = Color.Lerp(
+                            FireDebuffColor,
+                            ElectricDebuffColor,
+                            t
+                        );
+                    }
+                    else if (BuffColorOverrides.TryGetValue(buffId, out Color overrideColor))
+                    {
                         buffColor = overrideColor;
+                    }
                     else
+                    {
                         buffColor = CalamityUtils.GetDebuffTooltipNameColor(buffId);
+                    }
 
                     var name = $"{(DrawIcon ? " " : "")}{Lang.GetBuffName(buffId)}";
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, name, position, buffColor, 0f, Vector2.Zero, new Vector2(scale));
