@@ -1,16 +1,18 @@
 {
-    "Conditions": {
-        "CreatesResult": {
-            "Item": "Terraria/Zenith"
-        }
-    },
-
-    "Changes": {
-        "ChangeIngredient": {
-            "Item": "Terraria/EnchantedSword",
-            "NewItem": "Terraria/Terragrim"
-        }
-    },
-
-    "Criteria": "Any"
+  "Conditions": [
+    {
+      "$type": "PackBuilder.Common.ModBuilding.Recipes.Conditions.CreatesResult, PackBuilder",
+      "Item": "Terraria/Zenith",
+      "Count": -1
+    }
+  ],
+  "Changes": [
+    {
+      "$type": "PackBuilder.Common.ModBuilding.Recipes.Changes.ChangeIngredient, PackBuilder",
+      "Item": "Terraria/EnchantedSword",
+      "NewItem": "Terraria/Terragrim",
+      "NewCount": -1
+    }
+  ],
+  "Criteria": "Any"
 }

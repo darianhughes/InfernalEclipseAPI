@@ -29,23 +29,16 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 switchToHealerPenaltyTimer--;
 
             Player.buffImmune[ModContent.BuffType<KineticPotionBuff>()] = true;
-            Player.ClearBuff(ModContent.BuffType<KineticPotionBuff>());
 
             if (InfernalCrossmod.SOTS.Loaded)
-            {
                 Player.buffImmune[ModContent.BuffType<FrenzyPotionBuff>()] = true;
-                Player.ClearBuff(ModContent.BuffType<FrenzyPotionBuff>());
-            }
 
             if (InfernalConfig.Instance.ThoriumBalanceChangess)
             {
                 if (InfernalCrossmod.ThoriumRework.Loaded)
                 {
                     if (InfernalCrossmod.ThoriumRework.Mod.TryFind("Deathsinger", out ModBuff deathsinger))
-                    {
                         Player.buffImmune[deathsinger.Type] = true;
-                        Player.ClearBuff(deathsinger.Type);
-                    }
                 }
             }
 
@@ -56,12 +49,6 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 Player.buffImmune[ModContent.BuffType<GorgonCoatingBuff>()] = true;
                 Player.buffImmune[ModContent.BuffType<SporeCoatingBuff>()] = true;
                 Player.buffImmune[ModContent.BuffType<ToxicCoatingBuff>()] = true;
-
-                Player.ClearBuff(ModContent.BuffType<DeepFreezeCoatingBuff>());
-                Player.ClearBuff(ModContent.BuffType<ExplosiveCoatingBuff>());
-                Player.ClearBuff(ModContent.BuffType<GorgonCoatingBuff>());
-                Player.ClearBuff(ModContent.BuffType<SporeCoatingBuff>());
-                Player.ClearBuff(ModContent.BuffType<ToxicCoatingBuff>());
             }
         }
 
@@ -97,12 +84,12 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
         }
 
         private static bool IsExcluded(Item item) =>
-            item.CountsAsClass<LegendaryMelee>() || item.CountsAsClass<LegendaryRanged>() || item.CountsAsClass<LegendaryMagic>() ||
+            item.CountsAsClass<LegendaryMelee>() || item.CountsAsClass<LegendaryRanged>() || item.CountsAsClass<LegendaryMagic>() ||item.CountsAsClass<LegendarySummonMeleeSpeed>() ||
             item.CountsAsClass<MythicMelee>() || item.CountsAsClass<MythicMagic>() || item.CountsAsClass<MythicRanged>() || item.CountsAsClass<MythicSummon>() 
             || item.CountsAsClass<AverageDamageClass>();
 
         private static bool IsExcluded(Projectile proj) =>
-            proj.CountsAsClass<LegendaryMelee>() || proj.CountsAsClass<LegendaryRanged>() || proj.CountsAsClass<LegendaryMagic>() ||
+            proj.CountsAsClass<LegendaryMelee>() || proj.CountsAsClass<LegendaryRanged>() || proj.CountsAsClass<LegendaryMagic>() || proj.CountsAsClass<LegendarySummonMeleeSpeed>() ||
             proj.CountsAsClass<MythicMelee>() || proj.CountsAsClass<MythicMagic>() || proj.CountsAsClass<MythicRanged>() || proj.CountsAsClass<MythicSummon>() ||
             proj.CountsAsClass<AverageDamageClass>();
 
@@ -235,7 +222,7 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 ranged += (float)(0.02 * emptySummonSlots);
             }
 
-            if (Player.HeldItem.CountsAsClass<LegendaryMelee>() || Player.HeldItem.CountsAsClass<LegendaryRanged>() || Player.HeldItem.CountsAsClass<LegendaryMagic>() ||
+            if (Player.HeldItem.CountsAsClass<LegendaryMelee>() || Player.HeldItem.CountsAsClass<LegendaryRanged>() || Player.HeldItem.CountsAsClass<LegendaryMagic>() || Player.HeldItem.CountsAsClass<LegendarySummonMeleeSpeed>() ||
                 Player.HeldItem.CountsAsClass<MythicMelee>() || Player.HeldItem.CountsAsClass<MythicRanged>() || Player.HeldItem.CountsAsClass<MythicMagic>() || Player.HeldItem.CountsAsClass<MythicSummon>())
             {
                 bool hasLunateCharm = false;

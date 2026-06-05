@@ -2188,6 +2188,101 @@ Items: {
 			你还可以听到充满激情的乐器演奏声
 			'''
 	}
+
+	SplitFirebrand: {
+		// DisplayName: Split Firebrand
+		// Tooltip: ""
+
+		Progression: {
+			/* Skeletron:
+				'''
+				This firey Whip that you've made burns through iron and foes alike
+				Yet it was the potential to burn brighter, defeat the curse of the dungeon to fuel the fire
+				''' */
+			/* WoF:
+				'''
+				A spark has grown larger, making it wild
+				There's more to set ablaze... Defeat the gate of the underworld to fuel the fire
+				''' */
+			/* Mechs:
+				'''
+				When the fire goes wilder, it doesn't suddenly calm, there's more to be reached and more to be ashed
+				Melt the metal overseers to fuel the fire
+				''' */
+			/* Plantera:
+				'''
+				Can you feel it? Your hands burning, sweat turning into mist... Yet it must burn hotter
+				Defeat the Predator of the Jungle to fuel the fire
+				''' */
+			/* Golem:
+				'''
+				Even when you move, you can feel the fire dance on your skin, a deadly dance but beautiful none the less
+				Defeat the guardian of the lizhard temple
+				''' */
+			/* MoonLord:
+				'''
+				Strike again and again, never stop till flames touch the stars
+				Beat the moon's harbinger to fuel the fire
+				''' */
+			/* Full:
+				'''
+				A new potential unlocked, something truly hidden from most but pried open by you
+				It's evolution is done, but not yours, keep going even if you have to discard it
+				''' */
+		}
+
+		TagDebuff: {
+			/* Skeletron:
+				'''
+				3 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* WoF:
+				'''
+				4 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* Mechs:
+				'''
+				5 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* Plantera:
+				'''
+				6 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* Golem:
+				'''
+				9 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* MoonLord:
+				'''
+				12 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* Full:
+				'''
+				15 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+		}
+
+		/* Lore:
+			'''
+			'When Dylan first came, he seemed to have brought some weapons from his home world'
+			'These were used by those who opposed the tyrannical rule of those who's power matched God's'
+			'Now that you've managed to replicate one of these crafts, maybe it will grow into something wonderful'
+			''' */
+	}
 }
 
 Projectiles: {
@@ -2235,6 +2330,8 @@ Projectiles: {
 	CatlightDeathrayJRR.DisplayName: 星光猫死亡射线前摇的前摇
 	ChickenWingHoldout.DisplayName: 鸡翅
 	EclipseHeadphonesProj.DisplayName: 蚀光耳机弹幕
+	// SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
+	// SplitFirebrandFlailProjectile.DisplayName: Split Firebrand Flail Projectile
 }
 
 DiaryTooltip:
@@ -2672,6 +2769,7 @@ DamageClasses: {
 	MeleeWhip.DisplayName: 近战鞭子伤害
 	MythicSummon.DisplayName: 神话召唤伤害
 	CatlightDamage.DisplayName: 星光猫伤害
+	// LegendarySummon.DisplayName: legendary summon damage
 }
 
 BossRushIntroText1:
@@ -2893,6 +2991,71 @@ Buffs: {
 	BrimstoneDesperation: {
 		DisplayName: 灾厄绝望
 		Description: 灾厄能量在空气中流动，禁用了你的大多数能力！
+	}
+
+	SplitFirebrandTag1: {
+		// DisplayName: Split Firebrand Tag1
+		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag1.Description
+	}
+
+	SplitFirebrandTag: {
+		// DisplayName: Split Firebrand Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag.Description
+	}
+
+	SoulBurn: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 10 DPS
+			25% increased Heat debuff damage
+			''' */
+	}
+
+	BlossomsBlessingTag: {
+		// DisplayName: Blossoms Blessing Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.BlossomsBlessingTag.Description
+	}
+
+	CatharsisTag: {
+		// DisplayName: Catharsis Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CatharsisTag.Description
+	}
+
+	CongeledDuoWhipTag: {
+		// DisplayName: Congeled Duo Whip Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CongeledDuoWhipTag.Description
+	}
+
+	CoralCrusherTag: {
+		// DisplayName: Coral Crusher Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CoralCrusherTag.Description
+	}
+
+	ResonantStrikerTag: {
+		// DisplayName: Resonant Striker Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.ResonantStrikerTag.Description
+	}
+
+	SandstoneReignsTag: {
+		// DisplayName: Sandstone Reigns Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.SandstoneReignsTag.Description
+	}
+
+	UnderBiteTag: {
+		// DisplayName: Under Bite Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.UnderBiteTag.Description
+	}
+
+	UnrelentingTormentTag: {
+		// DisplayName: Unrelenting Torment Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.UnrelentingTormentTag.Description
+	}
+
+	PrismBreakTag: {
+		// DisplayName: Prism Break Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.PrismBreakTag.Description
 	}
 }
 

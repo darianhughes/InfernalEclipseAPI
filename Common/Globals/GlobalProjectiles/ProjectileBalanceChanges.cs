@@ -582,6 +582,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     }
                 }
 
+                if (projectile.ModProjectile.Mod.Name == "CalamitySimpleWhipAddon" && InfernalConfig.Instance.CalamityBalanceChanges)
+                {
+                    if (projectile.ModProjectile.Name == "MilkywayProj")
+                    {
+                        projectile.WhipSettings.RangeMultiplier = 2.7f;
+                    }
+                }
+
                 if (InfernalConfig.Instance.SOTSBalanceChanges) 
                 {
                     if (projectile.ModProjectile.Mod.Name == "SOTS") 

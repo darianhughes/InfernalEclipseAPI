@@ -1,4 +1,4 @@
-﻿namespace InfernalEclipseAPI.Content.Buffs
+﻿namespace InfernalEclipseAPI.Content.Buffs.Tag
 {
     public class DefaultSummonTag : ModBuff
     {

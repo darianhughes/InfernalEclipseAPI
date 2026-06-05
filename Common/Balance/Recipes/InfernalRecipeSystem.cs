@@ -32,6 +32,7 @@ using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.Weapons.Ranged;
 using InfernalEclipseAPI.Content.Items.Other;
+using ThoriumMod.Items.Sandstone;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -539,6 +540,26 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         int napalmType = calAmmo.Find<ModItem>("NapalmBullet").Type;
                         recipe.ReplaceResult(napalmType, 100);
+                    }
+                }
+                #endregion
+
+                #region Calamity Simple Whip Addon
+                if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
+                {
+                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("MandibleLash")))
+                    {
+                        recipe.AddIngredient<SandstoneIngot>(8);
+                    }
+                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("AurelianSanctum")))
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<ShadowspecBar>());
+                        if (InfernalCrossmod.NoxusBoss.Loaded)
+                        {
+                            recipe.AddIngredient<AlloyofEden>(3);
+                            recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
+                        }
+                        recipe.AddIngredient<Rock>(1);
                     }
                 }
                 #endregion

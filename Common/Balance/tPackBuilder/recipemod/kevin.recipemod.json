@@ -1,16 +1,17 @@
 {
-    "Conditions": {
-        "CreatesResult": {
-            "Item": "InfernumMode/Kevin"
-        }
-    },
-
-    "Changes": {
-        "AddIngredient": {
-            "Item": "CalamityMod/Rock",
-            "Count": 1
-        }
-    },
-
-    "Criteria": "Any"
+  "Conditions": [
+    {
+      "$type": "PackBuilder.Common.ModBuilding.Recipes.Conditions.CreatesResult, PackBuilder",
+      "Item": "InfernumMode/Kevin",
+      "Count": -1
+    }
+  ],
+  "Changes": [
+    {
+      "$type": "PackBuilder.Common.ModBuilding.Recipes.Changes.AddIngredient, PackBuilder",
+      "Item": "CalamityMod/Rock",
+      "Count": 1
+    }
+  ],
+  "Criteria": "Any"
 }
