@@ -1,8 +1,6 @@
 ﻿using CalamityMod.Projectiles.Melee.MaceFlails;
 using InfernalEclipseAPI.Content.Buffs.Tag;
 using ThoriumMod;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
-using WHummusMultiModBalancing;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles
 {
@@ -115,11 +113,8 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
             }
 
             // Check if all mods are loaded before continuing.
-            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarokMod) &&
-                ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) &&
-                ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod2))
+            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarokMod) && ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) &&  ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod2))
             {
-
                 // Helper function for modular lookups
                 void TryApplyBuff(string projName, Mod modProj, string buffName, Mod modBuff, int time)
                 {

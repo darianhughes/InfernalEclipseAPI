@@ -750,6 +750,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 40;
                     item.useTime = 40;
                 }
+
                 //Hardmode
                 if (UnsafeGetItem(simpleWhipAddon, "NightButterfly", item))
                 {
@@ -795,6 +796,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 26;
                     item.useTime = 26;
                 }
+
                 //Post Moonlord
                 if (UnsafeGetItem(simpleWhipAddon, "ButterflyEffect", item))
                 {

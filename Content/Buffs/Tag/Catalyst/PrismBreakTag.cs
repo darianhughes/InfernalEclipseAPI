@@ -1,14 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-
-namespace WHummusMultiModBalancing
-{
+namespace InfernalEclipseAPI.Content.Buffs.Tag
+{ 
     public class PrismBreakTag : ModBuff
     {
         public override string Texture => "InfernalEclipseAPI/Assets/Textures/Empty";

@@ -554,7 +554,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("AurelianSanctum")))
                     {
                         recipe.RemoveIngredient(ModContent.ItemType<ShadowspecBar>());
-                        recipe.AddIngredient<AlloyofEden>(3);
+                        if (InfernalCrossmod.NoxusBoss.Loaded)
+                        {
+                            recipe.AddIngredient<AlloyofEden>(3);
+                            recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
+                        }
                         recipe.AddIngredient<Rock>(1);
                     }
                 }

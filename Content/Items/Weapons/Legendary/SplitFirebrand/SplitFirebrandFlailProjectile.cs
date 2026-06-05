@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using InfernumMode.Content.Rarities.InfernumRarities;
 using CalamityMod.Items.Materials;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
@@ -11,15 +10,18 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.GameContent;
-using System.Runtime.InteropServices;
 using Terraria;
-using static CalamityMod.Projectiles.BaseProjectiles.BaseMaceFlailProjectile;
 using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
     public class SplitFirebrandFlailProjectile : ModProjectile
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return InfernalConfig.Instance.DeveloperMode && !InfernalConfig.Instance.DisableUnfinisedContent;
+        }
+
         public override string Texture => "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandProjectile";
 
         public Color fishingLineColor = Color.DarkRed;
@@ -64,7 +66,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             Projectile.tileCollide = false;
             Projectile.ownerHitCheck = false;
             Projectile.extraUpdates = 1;
-            Projectile.DamageType = LegendarySummon.Instance;
+            Projectile.DamageType = LegendarySummonMeleeSpeed.Instance;
             Projectile.width = 42;
             Projectile.height = 42;
             Projectile.WhipSettings.RangeMultiplier = GetFirebrandFlailRange(Main.player[Projectile.owner]);

@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides;
 using CalamityMod.ChatTags;
 using CalamityMod;
 using ReLogic.Graphics;
@@ -13,7 +11,7 @@ using Terraria.UI.Chat;
 using InfernalEclipseAPI.Content.Buffs;
 using System.Linq;
 
-namespace InfernalEclipseAPI.ChatTags
+namespace InfernalEclipseAPI.Core.ChatTags
 {
     public sealed class InfernalAPIBuffTagHandler : AbstractTagHandler<InfernalAPIBuffTagHandler>
     {

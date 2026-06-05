@@ -1,8 +1,8 @@
 ﻿namespace InfernalEclipseAPI.Core.DamageClasses.LegendaryClass
 {
-    public class LegendarySummon : DamageClass
+    public class LegendarySummonMeleeSpeed : DamageClass
     {
-        internal static LegendarySummon Instance;
+        internal static LegendarySummonMeleeSpeed Instance;
 
         public override void Load()
         {

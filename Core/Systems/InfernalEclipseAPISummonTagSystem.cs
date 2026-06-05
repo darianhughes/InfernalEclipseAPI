@@ -5,11 +5,6 @@ using InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
-using Terraria.GameContent;
-using ThoriumMod.Buffs.Summon;
-using ThoriumMod.Items.SummonItems;
-using WHummusMultiModBalancing;
-using InfernalEclipseAPI.Common.GlobalItems;
 using InfernumMode.Content.Items.Weapons.Summoner;
 using InfernumMode.Content.Buffs;
 
@@ -17,8 +12,6 @@ namespace InfernalEclipseAPI.Core.Systems
 {
     public class InfernalEclipseAPISummonTagSystem : ModSystem
     {
-        public bool WHummusEnabled = ModLoader.TryGetMod("WHummusMultiModBalancing", out _);
-
         private struct SummonTagEntry
         {
             public Func<int> ItemType;
@@ -34,20 +27,23 @@ namespace InfernalEclipseAPI.Core.Systems
 
             // API ENTRY
 
-            entries.Add(new SummonTagEntry
+            if (InfernalConfig.Instance.DeveloperMode && !InfernalConfig.Instance.DisableUnfinisedContent)
             {
-                ItemType = () => ModContent.ItemType<SplitFirebrand>(),
-                BuffType = () => ModContent.BuffType<SplitFirebrandTag>(),
-                Setup = delegate (SummonTag summonTag)
+                entries.Add(new SummonTagEntry
                 {
-                    summonTag.AutoDrawTooltip = false;
-                    summonTag.TagTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand", (AssetRequestMode)1);
-                }
-            });
+                    ItemType = () => ModContent.ItemType<SplitFirebrand>(),
+                    BuffType = () => ModContent.BuffType<SplitFirebrandTag>(),
+                    Setup = delegate (SummonTag summonTag)
+                    {
+                        summonTag.AutoDrawTooltip = false;
+                        summonTag.TagTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand", (AssetRequestMode)1);
+                    }
+                });
+            }
 
             //Checking for my mod so this can go to live on my end straight away
             //Also you can't register multiple tag entrys to the same item so we'll roll with mine for now
-            if (!WHummusEnabled)
+            if (!InfernalCrossmod.Hummus.Loaded)
             {
                 if (ModLoader.TryGetMod("InfernumMode", out Mod infernum))
                 {
@@ -68,8 +64,8 @@ namespace InfernalEclipseAPI.Core.Systems
                 {
                     entries.Add(new SummonTagEntry
                     {
-                        ItemType = () => ModContent.ItemType<Thrombosis>(),
-                        BuffType = () => ModContent.BuffType<ThrombosisDebuff>(),
+                        ItemType = () => thor.Find<ModItem>("Thrombosis").Type,
+                        BuffType = () => thor.Find<ModBuff>("ThrombosisDebuff").Type,
                         Setup = delegate (SummonTag summonTag)
                         {
                             summonTag.AutoDrawTooltip = false;
@@ -77,6 +73,7 @@ namespace InfernalEclipseAPI.Core.Systems
                         }
                     });
                 }
+
                 if (ModLoader.TryGetMod("ThoriumRework", out Mod helh))
                 {
                     if (helh.TryFind("LichWhip", out ModItem item) && helh.TryFind("SoulBleed", out ModBuff buff))
@@ -93,6 +90,7 @@ namespace InfernalEclipseAPI.Core.Systems
                         });
                     }
                 }
+
                 if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
                 {
                     if (catalyst.TryFind("CoralCrusher", out ModItem item))
