@@ -47,7 +47,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
             {
                 if (NPC.downedMoonlord)
                 {
-                    modifiers.SourceDamage += 0.25f;
+                    modifiers.SourceDamage += 0.35f;
                 }
                 else if (NPC.downedGolemBoss)
                 {

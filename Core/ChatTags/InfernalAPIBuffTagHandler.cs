@@ -46,6 +46,9 @@ namespace InfernalEclipseAPI.Core.ChatTags
                 [ModContent.BuffType<SoulBurn5>()] = FireDebuffColor,
                 [ModContent.BuffType<SoulBurn6>()] = FireDebuffColor,
                 [ModContent.BuffType<SoulBurn7>()] = FireDebuffColor,
+
+                [ModContent.BuffType<HotHands>()] = BuffColor,
+                [ModContent.BuffType<HotHands2>()] = BuffColor,
             };
 
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = new Vector2(), Color color = new Color(), float scale = 1)

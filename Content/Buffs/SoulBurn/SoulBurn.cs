@@ -7,6 +7,8 @@ using ThoriumRework;
 using CalamityMod.DataStructures;
 using Microsoft.Xna.Framework;
 using CalamityMod.Particles;
+using Terraria.DataStructures;
+using InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand;
 
 namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
 {
@@ -91,6 +93,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
     public class SoulBurnPlayer : ModPlayer
     {
         public bool hasSoulBurn;
+        public int whipDamage;
 
         public override void ResetEffects()
         {
@@ -110,6 +113,19 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
                 }
             }
         }
+
+        public override void Kill( double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        {
+            if (!hasSoulBurn) return;
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                if (NPC.downedBoss3 || Main.hardMode || NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord)
+                {
+                    Projectile.NewProjectile(Player.GetSource_Death(), Player.Center, Vector2.Zero, ModContent.ProjectileType<SplitFirebrandExplosion>(), whipDamage, 0f, Main.myPlayer);
+                }
+            }
+        }
     }
 
     public class SoulBurnNPC : GlobalNPC
@@ -117,6 +133,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
         public override bool InstancePerEntity => true;
 
         public bool hasSoulBurn;
+        public int whipDamage;
 
         public override void ResetEffects(NPC npc)
         {
@@ -132,6 +149,19 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
                 if (NPC.downedMoonlord)
                 {
                     npc.Calamity().ElectricDebuffMultiplier -= 0.25f;
+                }
+            }
+        }
+
+        public override void OnKill(NPC npc)
+        {
+            if (!hasSoulBurn) return;
+
+            if (NPC.downedBoss3 || Main.hardMode || NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Projectile.NewProjectile( npc.GetSource_Death(), npc.Center, Vector2.Zero, ModContent.ProjectileType<SplitFirebrandExplosion>(), whipDamage, 0f, Main.myPlayer);
                 }
             }
         }

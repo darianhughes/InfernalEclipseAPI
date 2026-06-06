@@ -31,18 +31,18 @@ namespace InfernalEclipseAPI.Content.Buffs.Tag
         public static int GetFirebrandTagDamage()
         {
             if (NPC.downedMoonlord)
-                return 15;
+                return 20;
             if (NPC.downedGolemBoss)
                 return 12;
             if (NPC.downedPlantBoss)
-                return 9;
+                return 10;
             if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                return 6;
+                return 7;
             if (Main.hardMode)
                 return 5;
             if (NPC.downedBoss3)
                 return 4;
-            return 3;
+            return 2;
         }
     }
 }

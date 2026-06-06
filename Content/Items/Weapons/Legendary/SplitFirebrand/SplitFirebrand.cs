@@ -11,20 +11,77 @@ using InfernumMode;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using ThoriumMod.Empowerments;
+using CalamityMod.Cooldowns;
+using Terraria.Audio;
+using static InfernalEclipseWeaponsDLC.Content.Items.Weapons.Other.AbsoluteTVRemote;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
     public class SplitFirebrand : ModItem
     {
+        public class FireWaveCooldown : CooldownHandler
+        {
+            public static new string ID => "FireWaveCooldown";
+            public override bool ShouldDisplay => true;
+            public override bool SavedWithPlayer => true;
+            public override bool PersistsThroughDeath => true;
+            public override LocalizedText DisplayName => Language.GetText("Mods.InfernalEclipseAPI.Cooldowns.FireWave");
+            public override string Texture => GetTexture();
+            public override Color OutlineColor => Color.DarkRed;
+            public override Color CooldownStartColor => Color.Red;
+            public override Color CooldownEndColor => Color.Maroon;
+
+            public override void DrawExpanded(SpriteBatch spriteBatch, Vector2 position, float opacity, float scale)
+            {
+                Texture2D value = ModContent.Request<Texture2D>(Texture).Value;
+                Texture2D value2 = ModContent.Request<Texture2D>(OutlineTexture).Value;
+                Texture2D value3 = ModContent.Request<Texture2D>(ChargeBarTexture).Value;
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Main.UIScaleMatrix);
+                ApplyBarShaders(opacity);
+                spriteBatch.Draw(value3, position, null, Color.White * opacity, 0f, value3.Size() * 0.5f, scale, SpriteEffects.None, 0f);
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.UIScaleMatrix);
+                spriteBatch.Draw(value2, position, null, OutlineColor * opacity, 0f, value2.Size() * 0.5f, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(value, position, null, Color.White * opacity, 0f, value.Size() * 0.5f, scale / 2, SpriteEffects.None, 0f);
+            }
+
+            public override void DrawCompact(SpriteBatch spriteBatch, Vector2 position, float opacity, float scale)
+            {
+                Texture2D value = ModContent.Request<Texture2D>(Texture).Value;
+                Texture2D value2 = ModContent.Request<Texture2D>(OutlineTexture).Value;
+                Texture2D value3 = ModContent.Request<Texture2D>(OverlayTexture).Value;
+                Color outlineColor = OutlineColor;
+                spriteBatch.Draw(value2, position, null, outlineColor * opacity, 0f, value2.Size() * 0.5f, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(value, position, null, Color.White * opacity, 0f, value.Size() * 0.5f, scale / 2, SpriteEffects.None, 0f);
+                int num = (int)Math.Ceiling((float)value3.Height * (1f - instance.Completion));
+                spriteBatch.Draw(sourceRectangle: new Rectangle(0, num, value3.Width, value3.Height - num), texture: value3, position: position + Vector2.UnitY * num * scale, color: outlineColor * opacity * 0.9f, rotation: 0f, origin: value.Size() * 0.25f, scale: scale, effects: SpriteEffects.None, layerDepth: 0f);
+            }
+
+            private string GetTexture()
+            {
+                if (NPC.downedMoonlord)
+                {
+                    return "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandCrescendo";
+                }
+                else
+                {
+                    return "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand";
+                }
+            }
+        }
+
         public override bool IsLoadingEnabled(Mod mod)
         {
             return InfernalConfig.Instance.DeveloperMode && !InfernalConfig.Instance.DisableUnfinisedContent;
         }
+
         static Asset<Texture2D> inventoryTexture;
+        private bool fireWave = false;
 
         public override void SetDefaults()
         {
-            Item.damage = 20;
+            Item.damage = 14;
             Item.DamageType = LegendarySummonMeleeSpeed.Instance;
             Item.width = 46;
             Item.height = 48;
@@ -49,13 +106,13 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (NPC.downedMoonlord)
                 damage += 3.75f;
             else if (NPC.downedGolemBoss)
-                damage += 1.35f;
+                damage += 2.75f;
             else if (NPC.downedPlantBoss)
                 damage += 2.75f;
             else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-                damage += 5.50f;
+                damage += 2.6f;
             else if (Main.hardMode)
-                damage += 1.75f;
+                damage += 1.45f;
             else if (NPC.downedBoss3)
                 damage += 0.25f;
         }
@@ -77,7 +134,34 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         }
         public override bool MeleePrefix() => true;
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+
+        public override void HoldItem(Player player)
+        {
+            if (player.whoAmI != Main.myPlayer)
+                return;
+
+            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord)
+            {
+                // Prevent triggering during normal item usage
+                if (player.itemAnimation > 0)
+                    return;
+
+                if (InfernalEclipseAPI.ItemAbility.JustPressed && !player.Calamity().cooldowns.ContainsKey(FireWaveCooldown.ID))
+                {
+                    player.AddCooldown(FireWaveCooldown.ID, 3600);
+                    SoundEngine.PlaySound(SoundID.Item88);
+
+                    Item.useStyle = ItemUseStyleID.Shoot;
+                    Item.UseSound = SoundID.Item116;
+
+                    fireWave = true;
+                    player.controlUseItem = true;
+                    player.ItemCheck();
+                }
+            }
+        }
+
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             var modPlayer = player.GetModPlayer<SplitFirebrandPlayer>();
 
@@ -86,7 +170,45 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
             float ai2 = NPC.downedMoonlord ? 1f : 0f;
 
-            if (modPlayer.comboCounter != 2)
+            if (fireWave)
+            {
+                Projectile.NewProjectile(
+                    source,
+                    position,
+                    velocity,
+                    ModContent.ProjectileType<SplitFirebrandFlailProjectile>(),
+                    (int)(damage * 1.5f),
+                    knockback,
+                    player.whoAmI,
+                    0f,
+                    0f,
+                    ai2
+                    );
+
+                for (int i = 0; i < 12; i++)
+                {
+                    Vector2 flameVelocity =
+                        velocity.RotatedByRandom(MathHelper.ToRadians(15f))
+                        * Main.rand.NextFloat(0.8f, 1.2f);
+
+                    int proj = Projectile.NewProjectile(
+                        source,
+                        position,
+                        flameVelocity,
+                        ProjectileID.Flames,
+                        damage,
+                        0f,
+                        player.whoAmI
+                    );
+
+                    Main.projectile[proj].DamageType = Item.DamageType;
+                }
+
+                fireWave = false;
+
+                return false;
+            }
+            else if (modPlayer.comboCounter != 2)
             {
                 Projectile.NewProjectile(
                 source,
@@ -182,6 +304,14 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 TooltipLine line5 = new(Mod, "DedicatedItem", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DedTo", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Dedicated.Soltan"))}");
                 line5.OverrideColor = color;
                 tooltips.Add(line5);
+            }
+
+            string hotkey = InfernalEclipseAPI.ItemAbility.TooltipHotkeyString();
+
+            foreach (TooltipLine tooltip in tooltips)
+            {
+                if (line.Text.Contains("{0}"))
+                    line.Text = line.Text.Replace("{0}", hotkey);
             }
         }
 

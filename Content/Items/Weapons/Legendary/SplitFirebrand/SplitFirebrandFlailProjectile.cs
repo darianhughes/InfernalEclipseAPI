@@ -55,6 +55,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
         private Vector2 aimDir;
 
+        private bool hasHit = false;
+
         public override void SetDefaults()
         {
             Projectile.usesLocalNPCImmunity = true;
@@ -319,8 +321,22 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (Projectile.damage < 1)
                 Projectile.damage = 1;
 
+            if (NPC.downedBoss3 || Main.hardMode || NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord)
+            {
+                var modNPC = target.GetGlobalNPC<SoulBurnNPC>();
+                modNPC.whipDamage = ((damageDone / 3) * 2) * 3;
+            }
+
             target.AddBuff(ModContent.BuffType<SplitFirebrandTag>(), 240);
             GetSoulBurn(target);
+
+            if ((NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord) && !hasHit)
+            {
+                Player owner = Main.player[Projectile.owner];
+                owner.GetModPlayer<HotHandsPlayer>().AddStack();
+
+                hasHit = true;
+            }
 
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 

@@ -2240,7 +2240,7 @@ Items: {
 		TagDebuff: {
 			Skeletron:
 				'''
-				3 summon tag damage
+				2 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				'''
@@ -2260,19 +2260,22 @@ Items: {
 				'''
 			Plantera:
 				'''
-				6 summon tag damage
+				7 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn4] debuff to incinerate foes
 				Minions that touch the whip will be set ablaze!
 				Ablazed minions deal 1.1x damage and inflict [iebuff:OnFire3]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
 				'''
 			Golem:
 				'''
-				9 summon tag damage
+				10 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn5] debuff to incinerate foes
 				Minions that touch the whip will be set ablaze!
 				Ablazed minions deal 1.15x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands]
 				'''
 			MoonLord:
 				'''
@@ -2281,14 +2284,18 @@ Items: {
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn6] debuff to incinerate foes
 				Minions that touch the whip will be set ablaze!
 				Ablazed minions deal 1.2x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands2]
 				'''
 			Full:
 				'''
-				15 summon tag damage
+				20 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn7] debuff to incinerate foes
 				Minions that touch the whip will be set ablaze!
-				Ablazed minions deal 1.25x damage and inflict both [iebuff:CalamityMod/BrimstoneFlames] and [iebuff:CalamityMod/StaticDischarge]
+				Ablazed minions deal 1.35x damage and inflict both [iebuff:CalamityMod/BrimstoneFlames] and [iebuff:CalamityMod/StaticDischarge]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands2]
 				'''
 		}
 
@@ -2348,6 +2355,7 @@ Projectiles: {
 	EclipseHeadphonesProj.DisplayName: Eclipse Headphones Proj
 	SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
 	SplitFirebrandFlailProjectile.DisplayName: Split Firebrand Flail Projectile
+	SplitFirebrandExplosion.DisplayName: Split Firebrand Explosion
 }
 
 DiaryTooltip:
@@ -3037,6 +3045,8 @@ Buffs: {
 			'''
 			Heat - 15 DPS
 			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
 			'''
 	}
 
@@ -3047,6 +3057,8 @@ Buffs: {
 			'''
 			Heat - 25 DPS
 			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
 			'''
 	}
 
@@ -3057,6 +3069,8 @@ Buffs: {
 			'''
 			Heat - 40 DPS
 			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
 			'''
 	}
 
@@ -3067,6 +3081,8 @@ Buffs: {
 			'''
 			Heat - 75 DPS
 			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
 			'''
 	}
 
@@ -3077,6 +3093,8 @@ Buffs: {
 			'''
 			Heat - 140 DPS
 			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
 			'''
 	}
 
@@ -3087,6 +3105,28 @@ Buffs: {
 			'''
 			Heat and Electric - 140 DPS
 			25% increased Heat and Electric debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			'''
+	}
+
+	HotHands: {
+		DisplayName: Hot Hands
+		Description: Whatever you're holding... You really wanna stop holding it
+		ItemTooltip:
+			'''
+			2% increased movement speed
+			Can be stacked up to 10 times
+			'''
+	}
+
+	HotHands2: {
+		DisplayName: Hot Hands
+		Description: Whatever you're holding... You really wanna stop holding it
+		ItemTooltip:
+			'''
+			2% increased movement speed and 1% increased whip speed
+			Can be stacked up to 10 times
 			'''
 	}
 
@@ -3183,6 +3223,7 @@ Misc: {
 	SpellbookRecipeCondition: View a spellbook owned by Solyn
 }
 
+Cooldowns.FireWave: Fire Wave is on cooldown!
 HeadphonesText.1: Now playing {0}!
 
 BossName: {
