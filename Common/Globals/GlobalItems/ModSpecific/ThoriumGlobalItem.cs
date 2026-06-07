@@ -45,6 +45,8 @@ using ThoriumMod.Items.Thorium;
 using ThoriumMod.Items.ThrownItems;
 using ThoriumMod.Items.Valadium;
 using ThoriumMod.Utilities;
+using ThoriumRework;
+using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
 using static Terraria.ModLoader.ModContent;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
@@ -324,6 +326,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetAttackSpeed(DamageClass.Ranged) -= 0.12f;
                 }
 
+                if (item.type == ItemType<MasterArbalestHood>() && InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    player.GetArmorPenetration(DamageClass.Ranged) -= 100f;
+                }
+
                 if (item.type == ItemType<AssassinsGuard>() && InfernalCrossmod.ThoriumRework.Loaded)
                 {
                     player.GetAttackSpeed(DamageClass.Ranged) -= 0.2f;
@@ -565,22 +572,49 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetThoriumPlayer().demonBloodBreastplateDodge = false;
                 }
 
-                if (item.type == ItemType<DreamWeaversHelmet>() && ModLoader.HasMod("ThoriumRework"))
+                if (item.type == ItemType<BloomingShield>())
                 {
-                    player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 20f;
+                    player.GetThoriumPlayer().MetalShieldMax += 20;
+
+                    InfernalCrossmod.Thorium.Mod.Call(new object[]
+                    {
+                        "BonusHealerHealBonus",
+                        player,
+                        +1
+                    });
+
+                    if (player.GetThoriumPlayer().shieldHealth >= player.GetThoriumPlayer().MetalShieldMax)
+                    {
+                        InfernalCrossmod.Thorium.Mod.Call(new object[3]
+                        {
+                            "BonusHealerHealBonus",
+                            player,
+                            +1
+                        });
+                    }
                 }
-                if (item.type == ItemType<DreamWeaversHood>() && ModLoader.HasMod("ThoriumRework"))
+
+                if (item.type == ItemType<AstroBeetleHusk>())
                 {
-                    player.GetDamage((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 0.3f;
-                    player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 16f;
-                }
-                if (item.type == ItemType<DreamWeaversTabard>() && ModLoader.HasMod("ThoriumRework"))
-                {
-                    player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 14f;
+                    player.GetThoriumPlayer().MetalShieldMax += 50;
                 }
 
                 if (InfernalCrossmod.ThoriumRework.Loaded)
                 {
+                    if (item.type == ItemType<DreamWeaversHelmet>())
+                    {
+                        player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 20f;
+                    }
+                    if (item.type == ItemType<DreamWeaversHood>())
+                    {
+                        player.GetDamage((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 0.3f;
+                        player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 16f;
+                    }
+                    if (item.type == ItemType<DreamWeaversTabard>())
+                    {
+                        player.GetCritChance((DamageClass)(object)ThoriumDamageBase<HealerDamage>.Instance) += 14f;
+                    }
+
                     if (item.type == ItemType<TerrariumWings>())
                     {
                         if (player.armor[0].type == ItemType<TerrariumHelmet>() && player.armor[1].type == ItemType<TerrariumBreastPlate>() && player.armor[2].type == ItemType<TerrariumGreaves>() && player.miscCounter % 2 == 0 && player.wingTime > 0f)

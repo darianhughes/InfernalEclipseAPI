@@ -24,7 +24,6 @@ using SOTS.NPCs.TreasureSlimes;
 using Terraria.GameContent.ItemDropRules;
 using CalamityMod.NPCs.Cryogen;
 using CalamityMod.Items.Materials;
-using CalamityMod.Items.TreasureBags;
 using SOTS;
 using InfernalEclipseAPI.Content.Projectiles;
 using Microsoft.Xna.Framework.Graphics;
@@ -46,6 +45,7 @@ using SOTS.Buffs.Debuffs;
 using InfernalEclipseAPI.Content.Buffs;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Players;
+using System.Collections.Generic;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -53,6 +53,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
     [ExtendsFromMod("SOTS")]
     public class SOTSGlobalNPC : GlobalNPC
     {
+        private static readonly List<(Projectile Projectile, EvilGrowth Growth)> ActiveEvilGrowths = new();
+
+        private static ulong lastEvilGrowthCacheUpdate;
+
+        private static HashSet<int> EvilGrowthPullImmuneNPCs;
+
+        private static Asset<Texture2D> EvilArmTexture;
+        private static Asset<Texture2D> EvilHandTexture;
+        private const int MaxEvilArmSegments = 80;
+        private const float MaxEvilArmDrawDistance = 2400f;
+
         public bool canDoVoidDamage = false;
         public bool strongVoidDamge = false;
         public bool isFlowered;
@@ -60,6 +71,65 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
         private const int MaxAnomalyCurseStacks = 30;
 
         public override bool InstancePerEntity => true;
+
+        public override void Load()
+        {
+            EvilGrowthPullImmuneNPCs = new HashSet<int>
+            {
+                ModContent.NPCType<PerforatorHeadLarge>(),
+                ModContent.NPCType<PerforatorHeadMedium>(),
+                ModContent.NPCType<PerforatorHeadSmall>(),
+                ModContent.NPCType<PerforatorBodyLarge>(),
+                ModContent.NPCType<PerforatorBodyMedium>(),
+                ModContent.NPCType<PerforatorBodySmall>(),
+                ModContent.NPCType<PerforatorTailLarge>(),
+                ModContent.NPCType<PerforatorTailMedium>(),
+                ModContent.NPCType<PerforatorTailSmall>(),
+                ModContent.NPCType<DarkHeart>(),
+                ModContent.NPCType<GiantClam>(),
+                ModContent.NPCType<LightSnuffingHand>(),
+                ModContent.NPCType<PutridPinky1>(),
+                NPCID.DungeonGuardian
+            };
+
+            EvilArmTexture = ModContent.Request<Texture2D>("SOTS/Projectiles/Evil/EvilArm");
+            EvilHandTexture = ModContent.Request<Texture2D>("SOTS/Projectiles/Evil/EvilHand");
+        }
+
+        public override void Unload()
+        {
+            ActiveEvilGrowths.Clear();
+            EvilGrowthPullImmuneNPCs = null;
+            EvilArmTexture = null;
+            EvilHandTexture = null;
+        }
+
+        private static List<(Projectile Projectile, EvilGrowth Growth)> GetActiveEvilGrowths()
+        {
+            if (lastEvilGrowthCacheUpdate == Main.GameUpdateCount)
+                return ActiveEvilGrowths;
+
+            lastEvilGrowthCacheUpdate = Main.GameUpdateCount;
+            ActiveEvilGrowths.Clear();
+
+            int evilGrowthType = ModContent.ProjectileType<EvilGrowth>();
+
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile projectile = Main.projectile[i];
+
+                if (!projectile.active || projectile.timeLeft >= 8998)
+                    continue;
+
+                if (projectile.type != evilGrowthType)
+                    continue;
+
+                if (projectile.ModProjectile is EvilGrowth growth)
+                    ActiveEvilGrowths.Add((projectile, growth));
+            }
+
+            return ActiveEvilGrowths;
+        }
 
         public override void SetDefaults(NPC entity)
         {
@@ -175,7 +245,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
                     Player player = Main.player[i];
-                    if (player.active && !player.dead && npc.Distance(player.Center) < 12000f && !BossRushEvent.BossRushActive && player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
+
+                    if (player.active &&
+                        !player.dead &&
+                        npc.Distance(player.Center) < 12000f &&
+                        !BossRushEvent.BossRushActive &&
+                        player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
                     {
                         player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 60);
                     }
@@ -188,79 +263,55 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             float num8 = 0f;
             bool flag3 = false;
 
-            for (int i = 0; i < Main.maxProjectiles; i++)
+            foreach ((Projectile projectile, EvilGrowth growth) in GetActiveEvilGrowths())
             {
-                Projectile projectile = Main.projectile[i];
-                if (!projectile.active || projectile.timeLeft >= 8998)
-                    continue;
-
-                if (projectile.type != ModContent.ProjectileType<EvilGrowth>())
-                    continue;
-
-                if (projectile.ModProjectile is not EvilGrowth growth)
-                    continue;
-
                 bool flag5 = growth.effected[npc.whoAmI];
                 bool flag6 = false;
                 int num14 = -1;
 
-                if (flag5 && !npc.immortal && npc.realLife == -1)
+                if (!flag5)
+                    continue;
+
+                flag3 = true;
+
+                if (num8 <= 1f)
                 {
-                    flag3 = true;
+                    SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Main.player[projectile.owner]);
 
-                    if (num8 <= 1f)
-                    {
-                        SOTSPlayer sotsPlayer = SOTSPlayer.ModPlayer(Main.player[projectile.owner]);
-                        if (sotsPlayer.halfLifeRegen < 3)
-                            sotsPlayer.halfLifeRegen += 3;
+                    if (sotsPlayer.halfLifeRegen < 3)
+                        sotsPlayer.halfLifeRegen += 3;
+
+                    sotsPlayer.halfLifeRegen++;
+
+                    if (npc.boss)
                         sotsPlayer.halfLifeRegen++;
-                        if (npc.boss)
-                            sotsPlayer.halfLifeRegen++;
-                    }
+                }
 
-                    if (num14 == npc.whoAmI)
+                if (num14 == npc.whoAmI)
+                {
+                    if (flag6)
+                        num8++;
+                }
+                else
+                {
+                    float num15 = 0.5f;
+                    float num16 = 0.025f;
+
+                    if (!flag6 && !npc.boss)
+                        num16 = 0.04f;
+
+                    Vector2 vector2_23 = new Vector2(projectile.Center.X, projectile.position.Y - 8f) - new Vector2(npc.Center.X, npc.position.Y + npc.height);
+
+                    float num19 = vector2_23.Length() * num16 * (npc.boss ? 0.01f : 1f);
+
+                    if (!flag6)
+                        num15 = 0.65f;
+
+                    Vector2 vector2_25 = vector2_23.SafeNormalize(Vector2.Zero) * (num15 + num19);
+
+                    if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && !EvilGrowthPullImmuneNPCs.Contains(npc.type))
                     {
-                        if (flag6)
-                            num8++;
-                    }
-                    else
-                    {
-                        float num15 = 0.5f;
-                        float num16 = 0.025f;
-                        if (!flag6 && !npc.boss)
-                            num16 = 0.04f;
-
-                        Vector2 vector2_23 =
-                            new Vector2(projectile.Center.X, projectile.position.Y - 8f) -
-                            new Vector2(npc.Center.X, npc.position.Y + npc.height);
-
-                        float num19 = vector2_23.Length() * num16 * (npc.boss ? 0.01f : 1f);
-
-                        if (!flag6)
-                            num15 = 0.65f;
-
-                        Vector2 vector2_25 = vector2_23.SafeNormalize(Vector2.Zero) * (num15 + num19);
-
-                        int[] immuneNPCs =
-                        {
-                            ModContent.NPCType<PerforatorHeadLarge>(),
-                            ModContent.NPCType<PerforatorHeadMedium>(),
-                            ModContent.NPCType<PerforatorHeadSmall>(),
-                            ModContent.NPCType<PerforatorBodyLarge>(),
-                            ModContent.NPCType<PerforatorBodyMedium>(),
-                            ModContent.NPCType<PerforatorBodySmall>(),
-                            ModContent.NPCType<PerforatorTailLarge>(),
-                            ModContent.NPCType<PerforatorTailMedium>(),
-                            ModContent.NPCType<PerforatorTailSmall>(),
-                            ModContent.NPCType<DarkHeart>(),
-                            ModContent.NPCType<GiantClam>(),
-                            ModContent.NPCType<LightSnuffingHand>(),
-                            ModContent.NPCType<PutridPinky1>()
-                        };
-
-                        // The only behavioral change:
-                        if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && !immuneNPCs.Contains(npc.type))
-                            npc.position += vector2_25;
+                        npc.position += vector2_25;
                     }
                 }
             }
@@ -268,12 +319,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             isFlowered = num8 >= 1f;
 
             float num26 = 1f;
+
             if (flag3)
             {
                 if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != ModContent.NPCType<GiantClam>())
+                {
                     num26 *= 0.2f;
+                }
                 else
+                {
                     num26 *= 0.875f;
+                }
             }
 
             npc.position -= npc.velocity * (1f - num26);
@@ -444,45 +500,48 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            for (int i = 0; i < Main.maxProjectiles; i++)
+            foreach ((Projectile projectile, EvilGrowth growth) in GetActiveEvilGrowths())
             {
-                Projectile projectile = Main.projectile[i];
-                if (!projectile.active || projectile.timeLeft >= 8998)
+                if (!growth.effected[npc.whoAmI] || npc.realLife != -1)
                     continue;
 
-                if (projectile.type != ModContent.ProjectileType<EvilGrowth>())
+                Texture2D armTexture = EvilArmTexture.Value;
+                Texture2D handTexture = EvilHandTexture.Value;
+
+                float drawScale = projectile.scale * (projectile.timeLeft / 150f);
+
+                if (drawScale <= 0.001f)
                     continue;
-
-                if (projectile.ModProjectile is not EvilGrowth growth)
-                    continue;
-
-                bool flag = growth.effected[npc.whoAmI];
-                if (!flag || npc.realLife != -1)
-                    continue;
-
-                Texture2D armTexture = ModContent.Request<Texture2D>("SOTS/Projectiles/Evil/EvilArm", AssetRequestMode.ImmediateLoad).Value;
-                Texture2D handTexture = ModContent.Request<Texture2D>("SOTS/Projectiles/Evil/EvilHand", AssetRequestMode.ImmediateLoad).Value;
-
-                Color armColor = ColorHelper.EvilColor;
-                float scale = projectile.scale;
-                float drawScale = scale * ((float)projectile.timeLeft / 150f);
 
                 Vector2 toNpc = npc.Center - projectile.Center;
-                float segmentCount = toNpc.Length() / (armTexture.Width * drawScale);
+                float distance = toNpc.Length();
+
+                if (distance > MaxEvilArmDrawDistance)
+                    distance = MaxEvilArmDrawDistance;
+
+                int segmentCount = Math.Clamp(
+                    (int)(distance / Math.Max(1f, armTexture.Width * drawScale)),
+                    1,
+                    MaxEvilArmSegments
+                );
+
+                Vector2 clampedToNpc = toNpc.SafeNormalize(Vector2.UnitY) * distance;
+                float rotation = toNpc.ToRotation();
 
                 for (int j = 0; j < segmentCount; j++)
                 {
-                    Vector2 drawPos = npc.Center + (-toNpc * (j / segmentCount)) - screenPos;
+                    float completion = j / (float)segmentCount;
+                    Vector2 drawPos = npc.Center - clampedToNpc * completion - screenPos;
 
                     if (j == 0)
                     {
-                        Main.spriteBatch.Draw(
+                        spriteBatch.Draw(
                             handTexture,
                             drawPos,
                             null,
-                            armColor,
-                            toNpc.ToRotation() + MathHelper.PiOver2,
-                            new Vector2(handTexture.Width / 2f, handTexture.Height / 2f),
+                            ColorHelper.EvilColor,
+                            rotation + MathHelper.PiOver2,
+                            handTexture.Size() * 0.5f,
                             drawScale * 1.4f,
                             SpriteEffects.None,
                             0f
@@ -490,13 +549,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     }
                     else
                     {
-                        Main.spriteBatch.Draw(
+                        spriteBatch.Draw(
                             armTexture,
                             drawPos,
                             null,
-                            armColor,
-                            toNpc.ToRotation(),
-                            new Vector2(armTexture.Width / 2f, armTexture.Height / 2f),
+                            ColorHelper.EvilColor,
+                            rotation,
+                            armTexture.Size() * 0.5f,
                             drawScale,
                             SpriteEffects.None,
                             0f
@@ -544,19 +603,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             {
                 int damage = 1 + projectile.damage / (strongerVoidDamage ? 2 : strongVoidDamge ? 3 : 6);
                 VoidPlayer.VoidDamage(Mod, target, damage);
-            }
-        }
-    }
-
-    [JITWhenModsEnabled("SOTS")]
-    [ExtendsFromMod("SOTS")]
-    public class SOTSBossBagChanges : GlobalItem
-    {
-        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
-        {
-            if (item.type == ModContent.ItemType<CryogenBag>())
-            {
-                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FragmentOfPermafrost>(), 1, 15, 21));
             }
         }
     }

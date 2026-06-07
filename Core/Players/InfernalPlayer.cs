@@ -33,6 +33,8 @@ using CalamityMod.NPCs.PrimordialWyrm;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernumMode.Common.DataStructures;
 using InfernumMode;
+using Terraria;
+using CalamityMod.Items.Weapons.Rogue;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -490,6 +492,9 @@ namespace InfernalEclipseAPI.Core.Players
                 nightmareArmCD--;
             else
                 nightmareArmCD = 0;
+
+            if (BossRushEvent.BossRushActive && Player.statLifeMax2 > 1111)
+                Player.statLifeMax2 = 1111;
         }
 
         public bool soltanBullying = false;
@@ -523,6 +528,18 @@ namespace InfernalEclipseAPI.Core.Players
                     {
                         Player.Infernum().SetValue<bool>("PhysicsDefianceIsEnabled", false);
                     }
+                }
+            }
+
+            if (Player.HasBuff<LowGround>() || Player.HasBuff<CrimulanAura>())
+            {
+                Player.buffImmune[BuffID.Featherfall] = true;
+                Player.ClearBuff(BuffID.Featherfall);
+                Player.slowFall = false;
+
+                if (InfernalCrossmod.QoLC.Loaded)
+                {
+                    InfernalCrossmod.QoLC.RemoveQoLCompendiumInfiniteBuff(Player, BuffID.Featherfall);
                 }
             }
         }
@@ -887,48 +904,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if (scalingArmorPenetration)
             {
-                bool bypassScalingArmorPen = false;
-
-                int[] bypassScalingArmorPenCal =
-                [
-                    ModContent.NPCType<Providence>()
-                ];
-
-                if (bypassScalingArmorPenCal.Contains(target.type))
-                    bypassScalingArmorPen = true;
-
-                if (InfernalCrossmod.Thorium.Loaded)
-                {
-                    Mod thor = InfernalCrossmod.Thorium.Mod;
-
-                    int[] bypassScalingAmorPenThor =
-                    [
-                        thor.Find<ModNPC>("BoreanStrider").Type,
-                        thor.Find<ModNPC>("BoreanStriderPopped").Type,
-                        thor.Find<ModNPC>("BoreanHopper").Type,
-                        thor.Find<ModNPC>("BoreanStrider").Type,
-                        thor.Find<ModNPC>("ForgottenOne").Type,
-                        thor.Find<ModNPC>("ForgottenOneCracked").Type,
-                        thor.Find<ModNPC>("ForgottenOneReleased").Type,
-                    ];
-
-                    if (bypassScalingAmorPenThor.Contains(target.target))
-                        bypassScalingArmorPen = true;
-                }
-
-                if (InfernalCrossmod.Clamity.Loaded)
-                {
-                    Mod clam = InfernalCrossmod.Clamity.Mod;
-                    int[] bypassScaliingAmorPenClam =
-                    [
-                        clam.Find<ModNPC>("ClamitasBoss").Type
-                    ];
-
-                    if (bypassScaliingAmorPenClam.Contains(target.target))
-                        bypassScalingArmorPen = true;
-                }
-
-                if (!bypassScalingArmorPen)
+                if (!BypassesScalingArmorPen(target.type))
                 {
                     modifiers.DefenseEffectiveness *= Main.hardMode ? 0.9f : 0.95f;
                 }
@@ -941,6 +917,38 @@ namespace InfernalEclipseAPI.Core.Players
                     modifiers.FinalDamage *= 0.2f;
                 }
             }
+        }
+
+        private static bool BypassesScalingArmorPen(int type)
+        {
+            if (type == ModContent.NPCType<Providence>())
+                return true;
+
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                Mod thor = InfernalCrossmod.Thorium.Mod;
+
+                if (type == thor.Find<ModNPC>("BoreanStrider").Type ||
+                    type == thor.Find<ModNPC>("BoreanStriderPopped").Type ||
+                    type == thor.Find<ModNPC>("BoreanHopper").Type ||
+                    type == thor.Find<ModNPC>("BoreanStrider").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOne").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOneCracked").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOneReleased").Type)
+                {
+                    return true;
+                }
+            }
+
+            if (InfernalCrossmod.Clamity.Loaded)
+            {
+                Mod clam = InfernalCrossmod.Clamity.Mod;
+
+                if (type == clam.Find<ModNPC>("ClamitasBoss").Type)
+                    return true;
+            }
+
+            return false;
         }
 
         public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
@@ -1000,10 +1008,22 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
-            if ((target.type == ModContent.NPCType<PlaguebringerGoliath>() || target.type == ModContent.NPCType<RavagerBody>() || target.type == ModContent.NPCType<RavagerClawLeft>() || target.type == ModContent.NPCType<RavagerClawRight>() || target.type == ModContent.NPCType<RavagerHead>() ||
-                target.type == ModContent.NPCType<RavagerHead2>() || target.type == ModContent.NPCType<RavagerLegLeft>() || target.type == ModContent.NPCType<RavagerLegRight>()) && (proj.type == ModContent.ProjectileType<DukesDecapitatorProj>() || proj.type == ModContent.ProjectileType<DukesDecapitatorBubble>()))
+            if (proj.type == ModContent.ProjectileType<DukesDecapitatorProj>() || proj.type == ModContent.ProjectileType<DukesDecapitatorBubble>())
             {
-                modifiers.FinalDamage *= 0.1f;
+
+                if ((target.type == ModContent.NPCType<PlaguebringerGoliath>() || target.type == ModContent.NPCType<RavagerBody>() || target.type == ModContent.NPCType<RavagerClawLeft>() || target.type == ModContent.NPCType<RavagerClawRight>() 
+                  || target.type == ModContent.NPCType<RavagerHead>() ||target.type == ModContent.NPCType<RavagerHead2>() || target.type == ModContent.NPCType<RavagerLegLeft>() || target.type == ModContent.NPCType<RavagerLegRight>()))
+                {
+                    modifiers.FinalDamage *= 0.1f;
+                }
+
+                if (InfernalCrossmod.SOTS.Loaded)
+                {
+                    if ((target.type == InfernalCrossmod.SOTS.Mod.Find<ModNPC>("Lux").Type))
+                    {
+                        modifiers.FinalDamage *= 0.5f;
+                    }
+                }
             }
         }
 

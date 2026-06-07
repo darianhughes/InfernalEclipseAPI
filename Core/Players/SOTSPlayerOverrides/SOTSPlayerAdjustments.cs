@@ -160,5 +160,13 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
                 mp.incubatorTextTime = 60 * 60;
             }
         }
+        public override void OnRespawn()
+        {
+            if (InfernalConfig.Instance.MaxVoidOnRespawn)
+            {
+                VoidPlayer voidPlayer = Player.GetModPlayer<VoidPlayer>();
+                voidPlayer.voidMeter = voidPlayer.voidMeterMax2;
+            }
+        }
     }
 }

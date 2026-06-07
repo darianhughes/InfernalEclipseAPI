@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernumMode.Core.GlobalInstances.Systems;
 using Terraria.ModLoader;
 
@@ -59,7 +60,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
                 modifiers.SourceDamage *= 1.35f;
             }
         }
+        */
 
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.ModNPC.Name.Contains("WulfrumMothership"))
+                GlobalBossZen.ApplyBossEffects(npc);
+
+            return base.PreAI(npc);
+        }
+
+        /*
         public override void PostAI(NPC npc)
         {
             if (WorldSaveSystem.InfernumModeEnabled)

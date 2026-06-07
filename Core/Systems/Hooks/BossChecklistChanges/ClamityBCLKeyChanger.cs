@@ -1,9 +1,14 @@
 ﻿using System.Reflection;
+using Clamity;
+using Clamity.Content.Biomes.FrozenHell.Items;
+using InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
 {
+    [JITWhenModsEnabled("Clamity")]
+    [ExtendsFromMod("Clamity")]
     public class ClamityBCLKeyChanger : ModSystem 
     {
         private ILHook ilHook;
@@ -28,6 +33,14 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
         {
             ilHook?.Dispose();
             ilHook = null;
+        }
+
+        public override void PostSetupContent()
+        {
+            if (InfernalCrossmod.SOTS.Loaded)
+            {
+                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<FrozenHellstoneTile>(), 11350, 1.35, () => ClamitySystem.downedWallOfBronze);
+            }
         }
 
         private void EditPyrogenKey(ILContext il)

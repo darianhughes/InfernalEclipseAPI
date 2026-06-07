@@ -42,4 +42,5 @@ ItemDescriptions: {
 		'''
 	MagmaSeersMask: 提高20%鞭子攻速
 	MasterMarksmansScouter: ""
+	// AssassinsGuard: ""
 }

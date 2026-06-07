@@ -20,6 +20,7 @@ using InfernumMode.Content.Items.Misc;
 using Terraria;
 using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
 using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Content.Items.Accessories;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -106,6 +107,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<MysteriousDiary>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new SoltanPlayerCondition(), ModContent.ItemType<LoreDylan>()));
+
+                itemLoot.Add(ItemDropRule.ByCondition(new DylanPlayerCondition(), ModContent.ItemType<SoltanBullyingSlip>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new CheesePlayerCondition(), ModContent.ItemType<DeathWhistle>()));
 
@@ -315,7 +318,25 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
-                if (player.active && player.name == "Bloxxer")
+                if (player.active && (player.name == "Bloxxer" || player.name == "Dylan"))
+                    return true;
+            }
+            return false;
+        }
+
+        public bool CanShowItemDropInUI() => false;
+        public string GetConditionDescription() => "A certain person must be present...";
+    }
+
+    public class DylanPlayerCondition : IItemDropRuleCondition
+    {
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            // Loop through all players in the world
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.active && player.name == "Dylan")
                     return true;
             }
             return false;
