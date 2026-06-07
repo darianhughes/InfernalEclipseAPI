@@ -9,20 +9,20 @@ Items: {
 	}
 
 	WulfrumBullet: {
-		// DisplayName: Wulfrum Scrap Bullet
-		/* Tooltip:
+		DisplayName: Wulfrum Scrap Bullet
+		Tooltip:
 			'''
-			Radiates wulfrum energy beams with a slight homing ability
-			"Last Hamon, son."
-			''' */
+			Излучает вульфрумовые энергетические лучи с небольшой самонаводкой
+			"Последний хамон, сынок."
+			'''
 	}
 
 	SoulBullet: {
-		// DisplayName: Soul Bullet
-		/* Tooltip:
+		DisplayName: Пуля души
+		Tooltip:
 			'''
-			Homes in on the nearest enemy, deals half damage however pierces three times with decreasing damage each hit
-			"Made by pressing miserable souls into shell casings, may attract the same pitiful souls."
-			''' */
+			Самонаводится на ближайшего врага, наносит половину урона, но пронзает три цели, с уменьшением урона при каждом попадании
+			"Создана путём вдавливания несчастных душ в гильзы, может привлекать такие же жалкие души."
+			'''
 	}
 }

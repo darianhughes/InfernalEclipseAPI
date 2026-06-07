@@ -14,21 +14,21 @@ Items: {
 		Снаряды электронных инструментов также при первом попадании вызывают цепную молнию, наносящую 10% урона ближайшему врагу
 		Увеличивает максимальный запас вдохновения на 5
 		'''
-	/* LunateCharm.Tooltip:
+	LunateCharm.Tooltip:
 		'''
-		Negates non-radiant damage penalties caused by healer armor
-		Removes the radiant damage penalty from the [cbuff:InfernalEclipseAPI/BrokenOath] debuff
-		''' */
-	/* SealedContract.Tooltip:
+		Игнорирует штраф к не-лучезарному урону от брони целителя
+		Убирает штраф к лучезарному урону от дебаффа [cbuff:InfernalEclipseAPI/BrokenOath]
 		'''
-		Maximum life increased by 60
-		Healing spells grant an additional 5 life
-		Negates non-radiant damage penalties caused by healer armor
-		Removes the radiant damage penalty from the [cbuff:InfernalEclipseAPI/BrokenOath] debuff
-		Gaining soul essence with radiant scythes grant a stack of aggregate charge
-		Radiant damage from scythe projectiles or non-scythe weapons consume aggregate charge to grant soul essence
-		"Seal the deal!"
-		''' */
+	SealedContract.Tooltip:
+		'''
+		Увеличивает максимальный запас здоровья на 60
+		Исцеляющие заклинания восстанавливают дополнительно 5 ед. здоровья
+		Игнорирует штраф к не-лучезарному урону от брони целителя
+		Убирает штраф к лучезарному урону от дебаффа [cbuff:InfernalEclipseAPI/BrokenOath]
+		Получение эссенции души с помощью лучезарных кос вам запас совокупного заряда
+		Лучезарный урон от снарядов кос или оружия, не являющегося косой расходует совокупный заряд и даёт эссенцию души
+		"Заключим сделку!"
+		'''
 }
 
 ItemDescriptions: {
