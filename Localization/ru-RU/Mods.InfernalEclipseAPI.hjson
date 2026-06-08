@@ -23,19 +23,19 @@ UI: {
 	MInfernum: Рагнарёк
 	WarningSouls:
 		'''
-		ПРЕДУПРЕЖДЕНИЕ: Fargo's Souls НЕ совместим с Infernal Eclipse of Ragnarok!
-		Включение режима Инфернума или режима Рагнарёка отключит Режим Вечности, так как они несовместимы!
+		ПРЕДУПРЕЖДЕНИЕ: Fargo's Souls НЕСОВМЕСТИМ с Infernal Eclipse of Ragnarok!
+		Включение режимов Инфернум или Рагнарёк отключает режим Вечности, так как они несовместимы!
 		Пожалуйста, не сообщайте о проблемах с балансом или ошибках, если играете с Fargo's Souls.
 		'''
 	WarningForTheWorthyON:
 		'''
-		ПРЕДУПРЕЖДЕНИЕ: генерация «For the Worthy» НЕ совместима с Infernal Eclipse of Ragnarok!
+		ПРЕДУПРЕЖДЕНИЕ: Генерация «For the Worthy» НЕСОВМЕСТИМА с Infernal Eclipse of Ragnarok!
 		Обе сложности — Инфернум и Рагнарёк — будут отключены в этой генерации!
 		Пожалуйста, не сообщайте о проблемах с балансом или ошибках, если играете в генерации «For The Worthy».
 		'''
 	WarningForTheWorthyOFF:
 		'''
-		ПРЕДУПРЕЖДЕНИЕ: генерация «For the Worthy» НЕ совместима с Infernal Eclipse of Ragnarok!
+		ПРЕДУПРЕЖДЕНИЕ: Генерация «For the Worthy» НЕСОВМЕСТИМА с Infernal Eclipse of Ragnarok!
 		Пожалуйста, не сообщайте о проблемах с балансом или ошибках, если играете в генерации «For The Worthy».
 		'''
 	/* NoticeHomewardRagnarok:
@@ -64,7 +64,7 @@ DifficultyUI: {
 		'''
 	ExpandedDescription:
 		'''
-		[c/B32E81:Гармонично объединяет как режим Смерть, так и режим Инфернум.]
+		[c/B32E81:Гармонично объединяет режимы Смерть и Инфернум.]
 		[c/B32E81:Враги и боссы обладают большими характеристиками и более агрессивным масштабированием в мультиплеере.]
 		[c/FF0055:Сможешь ли ты осилить «Infernal Eclipse of Ragnarok»?]
 		'''
@@ -116,7 +116,7 @@ ItemTooltip: {
 	OmniShield: -Омни щит-
 	Playtester: - Предмет тестировщика -
 	Contributor: - Предмет участника -
-	// NamelessDowned: You must pass the test
+	NamelessDowned: Вы должны пройти испытание
 	// DisabledBossRush: The effects will not work in Boss Rush
 	SBeamUsage: Удерживайте ЛКМ, чтобы зарядить луч, наносящий мифический магический урон
 	NBeamUsage: Удерживайте ЛКМ, чтобы выпустить гига-луч туманности, наносящий мифический магический урон
@@ -128,7 +128,7 @@ ItemTooltip: {
 	ScytheThrow: Нажмите ПКМ, чтобы бросить косу, которая изогнётся при возвращении
 	ThorsHammerPro: Накладывает дебафф [cbuff:Electrified] на 3 секунды.
 	BountifulHarvest: Стреляет пронзающими жалами в чередующейся последовательности
-	// TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
+	TwoAlchs: Counts as 2 alcohols for [cbuff:CalamityMod/AlcoholPoisoning]
 	// HornScale: Heal amount scales with progression
 
 	GrapeBeer: {
@@ -137,12 +137,12 @@ ItemTooltip: {
 		// SOTSAdditional: Disables effects of Icosahedrons
 	}
 
-	// Calculator: Reduces summon damage by 20%
-	/* Wiesnbrau:
+	Calculator: Снижает урон призывателя на 20%
+	Wiesnbrau:
 		'''
-		Inflicts [cbuff:PotionSickness]
-		{$Mods.CalamityMod.Common.AlcoholWarning}
-		''' */
+		Накладывает дебафф [cbuff:PotionSickness]
+		{$CalamityMod.Common.AlcoholWarning}
+		'''
 
 	SoulAnchor: {
 		OrigTooltip1: Привязывает вашу душу и здоровье к текущей позиции
@@ -162,14 +162,14 @@ ItemTooltip: {
 	WhiteDwarfSetBonus:
 		'''
 
-		Изумрудные вспышки появляются с перезарядкой 2 секунды
+		Изумрудные вспышки имеют 2 секундную перезарядку
 		'''
 	PhoenixStaff:
 		'''
-		Нажмите ПКМ, чтобы выпустить поток поток пламени, накладывающий дебафф «{$ThoriumMod.Buffs.HolyGlare.DisplayName}»
+		Нажмите ПКМ, чтобы выпустить поток поток пламени, накладывающий дебафф [cbuff:ThoriumMod/HolyGlare]
 		Враги, подвергшиеся этому дебаффу, получают на 15% больше урона от всех источников
 		'''
-	HolyGlare: Враги, атакованные косой, подвергаются дебаффу «{$ThoriumMod.Buffs.HolyGlare.DisplayName}» и получают на 15% больше урона от всех источников
+	HolyGlare: Враги, атакованные косой, подвергаются дебаффу [cbuff:ThoriumMod/HolyGlare] и получают на 15% больше урона от всех источников
 	SandstonePortalDeviceInfo:
 		'''
 		Переносит вас в Затерянный Колизей
@@ -195,27 +195,27 @@ ItemTooltip: {
 		'''
 
 	PolishedCoin: {
-		// Orig: Critical strikes have a 50% chance to deal 30 more damage
-		// Nerf: Critical strikes have a 50% chance to deal 15 more damage
+		Orig: Критические удары с 50% шансом нанесут на 30 ед. больше урона
+		Nerf: Критические удары с 50% шансом нанесут на 15 ед. больше урона
 	}
 
-	/* Desecar:
+	Desecar:
 		'''
-		Grants 1 defense for every 8 empty inventory slots
-		'Less is more'
-		''' */
-	/* Stekpla:
+		Увеличивает защиту на 1 ед. за каждые 8 пустых слота вашего инвентаря
+		«Чем меньше, тем больше»
 		'''
-		Increases critical strike chance by 1% for every 8 full inventory slots
-		'More is more'
-		''' */
-	// Dasuver: Increases critical strike chance by 3%
+	Stekpla:
+		'''
+		Увеличивает шанс критического удара на 1% за каждые 8 занятых слота вашего инвентаря
+		«Чем больше, тем больше»
+		'''
+	Dasuver: Увеличивает шанс критического удара на 3%
 	SubspaceLocket:
 		'''
 		Призывает подпространственного слугу
 		Слуга использует предмет из вашего последнего слота инвентаря за вас
-		Снижает итоговый наносимый урон на 50%
-		Уменьшает урон истинного ближнего боя на 15%
+		Снижает итоговый наносимый урон в 1,33 раза
+		Снижает урон истинного ближнего боя на 15%
 		Увеличивает максимальный запас пустоты на 50, но снижает эффективность лечебных зелий на 40
 		'''
 	/* SubspaceLocketThorium:
@@ -263,8 +263,8 @@ ItemTooltip: {
 		Повторное получение того же баффа увеличивает его длительность вместо сброса таймера, вплоть до двойной длительности
 		'''
 	MutantSkeletron: "[IEoR]: Предмет нельзя использовать, пока Скелетрон не будет побеждён хотя бы один раз. Используйте для этого предмет призыва из Infernum."
-	// VibePotion: Increases attack speed by 10% while not moving and by 5% while moving
-	// BloodPotion: Increases mining speed by 15%
+	VibePotion: Увеличивает скорость атаки на 10%, когда вы неподвижны, и на 5%, когда вы движетесь
+	BloodPotion: Увеличивает скорость копания на 15%
 	// FrenzyPotion: Increases all attack speeds by 5%
 	/* FlowerCrown:
 		'''
@@ -381,30 +381,30 @@ ItemTooltip: {
 		// BrillianceFlipped: Increases summon damage by 2% while in the inventory, up to 8% total
 	}
 
-	/* RubyRing:
+	RubyRing:
 		'''
-		Killed enemies have a 50% chance to drop additional hearts
-		This chance increases to 100% with critical strikes
-		''' */
-	/* DiamondInvertedRing:
+		При убийстве врага с 50% шансом с него выпадут дополнительные сердца
+		Этот шанс увеличивается до 100% при критических попаданиях
 		'''
-		Increase defense based on a third of damage, then decreases damage by defense buff
-		Increases defense by {0}
-		Decreases damage by {1}%
-		''' */
+	DiamondInvertedRing:
+		'''
+		Увеличивает защиту в зависимости от урона, а затем снижает ваш урон на треть от полученного бонуса к защите
+		Увеличивает защиту на {0}
+		Снижает урон на {1}%
+		'''
 
 	ChallengerRubyHover: {
-		/* Orig:
+		Orig:
 			'''
-			> Killed enemies have a 50% chance to drop additional hearts
-			> This chance increases to 100% with critical strikes
-			> Collecting hearts lengthens the duration of active buffs, up to double the original duration
-			''' */
-		/* Nerf:
+			> При убийстве врага с 50% шансом с него выпадут дополнительные сердца
+			> Этот шанс увеличивается до 100% при критических попаданиях
+			> Подбор сердец увеличивает длительность активных баффов вплоть до двух раз от изначальной
 			'''
-			> Killed enemies have a 50% chance to drop additional hearts
-			> This chance increases to 100% with critical strikes
-			''' */
+		Nerf:
+			'''
+			> При убийстве врага с 50% шансом с него выпадут дополнительные сердца
+			> Этот шанс увеличивается до 100% при критических попаданиях
+			'''
 	}
 
 	ChallengerInvertedRingHover: {
@@ -438,8 +438,8 @@ ItemTooltip: {
 	}
 
 	ShoeIce: {
-		// Orig: 40% increased movement speed
-		// Nerf: 15% increased movement speed
+		Orig: Увеличивает скорость передвижения на 40%
+		Nerf: Увеличивает скорость передвижения на 15%
 	}
 
 	// SteamkeeperWatch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
@@ -468,9 +468,9 @@ ItemTooltip: {
 		// Replace: Increases void drain by 36 while active
 	}
 
-	// DoesNotStack: Does not stack with downgrades
+	DoesNotStack: Не суммируется с предыдущими улучшениями
 	// NoBoss: Does not work while a boss is alive
-	// Disabled: "[DISABLED] "
+	Disabled: "[ОТКЛЮЧЕНО] "
 	// DauntlessBuff: +2% radiant damage
 	DedTo: - Посвящено: {0} -
 
@@ -492,7 +492,7 @@ ItemTooltip: {
 		cheese: cheesenuggets
 		Puzzles: Mr. Puzzles
 		cat: StarlightCat
-		// Arkangel: Arkangel
+		Arkangel: Arkangel
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -736,7 +736,7 @@ ItemTooltip: {
 		AscendantInsignia:
 			'''
 			Увеличивает скорость передвижения и прыжка на 10%, а ускорение — в 1.1 раза
-			При нажатии клавиши '{$CalamityMod.Keybinds.AscendantInsigniaHotKey.DisplayName}' даёт силу восхождения, позволяющую бесконечно летать в течение 4 секунд
+			При нажатии клавиши '{$CalamityMod.Keybinds.AscendantInsigniaHotKey.DisplayName}' даёт силу восхождения, позволяющая бесконечно летать в течение 4 секунд
 			Восхождение имеет 40 секунд перезарядки
 			'''
 
@@ -832,7 +832,7 @@ ItemTooltip: {
 		ND: Божества
 		Mars: Марса
 		EoL: Императрицы света
-		// Yharim: Yharim's
+		Yharim: Ярима
 	}
 
 	/* PutridRelic:
@@ -887,29 +887,29 @@ ItemTooltip: {
 	NoxusRelic: Так ты получил этот предмет нелегально или у тебя действительно установлен мой супер неизвестный мод, которого больше нет в мастерской? В любом случае, поздравляю, наверное.
 	DeviRelic:
 		'''
-		Младшая из трёх сиблингов.
+		Младшая из троицы.
 		Довольно хаотичная, особенно в начале игры, однако ты уверенно одолел её.
 		Наслаждайся улучшенной добычей и приростом силы, пока есть возможность...
 		'''
 	AbomRelic:
 		'''
-		Средний из трёх сиблингов.
+		Средний из троицы.
 		Прошло немало времени с битвы с их сестрой, но это сражение было на уровень выше.
 		Достаточно ли ты храбр, чтобы бросить вызов старшему из них?
 		'''
 	MutantRelic:
 		'''
-		Старший из трёх сиблингов, а также сильнейший.
+		Старший из троицы, а также сильнейший.
 		Ты победил одного из самых сложных модовых боссов, и теперь, когда вечность у тебя в руках, ничто не остановит тебя.
 		Что же теперь ты будешь искать?
 		'''
 	EridanusRelic:
 		'''
 		Ты почти достиг финала.
-		Армия богоискателя - единственное, что стоит между тобой и вечностью.
+		Армия богоискателя — единственное, что стоит между тобой и вечностью.
 		Используй новую станцию крафта по максимуму...
 		'''
-	AstralCommunicatorInfernum1: Призывает Астрагельдона в Астральной инфекции
+	AstralCommunicatorInfernum1: Призывает Астрагельдона в астральной инфекции
 	AstralCommunicatorInfernum2: Межпространственный слизень всё ещё голоден...
 }
 
@@ -929,7 +929,7 @@ Lore: {
 		'''
 		Перелистнув на первую страницу, вы не увидите ничего, кроме нескольких слов.
 
-		"Кто я чёрт возьми такой, что мне всё ещё дарована жизнь?"
+		“Кто я чёрт возьми такой, что мне всё ещё дарована жизнь?”
 
 		Остальные страницы пустые...
 
@@ -939,7 +939,7 @@ Lore: {
 		'''
 }
 
-LegendaryTooltip.Base: Это оружие может становиться мощнее по мере того, как вы побеждаете сильных противников.
+LegendaryTooltip.Base: Это оружие может становиться мощнее по мере того, как вы побеждаете сильных противников
 
 Items: {
 	SandstonePortalDevice: {
@@ -1039,22 +1039,29 @@ Items: {
 			'''
 			Увеличивает шанс критического удара на 15%, не складывается с предыдущими улучшениями
 			Критические удары наносят на 40 ед. больше урона, вызывают вспышку разрушительных искр и могут подрывать врагов, нанося 100% урона
+			Бонус к урону начинается с 15 ед. и обратно пропорционален скорости использования предмета
+			Текущий бонус {0} ед.
 			Критические удары крадут здоровье, восстанавливают пустоту, ману и возвращают вдохновение
-			Вампиризм и восстановление вдохновения имеет секунду перезарядки
+			Нажатие клавиши '{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}' наделит вас гарантированным критическим попаданием на 10 секунд
+			В течение минуты после этого, вы наносите на 10% меньше урона
 			Даёт невосприимчивость к дебаффам [cbuff:Poisoned] и [cbuff:Bleeding], а также ночное зрение
 			'''
 		ThoriumTooltip:
 			'''
 			Увеличивает шанс критического удара на 15%, не складывается с предыдущими улучшениями
 			Критические удары наносят на 40 ед. больше урона, вызывают вспышку разрушительных искр и могут подрывать врагов, нанося 100% урона
-			Критические удары крадут здоровье, восстанавливают пустоту и ману
-			Вампиризм имеет полсекунды перезарядки
+			Бонус к урону начинается с 15 ед. и обратно пропорционален скорости использования предмета
+			Текущий бонус {0} ед.
+			Нажатие клавиши '{$ThoriumMod.Keybinds.AccessoryAbility.DisplayName}' наделит вас гарантированным критическим попаданием на 10 секунд
+			В течение минуты после этого, вы наносите на 10% меньше урона
 			Даёт невосприимчивость к дебаффам [cbuff:Poisoned] и [cbuff:Bleeding], а также ночное зрение
 			'''
 		DefaultTooltip:
 			'''
 			Увеличивает шанс критического удара на 15%, не складывается с предыдущими улучшениями
 			Критические удары наносят на 40 ед. больше урона и могут подрывать врагов, нанося 100% урона
+			Бонус к урону начинается с 15 ед. и обратно пропорционален скорости использования предмета
+			Текущий бонус {0} ед.
 			Критические удары крадут здоровье, восстанавливают пустоту и ману
 			Даёт невосприимчивость к дебаффам [cbuff:Poisoned] и [cbuff:Bleeding], а также ночное зрение
 			'''
@@ -1133,7 +1140,7 @@ Items: {
 			Tooltip: ""
 			/* Lore:
 				'''
-				One of Draedon's experiments. 
+				Один из экспериментов Дрэйдона. 
 				This creature is one of his attempts to understand the inherent divinity that is present is all slimes, 
 				no matter how minuscule it might be.
 				He did manage to successfully draw out the latent energy, but somehow in the process, 
@@ -1337,7 +1344,7 @@ Items: {
 		}
 
 		LoreLepus: {
-			// DisplayName: Lepus
+			DisplayName: Лепус
 			// Tooltip: ""
 			/* Lore:
 				'''
@@ -1362,7 +1369,7 @@ Items: {
 		}
 
 		LoreOcram: {
-			// DisplayName: Ocram
+			DisplayName: Окрам
 			// Tooltip: ""
 			/* Lore:
 				'''
@@ -1411,22 +1418,22 @@ Items: {
 
 	GrandThunderBirdRelic: {
 		DisplayName: Инфернальная реликвия Великой громовой птицы
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BurriedChampionRelic: {
 		DisplayName: Инфернальная реликвия Погребённого чемпиона
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CorpseBloomRelic: {
 		DisplayName: Инфернальная реликвия Трупоцвета
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	QueenJellyfishRelic: {
 		DisplayName: Инфернальная реликвия Королевы медуз
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ProphecyMusicBox: {
@@ -1445,112 +1452,112 @@ Items: {
 
 	AstrageldonRelic: {
 		DisplayName: Инфернальная реликвия Астрагельдона
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AvatarOfEmptinessRelic: {
 		DisplayName: Инфернальная реликвия Воплощения пустоты
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GoozmaRelic: {
 		DisplayName: Инфернальная реликвия Гузмы
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NamelessDeityRelic: {
 		DisplayName: Инфернальная реликвия Безымянного божества
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LepusRelic: {
 		DisplayName: Инфернальная реликвия Лепуса
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	OcramRelic: {
 		DisplayName: Инфернальная реликвия Окрама
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TurkorTheUngratefulRelic: {
 		DisplayName: Инфернальная реликвия Туркора Неблагодарного
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AdvisorRelic: {
 		DisplayName: Инфернальная реликвия Аналитика
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ExcavatorRelic: {
 		DisplayName: Инфернальная реликвия Экскаватора
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GlowmothRelic: {
 		DisplayName: Инфернальная реликвия Светомотылька
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PolarisRelic: {
 		DisplayName: Инфернальная реликвия Поляриса
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PutridPinkyRelic: {
 		DisplayName: Инфернальная реликвия Гнилостного пинки
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	SubspaceSerpentRelic: {
 		DisplayName: Инфернальная реликвия Подпространственного змея
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BoreanStriderRelic: {
 		DisplayName: Инфернальная реликвия Борейского шагателя
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	FallenBeholderRelic: {
 		DisplayName: Инфернальная реликвия Падшего созерцателя
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ForgottenOneRelic: {
 		DisplayName: Инфернальная реликвия Забытого
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	GraniteEnergyStormRelic: {
 		DisplayName: Инфернальная реликвия Гранитного энергетического шторма
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LichRelic: {
 		DisplayName: Инфернальная реликвия Лича
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PatchWerkRelic: {
 		DisplayName: Инфернальная реликвия Лоскутика
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PrimordialsRelic: {
 		DisplayName: Инфернальная реликвия Первородных
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	StarScouterRelic: {
 		DisplayName: Инфернальная реликвия Звёздного разведчика
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	ViscountRelic: {
 		DisplayName: Инфернальная реликвия Виконта
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	Lycanroc: {
@@ -1595,7 +1602,7 @@ Items: {
 	}
 
 	CelestialIllumination: {
-		// DisplayName: Celestial Illumination
+		DisplayName: Неземное озарение
 		// Tooltip: ""
 
 		Progression: {
@@ -1647,107 +1654,107 @@ Items: {
 
 	ClamitasRelic: {
 		DisplayName: Инфернальная реликвия Каламидии
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PyrogenRelic: {
 		DisplayName: Инфернальная реликвия Пирогена
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	WallofBronzeRelic: {
 		DisplayName: Инфернальная реликвия Стены бронзы
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NoxusRelic: {
 		DisplayName: Инфернальная реликвия Ноксуса
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	AbominationnRelic: {
 		DisplayName: Инфернальная реликвия Мерзсотти
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	BanishedBaronRelic: {
 		DisplayName: Инфернальная реликвия Изгнанного барона
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CursedCoffinRelic: {
 		DisplayName: Инфернальная реликвия Проклятого саркофага
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DeathChampionRelic: {
 		DisplayName: Инфернальная реликвия Чемпиона смерти
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DevianttRelic: {
 		DisplayName: Инфернальная реликвия Девиантт
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	EarthChampionRelic: {
 		DisplayName: Инфернальная реликвия Чемпиона планеты
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	EridanusRelic: {
 		DisplayName: Инфернальная реликвия Эридана, чемпиона космоса
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LifeChampionRelic: {
 		DisplayName: Инфернальная реликвия Чемпиона жизни
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LifelightRelic: {
 		DisplayName: Инфернальная реликвия Света жизни
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	MutantRelic: {
 		DisplayName: Инфернальная реликвия Мутанта
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	NatureChampionRelic: {
 		DisplayName: Инфернальная реликвия Чемпиона природы
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	SpiritChampionRelic: {
 		DisplayName: Инфернальная реликвия Чемпиона духа
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TerraChampionRelic: {
 		DisplayName: Инфернальная реликвия Чемпиона земли
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	TrojanSquirrelRelic: {
 		DisplayName: Инфернальная реликвия Троянской белки
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	WillChampionRelic: {
 		DisplayName: Инфернальная реликвия Чемпиона воли
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	LuxRelic: {
 		DisplayName: Инфернальная реликвия Люкс
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	PharohsCurseRelic: {
 		DisplayName: Инфернальная реликвия Проклятия фараона
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	CatalyzedCrystal: {
@@ -1884,15 +1891,15 @@ Items: {
 			Увеличивает урон на 18%
 			Увеличивает урон от стрел 5%
 			Увеличивает скорость передвижения на 10%
-			Увеличивает регенерацию здоровья на 3,5 ОЗ/сек и максимальное количество миньонов на 2
+			Увеличивает регенерацию здоровья на 3,5 ед./сек и максимальное количество миньонов на 2
 			Увеличивает отбрасывание призывателя
 			Увеличивает урон на 4 ед.
 			Увеличивает пробивание брони на 5
 			Увеличивает шанс критического удара на 4%
 			Увеличивает количество выпадающих монет и магический урон.
-			Днём увеличивает регенерацию здоровья на 2 ОЗ/сек
+			Днём увеличивает регенерацию здоровья на 2 ед./сек
 			Ночью увеличивает защиту на 20
-			Во время затмения увеличивает регенерацию здоровья на 1 ОЗ/сек и защиту на 10 ед.
+			Во время затмения увеличивает регенерацию здоровья на 1 ед./сек и защиту на 10 ед.
 			Критические удары от стрел ненадолго накладывают дебафф [cbuff:CalamityMod/Shadowflame]
 			Увеличивает максимальное время полёта на 20%
 			'За пламенем и искрами, если заглянуть достаточно глубоко, можно увидеть своё прошлое и будущее'
@@ -1902,7 +1909,7 @@ Items: {
 
 	InfernalTerraBladeRelic: {
 		DisplayName: Инфернальная реликвия Терра-клинка
-		Tooltip: ""
+		Tooltip: "{0}"
 	}
 
 	DemonicTome: {
@@ -1932,12 +1939,12 @@ Items: {
 	}
 
 	PrimordialOrchid: {
-		DisplayName: Первородная орхидея
-		Tooltip: Орхидея, пропитанная первородным светом, растущая в Вечном саду
+		DisplayName: Первозданная орхидея
+		Tooltip: Орхидея, пропитанная первозданным светом, растущая в Вечном саду
 	}
 
 	TinkerersRepairBlueprints: {
-		DisplayName: Чертежи ремонта изобретателя
+		DisplayName: Чертежи ремонта мастерской
 		Tooltip:
 			'''
 			Пока я был связан, другие гоблины, похоже, потеряли мою мастерскую,
@@ -2023,53 +2030,54 @@ Items: {
 		Tooltip:
 			'''
 			Выстреливает острыми экзо-дисками в сторону курсора, которые возвращаются к игроку
-			Это оружие и его снаряды могут вырубать деревья
-			Нажмите ПКМ, чтобы использовать оружие, не вырубая деревья
+			Это оружие и его снаряды действуют как бензопила
+			Нажмите ПКМ, чтобы использовать без рубки деревьев
 			'''
 	}
 
 	MaulerRelic: {
-		// DisplayName: Infernal Mauler Relic
+		DisplayName: Инфернальная реликвия мучителя
 		// Tooltip: "{0}"
 	}
 
 	DreamEssence: {
-		// DisplayName: Dream Essence
-		// Tooltip: "'Twilight of the Gods'"
+		DisplayName: Эссенция грёз
+		Tooltip: "'Сумерки богов'"
 	}
 
 	TyrantYharimsUltisword: {
-		// DisplayName: Tyrant's Penetrator
-		/* Tooltip:
+		DisplayName: Пенетратор тирана
+		Tooltip:
 			'''
-			Throw a auric greatsword that impales, immolates, and slows enemies
-			Up to five blades can impale an enemy at a time, with further hits launching the previous impaled blades
-			Press <right> to enter a stance where you can use <left> to perform a colossal, devastating slash
-			While in the stance, you gain life and flight time regeneration and your dashes have a shorter cooldown
-			The devastating slash must recharge after being used
-			Striking an impaled enemy with the devastating slash launches all blades and readies another slash
-			The final enemy hit with a devastating slash has a death mark applied to them
-			When you exit the stance, the death mark explodes for massive damage
-			'The reward of becoming a godseeker...'
-			''' */
+			Бросает ауритовый огромный меч, пронзающий, поджигающий и замедляющий врагов
+			В одного врага может одновременно вонзиться до пяти клинков
+			Последующие попадания сверх этого числа выбивают ранее вонзённые клинки
+			Нажмите <right>, чтобы войти в стойку, в которой нажатие <left> позволяет совершить колоссальный, сокрушительный взмах
+			В этой стойке увеличивается регенерация здоровья и время полёта, а перезарядка рывков сокращается
+			Сокрушительному взмаху требуется перезарядка после использования
+			Удар взмахом по пронзённому врагу запускает все клинки и мгновенно подготавливает следующий взмах
+			На последнего врага, поражённого сокрушительным взмахом, накладывается метка смерти
+			При выходе из стойки метка смерти взрывается, нанося колоссальный урон
+			'Наград за становление богоискателем...'
+			'''
 	}
 
 	BirthdayCake: {
-		// DisplayName: Birthday Cake
+		DisplayName: Праздничный торт
 		// Tooltip: ""
-		/* DynamicTooltip:
+		DynamicTooltip:
 			'''
-			{0} improvements to all stats
-			Instantly activates adrenaline mode & inflicts [cbuff:PotionSickness]
+			{0} увеличивает все характеристики
+			Активирует адреналин и накладывает дебафф [cbuff:PotionSickness]
 			Can not be consumed when a boss is alive
-			'Happy Birthday!'
-			''' */
-		// Stellar: Stellar
-		// Major: Major
+			'С днём рождения!'
+			'''
+		Stellar: Звёздно
+		Major: Значительно
 	}
 
 	ShatteredSubcommunity: {
-		// DisplayName: Shattered Subcommunity
+		DisplayName: Расколотое субобщество
 		/* Tooltip:
 			'''
 			'Ruined by toxicity, it still contains most of the part of The (Calamity) Community...'
@@ -2080,7 +2088,7 @@ Items: {
 	}
 
 	// SoltanBullyingSlip.DisplayName: Dylan's Anti-Soltan Chipnote
-	// MysteriousDiary.DisplayName: Mysterious Diary
+	MysteriousDiary.DisplayName: Таинственный дневник
 
 	AngelDyeItem: {
 		// DisplayName: Angel Dye
@@ -2118,8 +2126,8 @@ Items: {
 	}
 
 	FinalFractalMusicBox: {
-		// DisplayName: Music Box (Terra Blade)
-		// Tooltip: Plays 'FINAL FRACTAL' by ENNWAY
+		Tooltip: Проигрывает «FINAL FRACTAL» за авторством ENNWAY
+		DisplayName: Музыкальная шкатулка (Терра-клинок)
 	}
 
 	CragmawMireRelic: {
@@ -2128,26 +2136,26 @@ Items: {
 	}
 
 	IllusionistRelic: {
-		// DisplayName: Infernal Illusionist Relic
+		DisplayName: Инфернальная реликвия Иллюзиониста
 		// Tooltip: "{0}"
 	}
 
 	Catlight: {
 		// DisplayName: Catlight
-		/* Tooltip:
+		Tooltip:
 			'''
-			'Are bosses too hard? Then buy Catlight Industries' Catlight!'
-			[c/7C0A02:Buy our product now]
-			''' */
+			'Боссы слишком сложные? Тогда покупайте Catlight от Catlight Industries!'
+			[c/7C0A02:Покупай прямо сейчас]
+			'''
 	}
 
 	AlloyofEden: {
-		// DisplayName: Alloy of Eden
-		// Tooltip: An alloy composed of the strongest materials from multiple universes
+		DisplayName: Сплав Эдена
+		Tooltip: Сплав состоящий из самых прочных материалов из множества вселенных
 	}
 
 	SolynsSpellbook: {
-		// DisplayName: Solyn's Spellbook
+		DisplayName: Книга заклинаний Солин
 		/* Tooltip:
 			'''
 			A book that appeared in Solyn's old tent after the defeat of the Nameless Deity and completion of her bookshelf
@@ -2168,12 +2176,13 @@ Items: {
 	}
 
 	WulfrumMothershipRelic: {
-		// DisplayName: Infernal Wulfrum Mothership Relic
+		DisplayName: Инфернальная реликвия Wulfrum Mothership
 		// Tooltip: "{0}"
 	}
 
 	SoulDrivenHeadphonesEclipse: {
-		// DisplayName: Soul-Driven Headphones (Eclipse Edition)
+		DisplayName: Наушники с душеговорителями (Eclipse Edition)
+
 		/* Tooltip:
 			'''
 			Allows you to pick and play custom Infernal Eclipse of Ragnarok music, as well as some other unique themes
@@ -2227,7 +2236,7 @@ Items: {
 		TagDebuff: {
 			/* Skeletron:
 				'''
-				3 summon tag damage
+				2 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
 				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
 				''' */
@@ -2235,37 +2244,54 @@ Items: {
 				'''
 				4 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn2] debuff to incinerate foes
 				''' */
 			/* Mechs:
 				'''
 				5 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn3] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.05x damage and inflict [iebuff:OnFire3]
 				''' */
 			/* Plantera:
 				'''
-				6 summon tag damage
+				7 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn4] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.1x damage and inflict [iebuff:OnFire3]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
 				''' */
 			/* Golem:
 				'''
-				9 summon tag damage
+				10 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn5] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.15x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands]
 				''' */
 			/* MoonLord:
 				'''
 				12 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn6] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.2x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands2]
 				''' */
 			/* Full:
 				'''
-				15 summon tag damage
+				20 summon tag damage
 				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
-				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn7] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.35x damage and inflict both [iebuff:CalamityMod/BrimstoneFlames] and [iebuff:CalamityMod/StaticDischarge]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands2]
 				''' */
 		}
 
@@ -2337,6 +2363,7 @@ Projectiles: {
 	// EclipseHeadphonesProj.DisplayName: Eclipse Headphones Proj
 	// SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
 	// SplitFirebrandFlailProjectile.DisplayName: Split Firebrand Flail Projectile
+	// SplitFirebrandExplosion.DisplayName: Split Firebrand Explosion
 }
 
 DiaryTooltip:
@@ -2378,8 +2405,8 @@ Configs: {
 			MultiplayerAdjustments: Настройки и утилиты для мультиплеера
 			Main: Главное
 			Secret: Секретные настройки
-			// Music: Music Toggles
-			// CompatibilityChanges: Compatibility Changes
+			Music: Настройки музыки
+			CompatibilityChanges: Изменения совместимости
 		}
 
 		ThoriumBalanceChangess: {
@@ -2697,23 +2724,23 @@ Configs: {
 		// Tooltip: ""
 
 		Vanilla: {
-			// Label: Vanilla
-			// Tooltip: "'Boss 1' will play"
+			Tooltip: "Проигрывает «Boss 1»"
+			Label: Vanilla
 		}
 
 		WarMachine: {
-			// Label: War Machine
-			// Tooltip: The original theme will play
+			Label: War Machine
+			Tooltip: Проигрывает оригинальную тему
 		}
 
 		Thorium: {
-			// Label: Thorium
-			// Tooltip: "'Stronger Foe' will play"
+			Tooltip: "Проигрывает «Stronger Foe»"
+			Label: Thorium
 		}
 
 		Infernum: {
-			// Label: Infernum
-			// Tooltip: "'Misanthropic Encounters' will play"
+			Tooltip: "Проигрывает «Misanthropic Encounters»"
+			Label: Infernum
 		}
 	}
 
@@ -2750,7 +2777,7 @@ DamageClasses: {
 	MythicSummon.DisplayName: ед. мифического урона призывателя
 	// CatlightDamage.DisplayName: Catlight Damage
 	// LegendarySummon.DisplayName: legendary summon damage
-	// LegendarySummonMeleeSpeed.DisplayName: Legendary Summon Melee Speed
+	// LegendarySummonMeleeSpeed.DisplayName: legendary summon damage
 }
 
 InfernumIntegration: {
@@ -2871,7 +2898,7 @@ InfernumIntegration: {
 		'''
 	Mars:
 		'''
-		ОЗУ-ФИЦИРОВАННАЯ МАХИНАЦИЯ
+		ОЗУФИЦИРОВАННАЯ МАХИНАЦИЯ
 		ВГ-07 МАРС
 		'''
 	HypnosBoss:
@@ -2909,11 +2936,11 @@ InfernumIntegration: {
 		ВОПЛОЩЕНИЕ ХАОСА
 		МАЛЕНЬКИЙ ДЕМОНИЧЕСКИЙ СЕРЫЙ КОТ
 		'''
-	/* WulfrumMothership:
+	WulfrumMothership:
 		'''
-		Heart of the Wulfrum Machines
-		Wulfrum Mothership
-		''' */
+		СЕРДЦЕ ВУЛЬФРУМОВЫХ МАШИН
+		ВУЛЬФРУМОВАЯ МАТКА
+		'''
 }
 
 Buffs: {
@@ -2964,8 +2991,8 @@ Buffs: {
 	}
 
 	BrimstoneDesperation: {
-		// DisplayName: Calamitous Desperation
-		// Description: Energy of calamity flow though the air, disabling many of your abilites!
+		DisplayName: Бедственное отчаяние
+		Description: Энергия бедствия пронизывает воздух, отключая большинство ваших способностей!
 	}
 
 	SplitFirebrandTag1: {
@@ -2985,6 +3012,98 @@ Buffs: {
 			'''
 			Heat - 10 DPS
 			25% increased Heat debuff damage
+			''' */
+	}
+
+	SoulBurn2: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 15 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn3: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 25 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn4: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 40 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn5: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 75 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn6: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 140 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn7: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat and Electric - 140 DPS
+			25% increased Heat and Electric debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	HotHands: {
+		// DisplayName: Hot Hands
+		// Description: Whatever you're holding... You really wanna stop holding it
+		/* ItemTooltip:
+			'''
+			2% increased movement speed
+			Can be stacked up to 10 times
+			''' */
+	}
+
+	HotHands2: {
+		// DisplayName: Hot Hands
+		// Description: Whatever you're holding... You really wanna stop holding it
+		/* ItemTooltip:
+			'''
+			2% increased movement speed and 1% increased whip speed
+			Can be stacked up to 10 times
 			''' */
 	}
 
@@ -3042,7 +3161,7 @@ Tiles: {
 	GolemMusicBoxTile.MapEntry: Музыкальная шкатулка
 	ProphecyMusicBoxTile.MapEntry: Музыкальная шкатулка
 	MenuMusicBoxTile.MapEntry: Музыкальная шкатулка
-	// FinalFractalMusicBoxTile.MapEntry: Music Box
+	FinalFractalMusicBoxTile.MapEntry: Музыкальная шкатулка
 }
 
 NPCs: {
@@ -3081,10 +3200,11 @@ Misc: {
 	// SpellbookRecipeCondition: View a spellbook owned by Solyn
 }
 
-// HeadphonesText.1: Now playing {0}!
+// Cooldowns.FireWave: Fire Wave is on cooldown!
+HeadphonesText.1: Текущий трек: {0}!
 
 BossName: {
-	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
+	// НЕ ИЗМЕНЯТЬ НИЧЕГО - to any other symbol or the code that displays "Now playing X" won't work
 	// TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
 	// BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
 	// DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)

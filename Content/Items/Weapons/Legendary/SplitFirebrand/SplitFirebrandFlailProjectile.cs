@@ -1,16 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using InfernumMode.Content.Rarities.InfernumRarities;
 using CalamityMod.Items.Materials;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Content.Buffs.Tag;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Content.Buffs.SoulBurn;
 using CalamityMod;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.GameContent;
+using System.Runtime.InteropServices;
 using Terraria;
+using static CalamityMod.Projectiles.BaseProjectiles.BaseMaceFlailProjectile;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Core.Configs;
 
@@ -18,11 +22,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {
     public class SplitFirebrandFlailProjectile : ModProjectile
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return InfernalConfig.Instance.DeveloperMode && !InfernalConfig.Instance.DisableUnfinisedContent;
-        }
-
         public override string Texture => "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandProjectile";
 
         public Color fishingLineColor = Color.DarkRed;
@@ -56,6 +55,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
         private float arcOffsetSign;
 
         private Vector2 aimDir;
+
+        private bool hasHit = false;
 
         public override void SetDefaults()
         {
@@ -139,6 +140,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
             // visuals + logic
             BuildFlailSegments();
+
+            if (Main.hardMode || NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord)
+            {
+                EmpowerNearbyMinions();
+            }
 
             // cooldown cleanup
             List<int> keys = new(localHitCooldown.Keys);
@@ -316,10 +322,22 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             if (Projectile.damage < 1)
                 Projectile.damage = 1;
 
-            var modNPC = target.GetGlobalNPC<SoulBurnNPC>();
+            if (NPC.downedBoss3 || Main.hardMode || NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord)
+            {
+                var modNPC = target.GetGlobalNPC<SoulBurnNPC>();
+                modNPC.whipDamage = ((damageDone / 3) * 2) * 3;
+            }
 
             target.AddBuff(ModContent.BuffType<SplitFirebrandTag>(), 240);
-            target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
+            GetSoulBurn(target);
+
+            if ((NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord) && !hasHit)
+            {
+                Player owner = Main.player[Projectile.owner];
+                owner.GetModPlayer<HotHandsPlayer>().AddStack();
+
+                hasHit = true;
+            }
 
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
@@ -496,6 +514,40 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             }
         }
 
+        private void EmpowerNearbyMinions()
+        {
+            foreach (Projectile other in Main.ActiveProjectiles)
+            {
+                if (!other.active)
+                    continue;
+
+                if (other.owner != Projectile.owner)
+                    continue;
+
+                if (!other.IsMinionOrSentryRelated)
+                    continue;
+
+                if (other.whoAmI == Projectile.whoAmI)
+                    continue;
+
+                foreach (Vector2 point in ropePoints)
+                {
+                    Rectangle whipRect = new Rectangle(
+                        (int)point.X - 8,
+                        (int)point.Y - 8,
+                        16,
+                        16);
+
+                    if (whipRect.Intersects(other.Hitbox))
+                    {
+                        other.GetGlobalProjectile<AblazeGlobalProjectile>().ablazeTime = 240;
+
+                        break;
+                    }
+                }
+            }
+        }
+
         public static float GetFirebrandFlailRange(Player player)
         {
             float baseRange =
@@ -508,6 +560,24 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 16f;
 
             return baseRange * player.whipRangeMultiplier;
+        }
+
+        public void GetSoulBurn(NPC target)
+        {
+            if (NPC.downedMoonlord)
+                target.AddBuff(ModContent.BuffType<SoulBurn7>(), 240);
+            else if (NPC.downedGolemBoss)
+                target.AddBuff(ModContent.BuffType<SoulBurn6>(), 240);
+            else if (NPC.downedPlantBoss)
+                target.AddBuff(ModContent.BuffType<SoulBurn5>(), 240);
+            else if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                target.AddBuff(ModContent.BuffType<SoulBurn4>(), 240);
+            else if (Main.hardMode)
+                target.AddBuff(ModContent.BuffType<SoulBurn3>(), 240);
+            else if (NPC.downedBoss3)
+                target.AddBuff(ModContent.BuffType<SoulBurn2>(), 240);
+            else
+                target.AddBuff(ModContent.BuffType<SoulBurn>(), 240);
         }
 
         private float GetAttackSpeedScale(Player player)
