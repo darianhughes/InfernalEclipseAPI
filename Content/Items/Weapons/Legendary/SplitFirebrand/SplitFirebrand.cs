@@ -72,11 +72,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             }
         }
 
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return InfernalConfig.Instance.DeveloperMode && !InfernalConfig.Instance.DisableUnfinisedContent;
-        }
-
         static Asset<Texture2D> inventoryTexture;
         private bool fireWave = false;
 
