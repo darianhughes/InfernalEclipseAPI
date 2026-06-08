@@ -3,6 +3,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Content.Tiles.Relics.FargosSouls;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics.FargosSouls
 {

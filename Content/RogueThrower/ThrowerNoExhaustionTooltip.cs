@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using InfernalEclipseAPI.Core.Configs;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 

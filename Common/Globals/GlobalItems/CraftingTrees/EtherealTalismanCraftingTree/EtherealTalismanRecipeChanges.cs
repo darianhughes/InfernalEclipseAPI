@@ -3,6 +3,7 @@ using Terraria.Localization;
 using CalamityMod.Items.Materials;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Configs;
 
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCraftingTree
@@ -37,20 +38,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                 ItemID.ArcaneFlower,
                 ItemID.MagnetFlower,
                 ItemID.ManaCloak,
+                thorium.Find<ModItem>("HungeringBlossom").Type
             });
             int AnyManaFlower = RecipeGroup.RegisterGroup("AnyManaFlowerAccessory", group);
 
             Recipe.Create(ModContent.ItemType<EtherealTalisman>())
                .AddIngredient<SigilofCalamitas>().
                 AddRecipeGroup("AnyManaFlowerAccessory"). //Any mana flower accessory
-                AddIngredient<AscendantSpiritEssence>(4).
-                AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3).
-                AddTile<CosmicAnvil>().
-                Register();
-
-            Recipe.Create(ModContent.ItemType<EtherealTalisman>())
-               .AddIngredient<SigilofCalamitas>().
-                AddIngredient(thorium.Find<ModItem>("HungeringBlossom")).
                 AddIngredient<AscendantSpiritEssence>(4).
                 AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3).
                 AddTile<CosmicAnvil>().
@@ -76,7 +70,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.EtherealTalismanCr
                     }
                 }
 
-                if (recipe.HasResult(ModContent.ItemType<EtherealTalisman>()) && recipe.HasIngredient(ItemID.LunarBar))
+                if (recipe.HasResult(ModContent.ItemType<EtherealTalisman>()) && !recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore")))
                 {
                     recipe.DisableRecipe();
                 }

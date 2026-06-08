@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Items.Materials;
+using InfernalEclipseAPI.Core.Configs;
 using SOTS.Items.CritBonus;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.ExoSights

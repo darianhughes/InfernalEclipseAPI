@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Buffs.StatDebuffs;
+using InfernalEclipseAPI.Core.Configs;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 

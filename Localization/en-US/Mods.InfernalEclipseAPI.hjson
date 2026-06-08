@@ -38,6 +38,21 @@ UI: {
 		WARNING: The For the Worthy seed is NOT compatible with Infernal Eclipse of Ragnarok!
 		Please do not report any balance issues or bugs while playing in the For The Worthy seed.
 		'''
+	NoticeHomewardRagnarok:
+		'''
+		Thanks for playing Homeward Ragnarok, an official DLC mod to Infernal Eclipse of Ragnarok!
+		Please report and issues relating to Homeward Journey in the Homeward Ragnarok discord.
+		The main team does not directly work on this mod and can not provide help in the main discord.
+		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
+		'''
+	NoticeHomewardJourney:
+		'''
+		NOTICE: It is detected that you have Homeward Journey enabled!
+		We highly recommend you to install the "Homeward Ragnarok" mod for compatibility between these mods before proceeding!
+		Homeward Ragnarok also adds new content and other optional reworks for Homeward Journey content!
+		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
+		'''
+	DevNoticeCampsiteFix: Flag pole crash fix applied
 }
 
 DifficultyUI: {
@@ -61,8 +76,8 @@ DifficultyUI: {
 
 WelcomeMessage: {
 	Welcome: Welcome to the Infernal Eclipse of Ragnarok Mod Pack!
-	TBRNotice: NOTICE: It is detected that you have Thorium Bosses Reworked enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatibility config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses depending on the current difficulty.
-	TBRWarning: WARNING: It is detected that you do not have Thorium Bosses Reworked enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.
+	TBRNotice: NOTICE: It is detected that you have Thorium Helheim enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatibility config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses depending on the current difficulty.
+	TBRWarning: WARNING: It is detected that you do not have Thorium Helheim enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.
 	RagWarning: WARNING: It is detected that you do not have Ragnarok enabled! Without this mod, Thorium & Calamity may not work well together. It is heavily recommended you enable this mod for a more complete & balanced experience
 	EventTrophyNotice: NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience.
 	SoulsWarning:
@@ -2289,6 +2304,18 @@ Items: {
 			'Now that you've managed to replicate one of these crafts, maybe it will grow into something wonderful'
 			'''
 	}
+
+	//Localization Team: do not change [ieconstruct:ChaosConstruct], as it is replaced with a colored version using the Name perameter below.
+	ChaosLure: {
+		DisplayName: Chaos Lure
+		Tooltip:
+			'''
+			An Electromagnetic Lure overcharged with chaotic energy
+			Attracts a [IELuxTag:ChaosConstruct]
+			Not consumable
+			'''
+		Name: Chaos Construct
+	}
 }
 
 Projectiles: {
@@ -2378,7 +2405,7 @@ Configs: {
 			Miscellaneous: Miscellaneous
 			MultiplayerAdjustments: Multiplayer Adjustments & Utilities
 			Main: Main
-			Secret: Secret Settings
+			Secret: Expiremental Adjustments & Secret Settings
 			Music: Music Toggles
 			CompatibilityChanges: Compatibility Changes
 		}
@@ -2668,6 +2695,11 @@ Configs: {
 			Tooltip: Toggles if you respawn with max void or the default amount
 			Label: Max Void On Respawn
 		}
+
+		SolynCampsiteFixes: {
+			Label: Solyn Campsite Fixes
+			Tooltip: ""
+		}
 	}
 
 	Difficulty: {
@@ -2761,6 +2793,25 @@ Configs: {
 			Tooltip: "'Misanthropic Encounters' will play"
 		}
 	}
+
+	HomewardConfig: {
+		DisplayName: Homeward Config
+
+		Headers: {
+			Main: Main
+			BossRushChanges: Boss Rush Changes
+		}
+
+		DisplayHomewardWorldEntryMessages: {
+			Label: Display Homeward Journey World Entry Popups
+			Tooltip: Enables/Disables the popups relating to Homeward Journey upon entering a world.
+		}
+
+		HomewardInBossRush: {
+			Label: Homeward Journey Bosses In Boss Rush
+			Tooltip: Adds bosses from Homeward Journey into Boss Rush
+		}
+	}
 }
 
 DamageClasses: {
@@ -2776,13 +2827,8 @@ DamageClasses: {
 	MythicSummon.DisplayName: mythic summon damage
 	CatlightDamage.DisplayName: Catlight Damage
 	LegendarySummon.DisplayName: legendary summon damage
+	LegendarySummonMeleeSpeed.DisplayName: Legendary Summon Melee Speed
 }
-
-BossRushIntroText1:
-	'''
-	Xeroc's Challenge
-	Ensemble of Fools
-	'''
 
 InfernumIntegration: {
 	Astrageldon:
@@ -3127,4 +3173,5 @@ BossName: {
 	You: FINAL FRACTAL - Terra Blade
 	Ragnarok: Reality's End - Dream Eater, the Ragnarok
 	LittleCat: Coming Soon... - ???
+	ProvidenceNight: Unholy Finality - Providence (Night)
 }

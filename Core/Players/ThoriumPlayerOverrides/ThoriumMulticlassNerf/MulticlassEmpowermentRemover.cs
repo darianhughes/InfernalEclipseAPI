@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseWeaponsDLC.Content.Items.Armor.Ocram.Necrosinger;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {

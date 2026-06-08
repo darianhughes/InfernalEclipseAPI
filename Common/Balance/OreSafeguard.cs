@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Tiles.Ores;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using Terraria.ObjectData;
 

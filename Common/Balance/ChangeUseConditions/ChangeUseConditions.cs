@@ -5,6 +5,7 @@ using Terraria.Audio;
 using Terraria.Chat;
 using CalamityMod.NPCs.Yharon;
 using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
 {

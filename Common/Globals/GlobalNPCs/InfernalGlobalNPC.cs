@@ -22,6 +22,7 @@ using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
 using CalamityMod.Events;
 using Terraria.GameContent.Events;
 using InfernalEclipseAPI.Content.Items.Consumables;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {

@@ -46,6 +46,7 @@ using InfernalEclipseAPI.Content.Buffs;
 using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Players;
 using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {

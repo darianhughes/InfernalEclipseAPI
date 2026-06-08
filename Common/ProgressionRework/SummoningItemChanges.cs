@@ -7,6 +7,7 @@ using CalamityMod.Items.SummonItems;
 using CalamityMod.Tiles.DraedonSummoner;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Content.Items.Materials;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.SummonItems;
 

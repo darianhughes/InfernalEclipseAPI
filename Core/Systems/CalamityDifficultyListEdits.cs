@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Systems;
 using InfernalEclipseAPI.Content.UI;
+using InfernalEclipseAPI.Core.Configs;
 using InfernumMasterPatch;
 using InfernumMode.Content.UI;
 

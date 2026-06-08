@@ -15,6 +15,7 @@ using FargowiltasSouls.Content.Bosses.MutantBoss;
 using FargowiltasSouls.Content.Bosses.TrojanSquirrel;
 using InfernalEclipseAPI.Content.Items.Accessories;
 using InfernalEclipseAPI.Content.Items.Placeables.Relics.FargosSouls;
+using InfernalEclipseAPI.Core.Configs;
 using Terraria.GameContent.ItemDropRules;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
 

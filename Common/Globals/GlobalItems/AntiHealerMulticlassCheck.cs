@@ -3,6 +3,7 @@ using ThoriumMod;
 using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf;
 using InfernalEclipseAPI.Core.DamageClasses;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {

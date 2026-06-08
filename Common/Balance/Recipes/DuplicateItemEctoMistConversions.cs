@@ -1,21 +1,102 @@
-﻿namespace InfernalEclipseAPI.Common.Balance.Recipes.CrossModArmorChanges
+﻿using InfernalEclipseAPI.Core.Systems;
+
+namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
-    //TODO: Merge with class with Infernal Recipe System
-    public class CalCrossmodArmorRecipeChanges : ModSystem
+    public class DuplicateItemEctoMistConversions : ModSystem
     {
         public override void PostAddRecipes()
         {
-            ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
-            ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHealer);
+            #region Catalyst/SimpleWhipAddon Conversions
+            if (InfernalCrossmod.Catalyst.Loaded && ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod calSimpleWhip))
+            {
+                Mod catalyst = InfernalCrossmod.Catalyst.Mod;
 
-            if (ragnarok != null && calBardHealer != null)
+                int[] catalystWhips =
+                {
+                    GetItemID("CoralCrusher", catalyst),
+                    GetItemID("PrismBreak", catalyst),
+                    GetItemID("CongeledDuoWhip", catalyst),
+                    ItemID.MaceWhip,
+                    GetItemID("BlossomsBlessing", catalyst)
+                };
+
+                int[] simpleWhips =
+                {
+                    GetItemID("Droptide", calSimpleWhip),
+                    GetItemID("BreezePiercer", calSimpleWhip),
+                    GetItemID("Gelxyribose", calSimpleWhip),
+                    GetItemID("Ectopia", calSimpleWhip),
+                    GetItemID("EntwinedBranches", calSimpleWhip)
+                };
+
+                for (int i = 0; i < simpleWhips.Length; i++)
+                {
+                    int simpleID = simpleWhips[i];
+                    int catalystID = catalystWhips[i];
+
+                    if (simpleID == 0 || catalystID == 0)
+                    {
+                        continue;
+                    }
+
+                    Recipe originalRecipe = null;
+
+                    // Disable ragnarok item recipe
+                    foreach (var recipe in Main.recipe)
+                    {
+                        if (recipe.createItem.type == simpleID)
+                        {
+                            originalRecipe = recipe;
+                            recipe.DisableRecipe();
+                            break;
+   
+                        }
+                    }
+                    
+                    int originalTile = originalRecipe?.requiredTile.Count > 0 ? originalRecipe.requiredTile[0] : TileID.Anvils; // fallback to something valid
+
+                    if (simpleID == GetItemID("Ectopia", calSimpleWhip))
+                    {
+                        Recipe.Create(simpleID)
+                            .AddIngredient(catalystID)
+                            .AddIngredient(ItemID.SpectreBar, 12)
+                            .AddCondition(Condition.InGraveyard)
+                            .AddTile(originalTile)
+                            .DisableDecraft()
+                            .Register();
+                        continue;
+                    }
+
+                    // Forward: Simple Whip -> Catalyst
+                    Recipe forward = Recipe.Create(catalystID);
+                    forward.AddIngredient(simpleID);
+                    forward.AddCondition(Condition.InGraveyard);
+                    if (originalTile != TileID.Anvils)
+                        forward.AddTile(originalTile);
+                    forward.DisableDecraft();
+                    forward.Register();
+
+                    // Reverse: Catalyst -> Simple Whip
+                    Recipe reverse = Recipe.Create(simpleID);
+                    reverse.AddIngredient(catalystID);
+                    reverse.AddCondition(Condition.InGraveyard);
+                    if (originalTile != TileID.Anvils)
+                        reverse.AddTile(originalTile);
+                    reverse.DisableDecraft();
+                    reverse.Register();
+                }
+            }
+            #endregion
+
+            #region Ragnarok/CalamityBardHealer Armor Conversions
+            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok) && ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHealer))
             {
                 int[] ragnarokArmor =
                 {
                     GetItemID("AerospecBard", ragnarok),
                     GetItemID("AerospecHealer", ragnarok),
-                    GetItemID("AuricTeslaFrilledHelmet", ragnarok),
-                    GetItemID("AuricTeslaHealerHead", ragnarok),
+                    //GetItemID("AuricTeslaFrilledHelmet", ragnarok),
+                    //GetItemID("AuricTeslaHealerHead", ragnarok),
                     GetItemID("BloodflareHeadBard", ragnarok),
                     GetItemID("BloodflareHeadHealer", ragnarok),
                     GetItemID("DaedalusHeadBard", ragnarok),
@@ -35,8 +116,8 @@
                 {
                     GetItemID("AerospecHeadphones", calBardHealer),
                     GetItemID("AerospecBiretta", calBardHealer),
-                    GetItemID("AuricTeslaFeatheredHeadwear", calBardHealer),
-                    GetItemID("AuricTeslaValkyrieVisage", calBardHealer),
+                    //GetItemID("AuricTeslaFeatheredHeadwear", calBardHealer),
+                    //GetItemID("AuricTeslaValkyrieVisage", calBardHealer),
                     GetItemID("BloodflareSirenSkull", calBardHealer),
                     GetItemID("BloodflareRitualistMask", calBardHealer),
                     GetItemID("DaedalusHat", calBardHealer),
@@ -96,11 +177,11 @@
                     reverse.Register();
                 }
             }
+            #endregion
         }
 
         private int GetItemID(string name, Mod mod)
         {
-            
             if (mod.TryFind(name, out ModItem item))
                 return item.Type;
             return 0;

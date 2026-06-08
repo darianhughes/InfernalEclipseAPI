@@ -10,6 +10,7 @@ using CalamityMod.UI.DialogueDisplay.DisplayEffects;
 using CalamityMod.World;
 using FargowiltasSouls.Content.Bosses.MutantBoss;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;

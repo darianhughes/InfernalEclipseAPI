@@ -24,9 +24,9 @@ using NoxusBoss.Content.NPCs.Bosses.NamelessDeity;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
-using InfernalEclipseAPI.Content.Items.Placeables.Relics;
 using CalamityMod.Events;
 using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {

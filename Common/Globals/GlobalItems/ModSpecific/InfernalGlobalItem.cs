@@ -21,6 +21,7 @@ using Terraria;
 using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Content.Items.Accessories;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -264,6 +265,31 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == InfernalCrossmod.Consolaria.Mod.Find<ModItem>("Wiesnbrau").Type)
                 {
                     InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Wiesnbrau"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
+                }
+            }
+
+            if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                int findWhipItem(string name) => simpleWhipAddon.Find<ModItem>(name).Type;
+
+                int[] bleachedAcessories =
+                {
+                    findWhipItem("BleachedNucleogenesis"),
+                    findWhipItem("BleachedStatisCurse"),
+                    findWhipItem("BleachedStarTaintedGenerator"),
+                    findWhipItem("BleachedStarbusterCore"),
+                    findWhipItem("BleachedNuclearFuelRod"),
+                    findWhipItem("BleachedTheFirstShadowflame"),
+                    findWhipItem("BleachedJellyChargedBattery"),
+                    findWhipItem("BleachedVoltaicJelly"),
+
+                    findWhipItem("BuddyEmblem")
+                };
+
+                foreach (int bleachedItem in bleachedAcessories)
+                {
+                    if (item.type == bleachedItem)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
                 }
             }
         }

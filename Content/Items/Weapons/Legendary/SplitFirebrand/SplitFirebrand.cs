@@ -7,6 +7,7 @@ using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using CalamityMod;
 using Microsoft.Xna.Framework.Input;
 using Terraria.DataStructures;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 {

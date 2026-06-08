@@ -9,6 +9,7 @@ using ThoriumMod.Projectiles.Thrower;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
 {

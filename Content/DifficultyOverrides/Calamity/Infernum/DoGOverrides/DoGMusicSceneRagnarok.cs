@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Events;
 using CalamityMod.NPCs;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.DoG;

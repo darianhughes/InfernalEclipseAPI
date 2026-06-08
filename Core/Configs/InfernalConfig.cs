@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace InfernalEclipseAPI
+namespace InfernalEclipseAPI.Core.Configs
 {
     public class InfernalConfig : ModConfig
     {
@@ -183,6 +183,10 @@ namespace InfernalEclipseAPI
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DeveloperMode { get; set; }
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool SolynCampsiteFixes { get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]

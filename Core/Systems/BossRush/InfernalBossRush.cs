@@ -40,6 +40,7 @@ using CalamityMod.Projectiles.Typeless;
 using CalamityMod.Systems;
 using CalamityMod.UI.DraedonSummoning;
 using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.AstrumDeus;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
@@ -991,7 +992,12 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
 
         public static bool HomewardLoaded()
         {
-            return ModLoader.HasMod("ContinentOfJourney");
+            bool inBossRush = false;
+            if (ModLoader.HasMod("ContinentOfJourney"))
+                if (HomewardConfig.Instance.HomewardInBossRush)
+                    inBossRush = true;
+
+            return inBossRush;
         }
     }
 }

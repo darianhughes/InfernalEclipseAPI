@@ -5,6 +5,7 @@ using Terraria.GameContent;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI
 {

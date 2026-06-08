@@ -2,6 +2,7 @@
 using CalamityMod;
 using CalamityMod.CalPlayer;
 using CalamityMod.Items.Accessories.Wings;
+using InfernalEclipseAPI.Core.Configs;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 

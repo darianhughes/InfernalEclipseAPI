@@ -2,6 +2,7 @@
 using CalamityMod.Items.Accessories;
 using Terraria.Localization;
 using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {

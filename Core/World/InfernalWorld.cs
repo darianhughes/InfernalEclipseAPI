@@ -7,6 +7,7 @@ using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
 using SubworldLibrary;
 using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -20,6 +21,7 @@ namespace InfernalEclipseAPI.Core.World
         public static bool hasChosenDifficulty = false;
         public static bool tier5Downed = false;
         public static bool tier6Downed = false;
+        public static bool providenceNightDowned = false;
 
         public static int dreamEaterAttempts = 0;
 
@@ -33,6 +35,7 @@ namespace InfernalEclipseAPI.Core.World
             hasChosenDifficulty = false;
             tier5Downed = false;
             tier6Downed = false;
+            providenceNightDowned = false;
 
             dreamEaterAttempts = 0;
         }
@@ -117,6 +120,7 @@ namespace InfernalEclipseAPI.Core.World
             tag["hasChosenDifficulty"] = hasChosenDifficulty;
             tag["tier5Downed"] = tier5Downed;
             tag["tier6Downed"] = tier6Downed;
+            tag["providenceNightDowned"] = providenceNightDowned;
             tag["dreamEaterAttempts"] = dreamEaterAttempts;
         }
 
@@ -133,6 +137,7 @@ namespace InfernalEclipseAPI.Core.World
             GetData(ref hasChosenDifficulty, "hasChosenDifficulty", tag);
             GetData(ref tier5Downed, "tier5Downed", tag);
             GetData(ref tier6Downed, "tier6Downed", tag);
+            GetData(ref providenceNightDowned, "providenceNightDowned", tag);
 
             if (tag.TryGet("RagnarokModeEnabled", out bool value))
                 RagnarokModeEnabled = value;
@@ -162,6 +167,7 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(hasChosenDifficulty);
             writer.Write(tier5Downed);
             writer.Write(tier6Downed);
+            writer.Write(providenceNightDowned);
             writer.Write(dreamEaterAttempts);
         }
 
@@ -177,6 +183,7 @@ namespace InfernalEclipseAPI.Core.World
             hasChosenDifficulty = reader.ReadBoolean();
             tier5Downed = reader.ReadBoolean();
             tier6Downed = reader.ReadBoolean();
+            providenceNightDowned = reader.ReadBoolean();
             dreamEaterAttempts = reader.ReadInt32();
         }
     }

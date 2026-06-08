@@ -3,6 +3,7 @@ using Terraria.DataStructures;
 using System.Reflection;
 using InfernalEclipseAPI.Core.World;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.Players
 {

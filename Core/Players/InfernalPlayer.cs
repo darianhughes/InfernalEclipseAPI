@@ -19,7 +19,6 @@ using Terraria.GameInput;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.Projectiles.Melee;
 using Terraria.UI;
-using InfernalEclipseAPI.Content.UI;
 using CalamityMod.Projectiles.Melee.Shortswords;
 using CalamityMod.NPCs.AquaticScourge;
 using InfernalEclipseAPI.Content.Projectiles;
@@ -28,13 +27,12 @@ using CalamityMod.CalPlayer;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Ravager;
 using CalamityMod.NPCs.Providence;
-using System.Linq;
 using CalamityMod.NPCs.PrimordialWyrm;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernumMode.Common.DataStructures;
 using InfernumMode;
-using Terraria;
-using CalamityMod.Items.Weapons.Rogue;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Content.UI.Notificatons;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -81,15 +79,22 @@ namespace InfernalEclipseAPI.Core.Players
                 InfernalWorld.craftedWorkshop = true;
             }
 
-            if (ModLoader.HasMod("FargowiltasSouls"))
+            if ((InfernalConfig.Instance.SolynCampsiteFixes || !ModLoader.HasMod("WOTGCampsiteFix")) && InfernalConfig.Instance.DeveloperMode)
+                InGameNotificationsTracker.AddNotification(new SolynCampsiteFixApplicationNotification());
+
+            if (ModLoader.HasMod("ContinentOfJourney"))
             {
-                InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
+                if (HomewardConfig.Instance.DisplayHomewardWorldEntryMessages)
+                {
+                    InGameNotificationsTracker.AddNotification(new HomewardJourneyNotification());
+                }
             }
+
+            if (ModLoader.HasMod("FargowiltasSouls"))
+                InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
             
             if (Main.getGoodWorld)
-            {
                 InGameNotificationsTracker.AddNotification(new ForTheWorthyNotification());
-            }
 
             //TODO convert these to notifications
             if (ModLoader.HasMod("CWRMod"))
@@ -166,7 +171,7 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokBalance"), 255, 255, 0);
 
-                    if (rework != null && !InfernalConfig.Instance.AutomatedConfigSetup)
+                    if (rework != null)
                     {
                         Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokRework"), 255, 255, 0);
                     }
@@ -799,6 +804,15 @@ namespace InfernalEclipseAPI.Core.Players
 
                 ref StatModifier local = ref Player.GetDamage(DamageClass.Generic);
                 local -= (float)(0.25 * (time / 300f));
+
+                if (time >= 10 * 60)
+                {
+                    Player.buffImmune[InfernalCrossmod.SOTS.Mod.Find<ModBuff>("VoidAccess").Type] = true;
+                }
+                else
+                {
+                    Player.buffImmune[InfernalCrossmod.SOTS.Mod.Find<ModBuff>("VoidAccess").Type] = false;
+                }
             }
 
             if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)

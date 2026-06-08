@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using SOTS;
 using SOTS.Items.Wings;

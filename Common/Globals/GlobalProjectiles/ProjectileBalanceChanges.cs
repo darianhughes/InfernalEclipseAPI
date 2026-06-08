@@ -10,6 +10,7 @@ using InfernalEclipseAPI.Core.Systems;
 using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
 using ReLogic.Content;
 using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {

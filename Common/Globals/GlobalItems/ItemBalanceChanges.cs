@@ -16,6 +16,7 @@ using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
 using CalamityMod.Rarities;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -840,6 +841,38 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 44;
                     item.useTime = 44;
                 }
+
+                int[] bleachedAcessories =
+                {
+                    FindItem(simpleWhipAddon, "BleachedNucleogenesis"),
+                    FindItem(simpleWhipAddon, "BleachedStatisCurse"),
+                    FindItem(simpleWhipAddon, "BleachedStarTaintedGenerator"),
+                    FindItem(simpleWhipAddon, "BleachedStarbusterCore"),
+                    FindItem(simpleWhipAddon, "BleachedNuclearFuelRod"),
+                    FindItem(simpleWhipAddon, "BleachedTheFirstShadowflame"),
+                    FindItem(simpleWhipAddon, "BleachedJellyChargedBattery"),
+                    FindItem(simpleWhipAddon, "BleachedVoltaicJelly"),
+                };
+
+                foreach (int bleachedItem in bleachedAcessories)
+                {
+                    if (item.type == bleachedItem)
+                        item.accessory = false;
+                }
+
+                if (UnsafeGetItem(simpleWhipAddon, "BuddyEmblem", item))
+                {
+                    item.rare = ItemRarityID.LightRed;
+                    item.expert = false;
+
+                    item.accessory = false; //temp disabled
+                }
+
+                if (UnsafeGetItem(simpleWhipAddon, "StrikerEmblem", item))
+                {
+                    item.rare = ItemRarityID.LightRed;
+                    item.expert = false;
+                }
             }
             #endregion
 
@@ -1503,8 +1536,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.shootSpeed = 16;
                     }
-
-                    if (GetItem(thorium, "Rapier", item))
+                    
+                    if (GetItem(thorium, "Rapier", item) && !InfernalCrossmod.ThoriumRework.Loaded)
                     {
                         item.useTime = 8;
                         item.useAnimation = 8;
@@ -3823,13 +3856,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Lucidty
                     if (GetItem(thorium, "Lucidity", item))
                     {
-                        item.damage = 105;
+                        item.damage = InfernalCrossmod.ThoriumRework.Loaded ? 150 : 105;
                     }
 
                     //Reality Slasher
                     if (GetItem(thorium, "RealitySlasher", item))
                     {
-                        item.damage = 75;
+                        item.damage = InfernalCrossmod.ThoriumRework.Loaded ? 175 : 75;
                     }
 
                     //Life and Death

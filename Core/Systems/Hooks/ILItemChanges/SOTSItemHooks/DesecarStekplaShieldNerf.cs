@@ -4,6 +4,7 @@ using MonoMod.RuntimeDetour;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.Utils;
 using SOTS.Items.ChestItems;
+using InfernalEclipseAPI.Core.Configs;
 
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.SOTSItemHooks

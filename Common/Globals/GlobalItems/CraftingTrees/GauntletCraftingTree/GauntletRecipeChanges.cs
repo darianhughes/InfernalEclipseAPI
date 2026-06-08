@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Items.Accessories;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.GauntletCraftingTree
 {

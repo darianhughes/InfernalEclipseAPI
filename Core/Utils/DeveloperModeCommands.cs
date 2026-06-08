@@ -1,4 +1,6 @@
 ﻿
+using InfernalEclipseAPI.Core.Configs;
+
 namespace InfernalEclipseAPI.Core.Utils
 {
     internal class PrintProjectilesCommand : ModCommand

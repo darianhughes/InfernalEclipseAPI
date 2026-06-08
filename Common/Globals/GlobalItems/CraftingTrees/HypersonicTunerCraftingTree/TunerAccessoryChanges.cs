@@ -4,6 +4,7 @@ using SOTSBardHealer;
 using ThoriumMod.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HypersonicTunerCraftingTree
 {

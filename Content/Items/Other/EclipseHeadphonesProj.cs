@@ -2,6 +2,7 @@
 using InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
+using InfernumMode.Core.GlobalInstances.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -189,6 +190,15 @@ namespace InfernalEclipseAPI.Content.Items.Other
                 HoverTextColor = () => Color.Lerp(Color.Cyan, Color.Yellow, (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 0.3f + 0.35f),
                 UnlockCondition = () => (bool)ModLoader.GetMod("InfernumMode").Call("CanPlaySoulHeadphonesMusic", "BereftVassal"),
                 BossIconTexture = ModContent.Request<Texture2D>("InfernumMode/Content/BehaviorOverrides/BossAIs/GreatSandShark/BereftVassal_Head_Boss"),
+            },
+
+            new()
+            {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.ProvidenceNight"),
+                TrackName = "ProvidenceNight",
+                HoverTextColor = () => Color.Lerp(Color.Turquoise, new Color(255, 191, 73), (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 0.3f + 0.35f),
+                UnlockCondition = () => InfernalWorld.providenceNightDowned,
+                BossIconTexture = ModContent.Request<Texture2D>("InfernumMode/Content/Items/Accessories/Purity"),
             },
 
             new()

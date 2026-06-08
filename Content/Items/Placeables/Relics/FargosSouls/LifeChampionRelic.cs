@@ -1,4 +1,5 @@
 ﻿using InfernalEclipseAPI.Content.Tiles.Relics.FargosSouls;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Relics;
 using Terraria.Localization;

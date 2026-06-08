@@ -4,6 +4,7 @@ using CalamityMod.CalPlayer;
 using CalamityMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 {

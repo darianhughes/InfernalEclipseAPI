@@ -8,6 +8,7 @@ using CalamityMod;
 using ThoriumMod.Utilities;
 using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod.Buffs;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNerf
 {

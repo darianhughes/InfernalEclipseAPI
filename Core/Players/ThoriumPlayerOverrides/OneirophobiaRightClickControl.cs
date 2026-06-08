@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InfernalEclipseAPI.Core.Configs;
+using Microsoft.Xna.Framework;
 
 namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides
 {

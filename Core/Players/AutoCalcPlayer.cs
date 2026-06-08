@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CalamityHunt.Content.NPCs.Bosses.GoozmaBoss;
 using CalamityMod.Projectiles.Ranged;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Utils;
 using NoxusBoss.Content.NPCs.Bosses.Avatar.FirstPhaseForm;
