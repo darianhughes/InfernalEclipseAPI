@@ -148,6 +148,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "un5",
             "rocket",
             "FlamingSock",
+            "ゴジータ",
 
             //Supporters
             "CuddlySnake",
@@ -168,11 +169,12 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Blockaroz",
             "javyz",
             "habble",
+            "Eram",
             "Lucille Karma",
             "tomat",
             "Nycro",
             "Cataclysmic Armageddon",
-            "Yardis"
+            "Yardis",
         };
 
         public static IList<string> teamList = new List<string>()
