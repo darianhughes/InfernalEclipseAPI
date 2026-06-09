@@ -27,6 +27,10 @@ namespace InfernalEclipseAPI.Core.Configs
 
         #region Music
         [Header("Music")]
+
+        [DefaultValue(true)]
+        public bool CnidrionMusic { get; set; }
+
         [DrawTicks]
         [DefaultValue(MothershipSong.Infernum)]
         public MothershipSong MothershipMusic { get; set; }

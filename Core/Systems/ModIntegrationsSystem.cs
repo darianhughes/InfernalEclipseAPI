@@ -54,6 +54,7 @@ namespace InfernalEclipseAPI.Core.Systems
             }
 
             //IEoR Original Music
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Seahorse"), "Seahorse Scrutiny (Rebirth)", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by Peter Fung", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/BereftVassal"), "Dead Kingdom's Champion", "by Techhy", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(InfernalEclipseAPI.ProvidenceNightPath), "Unholy Finality", "by Brimston Premium", "Infernal Eclipse of Ragnarok");

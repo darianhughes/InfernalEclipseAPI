@@ -609,6 +609,7 @@ ItemTooltip: {
 			你可以右键拖动平台，但它们会始终保持对称
 			哨兵可以被放置在这些平台上
 			'''
+		// OneSentry: Increases max sentries by 1
 		TwoSentry: 提升2格最大哨兵栏位
 		ThreeSentry: 提升3格最大哨兵栏位
 		Murky: 每第六次施法不消耗魔力并返还你魔力花费
@@ -2712,6 +2713,11 @@ Configs: {
 			// Label: Solyn Campsite Fixes
 			// Tooltip: ""
 		}
+
+		CnidrionMusic: {
+			// Label: Cnidrion Music
+			// Tooltip: Toggles if 'Seahorse Scrutiny (Rebirth)' by Brimston Premium plays while a Cnidrion is alive.
+		}
 	}
 
 	Difficulty: {
@@ -3279,4 +3285,7 @@ BossName: {
 	// Ragnarok: Reality's End - Dream Eater, the Ragnarok
 	// LittleCat: Coming Soon... - ???
 	// ProvidenceNight: Unholy Finality - Providence (Night)
+	// Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 }
+
+// PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!

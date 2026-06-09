@@ -604,6 +604,7 @@ ItemTooltip: {
 			Удерживайте ПКМ по платформе, чтобы переместить её. Платформа с другой стороны будут симметрично перемещена
 			На этих платформах можно призывать стражей
 			'''
+		// OneSentry: Increases max sentries by 1
 		TwoSentry: Увеличивает максимальное количество стражей на 2
 		ThreeSentry: Увеличивает максимальное количество стражей на 3
 		Murky: Каждая шестая магическая атака не расходует ману и возвращает вам затраченную на неё ману
@@ -1140,7 +1141,7 @@ Items: {
 			Tooltip: ""
 			/* Lore:
 				'''
-				Один из экспериментов Дрэйдона. 
+				One of Draedon's experiments. 
 				This creature is one of his attempts to understand the inherent divinity that is present is all slimes, 
 				no matter how minuscule it might be.
 				He did manage to successfully draw out the latent energy, but somehow in the process, 
@@ -2126,8 +2127,8 @@ Items: {
 	}
 
 	FinalFractalMusicBox: {
-		Tooltip: Проигрывает «FINAL FRACTAL» за авторством ENNWAY
 		DisplayName: Музыкальная шкатулка (Терра-клинок)
+		Tooltip: Проигрывает «FINAL FRACTAL» за авторством ENNWAY
 	}
 
 	CragmawMireRelic: {
@@ -2182,7 +2183,6 @@ Items: {
 
 	SoulDrivenHeadphonesEclipse: {
 		DisplayName: Наушники с душеговорителями (Eclipse Edition)
-
 		/* Tooltip:
 			'''
 			Allows you to pick and play custom Infernal Eclipse of Ragnarok music, as well as some other unique themes
@@ -2650,6 +2650,11 @@ Configs: {
 			// Label: Solyn Campsite Fixes
 			// Tooltip: ""
 		}
+
+		CnidrionMusic: {
+			// Label: Cnidrion Music
+			// Tooltip: Toggles if 'Seahorse Scrutiny (Rebirth)' by Brimston Premium plays while a Cnidrion is alive.
+		}
 	}
 
 	Difficulty: {
@@ -2724,8 +2729,8 @@ Configs: {
 		// Tooltip: ""
 
 		Vanilla: {
-			Tooltip: "Проигрывает «Boss 1»"
 			Label: Vanilla
+			Tooltip: Проигрывает «Boss 1»
 		}
 
 		WarMachine: {
@@ -2734,13 +2739,13 @@ Configs: {
 		}
 
 		Thorium: {
-			Tooltip: "Проигрывает «Stronger Foe»"
 			Label: Thorium
+			Tooltip: Проигрывает «Stronger Foe»
 		}
 
 		Infernum: {
-			Tooltip: "Проигрывает «Misanthropic Encounters»"
 			Label: Infernum
+			Tooltip: Проигрывает «Misanthropic Encounters»
 		}
 	}
 
@@ -3204,7 +3209,7 @@ Misc: {
 HeadphonesText.1: Текущий трек: {0}!
 
 BossName: {
-	// НЕ ИЗМЕНЯТЬ НИЧЕГО - to any other symbol or the code that displays "Now playing X" won't work
+	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
 	// TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
 	// BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
 	// DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
@@ -3217,4 +3222,7 @@ BossName: {
 	// Ragnarok: Reality's End - Dream Eater, the Ragnarok
 	// LittleCat: Coming Soon... - ???
 	// ProvidenceNight: Unholy Finality - Providence (Night)
+	// Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 }
+
+// PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!

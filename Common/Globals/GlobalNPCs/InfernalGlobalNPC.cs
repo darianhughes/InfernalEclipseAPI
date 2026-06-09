@@ -30,6 +30,8 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
     {
         public override bool InstancePerEntity => true;
 
+        public static int cnidrion = -1;
+
         public override void SetDefaults(NPC entity)
         {
             if (InfernalCrossmod.Thorium.Loaded)

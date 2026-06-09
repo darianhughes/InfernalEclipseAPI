@@ -185,6 +185,15 @@ namespace InfernalEclipseAPI.Content.Items.Other
 
             new()
             {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.Seahorse"),
+                TrackName = "Seahorse",
+                HoverTextColor = () => Color.Lerp(Color.SandyBrown, Color.SaddleBrown, (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 0.3f + 0.35f),
+                UnlockCondition = () => InfernalWorld.cnidrionDowned,
+                BossIconTexture = ModContent.Request<Texture2D>("CalamityMod/Items/Accessories/IlmerisSpark")
+            },
+
+            new()
+            {
                 HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.BereftVassal"),
                 TrackName = "BereftVassal",
                 HoverTextColor = () => Color.Lerp(Color.Cyan, Color.Yellow, (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 0.3f + 0.35f),

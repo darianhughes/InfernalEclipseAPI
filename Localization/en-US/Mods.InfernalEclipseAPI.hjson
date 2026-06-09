@@ -610,6 +610,7 @@ ItemTooltip: {
 			You can right click to drag the platforms, but they will always remain symmetrical
 			Sentries can be summoned on top of the platforms
 			'''
+		OneSentry: Increases max sentries by 1
 		TwoSentry: Increases max sentries by 2
 		ThreeSentry: Increases max sentries by 3
 		Murky: Every sixth magic cast is free and grants you the mana cost
@@ -2718,6 +2719,11 @@ Configs: {
 			Label: Solyn Campsite Fixes
 			Tooltip: ""
 		}
+
+		CnidrionMusic: {
+			Label: Cnidrion Music
+			Tooltip: Toggles if 'Seahorse Scrutiny (Rebirth)' by Brimston Premium plays while a Cnidrion is alive.
+		}
 	}
 
 	Difficulty: {
@@ -3285,4 +3291,7 @@ BossName: {
 	Ragnarok: Reality's End - Dream Eater, the Ragnarok
 	LittleCat: Coming Soon... - ???
 	ProvidenceNight: Unholy Finality - Providence (Night)
+	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 }
+
+PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!

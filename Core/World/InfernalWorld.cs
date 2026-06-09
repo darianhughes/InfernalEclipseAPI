@@ -22,6 +22,7 @@ namespace InfernalEclipseAPI.Core.World
         public static bool tier5Downed = false;
         public static bool tier6Downed = false;
         public static bool providenceNightDowned = false;
+        public static bool cnidrionDowned = false;
 
         public static int dreamEaterAttempts = 0;
 
@@ -36,6 +37,7 @@ namespace InfernalEclipseAPI.Core.World
             tier5Downed = false;
             tier6Downed = false;
             providenceNightDowned = false;
+            cnidrionDowned = false;
 
             dreamEaterAttempts = 0;
         }
@@ -121,6 +123,7 @@ namespace InfernalEclipseAPI.Core.World
             tag["tier5Downed"] = tier5Downed;
             tag["tier6Downed"] = tier6Downed;
             tag["providenceNightDowned"] = providenceNightDowned;
+            tag["cnidrionDowned"] = cnidrionDowned;
             tag["dreamEaterAttempts"] = dreamEaterAttempts;
         }
 
@@ -138,6 +141,7 @@ namespace InfernalEclipseAPI.Core.World
             GetData(ref tier5Downed, "tier5Downed", tag);
             GetData(ref tier6Downed, "tier6Downed", tag);
             GetData(ref providenceNightDowned, "providenceNightDowned", tag);
+            GetData(ref cnidrionDowned, "cnidrionDowned", tag);
 
             if (tag.TryGet("RagnarokModeEnabled", out bool value))
                 RagnarokModeEnabled = value;
@@ -168,6 +172,7 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(tier5Downed);
             writer.Write(tier6Downed);
             writer.Write(providenceNightDowned);
+            writer.Write(cnidrionDowned);
             writer.Write(dreamEaterAttempts);
         }
 
@@ -184,6 +189,7 @@ namespace InfernalEclipseAPI.Core.World
             tier5Downed = reader.ReadBoolean();
             tier6Downed = reader.ReadBoolean();
             providenceNightDowned = reader.ReadBoolean();
+            cnidrionDowned = reader.ReadBoolean();
             dreamEaterAttempts = reader.ReadInt32();
         }
     }
