@@ -32,7 +32,6 @@ using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.Weapons.Ranged;
 using InfernalEclipseAPI.Content.Items.Other;
-using ThoriumMod.Items.Sandstone;
 using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
@@ -562,9 +561,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient(ItemID.Hay, 5);
                     }
 
-                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("MandibleLash")))
+                    if (thorium != null)
                     {
-                        recipe.AddIngredient<SandstoneIngot>(8);
+                        if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("MandibleLash")))
+                        {
+                            recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 8);
+                        }
                     }
 
                     if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("AurelianSanctum")))

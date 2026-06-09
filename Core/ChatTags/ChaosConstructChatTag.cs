@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SOTS.Helpers;
@@ -12,6 +8,8 @@ using Terraria.UI.Chat;
 
 namespace InfernalEclipseAPI.Core.ChatTags
 {
+    [JITWhenModsEnabled(InfernalCrossmod.SOTS.Name)]
+    [ExtendsFromMod(InfernalCrossmod.SOTS.Name)]
     public sealed class ChaosConstructChatTag : ITagHandler
     {
         public class Snippet : TextSnippet
