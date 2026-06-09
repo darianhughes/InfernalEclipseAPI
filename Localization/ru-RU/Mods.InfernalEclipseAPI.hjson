@@ -660,6 +660,11 @@ ItemTooltip: {
 			Поднятие метательного предмета с 33% шансом создаёт его дубликат и увеличивает метательную скорость атаки
 			Этот эффект может сработать не более одного раза каждые полсекунды и не срабатывает в бою
 			'''
+		/* Bone2:
+			'''
+			Thrower projectiles have a 20% chance to grant the player 15% thrower attack speed for 1 second upon hitting anything
+			This effect can only trigger once every one-and-a-half seconds
+			''' */
 		Scuttler: При скрытном ударе снаряды создают драгоценный шип
 		BloodyFilthy: Скрытные удары пробивают 8 защиты, наносят на 8% больше урона и восстанавливают 2 ед. здоровья
 		NoExhaustion: При экипировке оружие больше не изматывает вас

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Items.Accessories;
-using CalamityMod.CalPlayer;
-using CalamityMod;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.Configs;
+using ThrowerUnification;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 {
@@ -170,6 +169,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 
             string scuttlerInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Scuttler");
             string boneInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Bone");
+            string boneInfoNew = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Bone2");
             string bloodyfilthyInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.BloodyFilthy");
             string magnetoInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Magneto");
 
@@ -207,8 +207,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 
                 if (item.type == ModContent.ItemType<Nanotech>() || item.type == ModContent.ItemType<ElectriciansGlove>())
                 {
-                    AddTooltip(tooltips, magnetoInfo, true);
-                    AddTooltip(tooltips, boneInfo, true);
+                    //AddTooltip(tooltips, magnetoInfo, true);
+
+                    if (ThrowerModConfig.Instance.ConsumableWeaponConversion)
+                        AddTooltip(tooltips, boneInfoNew, true);
+                    else
+                        AddTooltip(tooltips, boneInfo, true);
+
                     AddTooltip(tooltips, scuttlerInfo, true);
                 }
             }

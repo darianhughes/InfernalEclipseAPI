@@ -665,6 +665,11 @@ ItemTooltip: {
 			拾取盗贼物品时有33%概率复制它并增加你的盗贼弹幕速度
 			此效果只能在脱战时每半秒触发一次
 			'''
+		/* Bone2:
+			'''
+			Thrower projectiles have a 20% chance to grant the player 15% thrower attack speed for 1 second upon hitting anything
+			This effect can only trigger once every one-and-a-half seconds
+			''' */
 		Scuttler: 潜伏攻击的弹幕消失时会生成一根宝石尖刺
 		BloodyFilthy: 潜伏攻击会附带8点护甲穿透，额外造成8%伤害并为你回复2点生命值
 		NoExhaustion: 装备时移除所有疲劳值效果

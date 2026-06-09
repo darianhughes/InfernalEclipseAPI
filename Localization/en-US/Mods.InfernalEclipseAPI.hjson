@@ -666,6 +666,11 @@ ItemTooltip: {
 			Picking up a rogue item has a 33% chance to duplicate it and increase your rogue attack speed  
 			This effect can only trigger once every half-second while out of combat  
 			'''
+		Bone2:
+			'''
+			Thrower projectiles have a 20% chance to grant the player 15% thrower attack speed for 1 second upon hitting anything
+			This effect can only trigger once every one-and-a-half seconds
+			'''
 		Scuttler: Stealth strike projectiles spawn a jewel spike when destroyed
 		BloodyFilthy: Stealth strikes have +8 armor penetration, deal 8% more damage, and heal for 2 HP
 		NoExhaustion: Removes all Exhaustion when equipped
