@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Utils;
 using MonoMod.RuntimeDetour;

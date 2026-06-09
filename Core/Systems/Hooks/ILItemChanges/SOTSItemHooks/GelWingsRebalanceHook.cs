@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using InfernalEclipseAPI.Core.Configs;
 using MonoMod.RuntimeDetour;
 using Terraria.DataStructures;
 

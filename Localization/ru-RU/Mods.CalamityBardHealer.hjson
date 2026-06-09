@@ -63,17 +63,17 @@ Items: {
 		'''
 
 	IntergelacticProtectorHelm: {
-		/* Tooltip:
+		Tooltip:
 			'''
-			11% increased radiant damage, critical strike chance and casting speed
-			33% decreased non-radiant damage
-			''' */
-		/* SetBonus:
+			Увеличивает лучезарный урон, шанс критического удара и скорость произнесения заклинаний на 11%
+			Снижает весь урон, кроме лучезарного, на 33%
 			'''
-			22% increased radiant damage
-			Healing spells will heal an additional 6 life
-			Asteroids have a 20 % chance to heal {0} life upon hitting enemies
-			''' */
+		SetBonus:
+			'''
+			Увеличивает лучезарный урон на 22%
+			Исцеляющие заклинания восстанавливают дополнительно 6 ед. здоровья
+			Астероиды с 20% шансом могут восстановить {0} ед. здоровья при попадании по врагу
+			'''
 	}
 
 	ElementalBloom.Tooltip:
@@ -99,9 +99,10 @@ Items: {
 		'''
 }
 
-/* ItemDescriptions.DemonshadeGreaves:
+ItemDescriptions.DemonshadeGreaves:
 	'''
-	Increases your maximum technique points by 2, maximum inspiration by 15, and bonus healing by 10 life
-	Increases wind instrument homing speed and range by 60% and string instruments bounce six additional times
-	Doubles the range of your empowerments effect radius and extends the duration of empowerments by 6 seconds
-	''' */
+	Увеличивает максимальное число очков техники на 2, максимальный запас вдохновения на 15 и бонусное исцеление на 10 ед. здоровья
+	Увеличивает скорость и дальность наведения духовых инструментов на 60%
+	Снаряды струнного оружия могут дополнительно отскакивать 6 раз
+	Удваивает радиус действия ваших усилений в два раза и увеличивает их длительность на 6 секунд
+	'''

@@ -2,6 +2,7 @@
 using ThoriumMod.Items;
 using Microsoft.Xna.Framework;
 using System.Reflection;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
 {

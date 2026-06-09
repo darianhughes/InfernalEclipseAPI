@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using InfernalEclipseAPI.Core.Configs;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;

@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Accessories;
 using FargowiltasSouls.Content.NPCs.EternityModeNPCs.VanillaEnemies.SolarEclipse;
+using InfernalEclipseAPI.Core.Configs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.Localization;

@@ -24,7 +24,9 @@ using NoxusBoss.Content.NPCs.Bosses.NamelessDeity;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSystem;
-using InfernalEclipseAPI.Content.Items.Placeables.Relics;
+using CalamityMod.Events;
+using Microsoft.Xna.Framework;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {
@@ -92,45 +94,69 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
     {
         public override bool PreAI(NPC npc)
         {
-            if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active || npc.type != ModContent.NPCType<NamelessDeityBoss>()) return base.PreAI(npc);
+            if (!InfernalConfig.Instance.CalamityBalanceChanges || !npc.active) return base.PreAI(npc);
 
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
                 if (player.active && !player.dead)
                 {
-                    if (player.mount?.Type == ModContent.MountType<DraedonGamerChairMount>())
+                    if (npc.ModNPC is NamelessDeityBoss ND)
                     {
-                        player.mount.Dismount(player);
-                        SoundEngine.PlaySound(GennedAssets.Sounds.NamelessDeity.Chuckle, player.Center);
-                    }
-
-                    if (InfernalCrossmod.Clamity.Loaded)
-                    {
-                        if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
+                        if (player.mount?.Type == ModContent.MountType<DraedonGamerChairMount>())
                         {
                             player.mount.Dismount(player);
                             SoundEngine.PlaySound(GennedAssets.Sounds.NamelessDeity.Chuckle, player.Center);
                         }
-                    }
 
-                    if (npc.ModNPC is NamelessDeityBoss ND && ND.CurrentPhase > 0)
-                    {
-                        if (ModLoader.HasMod("CalamityHunt"))
+                        if (InfernalCrossmod.Clamity.Loaded)
                         {
-                            StressMeterOverrides.DisableStress(player);
+                            if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
+                            {
+                                player.mount.Dismount(player);
+                                SoundEngine.PlaySound(GennedAssets.Sounds.NamelessDeity.Chuckle, player.Center);
+                            }
                         }
 
-                        CalamityPlayer mp = player.Calamity();
-                        mp.rage = 0;
-                        mp.rageModeActive = false;
-                        mp.adrenaline = 0;
-                        mp.adrenalineModeActive = false;
-
-                        if (InfernalWorld.RagnarokModeEnabled)
+                        if (ND.CurrentPhase > 0)
                         {
-                            if (!player.ghost)
-                                player.AddBuff(ModContent.BuffType<BrimstoneDesperation>(), 2);
+                            if (ModLoader.HasMod("CalamityHunt"))
+                            {
+                                StressMeterOverrides.DisableStress(player);
+                            }
+
+                            CalamityPlayer mp = player.Calamity();
+                            mp.rage = 0;
+                            mp.rageModeActive = false;
+                            mp.adrenaline = 0;
+                            mp.adrenalineModeActive = false;
+
+                            if (InfernalWorld.RagnarokModeEnabled)
+                            {
+                                if (!player.ghost)
+                                    player.AddBuff(ModContent.BuffType<BrimstoneDesperation>(), 2);
+                            }
+                        }
+                    }
+
+                    if (npc.type == ModContent.NPCType<AvatarOfEmptiness>())
+                    {
+                        if (InfernumSaveSystem.InfernumModeEnabled)
+                        {
+                            if (player.mount.Active)
+                            {
+                                player.mount.Dismount(player);
+                                CombatText.NewText(player.Hitbox, Color.BlueViolet, "Can't do that right now!", true);
+                            }
+                        }
+
+                        if (npc.HasValidTarget)
+                        {
+                            if (player.Distance(Main.player[npc.target].Center) >= 10000f)
+                            {
+                                player.position = Main.player[npc.target].Center;
+                                SoundEngine.PlaySound(BossRushEvent.TeleportSound with { Volume = 1.6f }, player.Center);
+                            }
                         }
                     }
                 }

@@ -19,7 +19,6 @@ using Terraria.GameInput;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.Projectiles.Melee;
 using Terraria.UI;
-using InfernalEclipseAPI.Content.UI;
 using CalamityMod.Projectiles.Melee.Shortswords;
 using CalamityMod.NPCs.AquaticScourge;
 using InfernalEclipseAPI.Content.Projectiles;
@@ -28,13 +27,12 @@ using CalamityMod.CalPlayer;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.Ravager;
 using CalamityMod.NPCs.Providence;
-using System.Linq;
 using CalamityMod.NPCs.PrimordialWyrm;
-using CalamityMod.World;
 using InfernalEclipseAPI.Content.Items.Other;
-using Terraria;
 using InfernumMode.Common.DataStructures;
 using InfernumMode;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Content.UI.Notificatons;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -81,15 +79,22 @@ namespace InfernalEclipseAPI.Core.Players
                 InfernalWorld.craftedWorkshop = true;
             }
 
-            if (ModLoader.HasMod("FargowiltasSouls"))
+            if ((InfernalConfig.Instance.SolynCampsiteFixes || !ModLoader.HasMod("WOTGCampsiteFix")) && InfernalConfig.Instance.DeveloperMode)
+                InGameNotificationsTracker.AddNotification(new SolynCampsiteFixApplicationNotification());
+
+            if (ModLoader.HasMod("ContinentOfJourney"))
             {
-                InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
+                if (HomewardConfig.Instance.DisplayHomewardWorldEntryMessages)
+                {
+                    InGameNotificationsTracker.AddNotification(new HomewardJourneyNotification());
+                }
             }
+
+            if (ModLoader.HasMod("FargowiltasSouls"))
+                InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
             
             if (Main.getGoodWorld)
-            {
                 InGameNotificationsTracker.AddNotification(new ForTheWorthyNotification());
-            }
 
             //TODO convert these to notifications
             if (ModLoader.HasMod("CWRMod"))
@@ -166,7 +171,7 @@ namespace InfernalEclipseAPI.Core.Players
                 {
                     Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokBalance"), 255, 255, 0);
 
-                    if (rework != null && !InfernalConfig.Instance.AutomatedConfigSetup)
+                    if (rework != null)
                     {
                         Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokRework"), 255, 255, 0);
                     }
@@ -204,6 +209,7 @@ namespace InfernalEclipseAPI.Core.Players
         public bool CritNightmare;
         public bool bagOfCharms;
         public int voidSicknessTextCooldown;
+        public int teleportRespawnKilldown;
 
         public float manaSteal = Main.expertMode ? 40f : 50f;
         public float voidSteal = Main.expertMode ? 45f : 55f;
@@ -282,6 +288,9 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (!Player.HasBuff(ModContent.BuffType<WarpJammed>()))
                 jamTimer = 0;
+
+            if (teleportRespawnKilldown > 0)
+                teleportRespawnKilldown--;
 
             if (namelessDialogueCooldown > 0)
                 namelessDialogueCooldown--;
@@ -396,6 +405,8 @@ namespace InfernalEclipseAPI.Core.Players
         {
             Player.ClearBuff(ModContent.BuffType<WarpJammed>());
             Player.ClearBuff(ModContent.BuffType<StarboundHorrification>());
+
+            teleportRespawnKilldown = 30;
         }
 
         public override void PostUpdate()
@@ -486,6 +497,9 @@ namespace InfernalEclipseAPI.Core.Players
                 nightmareArmCD--;
             else
                 nightmareArmCD = 0;
+
+            if (BossRushEvent.BossRushActive && Player.statLifeMax2 > 1111)
+                Player.statLifeMax2 = 1111;
         }
 
         public bool soltanBullying = false;
@@ -519,6 +533,18 @@ namespace InfernalEclipseAPI.Core.Players
                     {
                         Player.Infernum().SetValue<bool>("PhysicsDefianceIsEnabled", false);
                     }
+                }
+            }
+
+            if (Player.HasBuff<LowGround>() || Player.HasBuff<CrimulanAura>())
+            {
+                Player.buffImmune[BuffID.Featherfall] = true;
+                Player.ClearBuff(BuffID.Featherfall);
+                Player.slowFall = false;
+
+                if (InfernalCrossmod.QoLC.Loaded)
+                {
+                    InfernalCrossmod.QoLC.RemoveQoLCompendiumInfiniteBuff(Player, BuffID.Featherfall);
                 }
             }
         }
@@ -778,6 +804,15 @@ namespace InfernalEclipseAPI.Core.Players
 
                 ref StatModifier local = ref Player.GetDamage(DamageClass.Generic);
                 local -= (float)(0.25 * (time / 300f));
+
+                if (time >= 10 * 60)
+                {
+                    Player.buffImmune[InfernalCrossmod.SOTS.Mod.Find<ModBuff>("VoidAccess").Type] = true;
+                }
+                else
+                {
+                    Player.buffImmune[InfernalCrossmod.SOTS.Mod.Find<ModBuff>("VoidAccess").Type] = false;
+                }
             }
 
             if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.ThoriumBalanceChangess && !InfernalCrossmod.Hummus.Loaded)
@@ -883,48 +918,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             if (scalingArmorPenetration)
             {
-                bool bypassScalingArmorPen = false;
-
-                int[] bypassScalingArmorPenCal =
-                [
-                    ModContent.NPCType<Providence>()
-                ];
-
-                if (bypassScalingArmorPenCal.Contains(target.type))
-                    bypassScalingArmorPen = true;
-
-                if (InfernalCrossmod.Thorium.Loaded)
-                {
-                    Mod thor = InfernalCrossmod.Thorium.Mod;
-
-                    int[] bypassScalingAmorPenThor =
-                    [
-                        thor.Find<ModNPC>("BoreanStrider").Type,
-                        thor.Find<ModNPC>("BoreanStriderPopped").Type,
-                        thor.Find<ModNPC>("BoreanHopper").Type,
-                        thor.Find<ModNPC>("BoreanStrider").Type,
-                        thor.Find<ModNPC>("ForgottenOne").Type,
-                        thor.Find<ModNPC>("ForgottenOneCracked").Type,
-                        thor.Find<ModNPC>("ForgottenOneReleased").Type,
-                    ];
-
-                    if (bypassScalingAmorPenThor.Contains(target.target))
-                        bypassScalingArmorPen = true;
-                }
-
-                if (InfernalCrossmod.Clamity.Loaded)
-                {
-                    Mod clam = InfernalCrossmod.Clamity.Mod;
-                    int[] bypassScaliingAmorPenClam =
-                    [
-                        clam.Find<ModNPC>("ClamitasBoss").Type
-                    ];
-
-                    if (bypassScaliingAmorPenClam.Contains(target.target))
-                        bypassScalingArmorPen = true;
-                }
-
-                if (!bypassScalingArmorPen)
+                if (!BypassesScalingArmorPen(target.type))
                 {
                     modifiers.DefenseEffectiveness *= Main.hardMode ? 0.9f : 0.95f;
                 }
@@ -937,6 +931,38 @@ namespace InfernalEclipseAPI.Core.Players
                     modifiers.FinalDamage *= 0.2f;
                 }
             }
+        }
+
+        private static bool BypassesScalingArmorPen(int type)
+        {
+            if (type == ModContent.NPCType<Providence>())
+                return true;
+
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                Mod thor = InfernalCrossmod.Thorium.Mod;
+
+                if (type == thor.Find<ModNPC>("BoreanStrider").Type ||
+                    type == thor.Find<ModNPC>("BoreanStriderPopped").Type ||
+                    type == thor.Find<ModNPC>("BoreanHopper").Type ||
+                    type == thor.Find<ModNPC>("BoreanStrider").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOne").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOneCracked").Type ||
+                    type == thor.Find<ModNPC>("ForgottenOneReleased").Type)
+                {
+                    return true;
+                }
+            }
+
+            if (InfernalCrossmod.Clamity.Loaded)
+            {
+                Mod clam = InfernalCrossmod.Clamity.Mod;
+
+                if (type == clam.Find<ModNPC>("ClamitasBoss").Type)
+                    return true;
+            }
+
+            return false;
         }
 
         public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
@@ -957,7 +983,7 @@ namespace InfernalEclipseAPI.Core.Players
             if ((proj.type == ModContent.ProjectileType<CelestusProj>() || proj.type == ModContent.ProjectileType<CelestusMiniScythe>()) &&
                 (target.type == ModContent.NPCType<SepulcherHead>() || target.type == ModContent.NPCType<SepulcherBody>() || target.type == ModContent.NPCType<SepulcherTail>()))
             {
-                modifiers.FinalDamage *= 0.01f;
+                modifiers.FinalDamage *= 0.001f;
             }
 
             if ((target.type == ModContent.NPCType<AstrumDeusHead>() || target.type == ModContent.NPCType<AstrumDeusBody>() || target.type == ModContent.NPCType<AstrumDeusTail>()) && !NPC.downedAncientCultist)
@@ -996,10 +1022,22 @@ namespace InfernalEclipseAPI.Core.Players
                 }
             }
 
-            if ((target.type == ModContent.NPCType<PlaguebringerGoliath>() || target.type == ModContent.NPCType<RavagerBody>() || target.type == ModContent.NPCType<RavagerClawLeft>() || target.type == ModContent.NPCType<RavagerClawRight>() || target.type == ModContent.NPCType<RavagerHead>() ||
-                target.type == ModContent.NPCType<RavagerHead2>() || target.type == ModContent.NPCType<RavagerLegLeft>() || target.type == ModContent.NPCType<RavagerLegRight>()) && (proj.type == ModContent.ProjectileType<DukesDecapitatorProj>() || proj.type == ModContent.ProjectileType<DukesDecapitatorBubble>()))
+            if (proj.type == ModContent.ProjectileType<DukesDecapitatorProj>() || proj.type == ModContent.ProjectileType<DukesDecapitatorBubble>())
             {
-                modifiers.FinalDamage *= 0.1f;
+
+                if ((target.type == ModContent.NPCType<PlaguebringerGoliath>() || target.type == ModContent.NPCType<RavagerBody>() || target.type == ModContent.NPCType<RavagerClawLeft>() || target.type == ModContent.NPCType<RavagerClawRight>() 
+                  || target.type == ModContent.NPCType<RavagerHead>() ||target.type == ModContent.NPCType<RavagerHead2>() || target.type == ModContent.NPCType<RavagerLegLeft>() || target.type == ModContent.NPCType<RavagerLegRight>()))
+                {
+                    modifiers.FinalDamage *= 0.1f;
+                }
+
+                if (InfernalCrossmod.SOTS.Loaded)
+                {
+                    if ((target.type == InfernalCrossmod.SOTS.Mod.Find<ModNPC>("Lux").Type))
+                    {
+                        modifiers.FinalDamage *= 0.5f;
+                    }
+                }
             }
         }
 

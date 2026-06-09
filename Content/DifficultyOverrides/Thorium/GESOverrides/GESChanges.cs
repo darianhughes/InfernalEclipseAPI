@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.World;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Core.GlobalInstances.Systems;
 using Terraria;

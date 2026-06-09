@@ -19,6 +19,9 @@ using CalamityMod;
 using InfernumMode.Content.Items.Misc;
 using Terraria;
 using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
+using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Content.Items.Accessories;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -99,11 +102,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 }
 
                 itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MenuMusicBox>()));
+                itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulDrivenHeadphonesEclipse>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<LoreProvi>()));
                 itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<MysteriousDiary>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new SoltanPlayerCondition(), ModContent.ItemType<LoreDylan>()));
+
+                itemLoot.Add(ItemDropRule.ByCondition(new DylanPlayerCondition(), ModContent.ItemType<SoltanBullyingSlip>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new CheesePlayerCondition(), ModContent.ItemType<DeathWhistle>()));
 
@@ -113,7 +119,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                 itemLoot.Add(ItemDropRule.ByCondition(new CatPlayerCondition(), ModContent.ItemType<Catlight>()));
 
-                itemLoot.Add(ItemDropRule.ByCondition(new devListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
+                itemLoot.Add(ItemDropRule.ByCondition(new DevListPlayerCondition(), ModContent.ItemType<InfernalTwilight>()));
             }
 
             /*
@@ -261,10 +267,35 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Wiesnbrau"), Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)));
                 }
             }
+
+            if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                int findWhipItem(string name) => simpleWhipAddon.Find<ModItem>(name).Type;
+
+                int[] bleachedAcessories =
+                {
+                    findWhipItem("BleachedNucleogenesis"),
+                    findWhipItem("BleachedStatisCurse"),
+                    findWhipItem("BleachedStarTaintedGenerator"),
+                    findWhipItem("BleachedStarbusterCore"),
+                    findWhipItem("BleachedNuclearFuelRod"),
+                    findWhipItem("BleachedTheFirstShadowflame"),
+                    findWhipItem("BleachedJellyChargedBattery"),
+                    findWhipItem("BleachedVoltaicJelly"),
+
+                    findWhipItem("BuddyEmblem")
+                };
+
+                foreach (int bleachedItem in bleachedAcessories)
+                {
+                    if (item.type == bleachedItem)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
+                }
+            }
         }
     }
 
-    public class devListPlayerCondition : IItemDropRuleCondition
+    public class DevListPlayerCondition : IItemDropRuleCondition
     {
         public bool CanDrop(DropAttemptInfo info)
         {
@@ -313,7 +344,25 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
-                if (player.active && player.name == "Bloxxer")
+                if (player.active && (player.name == "Bloxxer" || player.name == "Dylan"))
+                    return true;
+            }
+            return false;
+        }
+
+        public bool CanShowItemDropInUI() => false;
+        public string GetConditionDescription() => "A certain person must be present...";
+    }
+
+    public class DylanPlayerCondition : IItemDropRuleCondition
+    {
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            // Loop through all players in the world
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.active && player.name == "Dylan")
                     return true;
             }
             return false;

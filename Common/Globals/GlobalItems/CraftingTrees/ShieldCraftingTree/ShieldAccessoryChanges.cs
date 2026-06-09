@@ -2,21 +2,14 @@
 using Microsoft.Xna.Framework;
 using CalamityMod.Items.Accessories;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {
     public class ShieldCraftingTree : GlobalItem
     {
-        private Mod calamity
-        {
-            get
-            {
-                ModLoader.TryGetMod("CalamityMod", out Mod cal);
-                return cal;
-            }
-        }
-
-        private Mod thorium
+        private static Mod Thorium
         {
             get
             {
@@ -25,7 +18,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             }
         }
 
-        private Mod sots
+        private static Mod SOTS
         {
             get
             {
@@ -34,7 +27,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             }
         }
 
-        private Mod clamity
+        private static Mod Clamity
         {
             get
             {
@@ -56,41 +49,41 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             if (!InfernalConfig.Instance.MergeCraftingTrees)
                 return;
 
-            if (item.type == ModContent.ItemType<OrnateShield>() && sots != null)
+            if (item.type == ModContent.ItemType<OrnateShield>() && SOTS != null)
             {
-                sots.Find<ModItem>("ShatterHeartShield").UpdateAccessory(player, hideVisual);
+                SOTS.Find<ModItem>("ShatterHeartShield").UpdateAccessory(player, hideVisual);
             }
 
-            if (item.type == ModContent.ItemType<AsgardsValor>() && thorium != null && sots != null)
+            if (item.type == ModContent.ItemType<AsgardsValor>() && Thorium != null && SOTS != null)
             {
                 //ModItem moltenScale = thorium.Find<ModItem>("ObsidianScale");
                 //moltenScale.UpdateAccessory(player, hideVisual);
                 //base.UpdateAccessory(item, player, hideVisual);
-                sots.Find<ModItem>("ShatterHeartShield").UpdateAccessory(player, hideVisual);
+                SOTS.Find<ModItem>("ShatterHeartShield").UpdateAccessory(player, hideVisual);
             }
 
             ModItem plasmaGen = null;
-            if (thorium != null)
+            if (Thorium != null)
             {
-                if (thorium.TryFind("PlasmaGenerator", out plasmaGen))
+                if (Thorium.TryFind("PlasmaGenerator", out plasmaGen))
                 {
                     if (item.type == plasmaGen.Type)
                     {
-                        thorium.Find<ModItem>("ObsidianScale").UpdateAccessory(player, hideVisual);
+                        Thorium.Find<ModItem>("ObsidianScale").UpdateAccessory(player, hideVisual);
                     }
                 }
             }
 
-            if (item.type == ModContent.ItemType<AsgardianAegis>() && thorium != null)
+            if (item.type == ModContent.ItemType<AsgardianAegis>() && Thorium != null)
             {
-                thorium.Find<ModItem>("ObsidianScale").UpdateAccessory(player, hideVisual);
+                Thorium.Find<ModItem>("ObsidianScale").UpdateAccessory(player, hideVisual);
                 if (plasmaGen != null)
                 {
                     plasmaGen.UpdateAccessory(player, hideVisual);
                 }
-                if (sots != null)
+                if (SOTS != null)
                 {
-                    sots.Find<ModItem>("ShatterHeartShield").UpdateAccessory(player, hideVisual);
+                    SOTS.Find<ModItem>("ShatterHeartShield").UpdateAccessory(player, hideVisual);
                 }
             }
 
@@ -99,14 +92,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 player.longInvince = false;
                 player.statLifeMax2 -= 20;
 
-                if (sots != null)
+                if (SOTS != null)
                 {
-                    sots.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
-                    sots.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
+                    SOTS.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
+                    SOTS.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
                 }
                 else
                 {
-                    thorium.Find<ModItem>("LifeQuartzShield").UpdateAccessory(player, hideVisual);
+                    Thorium.Find<ModItem>("LifeQuartzShield").UpdateAccessory(player, hideVisual);
                 }
 
                 if (player.statLife <= player.statLifeMax2 * 0.25)
@@ -128,15 +121,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 
             if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.ModItem.Name == "MantleoftheProtector")
             {
-                calamity.Find<ModItem>("DeificAmulet").UpdateAccessory(player, hideVisual);
-                thorium.Find<ModItem>("CapeoftheSurvivor").UpdateAccessory(player, hideVisual);
-                thorium.Find<ModItem>("SweetVengeance").UpdateAccessory(player, hideVisual);
+                InfernalCrossmod.Calamity.Mod.Find<ModItem>("DeificAmulet").UpdateAccessory(player, hideVisual);
+                Thorium.Find<ModItem>("CapeoftheSurvivor").UpdateAccessory(player, hideVisual);
+                Thorium.Find<ModItem>("SweetVengeance").UpdateAccessory(player, hideVisual);
                 base.UpdateAccessory(item, player, hideVisual);
             }
 
             if (item.type == ModContent.ItemType<RampartofDeities>())
             {
-                if (thorium != null)
+                if (Thorium != null)
                 {
                     player.noKnockback = true;
                     player.fireWalk = true;
@@ -153,19 +146,19 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     player.buffImmune[47] = true;
                     player.buffImmune[156] = true;
 
-                    if (sots != null)
+                    if (SOTS != null)
                     {
-                        sots.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
-                        sots.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
+                        SOTS.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
+                        SOTS.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
                     }
                     else
                     {
-                        thorium.Find<ModItem>("LifeQuartzShield").UpdateAccessory(player, hideVisual);
+                        Thorium.Find<ModItem>("LifeQuartzShield").UpdateAccessory(player, hideVisual);
                     }
 
                     if (player.statLife <= player.statLifeMax2 * 0.25)
                     {
-                        if (thorium.TryFind("TerrariumDefenderBuff", out ModBuff tdBuff))
+                        if (Thorium.TryFind("TerrariumDefenderBuff", out ModBuff tdBuff))
                             player.AddBuff(tdBuff.Type, 10);
 
                         player.lifeRegen += 10;
@@ -178,14 +171,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             localPlayer.AddBuff(BuffID.Regeneration, 30);
                     }
 
-                    thorium.Find<ModItem>("MantleoftheProtector").UpdateAccessory(player, hideVisual);
-                    thorium.Find<ModItem>("CapeoftheSurvivor").UpdateAccessory(player, hideVisual);
+                    Thorium.Find<ModItem>("MantleoftheProtector").UpdateAccessory(player, hideVisual);
+                    Thorium.Find<ModItem>("CapeoftheSurvivor").UpdateAccessory(player, hideVisual);
                     //thorium.Find<ModItem>("SweetVengeance").UpdateAccessory(player, hideVisual);
                 }
-                else if (sots != null)
+                else if (SOTS != null)
                 {
-                    sots.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
-                    sots.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
+                    SOTS.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
+                    SOTS.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
                 }
                 base.UpdateAccessory(item, player, hideVisual);
             }
@@ -196,7 +189,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 {
                     plasmaGen.UpdateAccessory(player, hideVisual);
                 }
-                if (sots != null)
+                if (SOTS != null)
                 {
                     player.noKnockback = true;
                     player.fireWalk = true;
@@ -213,10 +206,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     player.buffImmune[47] = true;
                     player.buffImmune[156] = true;
 
-                    sots.Find<ModItem>("ShatterHeartShield").UpdateAccessory(player, hideVisual);
+                    SOTS.Find<ModItem>("ShatterHeartShield").UpdateAccessory(player, hideVisual);
                 }
 
-                if (thorium != null)
+                if (Thorium != null)
                 {
                     player.noKnockback = true;
                     player.fireWalk = true;
@@ -233,20 +226,20 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     player.buffImmune[47] = true;
                     player.buffImmune[156] = true;
 
-                    thorium.Find<ModItem>("ObsidianScale").UpdateAccessory(player, hideVisual);
-                    if (sots != null)
+                    Thorium.Find<ModItem>("ObsidianScale").UpdateAccessory(player, hideVisual);
+                    if (SOTS != null)
                     {
-                        sots.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
-                        sots.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
+                        SOTS.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
+                        SOTS.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
                     }
                     else
                     {
-                        thorium.Find<ModItem>("LifeQuartzShield").UpdateAccessory(player, hideVisual);
+                        Thorium.Find<ModItem>("LifeQuartzShield").UpdateAccessory(player, hideVisual);
                     }
 
                     if (player.statLife <= player.statLifeMax2 * 0.25)
                     {
-                        if (thorium.TryFind("TerrariumDefenderBuff", out ModBuff tdBuff))
+                        if (Thorium.TryFind("TerrariumDefenderBuff", out ModBuff tdBuff))
                             player.AddBuff(tdBuff.Type, 10);
 
                         player.lifeRegen += 10;
@@ -259,14 +252,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             localPlayer.AddBuff(BuffID.Regeneration, 30);
                     }
 
-                    thorium.Find<ModItem>("MantleoftheProtector").UpdateAccessory(player, hideVisual);
-                    thorium.Find<ModItem>("CapeoftheSurvivor").UpdateAccessory(player, hideVisual);
+                    Thorium.Find<ModItem>("MantleoftheProtector").UpdateAccessory(player, hideVisual);
+                    Thorium.Find<ModItem>("CapeoftheSurvivor").UpdateAccessory(player, hideVisual);
                     //thorium.Find<ModItem>("SweetVengeance").UpdateAccessory(player, hideVisual);
                 }
-                else if (sots != null)
+                else if (SOTS != null)
                 {
-                    sots.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
-                    sots.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
+                    SOTS.Find<ModItem>("OlympianAegis").UpdateAccessory(player, hideVisual);
+                    SOTS.Find<ModItem>("ChiseledBarrier").UpdateAccessory(player, hideVisual);
                 }
                 base.UpdateAccessory(item, player, hideVisual);
             }
@@ -348,15 +341,15 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
             string pgInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.PlasmaGen");
             string ankhInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.TerrariumDefender.immunity");
 
-            if (sots != null && (item.type == ModContent.ItemType<AsgardsValor>() || item.type == ModContent.ItemType<AsgardianAegis>() || item.type == ModContent.ItemType<OrnateShield>()))
+            if (SOTS != null && (item.type == ModContent.ItemType<AsgardsValor>() || item.type == ModContent.ItemType<AsgardianAegis>() || item.type == ModContent.ItemType<OrnateShield>()))
             {
                 AddTooltip(tooltips, shsInfo, true);
             }
 
             ModItem plasmaGen = null;
-            if (thorium != null)
+            if (Thorium != null)
             {
-                if (thorium.TryFind("PlasmaGenerator", out plasmaGen))
+                if (Thorium.TryFind("PlasmaGenerator", out plasmaGen))
                 {
                     if (item.type == plasmaGen.Type)
                     {
@@ -365,7 +358,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 }
             }
 
-            if (item.type == ModContent.ItemType<AsgardianAegis>() & thorium != null)
+            if (item.type == ModContent.ItemType<AsgardianAegis>() & Thorium != null)
             {
                 AddTooltip(tooltips, moltenScaleInfo, true);
                 if (plasmaGen != null)
@@ -374,7 +367,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 }
             }
 
-            if (thorium != null)
+            if (Thorium != null)
             {
                 if (item.type == ModContent.ItemType<DeificAmulet>())
                 {
@@ -384,7 +377,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     */
                 }
 
-                if (item.type == thorium.Find<ModItem>("MantleoftheProtector").Type)
+                if (item.type == Thorium.Find<ModItem>("MantleoftheProtector").Type)
                 {
                     AddTooltip(tooltips, cotsInfo, true);
                     AddTooltip(tooltips, sweetInfo1, true);
@@ -392,9 +385,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     AddTooltip(tooltips, daInfo, true);
                 }
 
-                if (sots != null)
+                if (SOTS != null)
                 {
-                    if (item.type == thorium.Find<ModItem>("TerrariumDefender").Type)
+                    if (item.type == Thorium.Find<ModItem>("TerrariumDefender").Type)
                     {
                         foreach (TooltipLine tooltip in tooltips)
                         {
@@ -410,9 +403,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             }
                         }
                     }
-                    if (clamity != null)
+                    if (Clamity != null)
                     {
-                        if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
+                        if (item.type == Clamity.Find<ModItem>("SupremeBarrier").Type)
                         {
                             AddTooltip(tooltips, shsInfo, true);
                             if (plasmaGen != null)
@@ -455,7 +448,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                 }
                 else
                 {
-                    if (item.type == thorium.Find<ModItem>("TerrariumDefender").Type)
+                    if (item.type == Thorium.Find<ModItem>("TerrariumDefender").Type)
                     {
                         foreach (TooltipLine tooltip in tooltips)
                         {
@@ -471,9 +464,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                             }
                         }
                     }
-                    if (clamity != null)
+                    if (Clamity != null)
                     {
-                        if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
+                        if (item.type == Clamity.Find<ModItem>("SupremeBarrier").Type)
                         {
                             if (plasmaGen != null)
                             {
@@ -510,11 +503,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                     }
                 }
             }
-            else if (sots != null)
+            else if (SOTS != null)
             {
-                if (clamity != null)
+                if (Clamity != null)
                 {
-                    if (item.type == clamity.Find<ModItem>("SupremeBarrier").Type)
+                    if (item.type == Clamity.Find<ModItem>("SupremeBarrier").Type)
                     {
                         AddTooltip(tooltips, shsInfo, true);
                         

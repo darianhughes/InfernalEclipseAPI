@@ -3,6 +3,7 @@ using ThoriumMod.Items;
 using CalamityMod.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {

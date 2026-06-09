@@ -99,9 +99,9 @@ Items: {
 		'''
 }
 
-/* ItemDescriptions.DemonshadeGreaves:
+ItemDescriptions.DemonshadeGreaves:
 	'''
-	Increases your maximum technique points by 2, maximum inspiration by 15, and bonus healing by 10 life
-	Increases wind instrument homing speed and range by 60% and string instruments bounce six additional times
-	Doubles the range of your empowerments effect radius and extends the duration of empowerments by 6 seconds
-	''' */
+	最大技巧值增加2, 最大灵感值增加15, 额外治疗增加10
+	增加60%管乐器的追踪速度和范围和弦乐器的弹幕会额外反弹六次
+	咒音增幅的效用范围翻倍和咒音增幅持续时间延长6秒
+	'''

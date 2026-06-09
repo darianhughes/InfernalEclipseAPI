@@ -2,6 +2,7 @@
 using CalamityMod.Items.Accessories;
 using Terraria.Localization;
 using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {
@@ -349,6 +350,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             string watchInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Watch");
             //string yumasInfo = "Taking damage releases a ghostly protector";
 
+            string oneMoreSentry = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.OneSentry");
             string twoMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.TwoSentry");
             string threeMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ThreeSentry");
 
@@ -370,7 +372,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {
-                    AddTooltip(tooltips, twoMoreSentries, InfernalRed);
+                    AddTooltip(tooltips, oneMoreSentry, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
@@ -389,7 +391,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StatisCurse>())
                 {
-                    AddTooltip(tooltips, twoMoreSentries, InfernalRed);
+                    AddTooltip(tooltips, oneMoreSentry, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
@@ -412,7 +414,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
-                    AddTooltip(tooltips, twoMoreSentries, InfernalRed);
+                    AddTooltip(tooltips, oneMoreSentry, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)

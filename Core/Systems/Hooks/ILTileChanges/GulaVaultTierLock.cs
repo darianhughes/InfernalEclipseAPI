@@ -3,6 +3,7 @@ using MonoMod.RuntimeDetour;
 using Terraria.Audio;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges
 {

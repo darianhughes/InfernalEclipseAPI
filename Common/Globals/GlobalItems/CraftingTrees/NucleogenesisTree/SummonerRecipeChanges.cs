@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {

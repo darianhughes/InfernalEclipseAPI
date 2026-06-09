@@ -4,7 +4,7 @@ using InfernumMode.Content.BehaviorOverrides.BossAIs.WallOfFlesh;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 
-namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla.EmpressOverrides
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla.WoFOverrides
 {
     internal class WallofFleshEyeChanges : GlobalNPC
     {

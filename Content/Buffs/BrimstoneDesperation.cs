@@ -8,6 +8,7 @@ using InfernumMode.Content.Items.Accessories;
 using InfernumMode.Content.Items.Weapons.Melee;
 using InfernumMode.Core.GlobalInstances.Players;
 using SOTS.Buffs.Debuffs;
+using SOTS.Void;
 using ThoriumMod;
 using ThoriumMod.Buffs;
 using ThoriumMod.Utilities;
@@ -69,12 +70,19 @@ namespace InfernalEclipseAPI.Content.Buffs
 
             player.AddBuff(ModContent.BuffType<RevivalExhaustion>(), 2);
 
+            GrantThoriumChaosState(player);
+
             mp.debuffRevivalExhaustion = true;
 
             mp.accAbyssalShell = false;
             mp.accFlawlessChrysalis = false;
 
             player.ClearBuff(ModContent.BuffType<PhylacteryBuff>());
+        }
+
+        public static void GrantThoriumChaosState(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<ThoriumMod.Buffs.ChaosState>(), 2);
         }
     }
 

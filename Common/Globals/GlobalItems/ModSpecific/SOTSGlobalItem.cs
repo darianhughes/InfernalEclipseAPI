@@ -40,11 +40,10 @@ using SOTS.Items.Fishing;
 using InfernalEclipseAPI.Content.RogueThrower;
 using InfernumMode.Content.Items.Accessories;
 using SOTS.Void;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
-using Steamworks;
 using SOTS.Items.Secrets;
 using SOTS.Items.Void;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.Utils;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Multi
 {

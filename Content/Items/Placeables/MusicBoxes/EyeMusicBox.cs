@@ -7,8 +7,9 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return ModLoader.TryGetMod("InfernumModeMusic", out _);
+            return ModLoader.HasMod("InfernumModeMusic");
         }
+
         public override void SetStaticDefaults()
         {
             if (Main.dedServ)
@@ -16,7 +17,8 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.CanGetPrefixes[Type] = false;
             ItemID.Sets.ShimmerTransformToItem[Type] = 576;
-            ModLoader.TryGetMod("InfernumModeMusic", out Mod InfernumMusic);
+
+            Mod InfernumMusic = ModLoader.GetMod("InfernumModeMusic");
             MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(InfernumMusic, "Sounds/Music/EyeOfCthulhu"), ModContent.ItemType<EyeMusicBox>(), ModContent.TileType<EyeMusicBoxTile>(), 0);
         }
 

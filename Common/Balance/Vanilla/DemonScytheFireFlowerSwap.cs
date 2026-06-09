@@ -2,6 +2,7 @@
 using Terraria.IO;
 using Terraria.WorldBuilding;
 using Terraria.GameContent.ItemDropRules;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Balance.Vanilla
 {

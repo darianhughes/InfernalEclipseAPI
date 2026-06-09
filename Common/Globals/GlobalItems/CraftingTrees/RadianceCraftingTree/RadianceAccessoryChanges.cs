@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CalamityMod.Items.Accessories;
+using InfernalEclipseAPI.Core.Configs;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 

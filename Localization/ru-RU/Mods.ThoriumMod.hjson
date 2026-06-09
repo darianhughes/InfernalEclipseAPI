@@ -1,6 +1,6 @@
 Buffs: {
-	// NinjaBuff.Description: Throwing velocity is increased by 20%, and throwing critical strike chance increased by 10%
-	// BloodRush.Description: 15% increased mining speed
+	NinjaBuff.Description: Скорость метательных снарядов увеличена на 20%, шанс критического удара увеличен на 10%
+	BloodRush.Description: Скорость добычи увеличена на 15%
 }
 
 Items: {
@@ -44,27 +44,27 @@ Items: {
 		Tooltip: "'Заряжен эссенцией множества душ'"
 	}
 
-	/* MasterMarksmansScouter.Tooltip:
+	MasterMarksmansScouter.Tooltip:
 		'''
-		'Gun powder will cull the weak'
-		The nearest enemy is scouted and takes 10% more damage from all sources
-		Your ranged damage applies cursed flames to enemies
-		''' */
-	/* AssassinsGuard.Tooltip:
+		'Порох отсеет слабых'
+		Ближайший враг становится объектом наблюдения и получает на 10% больше урона от всех источников
+		Стрелковый урон накладывает на врагов дебафф [cbuff:CursedInferno]
 		'''
-		16% increased ranged damage
-		15% increased ranged critical strike chance
-		25% decreased chance to consume ammo
-		''' */
+	AssassinsGuard.Tooltip:
+		'''
+		Увеличивает стрелковый урон на 16%
+		Увеличивает стрелковый шанс критического удара на 15%
+		Даёт 25% не использовать боеприпасы
+		'''
 
 	Kinetoscythe: {
-		// DisplayName: Kineto-scythe
-		/* Tooltip:
+		DisplayName: Кинето-коса
+		Tooltip:
 			'''
-			Rapidly spins a high tech scythe all around you
-			<right> to generate a stationary spinning energy scythe
-			Spin the scythe while the energy scythe is active to make it home onto enemies 
-			''' */
+			Стремительно вращает вокруг вас высокотехнологичную косу
+			Нажмите <right>, чтобы создать неподвижную вращающуюся энергетическую косу
+			Вращайте косу пока активна энергетическая коса, чтобы направить её на врагов 
+			'''
 	}
 
 	BlackMIDI: {
@@ -77,14 +77,14 @@ Items: {
 	}
 
 	DreamCatcher: {
-		// DisplayName: Dream Catcher
-		/* Tooltip:
+		DisplayName: Ловец снов
+		Tooltip:
 			'''
-			Summons up to one dream catcher at the cursor's location
-			Staying within the dream catcher will heal you for 20% of max life if you take fatal damage
+			Призывает до одного ловца снов в месте курсора
+			Пребывание внутри ловца снов восстановит 20% здоровья при получении смертельного урона
 			Revived players will have temporarily reduced stats and will be unable to revive again for 2 minutes
-			'To catch and cradle the hopes of the world...'
-			''' */
+			'Поймать и лелеять надежды мира...'
+			'''
 	}
 
 	HereticBreaker: {
@@ -140,12 +140,12 @@ Items: {
 		'''
 		Увеличивает метательный урон на 2%
 		Увеличивает метательный шанс критического удара на 5%
-		'Небо - это ваша игровая площадка'
+		'Небо — это ваша игровая площадка'
 		'''
 	FlightMail.Tooltip:
 		'''
 		Увеличивает метательный урон на 3%
-		'Небо - это ваша игровая площадка'
+		'Небо — это ваша игровая площадка'
 		'''
 
 	BronzeHelmet: {
@@ -163,12 +163,12 @@ Items: {
 	}
 
 	BronzeGreaves: {
-		// DisplayName: Bronze Greaves
-		/* Tooltip:
+		DisplayName: Бронзовые поножи
+		Tooltip:
 			'''
-			10% increased throwing damage
-			10% increased movement speed
-			''' */
+			Увеличивает метательный урон на 10%
+			Увеличивает скорость передвижения на 10%
+			'''
 	}
 
 	PlagueDoctorsMask: {
@@ -222,32 +222,32 @@ Items: {
 	}
 
 	HallowedGuise: {
-		// DisplayName: Hallowed Guise
-		/* Tooltip:
+		DisplayName: Освящённая личина
+		Tooltip:
 			'''
-			10% increased throwing damage
-			8% increased throwing critical strike chance
-			''' */
+			Увеличивает метательный урон на 10%
+			Увеличивает шанс критического удара на 8%
+			'''
 	}
 
 	LichCarapace: {
-		// DisplayName: Lich's Carapace
-		/* Tooltip:
+		DisplayName: Панцирь Лича
+		Tooltip:
 			'''
-			'Embrace death...'
-			15% increased throwing damage
-			30% increased throwing velocity
-			''' */
+			'Объятия смерти...'
+			Увеличивает метательный урон на 15%
+			Увеличивает скорость метательных снарядов на 30%
+			'''
 	}
 
 	LichTalon: {
-		// DisplayName: Lich's Talons
-		/* Tooltip:
+		DisplayName: Когти Лича
+		Tooltip:
 			'''
-			'Embrace death...'
-			10% increased throwing damage
-			10% increased throwing critical strike chance
-			''' */
+			'Объятия смерти...'
+			Увеличивает метательный урон на 10%
+			Увеличивает метательный шанс критического удара на 10%
+			'''
 	}
 
 	ShadeMasterMask: {
@@ -262,13 +262,13 @@ Items: {
 	}
 
 	ShadeMasterGarb: {
-		// DisplayName: Shade Master's Garb
-		/* Tooltip:
+		DisplayName: Облачение мастера теней
+		Tooltip:
 			'''
-			'Live in the shadows and strike with precision'
-			15% increased throwing damage
-			30% increased throwing velocity
-			''' */
+			'Скройтесь во тьме и наносите точные удары'
+			Увеличивает метательный урон на 15%
+			Увеличивает скорость метательных снарядов на 30%
+			'''
 	}
 
 	ShadeMasterTreads: {
@@ -467,68 +467,68 @@ Items: {
 	}
 
 	DreamWeaversHelmet: {
-		// DisplayName: Dream Weaver's Helmet
-		/* Tooltip:
+		DisplayName: Шлем ткача сновидений
+		Tooltip:
 			'''
-			'Bind the enemies of your future in temporal agony'
-			Corrupts your radiant powers
-			45% decreased non-radiant damage
-			45% increased radiant damage
-			36% increased radiant critical strike chance
-			Maximum mana increased by 20
-			''' */
+			'Подвергните врагов будущего временной агонии'
+			Искажает вашу лучезарную силу
+			Снижает весь урон, кроме лучезарного, на 45%
+			Увеличивает лучезарный урон на 45%
+			Увеличивает лучезарный шанс критического удара на 36%
+			Увеличивает максимальный запас маны на 20
+			'''
 	}
 
 	DreamWeaversHood: {
-		// DisplayName: Dream Weaver's Hood
-		/* Tooltip:
+		DisplayName: Капюшон ткача сновидений
+		Tooltip:
 			'''
-			'Manifest your dearest dreams through your allies'
-			25% decreased non-radiant damage
-			30% increased radiant damage
-			16% increased radiant critical strike chance
-			35% decreased mana cost
-			Massively increased mana regeneration
-			Maximum mana increased by 60
-			Healing spells will heal an additional 6 life
-			''' */
+			'Воплотите свои самые заветные мечты через союзников'
+			Снижает весь урон, кроме лучезарного, на 25%
+			Увеличивает лучезарный урон на 30%
+			Увеличивает лучезарный шанс критического удара на 16%
+			Снижает расход маны на 35%
+			Значительно увеличивает восстановление маны
+			Увеличивает максимальный запас маны на 60
+			Исцеляющие заклинания восстанавливают дополнительно 6 единиц здоровья
+			'''
 	}
 
 	DreamWeaversTabard: {
-		// DisplayName: Dream Weaver's Tabard
-		/* Tooltip:
+		DisplayName: Табард ткача сновидений
+		Tooltip:
 			'''
-			25% decreased non-radiant damage
-			25% increased radiant damage
-			14% increased radiant critical strike chance
-			20% decreased mana cost
-			Massively increased mana regeneration
-			Healing spells will heal an additional 2 life
-			''' */
+			Снижает весь урон, кроме лучезарного, на 25%
+			Увеличивает лучезарный урон на 25%
+			Увеличивает лучезарный шанс критического удара на 46%
+			Снижает расход маны на 20%
+			Значительно увеличивает восстановление маны
+			Исцеляющие заклинания восстанавливают дополнительно 2 единицы здоровья
+			'''
 	}
 
 	TideTurnersGaze: {
-		// DisplayName: Tide Turner's Depth-Crown
-		/* Tooltip:
+		DisplayName: Корона приливного гонца
+		Tooltip:
 			'''
-			'Unleash aquatic wrath upon your foes'
-			35% increased throwing damage
-			50% chance not to consume thrown items
-			Increases your maximum technique points by 2
-			Throwing damage briefly increases the damage the enemy takes by 10%
-			Produces a floating globule every 1 second
-			Every globule makes your next attack a mini-crit, if it does not crit
-			''' */
+			'Обрушьте водное неистовство на своих врагов'
+			Увеличивает метательный урон на 35%
+			Даёт 50% шанс не использовать метательный предмет
+			Увеличивает максимальное число очков техники на 2
+			Метательный урон на короткое время увеличивает получаемый врагом урон на 10%
+			Создаёт парящий сгусток каждую секунду
+			Каждый сгусток делает вашу следующую атаку мини-критической, если она была не критической
+			'''
 	}
 
 	TideTurnerBreastplate: {
-		// DisplayName: Tide Turner's Depth-Guard
-		/* Tooltip:
+		DisplayName: Нагрудник приливного гонца
+		Tooltip:
 			'''
-			15% increased melee & throwing damage
-			10% increased melee speed
-			16% increased melee & throwing critical strike chance
-			''' */
+			Увеличивает урон ближнего боя и метательный урон на 15%
+			Увеличивает скорость атаки ближнего боя на 10%
+			Увеличивает шанс критического удара ближнего боя и метательный шанс критического удара на 16%
+			'''
 	}
 
 	TideTurnerGreaves: {
@@ -548,34 +548,62 @@ Items: {
 		Увеличивает максимальное количество миньонов и стражей на 2
 		Увеличивает отбрасывание призывателя
 		'''
+	/* CursedFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a cursed spike ball
+		Further hits have a chance to release more cursed spike balls
+		Cursed spike balls apply cursed flames to damaged enemies
+		''' */
+	/* VileFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a vile spike ball
+		Further hits have a chance to release more vile spike balls
+		Vile spike balls apply ichor to damaged enemies
+		''' */
+	/* IronFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a rolling spike ball
+		Further hits have a chance to release more rolling spike balls
+		''' */
+	/* BloomingShield.Tooltip:
+		'''
+		You constantly generate a 20 life shield
+		Healing spells will heal an additional 1 life, 2 if at max shield
+		When out of combat, your life recovery will increase up to 5 over time
+		''' */
+	/* AstroBeetleHusk.Tooltip:
+		'''
+		Damage taken reduced by 5%
+		You constantly generate a 50 life shield
+		''' */
 }
 
 ThrowerTechniques: {
 	Decoy: {
-		// DisplayName: Decoy
-		/* Description:
+		DisplayName: Приманка
+		Description:
 			'''
-			Call in an enemy decoy and gain increased attack speed for a second
-			The decoy will attempt to grab the attention of nearby enemies
-			''' */
+			Призывает вражескую приманку и увеличивает скорость атаки на секунду
+			Приманка попытается привлечь внимание ближайших врагов
+			'''
 	}
 
 	BloodLotus: {
-		// DisplayName: Blood Lotus
-		/* Description:
+		DisplayName: Кровавый лотос
+		Description:
 			'''
-			Stop in place and release a torrent of knives at the nearest enemy
-			Every knife heals you up to 10% of the damage dealt
-			The torrent grants the player 100 defence but fades on taking damage
-			''' */
+			Вы замираете на месте и выпускаете поток ножей в ближайшего врага
+			Каждый нож восстанавливает вам до 10% здоровья от нанесённого урона
+			Поток увеличивает защиту игрока на 100, но при получении урона отнимает её
+			'''
 	}
 
 	SmokeBomb: {
-		// DisplayName: Smoke Bomb
-		/* Description:
+		DisplayName: Дымовая бомба
+		Description:
 			'''
-			Release a smoke bomb
-			Smoke bombs briefly grant you damage immunity and increased attack speed for 2 seconds
-			''' */
+			Бросает дымовую бомбу
+			Дымовые бомбы на короткое время делают вас неуязвимым и увеличивают скорость атаки на 2 секунды
+			'''
 	}
 }

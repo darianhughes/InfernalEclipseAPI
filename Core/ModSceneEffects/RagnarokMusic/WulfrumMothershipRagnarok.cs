@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Events;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.ModSceneEffects.RagnarokMusic
 {

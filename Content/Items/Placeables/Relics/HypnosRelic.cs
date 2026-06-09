@@ -1,4 +1,5 @@
 ﻿using InfernalEclipseAPI.Content.Tiles.Relics;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.Relics
 {

@@ -2,6 +2,7 @@
 using CalamityMod.Items.Accessories;
 using InfernalEclipseAPI.Core.Systems;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
 {

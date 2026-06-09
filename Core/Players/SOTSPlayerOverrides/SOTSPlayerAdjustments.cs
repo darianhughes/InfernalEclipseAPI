@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using SOTS;
 using SOTS.Items.Wings;
@@ -158,6 +159,14 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
             {
                 Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.TimeFreezePrevention." + bossMessage));
                 mp.incubatorTextTime = 60 * 60;
+            }
+        }
+        public override void OnRespawn()
+        {
+            if (InfernalConfig.Instance.MaxVoidOnRespawn)
+            {
+                VoidPlayer voidPlayer = Player.GetModPlayer<VoidPlayer>();
+                voidPlayer.voidMeter = voidPlayer.voidMeterMax2;
             }
         }
     }

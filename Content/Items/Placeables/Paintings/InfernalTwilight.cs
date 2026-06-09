@@ -95,6 +95,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Nobody",
             "Pudd1ng",
             "Eduarrdo",
+            "JalapenoDance",
 
             //Composers
             "Peter Fung",
@@ -122,7 +123,6 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "De1tA5",
             "Suu",
             "fiend",
-            "JalapenoDance",
             "JuJiao",
             "IceSpider",
             "Uncle Sciz",
@@ -140,39 +140,41 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Minesky",
             "rosé",
             "TechQueen22",
-            "claw",
             "ProSigmaSoul",
             "Sir_Yeetus_III",
-            "Soopns",
             "Samoh",
             "darkwex",
-            "Imagiknight_Parad0xical",
             "Imagiknight Orpheus",
             "un5",
+            "rocket",
+            "FlamingSock",
             "ゴジータ",
 
             //Supporters
-            "Lylittle",
             "CuddlySnake",
             "Louhii",
             "joshuwham",
             "Lucy",
             "Mando",
             "Romain TISSERAND",
+            "NICK",
+            "Imagiknight_Parad0xical",
 
             //Helpers
             "fjiown",
+            "Soopns",
 
             //Special Thanks
             "N0t_UNowen",
             "Blockaroz",
             "javyz",
             "habble",
+            "Eram",
             "Lucille Karma",
             "tomat",
             "Nycro",
             "Cataclysmic Armageddon",
-            "Yardis"
+            "Yardis",
         };
 
         public static IList<string> teamList = new List<string>()

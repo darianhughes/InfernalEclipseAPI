@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Security.Policy;
 using CalamityMod;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Enums;
@@ -41,6 +40,8 @@ using CalamityMod.Projectiles.Typeless;
 using CalamityMod.Systems;
 using CalamityMod.UI.DraedonSummoning;
 using InfernalEclipseAPI.Content.Projectiles;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.AstrumDeus;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.BoC;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.Deerclops;
@@ -513,17 +514,17 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 CalamityUtils.BossAwakenMessage(drawcodeGoddess);
             }, toChangeTimeTo: TimeChangeContext.Night));
 
-            if (InfernalConfig.Instance.BetsyInBossRush)
+            Bosses.Add(new Boss(NPCID.DD2Betsy, spawnContext: type =>
             {
-                Bosses.Add(new Boss(NPCID.DD2Betsy, spawnContext: type =>
+                if (!NPC.AnyNPCs(NPCID.DD2Betsy))
                 {
                     SoundStyle roar = SoundID.DD2_BetsyScream;
                     int whomst = Player.FindClosest(new Vector2(Main.maxTilesX, Main.maxTilesY) * 16f * 0.5f, 1, 1);
                     Player player = Main.player[whomst];
                     SoundEngine.PlaySound(roar, player.Center);
                     NPC.SpawnOnPlayer(whomst, NPCID.DD2Betsy);
-                }, specialSpawnCountdown: 400, usesSpecialSound: true));
-            }
+                }
+            }, specialSpawnCountdown: 400, usesSpecialSound: true));
 
             Bosses.Add(new Boss(NPCID.Spazmatism, TimeChangeContext.Night, type =>
             {
@@ -829,6 +830,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 BossDeathEffects.Add(NPCType<SupremeCalamitas>(), npc =>
                 {
                     CustomBossRushDialogue.StartDialogue(IEoRBossRushDialoguePhase.TierFiveComplete);
+                    InfernalWorld.tier5Downed = true;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         foreach (Player p in Main.ActivePlayers)
@@ -843,6 +845,8 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
 
                 if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.WrathoftheGodsBossesInBossRush)
                 {
+                    BossDeathEffects.Add(WrathNPC("AvatarOfEmptiness"), npc => { InfernalWorld.tier6Downed = true; });
+
                     BossDeathEffects.Add(WrathNPC("NamelessDeityBoss"), npc =>
                     {
                         if (InfernalConfig.Instance.ForceFullXerocDialogue)
@@ -862,6 +866,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 {
                     BossDeathEffects.Add(SoulsNPC("MutantBoss"), npc =>
                     {
+                        InfernalWorld.tier6Downed = true;
                         if (InfernalConfig.Instance.ForceFullXerocDialogue)
                         {
                             //Always play end dialgoue
@@ -879,6 +884,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 {
                     BossDeathEffects.Add(InfernalCrossmod.NoxusPort.Mod.Find<ModNPC>("EntropicGod").Type, npc =>
                     {
+                        InfernalWorld.tier6Downed = true;
                         if (InfernalConfig.Instance.ForceFullXerocDialogue)
                         {
                             //Always play end dialgoue
@@ -913,6 +919,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 */
                 else if (calHunt != null)
                 {
+                    InfernalWorld.tier6Downed = true;
                     BossDeathEffects.Add(calHunt.Find<ModNPC>("Goozma").Type, npc =>
                     {
                         if (InfernalConfig.Instance.ForceFullXerocDialogue)
@@ -933,6 +940,8 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
             {
                 BossDeathEffects.Add(NPCType<SupremeCalamitas>(), npc =>
                 {
+                    InfernalWorld.tier5Downed = true;
+                    InfernalWorld.tier6Downed = true;
                     if (InfernalConfig.Instance.ForceFullXerocDialogue)
                     {
                         //Always play end dialgoue
@@ -983,7 +992,12 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
 
         public static bool HomewardLoaded()
         {
-            return ModLoader.HasMod("ContinentOfJourney");
+            bool inBossRush = false;
+            if (ModLoader.HasMod("ContinentOfJourney"))
+                if (HomewardConfig.Instance.HomewardInBossRush)
+                    inBossRush = true;
+
+            return inBossRush;
         }
     }
 }

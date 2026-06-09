@@ -1,16 +1,14 @@
 ﻿using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 using InfernalEclipseAPI.Content.NPCs.LittleCat;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using SOTS.Void;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.Localization;
 using ThoriumMod.Scenes;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
 
 namespace InfernalEclipseAPI.Core.Systems
 {
@@ -56,8 +54,10 @@ namespace InfernalEclipseAPI.Core.Systems
             }
 
             //IEoR Original Music
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Seahorse"), "Seahorse Scrutiny (Rebirth)", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by Peter Fung", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/BereftVassal"), "Dead Kingdom's Champion", "by Techhy", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(InfernalEclipseAPI.ProvidenceNightPath), "Unholy Finality", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LastBattle"), "Last Battle (Ballos Mix)", "by DM DOKURO", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LastBattleDesperation"), "Last Battle (Ballos Mix)", "by DM DOKURO", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LastBattleDesperationCut"), "Last Battle (Ballos Mix)", "by DM DOKURO", "Infernal Eclipse of Ragnarok");
@@ -69,17 +69,14 @@ namespace InfernalEclipseAPI.Core.Systems
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TWISTEDGARDENRemix"), "TWISTED GARDEN [Remix]", "by Kuudray", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/EnsembleofFools(EncoreMix)"), "Ensemble of Fools (Encore Mix)", "by CDMusic", "Infernal Eclipse of Ragnarok");
 
-            // Just for that one music box...
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/CatastrophicFabrications"), "Catastrophic Fabrications", "by PinpinNeon", "Infernum Mode Music");
-
             // Currently unused
-            //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok"); <- Ported to YharimEX
+            //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LittleCatTheme"), "Demonic Little Grey Cat Theme Song", "by vivivivivi", "Infernal Eclipse of Ragnarok");
             
 
             if (ModLoader.TryGetMod("YouBoss", out _))
             {
-                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "FINAL FRACTAL", "ENNWAY", "You");
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("YouBoss/Assets/Sounds/Music/You"), "FINAL FRACTAL", "by ENNWAY", "You");
             }
 
             if (ModLoader.TryGetMod("NoxusBoss", out _))
@@ -87,7 +84,7 @@ namespace InfernalEclipseAPI.Core.Systems
                 musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/Mars"), "RAMifications", "by moonburn", "Calamity: Wrath of the Gods");
                 musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/AvatarOfEmptinessP2"), "PARADISE PARASITE (Avatar)", "by ENNWAY", "Calamity: Wrath of the Gods");
                 musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/AvatarOfEmptinessP3"), "PARADISE PARASITE (Paradise)", "by ENNWAY", "Calamity: Wrath of the Gods");
-                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/NamelessDeity"), "TWISTED GARDEN", "by ENNWAY ft. HeartPlusUp!", "Calamity: Wrath of the Gods");
+                musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/NamelessDeity"), "TWISTED GARDEN", "by ENNWAY & HeartPlusUp!", "Calamity: Wrath of the Gods");
             }
         }
 
@@ -99,15 +96,18 @@ namespace InfernalEclipseAPI.Core.Systems
             if (!ModLoader.TryGetMod("BossChecklist", out mod1) || mod1.Version < new Version(1, 6))
                 return;
 
-            mod1.Call(new object[3]
+            if (ModLoader.HasMod("InfernumModeMusic"))
             {
+                mod1.Call(new object[3]
+                {
                 "AddToBossCollection",
                 "CalamityMod Exo Mechs",
                 new List<int>()
                 {
                     ModContent.ItemType<CatastrophicFabricationsMusicBox>()
                 }
-            });
+                });
+            }
         }
 
         internal void AddInfernumCards()
@@ -290,6 +290,7 @@ namespace InfernalEclipseAPI.Core.Systems
             }
             if (ModLoader.TryGetMod("HypnosMod", out Mod hypnos))
             {
+                
                 MakeCard(hypnos.Find<ModNPC>("HypnosBoss").Type, (horz, anim) => Color.Lerp(Color.DeepPink, Color.MistyRose, anim), "HypnosBoss", SoundID.NPCHit4, new SoundStyle("InfernumMode/Assets/Sounds/Custom/ExoMechs/ThanatosTransition"), 240);
             }
             if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine))
@@ -395,6 +396,7 @@ namespace InfernalEclipseAPI.Core.Systems
                 coloredDamageTypes.Call("AddDamageType", LegendaryMelee.Instance, legendaryColor, legendaryColor, legendaryCritColor);
                 coloredDamageTypes.Call("AddDamageType", LegendaryRanged.Instance, legendaryColor, legendaryColor, legendaryCritColor);
                 coloredDamageTypes.Call("AddDamageType", LegendaryMagic.Instance, legendaryColor, legendaryColor, legendaryCritColor);
+                coloredDamageTypes.Call("AddDamageType", LegendarySummonMeleeSpeed.Instance, legendaryColor, legendaryColor, legendaryCritColor);
 
                 Color mythicColor = Color.Cyan;
                 Vector3 hslVector2 = Main.rgbToHsl(mythicColor);

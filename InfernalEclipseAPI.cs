@@ -28,6 +28,13 @@ using Terraria.GameContent.Creative;
 using static Terraria.GameContent.Creative.CreativePowers;
 using System.Runtime.CompilerServices;
 using NoxusBoss.Core.SolynEvents;
+using InfernumMode.Core.TrackedMusic;
+using InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.ProvidenceOverrides;
+using Microsoft.Xna.Framework.Media;
+using ReLogic.Content;
+using InfernalEclipseAPI.Core.Configs;
+using Terraria.UI.Chat;
+using InfernalEclipseAPI.Core.ChatTags;
 
 [assembly: InternalsVisibleTo("HomewardRagnarok")]
 namespace InfernalEclipseAPI
@@ -50,12 +57,16 @@ namespace InfernalEclipseAPI
         public static InfernalEclipseAPI Instance;
         public InfernalEclipseAPI() => Instance = this;
 
+        public const string ProvidenceNightPath = "InfernalEclipseAPI/Assets/Music/ProvidenceNight";
+
         public static int WhiteFlareType = 0;
         private bool _hijackInteraction;
 
         public override void Load()
         {
             DifficultyManagementSystem.DisableDifficultyModes = false;
+
+            TrackedMusicLoader();
 
             if (InfernalConfig.Instance.AutomatedConfigSetup)
             {
@@ -92,6 +103,8 @@ namespace InfernalEclipseAPI
 
             SubpaceBoostHotkey = KeybindLoader.RegisterKeybind(this, Language.GetOrRegister("Mods.InfernalEclipseAPI.KeyBindName.SubspaceBoostHotkey").ToString(), "G");
             ItemAbility = KeybindLoader.RegisterKeybind(this, Language.GetOrRegister("Mods.InfernalEclipseAPI.KeyBindName.ItemAbility").ToString(), "C");
+
+            ChatManager.Register<ChaosConstructChatTag>("IELuxTag");
 
             AchievementUpdateHandler = typeof(InfernumMode.Core.GlobalInstances.Players.AchievementPlayer).GetMethod("ExtraUpdateHandler", BindingFlags.Static | BindingFlags.NonPublic);
 
@@ -142,6 +155,10 @@ namespace InfernalEclipseAPI
 
         public override void PostSetupContent()
         {
+            RegisterProvidenceNightTrackedSong();
+
+            TrackedMusicManager.TrackInformation[ProvidenceNightPath] = new ProvidenceNightTrackedMusic();
+
             #region Forced Menu Theme
             if (InfernalConfig.Instance.ForceMenu)
             {
@@ -243,6 +260,46 @@ namespace InfernalEclipseAPI
                 return;
             if (((ModMenu)typeof(MenuLoader).GetField("switchToMenu", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null)).FullName is null || menu.FullName is null)
                 return;
+        }
+
+        public static void TrackedMusicLoader()
+        {
+            if (!TrackedMusicManager.CustomTrackPaths.Contains(ProvidenceNightPath))
+                TrackedMusicManager.CustomTrackPaths.Add(ProvidenceNightPath);
+        }
+
+        private static void RegisterProvidenceNightTrackedSong()
+        {
+            int musicSlot = MusicLoader.GetMusicSlot(ProvidenceNightPath);
+
+            if (TrackedMusicManager.CustomTracks.ContainsKey(musicSlot))
+                return;
+
+            string fileName = "Assets/Music/ProvidenceNight.ogg";
+            string diskPath = AssetPathHelper.CleanPath($"{TrackedMusicManager.MusicDirectory}/{ProvidenceNightPath}.ogg");
+
+            Directory.CreateDirectory(Path.GetDirectoryName(diskPath));
+
+            if (!File.Exists(diskPath))
+            {
+                using Stream input = Instance.GetFileStream(fileName, true);
+                using FileStream output = File.Create(diskPath);
+                input.CopyTo(output);
+            }
+
+            if (TrackedMusicManager.SongConstructor is null)
+            {
+                TrackedMusicManager.SongConstructor = typeof(Song).GetConstructor(
+                    LumUtils.UniversalBindingFlags,
+                    [typeof(string), typeof(string)]
+                );
+            }
+
+            TrackedMusicManager.CustomTrackDiskPositions[musicSlot] = diskPath;
+            TrackedMusicManager.TracksThatDontUseTerrariasSystem.Add(musicSlot);
+
+            TrackedMusicManager.CustomTracks[musicSlot] =
+                (Song)TrackedMusicManager.SongConstructor.Invoke([diskPath, ProvidenceNightPath]);
         }
 
         MethodInfo AchievementUpdateHandler;

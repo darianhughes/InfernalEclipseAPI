@@ -16,6 +16,7 @@ using InfernalEclipseAPI.Core.Systems;
 using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
 using CalamityMod.Rarities;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
@@ -718,6 +719,163 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
+            #region Calamity Simple Whip Addon
+            if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                //Pre-Hardmode
+                if (UnsafeGetItem(simpleWhipAddon, "RapierWhip", item))
+                {
+                    item.damage = 9;
+                    item.useAnimation = 30;
+                    item.useTime = 30;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Droptide", item))
+                {
+                    item.damage = 28;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "DarkMandibleLash", item))
+                {
+                    item.damage = 20;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "BreezePiercer", item))
+                {
+                    item.damage = 21;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "AncientBonds", item))
+                {
+                    item.useAnimation = 42;
+                    item.useTime = 42;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Gelxyribose", item))
+                {
+                    item.useAnimation = 40;
+                    item.useTime = 40;
+                }
+
+                //Hardmode
+                if (UnsafeGetItem(simpleWhipAddon, "NightButterfly", item))
+                {
+                    item.useAnimation = 36;
+                    item.useTime = 36;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "GlitterGutter", item))
+                {
+                    item.useAnimation = 19;
+                    item.useTime = 19;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "ActiasAliena", item))
+                {
+                    item.useAnimation = 42;
+                    item.useTime = 42;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Loadout", item))
+                {
+                    item.useAnimation = 36;
+                    item.useTime = 36;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Ectopia", item))
+                {
+                    item.useAnimation = 18;
+                    item.useTime = 18;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Unfathomable", item))
+                {
+                    item.damage = 250;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "DestructionChain", item))
+                {
+                    item.useAnimation = 32;
+                    item.useTime = 32;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "GoldRush", item))
+                {
+                    item.useAnimation = 40;
+                    item.useTime = 40;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "ExistenceBonds", item))
+                {
+                    item.useAnimation = 26;
+                    item.useTime = 26;
+                }
+
+                //Post Moonlord
+                if (UnsafeGetItem(simpleWhipAddon, "ButterflyEffect", item))
+                {
+                    item.useAnimation = 42;
+                    item.useTime = 42;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Satellite", item))
+                {
+                    item.useAnimation = 12;
+                    item.useTime = 12;
+                    item.damage = 120;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "EntwinedBranches", item))
+                {
+                    item.damage = 270;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "ShieldConduitMkIV", item))
+                {
+                    item.useAnimation = 40;
+                    item.useTime = 40;
+                    item.damage = 200;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "GildedReliquary", item))
+                {
+                    item.useAnimation = 44;
+                    item.useTime = 44;
+                    item.damage = 216;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "EtaCarinae", item))
+                {
+                    item.useAnimation = 36;
+                    item.useTime = 36;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "ResonantVoid", item))
+                {
+                    item.useAnimation = 31;
+                    item.useTime = 31;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Milkyway", item))
+                {
+                    item.useAnimation = 44;
+                    item.useTime = 44;
+                }
+
+                int[] bleachedAcessories =
+                {
+                    FindItem(simpleWhipAddon, "BleachedNucleogenesis"),
+                    FindItem(simpleWhipAddon, "BleachedStatisCurse"),
+                    FindItem(simpleWhipAddon, "BleachedStarTaintedGenerator"),
+                    FindItem(simpleWhipAddon, "BleachedStarbusterCore"),
+                    FindItem(simpleWhipAddon, "BleachedNuclearFuelRod"),
+                    FindItem(simpleWhipAddon, "BleachedTheFirstShadowflame"),
+                    FindItem(simpleWhipAddon, "BleachedJellyChargedBattery"),
+                    FindItem(simpleWhipAddon, "BleachedVoltaicJelly"),
+                };
+
+                foreach (int bleachedItem in bleachedAcessories)
+                {
+                    if (item.type == bleachedItem)
+                        item.accessory = false;
+                }
+
+                if (UnsafeGetItem(simpleWhipAddon, "BuddyEmblem", item))
+                {
+                    item.rare = ItemRarityID.LightRed;
+                    item.expert = false;
+
+                    item.accessory = false; //temp disabled
+                }
+
+                if (UnsafeGetItem(simpleWhipAddon, "StrikerEmblem", item))
+                {
+                    item.rare = ItemRarityID.LightRed;
+                    item.expert = false;
+                }
+            }
+            #endregion
+
             #region Calamity Ranger Expansion
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
@@ -1006,7 +1164,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             {
                 if (UnsafeGetItem(wrath, "MetallicChunk", item))
                 {
-                    item.stack = Item.CommonMaxStack;
+                    item.maxStack = Item.CommonMaxStack;
                 }
             }
             
@@ -1378,8 +1536,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     {
                         item.shootSpeed = 16;
                     }
-
-                    if (GetItem(thorium, "Rapier", item))
+                    
+                    if (GetItem(thorium, "Rapier", item) && !InfernalCrossmod.ThoriumRework.Loaded)
                     {
                         item.useTime = 8;
                         item.useAnimation = 8;
@@ -3698,13 +3856,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     //Lucidty
                     if (GetItem(thorium, "Lucidity", item))
                     {
-                        item.damage = 105;
+                        item.damage = InfernalCrossmod.ThoriumRework.Loaded ? 150 : 105;
                     }
 
                     //Reality Slasher
                     if (GetItem(thorium, "RealitySlasher", item))
                     {
-                        item.damage = 75;
+                        item.damage = InfernalCrossmod.ThoriumRework.Loaded ? 175 : 75;
                     }
 
                     //Life and Death
@@ -4815,24 +4973,24 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.damage = 70;
                 }
 
-                if (UnsafeGetItem(rethorium, "SoulSnatcher", item))
+                if (GetItem(rethorium, "SoulSnatcher", item))
                 {
                     item.damage = 150;
                 }
 
-                if (UnsafeGetItem(rethorium, "ThoriumBludgeon", item))
+                if (GetItem(rethorium, "ThoriumBludgeon", item))
                 {
                     item.damage = 15;
                 }
 
-                if (UnsafeGetItem(rethorium, "ValadiumHeavyScythe", item))
+                if (GetItem(rethorium, "ValadiumHeavyScythe", item))
                 {
                     item.damage = 100;
                     item.useTime = 24;
                     item.useAnimation = 24;
                 }
 
-                if (UnsafeGetItem(rethorium, "TerrariumSoulScourge", item))
+                if (GetItem(rethorium, "TerrariumSoulScourge", item))
                 {
                     item.damage = 132;
                 }
@@ -4865,11 +5023,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 if (GetItem(rethorium, "FanDonations", item))
                 {
                     item.defense = 0;
-                }
-
-                if (UnsafeGetItem(rethorium, "ZephyrWingsCosmetic", item))
-                {
-                    item.vanity = false;
                 }
             }
             #endregion

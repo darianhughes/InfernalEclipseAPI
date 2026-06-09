@@ -1,5 +1,4 @@
-﻿using CalamityMod.Projectiles.Typeless;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework;
 using CalamityMod;
@@ -8,16 +7,42 @@ using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Buffs.DamageOverTime;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Core.Systems;
-using Terraria;
-using System.Security.Policy;
 using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
-using ThoriumMod.Items.BardItems;
+using ReLogic.Content;
+using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
     public class ProjectileBalanceChanges : GlobalProjectile
     {
         public override bool InstancePerEntity => true;
+
+        private static readonly Dictionary<int, float> ProjectileScales = new();
+        private static readonly HashSet<int> CustomDrawProjectiles = new();
+        private static readonly Dictionary<int, Asset<Texture2D>> Glowmasks = new();
+
+
+        private static int clamFireBarrage = -1;
+        private static int clamFireBarrageHoming = -1;
+        private static int clamFireblast = -1;
+        private static int clamFireBombExplosion = -1;
+        private static int clamFirethrower = -1;
+
+        private static int jadeLampType = -1;
+        private static int goldLampType = -1;
+
+        private static int blazingMineType = -1;
+        private static int blazingSpikeType = -1;
+        private static int arcLightningType = -1;
+        private static int frostSpearType = -1;
+        private static int earthenSpiritType = -1;
+        private static int thunderRingType = -1;
+        private static int irradiatedChainReactorType = -1;
+        private static int irradiatedCrushType = -1;
+        private static int rippleWaveSummonType = -1;
+        private static int infernoLaserType = -1;
+        private static int evilSpearType = -1;
 
         private static int moltenThresherType = -1;
         private static int fallingTwilightType = -1;
@@ -45,91 +70,133 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         public override void SetStaticDefaults()
         {
-            if (!InfernalConfig.Instance.ThoriumBalanceChangess)
-                return;
+            ProjectileScales.Clear();
+            CustomDrawProjectiles.Clear();
+            Glowmasks.Clear();
 
-            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
+            if (InfernalConfig.Instance.ThoriumBalanceChangess && InfernalCrossmod.Thorium.Loaded)
             {
-                moltenThresherType = thorium.Find<ModProjectile>("MoltenThresherPro")?.Type ?? -1;
-                batScytheType = thorium.Find<ModProjectile>("BatScythePro")?.Type ?? -1;
-                batScytheType2 = thorium.Find<ModProjectile>("BatScythePro2")?.Type ?? -1;
-                fallingTwilightType = thorium.Find<ModProjectile>("FallingTwilightPro")?.Type ?? -1;
-                bloodHarvestType = thorium.Find<ModProjectile>("BloodHarvestPro")?.Type ?? -1;
-                trueFallingTwilightType = thorium.Find<ModProjectile>("TrueFallingTwilightPro")?.Type ?? -1;
-                trueBloodHarvestType = thorium.Find<ModProjectile>("TrueBloodHarvestPro")?.Type ?? -1;
-                theBlackScytheType = thorium.Find<ModProjectile>("TheBlackScythePro")?.Type ?? -1;
-                titanScytheType = thorium.Find<ModProjectile>("TitanScythePro")?.Type ?? -1;
-                boneBatonType = thorium.Find<ModProjectile>("BoneBatonPro")?.Type ?? -1;
-                trueHallowedType = thorium.Find<ModProjectile>("TrueHallowedScythePro")?.Type ?? -1;
-                crimsonType = thorium.Find<ModProjectile>("CrimtaneScythePro")?.Type ?? -1;
-                iceType = thorium.Find<ModProjectile>("IceShaverPro")?.Type ?? -1;
-                darkType = thorium.Find<ModProjectile>("DemoniteScythePro")?.Type ?? -1;
-                terraType = thorium.Find<ModProjectile>("TerraScythePro")?.Type ?? -1;
-                morningDewType = thorium.Find<ModProjectile>("MorningDewPro")?.Type ?? -1;
-                kinetoType = thorium.Find<ModProjectile>("KinetoscythePro2")?.Type ?? -1;
-                palmType = thorium.Find<ModProjectile>("StonePalmPro")?.Type ?? -1;
-                paperType = thorium.Find<ModProjectile>("PaperExplosivePro2")?.Type ?? -1;
+                CacheThoriumProjectileTypes(InfernalCrossmod.Thorium.Mod);
+            }
 
-                if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
-                {
-                    //windSlashType = ragnarok.Find<ModProjectile>("WindSlashPro")?.Type ?? -1;
-                    //marbleType = ragnarok.Find<ModProjectile>("MarbleScythePro")?.Type ?? -1;
-                }
+            if (InfernalCrossmod.Clamity.Loaded)
+            {
+                Mod clam = InfernalCrossmod.Clamity.Mod;
 
-                if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal))
-                {
-                    whirlwindType = calBardHeal.Find<ModProjectile>("Whirlwind")?.Type ?? -1;
-                    sarsType = calBardHeal.Find<ModProjectile>("SARS")?.Type ?? -1;
-                }
+                clamFireBarrage = FindProjectileType(clam, "FireBarrage");
+                clamFireBarrageHoming = FindProjectileType(clam, "FireBarrageHoming");
+                clamFireblast = FindProjectileType(clam, "Fireblast");
+                clamFireBombExplosion = FindProjectileType(clam, "FireBombExplosion");
+                clamFirethrower = FindProjectileType(clam, "Firethrower");
+            }
+
+            if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+            {
+                jadeLampType = FindProjectileType(consolaria, "JadeSeal_Lamp");
+                goldLampType = FindProjectileType(consolaria, "JadeSeal_GoldenLamp");
+            }
+
+            if (InfernalConfig.Instance.SOTSBalanceChanges && InfernalCrossmod.SOTS.Loaded)
+            {
+                Mod sots = InfernalCrossmod.SOTS.Mod;
+
+                blazingMineType = FindProjectileType(sots, "BlazingMine");
+                blazingSpikeType = FindProjectileType(sots, "BlazingSpike");
+                arcLightningType = FindProjectileType(sots, "ArcLightning");
+                frostSpearType = FindProjectileType(sots, "FrostSpear");
+                earthenSpiritType = FindProjectileType(sots, "EarthenSpirit");
+                thunderRingType = FindProjectileType(sots, "ThunderRing");
+                irradiatedChainReactorType = FindProjectileType(sots, "IrradiatedChainReactor");
+                irradiatedCrushType = FindProjectileType(sots, "IrradiatedCrush");
+                rippleWaveSummonType = FindProjectileType(sots, "RippleWaveSummon");
+                infernoLaserType = FindProjectileType(sots, "InfernoLaser");
+                evilSpearType = FindProjectileType(sots, "EvilSpear");
             }
         }
 
-        private float GetScaleForProjectile(int type) => type switch
+        private static int FindProjectileType(Mod mod, string name)
         {
-            var t when t == moltenThresherType => 1.5f,
-            var t when t == batScytheType => 1.5f,
-            var t when t == batScytheType2 => 3f,
-            var t when t == fallingTwilightType => 1.5f,
-            var t when t == bloodHarvestType => 1.5f,
-            var t when t == trueFallingTwilightType => 1.5f,
-            var t when t == trueBloodHarvestType => 1.5f,
-            var t when t == theBlackScytheType => 1.5f,
-            var t when t == titanScytheType => 2f,
-            var t when t == trueHallowedType => 1.3f,
-            var t when t == boneBatonType => 2f,
-            //var t when t == windSlashType => 3f,
-            var t when t == crimsonType => 1.2f,
-            var t when t == iceType => 1.2f,
-            var t when t == darkType => 1.1f,
-            var t when t == whirlwindType => 1.5f,
-            //var t when t == marbleType => 1.75f,
-            var t when t == terraType => 1.6f,
-            var t when t == morningDewType => 1.5f,
-            var t when t == kinetoType => 1.5f,
-            var t when t == sarsType => 1.5f,
-            var t when t == paperType => 3f,
-            var t when t == palmType => 2f,
-            _ => 1f,
-        };
+            return mod.TryFind(name, out ModProjectile projectile) ? projectile.Type : -1;
+        }
+
+        private static void CacheThoriumProjectileTypes(Mod thorium)
+        {
+            moltenThresherType = FindProjectileType(thorium, "MoltenThresherPro");
+            batScytheType = FindProjectileType(thorium, "BatScythePro");
+            batScytheType2 = FindProjectileType(thorium, "BatScythePro2");
+            fallingTwilightType = FindProjectileType(thorium, "FallingTwilightPro");
+            bloodHarvestType = FindProjectileType(thorium, "BloodHarvestPro");
+            trueFallingTwilightType = FindProjectileType(thorium, "TrueFallingTwilightPro");
+            trueBloodHarvestType = FindProjectileType(thorium, "TrueBloodHarvestPro");
+            theBlackScytheType = FindProjectileType(thorium, "TheBlackScythePro");
+            titanScytheType = FindProjectileType(thorium, "TitanScythePro");
+            boneBatonType = FindProjectileType(thorium, "BoneBatonPro");
+            trueHallowedType = FindProjectileType(thorium, "TrueHallowedScythePro");
+            crimsonType = FindProjectileType(thorium, "CrimtaneScythePro");
+            iceType = FindProjectileType(thorium, "IceShaverPro");
+            darkType = FindProjectileType(thorium, "DemoniteScythePro");
+            terraType = FindProjectileType(thorium, "TerraScythePro");
+            morningDewType = FindProjectileType(thorium, "MorningDewPro");
+            kinetoType = FindProjectileType(thorium, "KinetoscythePro2");
+            palmType = FindProjectileType(thorium, "StonePalmPro");
+            paperType = FindProjectileType(thorium, "PaperExplosivePro2");
+
+            if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal))
+            {
+                whirlwindType = FindProjectileType(calBardHeal, "Whirlwind");
+                sarsType = FindProjectileType(calBardHeal, "SARS");
+            }
+
+            AddScale(moltenThresherType, 1.5f);
+            AddScale(batScytheType, 1.5f);
+            AddScale(batScytheType2, 3f);
+            AddScale(fallingTwilightType, 1.5f);
+            AddScale(bloodHarvestType, 1.5f);
+            AddScale(trueFallingTwilightType, 1.5f);
+            AddScale(trueBloodHarvestType, 1.5f);
+            AddScale(theBlackScytheType, 1.5f);
+            AddScale(titanScytheType, 2f);
+            AddScale(trueHallowedType, 1.3f);
+            AddScale(boneBatonType, 2f);
+            AddScale(crimsonType, 1.2f);
+            AddScale(iceType, 1.2f);
+            AddScale(darkType, 1.1f);
+            AddScale(whirlwindType, 1.5f);
+            AddScale(terraType, 1.6f);
+            AddScale(morningDewType, 1.5f);
+            AddScale(kinetoType, 1.5f);
+            AddScale(sarsType, 1.5f);
+            AddScale(paperType, 3f);
+            AddScale(palmType, 2f);
+
+            if (moltenThresherType > 0)
+                Glowmasks[moltenThresherType] = ModContent.Request<Texture2D>("ThoriumMod/Projectiles/Scythe/MoltenThresherPro_Glowmask");
+        }
+
+        private static void AddScale(int type, float scale, bool customDraw = true)
+        {
+            if (type <= 0)
+                return;
+
+            ProjectileScales[type] = scale;
+
+            if (customDraw)
+                CustomDrawProjectiles.Add(type);
+        }
 
         public override void AI(Projectile projectile)
         {
-            ApplyScaling(projectile);
-        }
+            if (projectile.localAI[2] == 1f)
+                return;
 
-        private void ApplyScaling(Projectile projectile)
-        {
-            float scale = GetScaleForProjectile(projectile.type);
-            if (scale == 1f) return;
+            if (!ProjectileScales.TryGetValue(projectile.type, out float scale))
+                return;
 
-            if (projectile.localAI[2] == 1f) return;
-
-            Vector2 originalSize = new Vector2(projectile.width, projectile.height);
             Vector2 oldCenter = projectile.Center;
 
             projectile.scale *= scale;
-            projectile.width = (int)(originalSize.X * scale);
-            projectile.height = (int)(originalSize.Y * scale);
+            projectile.width = (int)(projectile.width * scale);
+            projectile.height = (int)(projectile.height * scale);
             projectile.Center = oldCenter;
 
             projectile.localAI[2] = 1f;
@@ -137,55 +204,36 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         public void EnsureScaled(Projectile projectile)
         {
-            ApplyScaling(projectile);
+            AI(projectile);
         }
 
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
-            int[] customDrawProjectiles = new int[]
-            {
-                moltenThresherType, batScytheType, batScytheType2,
-                fallingTwilightType, bloodHarvestType, trueFallingTwilightType,
-                trueBloodHarvestType, theBlackScytheType, titanScytheType,
-                boneBatonType, trueHallowedType, palmType, paperType,
-                crimsonType, iceType, darkType, terraType, morningDewType, kinetoType, sarsType
-            };
-
-            if (!Array.Exists(customDrawProjectiles, t => t == projectile.type))
+            if (!CustomDrawProjectiles.Contains(projectile.type))
                 return true;
 
             Texture2D texture = TextureAssets.Projectile[projectile.type].Value;
             int frameHeight = texture.Height / Main.projFrames[projectile.type];
-            Rectangle sourceRectangle = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight);
-            Vector2 origin = sourceRectangle.Size() / 2f;
-            Vector2 drawPos = projectile.Center - Main.screenPosition;
 
+            Rectangle sourceRectangle = new(0, frameHeight * projectile.frame, texture.Width, frameHeight);
+            Vector2 origin = sourceRectangle.Size() * 0.5f;
+            Vector2 drawPos = projectile.Center - Main.screenPosition;
 
             SpriteEffects effects = Main.player[projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Main.EntitySpriteDraw(texture, drawPos, sourceRectangle, Color.White, projectile.rotation, origin, projectile.scale, effects, 0);
 
-
-            // Example glowmask
-            string glowPath = projectile.type switch
+            if (Glowmasks.TryGetValue(projectile.type, out Asset<Texture2D> glowAsset))
             {
-                var t when t == moltenThresherType => "ThoriumMod/Projectiles/Scythe/MoltenThresherPro_Glowmask",
-                _ => null
-            };
-
-            if (glowPath != null)
-            {
-                Texture2D glowTexture = ModContent.Request<Texture2D>(glowPath).Value;
+                Texture2D glowTexture = glowAsset.Value;
 
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState,
-                    DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive,Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
 
                 Main.EntitySpriteDraw(glowTexture, drawPos, sourceRectangle, Color.White, projectile.rotation, origin, projectile.scale, effects, 0);
 
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState,
-                    DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.TransformationMatrix);
             }
 
             return false;
@@ -203,28 +251,18 @@ namespace InfernalEclipseAPI.Common.Projectiles
             #endregion
 
             #region Clamity
-            if (ModLoader.TryGetMod("Clamity", out Mod clam))
+            if (InfernalConfig.Instance.CalamityBalanceChanges && InfernalCrossmod.Clamity.Loaded)
             {
-                if (entity.type == clam.Find<ModProjectile>("FireBarrage").Type)
-                {
+                if (entity.type == clamFireBarrage)
                     entity.damage = 135;
-                }
-                if (entity.type == clam.Find<ModProjectile>("FireBarrageHoming").Type)
-                {
+                else if (entity.type == clamFireBarrageHoming)
                     entity.damage = 130;
-                }
-                if (entity.type == clam.Find<ModProjectile>("Fireblast").Type)
-                {
+                else if (entity.type == clamFireblast)
                     entity.damage = 140;
-                }
-                if (entity.type == clam.Find<ModProjectile>("FireBombExplosion").Type)
-                {
+                else if (entity.type == clamFireBombExplosion)
                     entity.damage = 135;
-                }
-                if (entity.type == clam.Find<ModProjectile>("Firethrower").Type)
-                {
+                else if (entity.type == clamFirethrower)
                     entity.damage = 150;
-                }
             }
             #endregion
 
@@ -545,6 +583,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     }
                 }
 
+                if (projectile.ModProjectile.Mod.Name == "CalamitySimpleWhipAddon" && InfernalConfig.Instance.CalamityBalanceChanges)
+                {
+                    if (projectile.ModProjectile.Name == "MilkywayProj")
+                    {
+                        projectile.WhipSettings.RangeMultiplier = 2.7f;
+                    }
+                }
+
                 if (InfernalConfig.Instance.SOTSBalanceChanges) 
                 {
                     if (projectile.ModProjectile.Mod.Name == "SOTS") 
@@ -569,35 +615,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     }
                 }
 
-                if (ModLoader.TryGetMod("Consolaria", out Mod consolaria))
+                if (InfernalCrossmod.Consolaria.Loaded && projectile.owner >= 0)
                 {
-                    int JadeLampID = consolaria.Find<ModProjectile>("JadeSeal_Lamp").Type;
-                    int GoldLampID = consolaria.Find<ModProjectile>("JadeSeal_GoldenLamp").Type;
-
-                    if (projectile.ModProjectile.Name == "JadeSeal_Lamp")
-                    {
-                        if (PlayerHasProjectile(projectile.owner, GoldLampID))
-                            KillPlayerProjectiles(projectile.owner, GoldLampID);
-                    }
-
-                    if (projectile.ModProjectile.Name == "JadeSeal_GoldenLamp")
-                    {
-                        if (PlayerHasProjectile(projectile.owner, JadeLampID))
-                            KillPlayerProjectiles(projectile.owner, JadeLampID);
-                    }
+                    if (projectile.type == jadeLampType)
+                        KillPlayerProjectiles(projectile.owner, goldLampType);
+                    else if (projectile.type == goldLampType)
+                        KillPlayerProjectiles(projectile.owner, jadeLampType);
                 }
             }
-        }
-
-        private static bool PlayerHasProjectile(int owner, int projType)
-        {
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                Projectile proj = Main.projectile[i];
-                if (proj.active && proj.owner == owner && proj.type == projType)
-                    return true;
-            }
-            return false;
         }
 
         private static void KillPlayerProjectiles(int owner, int projType)
@@ -616,86 +641,29 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            int type = projectile.type;
+
             #region Secrets of the Shadows
-            if (ModLoader.TryGetMod("SOTS", out Mod sots) && InfernalConfig.Instance.SOTSBalanceChanges)
+            if (InfernalCrossmod.SOTS.Loaded && InfernalConfig.Instance.SOTSBalanceChanges)
             {
-                bool SOTSProj(string name, out int type)
-                {
-                    type = -1;
-                    if (sots.TryFind(name, out ModProjectile proj))
-                    {
-                        type = proj.Type;
-                        return true;
-                    }
-                    return false;
-                }
-
-                //  Blazing Club
-                if (SOTSProj("BlazingMine", out int blazingMine) &&
-                    projectile.type == blazingMine ||
-                    SOTSProj("BlazingSpike", out int blazingSpike) &&
-                    projectile.type == blazingSpike)
-                {
+                if (type == blazingMineType || type == blazingSpikeType)
                     target.AddBuff(BuffID.OnFire, 120);
-                }
-
-                //  Thundershock Shortbow
-                if (SOTSProj("ArcLightning", out int arcLightning) &&
-                    projectile.type == arcLightning)
-                {
+                else if (type == arcLightningType)
                     target.AddBuff(BuffID.Electrified, 180);
-                }
-
-                //  Permafrost Spirit Staff
-                if (SOTSProj("FrostSpear", out int frostSpear) &&
-                    projectile.type == frostSpear)
-                {
+                else if (type == frostSpearType)
                     target.AddBuff(BuffID.Frostburn, 180);
-                }
-
-                //  Earthen Spirit Staff
-                if (SOTSProj("EarthenSpirit", out int earthenSpirit) &&
-                    projectile.type == earthenSpirit)
-                {
+                else if (type == earthenSpiritType)
                     target.AddBuff(ModContent.BuffType<Crumbling>(), 60);
-                }
-
-                //  Otherworldly Spirit Staff
-                if (SOTSProj("ThunderRing", out int otherworldLightning) &&
-                    projectile.type == otherworldLightning)
-                {
+                else if (type == thunderRingType)
                     target.AddBuff(BuffID.Electrified, 120);
-                }
-
-                //  Irradiated Crusher
-                if (SOTSProj("IrradiatedChainReactor", out int chainReactor) &&
-                    projectile.type == chainReactor ||
-                    SOTSProj("IrradiatedCrush", out int irradiatedCrush) &&
-                    projectile.type == irradiatedCrush)
-                {
+                else if (type == irradiatedChainReactorType || type == irradiatedCrushType)
                     target.AddBuff(ModContent.BuffType<Irradiated>(), 180);
-                }
-
-                //  Tidal Spirit Staff
-                if (SOTSProj("RippleWaveSummon", out int rippleWave) &&
-                    projectile.type == rippleWave)
-                {
+                else if (type == rippleWaveSummonType)
                     target.AddBuff(ModContent.BuffType<CrushDepth>(), 60);
-                }
-
-                //  Inferno Spirit Staff
-                if (SOTSProj("InfernoLaser", out int infernoLaser) &&
-                    projectile.type == infernoLaser)
-                {
+                else if (type == infernoLaserType)
                     target.AddBuff(BuffID.OnFire3, 60);
-                }
-
-                //  Evil Spirit Staff
-                if (SOTSProj("EvilSpear", out int evilSpear) &&
-                    projectile.type == evilSpear)
-                {
+                else if (type == evilSpearType)
                     target.AddBuff(ModContent.BuffType<BrainRot>(), 60);
-                }
             }
             #endregion
         }

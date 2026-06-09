@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items.Potions;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.Balance.Calamity

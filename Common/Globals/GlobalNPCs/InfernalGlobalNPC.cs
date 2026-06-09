@@ -1,7 +1,4 @@
 ﻿using InfernalEclipseAPI.Core.World;
-using CalamityMod.NPCs.BrimstoneElemental;
-using CalamityMod.NPCs.AquaticScourge;
-using CalamityMod.NPCs.Yharon;
 using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
 using Terraria.GameContent.ItemDropRules;
 using InfernalEclipseAPI.Core.Systems;
@@ -22,16 +19,18 @@ using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNe
 using InfernalEclipseAPI.Core.Utils;
 using CalamityMod.Buffs.StatDebuffs;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.ProfanedGuardians;
-using Terraria;
 using CalamityMod.Events;
 using Terraria.GameContent.Events;
 using InfernalEclipseAPI.Content.Items.Consumables;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
     public class InfernalGlobalNPC : GlobalNPC
     {
         public override bool InstancePerEntity => true;
+
+        public static int cnidrion = -1;
 
         public override void SetDefaults(NPC entity)
         {
@@ -145,32 +144,35 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (InfernalWorld.RagnarokModeEnabled && npc.boss && !BossRushEvent.BossRushActive)
+            if (npc.boss) 
             {
-                foreach (Player player in Main.player)
+                if (InfernalWorld.RagnarokModeEnabled && !BossRushEvent.BossRushActive)
                 {
-                    if (player.active && !player.dead)
+                    foreach (Player player in Main.player)
                     {
-                        ClearRageAndAdrenaline(player);
-
-                        if (InfernalCrossmod.Thorium.Loaded)
+                        if (player.active && !player.dead)
                         {
-                            if (InfernalCrossmod.RagnarokMod.Loaded)
-                            {
-                                RagnarokRiffSystemInteraction.ClearRiffs(player);
-                            }
+                            ClearRageAndAdrenaline(player);
 
-                            // clear locally
-                            ThoriumHelpers.ClearAllEmpowerments(player);
-
-                            // and tell others
-                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                            if (InfernalCrossmod.Thorium.Loaded)
                             {
-                                ModPacket p = Mod.GetPacket();
-                                p.Write((byte)InfernalEclipseMessageType.ThoriumEmpowerment);
-                                p.Write((byte)ThoriumEmpowermentMsg.ClearEmpowerments);
-                                p.Write((byte)player.whoAmI);
-                                p.Send();
+                                if (InfernalCrossmod.RagnarokMod.Loaded)
+                                {
+                                    RagnarokRiffSystemInteraction.ClearRiffs(player);
+                                }
+
+                                // clear locally
+                                ThoriumHelpers.ClearAllEmpowerments(player);
+
+                                // and tell others
+                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                {
+                                    ModPacket p = Mod.GetPacket();
+                                    p.Write((byte)InfernalEclipseMessageType.ThoriumEmpowerment);
+                                    p.Write((byte)ThoriumEmpowermentMsg.ClearEmpowerments);
+                                    p.Write((byte)player.whoAmI);
+                                    p.Send();
+                                }
                             }
                         }
                     }
@@ -243,6 +245,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     mp.rageModeActive = false;
                     mp.adrenaline = 0;
                     mp.adrenalineModeActive = false;
+                }
+
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    if (npc.ModNPC?.Mod.Name != "ThoriumMod" && npc.boss)
+                    {
+                        player.ClearBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("SpiritualistBuff").Type);
+                    }
                 }
             }
 

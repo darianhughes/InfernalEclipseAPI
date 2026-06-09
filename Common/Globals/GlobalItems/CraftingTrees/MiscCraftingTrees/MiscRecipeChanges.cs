@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Accessories;
 using InfernalEclipseAPI.Content.Items.Accessories.RingofTix;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.MiscCraftingTrees
 {

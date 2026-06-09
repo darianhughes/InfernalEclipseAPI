@@ -1,4 +1,5 @@
-﻿using ThoriumMod.Tiles;
+﻿using InfernalEclipseAPI.Core.Configs;
+using ThoriumMod.Tiles;
 
 namespace InfernalEclipseAPI.Common.Balance.Thorium
 {

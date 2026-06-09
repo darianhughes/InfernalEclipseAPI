@@ -1,7 +1,11 @@
 ﻿using CalamityMod;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
+using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
+using InfernumMode;
+using InfernumMode.Core.GlobalInstances.Systems;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
 {
@@ -57,7 +61,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
                 NPC modNPC14 = npc;
                 if (modNPC14.type == NPCID.BloodNautilus)
                 {
-                    npc.lifeMax *= 65;
+                    npc.lifeMax *= 50;
                 }
                 else
                 {
@@ -104,8 +108,31 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla
 
         public override bool PreAI(NPC npc)
         {
-            if (npc.type == NPCID.WallofFleshEye && InfernalWorld.RagnarokModeEnabled)
+            if (npc.type == NPCID.WallofFleshEye && InfernalWorld.RagnarokModeEnabled && npc.Infernum().ExtraAI[2] != 1f)
                 npc.damage = 150;
+
+            if (npc.type == NPCID.SkeletronHead && WorldSaveSystem.InfernumModeEnabled)
+            {
+                foreach (Player player in Main.ActivePlayers)
+                {
+                    if (player.dead || !npc.WithinRange(player.Center, 1000f))
+                        continue;
+
+                    player.AddBuff(BuffID.ChaosState, 2);
+
+                    if (InfernalCrossmod.Thorium.Loaded)
+                    {
+                        ThoriumEffectHandler.GrantThoriumChaosState(player);
+                    }
+
+                    if (InfernalCrossmod.SOTS.Loaded)
+                    {
+                        //SOTSEffectHandler.DisableSOTSEffects(player);
+                    }
+
+                    player.AddCooldown(CalamityMod.Cooldowns.ChaosState.ID, CalamityUtils.SecondsToFrames(180));
+                }
+            }
 
             return base.PreAI(npc);
         }

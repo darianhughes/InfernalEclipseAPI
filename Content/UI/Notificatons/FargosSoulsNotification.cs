@@ -5,10 +5,11 @@ using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.Localization;
 using Terraria.UI;
+using InfernalEclipseAPI.Core.Configs;
 
-namespace InfernalEclipseAPI.Content.UI
+namespace InfernalEclipseAPI.Content.UI.Notificatons
 {
-    public class ForTheWorthyNotification : IInGameNotification
+    public class FargosSoulsNotification : IInGameNotification
     {
         public bool ShouldBeRemoved => timeLeft <= 0;
 
@@ -22,12 +23,12 @@ namespace InfernalEclipseAPI.Content.UI
             {
                 if (timeLeft < 30)
                 {
-                    return MathHelper.Lerp(0f, 1f, timeLeft / 30f);
+                    return Lerp(0f, 1f, timeLeft / 30f);
                 }
 
                 if (timeLeft > 285)
                 {
-                    return MathHelper.Lerp(1f, 0f, (timeLeft - 285) / 15f);
+                    return Lerp(1f, 0f, (timeLeft - 285) / 15f);
                 }
 
                 return 1f;
@@ -65,10 +66,10 @@ namespace InfernalEclipseAPI.Content.UI
                 return;
             }
 
-            string title = Language.GetTextValue(InfernalConfig.Instance.ThereIsNoReasonDisableThis ? "Mods.InfernalEclipseAPI.UI.WarningForTheWorthyON" : "Mods.InfernalEclipseAPI.UI.WarningForTheWorthyOFF");
+            string title = Language.GetTextValue(InfernalConfig.Instance.ThereIsNoReasonDisableThis ? "Mods.InfernalEclipseAPI.UI.WarningSouls" : "Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning");
 
             float effectiveScale = Scale * 1.1f;
-            Vector2 size = (FontAssets.ItemStack.Value.MeasureString(title) + new Vector2(58f, 100f)) * effectiveScale;
+            Vector2 size = (FontAssets.ItemStack.Value.MeasureString(title) + new Vector2(70f, 100f)) * effectiveScale;
             Rectangle panelSize = Utils.CenteredRectangle(bottomAnchorPosition + new Vector2(0f, (0f - size.Y) * 0.5f), size);
 
             // Check if the mouse is hovering over the notification.

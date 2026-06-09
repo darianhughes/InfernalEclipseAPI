@@ -555,16 +555,44 @@ Items: {
 		最大仆从数量和哨兵数量增加2
 		增加仆从击退
 		'''
+	/* CursedFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a cursed spike ball
+		Further hits have a chance to release more cursed spike balls
+		Cursed spike balls apply cursed flames to damaged enemies
+		''' */
+	/* VileFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a vile spike ball
+		Further hits have a chance to release more vile spike balls
+		Vile spike balls apply ichor to damaged enemies
+		''' */
+	/* IronFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a rolling spike ball
+		Further hits have a chance to release more rolling spike balls
+		''' */
+	/* BloomingShield.Tooltip:
+		'''
+		You constantly generate a 20 life shield
+		Healing spells will heal an additional 1 life, 2 if at max shield
+		When out of combat, your life recovery will increase up to 5 over time
+		''' */
+	/* AstroBeetleHusk.Tooltip:
+		'''
+		Damage taken reduced by 5%
+		You constantly generate a 50 life shield
+		''' */
 }
 
 ThrowerTechniques: {
 	Decoy: {
 		DisplayName: 引敌诱饵
-		/* Description:
+		Description:
 			'''
-			Call in an enemy decoy and gain increased attack speed for a second
-			The decoy will attempt to grab the attention of nearby enemies
-			''' */
+			召唤一个敌怪诱饵，并提升攻击速度，持续1秒
+			诱饵会试图吸引附近敌怪的注意力
+			'''
 	}
 
 	BloodLotus: {

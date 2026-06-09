@@ -87,6 +87,9 @@
 		<Reference Include="ThoriumRework">
 		  <HintPath>..\ModAssemblies\ThoriumRework_v1.3.3.dll</HintPath>
 		</Reference>
+		<Reference Include="ThrowerUnification">
+		  <HintPath>lib\Assemblies\ThrowerUnification.dll</HintPath>
+		</Reference>
 		<Reference Include="YouBoss">
 			<HintPath>..\ModAssemblies\YouBoss_v1.0.14.dll</HintPath>
 		</Reference>

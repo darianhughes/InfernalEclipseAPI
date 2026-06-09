@@ -1,4 +1,5 @@
-﻿using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
+﻿using Microsoft.Xna.Framework;
+using InfernumActive = InfernalEclipseAPI.Content.DifficultyOverrides.hellActive;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
 {
@@ -6,7 +7,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
     {
         public override bool AppliesToEntity(NPC npc, bool lateInstatiation)
         {
-            return npc.boss && ((ModType)npc.ModNPC)?.Mod.Name == "HypnosMod";
+            return ((ModType)npc.ModNPC)?.Mod.Name == "HypnosMod";
         }
 
         public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
@@ -34,7 +35,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
                 }
             }
 
-            if (InfernumActive.InfernumActive)
+            if (InfernumActive.InfernumActive && npc.boss)
             {
                 npc.lifeMax += (int)((double).10 * npc.lifeMax);
             }
@@ -46,6 +47,38 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
             {
                 modifiers.SourceDamage *= 0.80f;
             }
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.ModNPC != null)
+            {
+                if (npc.ModNPC.Name.Contains("HypnosBoss"))
+                {
+                    if (npc.ai[0] != 0)
+                    {
+                        Player target = Main.player[npc.target];
+
+                        if (!target.active || target.dead || Vector2.Distance(target.Center, npc.Center) > 3000f)
+                        {
+                            npc.active = false;
+
+                            foreach (NPC otherNPC in Main.ActiveNPCs)
+                            {
+                                if (otherNPC.type == npc.type || otherNPC.ModNPC == null)
+                                    continue;
+
+                                if (otherNPC.ModNPC.Name.Contains("Draedon") && otherNPC.ModNPC.Mod.Name == "HypnosMod")
+                                {
+                                    otherNPC.active = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return base.PreAI(npc);
         }
     }
 }

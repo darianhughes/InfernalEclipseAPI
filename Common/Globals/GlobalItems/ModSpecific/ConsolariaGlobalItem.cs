@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Utils;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {

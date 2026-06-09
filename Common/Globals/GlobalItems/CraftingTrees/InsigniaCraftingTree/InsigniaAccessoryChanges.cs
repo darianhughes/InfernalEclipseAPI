@@ -9,6 +9,7 @@ using Terraria.Localization;
 using InfernalEclipseAPI.Core.Utils;
 using InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides;
 using Terraria.GameInput;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.InsigniaCraftingTree
 {

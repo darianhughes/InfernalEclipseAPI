@@ -1,3 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using InfernalEclipseAPI.Core.Configs;
+
 namespace InfernalEclipseAPI.Core.Systems
 {
     public static class InfernalCrossmod
@@ -202,6 +207,47 @@ namespace InfernalEclipseAPI.Core.Systems
             public const string Name = "BlueMoon";
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
+        }
+
+        public static class QoLC
+        {
+            public const string Name = "QoLCompendium";
+            public static bool Loaded => ModLoader.HasMod(Name);
+            public static Mod Mod => ModLoader.GetMod(Name);
+
+            public static void RemoveQoLCompendiumInfiniteBuff(Player player, int buffID)
+            {
+                if (!ModLoader.TryGetMod("QoLCompendium", out Mod qol))
+                    return;
+
+                Type qolPlayerType = qol.Code.GetType("QoLCompendium.Core.QoLCPlayer");
+
+                if (qolPlayerType is null)
+                {
+                    if (InfernalConfig.Instance.DeveloperMode)
+                        Main.NewText("Error finding QoLCPlayer type");
+                    return;
+                }
+
+                MethodInfo getModPlayer = typeof(Player).GetMethods().First(m => m.Name == "GetModPlayer" && m.IsGenericMethodDefinition && m.GetParameters().Length == 0);
+
+                object qolPlayer = getModPlayer.MakeGenericMethod(qolPlayerType).Invoke(player, null);
+
+                if (qolPlayer is null)
+                {
+                    if (InfernalConfig.Instance.DeveloperMode)
+                        Main.NewText("Error finding QoLCPlayer");
+
+                    return;
+                }
+
+                FieldInfo activeBuffsField = qolPlayerType.GetField("activeBuffs");
+
+                if (activeBuffsField?.GetValue(qolPlayer) is List<int> activeBuffs && activeBuffs.Contains(buffID))
+                    activeBuffs.Remove(buffID);
+                else if (InfernalConfig.Instance.DeveloperMode)
+                    Main.NewText("Error finding activeBuffs field; buff not removed from infinite buffs.");
+            }
         }
     }
 }

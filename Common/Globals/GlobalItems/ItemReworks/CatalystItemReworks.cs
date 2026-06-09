@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CatalystMod.Items;
 using CatalystMod.Items.Accessories;
+using InfernalEclipseAPI.Core.Configs;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 

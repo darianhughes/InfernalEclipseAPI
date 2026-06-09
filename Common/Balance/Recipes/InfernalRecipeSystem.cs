@@ -32,6 +32,8 @@ using CalamityMod.Items.LabFinders;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.Weapons.Ranged;
 using InfernalEclipseAPI.Content.Items.Other;
+using ThoriumMod.Items.Sandstone;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -313,10 +315,19 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         .AddTile(TileID.LunarCraftingStation)
                         .Register();
                 }
-                    
+
                 SOTSWormholeRecipes.Initialize();
             }
             #endregion
+
+            if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
+            {
+                Recipe.Create(simpleWhipAddon.Find<ModItem>("StrikerEmblem").Type)
+                    .AddIngredient(ItemID.BlandWhip)
+                    .AddIngredient(ItemID.SummonerEmblem)
+                    .AddTile(TileID.Anvils)
+                    .Register();
+            }
         }
 
         public override void PostAddRecipes()
@@ -540,6 +551,58 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         int napalmType = calAmmo.Find<ModItem>("NapalmBullet").Type;
                         recipe.ReplaceResult(napalmType, 100);
                     }
+                }
+                #endregion
+
+                #region Calamity Simple Whip Addon
+                if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
+                {
+                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("WoodenWhip")))
+                    {
+                        recipe.AddIngredient(ItemID.Hay, 5);
+                    }
+
+                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("MandibleLash")))
+                    {
+                        recipe.AddIngredient<SandstoneIngot>(8);
+                    }
+
+                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("AurelianSanctum")))
+                    {
+                        recipe.RemoveIngredient(ModContent.ItemType<ShadowspecBar>());
+                        if (InfernalCrossmod.NoxusBoss.Loaded)
+                        {
+                            recipe.AddIngredient<AlloyofEden>(3);
+                            recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);
+                        }
+                        recipe.AddIngredient<Rock>(1);
+                    }
+
+                    if (InfernalConfig.Instance.CalamityBalanceChanges) 
+                    {
+                        ModItem[] bleachedAcessories =
+                        {
+                            GetItem(simpleWhipAddon, "BleachedNucleogenesis"),
+                            GetItem(simpleWhipAddon, "BleachedStatisCurse"),
+                            GetItem(simpleWhipAddon, "BleachedStarTaintedGenerator"),
+                            GetItem(simpleWhipAddon, "BleachedStarbusterCore"),
+                            GetItem(simpleWhipAddon, "BleachedNuclearFuelRod"),
+                            GetItem(simpleWhipAddon, "BleachedTheFirstShadowflame"),
+                            GetItem(simpleWhipAddon, "BleachedJellyChargedBattery"),
+                            GetItem(simpleWhipAddon, "BleachedVoltaicJelly"),
+
+                            GetItem(simpleWhipAddon, "BuddyEmblem")
+                        };
+
+                        foreach (ModItem item in bleachedAcessories)
+                        {
+                            if (recipe.HasResult(item))
+                                recipe.DisableRecipe();
+                        }
+                    }
+
+                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("StrikerEmblem")) && recipe.HasIngredient(ItemID.Daybloom))
+                        recipe.DisableRecipe();
                 }
                 #endregion
 

@@ -1,20 +1,20 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.Localization;
 using Terraria.UI;
 
-namespace InfernalEclipseAPI.Content.UI
+namespace InfernalEclipseAPI.Content.UI.Notificatons
 {
-    public class FargosSoulsNotification : IInGameNotification
+    public class HomewardJourneyNotification : IInGameNotification
     {
         public bool ShouldBeRemoved => timeLeft <= 0;
 
         private int timeLeft = 5 * 60;
 
-        private Asset<Texture2D> iconTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/icon_small");
+        private Asset<Texture2D> iconTexture = ModLoader.HasMod("HomewardRagnarok") ? ModContent.Request<Texture2D>("HomewardRagnarok/icon_small") : ModContent.Request<Texture2D>("InfernalEclipseAPI/icon_small");
 
         private float Scale
         {
@@ -22,12 +22,12 @@ namespace InfernalEclipseAPI.Content.UI
             {
                 if (timeLeft < 30)
                 {
-                    return MathHelper.Lerp(0f, 1f, timeLeft / 30f);
+                    return Lerp(0f, 1f, timeLeft / 30f);
                 }
 
                 if (timeLeft > 285)
                 {
-                    return MathHelper.Lerp(1f, 0f, (timeLeft - 285) / 15f);
+                    return Lerp(1f, 0f, (timeLeft - 285) / 15f);
                 }
 
                 return 1f;
@@ -65,10 +65,10 @@ namespace InfernalEclipseAPI.Content.UI
                 return;
             }
 
-            string title = Language.GetTextValue(InfernalConfig.Instance.ThereIsNoReasonDisableThis ? "Mods.InfernalEclipseAPI.UI.WarningSouls" : "Mods.InfernalEclipseAPI.WelcomeMessage.SoulsWarning");
+            string title = Language.GetTextValue(ModLoader.HasMod("HomewardRagnarok") ? "Mods.InfernalEclipseAPI.UI.NoticeHomewardRagnarok" : "Mods.InfernalEclipseAPI.UI.NoticeHomewardJourney");
 
             float effectiveScale = Scale * 1.1f;
-            Vector2 size = (FontAssets.ItemStack.Value.MeasureString(title) + new Vector2(58f, 100f)) * effectiveScale;
+            Vector2 size = (FontAssets.ItemStack.Value.MeasureString(title) + new Vector2(70f, 100f)) * effectiveScale;
             Rectangle panelSize = Utils.CenteredRectangle(bottomAnchorPosition + new Vector2(0f, (0f - size.Y) * 0.5f), size);
 
             // Check if the mouse is hovering over the notification.

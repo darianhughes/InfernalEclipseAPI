@@ -16,14 +16,14 @@ Items: {
 		'''
 	LunateCharm.Tooltip:
 		'''
-		Negates non-radiant damage penalties caused by healer armor
+		Gaining soul essence grants shield when health is full
 		Removes the radiant damage penalty from the [cbuff:InfernalEclipseAPI/BrokenOath] debuff
 		'''
 	SealedContract.Tooltip:
 		'''
 		Maximum life increased by 60
 		Healing spells grant an additional 5 life
-		Negates non-radiant damage penalties caused by healer armor
+		Gaining soul essence grants shield when health is full
 		Removes the radiant damage penalty from the [cbuff:InfernalEclipseAPI/BrokenOath] debuff
 		Gaining soul essence with radiant scythes grant a stack of aggregate charge
 		Radiant damage from scythe projectiles or non-scythe weapons consume aggregate charge to grant soul essence
@@ -40,4 +40,5 @@ ItemDescriptions: {
 		'''
 	MagmaSeersMask: 20% increased whip speed
 	MasterMarksmansScouter: ""
+	AssassinsGuard: ""
 }

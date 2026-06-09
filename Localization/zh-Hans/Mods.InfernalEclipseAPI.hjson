@@ -5,6 +5,7 @@ UI: {
 		LucidRetaliation: 恢复的现实
 	}
 
+	NoVoidConsumable: 你现在可吃不下那个！
 	RagnarokIconText: 诸神黄昏模式已启用
 	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
 	NoRespawn2: 复活受限：在 {1} 人联机时，每场 Boss 战中每位玩家只有 {0} 次重生机会！
@@ -37,6 +38,21 @@ UI: {
 		警告：For the worthy与炼狱蚀光不兼容！
 		在For the worthy世界中出现的平衡问题或漏洞，请勿进行反馈。
 		'''
+	/* NoticeHomewardRagnarok:
+		'''
+		Thanks for playing Homeward Ragnarok, an official DLC mod to Infernal Eclipse of Ragnarok!
+		Please report and issues relating to Homeward Journey in the Homeward Ragnarok discord.
+		The main team does not directly work on this mod and can not provide help in the main discord.
+		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
+		''' */
+	/* NoticeHomewardJourney:
+		'''
+		NOTICE: It is detected that you have Homeward Journey enabled!
+		We highly recommend you to install the "Homeward Ragnarok" mod for compatibility between these mods before proceeding!
+		Homeward Ragnarok also adds new content and other optional reworks for Homeward Journey content!
+		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
+		''' */
+	// DevNoticeCampsiteFix: Flag pole crash fix applied
 }
 
 DifficultyUI: {
@@ -104,8 +120,8 @@ ItemTooltip: {
 	OmniShield: -至高神盾-
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
-	// NamelessDowned: You must pass the test
-	// DisabledBossRush: The effects will not work in Boss Rush
+	NamelessDowned: 你必须通过考验
+	DisabledBossRush: 该效果在Boss Rush中不生效
 	SBeamUsage: 长按左键，发射神话魔法伤害的光束
 	NBeamUsage: 长按左键，发射寰宇死光，造成神话魔法伤害
 	MBeamUsage: 长按左键，发射星流解离炮，造成神话远程伤害
@@ -117,7 +133,7 @@ ItemTooltip: {
 	ThorsHammerPro: 命中时施加3秒的带电
 	BountifulHarvest: 交替射出穿透毒刺
 	TwoAlchs: 在酒精中毒效果中被视为两种酒
-	// HornScale: Heal amount scales with progression
+	HornScale: 治疗量随游戏进度而增加
 
 	GrapeBeer: {
 		Orig: 降低75%暴击伤害
@@ -147,11 +163,7 @@ ItemTooltip: {
 		Player2: 定魂锚已设置，你有20秒的时间返回。
 	}
 
-	WhiteDwarfSetBonus:
-		'''
-
-		象牙状火焰触发后有2秒冷却时间
-		'''
+	WhiteDwarfSetBonus: 象牙状火焰触发后有2秒冷却时间
 	PhoenixStaff:
 		'''
 		右键喷射火焰流，对敌怪造成[cbuff:ThoriumMod/HolyGlare]减益
@@ -447,18 +459,18 @@ ItemTooltip: {
 		Nerf: 增加25%虚空攻击速度和5%近战伤害
 	}
 
-	// Oneirophobia: Turns into a sentient synthesizer minion when stowed, attacking enemies
-	/* PlagueLordFlask:
+	Oneirophobia: 不使用武器时，生成幻影仆从为你而战
+	PlagueLordFlask:
 		'''
-		15% increased throwing damage
-		15% increased throwing velocity
-		Using a throwing item has a 20% chance to unleash two Blight Daggers
-		Blight Daggers home in on enemies and apply a highly contagious disease
-		''' */
+		增加15%投掷伤害
+		增加15%投掷弹幕速度
+		使用投掷物品有20%概率释放两道枯萎飞刀
+		枯萎飞刀追踪敌怪并施加高度感染的疾病
+		'''
 
 	SpiritSurfer: {
-		// Orig: Increases void drain by 6 while active
-		// Replace: Increases void drain by 36 while active
+		Orig: 激活时会增加6点虚空流失速度
+		Replace: 激活时会增加36点虚空流失速度
 	}
 
 	DoesNotStack: 不与下位效果叠加
@@ -597,6 +609,7 @@ ItemTooltip: {
 			你可以右键拖动平台，但它们会始终保持对称
 			哨兵可以被放置在这些平台上
 			'''
+		// OneSentry: Increases max sentries by 1
 		TwoSentry: 提升2格最大哨兵栏位
 		ThreeSentry: 提升3格最大哨兵栏位
 		Murky: 每第六次施法不消耗魔力并返还你魔力花费
@@ -652,6 +665,11 @@ ItemTooltip: {
 			拾取盗贼物品时有33%概率复制它并增加你的盗贼弹幕速度
 			此效果只能在脱战时每半秒触发一次
 			'''
+		/* Bone2:
+			'''
+			Thrower projectiles have a 20% chance to grant the player 15% thrower attack speed for 1 second upon hitting anything
+			This effect can only trigger once every one-and-a-half seconds
+			''' */
 		Scuttler: 潜伏攻击的弹幕消失时会生成一根宝石尖刺
 		BloodyFilthy: 潜伏攻击会附带8点护甲穿透，额外造成8%伤害并为你回复2点生命值
 		NoExhaustion: 装备时移除所有疲劳值效果
@@ -847,30 +865,30 @@ ItemTooltip: {
 		Yharim: 亚利姆
 	}
 
-	/* PutridRelic:
+	PutridRelic:
 		'''
-		While your first attempt may reach farther than the next, it was only raw reaction that got you there
-		Strategize, plan out your moves, and the enemy will fall to your skill, not luck
-		''' */
-	/* TurkorRelic:
+		你的第一次尝试或许比下一次更顺利，但那只是本能的反射  
+		制定策略、规划行动，如此敌人将败倒在你的技巧之下，而非运气
 		'''
-		Underestimating your opponent might be your fatal mistake
-		May you learn from it for the rest of your journey
-		''' */
-	/* PyrogenRelic:
+	TurkorRelic:
 		'''
-		Familiarity is a useful tool.
-		It is not uncommon for some battles to incorporate similar aspects as others. 
-		Keep pushing, it is likely you will use these skills again.
-		''' */
-	/* SubspaceRelic:
+		轻敌可能成为你致命的失误
+		愿你在接下来的旅途中从中汲取教训
 		'''
-		You saw the circle for what it is: predictable, finite, stagnating
-		When you recognize its flow, keep every turn in your mind; 
-		memorize the pattern you see before you
-		All it takes to escape the circle is to bend the line in just the right direction
-		Move forward and breach through infinity
-		''' */
+	PyrogenRelic:
+		'''
+		熟悉是一件强大的工具
+		许多战斗之间并不乏相似之处
+		继续前行吧，你将会再次用上这些技巧
+		'''
+	SubspaceRelic:
+		'''
+		你看清了那道循环的本质：可预见、有限、逐渐停止
+		当你理解了它的流向，就把每一次变化铭记于心
+		记住你眼前所见的所有轨迹
+		要突破循环，只需在正确的方向上改变轨迹
+		向前迈进，突破所谓无限的壁障
+		'''
 
 	AstrageldonRelic: {
 		Line1: 你为自己选择了巨大的苦难。
@@ -878,12 +896,12 @@ ItemTooltip: {
 		Line3: 你所克服的逆境终将结出可贵的硕果。
 	}
 
-	/* PrimordialsRelic:
+	PrimordialsRelic:
 		'''
-		You've done well, taking down Thorium. Only ten remain
-		Remember to not force yourself to keep going
-		Take breaks when needed, and it will make a world of difference
-		''' */
+		你做得很好，成功击败了《瑟银》。现在还剩十个
+		牢记，切莫强逼自己一路硬撑
+		在需要时停下来休息，这会带来巨大的改变
+		'''
 	AvatarRelic:
 		'''
 		你做得很好。
@@ -1091,9 +1109,10 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				当初将嘉登招入麾下之时，他便立刻着手于一个“秘密计划”，关于内容他却拒绝多言。
-				不久之后，他便展现了那第一台阴森的死亡机械。
-				我立刻意识到它已足以在我的军队中服役，而他的天赋……更是令人期待。
+				每当嘉登创造出新的科技时，他总会将其投入于他所热衷的事中：制造致命的战争机器。
+				这是他抵达此星球后，在我麾下服役时的最初造物之一，他赋予机器其所刚刚成研发出的稳定悬浮技术。
+				当时它属实新奇，然而很快便在战场上显露出其毫无实用价值。
+				因此，我命令永冻将其销毁。然而现在看来，他并未摧毁它，而是将其封印在冰寒监牢中，永远封锁。
 				'''
 		}
 
@@ -1102,10 +1121,10 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				我不知这所谓“启示”是什么，或是它如何诞生的，
-				但它似乎与泰拉瑞亚地壳深处的虚空能量颇为契合。
-				谁囚它于星象岛？我不得而知。
-				击败它后，也许你可以向吸收它残留精华的收藏家探得这个秘密。
+				在他早期的实验中，嘉登试图与栖息于这片土地的自然灵魂互动、囚禁并利用。
+				嘉登发现最初的成功来自于那些徘徊在我们星球高层大气中的灵魂。
+				他将其命名为“外世之魂”，以此向自己的起源致敬，且定下更高的目标，打造出更强大的躯壳供灵魂寄居。
+				然而实验却适得其反，最终他别无选择，只能让数个构造体将其禁锢，并不断抽取它的力量。
 				'''
 		}
 
@@ -1114,10 +1133,10 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				这种蛾类生物相当有趣，它与另一种相似的怪兽一同栖息在那些幽暗而布满蘑菇的洞穴之中。
-				它似乎能散发出一钟生物荧光，让人不禁联想到虚空……
-				或许正是那些洞穴中潜藏的虚空能量吸引了它？
-				无论如何，这一切仍超出我的理解范围。
+				你在此处发现这种生物并不令人意外。
+				蘑菇为飞蛾提供能量，而飞蛾则帮助扩散蘑菇；互相平衡，正如自然本该如此……
+				然而，在这只生物周围似乎还潜藏着某种虚空能量。
+				真是……奇特。
 				'''
 		}
 
@@ -1139,12 +1158,12 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				又一场觊觎神位之贪念所酿成的悲剧余波。
-				王室诸兄弟中最年幼者，绿洲王座的继承人。
-				不同于那受诅而卑劣的长兄，他心性纯净，却仍难逃无情命运。
-				灵魂的干预令他的陵寝化作瘟疫之源，将他拖入漫长而痛苦的沉眠。
-				信徒与王室侍从竭力相救，终究为时已晚。
-				待你赢得此战之后，请再为他哀悼……他尚且年少，不该承受血脉所带来的代价。
+				当他们的姐姐——雷霆女神欧托尼露——于灾厄手中陨落时，
+				她的弟弟被迫独自领导伊尔梅里斯。
+				不同于他的那位为力量而屠龙的姐姐，他心灵纯净，却仍难逃悲剧的命运。
+				他的子民被由窃取力量的屠龙者而统治的王国所包围，在绝望之中，他转而投向那“虚空”魔法。
+				然而虚空的干涉即便在他死后仍纠缠不休；他与他的子民一同被束缚在他的陵墓之中。
+				这标志着伊尔梅里斯真正的衰亡的开始，而我在其中扮演着重要的角色。
 				'''
 		}
 
@@ -1153,10 +1172,12 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				看起来是一场失败的实验。
-				出于未知原因，它对地表生长的花生有一种执念。
-				它和这个世界里的某些凝胶生物相比，威胁性有着太大的差距。
-				当然，我不建议你小觑它的威胁。
+				这是嘉登的一项实验。
+				这种生物是他试图理解所有史莱姆生来所蕴含神性的一次尝试，
+				无论那力量多么微小。
+				他确实成功地引出了潜藏的能量，但在过程中，却莫名其妙地赋予了这生物对花生的无尽饥渴，
+				而后这种饥渴引发了迅速且无法控制的生长。
+				它很快便逃离了收容，而后续的事情，你已然知晓。
 				'''
 		}
 
@@ -1249,12 +1270,12 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				这些鸟类曾是强大而令人畏惧的对手，堪称值得猎杀的劲敌。
-				它们的羽毛能够引导太阳沉眠的能量，并凝为炽烈雷光，因此得名。
-				然而那些壮烈的狩猎终究短暂。
-				世代更替，它们逐渐失去了昔日的强横之力。
-				你所击败的，不过是远不及我当年所见之姿的孱弱后裔，
-				但“惊雷王鹰”的名号——将永远流传。
+				它最早在龙族时代的尾声被发现，人们当时认为这些鸟类，
+				如同当时被发现的许多其他生物一样，体内流淌着龙族的血脉；
+				这一点难以否认，毕竟它们能够吸收泽拉托罗斯之阳的纯净光芒，并将其转化为雷电。
+				在那个时代，它们或许是星球上最强大的非神性生物。
+				然而……缺乏天敌的环境，再加上全能的背叛者掌控了太阳，
+				使得这一曾经辉煌的物种沦为昔日的空壳。
 				'''
 		}
 
@@ -1353,13 +1374,8 @@ Items: {
 			Tooltip: ""
 			Lore:
 				'''
-				多么反常之物。
-				世上的野兔曾是社会繁荣的象征。
-				它们的繁衍生息，带来了许多欢愉的馈赠——食物、毛皮、陪伴。
-				不像其他牲畜，它们的生命能够承受那无情的地底隧道中的诸多严酷环境以及死神般的瘟疫，
-				这使得它们成为遗弃的农民与守护王国的士兵之间理想的交易之物。
-				然而随着他们大多于时光中消逝，现在只有兔群空寂的世界中狂欢。
-				这烦扰只是诸多征兆之一，昭示着黄金时代已然从我身边逝去。
+				这个世界的兔子有着奇异的适应力。它们能够呈现多种形态，并吸收各种能量。
+				这一只似乎曾是某位小神明的宠物——那位掌管欢宴与庆典的神祇，在被我的军队斩杀之前。
 				'''
 		}
 
@@ -1369,10 +1385,11 @@ Items: {
 			Lore:
 				'''
 				复仇之灵是奇异的存在。
-				它们的化身可以呈现任何形态，只要被杀者体内曾寄宿灵魂。
-				普通的飞禽本是我猜测最不可能的，然而它们却能在羸弱的形体中迸发出超越自身的怒火。
-				唉，灵魂从不欺瞒，致使憎恶之物动荡不安的源头，来自那漫长皇家盛宴中所需的大量屠杀。
-				回想我们对那些被我们视为低等生物的所作所为，实属令人心寒。
+				若一个灵魂在死后仍能停留于世间，而不依赖外在的魔力，那必然依靠非凡的强大意志亦或是炽烈滔天的怒火。
+				我不知此人前世是谁，亦不知其如何殒命。
+				灵魂本可凭自身施展力量，但唯有寄宿于躯壳之中，才能获得真正的威能。
+				这个灵魂也不例外，其力量因那只火鸡的冤死而被放大；那本应成为王室盛宴的一部分，常人一生难得一尝的珍馐。
+				若你成为其怒火的目标，必须谨慎对待愤怒的亡魂，他的力量足以与神明匹敌，甚至超越。
 				'''
 		}
 
@@ -2144,43 +2161,177 @@ Items: {
 	}
 
 	Catlight: {
-		// DisplayName: Catlight
-		/* Tooltip:
+		DisplayName: 星光猫之书
+		Tooltip:
 			'''
-			'Are bosses too hard? Then buy Catlight Industries' Catlight!'
-			[c/7C0A02:Buy our product now]
-			''' */
+			“Boss太难打了？那就购买星光猫工业的星光猫之书！”
+			[c/7C0A02:立刻购买我们的产品]
+			'''
 	}
 
 	AlloyofEden: {
-		// DisplayName: Alloy of Eden
-		// Tooltip: An alloy composed of the strongest materials from multiple universes
+		DisplayName: 伊甸合金
+		Tooltip: 由多个宇宙中最强材料凝聚而成的合金
 	}
 
 	SolynsSpellbook: {
-		// DisplayName: Solyn's Spellbook
-		/* Tooltip:
+		DisplayName: 索琳的魔法书
+		Tooltip:
 			'''
-			A book that appeared in Solyn's old tent after the defeat of the Nameless Deity and completion of her bookshelf
-			Finely detailed diagrams of numerous magical artifacts fill up the book's pages
-			Picking up this item or holding it in your inventory permanently unlocks new recipes
-			''' */
+			在击败无名光神并补全索琳旧帐篷的书架后，这本书便随之出现
+			书页上满是对无数魔法圣物的精致详尽的描绘构图
+			拾取或将其放在物品栏中即可永久解锁新的配方
+			'''
 	}
 
 	TheChickenWing: {
-		// DisplayName: The Chicken Wing
-		/* Tooltip:
+		DisplayName: 鸡翅
+		Tooltip:
 			'''
-			Inflicts [cbuff:Oiled] on enemies
-			Grows more powerful the better fed you are
-			Defeating enemies temporarily grants [cbuff:HeartyMeal]
-			'Not the part you think it is.'
-			''' */
+			施加敌怪[cbuff:Oiled]减益
+			你吃得越饱，它就越强大
+			击败敌怪暂时获得[cbuff:HeartyMeal]
+			“并不是你以为的那一部分”
+			'''
 	}
 
 	WulfrumMothershipRelic: {
-		// DisplayName: Infernal Wulfrum Mothership Relic
-		// Tooltip: "{0}"
+		DisplayName: 钨钢母舰炼狱圣物
+		Tooltip: "{0}"
+	}
+
+	SoulDrivenHeadphonesEclipse: {
+		DisplayName: 驱魂耳机 （蚀光版本）
+		Tooltip:
+			'''
+			允许你挑选并播放《诸神黄昏：炼狱蚀光》的专属音乐
+			当你拿起耳机时，你隐约感受到一种异界的存在
+			你还可以听到充满激情的乐器演奏声
+			'''
+	}
+
+	SplitFirebrand: {
+		// DisplayName: Split Firebrand
+		// Tooltip: ""
+
+		Progression: {
+			/* Skeletron:
+				'''
+				This firey Whip that you've made burns through iron and foes alike
+				Yet it was the potential to burn brighter, defeat the curse of the dungeon to fuel the fire
+				''' */
+			/* WoF:
+				'''
+				A spark has grown larger, making it wild
+				There's more to set ablaze... Defeat the gate of the underworld to fuel the fire
+				''' */
+			/* Mechs:
+				'''
+				When the fire goes wilder, it doesn't suddenly calm, there's more to be reached and more to be ashed
+				Melt the metal overseers to fuel the fire
+				''' */
+			/* Plantera:
+				'''
+				Can you feel it? Your hands burning, sweat turning into mist... Yet it must burn hotter
+				Defeat the Predator of the Jungle to fuel the fire
+				''' */
+			/* Golem:
+				'''
+				Even when you move, you can feel the fire dance on your skin, a deadly dance but beautiful none the less
+				Defeat the guardian of the lizhard temple
+				''' */
+			/* MoonLord:
+				'''
+				Strike again and again, never stop till flames touch the stars
+				Beat the moon's harbinger to fuel the fire
+				''' */
+			/* Full:
+				'''
+				A new potential unlocked, something truly hidden from most but pried open by you
+				It's evolution is done, but not yours, keep going even if you have to discard it
+				''' */
+		}
+
+		TagDebuff: {
+			/* Skeletron:
+				'''
+				2 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn] debuff to incinerate foes
+				''' */
+			/* WoF:
+				'''
+				4 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn2] debuff to incinerate foes
+				''' */
+			/* Mechs:
+				'''
+				5 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn3] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.05x damage and inflict [iebuff:OnFire3]
+				''' */
+			/* Plantera:
+				'''
+				7 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn4] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.1x damage and inflict [iebuff:OnFire3]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				''' */
+			/* Golem:
+				'''
+				10 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn5] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.15x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands]
+				''' */
+			/* MoonLord:
+				'''
+				12 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn6] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.2x damage and inflict [iebuff:CalamityMod/BrimstoneFlames]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands2]
+				''' */
+			/* Full:
+				'''
+				20 summon tag damage
+				Every third swing will instead cause the whip to extend outwards, dealing 1.5x damage
+				Inflicts the [iebuff:InfernalEclipseAPI/SoulBurn7] debuff to incinerate foes
+				Minions that touch the whip will be set ablaze!
+				Ablazed minions deal 1.35x damage and inflict both [iebuff:CalamityMod/BrimstoneFlames] and [iebuff:CalamityMod/StaticDischarge]
+				Press {0} to unleash a wave of fire on a 1 minute cooldown
+				The first enemy hit each swing will grant the user a stack of [iebuff:InfernalEclipseAPI/HotHands2]
+				''' */
+		}
+
+		/* Lore:
+			'''
+			'When Dylan first came, he seemed to have brought some weapons from his home world'
+			'These were used by those who opposed the tyrannical rule of those who's power matched God's'
+			'Now that you've managed to replicate one of these crafts, maybe it will grow into something wonderful'
+			''' */
+	}
+
+	//Localization Team: do not change [ieconstruct:ChaosConstruct], as it is replaced with a colored version using the Name perameter below.
+	ChaosLure: {
+		// DisplayName: Chaos Lure
+		/* Tooltip:
+			'''
+			An Electromagnetic Lure overcharged with chaotic energy
+			Attracts a [IELuxTag:ChaosConstruct]
+			Not consumable
+			''' */
+		// Name: Chaos Construct
 	}
 }
 
@@ -2224,10 +2375,14 @@ Projectiles: {
 	CelestialIlluminationStar.DisplayName: 启明之星
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: 暴君亚利姆终极剑投掷
 	CasullandJackalProj.DisplayName: 454加斯尔和豺狼
-	// CatlightDeathray.DisplayName: Catlight Deathray
-	// CatlightDeathrayJR.DisplayName: Catlight Deathray Junior
-	// CatlightDeathrayJRR.DisplayName: Catlight Deathray Junior Junior
-	// ChickenWingHoldout.DisplayName: The Chicken Wing
+	CatlightDeathray.DisplayName: 星光猫死亡射线
+	CatlightDeathrayJR.DisplayName: 星光猫死亡射线前摇
+	CatlightDeathrayJRR.DisplayName: 星光猫死亡射线前摇的前摇
+	ChickenWingHoldout.DisplayName: 鸡翅
+	EclipseHeadphonesProj.DisplayName: 蚀光耳机弹幕
+	// SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
+	// SplitFirebrandFlailProjectile.DisplayName: Split Firebrand Flail Projectile
+	// SplitFirebrandExplosion.DisplayName: Split Firebrand Explosion
 }
 
 DiaryTooltip:
@@ -2270,6 +2425,7 @@ Configs: {
 			Main: 主要
 			Secret: 秘密设置
 			Music: 音乐设置
+			// CompatibilityChanges: Compatibility Changes
 		}
 
 		ThoriumBalanceChangess: {
@@ -2394,6 +2550,7 @@ Configs: {
 			Tooltip:
 				'''
 				小幅度调整了部分原版Boss的数值，让它们变得更有挑战性
+				该设置不会移除诸神黄昏模式中为原版Boss添加的专属AI
 				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以“启用”这个设置而展开的]
 				'''
 		}
@@ -2444,7 +2601,11 @@ Configs: {
 
 		MultiplayerBossRespawnTimer: {
 			Label: 多人游戏Boss战复活计时器
-			Tooltip: 决定Boss战需要多久时间复活
+			Tooltip:
+				'''
+				决定Boss战需要多久时间复活
+				[c/FFFF00:《诸神黄昏：炼狱蚀光》整合包的平衡是以将这个数值设置为“60”而展开的]
+				'''
 		}
 
 		MinimumDifficultyToPreventRespawns: {
@@ -2529,23 +2690,38 @@ Configs: {
 		}
 
 		BereftVassalRagnarok: {
-			Label: 无邦封臣诸神黄昏模式主题曲
+			Label: 无邦封臣诸-神黄昏模式主题曲
 			Tooltip: 切换是否在诸神黄昏模式下，无邦封臣Boss战播放 “Dead Kingdom's Champion” 作者：Techhy
 		}
 
 		DoGRagnarok: {
-			// Label: Ragnarok Devourer of Gods Final Phase Theme
-			// Tooltip: Toggles if 'Last Battle (Ballos Mix)' by DM DOKURO plays during Devourer of Gods' final phase and desperation in Ragnaork Mode
+			Label: 神明吞噬者-诸神黄昏模式最终阶段主题曲
+			Tooltip: 切换是否在诸神黄昏模式下，神明吞噬者最终阶段以及绝望尾杀播放 “Last Battle (Ballos Mix)” 作者：DM DOKURO
 		}
 
 		WarMachineBossInBossRush: {
-			// Label: Wulfrum Mothership In Boss Rush
-			// Tooltip: Adds the Wulfrum Mothership boss to Boss Rush
+			Label: 为Boss Rush添加钨钢母舰
+			Tooltip: Boss Rush添加钨钢母舰
 		}
 
 		MothershipMusic: {
-			// Label: Wulfrum Mothership Music
-			// Tooltip: Toggles which theme plays during the Wulfrum Mothership boss fight
+			Label: 钨钢母舰音乐
+			Tooltip: 切换钨钢母舰Boss战中的播放的主题曲
+		}
+
+		MaxVoidOnRespawn: {
+			// Tooltip: Toggles if you respawn with max void or the default amount
+			// Label: Max Void On Respawn
+		}
+
+		SolynCampsiteFixes: {
+			// Label: Solyn Campsite Fixes
+			// Tooltip: ""
+		}
+
+		CnidrionMusic: {
+			// Label: Cnidrion Music
+			// Tooltip: Toggles if 'Seahorse Scrutiny (Rebirth)' by Brimston Premium plays while a Cnidrion is alive.
 		}
 	}
 
@@ -2554,90 +2730,109 @@ Configs: {
 
 		AlwaysOff: {
 			Label: 保持关闭
-			Tooltip: ""
+			Tooltip: 重生不会被阻止
 		}
 
 		AlwaysOn: {
 			Label: 保持开启
-			Tooltip: ""
+			Tooltip: 重生总是会被阻止
 		}
 
 		Expert: {
 			Label: 专家
-			Tooltip: ""
+			Tooltip: 重生会在专家及以上难度的世界中被阻止
 		}
 
 		Master: {
 			Label: 大师
-			Tooltip: ""
+			Tooltip: 重生会在大师及以上难度的世界中被阻止
 		}
 
 		Legendary: {
 			Label: 传奇
-			Tooltip: ""
+			Tooltip: 重生会在传奇难度的世界中被阻止
 		}
 
 		Revengence: {
 			Label: 复仇
-			Tooltip: ""
+			Tooltip: 重生会在复仇及以上难度的世界中被阻止
 		}
 
 		Death: {
 			Label: 死亡
-			Tooltip: ""
+			Tooltip: 重生会在死亡及以上难度的世界中被阻止
 		}
 
 		Infernum: {
 			Label: 炼狱
-			Tooltip: ""
+			Tooltip: 重生会在炼狱及以上难度的世界中被阻止
 		}
 
 		Ragnarok: {
 			Label: 诸神黄昏
-			Tooltip: ""
+			Tooltip: 重生会在诸神黄昏难度的世界中被阻止
 		}
 	}
 
 	DoGSong: {
-		// Tooltip: ""
+		Tooltip: ""
 
 		Off: {
-			// Label: Off
-			// Tooltip: The phase 3 theme will not play
+			Label: 关闭
+			Tooltip: 不会播放第三阶段主题曲
 		}
 
 		DesperationOnly: {
-			// Label: Desperation Only
-			// Tooltip: The phase 3 theme will only play during the desperation attack
+			Label: 仅绝望尾杀
+			Tooltip: 第三阶段主题曲只会在绝望尾杀时播放
 		}
 
 		On: {
-			// Label: On
-			// Tooltip: The phase 3 theme will play
+			Label: 启用
+			Tooltip: 播放第三阶段主题曲
 		}
 	}
 
 	MothershipSong: {
-		// Tooltip: ""
+		Tooltip: ""
 
 		Vanilla: {
-			// Label: Vanilla
-			// Tooltip: "'Boss 1' will play"
+			Label: 原版
+			Tooltip: 播放 “Boss 1”
 		}
 
 		WarMachine: {
-			// Label: War Machine
-			// Tooltip: The original theme will play
+			Label: 战争机器
+			Tooltip: 播放原主题曲
 		}
 
 		Thorium: {
-			// Label: Thorium
-			// Tooltip: "'Stronger Foe' will play"
+			Label: 瑟银
+			Tooltip: 播放 “Stronger Foe”
 		}
 
 		Infernum: {
-			// Label: Infernum
-			// Tooltip: "'Misanthropic Encounters' will play"
+			Label: 炼狱
+			Tooltip: 播放 “Misanthropic Encounters”
+		}
+	}
+
+	HomewardConfig: {
+		// DisplayName: Homeward Config
+
+		Headers: {
+			// Main: Main
+			// BossRushChanges: Boss Rush Changes
+		}
+
+		DisplayHomewardWorldEntryMessages: {
+			// Label: Display Homeward Journey World Entry Popups
+			// Tooltip: Enables/Disables the popups relating to Homeward Journey upon entering a world.
+		}
+
+		HomewardInBossRush: {
+			// Label: Homeward Journey Bosses In Boss Rush
+			// Tooltip: Adds bosses from Homeward Journey into Boss Rush
 		}
 	}
 }
@@ -2653,14 +2848,10 @@ DamageClasses: {
 	LegendaryMagic.DisplayName: 传说魔法伤害
 	MeleeWhip.DisplayName: 近战鞭子伤害
 	MythicSummon.DisplayName: 神话召唤伤害
-	// CatlightDamage.DisplayName: Catlight Damage
+	CatlightDamage.DisplayName: 星光猫伤害
+	// LegendarySummon.DisplayName: legendary summon damage
+	// LegendarySummonMeleeSpeed.DisplayName: legendary summon damage
 }
-
-BossRushIntroText1:
-	'''
-	克希罗克的挑战
-	愚者之合奏
-	'''
 
 InfernumIntegration: {
 	Astrageldon:
@@ -2818,16 +3009,16 @@ InfernumIntegration: {
 		混沌具形
 		恶魔小灰猫
 		'''
-	/* WulfrumMothership:
+	WulfrumMothership:
 		'''
-		Heart of the Wulfrum Machines
-		Wulfrum Mothership
-		''' */
+		钨钢机械之心
+		钨钢母舰
+		'''
 }
 
 Buffs: {
 	StarboundHorrification: {
-		Description: 你无法逃脱末世星史莱姆……
+		Description: 你无法逃脱宇宙实体……
 		DisplayName: 星界惊惧
 	}
 
@@ -2876,6 +3067,163 @@ Buffs: {
 		DisplayName: 灾厄绝望
 		Description: 灾厄能量在空气中流动，禁用了你的大多数能力！
 	}
+
+	SplitFirebrandTag1: {
+		// DisplayName: Split Firebrand Tag1
+		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag1.Description
+	}
+
+	SplitFirebrandTag: {
+		// DisplayName: Split Firebrand Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.SplitFirebrandTag.Description
+	}
+
+	SoulBurn: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 10 DPS
+			25% increased Heat debuff damage
+			''' */
+	}
+
+	SoulBurn2: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 15 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn3: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 25 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn4: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 40 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn5: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 75 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn6: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat - 140 DPS
+			25% increased Heat debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	SoulBurn7: {
+		// DisplayName: Soul Burn
+		// Description: Your mortality is showing...
+		/* ItemTooltip:
+			'''
+			Heat and Electric - 140 DPS
+			25% increased Heat and Electric debuff damage
+			Enemies that perish will explode for triple the inflicting hits damage
+			This explosion can only damage bosses every 5 seconds
+			''' */
+	}
+
+	HotHands: {
+		// DisplayName: Hot Hands
+		// Description: Whatever you're holding... You really wanna stop holding it
+		/* ItemTooltip:
+			'''
+			2% increased movement speed
+			Can be stacked up to 10 times
+			''' */
+	}
+
+	HotHands2: {
+		// DisplayName: Hot Hands
+		// Description: Whatever you're holding... You really wanna stop holding it
+		/* ItemTooltip:
+			'''
+			2% increased movement speed and 1% increased whip speed
+			Can be stacked up to 10 times
+			''' */
+	}
+
+	BlossomsBlessingTag: {
+		// DisplayName: Blossoms Blessing Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.BlossomsBlessingTag.Description
+	}
+
+	CatharsisTag: {
+		// DisplayName: Catharsis Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CatharsisTag.Description
+	}
+
+	CongeledDuoWhipTag: {
+		// DisplayName: Congeled Duo Whip Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CongeledDuoWhipTag.Description
+	}
+
+	CoralCrusherTag: {
+		// DisplayName: Coral Crusher Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.CoralCrusherTag.Description
+	}
+
+	ResonantStrikerTag: {
+		// DisplayName: Resonant Striker Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.ResonantStrikerTag.Description
+	}
+
+	SandstoneReignsTag: {
+		// DisplayName: Sandstone Reigns Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.SandstoneReignsTag.Description
+	}
+
+	UnderBiteTag: {
+		// DisplayName: Under Bite Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.UnderBiteTag.Description
+	}
+
+	UnrelentingTormentTag: {
+		// DisplayName: Unrelenting Torment Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.UnrelentingTormentTag.Description
+	}
+
+	PrismBreakTag: {
+		// DisplayName: Prism Break Tag
+		// Description: Mods.InfernalEclipseAPI.Buffs.PrismBreakTag.Description
+	}
 }
 
 Tiles: {
@@ -2921,6 +3269,28 @@ Events: {
 }
 
 Misc: {
-	// SolynSpellbookRecipeCondition: Place the spellbook owned by Solyn in your inventory at least once
-	// SpellbookRecipeCondition: View an spellbook owned by Solyn
+	SolynSpellbookRecipeCondition: 至少将索琳的魔法书放入你的物品栏一次
+	SpellbookRecipeCondition: 查看索琳的魔法书
 }
+
+// Cooldowns.FireWave: Fire Wave is on cooldown!
+HeadphonesText.1: 正在播放 {0}！
+
+BossName: {
+	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
+	// TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
+	// BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
+	// DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
+	// Interlude4: Calamity before the cynosure - Interlude 4
+	// Tier5: Descent Of Divinities - Boss Rush (Tier 5)
+	// Tier6: Omiscience Of Gods - Boss Rush (Tier 6)
+	// TierNameless: TWISTED GARDEN [Remix] - Nameless Deity (Boss Rush)
+	// Encore: Ensemble of Fools (Encore Mix) - Boss Rush (End)
+	// You: FINAL FRACTAL - Terra Blade
+	// Ragnarok: Reality's End - Dream Eater, the Ragnarok
+	// LittleCat: Coming Soon... - ???
+	// ProvidenceNight: Unholy Finality - Providence (Night)
+	// Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
+}
+
+// PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!

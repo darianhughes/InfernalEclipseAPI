@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Content.Items.Lore.FargosSouls
 {

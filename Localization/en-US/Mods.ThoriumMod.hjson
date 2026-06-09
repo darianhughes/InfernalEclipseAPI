@@ -543,6 +543,34 @@ Items: {
 		Increases your max number of minions and sentries by 2
 		Increases minion knockback
 		'''
+	CursedFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a cursed spike ball
+		Further hits have a chance to release more cursed spike balls
+		Cursed spike balls apply cursed flames to damaged enemies
+		'''
+	VileFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a vile spike ball
+		Further hits have a chance to release more vile spike balls
+		Vile spike balls apply ichor to damaged enemies
+		'''
+	IronFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a rolling spike ball
+		Further hits have a chance to release more rolling spike balls
+		'''
+	BloomingShield.Tooltip:
+		'''
+		You constantly generate a 20 life shield
+		Healing spells will heal an additional 1 life, 2 if at max shield
+		When out of combat, your life recovery will increase up to 5 over time
+		'''
+	AstroBeetleHusk.Tooltip:
+		'''
+		Damage taken reduced by 5%
+		You constantly generate a 50 life shield
+		'''
 }
 
 ThrowerTechniques: {

@@ -1,4 +1,5 @@
-﻿using InfernalEclipseAPI.Core.Players;
+﻿using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Players;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {

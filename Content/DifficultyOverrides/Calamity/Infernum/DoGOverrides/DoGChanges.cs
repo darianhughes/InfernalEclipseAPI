@@ -8,13 +8,15 @@ using CalamityMod.Projectiles.Boss;
 using CalamityMod.UI.DialogueDisplay;
 using CalamityMod.UI.DialogueDisplay.DisplayEffects;
 using CalamityMod.World;
-using FargowiltasSouls.Content.Bosses.MutantBoss;
 using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Players;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.DoG;
 using InfernumMode.Content.BossIntroScreens;
+using InfernumMode.Content.Projectiles.Pets;
 using InfernumMode.Core.Netcode;
 using InfernumMode.Core.Netcode.Packets;
 using Microsoft.Xna.Framework;
@@ -52,22 +54,19 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            DesperationHasTriggered = false;
-            DesperationInitialized = false;
-            DesperationCanDie = false;
-            DesperationEnteringPortal = false;
-            DesperationHasEmergedFromFirstPortal = false;
-            DesperationEntryTimer = 0;
-            DesperationChargeTimer = 0;
-            DesperationEntryPortalIndex = -1;
-            DesperationHeadEnteredPortal = false;
-            DesperationPostEntryTimer = 0;
-
-            HasDisplayedPhase2Text = false;
+            ResetDesperationState();
         }
 
         public override bool PreAI(NPC npc)
         {
+            if (!npc.active)
+                ResetDesperationState();
+
+            if (npc.Infernum().ExtraAI[DeathAnimationTimerIndex] - 120 - 260 - 30 >= 75)
+            {
+                ResetDesperationState();
+            }
+
             HandleMountRestrictions();
 
             return true;
@@ -93,7 +92,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                     npc.velocity += SafeNormalize(destination - npc.Center, Vector2.UnitY) * turnSpeed;
             }
 
-            if (npc.Infernum().ExtraAI[Phase2IntroductionAnimationTimerIndex] >= DoGPhase2IntroPortalGate.Phase2AnimationTime && !HasDisplayedPhase2Text)
+            if (npc.Infernum().ExtraAI[Phase2IntroductionAnimationTimerIndex] >= DoGPhase2IntroPortalGate.Phase2AnimationTime && !HasDisplayedPhase2Text && !(npc.Infernum().ExtraAI[DeathAnimationTimerIndex] > 1))
             {
                 LumUtils.BroadcastLocalizedText("Mods.CalamityMod.Status.Boss.DoGPhase2", Color.Cyan);
                 DialogueDisplaySystem.StartDialogue("Mods.CalamityMod.DevourerOfGods.Phases", npc, 2, 120, false, new BossText());
@@ -152,9 +151,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             if (!DesperationCanDie)
                 npc.Infernum().ExtraAI[DeathAnimationTimerIndex] = 0f;
 
-            if (!target.active || target.dead)
+            npc.TargetClosestIfTargetIsInvalid();
+            if (!npc.HasValidTarget)
             {
+                ResetDesperationState();
                 Despawn(npc);
+                return;
             }
 
             InflictDspDebuff();
@@ -351,7 +353,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             }
         }
 
-        private void DoDesperationChargeGates(NPC npc, Player target, ref float attackTimer, ref float segmentFadeType, ref float damageImmunityCountdown)
+        private static void DoDesperationChargeGates(NPC npc, Player target, ref float attackTimer, ref float segmentFadeType, ref float damageImmunityCountdown)
         {
             const int AttackCycleTime = 100;
             const int PortalSpawnTime = 10;
@@ -669,6 +671,25 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             }
         }
 
+        public static void ResetDesperationState()
+        {
+            DesperationHasTriggered = false;
+            DesperationInitialized = false;
+            DesperationCanDie = false;
+            DesperationEnteringPortal = false;
+            DesperationHasEmergedFromFirstPortal = false;
+            HasDisplayedPhase2Text = false;
+
+            DesperationEntryTimer = 0;
+            DesperationChargeTimer = 0;
+            DesperationEntryPortalIndex = -1;
+            DesperationHeadEnteredPortal = false;
+            DesperationPostEntryTimer = 0;
+
+            ChargePortalIndex = -1;
+            GeneralPortalIndex = -1;
+        }
+
         public static void PreDesperationProjectileCleanup()
         {
             int[] typesToClear =
@@ -733,6 +754,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             LumUtils.BroadcastLocalizedText("Mods.CalamityMod.Status.Boss.DoGHeadDeath2", Color.Cyan);
             DialogueDisplaySystem.StartDialogueOnClient("Mods.CalamityMod.DevourerOfGods.Death", npc, 1, 60, false, new BossText());
 
+            foreach (Player player in Main.ActivePlayers)
+            {
+                HatGirl.SayThingWhileOwnerIsAlive(player, "Mods.InfernalEclipseAPI.PetDialog.DoGDSPTip");
+            }
+
             SoundEngine.PlaySound(DevourerofGodsHead.SpawnSound, head.Center);
             head.netUpdate = true;
 
@@ -793,7 +819,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
             {
                 Player player = Main.player[i];
 
-                if (player.active && !player.dead)
+                if (player.active && !player.dead && player.GetModPlayer<InfernalPlayer>().teleportRespawnKilldown <= 0)
                 {
                     player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 2);
                     player.DoInfiniteFlightCheck(Color.Magenta);
@@ -835,6 +861,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
                 return;
 
             if (!DoGChanges.DesperationHasTriggered)
+                return;
+
+            if (!DoGChanges.DesperationHasEmergedFromFirstPortal && !DoGChanges.DesperationEnteringPortal)
+                return;
+
+            if (DoGChanges.DesperationCanDie)
                 return;
 
             // 99% DR → only 1% damage goes through
@@ -1084,21 +1116,12 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         {
             if (DoGChanges.DesperationCanDie && DoGChanges.DesperationHasEmergedFromFirstPortal)
             {
-                DoGChanges.DesperationHasTriggered = false;
                 return orig(npc, ref phaseCycleTimer, ref passiveAttackDelay, ref segmentFadeType, ref universalFightTimer);
             }
 
             if (DoGChanges.DesperationHasTriggered && InfernalWorld.RagnarokModeEnabled)
             {
-                npc.GetGlobalNPC<DoGChanges>().RunDesperationAI(
-                    npc,
-                    Main.player[npc.target],
-                    ref npc.Infernum().ExtraAI[PerformingSpecialAttackFlagIndex],
-                    ref npc.Infernum().ExtraAI[SpecialAttackTimerIndex],
-                    ref npc.Infernum().ExtraAI[BodySegmentFadeTypeIndex],
-                    ref npc.Infernum().ExtraAI[DamageImmunityCountdownIndex]
-                );
-
+                npc.GetGlobalNPC<DoGChanges>().RunDesperationAI(npc, Main.player[npc.target], ref npc.Infernum().ExtraAI[PerformingSpecialAttackFlagIndex], ref npc.Infernum().ExtraAI[SpecialAttackTimerIndex], ref npc.Infernum().ExtraAI[BodySegmentFadeTypeIndex], ref npc.Infernum().ExtraAI[DamageImmunityCountdownIndex]);
                 return false;
             }
 

@@ -1,0 +1,614 @@
+Items: {
+	OrangePhaseWhip: {
+		DisplayName: Orange Phase Whip
+		Tooltip:
+			'''
+			1.08x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	GreenPhaseWhip: {
+		DisplayName: Green Phase Whip
+		Tooltip:
+			'''
+			1.08x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	BluePhaseWhip: {
+		DisplayName: Blue Phase Whip
+		Tooltip:
+			'''
+			1.08x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	PurplePhaseWhip: {
+		DisplayName: Purple Phase Whip
+		Tooltip:
+			'''
+			1.08x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	RedPhaseWhip: {
+		DisplayName: Red Phase Whip
+		Tooltip:
+			'''
+			1.08x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	WhitePhaseWhip: {
+		DisplayName: White Phase Whip
+		Tooltip:
+			'''
+			1.08x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	YellowPhaseWhip: {
+		DisplayName: Yellow Phase Whip
+		Tooltip:
+			'''
+			1.08x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	OrangePhaseScourge: {
+		DisplayName: Orange Phase Scourge
+		Tooltip:
+			'''
+			1.09x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	GreenPhaseScourge: {
+		DisplayName: Green Phase Scourge
+		Tooltip:
+			'''
+			1.09x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	BluePhaseScourge: {
+		DisplayName: Blue Phase Scourge
+		Tooltip:
+			'''
+			1.09x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	PurplePhaseScourge: {
+		DisplayName: Purple Phase Scourge
+		Tooltip:
+			'''
+			1.09x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	RedPhaseScourge: {
+		DisplayName: Red Phase Scourge
+		Tooltip:
+			'''
+			1.09x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	WhitePhaseScourge: {
+		DisplayName: White Phase Scourge
+		Tooltip:
+			'''
+			1.09x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	YellowPhaseScourge: {
+		DisplayName: Yellow Phase Scourge
+		Tooltip:
+			'''
+			1.09x summon tag damage multiplier
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	GlitterGutter: {
+		DisplayName: Glitter Gutter
+		Tooltip:
+			'''
+			10% summon tag critical strike chance
+			Enemies struck by this whip cause the next minion attack to release tracking crystal shards
+			'''
+	}
+
+	DestructionChain: {
+		DisplayName: Destruction Chain
+		Tooltip:
+			'''
+			Enemies struck by this whip cause the next minion attack to trigger an explosion
+			Enemies killed by this explosion trigger another explosion, which can continue to chain
+			'''
+	}
+
+	GloamshardConduit: {
+		DisplayName: Gloamshard Conduit
+		Tooltip:
+			'''
+			1.1x summon tag damage multiplier
+			10% summon tag critical strike chance
+
+			   Enemies struck by this whip take 1.25x damage from the next minion attack and explode
+			'''
+	}
+
+	Satellite: {
+		DisplayName: Satellite
+		Tooltip: "   Enemies struck by this whip take one guaranteed critical hit from a minion."
+	}
+
+	ResonantVoid: {
+		DisplayName: Resonant Void
+		Tooltip:
+			'''
+			1.12x summon tag damage multiplier
+			12% summon tag critical strike chance
+
+			Enemies struck by this whip take 1.25x damage from the next minion attack and explode
+
+			Ignores part of the enemies armor
+			'''
+	}
+
+	SkybreakerCoil: {
+		DisplayName: Skybreaker Coil
+		Tooltip:
+			'''
+			All enemies struck by this whiptake 1.30x damage from the next minion attack and unleash an electrical burst
+			The burst rapidly shocks nearby enemies for a short time and has armor penetration
+			'''
+	}
+
+	Milkyway: {
+		DisplayName: Milkyway
+		Tooltip:
+			'''
+			+10 summon tag damage per stack
+			Enemies struck by this whip take one guaranteed 4x damage critical hit from a minion
+			This whip's tag stacks with itself
+			Comets equal to the stacks count orbit around the enemy
+			'''
+	}
+
+	Loadout: {
+		DisplayName: Loadout
+		Tooltip:
+			'''
+			1.07x summon tag damage multiplier
+			7% summon tag critical strike chance
+			Enemies struck by this whip are hit by a laser on the next minion attack
+			Ignores part of the enemies armor
+			'''
+	}
+
+	AncientBonds: {
+		DisplayName: Ancient Bonds
+		Tooltip:
+			'''
+			Enemies struck by this whip are impaled by a spectral blade on the next minion attack
+			The spectral blade deals 20% of the minion’s damage 3 times in succession
+			The impaling damage has 5 armor penetration
+			'''
+	}
+
+	PrimalBonds: {
+		DisplayName: Primal Bonds
+		Tooltip:
+			'''
+			Enemies struck by this whip are impaled by a spectral blade on the next minion attack
+			The spectral blade deals 20% of the minion’s damage 5 times in succession
+			The impaling damage has 10 armor penetration
+			'''
+	}
+
+	ExistenceBonds: {
+		DisplayName: Existence Bonds
+		Tooltip:
+			'''
+			Enemies struck by this whip are impaled by a spectral blade on the next minion attack
+			The spectral blade deals 20% of the minion’s damage 6 times in succession
+			The impaling damage has 15 armor penetration
+			'''
+	}
+
+	MermaidsTear: {
+		DisplayName: Mermaid's Tear
+		Tooltip:
+			'''
+			Enemies struck by this whip are impaled by a spectral blade on the next minion attack
+			The spectral blade deals 25% of the minion’s damage 8 times in succession
+			The impaling damage has 50 armor penetration
+			'''
+	}
+
+	MandibleLash: {
+		DisplayName: Mandible Lash
+		Tooltip:
+			'''
+			1 summon tag damage
+			Enemies struck by this whip cause the next minion attack to launch a sandball
+			The sandball is effected by gravity and deals 40% of the minion's damage
+			The sandball explodes on block impact, damaging nearby enemies
+			'''
+	}
+
+	DarkMandibleLash: {
+		DisplayName: Dark Mandible Lash
+		Tooltip:
+			'''
+			2 summon tag damage
+			Enemies struck by this whip cause the next minion attack to launch a sandball
+			The sandball is effected by gravity and deals 40% of the minion's damage
+			The sandball explodes on block impact, damaging nearby enemies
+			'''
+	}
+
+	ShieldConduit: {
+		DisplayName: Shield Conduit
+		Tooltip:
+			'''
+			2 summon tag damage
+			Automatically switches between two modes.
+			'''
+		HoldShiftTooltip:
+			'''
+			-----------------------------
+			Defense Mode:
+			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
+			Collecting shards builds shield charge
+			At 50 charge, you gain a 50 HP shield
+			-----------------------------
+			Attack Mode:
+			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
+			Red shards home in on enemies, dealing 10% of the minion's damage +3 flat damage.
+			-----------------------------
+			Shield shard release has a very short cooldown
+			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
+			If the shield is fully broken, the recharge cooldown becomes 60 seconds
+			During cooldown, switches to Attack Mode
+			When the cooldown ends, switches to Defense Mode
+			If any shield remains, collecting shards restores shield durability.
+			'''
+	}
+
+	ShieldConduitMkII: {
+		DisplayName: Shield Conduit Mk-II
+		Tooltip:
+			'''
+			4 summon tag damage
+			Switches automatically between two modes.
+			'''
+		HoldShiftTooltip:
+			'''
+			-----------------------------
+			Defense Mode:
+			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
+			Collecting shards builds shield charge
+			At 100 charge, you gain a 100 HP shield
+			-----------------------------
+			Attack Mode:
+			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
+			Red shards home in on enemies, dealing 10% of the minion's damage +5 flat damage.
+			-----------------------------
+			Shield shard release has a very short cooldown
+			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
+			If the shield is fully broken, the recharge cooldown becomes 60 seconds
+			During cooldown, switches to Attack Mode
+			When the cooldown ends, switches to Defense Mode
+			If any shield remains, collecting shards restores shield durability.
+			'''
+	}
+
+	ShieldConduitMkIII: {
+		DisplayName: Shield Conduit Mk-III
+		Tooltip:
+			'''
+			7 summon tag damage
+			Switches automatically between two modes.
+			'''
+		HoldShiftTooltip:
+			'''
+			-----------------------------
+			Defense Mode:
+			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
+			Collecting shards builds shield charge
+			At 150 charge, you gain a 150 HP shield
+			-----------------------------
+			Attack Mode:
+			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
+			Red shards home in on enemies, dealing 10% of the minion's damage +25 flat damage.
+			-----------------------------
+			Shield shard release has a very short cooldown
+			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
+			If the shield is fully broken, the recharge cooldown becomes 60 seconds
+			During cooldown, switches to Attack Mode
+			When the cooldown ends, switches to Defense Mode
+			If any shield remains, collecting shards restores shield durability.
+			'''
+	}
+
+	ShieldConduitMkIV: {
+		DisplayName: Shield Conduit Mk-IV
+		Tooltip:
+			'''
+			12 summon tag damage
+			Switches automatically between two modes.
+			'''
+		HoldShiftTooltip:
+			'''
+			-----------------------------
+			Defense Mode:
+			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
+			Collecting shards builds shield charge
+			At 200 charge, you gain a 200 HP shield
+			-----------------------------
+			Attack Mode:
+			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
+			Red shards home in on enemies, dealing 10% of the minion's damage +50 flat damage.
+			-----------------------------
+			Shield shard release has a very short cooldown
+			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
+			If the shield is fully broken, the recharge cooldown becomes 60 seconds
+			During cooldown, switches to Attack Mode
+			When the cooldown ends, switches to Defense Mode
+			If any shield remains, collecting shards restores shield durability.
+			'''
+	}
+
+	ShieldConduitMkV: {
+		DisplayName: Shield Conduit Mk-V
+		Tooltip:
+			'''
+			20 summon tag damage
+			Switches automatically between two modes.
+			'''
+		HoldShiftTooltip:
+			'''
+			-----------------------------
+			Defense Mode:
+			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
+			Collecting shards builds shield charge
+			At 250 charge, you gain a 250 HP shield
+			-----------------------------
+			Attack Mode:
+			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
+			Red shards home in on enemies, dealing 10% of the minion's damage +150 flat damage.
+			-----------------------------
+			Shield shard release has a very short cooldown
+			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
+			If the shield is fully broken, the recharge cooldown becomes 60 seconds
+			During cooldown, switches to Attack Mode
+			When the cooldown ends, switches to Defense Mode
+			If any shield remains, collecting shards restores shield durability.
+			'''
+	}
+
+	LayeredPain: {
+		DisplayName: Layered Pain
+		Tooltip:
+			'''
+			+1 summon tag damage per stack
+			This whip's tag damage stacks with itself, with older stacks expiring first
+			'''
+	}
+
+	NightButterfly: {
+		DisplayName: Night Butterfly
+		Tooltip:
+			'''
+			+2 summon tag damage per stack
+			This whip's tag damage stacks with itself, with older stacks expiring first
+			A number of moths equal to the number of stacks attach themselves to the enemy
+			'''
+	}
+
+	ActiasAliena: {
+		DisplayName: Actias Aliena
+		Tooltip:
+			'''
+			+3 summon tag damage per stack
+			This whip's tag damage stacks with itself, with older stacks expiring first
+			A number of moths equal to the number of stacks attach themselves to the enemy
+			'''
+	}
+
+	ButterflyEffect: {
+		DisplayName: Butterfly Effect
+		Tooltip:
+			'''
+			+6 summon tag damage per stack
+			This whip's tag damage stacks with itself, with older stacks expiring first
+			A number of moths equal to the number of stacks attach themselves to the enemy
+			'''
+	}
+
+	EtaCarinae: {
+		DisplayName: Eta Carinae
+		Tooltip:
+			'''
+			+10 summon tag damage per stack
+			This whip's tag damage stacks with itself, with older stacks expiring first
+			A number of comets equal to the number of stacks attach themselves to the enemy
+			'''
+	}
+
+	GoldRush: {
+		DisplayName: Gold Rush
+		Tooltip:
+			'''
+			8 summon tag damage
+			Striking enemies regularly summons physical weapons dealing 100% of your minion's damage.
+			'''
+	}
+
+	GildedReliquary: {
+		DisplayName: Gilded Reliquary
+		Tooltip:
+			'''
+			20 summon tag damage
+			Striking enemies rapidly summons a swift arsenal dealing 120% of your minion's damage
+			'''
+	}
+
+	AurelianSanctum: {
+		DisplayName: Aurelian Sanctum
+		Tooltip:
+			'''
+			80 summon tag damage
+			Striking enemies unleashes a relentless barrage of weapons dealing 200% of your minion's damage
+			'''
+	}
+
+	LeatherGrip: {
+		DisplayName: Leather Grip
+		Tooltip:
+			'''
+			Increases whip range by 10% 
+			Whips gain 1.05x summon tag damage multiplier
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	SilkGrip: {
+		DisplayName: Silk Grip
+		Tooltip:
+			'''
+			Increases whip range by 10% 
+			Whips gain 5% summon tag critical strike chance
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	RubberGrip: {
+		DisplayName: Rubber Grip
+		Tooltip:
+			'''
+			Increases whip range by 15% 
+			Whips gain 1.03x summon tag damage multiplier and 3% summon tag critical strike chance
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	NecromanticGrip: {
+		DisplayName: Necromantic Grip
+		Tooltip:
+			'''
+			Increases max minions by 1
+			Increases whip range by 15% 
+			Whips gain 1.05x summon tag damage multiplier and 5% summon tag critical strike chance
+			Allows whips to hit enemies through walls
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	EmperorsGrip: {
+		DisplayName: Emperors Grip
+		Tooltip:
+			'''
+			Increases max minions by 2
+			Increases whip range by 30% 
+			Whips gain 1.07x summon tag damage multiplier and 7% summon tag critical strike chance
+			Allows whips to hit enemies through walls
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	LightSpiritGrip: {
+		DisplayName: Light Spirit Grip
+		Tooltip:
+			'''
+			Allows whips to hit enemies through walls
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	AirflowGrip: {
+		DisplayName: Airflow Grip
+		Tooltip:
+			'''
+			Reduces whip range by 15%
+			Allows whips to hit enemies through walls
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	CommanderGrip: {
+		DisplayName: Commander Grip
+		Tooltip:
+			'''
+			Minion projectiles deal less damage but now home in on the taged enemy for a short duration
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	MagneticGrip: {
+		DisplayName: Magnetic Grip
+		Tooltip:
+			'''
+			Reduces whip range by 15% but minion projectiles home in on the taged enemy for a short duration
+			Only one Grip accessory can be equipped at a time
+			'''
+	}
+
+	BuddyEmblem: {
+		DisplayName: Buddy Emblem
+		Tooltip:
+			'''
+			Significantly increases damage when only one Minion is present
+			The minion's damage increases based on the number of unused minion slots
+			The more this effect enhances a minion, the slightly larger it becomes
+			Some minions cannot benefit from this effect
+			Some whip tag effects are reduced
+			'I choose you!'
+			'''
+	}
+
+	StrikerEmblem: {
+		DisplayName: Striker Emblem
+		Tooltip:
+			'''
+			You can no longer summon minions or sentries
+			Whips strike enemies three additional times for 33% damage
+			These strikes benefit from summon tag effects
+			Increases whip range by 10% 
+			10% increased summon damage for each unused minion slot
+			'Die, monster!'
+			'''
+	}
+}

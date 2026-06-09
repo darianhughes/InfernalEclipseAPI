@@ -22,7 +22,7 @@ namespace InfernalEclipseAPI.Content.NPCs.LittleCat
         }
 
         public override string Texture => "Terraria/Images/TownNPCs/Cat_Silver";
-        public override string HeadTexture => "Terraria/Images/TownNPCs/NPC_Head_80";
+        public override string HeadTexture => "Terraria/Images/TownNPCs/NPC_Head_27";
         Player Target => Main.player[NPC.target];
         private string TownCatName;
         private int TownCatVariant;

@@ -7,6 +7,7 @@ using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Systems.BossRush;
 using SubworldLibrary;
 using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -18,7 +19,11 @@ namespace InfernalEclipseAPI.Core.World
         public static bool craftedWorkshop = false;
         public static bool RagnarokModeEnabled;
         public static bool hasChosenDifficulty = false;
-        
+        public static bool tier5Downed = false;
+        public static bool tier6Downed = false;
+        public static bool providenceNightDowned = false;
+        public static bool cnidrionDowned = false;
+
         public static int dreamEaterAttempts = 0;
 
         public static void ResetFlags()
@@ -29,6 +34,10 @@ namespace InfernalEclipseAPI.Core.World
             craftedWorkshop = false;
             RagnarokModeEnabled = false;
             hasChosenDifficulty = false;
+            tier5Downed = false;
+            tier6Downed = false;
+            providenceNightDowned = false;
+            cnidrionDowned = false;
 
             dreamEaterAttempts = 0;
         }
@@ -111,6 +120,10 @@ namespace InfernalEclipseAPI.Core.World
             tag["craftedWorkshop"] = craftedWorkshop;
             tag["RagnarokModeEnabled"] = RagnarokModeEnabled;
             tag["hasChosenDifficulty"] = hasChosenDifficulty;
+            tag["tier5Downed"] = tier5Downed;
+            tag["tier6Downed"] = tier6Downed;
+            tag["providenceNightDowned"] = providenceNightDowned;
+            tag["cnidrionDowned"] = cnidrionDowned;
             tag["dreamEaterAttempts"] = dreamEaterAttempts;
         }
 
@@ -125,6 +138,10 @@ namespace InfernalEclipseAPI.Core.World
             GetData(ref namelessDeveloperDiagloguePlayed, "namelessDeveloperDiagloguePlayed", tag);
             GetData(ref craftedWorkshop, "craftedWorkshop", tag);
             GetData(ref hasChosenDifficulty, "hasChosenDifficulty", tag);
+            GetData(ref tier5Downed, "tier5Downed", tag);
+            GetData(ref tier6Downed, "tier6Downed", tag);
+            GetData(ref providenceNightDowned, "providenceNightDowned", tag);
+            GetData(ref cnidrionDowned, "cnidrionDowned", tag);
 
             if (tag.TryGet("RagnarokModeEnabled", out bool value))
                 RagnarokModeEnabled = value;
@@ -152,6 +169,10 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(craftedWorkshop);
             writer.Write(RagnarokModeEnabled);
             writer.Write(hasChosenDifficulty);
+            writer.Write(tier5Downed);
+            writer.Write(tier6Downed);
+            writer.Write(providenceNightDowned);
+            writer.Write(cnidrionDowned);
             writer.Write(dreamEaterAttempts);
         }
 
@@ -165,6 +186,10 @@ namespace InfernalEclipseAPI.Core.World
             craftedWorkshop = reader.ReadBoolean();
             RagnarokModeEnabled = reader.ReadBoolean();
             hasChosenDifficulty = reader.ReadBoolean();
+            tier5Downed = reader.ReadBoolean();
+            tier6Downed = reader.ReadBoolean();
+            providenceNightDowned = reader.ReadBoolean();
+            cnidrionDowned = reader.ReadBoolean();
             dreamEaterAttempts = reader.ReadInt32();
         }
     }

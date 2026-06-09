@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Events;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.World;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.GreatSandShark;
 

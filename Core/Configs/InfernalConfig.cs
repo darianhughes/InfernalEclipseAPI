@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace InfernalEclipseAPI
+namespace InfernalEclipseAPI.Core.Configs
 {
     public class InfernalConfig : ModConfig
     {
@@ -27,6 +27,10 @@ namespace InfernalEclipseAPI
 
         #region Music
         [Header("Music")]
+
+        [DefaultValue(true)]
+        public bool CnidrionMusic { get; set; }
+
         [DrawTicks]
         [DefaultValue(MothershipSong.Infernum)]
         public MothershipSong MothershipMusic { get; set; }
@@ -42,19 +46,39 @@ namespace InfernalEclipseAPI
         public bool EnableInterlude4 { get; set; }
         #endregion
 
-        #region Balance Changess
-        [Header("BalanceChanges")]
+        #region Compatibility Changes
+        [Header("CompatibilityChanges")]
 
         [DefaultValue(true)]
         [ReloadRequired]
-        public bool BossKillCheckOnOres { get; set; }
+        public bool MergeCraftingTrees { get; set; }
+
+        [DefaultValue(true)]
+        public bool ChanageWeaponClasses { get; set; }
+
+        [DefaultValue(true)]
+        public bool ForceRagnarokInfernumModeInSubworlds { get; set; }
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool NerfThoriumMulticlass { get; set; }
+
+        [DefaultValue(true)]
+        public bool MaxVoidOnRespawn { get; set; }
+
+        [DefaultValue(true)]
+        public bool SOTSThrowerToRogue { get; set; }
+        #endregion
+
+        #region Balance Changes
+        [Header("BalanceChanges")]
+
+        [DefaultValue(true)]
+        public bool VanillaBalanceChanges { get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]
         public bool AdditonalVanillaBossAdjustments { get; set; }
-
-        [DefaultValue(true)]
-        public bool VanillaBalanceChanges { get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]
@@ -62,15 +86,7 @@ namespace InfernalEclipseAPI
 
         [DefaultValue(true)]
         [ReloadRequired]
-        public bool ThoriumBalanceChangess { get; set; }
-
-        [DefaultValue(true)]
-        [ReloadRequired]
-        public bool SOTSBalanceChanges { get; set; }
-
-        [DefaultValue(true)]
-        [ReloadRequired]
-        public bool ConsolariaBalanceChanges { get; set; }
+        public bool BossKillCheckOnOres { get; set; }
 
         [DefaultValue(false)]
         [ReloadRequired]
@@ -86,22 +102,19 @@ namespace InfernalEclipseAPI
 
         [DefaultValue(true)]
         [ReloadRequired]
-        public bool NerfThoriumMulticlass { get; set; }
-
-        [DefaultValue(true)]
-        [ReloadRequired]
         public bool InfernumRecipeTweaks { get; set; }
 
         [DefaultValue(true)]
         [ReloadRequired]
-        public bool MergeCraftingTrees { get; set; }
+        public bool ThoriumBalanceChangess { get; set; }
 
         [DefaultValue(true)]
-        public bool ChanageWeaponClasses { get; set; }
+        [ReloadRequired]
+        public bool SOTSBalanceChanges { get; set; }
 
         [DefaultValue(true)]
-        public bool SOTSThrowerToRogue { get; set; }
-
+        [ReloadRequired]
+        public bool ConsolariaBalanceChanges { get; set; }
         #endregion
 
         #region Boss Rush Changes
@@ -115,9 +128,11 @@ namespace InfernalEclipseAPI
         [ReloadRequired]
         public bool DreadnautillusInBossRush { get; set; }
 
+        /*
         [DefaultValue(false)]
         [ReloadRequired]
         public bool BetsyInBossRush { get; set; }
+        */
 
         [DefaultValue(true)]
         [ReloadRequired]
@@ -129,8 +144,6 @@ namespace InfernalEclipseAPI
 
         [DefaultValue(false)]
         public bool ForceFullXerocDialogue { get; set; }
-
-
         #endregion
 
         #region Multiplayer Adjustments
@@ -167,13 +180,18 @@ namespace InfernalEclipseAPI
         [DefaultValue(true)]
         [ReloadRequired]
         public bool MoveDeerclopsChecklistEntry { get; set; }
-
-        [DefaultValue(true)]
-        public bool ForceRagnarokInfernumModeInSubworlds { get; set; }
         #endregion
 
         #region Secret
         [Header("Secret")]
+        [DefaultValue(false)]
+        [ReloadRequired]
+        public bool DeveloperMode { get; set; }
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool SolynCampsiteFixes { get; set; }
+
         [DefaultValue(true)]
         [ReloadRequired]
         public bool ThereIsNoReasonDisableThis { get; set; }
@@ -181,10 +199,6 @@ namespace InfernalEclipseAPI
         [DefaultValue(false)]
         [ReloadRequired]
         public bool DontEnableThis { get; set; }
-
-        [DefaultValue(false)]
-        [ReloadRequired]
-        public bool DeveloperMode { get; set; }
         #endregion
     }
 

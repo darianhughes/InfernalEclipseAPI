@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using ThoriumMod.Items.Thorium;
 using ThoriumMod.Projectiles;
 using Terraria.Localization;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Multi
 {
