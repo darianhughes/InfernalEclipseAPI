@@ -286,6 +286,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 19;
                 }
 
+                if (item.type == ModContent.ItemType<Megalodon>())
+                {
+                    item.damage = 48;
+                }
+
                 /*
                 if (GetItem(cal, "Arietes41", item))
                 {
@@ -300,11 +305,16 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (item.type == ModContent.ItemType<Voidragon>())
                 {
-                    item.useTime = item.useAnimation = 4;
+                    item.damage = 450;
                 }
                 #endregion
 
                 #region Mage
+                if (item.type == ModContent.ItemType<AcidGun>())
+                {
+                    item.damage = 13;
+                }
+
                 if (item.type == ModContent.ItemType<HyphaeRod>())
                 {
                     item.damage = 28;
@@ -314,11 +324,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 {
                     item.useTime = 30;
                     item.useAnimation = 30;
-                }
-
-                if (item.type == ModContent.ItemType<VividClarity>())
-                {
-                    item.damage = 144;
                 }
                 #endregion
 
