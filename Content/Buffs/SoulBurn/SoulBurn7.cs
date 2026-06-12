@@ -7,6 +7,7 @@ using ThoriumRework;
 using CalamityMod.DataStructures;
 using Microsoft.Xna.Framework;
 using CalamityMod.Particles;
+using CalamityMod.Systems.Collections;
 
 namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
 {
@@ -32,7 +33,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
             Main.pvpBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = false;
 
-            BuffDatasets.DebuffDataset[Type] = debuffData;
+            CalamityBuffSets.DebuffDataset[Type] = debuffData;
         }
 
         public override void Update(Player player, ref int buffIndex)
@@ -81,7 +82,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
                 Vector2 val = npc.position - Vector2.One * 2f;
                 Vector2 dustVel = npc.velocity + new Vector2(0f, Utils.NextFloat(Main.rand, -5f, -1f));
 
-                Dust obj = Dust.NewDustDirect(val, npc.width + 4, npc.height + 4, 87,
+                Dust obj = Dust.NewDustDirect(val, npc.width + 4, npc.height + 4, DustID.GemTopaz,
                     dustVel.X, dustVel.Y, 0, default(Color), 1f);
 
                 obj.noGravity = true;
@@ -95,7 +96,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
             _ = Utils.RotatedByRandom(new Vector2(0f, Utils.NextBool(Main.rand, 4) ? (-2f) : (-8f)), (double)MathHelper.ToRadians(Utils.NextBool(Main.rand, 3) ? 10f : 35f)) * Utils.NextFloat(Main.rand, 0.1f, 1.9f);
             if (Utils.NextBool(Main.rand, 4))
             {
-                Dust.NewDustPerfect(npcSize, 278, (Vector2?)(Utils.RotatedByRandom(new Vector2(2f, 2f), 100.0) * Utils.NextFloat(Main.rand, 0.3f, 0.7f)), 0, default(Color), Utils.NextFloat(Main.rand, 0.2f, 0.6f)).color = (Utils.NextBool(Main.rand, 3) ? Color.Yellow : Color.LightSkyBlue);
+                Dust.NewDustPerfect(npcSize, DustID.FireworksRGB, (Vector2?)(Utils.RotatedByRandom(new Vector2(2f, 2f), 100.0) * Utils.NextFloat(Main.rand, 0.3f, 0.7f)), 0, default(Color), Utils.NextFloat(Main.rand, 0.2f, 0.6f)).color = (Utils.NextBool(Main.rand, 3) ? Color.Yellow : Color.LightSkyBlue);
             }
         }
     }

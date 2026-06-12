@@ -1931,7 +1931,8 @@ Items: {
 			    During an eclipse, grants +1 HP/s life regen and +10 defense
 			Boosts your maximum flight time by 20%
 			'''
-		FlavorText: Behind the flames and the sparks, if you look deep enough, you will see your past and your future
+		VervCaveTooltip: Slain enemies release healing orbs
+		FlavorText: "'Behind the flames and the sparks, if you look deep enough, you will see your past and your future'"
 	}
 
 	InfernalTerraBladeRelic: {

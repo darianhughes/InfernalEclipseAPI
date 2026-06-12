@@ -129,7 +129,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
                     dustPos,
                     projectile.width + 4,
                     projectile.height + 4,
-                    87,
+                    DustID.GemTopaz,
                     dustVel.X,
                     dustVel.Y
                 );
@@ -152,7 +152,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
             _ = Utils.RotatedByRandom(new Vector2(0f, Utils.NextBool(Main.rand, 4) ? (-2f) : (-8f)), (double)MathHelper.ToRadians(Utils.NextBool(Main.rand, 3) ? 10f : 35f)) * Utils.NextFloat(Main.rand, 0.1f, 1.9f);
             if (Utils.NextBool(Main.rand, 4))
             {
-                Dust.NewDustPerfect(projSize, 278, (Vector2?)(Utils.RotatedByRandom(new Vector2(2f, 2f), 100.0) * Utils.NextFloat(Main.rand, 0.3f, 0.7f)), 0, default(Color), Utils.NextFloat(Main.rand, 0.2f, 0.6f)).color = (Utils.NextBool(Main.rand, 3) ? Color.Yellow : Color.LightSkyBlue);
+                Dust.NewDustPerfect(projSize, DustID.FireworksRGB, (Vector2?)(Utils.RotatedByRandom(new Vector2(2f, 2f), 100.0) * Utils.NextFloat(Main.rand, 0.3f, 0.7f)), 0, default(Color), Utils.NextFloat(Main.rand, 0.2f, 0.6f)).color = (Utils.NextBool(Main.rand, 3) ? Color.Yellow : Color.LightSkyBlue);
             }
             }
         }

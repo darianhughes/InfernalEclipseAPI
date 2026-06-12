@@ -66,7 +66,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
             for (int i = 0; i < 8; i++)
             {
                 Vector2 pos = target.Center + Main.rand.NextVector2Square(-25f, 25f);
-                Dust d = Dust.NewDustPerfect(pos, 264);
+                Dust d = Dust.NewDustPerfect(pos, DustID.PortalBoltTrail);
 
                 Vector2 dir = Projectile.velocity.SafeNormalize(Vector2.Zero)
                                                  .RotatedByRandom(0.72f);

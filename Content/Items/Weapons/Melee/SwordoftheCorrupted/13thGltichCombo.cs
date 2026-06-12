@@ -291,7 +291,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheCorrupted
             {
                 Vector2 dir = (Projectile.rotation - MathF.PI / 4f).ToRotationVector2();
                 Vector2 sweep = dir.RotatedBy((float)x.NonZeroSign() * (MathF.PI / 2f));
-                Dust d = Dust.NewDustPerfect(Projectile.Center + dir * Main.rand.NextFloat(28f, 74f) * Projectile.scale, 264);
+                Dust d = Dust.NewDustPerfect(Projectile.Center + dir * Main.rand.NextFloat(28f, 74f) * Projectile.scale, DustID.PortalBoltTrail);
                 d.velocity = sweep * 3f + Owner.velocity * 0.35f;
                 d.color = Color.Lerp(new Color(255, 96, 96), new Color(255, 32, 32), MathF.Sqrt(Main.rand.NextFloat(0.95f)));
                 d.scale = Main.rand.NextFloat(1f, 1.6f);

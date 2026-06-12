@@ -78,17 +78,17 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 SoundEngine.PlaySound(SoundID.Item14);
                 for (int dustIndexA = 0; dustIndexA < 4; dustIndexA++)
                 {
-                    int smoky = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, 31, 0f, 0f, 100, default(Color), 1.5f);
+                    int smoky = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, DustID.Smoke, 0f, 0f, 100, default(Color), 1.5f);
                     Main.dust[smoky].position = ((Entity)((ModProjectile)this).Projectile).Center + Utils.RotatedByRandom(Vector2.UnitY, Math.PI) * (float)Main.rand.NextDouble() * (float)((Entity)((ModProjectile)this).Projectile).width / 2f;
                 }
                 for (int dustIndexB = 0; dustIndexB < 10; dustIndexB++)
                 {
-                    int fireDust = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, 6, 0f, 0f, 200, default(Color), 2.7f);
+                    int fireDust = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, DustID.Torch, 0f, 0f, 200, default(Color), 2.7f);
                     Dust obj = Main.dust[fireDust];
                     obj.position = ((Entity)((ModProjectile)this).Projectile).Center + Utils.RotatedByRandom(Vector2.UnitY, Math.PI) * (float)Main.rand.NextDouble() * (float)((Entity)((ModProjectile)this).Projectile).width / 2f;
                     obj.noGravity = true;
                     obj.velocity *= 3f;
-                    fireDust = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, 6, 0f, 0f, 100, default(Color), 1.5f);
+                    fireDust = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, DustID.Torch, 0f, 0f, 100, default(Color), 1.5f);
                     obj.position = ((Entity)((ModProjectile)this).Projectile).Center + Utils.RotatedByRandom(Vector2.UnitY, Math.PI) * (float)Main.rand.NextDouble() * (float)((Entity)((ModProjectile)this).Projectile).width / 2f;
                     obj.velocity *= 2f;
                     obj.noGravity = true;
@@ -96,7 +96,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 }
                 for (int dustIndexC = 0; dustIndexC < 5; dustIndexC++)
                 {
-                    int fireDust2 = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, 6, 0f, 0f, 0, default(Color), 2.7f);
+                    int fireDust2 = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, DustID.Torch, 0f, 0f, 0, default(Color), 2.7f);
                     Dust obj2 = Main.dust[fireDust2];
                     obj2.position = ((Entity)((ModProjectile)this).Projectile).Center + Utils.RotatedBy(Utils.RotatedByRandom(Vector2.UnitX, Math.PI), (double)Utils.ToRotation(((Entity)((ModProjectile)this).Projectile).velocity), default(Vector2)) * (float)((Entity)((ModProjectile)this).Projectile).width / 2f;
                     obj2.noGravity = true;
@@ -104,7 +104,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
                 }
                 for (int dustIndexD = 0; dustIndexD < 10; dustIndexD++)
                 {
-                    int smokier = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, 31, 0f, 0f, 0, default(Color), 1.5f);
+                    int smokier = Dust.NewDust(((Entity)((ModProjectile)this).Projectile).position, ((Entity)((ModProjectile)this).Projectile).width, ((Entity)((ModProjectile)this).Projectile).height, DustID.Smoke, 0f, 0f, 0, default(Color), 1.5f);
                     Dust obj3 = Main.dust[smokier];
                     obj3.position = ((Entity)((ModProjectile)this).Projectile).Center + Utils.RotatedBy(Utils.RotatedByRandom(Vector2.UnitX, Math.PI), (double)Utils.ToRotation(((Entity)((ModProjectile)this).Projectile).velocity), default(Vector2)) * (float)((Entity)((ModProjectile)this).Projectile).width / 2f;
                     obj3.noGravity = true;

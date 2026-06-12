@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using CalamityMod.Particles;
 using Terraria.DataStructures;
 using InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand;
+using CalamityMod.Systems.Collections;
 
 namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
 {
@@ -31,7 +32,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
             Main.pvpBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = false;
 
-            BuffDatasets.DebuffDataset[Type] = debuffData;
+            CalamityBuffSets.DebuffDataset[Type] = debuffData;
         }
 
         public override void Update(Player player, ref int buffIndex)
@@ -78,7 +79,7 @@ namespace InfernalEclipseAPI.Content.Buffs.SoulBurn
                 Vector2 val = npc.position - Vector2.One * 2f;
                 Vector2 dustVel = npc.velocity + new Vector2(0f, Utils.NextFloat(Main.rand, -5f, -1f));
 
-                Dust obj = Dust.NewDustDirect(val, npc.width + 4, npc.height + 4, 87,
+                Dust obj = Dust.NewDustDirect(val, npc.width + 4, npc.height + 4, DustID.GemTopaz,
                     dustVel.X, dustVel.Y, 0, default(Color), 1f);
 
                 obj.noGravity = true;

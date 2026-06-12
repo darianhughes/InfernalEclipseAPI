@@ -13,9 +13,9 @@ namespace InfernalEclipseAPI.Common.Balance.ChangeUseConditions
     {
         private static int CurseID;
         //private static int ShockerID;
-        private static int DischargeID;
+        //private static int DischargeID;
         //private static int SmasherID;
-        private static int lsStaffID;
+        //private static int lsStaffID;
         private static int renewID;
         private static int starBirthID;
         private static int lostOasisID;

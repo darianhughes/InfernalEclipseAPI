@@ -267,7 +267,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.SwordoftheFirst
 
             Vector2 v = (Projectile.rotation - MathF.PI / 4f).ToRotationVector2();
             Vector2 sweep = v.RotatedBy((float)x.NonZeroSign() * (MathF.PI / 2f));
-            Dust d = Dust.NewDustPerfect(Projectile.Center + v * Main.rand.NextFloat(28f, 74f) * Projectile.scale, 264);
+            Dust d = Dust.NewDustPerfect(Projectile.Center + v * Main.rand.NextFloat(28f, 74f) * Projectile.scale, DustID.PortalBoltTrail);
             d.velocity = sweep * 3f + Owner.velocity * 0.35f;
 
             Color lightGray = new Color(210, 210, 210);

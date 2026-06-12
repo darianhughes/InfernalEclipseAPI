@@ -245,12 +245,12 @@ namespace InfernalEclipseAPI.Content.NPCs.LittleCat
                 );
 
                 Main.spriteBatch.Draw(
-                    TextureAssets.Extra[34].Value,
+                    TextureAssets.Extra[ExtrasID.CultistRitual].Value,
                     NPC.Center - Main.screenPosition,
                     null,
                     new Color(160, 32, 240),
                     rotation,
-                    TextureAssets.Extra[34].Value.Size() * 0.5f,
+                    TextureAssets.Extra[ExtrasID.CultistRitual].Value.Size() * 0.5f,
                     scale,
                     SpriteEffects.None,
                     0f

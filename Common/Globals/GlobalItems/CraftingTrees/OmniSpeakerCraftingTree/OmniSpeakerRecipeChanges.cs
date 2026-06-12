@@ -51,7 +51,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
                     {
                         recipe.RemoveIngredient(ModContent.ItemType<AscendantSpiritEssence>());
                         recipe.AddIngredient(ItemID.LunarBar, 8);
-                        recipe.AddIngredient<GalacticaSingularity>(4);
+                        recipe.AddIngredient(thorium.Find<ModItem>("ShootingStarFragment"), 4);
                         recipe.RemoveTile(ModContent.TileType<CosmicAnvil>());
                         recipe.AddTile(TileID.LunarCraftingStation);
                     }

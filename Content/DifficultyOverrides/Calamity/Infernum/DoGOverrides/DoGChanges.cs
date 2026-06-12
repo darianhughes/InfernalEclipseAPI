@@ -42,8 +42,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.DoGOv
         public static bool DesperationHeadEnteredPortal = false;
         public static int DesperationPostEntryTimer = 0;
 
+        /*
         private static readonly int AcceleratingFireballDamage = 380;
         private static readonly int LaserWallDamage = 400;
+        */
 
         public override bool InstancePerEntity => true;
 

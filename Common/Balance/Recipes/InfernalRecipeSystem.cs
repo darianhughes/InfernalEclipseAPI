@@ -439,7 +439,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     recipe.DecraftConditions.Add(Condition.DownedEowOrBoc);
                 }
 
-                if (recipe.HasResult(ModContent.ItemType<VoidofExtinction>()))
+                if (recipe.HasResult(ModContent.ItemType<Apollyon>()))
                 {
                     if (InfernalCrossmod.Clamity.Loaded)
                     {
@@ -1463,7 +1463,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         if (recipe.HasResult(sots.Find<ModItem>("ExoticPolarizer")))
                         {
-                            recipe.AddIngredient<MeldConstruct>(5);
+                            recipe.AddIngredient<MeldBlob>(5);
                             recipe.RemoveTile(TileID.MythrilAnvil);
                             recipe.AddTile(TileID.LunarCraftingStation);
                         }

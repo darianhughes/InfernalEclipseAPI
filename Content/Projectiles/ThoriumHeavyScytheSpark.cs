@@ -41,7 +41,7 @@ namespace InfernalEclipseAPI.Content.Projectiles
             // Optional: add dust effect
             for (int i = 0; i < 2; i++)
             {
-                int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 15);
+                int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.MagicMirror);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0f;
             }

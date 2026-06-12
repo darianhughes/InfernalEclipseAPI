@@ -105,7 +105,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
                 if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
             }
             recipe.AddIngredient<DarkPlasma>(10);
-            recipe.AddIngredient<MeldConstruct>(15);
+            recipe.AddIngredient<MeldBlob>(15);
             recipe.AddIngredient<Voidstone>(10);
             recipe.AddIngredient<Rock>();
             recipe.AddTile<DraedonsForge>();
