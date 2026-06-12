@@ -337,7 +337,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 if (item.type == ItemType<Calculator>())
                 {
                     var cplayer = player.Calamity();
-                    cplayer.critDamage -= GrapeBeer.CritLoss * 0.01f;
+                    cplayer.critDamage -= 75 * 0.01f;
                     player.GetCritChance(DamageClass.Generic) -= 30f;
                     player.GetDamage(DamageClass.Summon) -= 0.2f;
 

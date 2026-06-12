@@ -650,6 +650,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
         private static int ViscountBloodType = -1;
 
+        /*
         private bool initialized;
         private Vector2 storedDirection;
         private float targetSpeed;
@@ -657,6 +658,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 
         private float StartingSpeedMultiplier = 0.005f;
         private float AccelerationTime = 40f;
+        */
 
         public override void Load()
         {

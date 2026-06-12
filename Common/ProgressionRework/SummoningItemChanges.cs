@@ -117,7 +117,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                 }
 
                 //DoG is only post sentinals
-                if (recipe.HasIngredient(3467) && recipe.HasIngredient(ModContent.ItemType<GalacticaSingularity>()) && recipe.HasIngredient(ModContent.ItemType<Necroplasm>()) && recipe.HasResult(ModContent.ItemType<CosmicWorm>()))
+                if (recipe.HasIngredient(3467) && recipe.HasIngredient(ModContent.ItemType<Necroplasm>()) && recipe.HasResult(ModContent.ItemType<CosmicWorm>()))
                     recipe.DisableRecipe();
 
                 //Why is this post-Calamaitas?
@@ -186,23 +186,8 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                     {
                         if (recipe.HasResult(ragnarokCoin))
                         {
-                            thorium.TryFind("ShootingStarFragment", out ModItem bardFragment);
-                            thorium.TryFind("CelestialFragment", out ModItem healerFragment);
-                            thorium.TryFind("WhiteDwarfFragment", out ModItem throwerFragment);
-                            if (hasRagnarok && ragnarok.TryFind("EldritchShellFragment", out ModItem eShellFrag))
-                            {
-                                recipe.RemoveIngredient(eShellFrag.Type);
-                            }
-                            recipe.RemoveIngredient(ItemID.FragmentSolar);
-                            recipe.RemoveIngredient(ItemID.FragmentVortex);
-                            recipe.RemoveIngredient(ItemID.FragmentNebula);
-                            recipe.RemoveIngredient(ItemID.FragmentStardust);
-                            recipe.RemoveIngredient(bardFragment.Type);
-                            recipe.RemoveIngredient(healerFragment.Type);
-                            recipe.RemoveIngredient(throwerFragment.Type);
                             recipe.RemoveIngredient(ModContent.ItemType<MeldBlob>());
                             recipe.RemoveIngredient(ModContent.ItemType<AshesofCalamity>());
-                            recipe.AddIngredient<GalacticaSingularity>(4);
                             recipe.AddIngredient<AscendantSpiritEssence>(3);
                             recipe.AddIngredient<AshesofCalamity>(10);
                         }
@@ -211,7 +196,7 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
 
                 //Moon Lord
                 if (recipe.HasResult(ItemID.CelestialSigil))
-                    recipe.AddIngredient(ModContent.ItemType<MeldConstruct>(), 12);
+                    recipe.AddIngredient(ModContent.ItemType<MeldBlob>(), 12);
                 Mod mod1;
 
                 //We have infernum, right?

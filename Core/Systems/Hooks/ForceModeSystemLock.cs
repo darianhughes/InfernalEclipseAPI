@@ -43,7 +43,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks
         {
             return ModContent.GetInstance<InfernalConfig>().InfernumModeForced;
 
-            return ForcedLockCondition?.Invoke() ?? false;
+            //return ForcedLockCondition?.Invoke() ?? false;
         }
 
         private static void Patch_GetLockStatus(ILContext il)

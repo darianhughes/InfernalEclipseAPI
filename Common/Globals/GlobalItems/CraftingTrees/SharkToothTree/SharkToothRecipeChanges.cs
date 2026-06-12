@@ -46,7 +46,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.SharkToothTree
 
                     if (recipe.HasResult(sots.Find<ModItem>("MidnightPrism")))
                     {
-                        recipe.AddIngredient<MeldConstruct>(3);
+                        recipe.AddIngredient<MeldBlob>(3);
                     }
                 }
                 else if (sots != null)

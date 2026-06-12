@@ -288,9 +288,9 @@ namespace InfernalEclipseAPI.Core.Systems
 
                 int debuff = summonTagEntry.BuffType();
 
-                if (!CalamityBuffSets.SummonTagDebuff.ContainsKey(debuff))
+                if (CalamityBuffSets.SummonTagDebuff[debuff] == null)
                 {
-                    CalamityBuffSets.SummonTagDebuff.Add(debuff, tag);
+                    CalamityBuffSets.SummonTagDebuff[debuff] = tag;
                 }
             }
         }
@@ -315,12 +315,10 @@ namespace InfernalEclipseAPI.Core.Systems
             if (CalamityBuffSets.SummonTagDebuff == null)
                 return;
 
-            if (!CalamityBuffSets.SummonTagDebuff.TryGetValue(
-                ModContent.BuffType<SplitFirebrandTag>(),
-                out SummonTag tag))
+            if (CalamityBuffSets.SummonTagDebuff[ModContent.BuffType<SplitFirebrandTag>()] == null)
                 return;
 
-            tag.TagTexture = ModContent.Request<Texture2D>(
+            CalamityBuffSets.SummonTagDebuff[ModContent.BuffType<SplitFirebrandTag>()].TagTexture = ModContent.Request<Texture2D>(
                 NPC.downedMoonlord
                     ? "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandCrescendo"
                     : "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand"

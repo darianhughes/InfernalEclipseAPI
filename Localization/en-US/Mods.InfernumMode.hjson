@@ -16,4 +16,10 @@ IntroScreen: {
 		'''
 }
 
-Status.MultiplayerWarning: Infernal Eclipse of Ragnarok: Multiplayer is not officially supported by the Infernum Mode mod, while this mod aims to make it multiplayer compatible, there may be some bugs. Do not report multiplayer bugs to the Infernum Mode team, but instead report them to the Infernal Eclipse of Ragnarok team on our discord (https://discord.gg/ieor).
+Status: {
+	MultiplayerWarning: Infernal Eclipse of Ragnarok: Multiplayer is not officially supported by the Infernum Mode mod, while this mod aims to make it multiplayer compatible, there may be some bugs. Do not report multiplayer bugs to the Infernum Mode team, but instead report them to the Infernal Eclipse of Ragnarok team on our discord (https://discord.gg/ieor).
+	TwinsForcefieldSummonSpazmatism: HSy-01: DEFENSES PENETRATED. INITIATING PROCEDURE FFLD-17ECF9.
+	TwinsForcefieldSummonRetinazer: HSx-00: DEFENSES PENETRATED. INITIATING PROCEDURE FFLD-17ECF9.
+	TwinsFinalPhaseSpazmatism: HSy-01: ERROR DETECTING SECONDARY UNIT. BURNING EXCESS FUEL RESERVES.
+	TwinsFinalPhaseRetinazer: HSx-00: ERROR DETECTING SECONDARY UNIT. BURNING EXCESS FUEL RESERVES.
+}

@@ -54,7 +54,7 @@ namespace InfernalEclipseAPI.Core.Netcode
                     throw new Exception("Failed to parse Infernal packet: Invalid Calamity packet ID.");
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw; // this either will crash the game or be caught by TML's packet policing
             }

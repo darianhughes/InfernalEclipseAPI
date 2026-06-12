@@ -83,7 +83,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
             Item.height = 48;
             Item.useTime = 24;
             Item.useAnimation = 24;
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 5f;
             Item.value = Item.sellPrice(gold: 10);
             Item.rare = ModContent.RarityType<InfernumProfanedRarity>();
