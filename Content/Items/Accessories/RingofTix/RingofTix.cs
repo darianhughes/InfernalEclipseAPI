@@ -11,6 +11,8 @@ using InfernalEclipseAPI.Core.Players;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Security.Policy;
+using Terraria;
 
 namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
 {
@@ -58,6 +60,11 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             InfernalPlayer infernal = player.GetModPlayer<InfernalPlayer>();
             infernal.HarvestMoonBuff = true;
 
+            if (ModLoader.TryGetMod("VervCaves", out Mod vervCaves))
+            {
+                vervCaves.Find<ModItem>("MushroomRing").UpdateAccessory(player, hideVisual);
+            }
+
             //Challenger Ring handled in GlobalItem
         }
 
@@ -68,9 +75,11 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
                 Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.NormalTooltip")));
 
             // Show SOTS-specific usage text only if SOTS is enabled.
-            if (ModLoader.TryGetMod("SOTS", out _))
-                tooltips.Add(new TooltipLine(Mod, "SOTSTip",
-                    Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.SOTSTooltip")));
+            if (ModLoader.HasMod("SOTS"))
+                tooltips.Add(new TooltipLine(Mod, "CaveTip", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.SOTSTooltip")));
+
+            if (ModLoader.HasMod("VervCaves"))
+                tooltips.Add(new TooltipLine(Mod, "SOTSTip", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.VervCaveTooltip")));
 
             tooltips.Add(new(Mod, "Flavour", Language.GetTextValue("Mods.InfernalEclipseAPI.Items.RingofTix.FlavorText")));
 
@@ -87,8 +96,10 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
         public override void AddRecipes()
         {
             Recipe tixRing = Recipe.Create(ModContent.ItemType<RingofTix>());
-            tixRing.AddIngredient<HarpyRing>();
-            tixRing.AddIngredient<DarkSunRing>();
+            if (ModLoader.TryGetMod("VervCaves", out Mod vervCaves))
+            {
+                tixRing.AddIngredient(vervCaves.Find<ModItem>("MushroomRing"));
+            }
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
                 tixRing.AddIngredient(thorium.Find<ModItem>("ThumbRing"));
@@ -96,8 +107,10 @@ namespace InfernalEclipseAPI.Content.Items.Accessories.RingofTix
             }
             if (ModLoader.TryGetMod("BlueMoon", out Mod moons))
                 tixRing.AddIngredient(moons.Find<ModItem>("MoonsRing"));
+            tixRing.AddIngredient<HarpyRing>();
             if (ModLoader.TryGetMod("SOTS", out Mod sots))
                 tixRing.AddIngredient(sots.Find<ModItem>("ChallengerRing"));
+            tixRing.AddIngredient<DarkSunRing>();
             tixRing.AddIngredient<ShadowspecBar>(5);
             tixRing.AddIngredient<LoreDylan>();
             tixRing.AddTile<DraedonsForge>();

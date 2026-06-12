@@ -1910,7 +1910,8 @@ Items: {
 			Увеличивает максимальное время полёта на 20%
 			'За пламенем и искрами, если заглянуть достаточно глубоко, можно увидеть своё прошлое и будущее'
 			'''
-		// FlavorText: Behind the flames and the sparks, if you look deep enough, you will see your past and your future
+		// VervCaveTooltip: Slain enemies release healing orbs
+		// FlavorText: "'Behind the flames and the sparks, if you look deep enough, you will see your past and your future'"
 	}
 
 	InfernalTerraBladeRelic: {

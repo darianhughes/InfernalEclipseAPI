@@ -186,7 +186,6 @@ namespace InfernalEclipseAPI.Common.ProgressionRework
                     {
                         if (recipe.HasResult(ragnarokCoin))
                         {
-                            recipe.RemoveIngredient(ModContent.ItemType<MeldBlob>());
                             recipe.RemoveIngredient(ModContent.ItemType<AshesofCalamity>());
                             recipe.AddIngredient<AscendantSpiritEssence>(3);
                             recipe.AddIngredient<AshesofCalamity>(10);

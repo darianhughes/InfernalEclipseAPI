@@ -33,7 +33,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.Steetsign
             Item.knockBack = 6f;
 
             Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
-            Item.rare = ModContent.RarityType<BurnishedAuric>();
+            Item.rare = ModContent.RarityType<CalamityRed>();
             Item.UseSound = SoundID.DD2_MonkStaffSwing;
 
             Item.Calamity().donorItem = true;

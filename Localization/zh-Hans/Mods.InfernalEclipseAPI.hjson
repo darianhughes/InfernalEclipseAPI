@@ -1925,6 +1925,7 @@ Items: {
 			在日食时+1HP/s生命再生和10点防御
 			增加20%最大飞行时间
 			'''
+		// VervCaveTooltip: Slain enemies release healing orbs
 		FlavorText: “于炽炎与火花之后，若你凝视得足够深远，便能洞悉你的过去和未来”
 	}
 
