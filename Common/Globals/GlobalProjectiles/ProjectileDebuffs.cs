@@ -134,22 +134,21 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                 TryApplyBuff("AstralRipperPro", ragnarokMod, "AstralInfectionDebuff", calamityMod, 180);
                 TryApplyBuff("AstralRipperStarPro", ragnarokMod, "AstralInfectionDebuff", calamityMod, 120);
 
-                // Nightmare Freezer variants: GlacialState + Cursed Inferno
+                // Nightmare Freezer variants: Frozen + Cursed Inferno
                 var freezerPro2 = ragnarokMod.Find<ModProjectile>("NightmareFreezerPro2");
                 var freezerPro3 = ragnarokMod.Find<ModProjectile>("NightmareFreezerPro3");
                 var freezerPro = ragnarokMod.Find<ModProjectile>("NightmareFreezerPro");
-                var glacialState = calamityMod.Find<ModBuff>("GlacialState");
+                var frozen = BuffID.Frozen;
 
-                if ((freezerPro != null && projectile.type == freezerPro.Type) && glacialState != null)
+                if ((freezerPro != null && projectile.type == freezerPro.Type))
                 {
-                    target.AddBuff(glacialState.Type, 60);
+                    target.AddBuff(frozen, 60);
                     target.AddBuff(BuffID.Frostburn, 300);
                 }
                 else if ((freezerPro2 != null && projectile.type == freezerPro2.Type) ||
                          (freezerPro3 != null && projectile.type == freezerPro3.Type))
                 {
-                    if (glacialState != null)
-                        target.AddBuff(glacialState.Type, 30);
+                    target.AddBuff(frozen, 30);
                     target.AddBuff(BuffID.Frostburn, 300);
                 }
 
