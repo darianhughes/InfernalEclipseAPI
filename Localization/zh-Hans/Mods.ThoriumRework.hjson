@@ -3,7 +3,6 @@ Items: {
 		'''
 		电子乐器的弹幕速度大幅提升并初次击中时施加[cbuff:Electrified]减益
 		电子乐器会在最近的敌人间产生闪电链造成10%的武器伤害
-		"不，它不会比火箭飞得更快!"
 		'''
 	FanDonations.Tooltip:
 		'''
@@ -14,7 +13,6 @@ Items: {
 		电子乐器的弹幕速度大幅提升并初次击中时施加[cbuff:Electrified]减益
 		电子乐器会在最近的敌人间产生闪电链造成10%的武器伤害
 		最大灵感增加5点
-		"卖得并不好，但至少有人好心地提供了帮助…"
 		'''
 	LunateCharm.Tooltip:
 		'''
@@ -42,5 +40,5 @@ ItemDescriptions: {
 		'''
 	MagmaSeersMask: 提高20%鞭子攻速
 	MasterMarksmansScouter: ""
-	// AssassinsGuard: ""
+	AssassinsGuard: ""
 }

@@ -555,34 +555,34 @@ Items: {
 		最大仆从数量和哨兵数量增加2
 		增加仆从击退
 		'''
-	/* CursedFlailCore.Tooltip:
+	CursedFlailCore.Tooltip:
 		'''
-		Flail weapons on first hit release a cursed spike ball
-		Further hits have a chance to release more cursed spike balls
-		Cursed spike balls apply cursed flames to damaged enemies
-		''' */
-	/* VileFlailCore.Tooltip:
+		连枷武器首次击中时释放一个诅咒尖球
+		后续命中有概率释放更多诅咒尖球
+		诅咒尖球会对伤害的敌怪施加诅咒焰
 		'''
-		Flail weapons on first hit release a vile spike ball
-		Further hits have a chance to release more vile spike balls
-		Vile spike balls apply ichor to damaged enemies
-		''' */
-	/* IronFlailCore.Tooltip:
+	VileFlailCore.Tooltip:
 		'''
-		Flail weapons on first hit release a rolling spike ball
-		Further hits have a chance to release more rolling spike balls
-		''' */
-	/* BloomingShield.Tooltip:
+		连枷武器首次击中时释放一个邪恶尖球
+		后续命中有概率释放更多邪恶尖球
+		邪恶尖球会对伤害的敌怪施加灵液
 		'''
-		You constantly generate a 20 life shield
-		Healing spells will heal an additional 1 life, 2 if at max shield
-		When out of combat, your life recovery will increase up to 5 over time
-		''' */
-	/* AstroBeetleHusk.Tooltip:
+	IronFlailCore.Tooltip:
 		'''
-		Damage taken reduced by 5%
-		You constantly generate a 50 life shield
-		''' */
+		连枷武器首次击中时释放一个滚动的尖球
+		后续命中有概率释放更多滚动尖球
+		'''
+	BloomingShield.Tooltip:
+		'''
+		你会持续生成20点生命护盾
+		治疗法术额外治疗1点生命，在护盾达到上限时则为2点
+		脱战时你的生命恢复会随时间增加，至多5点
+		'''
+	AstroBeetleHusk.Tooltip:
+		'''
+		受到的伤害降低5%
+		你会持续生成一个50点的生命护盾
+		'''
 }
 
 ThrowerTechniques: {
