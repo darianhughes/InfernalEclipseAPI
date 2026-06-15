@@ -582,12 +582,13 @@ ItemTooltip: {
 			'''
 		HypersonicTooltip: '''"Channel the power of sounds beyond hearing range!"'''
 		4DTooltip: '''"Sound that can create wormholes to other worlds"'''
-		CrystalScorpian:
+		CrystalScorpian: Minion attacks have a 15% chance to produce a crystal scorpion and deal 3 more damage while a scorpion is active
+		Skull:
 			'''
-			Minion attacks have a 15% chance to produce a crystal scorpion
-			Minion attacks deal 3 more damage while a crystal scorpion is active
+			Enemies struck by the tips of summoner whips take {0}% extra damage, become cursed, and spawn up to [c/{1}:{2}] wisps
+			Right Click with a whip to send the wisps towards your cursor, damaging nearby enemies
+			Killing cursed enemies or continually damaging bosses releases an exploding ghost dealing 40 damage, which can also curse enemies
 			'''
-		Skull: Minion and sentry attacks briefly deal 2 more damage after killing an enemy
 		CyanPearl: Halves summon penalty for sentries
 		Watch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
 

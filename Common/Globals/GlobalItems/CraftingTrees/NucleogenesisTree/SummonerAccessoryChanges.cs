@@ -3,6 +3,8 @@ using CalamityMod.Items.Accessories;
 using Terraria.Localization;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
+using ThoriumMod.Items.SummonItems;
+using ThoriumMod.Projectiles.Minions;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {
@@ -73,7 +75,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //--player.maxTurrets;
                     necroticSkull.UpdateAccessory(player, hideVisual);
                     --player.maxMinions;
-                    --player.maxTurrets;
+                    //--player.maxTurrets;
 
                     if (clamity != null)
                     {
@@ -343,22 +345,22 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             );
 
             //string scryInfo = "Pressing the 'Accessory Ability' key will toggle an increased range of view";
-            string skullInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull");
+            //string skullInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull");
             string scorpionInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CrystalScorpian");
-            string fortressInfoNoThor = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressNoThor");
-            string fortressInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Fortress");
-            string watchInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Watch");
+            //string fortressInfoNoThor = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressNoThor");
+            //string fortressInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Fortress");
+            //string watchInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Watch");
             //string yumasInfo = "Taking damage releases a ghostly protector";
 
-            string oneMoreSentry = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.OneSentry");
-            string twoMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.TwoSentry");
-            string threeMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ThreeSentry");
+            //string oneMoreSentry = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.OneSentry");
+            //string twoMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.TwoSentry");
+            //string threeMoreSentries = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ThreeSentry");
 
-            string cyanPearlInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CyanPearl");
+            //string cyanPearlInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CyanPearl");
 
-            string fortessOrig1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressGenerator.OrigTooltip1");
-            string fortessOrig2 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressGenerator.OrigTooltip2");
-            string replaceInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressGenerator.Replace");
+            //string fortessOrig1 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressGenerator.OrigTooltip1");
+            //string fortessOrig2 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressGenerator.OrigTooltip2");
+            //string replaceInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressGenerator.Replace");
 
             if (sots != null & thorium != null)
             {
@@ -372,12 +374,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {
-                    AddTooltip(tooltips, oneMoreSentry, InfernalRed);
+                    //AddTooltip(tooltips, oneMoreSentry, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    AddTooltip(tooltips, skullInfo, InfernalRed);
+                    NecroticSkullTooltips.Add(tooltips);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfo)
                     //{
@@ -391,12 +393,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StatisCurse>())
                 {
-                    AddTooltip(tooltips, oneMoreSentry, InfernalRed);
+                    //AddTooltip(tooltips, oneMoreSentry, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    AddTooltip(tooltips, skullInfo, InfernalRed);
+                    NecroticSkullTooltips.Add(tooltips);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "fortress", fortressInfo)
                     //{
@@ -414,12 +416,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
-                    AddTooltip(tooltips, oneMoreSentry, InfernalRed);
+                    //AddTooltip(tooltips, oneMoreSentry, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    AddTooltip(tooltips, skullInfo, InfernalRed);
+                    NecroticSkullTooltips.Add(tooltips);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //AddTooltip(tooltips, fortressInfo, InfernalRed);
                     //AddTooltip(tooltips, watchInfo, InfernalRed);
@@ -434,12 +436,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             {
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {
-                    AddTooltip(tooltips, twoMoreSentries, InfernalRed);
+                    //AddTooltip(tooltips, twoMoreSentries, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    AddTooltip(tooltips, skullInfo, InfernalRed);
+                    NecroticSkullTooltips.Add(tooltips);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "watch", watchInfo)
                     //{
@@ -449,12 +451,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StatisCurse>())
                 {
-                    AddTooltip(tooltips, threeMoreSentries, InfernalRed);
+                    //AddTooltip(tooltips, threeMoreSentries, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    AddTooltip(tooltips, skullInfo, InfernalRed);
+                    NecroticSkullTooltips.Add(tooltips);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "watch", watchInfo)
                     //{
@@ -468,12 +470,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
                 {
-                    AddTooltip(tooltips, threeMoreSentries, InfernalRed);
+                    //AddTooltip(tooltips, threeMoreSentries, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "scry", scryInfo)
                     //{
                     //    OverrideColor = new Color?(InfernalRed)
                     //});
-                    AddTooltip(tooltips, skullInfo, InfernalRed);
+                    NecroticSkullTooltips.Add(tooltips);
                     AddTooltip(tooltips, scorpionInfo, InfernalRed);
                     //AddTooltip(tooltips, watchInfo, InfernalRed);
                     //tooltips.Add(new TooltipLine(Mod, "yuma", yumasInfo)
@@ -482,6 +484,59 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //});
                     //AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
                 }
+            }
+        }
+    }
+
+    [JITWhenModsEnabled("ThoriumMod")]
+    [ExtendsFromMod("ThoriumMod")]
+    public static class NecroticSkullTooltips
+    {
+        public static void Add(List<TooltipLine> tooltips)
+        {
+            int maxTooltipIndex = -1;
+            int maxNumber = -1;
+
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name.StartsWith("Tooltip"))
+                {
+                    if (int.TryParse(tooltips[i].Name.Substring(7), out int num) && num > maxNumber)
+                    {
+                        maxNumber = num;
+                        maxTooltipIndex = i;
+                    }
+                }
+            }
+
+            // If found, insert a new TooltipLine right after it with the desired color
+            if (maxTooltipIndex != -1)
+            {
+                Player localPlayer = Main.LocalPlayer;
+                int index = maxTooltipIndex + 1;
+
+                Color color = new Color(200, 125, byte.MaxValue) * (Main.mouseTextColor / (float)byte.MaxValue);
+                string hexColor = Utils.Hex3(color);
+
+                tooltips.Insert(index, new TooltipLine(InfernalEclipseAPI.Instance, "SpecialTooltip", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull", WhipTip.DamagePercent, hexColor, NecroticSkull.GetMaxCount(localPlayer)))
+                {
+                    OverrideColor = Color.Lerp
+                    (
+                        Color.White,
+                        new Color(255, 80, 0), // Infernal red/orange
+                        (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+                    )
+                });
+
+                /*
+                if (!localPlayer.GetThoriumPlayer().accPygmyNecklace)
+                    return;
+
+                tooltips.Insert(index + 2, new TooltipLine(InfernalEclipseAPI.Instance, "NoStacking", NecroticSkull.NoStackingText.ToString())
+                {
+                    OverrideColor = Color.Lerp(Color.White, Color.DarkRed, 0.8f)
+                });
+                */
             }
         }
     }

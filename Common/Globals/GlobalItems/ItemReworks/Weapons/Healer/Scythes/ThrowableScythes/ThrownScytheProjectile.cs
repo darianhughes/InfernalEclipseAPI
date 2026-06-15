@@ -21,8 +21,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                 if (entity.type == thorium.Find<ModProjectile>("BatScythePro").Type) return true;
                 //if (entity.type == thorium.Find<ModProjectile>("TitanScythePro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("IceShaverPro").Type) return true;
-                if (entity.type == thorium.Find<ModProjectile>("DemoniteScythePro").Type) return true;
-                if (entity.type == thorium.Find<ModProjectile>("CrimtaneScythePro").Type) return true;
+                if (entity.type == thorium.Find<ModProjectile>("DownwardSpiralPro").Type) return true;
+                if (entity.type == thorium.Find<ModProjectile>("TheBlenderPro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("FallingTwilightPro").Type) return true;
                 if (entity.type == thorium.Find<ModProjectile>("BloodHarvestPro").Type) return true;
 

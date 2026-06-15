@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using SOTS.Items.AbandonedVillage;
@@ -9,6 +10,7 @@ using SOTS.Items.Planetarium.Furniture;
 using SOTS.WorldgenHelpers;
 using Terraria.GameContent.Generation;
 using Terraria.WorldBuilding;
+using ThoriumMod.NPCs;
 
 namespace InfernalEclipseAPI.Core.World
 {
@@ -24,11 +26,22 @@ namespace InfernalEclipseAPI.Core.World
 
         public override void PostWorldGen()
         {
-            for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
+            if (InfernalConfig.Instance.BossKillCheckOnOres)
             {
-                Chest chest = Main.chest[chestIndex];
-                if (chest != null)
+                if (InfernalCrossmod.SOTS.Loaded)
                 {
+                    SOTSWorldGenModifications.EmeraldGemChestNoHellstone();
+                    SOTSWorldGenModifications.InvidiaChestHealingPotionNerf();
+                    SOTSWorldGenModifications.ReplaceBlinkPackInSpecialChests();
+                }
+
+                for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
+                {
+                    Chest chest = Main.chest[chestIndex];
+
+                    if (chest is null)
+                        continue;
+
                     bool isContainer1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
                     bool isGoldChest = isContainer1 && (Main.tile[chest.x, chest.y].TileFrameX == 36 || Main.tile[chest.x, chest.y].TileFrameX == 2 * 36); // Includes Locked Gold Chests
 
@@ -45,14 +58,21 @@ namespace InfernalEclipseAPI.Core.World
                             }
                         }
                     }
-                }
-            }
 
-            if (InfernalCrossmod.SOTS.Loaded)
-            {
-                SOTSWorldGenModifications.EmeraldGemChestNoHellstone();
-                SOTSWorldGenModifications.InvidiaChestHealingPotionNerf();
-                SOTSWorldGenModifications.ReplaceBlinkPackInSpecialChests();
+                    // Replace ANY Hellstone bars in ANY chest with just hellstone ore.
+                    for (int slot = 0; slot < Chest.maxItems; slot++)
+                    {
+                        Item item = chest.item[slot];
+
+                        if (item.type == ItemID.HellstoneBar)
+                        {
+                            int bars = item.stack;
+
+                            item.SetDefaults(ItemID.Hellstone);
+                            item.stack = bars * 3; // optional conversion ratio
+                        }
+                    }
+                }
             }
         }
     }

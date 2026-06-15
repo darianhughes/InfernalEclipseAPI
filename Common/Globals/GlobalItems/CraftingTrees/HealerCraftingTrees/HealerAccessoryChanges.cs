@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Utils;
 using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
@@ -7,15 +8,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTree
 {
     public class HealerAccessoryChanges : GlobalItem
     {
-        private Mod Ragnarok
-        {
-            get
-            {
-                ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok);
-                return ragnarok;
-            }
-        }
-
         private Mod CalBardHealer
         {
             get
@@ -48,15 +40,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTree
             {
                 ModLoader.TryGetMod("ThoriumMod", out Mod thor);
                 return thor;
-            }
-        }
-
-        private Mod sots
-        {
-            get
-            {
-                ModLoader.TryGetMod("SOTS", out Mod sots);
-                return sots;
             }
         }
 
@@ -115,7 +98,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTree
             {
                 if (item.type == CalBardHealer.Find<ModItem>("ElementalBloom").Type)
                 {
-                    tooltips.Add(new TooltipLine(Mod, "MergedTreeTooltip", Language.GetTextValue("Mods.ThoriumMod.Items.SoulGuard.Tooltip")) { OverrideColor = InfernalRed });
+                    InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.ThoriumMod.Items.SoulGuard.Tooltip", 5, 15), InfernalRed);
                 }
             }
 
