@@ -68,6 +68,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.HealerCraftingTree
 
                     if (recipe.HasResult(CalBardHealer.Find<ModItem>("ElementalBloom")))
                     {
+                        recipe.RemoveIngredient(ItemID.LunarBar);
                         if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
                         recipe.AddIngredient(thorium.Find<ModItem>("SoulGuard"));
                     }

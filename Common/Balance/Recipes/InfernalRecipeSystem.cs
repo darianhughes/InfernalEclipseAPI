@@ -229,6 +229,18 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         .AddIngredient(thorium.Find<ModItem>("AquaiteBar").Type, 10)
                         .AddTile(TileID.Anvils)
                         .Register();
+
+                    if (thorRework != null)
+                    {
+                        if (thorRework.TryFind("ZephyrWingsCosmetic", out ModItem wings))
+                        {
+                            Recipe.Create(wings.Type)
+                                .AddIngredient(ItemID.CreativeWings)
+                                .AddIngredient(ragnarok.Find<ModItem>("StormFeather"), 10)
+                                .AddTile(TileID.HeavyWorkBench)
+                                .Register();
+                        }
+                    }
                 }
             }
             #endregion
@@ -832,12 +844,14 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.AddTile(thorium.Find<ModTile>("ArcaneArmorFabricator"));
                         }
 
+                        /*
                         if (recipe.HasResult(thorium.Find<ModItem>("NecroticSkull")))
                         {
                             recipe.AddIngredient(ItemID.SoulofFright, 3);
                             recipe.RemoveTile(TileID.DemonAltar);
                             recipe.AddTile(TileID.MythrilAnvil);
                         }
+                        */
 
                         if (recipe.HasResult(ModContent.ItemType<TheSponge>()) || recipe.HasResult(ModContent.ItemType<TheAmalgam>()) || recipe.HasResult(ModContent.ItemType<EclipseMirror>()))
                         {

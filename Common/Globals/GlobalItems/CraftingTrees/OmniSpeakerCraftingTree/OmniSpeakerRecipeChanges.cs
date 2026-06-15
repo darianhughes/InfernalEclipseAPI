@@ -58,6 +58,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.OmniSpeakerCraftin
 
                     if (recipe.HasResult(CalBardHealer.Find<ModItem>("OmniSpeaker")))
                     {
+                        recipe.RemoveIngredient(ItemID.LunarBar);
                         recipe.AddIngredient(Ragnarok.Find<ModItem>("UniversalHeadset"));
                         if (!recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore"))) recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 3);
                     }

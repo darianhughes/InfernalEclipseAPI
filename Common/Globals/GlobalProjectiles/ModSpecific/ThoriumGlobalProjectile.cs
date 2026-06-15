@@ -95,7 +95,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalProjectiles.ModSpecific
                 entity.type == ModContent.ProjectileType<CoralPolearmPro>() ||
                 entity.type == ModContent.ProjectileType<CoralPolearmPro2>() ||
                 entity.type == ModContent.ProjectileType<CoralPolearmPro3>() ||
-                entity.type == ModContent.ProjectileType<HarpyTalonPro>() ||
+                //entity.type == ModContent.ProjectileType<HarpyTalonPro>() ||
                 entity.type == ModContent.ProjectileType<PearlPikePro>() ||
                 entity.type == ModContent.ProjectileType<MoonlightPro>() ||
                 entity.type == ModContent.ProjectileType<MoonlightPro2>() ||

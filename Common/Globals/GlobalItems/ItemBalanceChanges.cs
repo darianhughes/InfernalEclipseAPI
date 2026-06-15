@@ -300,7 +300,17 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (item.type == ModContent.ItemType<Voidragon>())
                 {
-                    item.useTime = item.useAnimation = 4;
+                    item.damage = 450;
+                }
+
+                if (item.type == ModContent.ItemType<AcidGun>())
+                {
+                    item.damage = 13;
+                }
+
+                if (item.type == ModContent.ItemType<Megalodon>())
+                {
+                    item.damage = 48;
                 }
                 #endregion
 
@@ -316,10 +326,12 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 30;
                 }
 
+                /*
                 if (item.type == ModContent.ItemType<VividClarity>())
                 {
                     item.damage = 144;
                 }
+                */
                 #endregion
 
                 #region Summonerr
@@ -1350,6 +1362,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.damage = 30;
                     }
 
+                    /*
                     //Harpy Talon
                     if (item.type == FindItem(thorium, "HarpyTalon"))
                     {
@@ -1357,6 +1370,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                         item.useAnimation = 12;
                         item.shootSpeed = 12;
                     }
+                    */
 
                     //Bellerose
                     if (item.type == FindItem(thorium, "Bellerose"))

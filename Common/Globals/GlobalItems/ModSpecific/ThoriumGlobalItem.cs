@@ -146,7 +146,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 item.type == ItemType<fSandStoneSpear>() ||
                 item.type == ItemType<Fork>() ||
                 item.type == ItemType<CoralPolearm>() ||
-                item.type == ItemType<HarpyTalon>() ||
+                //item.type == ItemType<HarpyTalon>() ||
                 item.type == ItemType<PearlPike>() ||
                 item.type == ItemType<Moonlight>() ||
                 item.type == ItemType<EnergyStormPartisan>() ||

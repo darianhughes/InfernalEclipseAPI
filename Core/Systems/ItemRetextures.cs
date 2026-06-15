@@ -49,37 +49,5 @@ namespace InfernalEclipseAPI.Core.Systems
                 }
             }
         }
-
-        public override void Unload()
-        {
-            // Restore or unload the replaced texture
-            if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium)
-                && thorium.TryFind("NinjaEmblem", out ModItem ninjaEmblem))
-            {
-                TextureAssets.Item[ninjaEmblem.Type] = null;
-            }
-
-            if (ModLoader.TryGetMod("ClamityMusic", out Mod clam))
-            {
-                if (clam.TryFind("ClamityTitleMusicBox", out ModItem clamTitleMusicBox))
-                {
-                    TextureAssets.Item[clamTitleMusicBox.Type] = null;
-                }
-
-                if (clam.TryFind("ClamityTitleMusicBoxTile", out ModTile clamTitleMusicBoxTile))
-                {
-                    TextureAssets.Tile[clamTitleMusicBoxTile.Type] = null;
-                }
-            }
-
-            if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
-            {
-                if (ModLoader.TryGetMod("InfernalEclipseWeaponsDLC", out _))
-                {
-                    int type = ragnarok.Find<ModItem>("Virusprayer").Type;
-                    TextureAssets.Item[type] = null;
-                }
-            }
-        }
     }
 }

@@ -264,9 +264,8 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             ThoriumGlobalNPC thorGlobalNPC = target.GetGlobalNPC<ThoriumGlobalNPC>();
             bool isHostile = !target.friendly && target.lifeMax > 5 && target.chaseable && (!target.dontTakeDamage) && !target.immortal;
             IEntitySource sourceOnHit = proj.GetSource_OnHit(target);
-            Player player = Main.player[proj.owner];
 
-            if (Player.GetModPlayer<InfernalPlayer>().gutWrench & isHostile && !thorGlobalNPC.netSpawnedFromStatue)
+            if (Player.GetModPlayer<InfernalPlayer>().gutWrench & isHostile && target.value > 0.0)
             {
                 int lifeHealed = Math.Min(damageDone / 100, Player.statLifeMax2 / 2 - Player.statLife);
                 if (Player.lifeSteal > 0)
@@ -287,7 +286,7 @@ namespace InfernalEclipseAPI.Content.RogueThrower
             bool isHostile = !target.friendly && target.lifeMax > 5 && target.chaseable && (!target.dontTakeDamage) && !target.immortal;
             IEntitySource sourceOnHit = Player.GetSource_OnHit(target);
 
-            if (Player.GetModPlayer<InfernalPlayer>().gutWrench & isHostile && !thorGlobalNPC.netSpawnedFromStatue)
+            if (Player.GetModPlayer<InfernalPlayer>().gutWrench & isHostile && target.value > 0.0)
             {
                 int lifeHealed = Math.Min(damageDone / 100, Player.statLifeMax2 / 2 - Player.statLife);
                 if (Player.lifeSteal > 0)

@@ -82,7 +82,7 @@
 			<HintPath>..\ModAssemblies\SubworldLibrary_v2.2.3.3.dll</HintPath>
 		</Reference>
 		<Reference Include="ThoriumMod">
-			<HintPath>..\ModAssemblies\ThoriumMod_v1.7.2.5.dll</HintPath>
+		  <HintPath>lib\Assemblies\ThoriumMod.dll</HintPath>
 		</Reference>
 		<Reference Include="ThoriumRework">
 		  <HintPath>..\ModAssemblies\ThoriumRework_v1.3.3.dll</HintPath>

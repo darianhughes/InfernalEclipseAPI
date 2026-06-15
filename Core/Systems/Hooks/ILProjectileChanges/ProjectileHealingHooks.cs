@@ -60,14 +60,24 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
                     MonoModHooks.Modify(gauzeProjAIMethod, IL_SetGauzeHealToFive);
             }
 
-            var projType5 = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.TheGigaNeedlePro");
-            if (projType5 != null)
+            var gigaNeedleItemType = thorium.Code.GetType("ThoriumMod.Items.HealerItems.TheGigaNeedle");
+            if (gigaNeedleItemType != null)
             {
-                var aiMethod = projType5.GetMethod("AI",
+                var setDefaults = gigaNeedleItemType.GetMethod("SetDefaults",
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+                if (setDefaults != null)
+                    MonoModHooks.Modify(setDefaults, IL_ReplaceGigaNeedleHealAmountLoad);
+            }
+
+            var gigaNeedleProType = thorium.Code.GetType("ThoriumMod.Projectiles.Healer.TheGigaNeedlePro");
+            if (gigaNeedleProType != null)
+            {
+                var aiMethod = gigaNeedleProType.GetMethod("AI",
                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
                 if (aiMethod != null)
-                    MonoModHooks.Modify(aiMethod, IL_SetGigaNeedleHeal);
+                    MonoModHooks.Modify(aiMethod, IL_ReplaceGigaNeedleHealAmountLoad);
             }
 
             /*
@@ -248,19 +258,22 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILProjectileChanges
             }
         }
 
-        private void IL_SetGigaNeedleHeal(ILContext il)
+        private static bool IsGigaNeedleHealAmountLoad(Instruction i)
+        {
+            return i.OpCode == OpCodes.Ldsfld &&
+                   i.Operand is FieldReference fr &&
+                   fr.DeclaringType.FullName == "ThoriumMod.Items.HealerItems.TheGigaNeedle" &&
+                   fr.Name == "HealAmount";
+        }
+
+        private void IL_ReplaceGigaNeedleHealAmountLoad(ILContext il)
         {
             var c = new ILCursor(il);
 
-            // Look for the 3f healing constant
-            if (c.TryGotoNext(i => i.MatchLdcR4(3f)))
+            while (c.TryGotoNext(IsGigaNeedleHealAmountLoad))
             {
-                c.Next.Operand = 6f; // Change heal amount 3 - 6
-            }
-            else
-            {
-                ModContent.GetInstance<Mod>().Logger.Warn(
-                    "GigaNeedleHealingPatch: Could not find 3f heal amount.");
+                c.Next.OpCode = OpCodes.Ldc_I4_6;
+                c.Next.Operand = null;
             }
         }
 
