@@ -480,6 +480,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     }
                 }
 
+                /*
                 if (InfernalConfig.Instance.CalamityBalanceChanges)
                 {
                     if (recipe.HasResult<Moonshine>())
@@ -492,6 +493,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient<StarblightSoot>(5);
                     }
                 }
+                */
 
                 #region Calamity Ranger Expansion
                 if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))

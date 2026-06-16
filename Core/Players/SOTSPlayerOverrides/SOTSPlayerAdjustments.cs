@@ -124,7 +124,6 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
                 Player.ClearBuff(ModContent.BuffType<GrapeBeerBuff>());
                 Player.Calamity().grapeBeer = false;
             }
-            */
 
             if (Player.Calamity().grapeBeer)
             {
@@ -134,6 +133,7 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
                 sotsPlayer.CritFire = false;
                 sotsPlayer.CritFrost = false;
             }
+            */
         }
 
         public override void PostUpdate()
