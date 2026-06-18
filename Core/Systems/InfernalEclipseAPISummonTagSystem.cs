@@ -28,19 +28,16 @@ namespace InfernalEclipseAPI.Core.Systems
 
             // API ENTRY
 
-            if (InfernalConfig.Instance.DeveloperMode && !InfernalConfig.Instance.DisableUnfinisedContent)
+            entries.Add(new SummonTagEntry
             {
-                entries.Add(new SummonTagEntry
+                ItemType = () => ModContent.ItemType<SplitFirebrand>(),
+                BuffType = () => ModContent.BuffType<SplitFirebrandTag>(),
+                Setup = delegate (SummonTag summonTag)
                 {
-                    ItemType = () => ModContent.ItemType<SplitFirebrand>(),
-                    BuffType = () => ModContent.BuffType<SplitFirebrandTag>(),
-                    Setup = delegate (SummonTag summonTag)
-                    {
-                        summonTag.AutoDrawTooltip = false;
-                        summonTag.TagTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand", (AssetRequestMode)1);
-                    }
-                });
-            }
+                    summonTag.AutoDrawTooltip = false;
+                    summonTag.TagTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand", (AssetRequestMode)1);
+                }
+            });
 
             //Checking for my mod so this can go to live on my end straight away
             //Also you can't register multiple tag entrys to the same item so we'll roll with mine for now
