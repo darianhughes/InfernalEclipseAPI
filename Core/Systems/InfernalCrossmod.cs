@@ -14,6 +14,20 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
         }
 
+        public static class Entropy
+        {
+            public static string Name = "CalamityEntropy";
+            public static Mod Mod => ModLoader.GetMod(Name);
+            public static bool Loaded => ModLoader.HasMod(Name);
+        }
+
+        public static class Hunt
+        {
+            public static string Name = "CalamityHunt";
+            public static Mod Mod => ModLoader.GetMod(Name);
+            public static bool Loaded => ModLoader.HasMod(Name);
+        }
+
         public static class ThrowerUnification
         {
             public const string Name = "ThrowerUnification";

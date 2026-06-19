@@ -296,26 +296,49 @@ namespace InfernalEclipseAPI.Core.Systems
     public class SplitFirebrandSystem : ModSystem
     {
         private bool lastMoonlordState;
+        private bool pendingWorldInitUpdate;
 
         public override void OnWorldLoad()
         {
             lastMoonlordState = NPC.downedMoonlord;
+            pendingWorldInitUpdate = true;
         }
 
         public override void PostUpdateWorld()
         {
+            // Run once after world is fully active
+            if (pendingWorldInitUpdate)
+            {
+                pendingWorldInitUpdate = false;
+                lastMoonlordState = NPC.downedMoonlord;
+                ApplyTexture();
+                return;
+            }
+
+            // Normal runtime updates
             if (lastMoonlordState == NPC.downedMoonlord)
                 return;
 
             lastMoonlordState = NPC.downedMoonlord;
+            ApplyTexture();
+        }
 
+        private void ApplyTexture()
+        {
             if (CalamityBuffSets.SummonTagDebuff == null)
                 return;
 
-            if (CalamityBuffSets.SummonTagDebuff[ModContent.BuffType<SplitFirebrandTag>()] == null)
+            int buffType = ModContent.BuffType<SplitFirebrandTag>();
+
+            if (buffType < 0 || buffType >= CalamityBuffSets.SummonTagDebuff.Length)
                 return;
 
-            CalamityBuffSets.SummonTagDebuff[ModContent.BuffType<SplitFirebrandTag>()].TagTexture = ModContent.Request<Texture2D>(
+            SummonTag tag = CalamityBuffSets.SummonTagDebuff[buffType];
+
+            if (tag == null)
+                return;
+
+            tag.TagTexture = ModContent.Request<Texture2D>(
                 NPC.downedMoonlord
                     ? "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandCrescendo"
                     : "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand"

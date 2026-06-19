@@ -853,6 +853,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                     item.useAnimation = 44;
                     item.useTime = 44;
                 }
+                if (UnsafeGetItem(simpleWhipAddon, "KingsMajesty", item))
+                {
+                    item.damage = 18;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "EmeraldSplash", item))
+                {
+                    item.damage = 100;
+                }
 
                 int[] bleachedAcessories =
                 {
