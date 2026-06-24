@@ -276,6 +276,25 @@ namespace InfernalEclipseAPI.Core.Systems
                 }
             }
 
+            //Ones not also covered by WHummus'
+            if (ModLoader.TryGetMod("WulfrumExpansion", out Mod overdrive))
+            {
+                if (overdrive.TryFind("Metalash", out ModItem item) && overdrive.TryFind("MetalashTagBuff", out ModBuff buff))
+                {
+                    entries.Add(new SummonTagEntry
+                    {
+                        ItemType = () => item.Type,
+                        BuffType = () => buff.Type,
+                        Setup = delegate (SummonTag summonTag)
+                        {
+                            summonTag.AutoDrawTooltip = false;
+                            summonTag.TagTexture = ModContent.Request<Texture2D>("WulfrumExpansion/Content/Items/Weapons/Metalash", AssetRequestMode.ImmediateLoad);
+                            summonTag.FlatTagDamage = -1;
+                        }
+                    });
+                }
+            }
+
             foreach (SummonTagEntry summonTagEntry in entries)
             {
                 SummonTag tag =

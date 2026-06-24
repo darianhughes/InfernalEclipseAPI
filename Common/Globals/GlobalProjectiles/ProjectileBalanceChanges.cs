@@ -507,6 +507,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     entity.localNPCHitCooldown = entity.idStaticNPCHitCooldown;
                     entity.usesLocalNPCImmunity = true;
                 }
+
+                if (GetProj(entity, sots, "AncientSteelBullet"))
+                {
+                    entity.usesIDStaticNPCImmunity = false;
+
+                    entity.localNPCHitCooldown = entity.idStaticNPCHitCooldown;
+                    entity.usesLocalNPCImmunity = true;
+                }
             }
             #endregion
 
@@ -537,6 +545,20 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 if (GetProj(entity, InfernalCrossmod.Consolaria.Mod, "TonbogiriSpear"))
                 {
                     entity.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+                }
+            }
+            #endregion
+
+            #region Calamity Overdrive
+            if (InfernalCrossmod.Overdrive.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (GetProj(entity, InfernalCrossmod.Overdrive.Mod, "FriendlyWulfrumLaser"))
+                {
+                    entity.DamageType = RangedDamageClass.Ranged;
+                    entity.usesIDStaticNPCImmunity = false;
+
+                    entity.localNPCHitCooldown = 10;
+                    entity.usesLocalNPCImmunity = true;
                 }
             }
             #endregion

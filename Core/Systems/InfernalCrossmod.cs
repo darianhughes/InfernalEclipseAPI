@@ -223,6 +223,13 @@ namespace InfernalEclipseAPI.Core.Systems
             public static Mod Mod => ModLoader.GetMod(Name);
         }
 
+        public static class Overdrive
+        {
+            public const string Name = "WulfrumExpansion";
+            public static bool Loaded => ModLoader.HasMod(Name);
+            public static Mod Mod => ModLoader.GetMod(Name);
+        }
+
         public static class QoLC
         {
             public const string Name = "QoLCompendium";

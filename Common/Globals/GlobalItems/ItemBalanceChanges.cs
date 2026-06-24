@@ -731,6 +731,22 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             }
             #endregion
 
+            #region Calamity Overdrive
+            if (ModLoader.TryGetMod("WulfrumExpansion", out Mod overdrive) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (UnsafeGetItem(overdrive, "WulfrumSapper", item))
+                {
+                    item.damage = 18;
+                }
+                /*
+                if (UnsafeGetItem(overdrive, "ArcScepterBeam", item))
+                {
+                    item.damage = 48;
+                }
+                */
+            }
+            #endregion
+
             #region Calamity Simple Whip Addon
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
@@ -5981,7 +5997,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
 
                 if (GetItem(sotsBH, "UltrasonicBassBooster", item))
                 {
-                    item.damage = 60;
+                    item.damage = 70;
                 }
 
                 if (GetItem(sotsBH, "TwilightAscendance", item))
