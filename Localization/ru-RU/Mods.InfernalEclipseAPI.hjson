@@ -53,6 +53,45 @@ UI: {
 		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
 		''' */
 	// DevNoticeCampsiteFix: Flag pole crash fix applied
+	/* WarningHelheim:
+		'''
+		NOTICE: It is detected you have the Thorium Mod enabled!
+		We highly recommend you to install the "Thorium Helheim" mod for the intended Thorium AI before proceeding!
+		You can turn off this popup in the Infernal Eclipse of Ragnarok config if you wish to proceed without it.
+		''' */
+	/* WarningRagnarok:
+		'''
+		NOTICE: It is detected you have the Thorium Mod enabled!
+		We highly recommend you to install the "Ragnarok" mod for compatibility between these mods before proceeding!
+		You can turn off this popup in the Infernal Eclipse of Ragnarok config if you wish to proceed without it.
+		''' */
+	/* WarningOverhaul:
+		'''
+		WARNING: It is detected that you have the Calamity Overhaul enabled!
+		This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
+		''' */
+	/* WarningRemnants:
+		'''
+		WARNING: It is detected that you have the Remnants mod enabled!
+		This mod is NOT compatible with Infernum and many other of the mods in the mod pack.
+		If this world was generated with the mod, please regenerate it with this mod off.
+		''' */
+	/* NoticeMasterPatch:
+		'''
+		NOTICE: It is detected that you have a Infernum Master Patch mod enabled!
+		This mod is redunant with Ragnarok Mode and can be disabled.
+		''' */
+	/* NoticeCalMinus:
+		'''
+		NOTICE: It is detected that you have the Calamity Minus Mod enabled!
+		This mod is redunant if you have the Calamity Recipe Changes config on and can be disabled.
+		''' */
+	/* NoticeCalBalance:
+		'''
+		NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled!
+		This mod adds a bunch of unlisted changes which might make your playthough worse than intended.
+		We heavily recommend you disable this mod.
+		''' */
 }
 
 DifficultyUI: {
@@ -76,15 +115,7 @@ DifficultyUI: {
 WelcomeMessage: {
 	Welcome: Добро пожаловать в модпак «Infernal Eclipse of Ragnarok»!
 	TBRNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Thorium Helheim»! Убедитесь, что множители здоровья, урона и скорости установлены на 1 в конфигурации совместимости (если только вы не хотите усложнить игру), так как этот мод автоматически настраивает боссов Thorium в зависимости от текущей сложности.
-	TBRWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас отключён «Thorium Helheim»! Настоятельно рекомендуется включить его, так как он перебалансирует боссов Thorium, добавляя им механики, более соответствующие режиму Инфернума и Calamity в целом.
-	RagWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас отключён «Ragnarok»! Без этого мода Thorium и Calamity могут плохо взаимодействовать. Настоятельно рекомендуется включить его для более полного и сбалансированного игрового опыта.
-	EventTrophyNotice: ВНИМАНИЕ: Обнаружено, что у вас отключён «More Trophies and Relics»! Без этого мода у боссов, не из ванильной игры, Calamity или Infernum, могут отсутствовать лор Calamity и вступительные анимации Инфернума. Настоятельно рекомендуется включить его для более полного и целостного опыта.
 	SoulsWarning: ПРЕДУПРЕЖДЕНИЕ: Fargo's Souls НЕ совместим с Infernal Eclipse of Ragnarok! Учтите, что режим Инфернум несовместим с режимом Вечность, и при одновременном включении обоих могут возникнуть серьёзные ошибки.
-	OverhaulWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Calamity Overhaul»! Этот мод очень багованный и вызовет множество проблем. Настоятельно рекомендуется отключить его.
-	RemnantsWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Remnants»! Этот мод НЕ совместим с Infernum. Если мир был сгенерирован с этим модом, пожалуйста, перегенерируйте его с отключённым модом, в противном случае не сообщайте об ошибках, связанных с генерацией мира
-	MasterPatchNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Infernum Master Patch». Этот мод излишен с этим модом и может быть отключён.
-	CalMinusNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Minus»! Данный модпак уже включает все функции этого мода, если у вас включены «Изменения баланса Calamity» в конфигурации «Infernal Eclipse of Ragnarok».
-	CalBalNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Balance Changes»! Данный модпак уже включает большинство функций этого мода, перечисленных на странице в мастерской Steam, если у вас включены «Изменения баланса Calamity» в конфигурации «Infernal Eclipse of Ragnarok». «Calamity Balance Changes» также вносит ряд неназванных изменений, которые могут сделать ваше прохождение хуже, чем задумывалось
 	InfernumActive: Избранный вернулся, чтобы встретить Инфернальное затмение...
 	MPConnect: Избранный вернулся, чтобы помочь встретить Инфернальное затмение...
 	InfernumForced: Инфернальная энергия проникла в этот мир...
@@ -109,6 +140,27 @@ BossCheesePrevention: {
 	TheDestroyer: Я не позволю так легко уничтожить мою машину.
 	Plantera: Древние силы не позволяют использовать этот предмет сейчас...
 	Yharon: Древние силы не позволяют использовать этот предмет сейчас...
+}
+
+ItemBalance: {
+	// Modified: Modified by Infernal Eclipse of Ragnarok
+	// Modified2: Hold {0} to see modifications
+	// DamageUpGeneric: "    Damage increased by [c/00A36C:{0}%]"
+	// DamageDownGeneric: "    Damage decreased by [c/FF0000:{0}%]"
+	// ShootSpeedUpGeneric: "    Shoot speed decreased by [c/FF0000:{0}%]"
+	// ShootSpeedDownGeneric: "    Shoot speed increased by [c/00A36C:{0}%]"
+	// UseTimeUpGeneric: "    Use time decreased by [c/00A36C:{0}%]"
+	// UseTimeDownGeneric: "    Use time increased by [c/FF0000:{0}%]"
+	// UseAnimationUpGeneric: "    Use animation decreased by [c/00A36C:{0}%]"
+	// UseAnimationDownGeneric: "    Use animation increased by [c/FF0000:{0}%]"
+	// UseSpeedUpGeneric: "    Use speed increased by [c/00A36C:{0}%]"
+	// UseSpeedDownGeneric: "    Use speed decreased by [c/FF0000:{0}%]"
+	// PickUpGeneric: "    Pickaxe power increased by [c/FF0000:{0}%]"
+	// PickDownGeneric: "    Pickaxe power decreased by [c/FF0000:{0}%]"
+	// CritUpGeneric: "    Critical strike chance increased by [c/FF0000:{0}%]"
+	// CritDownGeneric: "    Critical strike chance decreased by [c/FF0000:{0}%]"
+	// DefenseUpGeneric: "    Defense increased by {0}"
+	// DefenseDownGeneric: "    Defense decreased by {0}"
 }
 
 ItemTooltip: {
@@ -2319,6 +2371,24 @@ Items: {
 			Not consumable
 			''' */
 		// Name: Chaos Construct
+	}
+
+	BloodHeart: {
+		// DisplayName: Blood Heart
+		/* Tooltip:
+			'''
+			Summons Viscount when used on the Blood Altar
+			Not consumable
+			''' */
+	}
+
+	EldritchBattleHorn: {
+		// DisplayName: Eldritch Battle Horn
+		/* Tooltip:
+			'''
+			Summons the Forgotten One when used in the Aquatic Depths
+			Not consumable
+			''' */
 	}
 }
 

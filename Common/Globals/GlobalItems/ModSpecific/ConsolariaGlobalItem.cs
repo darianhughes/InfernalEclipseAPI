@@ -1,6 +1,5 @@
 ﻿using CalamityMod;
 using InfernalEclipseAPI.Core.Systems;
-using Consolaria.Content.Crossmod.Thorium.Armor;
 using static Terraria.ModLoader.ModContent;
 using Consolaria.Content.Items.Misc;
 using System.Collections.Generic;
@@ -35,29 +34,31 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         {
             if (InfernalConfig.Instance.ConsolariaBalanceChanges && InfernalCrossmod.Thorium.Loaded)
             {
-                if (item.type == ItemType<ViperHelmet>())
+                Mod console = InfernalCrossmod.Consolaria.Mod;
+
+                if (item.type == console.Find<ModItem>("ViperHelmet").Type)
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.10f;
                 }
-                if (item.type == ItemType<ViperChestplate>())
+                if (item.type == console.Find<ModItem>("ViperChestplate").Type)
                 {
                     player.GetAttackSpeed(DamageClass.Throwing) -= 0.15f;
                 }
-                if (item.type == ItemType<ViperLegs>())
+                if (item.type == console.Find<ModItem>("ViperLegs").Type)
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.10f;
                     player.GetCritChance(DamageClass.Throwing) -= 10;
                 }
 
-                if (item.type == ItemType<OldViperHelmet>())
+                if (item.type == console.Find<ModItem>("OldViperHelmet").Type)
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.10f;
                 }
-                if (item.type == ItemType<OldViperChestplate>())
+                if (item.type == console.Find<ModItem>("OldViperChestplate").Type)
                 {
                     player.GetAttackSpeed(DamageClass.Throwing) -= 0.15f;
                 }
-                if (item.type == ItemType<OldViperLegs>())
+                if (item.type == console.Find<ModItem>("OldViperLegs").Type)
                 {
                     player.GetDamage(DamageClass.Throwing) -= 0.10f;
                     player.GetCritChance(DamageClass.Throwing) -= 10;

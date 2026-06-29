@@ -46,32 +46,6 @@ namespace InfernalEclipseAPI.Core.Players
         public bool InverseDiamondRing;
         public bool gutWrench;
 
-        private const int AdjRadius = 4;
-
-        public override void PlayerConnect()
-        {
-            if (!InfernalWorld.craftedWorkshop && workshopHasBeenOwned)
-            {
-                InfernalWorld.craftedWorkshop = true;
-            }
-
-            /*
-            if (InfernalConfig.Instance.InfernumModeForced && WorldSaveSystem.InfernumModeEnabled == false)
-            {
-                WorldSaveSystem.InfernumModeEnabled = true;
-            }
-            */
-
-            if (InfernalConfig.Instance.ForceFullXerocDialogue)
-            {
-                DownedBossSystem.startedBossRushAtLeastOnce = false;
-            }
-
-            if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
-
-            Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.MPConnect"), 95, 06, 06);
-        }
-
         public override void OnEnterWorld()
         {
             if (!InfernalWorld.craftedWorkshop && workshopHasBeenOwned)
@@ -96,51 +70,20 @@ namespace InfernalEclipseAPI.Core.Players
             if (Main.getGoodWorld)
                 InGameNotificationsTracker.AddNotification(new ForTheWorthyNotification());
 
-            //TODO convert these to notifications
             if (ModLoader.HasMod("CWRMod"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.OverhaulWarning"), 255, 0, 0);
-            }
+                InGameNotificationsTracker.AddNotification(new OverhaulNotification());
 
             if (ModLoader.HasMod("Remnants"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RemnantsWarning"), 255, 255, 06);
-            }
+                InGameNotificationsTracker.AddNotification(new RemnantsNotification());
 
             if (ModLoader.HasMod("CalamityMinus"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalMinus"), 255, 255, 06);
-            }
+                InGameNotificationsTracker.AddNotification(new MinusNotification());
 
             if (ModLoader.HasMod("CalBalChange"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.CalBalNotice"), 255, 255, 06);
-            }
+                InGameNotificationsTracker.AddNotification(new CalBalanceNotification());
 
             if (ModLoader.HasMod("InfernumMasterPatch"))
-            {
-                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.MasterPatchNotice"), 255, 255, 06);
-            }
-
-            if (InfernalWorld.RagnarokModeEnabled)
-            {
-                if (InfernalConfig.Instance.DisplayWorldEntryMessages)
-                {
-                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.InfernumActive"), 95, 06, 06);
-                    SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
-                }
-            }
-            /*
-            else if (InfernalConfig.Instance.InfernumModeForced)
-            {
-                if (InfernalConfig.Instance.DisplayWorldEntryMessages)
-                {
-                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.InfernumForced"), 95, 06, 06);
-                    SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
-                }
-                WorldSaveSystem.InfernumModeEnabled = true;
-            }
-            */
+                InGameNotificationsTracker.AddNotification(new MasterPatchNotification());
 
             if (InfernalConfig.Instance.ForceFullXerocDialogue)
             {
@@ -151,27 +94,28 @@ namespace InfernalEclipseAPI.Core.Players
 
             Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.Welcome"), 95, 06, 06);
 
+            if (InfernalWorld.RagnarokModeEnabled)
+            {
+                Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.InfernumActive"), 95, 06, 06);
+                SoundEngine.PlaySound(InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh, Player.Center);
+            }
+
             if (ModLoader.HasMod("ThoriumMod"))
             {
-                //This message should always popup upon entering a world if they are playing the mod pack.
-                if (ModLoader.TryGetMod("ThoriumRework", out Mod rework))
+                if (!InfernalCrossmod.ThoriumRework.Loaded)
                 {
-                    //Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.TBRNotice"), 255, 255, 0);
-                }
-                else
-                {
-                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.TBRWarning"), 255, 0, 0);
+                   InGameNotificationsTracker.AddNotification(new HelheimNotification());
                 }
 
-                if (!ModLoader.TryGetMod("RagnarokMod", out Mod ragnarok))
+                if (!InfernalCrossmod.RagnarokMod.Loaded)
                 {
-                    Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagWarning"), 255, 0, 0);
+                    InGameNotificationsTracker.AddNotification(new RagnarokModNotification());
                 }
-                else if (ragnarok != null && !InfernalConfig.Instance.AutomatedConfigSetup)
+                else if (!InfernalConfig.Instance.AutomatedConfigSetup)
                 {
                     Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokBalance"), 255, 255, 0);
 
-                    if (rework != null)
+                    if (InfernalCrossmod.ThoriumRework.Loaded)
                     {
                         Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.RagnarokRework"), 255, 255, 0);
                     }
@@ -225,6 +169,23 @@ namespace InfernalEclipseAPI.Core.Players
             workshopHasBeenOwned = false;
             singularityCore = false;
             ruinousPlasmaInjection = 0;
+        }
+
+        public override void PlayerConnect()
+        {
+            if (!InfernalWorld.craftedWorkshop && workshopHasBeenOwned)
+            {
+                InfernalWorld.craftedWorkshop = true;
+            }
+
+            if (InfernalConfig.Instance.ForceFullXerocDialogue)
+            {
+                DownedBossSystem.startedBossRushAtLeastOnce = false;
+            }
+
+            if (!InfernalConfig.Instance.DisplayWorldEntryMessages) return;
+
+            Main.NewText(Language.GetTextValue("Mods.InfernalEclipseAPI.WelcomeMessage.MPConnect"), 95, 06, 06);
         }
 
         public override void SaveData(TagCompound tag)
@@ -1110,6 +1071,7 @@ namespace InfernalEclipseAPI.Core.Players
         {
             TryCoinDebuff();
         }
+
         private void TryCoinDebuff()
         {
             if (bloodstainedCoin || putridCoin)

@@ -17,13 +17,35 @@ using InfernumMode.Content.Items.Weapons.Magic;
 using InfernumMode.Content.Items.Weapons.Rogue;
 using CalamityMod.Rarities;
 using InfernalEclipseAPI.Core.Configs;
+using Terraria.GameInput;
+using System.Linq;
 
-namespace InfernalEclipseAPI.Common.GlobalItems
+namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 {
-    public class ItemBalanceChanges : GlobalItem
+    public class InfernalItemBalanceChange : GlobalItem
     {
+        public override bool InstancePerEntity => true;
+
+        public float damage;
+        public float pick;
+        public float useTime;
+        public float useAnimation;
+        public float shootSpeed;
+        public float crit;
+        public float defense;
+
+        public bool modified = false;
+
         public override void SetDefaults(Item item)
         {
+            damage = item.damage;
+            pick = item.pick;
+            useTime = item.useTime;
+            useAnimation = item.useAnimation;
+            shootSpeed = item.shootSpeed;
+            crit = item.crit;
+            defense = item.defense;
+
             #region Vanilla
             if (item.type == ItemID.ReaverShark)
             {
@@ -1123,7 +1145,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #endregion
 
             #region Hypnos
-            if (InfernalConfig.Instance.CalamityBalanceChanges && (ModLoader.TryGetMod("HypnosMod", out Mod hypnos)))
+            if (InfernalConfig.Instance.CalamityBalanceChanges && ModLoader.TryGetMod("HypnosMod", out Mod hypnos))
             {
                 if (item.type == hypnos.Find<ModItem>("Neuraze").Type)
                 {
@@ -1145,7 +1167,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             #endregion
 
             #region Miscellanaria
-            if (InfernalConfig.Instance.VanillaBalanceChanges && (ModLoader.TryGetMod("Miscellanaria", out Mod misc)))
+            if (InfernalConfig.Instance.VanillaBalanceChanges && ModLoader.TryGetMod("Miscellanaria", out Mod misc))
             {
                 if (item.type == ItemID.SkeletonBow)
                 {
@@ -6098,6 +6120,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 }
             }
             #endregion
+
+            if (damage != item.damage || pick != item.pick || useTime != item.useTime || useAnimation != item.useAnimation || shootSpeed != item.shootSpeed || crit != item.crit || defense != item.defense)
+                modified = true;
         }
 
         public override void UpdateEquip(Item item, Player player)
@@ -6135,58 +6160,164 @@ namespace InfernalEclipseAPI.Common.GlobalItems
             return base.CanUseItem(item, player);
         }
 
-        public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage)
-        {
-            /*
-            if (item.type == ModContent.ItemType<BladecrestOathsword>() && !NPC.downedBoss2 && InfernalConfig.Instance.CalamityBalanceChanges)
-            {
-                damage *= 0.71f;
-            }
-            */
-        }
-
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            /*
-            if (item.type == ModContent.ItemType<BladecrestOathsword>() && !NPC.downedBoss2)
+            if (modified)
             {
-                AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.BladecrestNerf"));
-            }
-            */
-        }
+                Item clone = new();
+                clone.SetDefaults(item.type);
 
-        public void AddTooltip(List<TooltipLine> tooltips, string stealthTooltip)
-        {
-            Color InfernalRed = Color.Lerp(
-               Color.White,
-               new Color(255, 80, 0), // Infernal red/orange
-               (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
-            );
+                float damageBalance = clone.damage / damage;
+                float pickBalance = clone.pick - pick;
+                float useTimeBalance = clone.useTime / useTime;
+                float useAnimationBalance = clone.useAnimation / useAnimation;
+                float shootSpeedBalance = clone.shootSpeed / shootSpeed;
+                float critBalance = clone.crit - crit;
+                float defenseBalnce = clone.defense - defense;
 
-            int maxTooltipIndex = -1;
-            int maxNumber = -1;
+                Color InfernalRed = Color.Lerp(
+                   Color.White,
+                   new Color(255, 80, 0), // Infernal red/orange
+                   (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5)
+                );
 
-            // Find the TooltipLine with the highest TooltipX name
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name.StartsWith("Tooltip"))
+                int maxTooltipIndex = -1;
+                int maxNumber = -1;
+                var key = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus["SmartCursor"].First().ToString();
+
+                // Find the TooltipLine with the highest TooltipX name
+                bool foundTooltips = false;
+                for (int i = 0; i < tooltips.Count; i++)
                 {
-                    if (int.TryParse(tooltips[i].Name.Substring(7), out int num) && num > maxNumber)
+                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name.StartsWith("Tooltip"))
                     {
-                        maxNumber = num;
+                        foundTooltips = true;
+                        if (int.TryParse(tooltips[i].Name.Substring(7), out int num) && num > maxNumber)
+                        {
+                            maxNumber = num;
+                            maxTooltipIndex = i;
+                        }
+                    }
+
+                    if (i == tooltips.Count -1 && !foundTooltips)
                         maxTooltipIndex = i;
+                }
+
+                int insertIndex = maxTooltipIndex + 1;
+
+                if (maxTooltipIndex != -1)
+                {
+                    if (PlayerInput.Triggers.Current.SmartCursor)
+                    {
+                        TooltipLine balanceChange = new(Mod, "IEoR:BalanceHeader", $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemBalance.Modified")}:") { OverrideColor = InfernalRed };
+                        tooltips.Insert(insertIndex, balanceChange);
+
+                        insertIndex++;
+
+                        TooltipLine damageChange = null;
+                        if (damageBalance > 1)
+                            damageChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.DamageUpGeneric").Format(Math.Round((damageBalance - 1) * 100)));
+                        else if (damageBalance < 1)
+                            damageChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.DamageDownGeneric").Format(Math.Round((1 - damageBalance) * 100)));
+                        if (damageChange != null)
+                        {
+                            tooltips.Insert(insertIndex, damageChange);
+                            insertIndex++;
+                        }
+
+                        TooltipLine pickChange = null;
+                        if (pickBalance > 0)
+                            pickChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.PickUpGeneric").Format(pickBalance));
+                        if (pickBalance < 0)
+                            pickChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.PickDownGeneric").Format(-pickBalance));
+                        if (pickChange != null)
+                        {
+                            tooltips.Insert(insertIndex, pickChange);
+                            insertIndex++;
+                        }
+
+                        if (useTimeBalance == useAnimationBalance)
+                        {
+                            TooltipLine useSpeedChange = null;
+                            if (useTimeBalance < 1)
+                                useSpeedChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.UseSpeedUpGeneric").Format(Math.Round(-(useTimeBalance - 1) * 100)));
+                            else if (useTimeBalance > 1)
+                                useSpeedChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.UseSpeedDownGeneric").Format(Math.Round((1 - useTimeBalance) * 100)));
+                            if (useSpeedChange != null)
+                            {
+                                tooltips.Insert(insertIndex, useSpeedChange);
+                                insertIndex++;
+                            }
+                        }
+                        else
+                        {
+                            TooltipLine useTimeChange = null;
+                            if (useTimeBalance < 1)
+                                useTimeChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.UseTimeUpGeneric").Format(Math.Round(-(useTimeBalance - 1) * 100)));
+                            else if (useTimeBalance > 1)
+                                useTimeChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.UseTimeDownGeneric").Format(Math.Round((1 - useTimeBalance) * 100)));
+                            if (useTimeChange != null)
+                            {
+                                tooltips.Insert(insertIndex, useTimeChange);
+                                insertIndex++;
+                            }
+
+                            TooltipLine useAniChange = null;
+                            if (useAnimationBalance < 1)
+                                useAniChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.UseAnimationUpGeneric").Format(Math.Round(-(useTimeBalance - 1) * 100)));
+                            else if (useAnimationBalance > 1)
+                                useAniChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.UseAnimationDownGeneric").Format(Math.Round((1 - useTimeBalance) * 100)));
+                            if (useAniChange != null)
+                            {
+                                tooltips.Insert(insertIndex, useAniChange);
+                                insertIndex++;
+                            }
+                        }
+
+                        TooltipLine shootSpeedChange = null;
+                        if (shootSpeedBalance > 1)
+                            shootSpeedChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.ShootSpeedUpGeneric").Format(Math.Round((shootSpeedBalance - 1) * 100)));
+                        else if (shootSpeedBalance < 1)
+                            shootSpeedChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.ShootSpeedDownGeneric").Format(Math.Round(-(1 - shootSpeedBalance) * 100)));
+                        if (shootSpeedChange != null)
+                        {
+                            tooltips.Insert(insertIndex, shootSpeedChange);
+                            insertIndex++;
+                        }
+
+                        TooltipLine critChange = null;
+                        if (critBalance > 0)
+                            critChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.CritUpGeneric").Format(critBalance));
+                        else if (critBalance < 0)
+                            critChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.CritDownGeneric").Format(-critBalance));
+                        if (critChange != null)
+                        {
+                            tooltips.Insert(insertIndex, critChange);
+                            insertIndex++;
+                        }
+
+                        TooltipLine defenseChange = null;
+                        if (defenseBalnce > 0)
+                            defenseChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.DefenseUpGeneric").Format(defenseBalnce));
+                        else if (defenseBalnce < 0)
+                            defenseChange = new(Mod, "IEoR:BalanceChange", Language.GetText("Mods.InfernalEclipseAPI.ItemBalance.DefenseDownGeneric").Format(-defenseBalnce));
+                        if (defenseChange != null)
+                        {
+                            tooltips.Insert(insertIndex, defenseChange);
+                            //insertIndex++;
+                        }
+                    }
+                    else
+                    {
+                        TooltipLine balanceChange = new(Mod, "IEoR:BalanceHeader", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemBalance.Modified")) { OverrideColor = InfernalRed };
+                        tooltips.Insert(insertIndex, balanceChange);
+
+                        insertIndex++;
+
+                        TooltipLine hint = new(Mod, "IEoR:BalanceHint", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemBalance.Modified2", key)) { OverrideColor = new Color(170, 170, 170) };
+                        tooltips.Insert(insertIndex, hint);
                     }
                 }
-            }
-
-            // If found, insert a new TooltipLine right after it with the desired color
-            if (maxTooltipIndex != -1)
-            {
-                int insertIndex = maxTooltipIndex + 1;
-                TooltipLine customLine = new TooltipLine(Mod, "StealthTooltip", stealthTooltip);
-                customLine.OverrideColor = InfernalRed;
-
-                tooltips.Insert(insertIndex, customLine);
             }
         }
 

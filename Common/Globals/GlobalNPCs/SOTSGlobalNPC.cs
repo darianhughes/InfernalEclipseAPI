@@ -90,7 +90,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 ModContent.NPCType<GiantClam>(),
                 ModContent.NPCType<LightSnuffingHand>(),
                 ModContent.NPCType<PutridPinky1>(),
-                NPCID.DungeonGuardian
+                NPCID.DungeonGuardian,
+                ModContent.NPCType<CrimulanPaladin>(),
+                ModContent.NPCType<EbonianPaladin>(),
+                ModContent.NPCType<SlimeGodCore>(),
             };
 
             EvilArmTexture = ModContent.Request<Texture2D>("SOTS/Projectiles/Evil/EvilArm");
@@ -169,7 +172,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 ModContent.NPCType<PerforatorTailSmall>(),
                 ModContent.NPCType<HiveMind>(),
                 ModContent.NPCType<DarkHeart>(),
-                ModContent.NPCType<HiveBlob>()
+                ModContent.NPCType<HiveBlob>(),
+                ModContent.NPCType<CrimulanPaladin>(),
+                ModContent.NPCType<EbonianPaladin>(),
+                ModContent.NPCType<SlimeGodCore>(),
             };
 
             if (curseImmune.Contains(entity.type) && WorldSaveSystem.InfernumModeEnabled)
@@ -323,7 +329,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
             if (flag3)
             {
-                if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != ModContent.NPCType<GiantClam>())
+                if (!npc.boss && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && !EvilGrowthPullImmuneNPCs.Contains(npc.type))
                 {
                     num26 *= 0.2f;
                 }
@@ -541,7 +547,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                             drawPos,
                             null,
                             ColorHelper.EvilColor,
-                            rotation + MathHelper.PiOver2,
+                            rotation + PiOver2,
                             handTexture.Size() * 0.5f,
                             drawScale * 1.4f,
                             SpriteEffects.None,
@@ -582,7 +588,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
         public override void SetDefaults(Projectile entity)
         {
             int[] dealsVoidDamge =
-            {
+            [
+                //Perforators
                 ModContent.ProjectileType<IchorShot>(),
                 ModContent.ProjectileType<IchorBlob>(),
                 ModContent.ProjectileType<IchorBlast>(),
@@ -590,17 +597,35 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 ModContent.ProjectileType<IchorShower>(),
                 ModContent.ProjectileType<IchorSpit>(),
                 ModContent.ProjectileType<Crimera>(),
+
+                //Hive Mind
                 ModContent.ProjectileType<ShaderainHostile>(),
                 ModContent.ProjectileType<VileClot>(),
                 ModContent.ProjectileType<EaterOfSouls>(),
-                ModContent.ProjectileType<InfernumMode.Content.BehaviorOverrides.BossAIs.HiveMind.ShadeFire>(),
-            };
+                ModContent.ProjectileType<ShadeFire>(),
+
+                //Slime God
+
+                //SCal
+                ModContent.ProjectileType<SupremeCataclysmFist>(),
+                ModContent.ProjectileType<SupremeCatastropheSlash>(),
+                ModContent.ProjectileType<SupremeCataclysmFistOld>(),
+                ModContent.ProjectileType<CatastropheSlash>()
+            ];
+
+            foreach (int type in dealsVoidDamge)
+            {
+                if (entity.type == type)
+                    canDoVoidDamage = true;
+
+                if (entity.type == ModContent.ProjectileType<SupremeCataclysmFist>() || entity.type == ModContent.ProjectileType<SupremeCatastropheSlash>() || entity.type == ModContent.ProjectileType<SupremeCataclysmFistOld>() || entity.type == ModContent.ProjectileType<CatastropheSlash>())
+                    strongerVoidDamage = true;
+            }
         }
 
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
-            if (projectile.type == ModContent.ProjectileType<SupremeCataclysmFist>() || projectile.type == ModContent.ProjectileType<SupremeCatastropheSlash>() || projectile.type == ModContent.ProjectileType<SupremeCataclysmFistOld>() || projectile.type == ModContent.ProjectileType<CatastropheSlash>()
-                || canDoVoidDamage)
+            if (canDoVoidDamage)
             {
                 int damage = 1 + projectile.damage / (strongerVoidDamage ? 2 : strongVoidDamge ? 3 : 6);
                 VoidPlayer.VoidDamage(Mod, target, damage);

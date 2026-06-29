@@ -114,7 +114,6 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "KainSett",
             "nicole",
             "KaiTheExaminer",
-            "konte1m",
             "LeEr206",
             "Pil",
             "Yelmut",
@@ -143,13 +142,12 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "ProSigmaSoul",
             "Sir_Yeetus_III",
             "Samoh",
-            "darkwex",
             "Imagiknight Orpheus",
             "un5",
             "rocket",
             "FlamingSock",
-            "ゴジータ",
             "drastik",
+            "brxdyfrxmdxg",
 
             //Supporters
             "CuddlySnake",
@@ -160,6 +158,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Romain TISSERAND",
             "NICK",
             "Imagiknight_Parad0xical",
+            "skylar!",
 
             //Helpers
             "fjiown",
@@ -170,10 +169,11 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Blockaroz",
             "javyz",
             "habble",
-            "Eram",
             "Lucille Karma",
+            "Eram",
             "tomat",
             "Nycro",
+            "Blast",
             "Cataclysmic Armageddon",
             "Yardis",
         };

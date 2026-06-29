@@ -823,13 +823,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                     if (InfernalConfig.Instance.MergeCraftingTrees)
                     {
-                        if (InfernalCrossmod.Thorium.Loaded)
-                        {
-                            InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull"), InfernalRed);
-                            InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Watch"), InfernalRed);
-                        }
                         if (InfernalCrossmod.Clamity.Loaded)
                             InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.CyanPearl"), InfernalRed);
+
+                        if (InfernalCrossmod.Thorium.Loaded)
+                        {
+                            //InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Skull"), InfernalRed);
+                            InfernalUtilities.AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Watch"), InfernalRed);
+                        }
                     }
                 }
 

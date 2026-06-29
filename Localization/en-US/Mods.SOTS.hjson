@@ -59,8 +59,7 @@ Items: {
 
 	ElementalBreastplate: {
 		DisplayName: Elemental Breastplate
-		Tooltip: TEMP
-		TooltipExt:
+		Tooltip:
 			'''
 			Increases melee and summon damage by 10%
 			Increases life regeneration by 4
