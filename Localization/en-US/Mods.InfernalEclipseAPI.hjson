@@ -16,7 +16,7 @@ UI: {
 	Expert: Expert Mode
 	Master: Master Mode
 	Legendary: Legendary Mode
-	Revengence: Revengence Mode
+	Revengence: Revengeance Mode
 	Death: Death Mode
 	LDeath: Malice Mode
 	Infernum: Infernum Mode
@@ -24,7 +24,7 @@ UI: {
 	WarningSouls:
 		'''
 		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
-		Enabling Infernum Mode or Ragnarok mode will disable Eternity mode as they are incompatible!
+		Enabling Infernum Mode or Ragnarok Mode will disable Eternity Mode as they are incompatible!
 		Please do not report any balance issues or bugs while playing with Fargo's Souls.
 		'''
 	WarningForTheWorthyON:
@@ -41,7 +41,7 @@ UI: {
 	NoticeHomewardRagnarok:
 		'''
 		Thanks for playing Homeward Ragnarok, an official DLC mod to Infernal Eclipse of Ragnarok!
-		Please report and issues relating to Homeward Journey in the Homeward Ragnarok discord.
+		Please report any issues relating to Homeward Journey in the Homeward Ragnarok discord.
 		The main team does not directly work on this mod and can not provide help in the main discord.
 		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
 		'''
@@ -103,14 +103,14 @@ DifficultyUI: {
 		'''
 	ExpandedDescription:
 		'''
-		[c/B32E81:Seemlessly merges both Death and Infernum mode, combining many of their changes.]
+		[c/B32E81:Seamlessly merges both Death and Infernum Mode, combining many of their changes.]
 		[c/B32E81:Many major foes will have unique behavior patterns on top of their Infernum AI.]
-		[c/B32E81:Foes will have very high base stats and scale more agressively in multiplayer.]
+		[c/B32E81:Foes will have very high base stats and scale more aggressively in multiplayer.]
 		[c/FF0055:Can you master the Infernal Eclipse of Ragnarok?]
 		'''
 	Activation: The Infernal Eclipse has risen...
 	Deactivation: Another unworthy challenger has walked away.
-	MasterToggle: Master mode is now enabled!
+	MasterToggle: Master Mode is now enabled!
 }
 
 WelcomeMessage: {
@@ -119,7 +119,7 @@ WelcomeMessage: {
 	SoulsWarning:
 		'''
 		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok! 
-		Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.
+		Please note that Infernum Mode is not compatible with Eternity Mode and you may experience major bugs if you have both enabled.
 		'''
 	InfernumActive: The prodigy has returned to face the Infernal Eclipse...
 	MPConnect: A prodigy has returned to help face the Infernal Eclipse...
@@ -134,11 +134,11 @@ TimeFreezePrevention: {
 	AuricSoul: The beings auric soul prevents the incubator from activating...
 	ExoMech: Draedon's machine prevents the incubator from activating!
 	Terminus: The Terminus' light prevents the incubator's effects!
-	SCal: The witch dispells the incubator's effects!
+	SCal: The witch dispels the incubator's effects!
 	Primoridal: Primordial forces prevent the incubator's effects!
 	HolyFlame: The holy flame protects the world from the incubator's effects!
 	TerraBlade: Your reflection is immune to the incubator's effects!
-	Other: The incubator's effects was prevented!
+	Other: The incubator's effects were prevented!
 }
 
 BossCheesePrevention: {
@@ -176,14 +176,14 @@ ItemTooltip: {
 	NamelessDowned: You must pass the test
 	DisabledBossRush: The effects will not work in Boss Rush
 	SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
-	NBeamUsage: Hold Left-Click to release a Nebula Gigabam that deals mythic magic damage
+	NBeamUsage: Hold Left-Click to release a Nebula Gigabeam that deals mythic magic damage
 	MBeamUsage: Hold Left-Click to release a Exo Disintegrator beam that deals mythic ranged damage
 	SFlight: Holding right click grants fast, unlimited flight
 	StarlitForgeExtra: Even more curiously, it can even duplicate some items
 	BladecrestNerf: An evil force is sapping part of its power...
 	EclipseFang: "[IEoR]: Weapon empowerment always active."
 	ScytheThrow: Right Click to throw the scythe, which will curve on its way back
-	ThorsHammerPro: Inflcts electrified for 3 seconds on hits.
+	ThorsHammerPro: Inflicts electrified for 3 seconds on hits.
 	BountifulHarvest: Fires piercing stingers in an alternating pattern
 	TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
 	HornScale: Heal amount scales with progression
@@ -1311,7 +1311,7 @@ Items: {
 				Before the world was formed, there were only the Primordials.
 				Each of them represents an aspect of this world, and protect the world from Ragnarok.
 				During my war, I had wanted to slay them thinking they were merely sinners like the other gods,
-				however no matter what I did I could not get there attention.
+				however no matter what I did I could not get their attention.
 				Was I not worthy of their attention despite all I had done to the world?
 				Don't tell me they think I'm a spec in this worlds history compared to you...
 				'''
@@ -1408,7 +1408,7 @@ Items: {
 				The youngest of the eternal siblings, and also the weakest.
 				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
 				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
-				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while weilding a living axe made of evil.
+				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while wielding a living axe made of evil.
 				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
 				'''
 		}
@@ -2028,7 +2028,7 @@ Items: {
 		DisplayName: Tinkerers Repair Blueprints
 		Tooltip:
 			'''
-			When I was tied up the other goblins seem to have lost my workshop, 
+			When I was tied up, the other goblins seem to have lost my workshop, 
 			and I now fear that one of the beasts of Cthulhu has it...
 			If you manage to slay one and get my ruined workshop, this will help you repair it!
 			'''
@@ -2149,7 +2149,7 @@ Items: {
 			'''
 			{0} improvements to all stats
 			Instantly activates adrenaline mode & inflicts [cbuff:PotionSickness]
-			Can not be consumed when a boss is alive
+			Cannot be consumed when a boss is alive
 			'Happy Birthday!'
 			'''
 		Stellar: Stellar
@@ -2501,7 +2501,7 @@ Configs: {
 			Miscellaneous: Miscellaneous
 			MultiplayerAdjustments: Multiplayer Adjustments & Utilities
 			Main: Main
-			Secret: Expiremental Adjustments & Secret Settings
+			Secret: Experimental Adjustments & Secret Settings
 			Music: Music Toggles
 			CompatibilityChanges: Compatibility Changes
 		}
@@ -2832,8 +2832,8 @@ Configs: {
 		}
 
 		Revengence: {
-			Label: Revengence
-			Tooltip: Respawns will be prevented in Revengence+ difficulty
+			Label: Revengeance
+			Tooltip: Respawns will be prevented in Revengeance+ difficulty
 		}
 
 		Death: {

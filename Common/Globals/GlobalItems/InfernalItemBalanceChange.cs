@@ -753,6 +753,22 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             }
             #endregion
 
+            #region Calamity Overdrive
+            if (ModLoader.TryGetMod("WulfrumExpansion", out Mod overdrive) && InfernalConfig.Instance.CalamityBalanceChanges)
+            {
+                if (UnsafeGetItem(overdrive, "WulfrumSapper", item))
+                {
+                    item.damage = 18;
+                }
+                /*
+                if (UnsafeGetItem(overdrive, "ArcScepterBeam", item))
+                {
+                    item.damage = 48;
+                }
+                */
+            }
+            #endregion
+
             #region Calamity Simple Whip Addon
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
@@ -874,6 +890,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 {
                     item.useAnimation = 44;
                     item.useTime = 44;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "KingsMajesty", item))
+                {
+                    item.damage = 18;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "EmeraldSplash", item))
+                {
+                    item.damage = 100;
                 }
 
                 int[] bleachedAcessories =
@@ -5995,7 +6019,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 if (GetItem(sotsBH, "UltrasonicBassBooster", item))
                 {
-                    item.damage = 60;
+                    item.damage = 70;
                 }
 
                 if (GetItem(sotsBH, "TwilightAscendance", item))
