@@ -17,7 +17,7 @@ Items: {
 	LunateCharm.Tooltip:
 		'''
 		Gaining soul essence grants shield when health is full
-		Removes the radiant damage penalty from the [cbuff:InfernalEclipseAPI/BrokenOath] debuff
+		Removes the 50% damage penalty from the [cbuff:InfernalEclipseAPI/BrokenOath] debuff
 		'''
 	SealedContract.Tooltip:
 		'''

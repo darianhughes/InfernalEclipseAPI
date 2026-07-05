@@ -594,6 +594,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient<Rock>(1);
                     }
 
+                    if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("Rubellus")))
+                    {
+                        recipe.AddIngredient(InfernalCrossmod.Calamity.Mod.Find<ModItem>("RuinousSoul"), 2);
+                    }
+
                     if (InfernalConfig.Instance.CalamityBalanceChanges) 
                     {
                         ModItem[] bleachedAcessories =

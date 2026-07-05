@@ -105,3 +105,5 @@ ItemDescriptions.DemonshadeGreaves:
 	Increases wind instrument homing speed and range by 60% and string instruments bounce six additional times
 	Doubles the range of your empowerments effect radius and extends the duration of empowerments by 6 seconds
 	'''
+
+ItemDescriptions.ChampionWing: ""

@@ -173,7 +173,13 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticla
                 return;
             }
 
-            if (Player.HasBuff<BrokenOath>())
+            bool lunateCharm = false;
+            if (InfernalCrossmod.ThoriumRework.Loaded)
+            {
+                lunateCharm = LunateCharmChecker.PlayerHasLunateCharm(Player);
+            }
+
+            if (Player.HasBuff<BrokenOath>() && !lunateCharm)
                 modifiers.FinalDamage *= 0.5f;
 
             bool healerAttack = IsHealerDamage(proj);

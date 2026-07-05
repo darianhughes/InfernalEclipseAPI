@@ -779,6 +779,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.useAnimation = 30;
                     item.useTime = 30;
                 }
+                if (UnsafeGetItem(simpleWhipAddon, "MandibleLash", item))
+                {
+                    item.rare = ItemRarityID.Blue;
+                }
                 if (UnsafeGetItem(simpleWhipAddon, "Droptide", item))
                 {
                     item.damage = 28;
@@ -898,6 +902,18 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 if (UnsafeGetItem(simpleWhipAddon, "EmeraldSplash", item))
                 {
                     item.damage = 100;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "WulfrumArm", item))
+                {
+                    item.useAnimation = 60;
+                    item.useTime = 60;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "Rubellus", item))
+                {
+                    item.rare = ModContent.RarityType<PureGreen>();
+                    item.damage = 130;
+                    item.useAnimation = 40;
+                    item.useTime = 40;
                 }
 
                 int[] bleachedAcessories =
@@ -1059,6 +1075,16 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 if (UnsafeGetItem(calAmmo, "DazzlingAstralArrow", item))
                 {
                     item.damage = 1;
+                }
+
+                if (UnsafeGetItem(calAmmo, "MushroomUnitedNations", item))
+                {
+                    item.rare = item.rare = ItemRarityID.Purple;
+                }
+
+                if (UnsafeGetItem(calAmmo, "AutoCalculationCoil", item))
+                {
+                    item.rare = ModContent.RarityType<ExoticRainbow>();
                 }
             }
             #endregion
