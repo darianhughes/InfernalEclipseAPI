@@ -283,7 +283,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
             if (item.type == ItemType<YumasPendant>())
             {
-                player.GetDamage(DamageClass.Generic) -= 0.04f;
                 player.GetDamage(DamageClass.Summon) -= 0.05f;
             }
 

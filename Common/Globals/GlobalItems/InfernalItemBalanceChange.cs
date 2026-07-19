@@ -5357,8 +5357,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 if (GetItem(sots, "ShatterBlade", item))
                 {
-                    item.crit = 6;
-                    item.damage = 17;
                     item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
                 }
 
@@ -5651,6 +5649,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 if (GetItem(sots, "PinkJellyfishStaff", item))
                 {
                     item.damage = 13;
+                }
+
+                if (GetItem(sots, "PiscesPunsher", item))
+                {
+                    item.damage = 16;
                 }
 
                 if (GetItem(sots, "IlluminantStaff", item))

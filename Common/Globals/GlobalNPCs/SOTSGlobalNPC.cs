@@ -47,6 +47,7 @@ using CalamityMod.Events;
 using InfernalEclipseAPI.Core.Players;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
+using SOTS.Projectiles.Permafrost;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -208,6 +209,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     if (player.active && !player.dead)
                     {
                         player.ClearBuff(ModContent.BuffType<Embattle>());
+                    }
+
+                    //Shatter Shard clear on boss spawn
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        Projectile proj = Main.projectile[i];
+
+                        if (!proj.active)
+                            continue;
+
+                        if (proj.type == ModContent.ProjectileType<ShatterShard>())
+                        {
+                            proj.Kill();
+                        }
                     }
                 }
             }
@@ -405,7 +420,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 for (int i = 0; i < items.Length; i++)
                 {
                     if (items[i] != null && !items[i].IsAir &&
-                        items[i].type == ModContent.ItemType<GlazeBow>())
+                        items[i].type == ModContent.ItemType<SOTS.Items.ChestItems.GlazeBow>())
                     {
                         items[i].TurnToAir();
                     }

@@ -116,6 +116,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     RegisterExternalBuff(entropy, "ThoriumMod", "TerrariumBacklash");
                     RegisterExternalBuff(entropy, "ThoriumMod", "Tuned");
                     RegisterExternalBuff(entropy, "ThoriumMod", "Wither");
+                    RegisterExternalBuff(entropy, "ThoriumMod", "GraniteSurge");
                 }
                 //Catalyst
                 if (InfernalCrossmod.Catalyst.Loaded)
@@ -276,6 +277,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "TerrariumBacklash");
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "Tuned");
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "Wither");
+                        AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "GraniteSurge");
                     }
                     if (InfernalCrossmod.Catalyst.Loaded)
                     {
