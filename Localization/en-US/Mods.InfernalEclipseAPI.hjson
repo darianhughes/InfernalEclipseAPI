@@ -2128,18 +2128,14 @@ Items: {
 	}
 
 	TyrantYharimsUltisword: {
-		DisplayName: Tyrant's Penetrator
+		DisplayName: Deicide
 		Tooltip:
 			'''
-			Throw a auric greatsword that impales, immolates, and slows enemies
-			Up to five blades can impale an enemy at a time, with further hits launching the previous impaled blades
-			Press <right> to enter a stance where you can use <left> to perform a colossal, devastating slash
-			While in the stance, you gain life and flight time regeneration and your dashes have a shorter cooldown
-			The devastating slash must recharge after being used
-			Striking an impaled enemy with the devastating slash launches all blades and readies another slash
-			The final enemy hit with a devastating slash has a death mark applied to them
-			When you exit the stance, the death mark explodes for massive damage
-			'The reward of becoming a godseeker...'
+			Swings a slow and heavy blade with powerful knockback which fires blazing, hyper, and sunlight blades
+			Holding <right> will begin charging a strengthened swing
+			Releasing <right> while fully charged will unleash a devastating slash that always critically strikes
+			Hitting an enemy inflicts [cbuff:CalamityMod/AuricRebuke]
+			'May fortune favor you. For nothing else will.'
 			'''
 	}
 

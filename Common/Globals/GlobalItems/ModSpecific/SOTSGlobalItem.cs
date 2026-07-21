@@ -44,6 +44,7 @@ using SOTS.Items.Secrets;
 using SOTS.Items.Void;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
+using CalamityMod.Items.Accessories.Wings;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -696,26 +697,28 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     float baseJumpSpeed = (CalamityServerConfig.Instance.FasterJumpSpeed ? 5.71f : 5.01f) + 1f;
                     StringBuilder sb = new StringBuilder(512);
                     sb.Append('\n');
-                    sb.Append(CalamityUtils.GetText($"Common.WingStats").Format(time.FramesToSeconds(), run.ToMph(), (1.35f * baseJumpSpeed).ToMph()));
-                    sb.Append('\n');
                     if (Main.keyState.PressingShift())
                     {
-                        sb.Append(CalamityUtils.GetText($"Common.WingStatsAcceleration").Format(rAcc.ToMphps(), 0.195f.ToMphps(),
+                        sb.Append(CalamityUtils.GetText($"Common.WingStatsFull").Format(time.FramesToSeconds(),
+                        BaseWings.HorizontalSpeedText(run), run.ToMph(),
+                        BaseWings.VerticalSpeedText(1.35f), (1.35f * baseJumpSpeed).ToMph(),
+                        BaseWings.HorizontalAccelerationText(stats.AccRunAccelerationMult), rAcc.ToMphps(),
+                        BaseWings.VerticalAccelerationText(0.195f), 0.195f.ToMphps(),
                         (0.1f + 0.15f).ToMphps(), (1 * baseJumpSpeed).ToMph(),
                         (0.195f + 0.85f).ToMphps()));
                         if (hover)
                         {
                             sb.Append('\n');
-                            sb.Append(CalamityUtils.GetText($"Common.WingStatsHover").Format(hSpeed.ToMph(), hAcc.ToMphps()));
+                            sb.Append(Language.GetText($"Common.WingStatsHover").Format(hSpeed.ToMph(), hAcc.ToMphps()));
                         }
                     }
                     else
-                        sb.Append($"[c/B8B8B8:{CalamityUtils.GetTextValue("UI.HoldShiftTooltipExtensionIndicator")}]");
-
-                    // Add stats below the common "Allows flight" line
-                    var wingTooltip = tooltips.FirstOrDefault(x => x.Name == "Tooltip0" && x.Mod == "Terraria");
-                    if (wingTooltip != null)
-                        wingTooltip.Text += sb.ToString();
+                    {
+                        sb.Append(CalamityUtils.GetText($"Common.WingStats").Format(time.FramesToSeconds(), BaseWings.HorizontalSpeedText(run), BaseWings.VerticalSpeedText(1.35f),
+                        BaseWings.HorizontalAccelerationText(stats.AccRunAccelerationMult), BaseWings.VerticalAccelerationText(0.195f)));
+                        sb.Append('\n');
+                        sb.Append($"[c/B8B8B8:{Language.GetTextValue("UI.HoldShiftTooltipExtensionIndicator")}]");
+                    }
                 }
 
                 if (item.type == ItemType<CrestofDasuver>())

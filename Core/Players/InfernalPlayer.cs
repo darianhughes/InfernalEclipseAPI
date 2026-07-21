@@ -459,8 +459,14 @@ namespace InfernalEclipseAPI.Core.Players
             else
                 nightmareArmCD = 0;
 
-            if (BossRushEvent.BossRushActive && Player.statLifeMax2 > 1111)
-                Player.statLifeMax2 = 1111;
+            if (BossRushEvent.BossRushActive)
+            {
+                if (Player.statLifeMax2 > 1111)
+                    Player.statLifeMax2 = 1111;
+
+                if (Player.statLife > 1111)
+                    Player.statLife = 1111;
+            }
         }
 
         public bool soltanBullying = false;

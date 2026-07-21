@@ -1,22 +1,17 @@
-﻿using System.IO;
-using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.Cooldowns;
-using CalamityMod.Dusts;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.NPCs;
 using CalamityMod.Particles;
 using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod.Projectiles.Melee;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using ReLogic.Content;
 using ReLogic.Utilities;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
-using CalamityMod.Projectiles.Typeless;
-using InfernalEclipseAPI.Core.Netcode;
+using CalamityMod.Items.Weapons.Melee;
+using CalamityMod.Projectiles.Melee;
+using CalamityMod.Buffs.DamageOverTime;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword
 {
@@ -27,34 +22,28 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword
 
         public override LocalizedText DisplayName => CalamityUtils.GetItemName<TyrantYharimsUltisword>();
         public override string Texture => "InfernalEclipseAPI/Content/Items/Weapons/Melee/TyrantYharimsUltisword/TyrantYharimsUltisword";
-        public float hitboxMult = 1.45f;
-        public Color clr = Color.Lerp(Color.Red, Color.Orange, 0.5f);
-        public SlotId SoundSlot;
-        public override float HitboxOutset => 335;
+        public override float HitboxOutset => 100;
 
-        public override Vector2 HitboxSize => new Vector2(395, 395) * hitboxMult;
-        public override float HitboxRotationOffset => MathHelper.ToRadians(-45);
+        public override Vector2 HitboxSize => new Vector2(185, 185);
+        public override float HitboxRotationOffset => ToRadians(-45);
 
-        public override Vector2 SpriteOrigin => new(-3, 118);
+        public override Vector2 SpriteOrigin => new(-3, 145);
         public Vector2 mousePos;
         public Vector2 aimVel;
         public bool doSwing = true;
         public bool postSwing = false;
         public float fadeIn = 0;
         public int useAnim;
-        public int swingCount;
-        public bool finalFlip = false;
-        public bool playSwingSound = true;
-        public bool holding = true;
-        public int postSwingCooldown = 0;
-        public bool willDie = false;
-        public bool hasLaunchedBlades = false;
-        public bool swooshFade = false;
-        private int lastSwingId;
+        public int storedUseAnim;
+        public int swingCount = 0;
+        public int pierceReduction = 0;
 
-        public NPC lastHitTarget = null;
-        private int lastHitTargetIndex = -1;
-        public int postSwingCooldownMax => (int)(useAnim * 0.4f);
+        public bool chargedSwing = false;
+        public int chargeTimer = 0;
+        public int chargeTimerMax = 90;
+        public bool playSwingSound = true;
+
+        public SlotId AudSlot;
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -62,208 +51,142 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword
             Projectile.localNPCHitCooldown = -1;
             Projectile.DamageType = MythicMelee.Instance;
         }
-        public override void OnSpawn(IEntitySource source)
-        {
-            base.OnSpawn(source);
-            // This is needed because EntitySource_ItemUse always sets Projectile.originalDamage to the item's damage,
-            // regardless of the value passed into the damage argument of NewProjectile.
-            // This results in continuous updating damage resetting the damage.
-            Projectile.originalDamage *= 15;
-        }
         public override void WhenSpawned()
         {
-            IgnoreActiveAnimation = true;
-            DrawUnconditionally = true;
             CanHit = false;
             Projectile.knockBack = 0;
-            Projectile.scale = 1.15f;
             Projectile.ai[1] = -1;
-            bool isOwner = Main.myPlayer == Projectile.owner;
-            // 14NOV2024: Ozzatron: clamped mouse position unnecessary, only used for direction
-            if (isOwner)
-            {
-                mousePos = Owner.Calamity().mouseWorld;
-                aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65;
-                Projectile.netUpdate = true;
-            }
-            else
-            {
-                Vector2 syncedDelta = Owner.Calamity().mouseWorldDeltaFromPlayer;
-                if (syncedDelta.LengthSquared() > 0.001f)
-                    aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65f;
-                else
-                    aimVel = Vector2.UnitX * Owner.direction * 65f;
-                mousePos = Owner.Center - aimVel;
-            }
-            useAnim = (int)(Owner.HeldItem.useAnimation / Owner.GetTotalAttackSpeed<MeleeDamageClass>());
-            postSwingCooldown = postSwingCooldownMax / 3;
-            lastSwingId = (int)Projectile.ai[0];
+
+            // 14NOV2024: Ozzatron: clamped mouse position unnecessary, as Hellkite has no projectiles
+            mousePos = Owner.Calamity().mouseWorld;
+            aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65;
+            useAnim = Owner.itemAnimationMax;
+            storedUseAnim = useAnim;
+
+            chargeTimerMax = useAnim * 2;
 
             if (mousePos.X < Owner.Center.X) Owner.direction = -1;
             else Owner.direction = 1;
 
             FlipAsSword = Owner.direction == -1 ? true : false;
         }
-        public override void OnKill(int timeLeft)
-        {
-            Owner.Calamity().demonSwordKillMode = false;
-            if (lastHitTarget != null && lastHitTarget.life > 0 && lastHitTarget.active && Owner.HeldItem.type == AssignedItemID && Main.myPlayer == Projectile.owner)
-            {
-                Owner.SetScreenshake(12.5f);
-                Particle blastRing = new CustomPulse(lastHitTarget.Center, Vector2.Zero, clr, "CalamityMod/Particles/HighResHollowCircleHardEdge", Vector2.One, Main.rand.NextFloat(-10, 10), 0.05f, 0.6f, 20, true);
-                GeneralParticleHandler.SpawnParticle(blastRing);
-                for (int i = 0; i < 4; i++)
-                {
-                    Vector2 vel = (MathHelper.TwoPi * i / 4f).ToRotationVector2() * 2;
-                    Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), lastHitTarget.Center, vel.RotatedBy(MathHelper.ToRadians(45)), ModContent.ProjectileType<DevilsStrike>(), 0, 0f, Owner.whoAmI, 1, 0);
-                }
-                Projectile strike = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), lastHitTarget.Center, Vector2.Zero, ModContent.ProjectileType<DirectStrike>(), (int)(Projectile.damage * 1.666f), 0f, Owner.whoAmI, lastHitTarget.whoAmI, 0);
-                strike.DamageType = DamageClass.Melee;
-                SoundStyle dieSound = new("CalamityMod/Sounds/Item/LanceofDestinyStrong");
-                SoundEngine.PlaySound(dieSound with { Volume = 0.9f, Pitch = 0.3f }, lastHitTarget.Center);
-
-                int bonusDamage = 4000;
-                if (lastHitTarget.Calamity().demonicFlamesBonusDamage <= bonusDamage)
-                {
-                    lastHitTarget.Calamity().demonicFlamesBonusDamage = bonusDamage;
-                    lastHitTarget.AddBuff(ModContent.BuffType<DemonicFlames>(), 210);
-                    // I'm like 95% confident this shouldn't need a sync since OnKill is called on all clients
-                }
-            }
-        }
         public override void UseStyle()
         {
-            bool isOwner = Main.myPlayer == Projectile.owner;
-            bool hasKillMode = Owner.Calamity().cooldowns.TryGetValue(KillMode.ID, out CooldownInstance killModeCD);
+            AnimationProgress = Animation % (chargedSwing ? (int)(storedUseAnim * 0.7f) : storedUseAnim);
 
-            if (!isOwner)
-            {
-                Vector2 syncedDelta = Owner.Calamity().mouseWorldDeltaFromPlayer;
-                if (syncedDelta.LengthSquared() > 0.001f)
-                    aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65f;
-            }
+            if (Owner.Calamity().mouseRight)
+                Projectile.ai[2] = 5;
 
-            if (lastHitTargetIndex >= 0)
-            {
-                NPC syncedTarget = Main.npc[lastHitTargetIndex];
-                if (syncedTarget != null && syncedTarget.active && syncedTarget.life > 0)
-                    lastHitTarget = syncedTarget;
-            }
-
-            if (isOwner)
-            {
-                bool shouldStartSwing = (Main.mouseLeft || (hasKillMode && killModeCD.timeLeft == KillMode.cooldownMax + 1)) && holding && postSwingCooldown == 0;
-                if (shouldStartSwing)
-                {
-                    aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65;
-                    Projectile.ai[0] += 1f;
-                    Projectile.netUpdate = true;
-                }
-            }
-
-            int swingId = (int)Projectile.ai[0];
-            if (swingId != lastSwingId && holding && postSwingCooldown == 0)
-            {
-                Animation = (int)(useAnim * 0.7f);
-                holding = false;
-                if (isOwner)
-                {
-                    killModeCD.timeLeft = KillMode.cooldownMax / 2;
-                    Owner.Calamity().killModeCooldown = (KillMode.cooldownMax / 2) - 1;
-                }
-                swingCount++;
-                lastSwingId = swingId;
-            }
-
-            if (SoundEngine.TryGetActiveSound(SoundSlot, out var Sound) && Sound.IsPlaying && lastHitTarget != null)
-                Sound.Position = lastHitTarget.Center;
-            if (postSwingCooldown > 0)
-                postSwingCooldown--;
-            else if (willDie)
-            {
-                if (isOwner)
-                {
-                    if (hasKillMode)
-                        killModeCD.timeLeft = KillMode.cooldownMax / 2;
-                    Owner.Calamity().killModeCooldown = KillMode.cooldownMax / 2;
-                    Owner.Calamity().demonSwordKillMode = false;
-                }
-                DrawUnconditionally = false;
-                Projectile.Kill();
-                return;
-            }
-            if (isOwner && killModeCD.timeLeft < KillMode.cooldownMax / 2)
-            {
-                killModeCD.timeLeft = KillMode.cooldownMax / 2;
-                Owner.Calamity().killModeCooldown = KillMode.cooldownMax / 2;
-            }
-
-            if (holding)
-            {
-                Animation--;
-            }
-
-            AnimationProgress = Animation % useAnim;
-
-            if (isOwner && !holding && Main.netMode != NetmodeID.SinglePlayer && (int)Animation % 3 == 0)
-                Projectile.netUpdate = true;
+            DrawUnconditionally = false;
+            bool cantUse = (Owner == null || !Owner.active || Owner.dead || (Projectile.ai[2] == 0 && !Owner.channel) || (Projectile.ai[2] == 5 && !Owner.Calamity().mouseRight) || Owner.CCed || Owner.noItems);
 
             if (CanHit || postSwing)
                 mousePos = Owner.Center - aimVel;
             else
             {
-                mousePos = isOwner ? Owner.Calamity().mouseWorld : (Owner.Center - aimVel);
+                mousePos = Owner.Calamity().mouseWorld;
             }
 
-            if (CanHit && !swooshFade)
-                fadeIn = MathHelper.Lerp(fadeIn, 1, 0.5f);
+            if (CanHit)
+                fadeIn = MathHelper.Lerp(fadeIn, 1, (chargedSwing ? 1.5f : 1) * 0.23f * Owner.GetAttackSpeed<MeleeDamageClass>());
             else
-                fadeIn = MathHelper.Lerp(fadeIn, 0, 0.2f);
+                fadeIn = MathHelper.Lerp(fadeIn, 0, 0.3f);
+            if (chargeTimer > 0)
+                fadeIn = Utils.Remap(chargeTimer, 0, chargeTimerMax, 0, 1f);
+
+            // If you are no longer holding the charge, then stop charge counter so you can swing
+            if (cantUse)
+            {
+                chargeTimer = 0;
+                if (Projectile.ai[2] == 5)
+                {
+                    Owner.itemAnimation = Owner.itemAnimationMax;
+                    Projectile.timeLeft = Owner.itemAnimation;
+                }
+                Projectile.ai[2] = 0;
+            }
 
             if (!doSwing)
             {
-                Projectile.ai[1] = -Projectile.ai[1];
-                holding = true;
-
-                for (int i = 0; i < Main.maxNPCs; i++)
-                    Projectile.localNPCImmunity[i] = 0;
-
-                Projectile.numHits = 0;
-                // 14NOV2024: Ozzatron: clamped mouse position unnecessary, only used for direction
-                if (isOwner)
-                {
-                    mousePos = Owner.Calamity().mouseWorld;
-                    aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65;
-                }
-                else
-                {
-                    mousePos = Owner.Center - aimVel;
-                }
+                playSwingSound = true;
+                mousePos = Owner.Calamity().mouseWorld;
+                aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65;
                 CanHit = false;
                 if (mousePos.X < Owner.Center.X) Owner.direction = -1;
                 else Owner.direction = 1;
                 FlipAsSword = Owner.direction == -1 ? true : false;
-                doSwing = true;
-                finalFlip = false;
-                playSwingSound = true;
-                hasLaunchedBlades = false;
-                if (isOwner && !Owner.Calamity().demonSwordKillMode && postSwingCooldown == 0)
+
+                Vector2 bladePos = new Vector2(60, 0);
+                Vector2 particlePos = Owner.Center + (bladePos).RotatedBy(FinalRotation + MathHelper.ToRadians(-45)) * Projectile.scale;
+
+                if (Projectile.ai[2] == 5)
                 {
-                    if (!willDie)
-                        Projectile.netUpdate = true;
-                    willDie = true;
-                    if (lastHitTarget != null)
+                    RotationOffset = MathHelper.Lerp(RotationOffset, MathHelper.ToRadians(120f * Projectile.ai[1] * Owner.direction), 0.05f);
+
+                    float rotationValue = 45f + (25 * Utils.GetLerpValue(0, chargeTimerMax, chargeTimer, true)) * (FlipAsSword ? 1 : -1) * -Projectile.ai[1];
+                    Projectile.rotation = Projectile.rotation.AngleLerp(Owner.AngleTo(mousePos) + MathHelper.ToRadians(rotationValue), 0.3f);
+                    Animation = 0;
+                    Owner.itemAnimation++;
+                    Projectile.timeLeft++;
+
+                    if (chargeTimer < chargeTimerMax && !chargedSwing)
+                        chargeTimer++;
+
+                    Vector2 particleVel = (Owner.Center - particlePos).SafeNormalize(Vector2.UnitX) * -15;
+                    particlePos += Main.rand.NextVector2Circular(20, 20);
+
+                    Dust dust2 = Dust.NewDustPerfect(particlePos, DustID.RainbowMk2, particleVel * Main.rand.NextFloat(0.2f, 1));
+                    dust2.scale = Main.rand.NextFloat(0.65f, 1.15f) * fadeIn;
+                    dust2.noGravity = true;
+                    dust2.color = Main.rand.NextBool(3) ? Color.Orange : Color.OrangeRed;
+                    Particle spark3 = new GlowOrbParticle(particlePos, particleVel * Main.rand.NextFloat(0.2f, 1.5f), false, 22, Main.rand.NextFloat(0.2f, 0.4f) * fadeIn, Main.rand.NextBool(3) ? Color.Red : Color.OrangeRed);
+                    GeneralParticleHandler.SpawnParticle(spark3);
+
+                    if (SoundEngine.TryGetActiveSound(AudSlot, out var ChargeSound) && ChargeSound.IsPlaying)
                     {
-                        useAnim = 115;
-                        SoundStyle dieSound = new("CalamityMod/Sounds/Item/DemonSwordFinalStrike");
-                        SoundSlot = SoundEngine.PlaySound(dieSound with { Volume = 1f, Pitch = 0 }, lastHitTarget.Center);
+                        ChargeSound.Position = Projectile.Center;
+                        ChargeSound.Pitch = Utils.Remap(chargeTimer, 0, chargeTimerMax, -0.4f, 0f);
+                        ChargeSound.Volume = Utils.Remap(chargeTimer, 0, chargeTimerMax, 0f, 0.5f) * 100;
+                    }
+                    else if (!chargedSwing)
+                    {
+                        AudSlot = SoundEngine.PlaySound(TyrantYharimsUltisword.ChargeSound with { Volume = 0.01f, Pitch = 0, IsLooped = true }, Projectile.Center);
+                    }
+                }
+                if (chargeTimer == chargeTimerMax)
+                {
+                    particlePos = Owner.Center + (bladePos).RotatedBy(FinalRotation + MathHelper.ToRadians(-45)) * Projectile.scale;
+                    SoundEngine.PlaySound(TyrantYharimsUltisword.FullChargeSound with { Volume = 0.9f, PitchVariance = 0.2f }, Projectile.Center);
+                    chargedSwing = true;
+                    useAnim = storedUseAnim / 3;
+                    chargeTimer++;
+
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Particle spark2 = new LineParticle(particlePos, new Vector2(8, 8).RotatedByRandom(100) * Main.rand.NextFloat(0.5f, 1f), false, 30, Main.rand.NextFloat(0.3f, 0.8f) * Projectile.scale, Main.rand.NextBool(3) ? Color.Red : Color.OrangeRed);
+                        GeneralParticleHandler.SpawnParticle(spark2);
+                        Dust dust2 = Dust.NewDustPerfect(particlePos, DustID.RainbowMk2, new Vector2(8, 8).RotatedByRandom(100) * Main.rand.NextFloat(0.5f, 1f));
+                        dust2.scale = Main.rand.NextFloat(0.65f, 1.15f) * fadeIn;
+                        dust2.noGravity = true;
+                        dust2.color = Main.rand.NextBool(3) ? Color.Orange : Color.OrangeRed;
                     }
                 }
 
-                postSwingCooldown = postSwingCooldownMax;
+                if (chargeTimer == 0)
+                {
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                        Projectile.localNPCImmunity[i] = 0;
+
+                    Projectile.numHits = 0;
+                    pierceReduction = 0;
+                    doSwing = true;
+                }
             }
-            else
+            else if (chargeTimer == 0)
             {
+                if (SoundEngine.TryGetActiveSound(AudSlot, out var ChargeSound))
+                    ChargeSound?.Stop();
+
                 if (!CanHit && !postSwing)
                 {
                     if (mousePos.X < Owner.Center.X) Owner.direction = -1;
@@ -277,85 +200,116 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword
 
                 Projectile.rotation = Projectile.rotation.AngleLerp(Owner.AngleTo(mousePos) + MathHelper.ToRadians(45f), 0.1f);
 
-                for (int i = 0; i < 4; i++)
+                if (AnimationProgress < (useAnim / 1.5f))
                 {
-                    float deathFade = willDie ? Utils.GetLerpValue(0, postSwingCooldownMax, postSwingCooldown, true) : 1;
-                    float randRot = Main.rand.NextFloat(-30, 30);
-                    Vector2 dustVel = -Vector2.One.RotatedBy(Projectile.rotation + RotationOffset + MathHelper.ToRadians(90)).RotatedByRandom(0.3f) * Main.rand.NextFloat(7, 17) - Owner.velocity * 0.8f;
-                    Vector2 placement = Owner.Center + (new Vector2(Main.rand.NextFloat(70, 500) * deathFade, 0).RotatedBy(FinalRotation + MathHelper.ToRadians(-45)));
-                    GeneralParticleHandler.SpawnParticle(new CustomSpark(placement, dustVel, "CalamityMod/Particles/BloomCircle", false, 13, Main.rand.NextFloat(0.04f, 0.06f) * 10, (Main.rand.NextBool() ? Color.OrangeRed : clr) * deathFade, new Vector2(0.9f, 1), shrinkSpeed: 0.95f));
-                }
-                if (lastHitTarget != null && lastHitTarget.life > 0 && lastHitTarget.active)
-                {
-                    float growth = (1 - (willDie ? Utils.GetLerpValue(0, postSwingCooldownMax, postSwingCooldown, true) : 1)) * 15;
-                    for (int i = 0; i < 2; i++)
-                    {
-                        GeneralParticleHandler.SpawnParticle(new CustomSpark(lastHitTarget.Center, Vector2.One.RotatedBy(i == 0 ? MathHelper.ToRadians(90) : 0) * Main.rand.NextFloat(-3 - growth, 3 + growth), "CalamityMod/Particles/BloomCircle", false, 13, Main.rand.NextFloat(0.04f, 0.06f) * (10 + growth), Main.rand.NextBool() ? Color.OrangeRed : clr, new Vector2(0.7f, 1), shrinkSpeed: 0.8f));
-                    }
-                }
-                if (holding)
-                {
-                    // 14NOV2024: Ozzatron: clamped mouse position unnecessary, only used for direction
-                    if (isOwner)
-                        aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65;
+                    if (Projectile.ai[2] == 5 && !chargedSwing)
+                        doSwing = false;
+
+                    aimVel = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX) * 65;
                     CanHit = false;
                     postSwing = false;
-                    RotationOffset = MathHelper.Lerp(RotationOffset, MathHelper.ToRadians(120f * Projectile.ai[1] * Owner.direction * (1 + (Utils.GetLerpValue(useAnim * 0.7f, useAnim, Animation, true)) * 0.35f)), 0.2f);
-                }
-                else if (!willDie)
-                {
-                    if (!finalFlip)
+                    if (AnimationProgress == 0)
                     {
-                        FlipAsSword = Owner.direction < 0 ? true : false;
+                        Animation = 0;
+                        doSwing = false;
+                        chargeTimer = 0;
+                        chargedSwing = false;
+                        useAnim = storedUseAnim;
+                        Projectile.ai[1] = -Projectile.ai[1];
                     }
 
+                    RotationOffset = MathHelper.Lerp(RotationOffset, MathHelper.ToRadians(120f * Projectile.ai[1] * Owner.direction * (1 + (Utils.GetLerpValue(useAnim * 0.35f, useAnim * 0.6f, Animation, true)) * 0.5f)), 0.2f);
+                    FlipAsSword = (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitX).X > 0 ? true : false;
+                }
+                else
+                {
                     float time = (AnimationProgress) - (useAnim / 3);
                     float timeMax = useAnim - (useAnim / 3);
 
-                    if (time >= (int)(timeMax * 0.4f) && playSwingSound)
+                    if (time >= (int)(timeMax * (chargedSwing ? 0.2f : 0.4f)) && playSwingSound)
                     {
-                        SoundStyle swing = new("CalamityMod/Sounds/Item/DemonSwordSwing", 2);
-                        SoundEngine.PlaySound(swing with { Volume = 0.85f, Pitch = Main.rand.NextFloat(-0.4f, -0.5f) }, Projectile.Center);
-                        SoundStyle swing2 = new("CalamityMod/Sounds/Item/HeavySwing");
-                        SoundEngine.PlaySound(swing2 with { Volume = 0.65f, Pitch = Main.rand.NextFloat(0.2f, 0.3f) }, Projectile.Center);
-                        playSwingSound = false;
-                        if (isOwner)
-                            Owner.Calamity().demonSwordKillMode = false;
-                    }
-                    if (time > (int)(timeMax * 0.2f) && time < (int)(timeMax * 0.9f))
-                        CanHit = true;
-                    else
-                        CanHit = false;
-                    if (time > (int)(timeMax * 0.7f))
-                        swooshFade = true;
-                    else
-                        swooshFade = false;
+                        if (!chargedSwing)
+                        {
+                            SoundEngine.PlaySound(TyrantYharimsUltisword.SwingSound with { Volume = 0.8f, PitchVariance = 0.25f }, Projectile.Center);
+                        }
+                        else
+                        {
+                            SoundEngine.PlaySound(TyrantYharimsUltisword.SwingSound with { Volume = 0.9f, Pitch = 0.2f }, Projectile.Center);
+                            SoundEngine.PlaySound(TyrantYharimsUltisword.SwingSoundBig with { Volume = 1f, Pitch = 0f }, Projectile.Center);
+                        }
 
-                    RotationOffset = MathHelper.Lerp(RotationOffset, MathHelper.ToRadians(MathHelper.Lerp(150f * Projectile.ai[1] * Owner.direction, 120f * -Projectile.ai[1] * Owner.direction, CalamityUtils.ExpInOutEasing(time / timeMax * 0.9f, 1))),
+                        SpawnDefiledGreatswordProjectiles();
+
+                        swingCount++;
+                        playSwingSound = false;
+                    }
+                    if (time > (int)(timeMax * (chargedSwing ? 0.2f : 0.4f)) && time < (int)(timeMax * (chargedSwing ? 0.9f : 0.7f)))
+                    {
+                        CanHit = true;
+
+                        Vector2 particleVel = new Vector2(0, 10 * -Projectile.ai[1] * Owner.direction).RotatedBy(FinalRotation + MathHelper.ToRadians(-45));
+                        Vector2 particlePos = Owner.Center + (new Vector2(Main.rand.Next(30, 170), 0).RotatedBy(FinalRotation + MathHelper.ToRadians(-45))) * Projectile.scale;
+                        if (chargedSwing)
+                        {
+                            for (int i = 0; i < 3; i++)
+                            {
+                                particleVel = (new Vector2(0, 15 * -Projectile.ai[1] * Owner.direction) * Main.rand.NextFloat(0.3f, 1f)).RotatedBy(FinalRotation + MathHelper.ToRadians(-45));
+                                particlePos = Owner.Center + (new Vector2(Main.rand.Next(30, 170), 0).RotatedBy(FinalRotation + MathHelper.ToRadians(-45))) * Projectile.scale;
+                                GeneralParticleHandler.SpawnParticle(new AltSparkParticle(particlePos, -particleVel.RotatedByRandom(0.4f), false, 24, Main.rand.NextFloat(0.3f, 0.7f), Main.rand.NextBool(3) ? Color.OrangeRed : Color.DarkRed));
+                                GeneralParticleHandler.SpawnParticle(new HeavySmokeParticle(particlePos, -particleVel.RotatedByRandom(0.4f), Main.rand.NextBool(4) ? Color.Red : Color.DarkRed, 23, Main.rand.NextFloat(0.5f, 1f), 0.65f));
+                                GeneralParticleHandler.SpawnParticle(new HeavySmokeParticle(particlePos, -particleVel.RotatedByRandom(0.4f) * 2, Main.rand.NextBool(4) ? Color.Crimson : Color.Red, 23, Main.rand.NextFloat(0.5f, 1f), 0.65f, 0, true));
+                            }
+                        }
+                        else
+                        {
+                            GeneralParticleHandler.SpawnParticle(new AltSparkParticle(particlePos, -particleVel.RotatedByRandom(0.2f), false, 24, Main.rand.NextFloat(0.3f, 0.7f), Main.rand.NextBool(3) ? Color.OrangeRed : Color.DarkRed));
+                            GeneralParticleHandler.SpawnParticle(new HeavySmokeParticle(particlePos, -particleVel.RotatedByRandom(0.2f) * 2, Main.rand.NextBool(4) ? Color.Red : Color.DarkRed, 23, Main.rand.NextFloat(0.5f, 1f), 0.65f));
+                        }
+                    }
+                    else
+                    {
+                        CanHit = false;
+                    }
+
+                    RotationOffset = MathHelper.Lerp(RotationOffset, MathHelper.ToRadians(MathHelper.Lerp(150f * Projectile.ai[1] * Owner.direction, 120f * -Projectile.ai[1] * Owner.direction, CalamityUtils.ExpInOutEasing(time / timeMax, 1))),
                         0.2f);
 
-                    if (time >= timeMax * 0.9f)
+                    if (time < (int)(timeMax * 0.9f))
                     {
-                        doSwing = false;
-                    }
-                    if (time < (int)(timeMax * 0.75f))
                         postSwing = true;
+                    }
 
                     if (CanHit)
                     {
-                        for (int i = 0; i < 8; i++)
+                        if (chargedSwing)
                         {
-                            float randRot = Main.rand.NextFloat(-20, -100);
-                            Dust dust = Dust.NewDustPerfect(Owner.Center + (new Vector2(560, 0).RotatedBy(FinalRotation + MathHelper.ToRadians(-45)).RotatedByRandom(MathHelper.ToRadians(randRot))), ModContent.DustType<LightDust>(), Vector2.One.RotatedByRandom(MathHelper.Pi) * 0.9f, 0, default, Main.rand.NextFloat(1.45f, 2.4f));
-                            dust.noGravity = true;
-                            dust.color = Main.rand.NextBool() ? clr : Color.Firebrick;
+                            for (int i = 0; i < 6; i++)
+                            {
+                                float randRot = Main.rand.NextFloat(-10, -45);
+                                Vector2 dustVel = (new Vector2(0, 15 * -Projectile.ai[1] * Owner.direction)).RotatedBy(FinalRotation + MathHelper.ToRadians(randRot));
+                                GeneralParticleHandler.SpawnParticle(new PointParticle(Owner.Center + (new Vector2(170 * Projectile.scale, 0).RotatedBy(FinalRotation + MathHelper.ToRadians(randRot)).RotatedByRandom(0.4f)), -dustVel * Main.rand.NextFloat(0.4f, 0.7f), false, Main.rand.Next(15, 18 + 1), Main.rand.NextFloat(0.7f, 1.2f), (Main.rand.NextBool(4) ? Color.Orange : Color.OrangeRed) * 0.8f));
+                            }
+                            for (int i = 0; i < 4; i++)
+                            {
+                                float randRot = Main.rand.NextFloat(-30, -60);
+                                Vector2 dustVel = (new Vector2(0, 15 * -Projectile.ai[1] * Owner.direction)).RotatedBy(FinalRotation + MathHelper.ToRadians(randRot));
+                                Dust dust2 = Dust.NewDustPerfect(Owner.Center + (new Vector2(170 * Projectile.scale, 0).RotatedBy(FinalRotation + MathHelper.ToRadians(-45)).RotatedByRandom(0.3f)), DustID.FireworksRGB, dustVel * Main.rand.NextFloat(0.3f, 0.9f));
+                                dust2.scale = Main.rand.NextFloat(0.65f, 0.95f);
+                                dust2.noGravity = true;
+                                dust2.color = Main.rand.NextBool(3) ? Color.Orange : Color.OrangeRed;
+                            }
                         }
-                        for (int i = 0; i < 4; i++)
+                        else
                         {
-                            float randRot = Main.rand.NextFloat(-20, -100);
-                            Vector2 dustVel = (new Vector2(0, 11 * -Projectile.ai[1] * Owner.direction)).RotatedBy(FinalRotation + MathHelper.ToRadians(randRot));
-                            Vector2 placement = Owner.Center + (new Vector2(560, 0).RotatedBy(FinalRotation + MathHelper.ToRadians(-45)).RotatedByRandom(0.3f));
-                            GeneralParticleHandler.SpawnParticle(new CustomSpark(placement, dustVel, "CalamityMod/Particles/DemonSigilParticle", false, 33, Main.rand.NextFloat(0.43f, 0.56f), Main.rand.NextBool() ? Color.OrangeRed : clr, new Vector2(1, 1), shrinkSpeed: 0.1f));
+                            for (int i = 0; i < 3; i++)
+                            {
+                                float randRot = Main.rand.NextFloat(-30, -60);
+                                Vector2 dustVel = (new Vector2(0, 15 * -Projectile.ai[1] * Owner.direction)).RotatedBy(FinalRotation + MathHelper.ToRadians(randRot));
+                                Dust dust2 = Dust.NewDustPerfect(Owner.Center + (new Vector2(170 * Projectile.scale, 0).RotatedBy(FinalRotation + MathHelper.ToRadians(-45)).RotatedByRandom(0.3f)), DustID.FireworksRGB, dustVel * Main.rand.NextFloat(0.1f, 0.5f));
+                                dust2.scale = Main.rand.NextFloat(0.55f, 0.85f);
+                                dust2.noGravity = true;
+                                dust2.color = Main.rand.NextBool(3) ? Color.Orange : Color.OrangeRed;
+                            }
                         }
                     }
                 }
@@ -364,143 +318,130 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword
             ArmRotationOffset = MathHelper.ToRadians(-140f);
             ArmRotationOffsetBack = MathHelper.ToRadians(-140f);
         }
+        public override void OnKill(int timeLeft)
+        {
+            if (SoundEngine.TryGetActiveSound(AudSlot, out var ChargeSound))
+                ChargeSound?.Stop();
+        }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if ((damageDone <= 2 || (target.life <= 0 && target.realLife == -1)) && Projectile.numHits > 0)
-                Projectile.numHits -= 1;
-
-            if (target != null && target.life > 0 && target.active)
+            // If you are hitting an armored target or kill a target, don't reduce damage based on enemy hits (which uses Projectile.numHits)
+            if ((damageDone <= 2 || (target.life <= 0 && target.realLife == -1)) && pierceReduction > 0)
             {
-                lastHitTarget = target;
-                lastHitTargetIndex = target.whoAmI;
-                if (Main.myPlayer == Projectile.owner)
-                    Projectile.netUpdate = true;
+                pierceReduction -= 1;
             }
 
-            bool hasKillMode = Owner.Calamity().cooldowns.TryGetValue(KillMode.ID, out CooldownInstance killModeCD);
-
-            int bonusDamage = 4000;
-            if (target.Calamity().demonicFlamesBonusDamage <= bonusDamage)
+            if (!chargedSwing)
             {
-                target.Calamity().demonicFlamesBonusDamage = bonusDamage;
-                target.AddBuff(ModContent.BuffType<DemonicFlames>(), 180);
-                // Demonic Flames damage must be synced, because OnHitNPC is only run for the client that hit the NPC
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                    DemonicFlamesSyncPacket.Send(target);
-            }
-
-            Vector2 launchVel = Utils.DirectionTo(Owner.Center, Owner.Calamity().mouseWorld);
-            CalamityUtils.MoveNPC(target, launchVel, 40, true);
-
-            if (target.Calamity().demonSwordImpales != 0 || Projectile.numHits == 0)
-            {
-                int dustNum = (int)MathHelper.Clamp(12 - Projectile.numHits * 3, 3, 12);
-                for (int i = 0; i < dustNum; i++)
+                if (Projectile.numHits == 0)
                 {
-                    float variance = Main.rand.NextFloat(-0.5f, 0.5f);
-                    Vector2 vel = (launchVel * 55).RotatedBy(variance) * Main.rand.NextFloat(0.2f, 1f) * (1 - Math.Abs(variance));
-                    int dustStyle = 278;
-                    Dust dust2 = Dust.NewDustPerfect(target.Center, dustStyle, Projectile.velocity);
-                    dust2.scale = Main.rand.NextFloat(1.2f, 1.4f) - Math.Abs(variance);
-                    dust2.velocity = vel;
-                    dust2.noGravity = true;
-                    dust2.color = Main.rand.NextBool() ? Color.Firebrick : Color.OrangeRed;
-
-                    Particle spark = new SparkParticle(Projectile.Center, vel, true, 55, 1.25f, Main.rand.NextBool() ? clr : Color.OrangeRed);
-                    GeneralParticleHandler.SpawnParticle(spark);
+                    SoundEngine.PlaySound(TyrantYharimsUltisword.HitSoundSmall with { Volume = 0.85f, PitchVariance = 0.25f }, Projectile.Center);
+                    Owner.SetScreenshake(4.5f);
                 }
-
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < MathHelper.Clamp(8 - Projectile.numHits * 2, 2, 8); i++)
                 {
-                    Particle blastRing = new CustomPulse(target.Center, Vector2.Zero, Color.Firebrick, "CalamityMod/Particles/BloomCircle", Vector2.One, Main.rand.NextFloat(-10, 10), 0.7f * (i + 1), 1.3f, 18, true);
-                    GeneralParticleHandler.SpawnParticle(blastRing);
-                    Particle blastRing2 = new CustomPulse(target.Center, Vector2.Zero, Color.White, "CalamityMod/Particles/BloomCircle", Vector2.One, Main.rand.NextFloat(-10, 10), 0.35f * (i + 1), 0.8f, 18, true);
-                    GeneralParticleHandler.SpawnParticle(blastRing2);
-                }
-            }
-
-            if (!hasLaunchedBlades)
-            {
-                for (int x = 0; x < Main.maxProjectiles; x++)
-                {
-                    Projectile projectile = Main.projectile[x];
-                    if (projectile.active && projectile.type == ModContent.ProjectileType<DevilsDevastationThrownBlade>() && projectile.ai[2] == target.whoAmI && projectile.localAI[0] != 5)
+                    Particle spark2 = new LineParticle(target.Center, ((Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitY) * -20).RotatedByRandom(0.7) * Main.rand.NextFloat(0.2f, 1f), false, 40, Main.rand.NextFloat(0.3f, 1f), Main.rand.NextBool(3) ? Color.Orange : Color.OrangeRed);
+                    GeneralParticleHandler.SpawnParticle(spark2);
+                    if (Main.rand.NextBool())
                     {
-                        projectile.owner = Owner.whoAmI;
-                        projectile.localAI[0] = 5;
-                        projectile.velocity = (launchVel * 16.5f).RotatedByRandom(0.25f);
-                        Owner.Calamity().demonSwordKillMode = true;
-                        if (hasKillMode)
-                            killModeCD.timeLeft = (KillMode.cooldownMax + KillMode.buffMax) / 2;
-                        Owner.Calamity().killModeCooldown = (KillMode.cooldownMax + KillMode.buffMax) / 2;
-                        hasLaunchedBlades = true;
+                        Particle spark3 = new AltLineParticle(target.Center, ((Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitY) * -20).RotatedByRandom(0.7) * Main.rand.NextFloat(0.2f, 1f), false, 40, Main.rand.NextFloat(0.3f, 1f), Color.DarkRed);
+                        GeneralParticleHandler.SpawnParticle(spark3);
+                    }
+                }
+            }
+            else
+            {
+                if (Projectile.numHits == 0)
+                {
+                    SoundEngine.PlaySound(TyrantYharimsUltisword.HitSoundBig with { Volume = 1f }, Projectile.Center);
+                    Owner.SetScreenshake(8.5f);
+                    bool photos = CalamityClientConfig.Instance.Photosensitivity;
+
+                    if (!photos)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Particle blastRing = new CustomPulse(target.Center, Vector2.Zero, Color.OrangeRed, "CalamityMod/Particles/BloomCircle", Vector2.One, Main.rand.NextFloat(-10, 10), 2f * (i + 1), 1f, 18, true);
+                            GeneralParticleHandler.SpawnParticle(blastRing);
+                            Particle blastRing2 = new CustomPulse(target.Center, Vector2.Zero, Color.White, "CalamityMod/Particles/BloomCircle", Vector2.One, Main.rand.NextFloat(-10, 10), 1f * (i + 1), 0.5f, 18, true);
+                            GeneralParticleHandler.SpawnParticle(blastRing2);
+                        }
+                    }
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Particle spark = new GlowSparkParticle(target.Center, (Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitY) * -25 * (i == 0 ? -1 : 1), false, 12, 0.08f, Color.OrangeRed, new Vector2(3, 0.8f), true);
+                        GeneralParticleHandler.SpawnParticle(spark);
+                    }
+                    for (int i = 0; i < 15; i++)
+                    {
+                        Particle spark2 = new SparkParticle(target.Center, ((Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitY) * -40).RotatedByRandom(100) * Main.rand.NextFloat(0.2f, 1f), true, 40, Main.rand.NextFloat(0.5f, 1.2f), Main.rand.NextBool(3) ? Color.Orange : Color.OrangeRed);
+                        GeneralParticleHandler.SpawnParticle(spark2);
+                        if (Main.rand.NextBool())
+                        {
+                            Particle spark3 = new AltSparkParticle(target.Center, ((Owner.Center - Owner.Calamity().mouseWorld).SafeNormalize(Vector2.UnitY) * -40).RotatedByRandom(100) * Main.rand.NextFloat(0.2f, 1f), true, 40, Main.rand.NextFloat(0.5f, 1.2f), Color.DarkRed);
+                            GeneralParticleHandler.SpawnParticle(spark3);
+                        }
+                        Dust dust2 = Dust.NewDustPerfect(target.Center, DustID.FireworksRGB, new Vector2(20, 20).RotatedByRandom(100) * Main.rand.NextFloat(0.2f, 1));
+                        dust2.scale = Main.rand.NextFloat(0.55f, 0.85f);
+                        dust2.noGravity = true;
+                        dust2.color = Main.rand.NextBool(3) ? Color.Orange : Color.OrangeRed;
                     }
                 }
             }
 
-            if (Projectile.numHits == 0)
-            {
-                Owner.SetScreenshake(12f);
-                for (int i = 0; i < 5; i++)
-                    GeneralParticleHandler.SpawnParticle(new CustomSpark(target.Center + launchVel * 15, launchVel.RotatedBy((0.15f - 0.05f * i) * (i % 2 == 0 ? -1 : 1)) * (10 + 10 * i), "CalamityMod/Particles/DemonSigilParticle", false, 11, 0.7f - 0.15f * i, Main.rand.NextBool() ? clr : Color.OrangeRed, new Vector2(1.5f, 1), extraRotation: MathHelper.ToRadians(i % 2 == 0 ? 90 : 0), shrinkSpeed: (i % 2 == 0 ? -0.8f : 0.8f)));
-
-                for (int i = 0; i < 20; i++)
-                {
-                    float distPow = Main.rand.NextFloat(0, 15);
-                    Vector2 sparkVel = launchVel.RotatedByRandom(distPow * 0.01f) * Main.rand.NextFloat(5, 35 + distPow);
-                    Particle sparks = new CustomSpark(target.Center + (Vector2.One * distPow).RotatedByRandom(MathHelper.Pi), sparkVel, "CalamityMod/Particles/GlowSpark", false, Main.rand.Next(13, 20 + 1) * 2, (Main.rand.NextFloat(0.5f, 0.85f) - distPow * 0.12f) * 0.2f, (Main.rand.NextBool() ? clr : Color.Firebrick) * 0.75f, new Vector2(1.3f, 0.4f), true, false, 0, false, shrinkSpeed: 0.5f);
-                    GeneralParticleHandler.SpawnParticle(sparks);
-                }
-
-
-                SoundStyle swing = new("CalamityMod/Sounds/Item/DemonSwordInsaneImpact");
-                SoundEngine.PlaySound(swing with { Volume = 0.8f, Pitch = MathHelper.Clamp(swingCount * 0.05f, -0.25f, 0.5f) }, Projectile.Center);
-                SoundStyle swing2 = new("CalamityMod/Sounds/Item/HellkiteBigHit1");
-                SoundEngine.PlaySound(swing2 with { Volume = 0.8f, Pitch = MathHelper.Clamp(swingCount * 0.025f, 0.4f, 0.65f) }, Projectile.Center);
-            }
+            Vector2 launchVel = Utils.DirectionTo(Owner.Center, Owner.Calamity().mouseWorld);
+            target.AddBuff(ModContent.BuffType<AuricRebuke>(), 180);
+            target.MoveNPC(launchVel, (chargedSwing ? 24 : 19), true, Owner);
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            float minMult = 0.35f;
-            int hitsToMinMult = 8;
-            float damageMult = Utils.Remap(Projectile.numHits, 0, hitsToMinMult, 1, minMult, true);
-            modifiers.SourceDamage *= damageMult;
+            if (chargedSwing)
+            {
+                modifiers.SetCrit();
+                float critDamage = Main.player[Projectile.owner].GetTotalCritChance(Projectile.DamageType) * 0.02f;
+                modifiers.CritDamage += critDamage;
+            }
+
+            float minMult = 0.25f;
+            int hitsToMinMult = 10;
+            float damageMult = Utils.Remap(pierceReduction, 0, hitsToMinMult, 1, minMult, true);
+            modifiers.SourceDamage *= (chargedSwing ? 2.9f : 1) * damageMult;
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            // Only draw the projectile if the projectile's owner is currently using the item this projectile is attached to.
-            Asset<Texture2D> tex = ModContent.Request<Texture2D>(Texture);
-            Asset<Texture2D> swoosh = ModContent.Request<Texture2D>("CalamityMod/Particles/VerticalSmearLarge");
-            Asset<Texture2D> swoosh2 = ModContent.Request<Texture2D>("CalamityMod/Particles/CircularTrail");
-
-            float r = FlipAsSword ? MathHelper.ToRadians(90) : 0f;
-            float deathFade = willDie ? Utils.GetLerpValue(0, postSwingCooldownMax, postSwingCooldown, true) : 1;
-            if (true)
+            if ((useAnim > 0 || DrawUnconditionally) && (Owner.ItemAnimationActive || Owner.Calamity().mouseRight))
             {
-                Asset<Texture2D> tex2 = ModContent.Request<Texture2D>("CalamityMod/Particles/BloomLineAngled");
-                int draws = 30;
-                for (int i = 0; i < draws; i++)
+                Asset<Texture2D> tex = ModContent.Request<Texture2D>(Texture);
+                Asset<Texture2D> shineTex = ModContent.Request<Texture2D>("CalamityMod/Particles/Sparkle");
+                Asset<Texture2D> swoosh = ModContent.Request<Texture2D>("CalamityMod/Particles/VerticalSmearRagged");
+
+                float r = FlipAsSword ? MathHelper.ToRadians(90) : 0f;
+                Vector2 generalDrawPos = Projectile.Center - Main.screenPosition + new Vector2(0, Owner.gfxOffY);
+                SpriteEffects sEffects = spriteEffects != SpriteEffects.None ? spriteEffects : (FlipAsSword ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
+
+                for (int i = 0; i < 25; i++)
                 {
-                    Vector2 offsetDir = Vector2.One.RotatedBy(Projectile.rotation + RotationOffset + MathHelper.ToRadians(90));
-
-                    Color auraColor = Color.Lerp(Color.OrangeRed, clr, Utils.GetLerpValue(0, draws - 1, i)) with { A = 0 } * 0.38f * (willDie ? deathFade : 1);
-                    Vector2 drawOffset = -offsetDir * 10 * deathFade * i;
-                    Main.EntitySpriteDraw(tex2.Value, Projectile.Center - offsetDir * 70 - Main.screenPosition + drawOffset + new Vector2(0, Owner.gfxOffY) + Main.rand.NextVector2Circular(18, 18), tex2.Frame(1, FrameCount, 0, Frame), auraColor, Projectile.rotation + RotationOffset + r, tex2.Size() * 0.5f, Vector2.One * (1f - i * 0.02f) * 0.06f, spriteEffects != SpriteEffects.None ? spriteEffects : (FlipAsSword ? SpriteEffects.FlipHorizontally : SpriteEffects.None));
+                    Texture2D centerTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Melee/TyrantYharimsUltisword/TyrantYharimsUltiswordGhost").Value;
+                    Color auraColor = Color.OrangeRed with { A = 0 } * 0.15f * fadeIn;
+                    Vector2 drawOffset = (MathHelper.TwoPi * i / 25f).ToRotationVector2() * (chargeTimer > 0 ? 4 : 7) * fadeIn;
+                    Main.EntitySpriteDraw(centerTexture, Projectile.Center - Main.screenPosition + drawOffset + new Vector2(0, Owner.gfxOffY), centerTexture.Frame(1, FrameCount, 0, Frame), auraColor, Projectile.rotation + RotationOffset + r, FlipAsSword ? new Vector2(tex.Width() - SpriteOrigin.X, SpriteOrigin.Y) : SpriteOrigin, Projectile.scale, spriteEffects != SpriteEffects.None ? spriteEffects : (FlipAsSword ? SpriteEffects.FlipHorizontally : SpriteEffects.None));
                 }
-            }
-            for (int i = 0; i < 20; i++)
-            {
-                Color auraColor = Color.OrangeRed with { A = 0 } * 0.18f * (willDie ? deathFade : 1);
-                Vector2 drawOffset = (MathHelper.TwoPi * i / 20f).ToRotationVector2() * 7 * (willDie ? (1 - deathFade) * 3 : 2);
-                Main.EntitySpriteDraw(tex.Value, Projectile.Center - Main.screenPosition + drawOffset + new Vector2(0, Owner.gfxOffY) + Main.rand.NextVector2Circular(7, 7), tex.Frame(1, FrameCount, 0, Frame), auraColor, Projectile.rotation + RotationOffset + r, FlipAsSword ? new Vector2(tex.Width() - SpriteOrigin.X, SpriteOrigin.Y) : SpriteOrigin, Projectile.scale, spriteEffects != SpriteEffects.None ? spriteEffects : (FlipAsSword ? SpriteEffects.FlipHorizontally : SpriteEffects.None));
-            }
-            if ((useAnim > 0 || DrawUnconditionally))
-            {
-                Main.EntitySpriteDraw(swoosh.Value, Projectile.Center - Main.screenPosition + new Vector2(0, Owner.gfxOffY), null, Color.Firebrick with { A = 0 } * fadeIn * 0.75f, (FinalRotation + MathHelper.ToRadians(45)) + MathHelper.ToRadians(swingCount % 2 == 0 ? -65 : 65) * -Owner.direction, swoosh.Size() * 0.5f, Projectile.scale * 0.9f * hitboxMult, SpriteEffects.None);
-                Main.EntitySpriteDraw(swoosh.Value, Projectile.Center - Main.screenPosition + new Vector2(0, Owner.gfxOffY), null, clr with { A = 0 } * fadeIn * 0.85f, (FinalRotation + MathHelper.ToRadians(45)) + MathHelper.ToRadians(swingCount % 2 == 0 ? -65 : 65) * -Owner.direction, swoosh.Size() * 0.5f, Projectile.scale * 1.2f * hitboxMult, SpriteEffects.None);
 
+                if (swingCount > 0 && Projectile.ai[2] != 5 && !playSwingSound)
+                    Main.EntitySpriteDraw(swoosh.Value, Projectile.Center - Main.screenPosition + new Vector2(0, Owner.gfxOffY), null, Color.Lerp(Color.DarkRed, Color.OrangeRed, 0.25f) with { A = 0 } * fadeIn * 0.9f, (FinalRotation + MathHelper.ToRadians(45)) + MathHelper.ToRadians(swingCount % 2 == 0 ? -80 : 80) * -Owner.direction, swoosh.Size() * 0.5f, Projectile.scale * 2.35f / 4, swingCount % 2 == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
 
-                Main.EntitySpriteDraw(tex.Value, Projectile.Center - Main.screenPosition + new Vector2(0, Owner.gfxOffY), tex.Frame(1, FrameCount, 0, Frame), Color.Lerp(Color.OrangeRed with { A = 0 }, lightColor, deathFade) * deathFade, Projectile.rotation + RotationOffset + r, FlipAsSword ? new Vector2(tex.Width() - SpriteOrigin.X, SpriteOrigin.Y) : SpriteOrigin, Projectile.scale, spriteEffects != SpriteEffects.None ? spriteEffects : (FlipAsSword ? SpriteEffects.FlipHorizontally : SpriteEffects.None));
+                Main.EntitySpriteDraw(tex.Value, generalDrawPos, tex.Frame(1, FrameCount, 0, Frame), lightColor, Projectile.rotation + RotationOffset + r, FlipAsSword ? new Vector2(tex.Width() - SpriteOrigin.X, SpriteOrigin.Y) : SpriteOrigin, Projectile.scale, sEffects);
+
+                if (chargeTimer > 0)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Color auraColor = (Color.Lerp(Color.DarkRed, Color.Red, Utils.GetLerpValue(0, 5, i)) * 0.4f * fadeIn) with { A = 0 };
+                        Vector2 rotationalDrawOffset = (MathHelper.TwoPi * i / 7f + Main.GlobalTimeWrappedHourly * 17f).ToRotationVector2();
+                        rotationalDrawOffset *= MathHelper.Lerp(3f, 5.25f, (float)Math.Cos(Main.GlobalTimeWrappedHourly * 13f) * 0.5f);
+                    }
+                }
             }
             return false;
         }
@@ -508,25 +449,29 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword
         {
         }
 
-        public override void SendExtraAI(BinaryWriter writer)
+        private void SpawnDefiledGreatswordProjectiles()
         {
-            writer.Write(willDie);
-            writer.Write7BitEncodedInt(useAnim);
-            writer.Write7BitEncodedInt(lastHitTargetIndex);
-            writer.Write7BitEncodedInt(postSwingCooldown);
-            writer.WriteVector2(aimVel);
-            writer.Write(Animation);
-        }
+            if (Projectile.owner != Main.myPlayer)
+                return;
 
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            willDie = reader.ReadBoolean();
-            useAnim = reader.Read7BitEncodedInt();
-            lastHitTargetIndex = reader.Read7BitEncodedInt();
-            postSwingCooldown = reader.Read7BitEncodedInt();
-            aimVel = reader.ReadVector2();
-            Animation = reader.ReadSingle();
-            mousePos = Owner.Center - aimVel;
+            Vector2 shootDirection = Owner.DirectionTo(Owner.Calamity().mouseWorld);
+
+            if (shootDirection == Vector2.Zero)
+                shootDirection = Vector2.UnitX * Owner.direction;
+
+            Vector2 velocity = shootDirection * DefiledGreatsword.ShootSpeed;
+            float adjustedItemScale = Owner.GetAdjustedItemScale(Owner.HeldItem);
+            int projectileType = ModContent.ProjectileType<BlazingPhantomBlade>();
+
+            for (int i = 0; i < DefiledGreatsword.TotalProjectiles; i++)
+            {
+                float fullyVisibleDuration = DefiledGreatsword.ProjectileFullyVisibleDuration + i * DefiledGreatsword.ProjectileFullyVisibleDurationIncreasePerAdditionalProjectile;
+
+                float velocityMultiplier = 1f - i / (float)DefiledGreatsword.TotalProjectiles;
+
+                int proj = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Owner.MountedCenter, velocity * velocityMultiplier, projectileType, (int)(Projectile.damage * 0.15f), Projectile.knockBack * 0.5f, Owner.whoAmI, Owner.direction * Owner.gravDir, fullyVisibleDuration,  adjustedItemScale);
+                Main.projectile[proj].DamageType = MythicMelee.Instance;
+            }
         }
     }
 }
