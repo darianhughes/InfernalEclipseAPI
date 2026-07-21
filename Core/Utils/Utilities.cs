@@ -255,6 +255,8 @@ namespace InfernalEclipseAPI.Core.Utils
                     }
                 }
             }
+
+            AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DisabledTooltip", Color.Lerp(Color.White, new Color(255, 80, 0), (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 2.0) * 0.5 + 0.5))));
         }
 
         public static void AddTooltip(List<TooltipLine> tooltips, string newTooltip, Color overrideColor = default)

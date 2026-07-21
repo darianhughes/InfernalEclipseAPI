@@ -5651,7 +5651,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.damage = 13;
                 }
 
-                if (GetItem(sots, "PiscesPunsher", item))
+                if (GetItem(sots, "PiscesPuncher", item))
                 {
                     item.damage = 16;
                 }

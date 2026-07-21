@@ -517,6 +517,7 @@ ItemTooltip: {
 	DoesNotStack: Не суммируется с предыдущими улучшениями
 	NoBoss: Не работает пока босс жив
 	Disabled: "[ОТКЛЮЧЕНО] "
+	// DisabledTooltip: This item is currently disabled and not intended to be used in the current version of Infernal Eclipse of Ragnarok.
 	// DauntlessBuff: +2% radiant damage
 	DedTo: - Посвящено: {0} -
 
@@ -2724,6 +2725,11 @@ Configs: {
 		CnidrionMusic: {
 			// Label: Cnidrion Music
 			// Tooltip: Toggles if 'Seahorse Scrutiny (Rebirth)' by Brimston Premium plays while a Cnidrion is alive.
+		}
+
+		DisableUnnecessaryContent: {
+			// Label: Disable Unnecessary Content
+			// Tooltip: ""
 		}
 	}
 

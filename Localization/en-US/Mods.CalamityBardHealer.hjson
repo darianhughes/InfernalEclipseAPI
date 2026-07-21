@@ -99,11 +99,12 @@ Items: {
 		'''
 }
 
-ItemDescriptions.DemonshadeGreaves:
-	'''
-	Increases your maximum technique points by 2, maximum inspiration by 15, and bonus healing by 10 life
-	Increases wind instrument homing speed and range by 60% and string instruments bounce six additional times
-	Doubles the range of your empowerments effect radius and extends the duration of empowerments by 6 seconds
-	'''
-
-ItemDescriptions.ChampionWing: ""
+ItemDescriptions: {
+	DemonshadeGreaves:
+		'''
+		Increases your maximum technique points by 2, maximum inspiration by 15, and bonus healing by 10 life
+		Increases wind instrument homing speed and range by 60% and string instruments bounce six additional times
+		Doubles the range of your empowerments effect radius and extends the duration of empowerments by 6 seconds
+		'''
+	ChampionWing: ""
+}

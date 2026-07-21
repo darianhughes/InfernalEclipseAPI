@@ -29,7 +29,6 @@ using InfernalEclipseAPI.Content.Items.Consumables;
 using SOTS;
 using CalamityMod.Items.Placeables.SunkenSea;
 using CalamityMod.Items.LabFinders;
-using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.Weapons.Ranged;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Core.Configs;
@@ -331,6 +330,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             }
             #endregion
 
+            #region Calamity Simple Whip Addon
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
             {
                 Recipe.Create(simpleWhipAddon.Find<ModItem>("StrikerEmblem").Type)
@@ -339,6 +339,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     .AddTile(TileID.Anvils)
                     .Register();
             }
+            #endregion
         }
 
         public override void PostAddRecipes()
@@ -669,72 +670,17 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #endregion
 
                 #region Thorium
-                if (InfernalConfig.Instance.ThoriumBalanceChangess && thorium != null)
-                {
-                    if (recipe.HasResult<UnholyCore>())
-                    {
-                        recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 1);
-                    }
-
-                    if (recipe.HasResult<MiracleMatter>() && !recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore")))
-                    {
-                        recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 5);
-                    }
-
-                    if (recipe.HasResult(thorium.Find<ModItem>("LodestoneJavelin")))
-                    {
-                        recipe.ReplaceResult(thorium.Find<ModItem>("LodestoneJavelin"), 200);
-                    }
-
-                    if (recipe.HasResult(thorium.Find<ModItem>("ValadiumBattleAxe")))
-                    {
-                        recipe.ReplaceResult(thorium.Find<ModItem>("ValadiumBattleAxe"), 200);
-                    }
-
-                    if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
-                    {
-                        if (recipe.HasResult(ModContent.ItemType<ReboundingRainbow>()))
-                        {
-                            thorium.TryFind("TerraKnife", out ModItem terraKnife);
-                            recipe.AddIngredient(terraKnife.Type);
-                        }
-
-                        if (recipe.HasResult(thorium.Find<ModItem>("ClericsCross")))
-                        {
-                            recipe.RemoveIngredient(thorium.Find<ModItem>("PurifiedShards").Type);
-                            recipe.AddIngredient(ItemID.FallenStar, 3);
-                            recipe.AddIngredient(thorium.Find<ModItem>("Blood").Type);
-                        }
-
-                        if (recipe.HasResult(thorium.Find<ModItem>("Zunpet")))
-                        {
-                            recipe.RemoveIngredient(ItemID.HallowedBar);
-                        }
-                    }
-                }
-
-                ModItem holySycthe = null;
                 if (thorium != null)
                 {
-                    //Materials
                     thorium.TryFind("NinjaEmblem", out ModItem ninjaEmblem);
                     thorium.TryFind("BloomWeave", out ModItem bloomWeave);
                     thorium.TryFind("MermaidCanteen", out ModItem mermaidCanteen);
-                    thorium.TryFind("TerrariumHolyScythe", out holySycthe);
                     thorium.TryFind("TitanicBar", out ModItem titanBar);
 
                     if (recipe.HasResult(thorium.Find<ModItem>("TerraScythe")) || recipe.HasResult(thorium.Find<ModItem>("TerraKnife")))
                     {
                         recipe.RemoveIngredient(ModContent.ItemType<LivingShard>());
                         recipe.AddIngredient<LivingShard>(12);
-                    }
-
-                    if (InfernalConfig.Instance.MergeCraftingTrees)
-                    {
-                        if (recipe.HasResult(ModContent.ItemType<LifeAlloy>()))
-                        {
-                            recipe.AddIngredient(titanBar, 1);
-                        }
                     }
 
                     if (recipe.HasIngredient<DepthCells>() && !recipe.HasIngredient(thorium.Find<ModItem>("AbyssalChitin")))
@@ -752,93 +698,29 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient(thorium.Find<ModItem>("BloodCell"));
                     }
 
-                    if (InfernalConfig.Instance.DisableDuplicateContent)
-                    {
-                        if (thorium.TryFind("CobaltThrowingSpear", out ModItem cbthrowspear))
-                        {
-                            if (recipe.HasResult(cbthrowspear))
-                                recipe.DisableRecipe();
-                        }
-
-                        if (thorium.TryFind("PalladiumThrowingSpear", out ModItem palthrowspear))
-                        {
-                            if (recipe.HasResult(palthrowspear))
-                                recipe.DisableRecipe();
-                        }
-
-                        if (thorium.TryFind("IronTomahawk", out ModItem ironToma))
-                        {
-                            if (recipe.HasResult(ironToma))
-                            {
-                                recipe.DisableRecipe();
-                            }
-                        }
-
-                        if (thorium.TryFind("LeadTomahawk", out ModItem leadToma))
-                        {
-                            if (recipe.HasResult(leadToma))
-                            {
-                                recipe.DisableRecipe();
-                            }
-                        }
-
-                        if (thorium.TryFind("AromaticBulb", out ModItem bulb))
-                        {
-                            if (recipe.HasResult(bulb))
-                                recipe.DisableRecipe();
-                        }
-
-                        string[] coatings =
-                        {
-                            "DeepFreezeCoatingItem",
-                            "ExplosiveCoatingItem",
-                            "GorgonCoatingItem",
-                            "SporeCoatingItem",
-                            "ToxicCoatingItem",
-                        };
-
-                        foreach (string coating in coatings)
-                            if (thorium.TryFind(coating, out ModItem coatingItem))
-                                if (recipe.HasResult(coatingItem))
-                                    recipe.DisableRecipe();
-
-                        if (thorium.TryFind("AdamantiteGlaive", out ModItem adamGlaive))
-                            if (recipe.HasResult(adamGlaive))
-                                recipe.DisableRecipe();
-
-                        if (thorium.TryFind("TitaniumGlaive", out ModItem titanGlaive))
-                            if (recipe.HasResult(titanGlaive))
-                                recipe.DisableRecipe();
-
-                        string[] disabledItems =
-                        {
-                            //"ChlorophyteTomahawk",
-                            "DemonBloodBow",
-                            //"MyceliumGatlingGun",
-                            "TimeWarp",
-                            "MoltenKnife",
-                        };
-
-                        foreach (string item in disabledItems)
-                            if (thorium.TryFind(item, out ModItem tempItem))
-                                if (recipe.HasResult(tempItem))
-                                    recipe.DisableRecipe();
-
-                        if (recipe.HasIngredient(thorium.Find<ModItem>("MoltenKnife")))
-                        {
-                            recipe.RemoveIngredient(thorium.Find<ModItem>("MoltenKnife").Type);
-                            recipe.AddIngredient<InfernalKris>();
-                        }
-                    }
-
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)
                     {
-                        if (InfernalCrossmod.SOTS.Loaded)
+                        if (recipe.HasResult<UnholyCore>())
                         {
-                            if (thorium.TryFind("FrenzyPotion", out ModItem frenzy))
-                                if (recipe.HasResult(frenzy))
-                                    recipe.DisableRecipe();
+                            recipe.AddIngredient(thorium.Find<ModItem>("SoulofPlight"), 1);
                         }
+
+                        if (recipe.HasResult<MiracleMatter>() && !recipe.HasIngredient(thorium.Find<ModItem>("TerrariumCore")))
+                        {
+                            recipe.AddIngredient(thorium.Find<ModItem>("TerrariumCore"), 5);
+                        }
+
+                        /*
+                        if (recipe.HasResult(thorium.Find<ModItem>("LodestoneJavelin")))
+                        {
+                            recipe.ReplaceResult(thorium.Find<ModItem>("LodestoneJavelin"), 200);
+                        }
+
+                        if (recipe.HasResult(thorium.Find<ModItem>("ValadiumBattleAxe")))
+                        {
+                            recipe.ReplaceResult(thorium.Find<ModItem>("ValadiumBattleAxe"), 200);
+                        }
+                        */
 
                         if (thorium.TryFind("KineticPotion", out ModItem kinetic))
                             if (recipe.HasResult(kinetic))
@@ -877,6 +759,10 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         if (InfernalCrossmod.SOTS.Loaded)
                         {
+                            if (thorium.TryFind("FrenzyPotion", out ModItem frenzy))
+                                if (recipe.HasResult(frenzy))
+                                    recipe.DisableRecipe();
+
                             if (recipe.HasResult(InfernalCrossmod.SOTS.Mod.Find<ModItem>("PutridCoin")) || recipe.HasResult(InfernalCrossmod.SOTS.Mod.Find<ModItem>("BloodstainedCoin")))
                             {
                                 recipe.RemoveTile(TileID.Anvils); ;
@@ -891,7 +777,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence").Type, 3);
                             }
                         }
- 
+
                         if (!ModLoader.HasMod("WHummusMultiModBalancing"))
                         {
                             if (recipe.HasResult(thorium.Find<ModItem>("Nocturnal")) || recipe.HasResult(thorium.Find<ModItem>("Sanguine")))
@@ -1203,6 +1089,123 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                     recipe.AddIngredient(ItemID.BeetleHusk, 3);
                                 }
                             }
+
+                            if (recipe.HasResult(ModContent.ItemType<ReboundingRainbow>()))
+                            {
+                                recipe.AddIngredient(thorium.Find<ModItem>("TerraKnife"));
+                            }
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("ClericsCross")))
+                            {
+                                recipe.RemoveIngredient(thorium.Find<ModItem>("PurifiedShards").Type);
+                                recipe.AddIngredient(ItemID.FallenStar, 3);
+                                recipe.AddIngredient(thorium.Find<ModItem>("Blood").Type);
+                            }
+
+                            if (recipe.HasResult(thorium.Find<ModItem>("Zunpet")))
+                            {
+                                recipe.RemoveIngredient(ItemID.HallowedBar);
+                            }
+                        }
+                    }
+
+                    if (InfernalConfig.Instance.MergeCraftingTrees)
+                    {
+                        if (recipe.HasResult(ModContent.ItemType<LifeAlloy>()))
+                        {
+                            recipe.AddIngredient(titanBar, 1);
+                        }
+                    }
+
+                    if (InfernalConfig.Instance.DisableDuplicateContent)
+                    {
+                        if (thorium.TryFind("CobaltThrowingSpear", out ModItem cbthrowspear))
+                        {
+                            if (recipe.HasResult(cbthrowspear))
+                                recipe.DisableRecipe();
+                        }
+
+                        if (thorium.TryFind("PalladiumThrowingSpear", out ModItem palthrowspear))
+                        {
+                            if (recipe.HasResult(palthrowspear))
+                                recipe.DisableRecipe();
+                        }
+
+                        if (thorium.TryFind("IronTomahawk", out ModItem ironToma))
+                        {
+                            if (recipe.HasResult(ironToma))
+                            {
+                                recipe.DisableRecipe();
+                            }
+                        }
+
+                        if (thorium.TryFind("LeadTomahawk", out ModItem leadToma))
+                        {
+                            if (recipe.HasResult(leadToma))
+                            {
+                                recipe.DisableRecipe();
+                            }
+                        }
+
+                        if (thorium.TryFind("AromaticBulb", out ModItem bulb))
+                        {
+                            if (recipe.HasResult(bulb))
+                                recipe.DisableRecipe();
+                        }
+
+                        string[] coatings =
+                        {
+                            "DeepFreezeCoatingItem",
+                            "ExplosiveCoatingItem",
+                            "GorgonCoatingItem",
+                            "SporeCoatingItem",
+                            "ToxicCoatingItem",
+                        };
+
+                        foreach (string coating in coatings)
+                            if (thorium.TryFind(coating, out ModItem coatingItem))
+                                if (recipe.HasResult(coatingItem))
+                                    recipe.DisableRecipe();
+
+                        if (thorium.TryFind("AdamantiteGlaive", out ModItem adamGlaive))
+                            if (recipe.HasResult(adamGlaive))
+                                recipe.DisableRecipe();
+
+                        if (thorium.TryFind("TitaniumGlaive", out ModItem titanGlaive))
+                            if (recipe.HasResult(titanGlaive))
+                                recipe.DisableRecipe();
+
+                        string[] disabledItems =
+                        {
+                            //"ChlorophyteTomahawk",
+                            "DemonBloodBow",
+                            //"MyceliumGatlingGun",
+                            "TimeWarp",
+                            "MoltenKnife",
+                        };
+
+                        foreach (string item in disabledItems)
+                            if (thorium.TryFind(item, out ModItem tempItem))
+                                if (recipe.HasResult(tempItem))
+                                    recipe.DisableRecipe();
+
+                        if (recipe.HasIngredient(thorium.Find<ModItem>("MoltenKnife")))
+                        {
+                            recipe.RemoveIngredient(thorium.Find<ModItem>("MoltenKnife").Type);
+                            recipe.AddIngredient<InfernalKris>();
+                        }
+                    }
+
+                    if (InfernalConfig.Instance.DisableUnnecessaryContent)
+                    {
+                        if (recipe.HasResult(GetItem(thorium, "TitanBreastplate"))
+                         || recipe.HasResult(GetItem(thorium, "TitanGreaves"))
+                         || recipe.HasResult(GetItem(thorium, "TitanHeadgear"))
+                         || recipe.HasResult(GetItem(thorium, "TitanMask"))
+                         || recipe.HasResult(GetItem(thorium, "TitanHelmet"))
+                         || recipe.HasResult(GetItem(thorium, "TitanWings")))
+                        {
+                            recipe.DisableRecipe();
                         }
                     }
                 }
@@ -1263,6 +1266,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                     ragCal.TryFind("ExecutionerMark05", out ModItem exMark5);
                     ragCal.TryFind("ElementalReaper", out ModItem elementalReaper);
+                    thorium.TryFind("TerrariumHolyScythe", out ModItem holySycthe);
 
                     if (recipe.HasResult(exMark5) && holySycthe != null && !ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
                     {
@@ -1285,41 +1289,55 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #endregion
 
                 #region Thorium Helheim
-                if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework) && InfernalConfig.Instance.ThoriumBalanceChangess)
+                if (ModLoader.TryGetMod("ThoriumRework", out Mod thorRework))
                 {
-                    if (!ModLoader.TryGetMod("WHummusMultiModBalancing", out _))
+                    if (InfernalConfig.Instance.ThoriumBalanceChangess)
                     {
-                        if (thorRework.TryFind("Loudener", out ModItem loud))
+                        if (thorRework.TryFind("DeathsingerPotion", out ModItem deathSingerPotion) && recipe.HasResult(deathSingerPotion))
                         {
-                            if (recipe.HasResult(loud))
-                            {
-                                recipe.AddIngredient(thorium.Find<ModItem>("BronzeAlloyFragments"), 5);
-                            }
+                            recipe.DisableRecipe();
                         }
 
-                        if (thorRework.TryFind("ImpulseAmplifier", out ModItem impulse))
+                        if (!ModLoader.HasMod("WHummusMultiModBalancing"))
                         {
-                            if (recipe.HasResult(impulse))
+                            if (thorRework.TryFind("Loudener", out ModItem loud))
                             {
-                                recipe.RemoveIngredient(ItemID.Wire);
-                                recipe.AddIngredient(ModContent.ItemType<StormlionMandible>(), 1);
+                                if (recipe.HasResult(loud))
+                                {
+                                    recipe.AddIngredient(thorium.Find<ModItem>("BronzeAlloyFragments"), 5);
+                                }
                             }
-                        }
 
-                        if (thorRework.TryFind("GildedFlyingFlute", out ModItem gff))
-                        {
-                            if (recipe.HasResult(gff))
+                            if (thorRework.TryFind("ImpulseAmplifier", out ModItem impulse))
                             {
-                                recipe.AddIngredient(ItemID.SoulofSight, 3);
-                                recipe.AddIngredient(ItemID.SoulofMight, 3);
-                                recipe.AddIngredient(ItemID.SoulofFright, 3);
+                                if (recipe.HasResult(impulse))
+                                {
+                                    recipe.RemoveIngredient(ItemID.Wire);
+                                    recipe.AddIngredient(ModContent.ItemType<StormlionMandible>(), 1);
+                                }
+                            }
+
+                            if (thorRework.TryFind("GildedFlyingFlute", out ModItem gff))
+                            {
+                                if (recipe.HasResult(gff))
+                                {
+                                    recipe.AddIngredient(ItemID.SoulofSight, 3);
+                                    recipe.AddIngredient(ItemID.SoulofMight, 3);
+                                    recipe.AddIngredient(ItemID.SoulofFright, 3);
+                                }
                             }
                         }
                     }
 
-                    if (thorRework.TryFind("DeathsingerPotion", out ModItem deathSingerPotion) && recipe.HasResult(deathSingerPotion))
+                    if (InfernalConfig.Instance.DisableUnnecessaryContent)
                     {
-                        recipe.DisableRecipe();
+                        if (recipe.HasResult(GetItem(thorRework, "TitanHat"))
+                         || recipe.HasResult(GetItem(thorRework, "TitanHood"))
+                         || recipe.HasResult(GetItem(thorRework, "TitanVisage"))
+                         || recipe.HasResult(GetItem(thorRework, "TitanVisor")))
+                        {
+                            recipe.DisableRecipe();
+                        }
                     }
                 }
                 #endregion
@@ -1327,6 +1345,8 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                 #region Calamity Bard Healer
                 if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal) && InfernalConfig.Instance.ThoriumBalanceChangess)
                 {
+                    thorium.TryFind("TerrariumHolyScythe", out ModItem holySycthe);
+
                     if (calBardHeal.TryFind("SongoftheAncients", out ModItem songAncinet))
                     {
                         if (recipe.HasResult(songAncinet))

@@ -4,7 +4,6 @@ using CalamityMod;
 using CalamityMod.Enums;
 using CalamityMod.Items.Armor.Demonshade;
 using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Items.Weapons.Summon;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Players;
@@ -44,10 +43,9 @@ using ThoriumMod.Items.SummonItems;
 using ThoriumMod.Items.Terrarium;
 using ThoriumMod.Items.Thorium;
 using ThoriumMod.Items.ThrownItems;
+using ThoriumMod.Items.Titan;
 using ThoriumMod.Items.Valadium;
 using ThoriumMod.Utilities;
-using ThoriumRework;
-using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
 using static Terraria.ModLoader.ModContent;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
@@ -872,6 +870,42 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 foreach (string disabledItem in disabledItems)
                     if (item.type == InfernalCrossmod.Thorium.Mod.Find<ModItem>(disabledItem).Type)
                         InfernalUtilities.AddDisabledItemTag(tooltips);
+            }
+
+            if (InfernalConfig.Instance.DisableUnnecessaryContent)
+            {
+                if (item.type == ItemType<TitanBreastplate>())
+                    InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                if (item.type == ItemType<TitanGreaves>())
+                    InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                if (item.type == ItemType<TitanHelmet>())
+                    InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                if (item.type == ItemType<TitanMask>())
+                    InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                if (item.type == ItemType<TitanHeadgear>())
+                    InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                if (item.type == ItemType<TitanWings>())
+                    InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanHat").Type)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                    if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanHood").Type)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                    if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanVisage").Type)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
+
+                    if (item.type == InfernalCrossmod.ThoriumRework.Mod.Find<ModItem>("TitanVisor").Type)
+                        InfernalUtilities.AddDisabledItemTag(tooltips);
+                }
             }
 
             if (InfernalCrossmod.ThoriumRework.Loaded)

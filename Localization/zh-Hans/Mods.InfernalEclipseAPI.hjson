@@ -528,6 +528,7 @@ ItemTooltip: {
 	DoesNotStack: 不与下位效果叠加
 	NoBoss: Boss存活时不生效
 	Disabled: "[禁用] "
+	// DisabledTooltip: This item is currently disabled and not intended to be used in the current version of Infernal Eclipse of Ragnarok.
 	DauntlessBuff: +2%光辉伤害
 	DedTo: -献给{0}-
 
@@ -2793,6 +2794,11 @@ Configs: {
 		CnidrionMusic: {
 			Label: 卧龙海马音乐
 			Tooltip: 切换卧龙海马存活时是否播放“Seahorse Scrutiny (Rebirth)” 作者：Brimston Premium
+		}
+
+		DisableUnnecessaryContent: {
+			// Label: Disable Unnecessary Content
+			// Tooltip: ""
 		}
 	}
 

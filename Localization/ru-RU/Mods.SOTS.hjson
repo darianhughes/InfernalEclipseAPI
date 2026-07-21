@@ -71,12 +71,11 @@ Items: {
 	}
 }
 
-EarthenHelmet.SetBonus:
+/* ArmorSetBonus.Earthen:
 	'''
-	Атаки ближнего боя имеют шанс наложить бессрочное суммирующееся проклятие искромсания
-	Враги под действием проклятия будут получать дополнительный урон от всех атак
-	Увеличивает скорость атаки на 10%
-	'''
+	Melee strikes have a chance to apply a stacking, permanent shred on enemies, making them take additional damage from all attacks
+	Increases attack speed by 10%
+	''' */
 TwilightAssassinsCircletText:
 	'''
 	Увеличивает максимальное количество стражей на 1
