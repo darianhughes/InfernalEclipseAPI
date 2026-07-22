@@ -717,8 +717,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         sb.Append(CalamityUtils.GetText($"Common.WingStats").Format(time.FramesToSeconds(), BaseWings.HorizontalSpeedText(run), BaseWings.VerticalSpeedText(1.35f),
                         BaseWings.HorizontalAccelerationText(stats.AccRunAccelerationMult), BaseWings.VerticalAccelerationText(0.195f)));
                         sb.Append('\n');
-                        sb.Append($"[c/B8B8B8:{Language.GetTextValue("UI.HoldShiftTooltipExtensionIndicator")}]");
+                        sb.Append($"[c/B8B8B8:{Language.GetTextValue("Mods.CalamityMod.UI.HoldShiftTooltipExtensionIndicator")}]");
                     }
+
+                    // Add stats below the common "Allows flight" line
+                    TooltipLine wingTooltip = tooltips.FirstOrDefault(x => x.Text == Language.GetTextValue("CommonItemTooltip.FlightAndSlowfall") && x.Mod == "Terraria");
+                    if (wingTooltip != null)
+                        wingTooltip.Text += sb.ToString();
                 }
 
                 if (item.type == ItemType<CrestofDasuver>())
