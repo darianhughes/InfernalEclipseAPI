@@ -48,6 +48,7 @@ using InfernalEclipseAPI.Core.Players;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
 using SOTS.Projectiles.Permafrost;
+using CalamityMod.Systems.Collections;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -261,6 +262,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
             if (debuffNPC.AnomalyCurse > MaxAnomalyCurseStacks)
                 debuffNPC.AnomalyCurse = MaxAnomalyCurseStacks;
+
+            if (npc.type == NPCID.SkeletronHead || npc.type == NPCID.SkeletronHand ||
+                npc.type == NPCID.SkeletronPrime || npc.type == NPCID.PrimeCannon || npc.type == NPCID.PrimeLaser || npc.type == NPCID.PrimeSaw || npc.type == NPCID.PrimeVice ||
+                npc.type == NPCID.WallofFlesh || npc.type == NPCID.WallofFleshEye)
+                debuffNPC.BleedingCurse = 0;
 
             if (npc.type == ModContent.NPCType<SubspaceSerpentHead>())
             {

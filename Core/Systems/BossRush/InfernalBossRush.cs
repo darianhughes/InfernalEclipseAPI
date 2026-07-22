@@ -731,7 +731,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                     NPC.SpawnOnPlayer(ClosestPlayerToWorldCenter, WrathNPC("AvatarRift"));
                 }, permittedNPCs: new int[] { WrathNPC("BattleSolyn"), WrathNPC("NamelessDeityBoss"), WrathNPC("AvatarRift"), WrathNPC("AvatarOfEmptiness") }));
 
-                Bosses.Add(new Boss(WrathNPC("NamelessDeityBoss"), TimeChangeContext.Night, specialSpawnCountdown: 270));
+                Bosses.Add(new Boss(WrathNPC("NamelessDeityBoss"), TimeChangeContext.Night, specialSpawnCountdown: 270, usesSpecialSound: true));
             }
 
             // Death IDs after defeat

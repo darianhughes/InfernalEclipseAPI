@@ -1,0 +1,687 @@
+﻿using CalamityMod.NPCs.SupremeCalamitas;
+using Terraria.Audio;
+using ReLogic.Utilities;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.SupremeCalamitas;
+using Microsoft.Xna.Framework;
+using CalamityMod.Events;
+using CalamityMod.World;
+using CalamityMod.Projectiles.Boss;
+using InfernumMode;
+using InfernumMode.Assets.Sounds;
+using InfernumMode.Core.GlobalInstances.Systems;
+using CalamityMod;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
+using System.Reflection;
+using Mono.Cecil.Cil;
+using System;
+using Terraria.ModLoader.IO;
+using System.IO;
+using InfernalEclipseAPI.Core.World;
+using Terraria;
+using CalamityMod.Particles;
+using System.Security.Policy;
+using CalamityMod.Dusts;
+
+namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalOverrides
+{
+    public class SCalChanges : GlobalNPC
+    {
+        public override bool InstancePerEntity => true;
+
+        public override bool AppliesToEntity(NPC npc, bool lateInstantiation)
+        {
+            return npc.type == ModContent.NPCType<SupremeCalamitas>();
+        }
+
+        public const int BulletHellDuration = 900;
+        public const int SecondBulletHellEndValue = BulletHellDuration * 2;
+        public const int ThirdBulletHellEndValue = BulletHellDuration * 3;
+        public const int FourthBulletHellEndValue = BulletHellDuration * 4;
+        public const int FifthBulletHellEndValue = BulletHellDuration * 5;
+
+        public bool FinishedBH1 => bulletHellCounter2 >= BulletHellDuration;
+        public bool FinishedBH2 => bulletHellCounter2 >= SecondBulletHellEndValue;
+        public bool FinishedBH3 => bulletHellCounter2 >= ThirdBulletHellEndValue;
+        public bool FinishedBH4 => bulletHellCounter2 >= FourthBulletHellEndValue;
+        public bool FinishedBH5 => bulletHellCounter2 >= FifthBulletHellEndValue;
+
+        public float uDieLul = 1f;
+        public float passedVar = 0f;
+
+        public bool despawnProj = false;
+
+        public int bulletHellCounter = 0;
+        public int bulletHellCounter2 = 0;
+
+        public SlotId BulletHellRumbleSlot;
+
+        public bool hasTeleported = false;
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter writer)
+        {
+            writer.Write(despawnProj);
+        }
+
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader reader)
+        {
+            despawnProj = reader.ReadBoolean();
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if (SupremeCalamitasBehaviorOverride.Enraged)
+            {
+                float projectileVelocityMultCap = 2f;
+                uDieLul = MathHelper.Clamp(uDieLul * 1.01f, 1f, projectileVelocityMultCap);
+            }
+            else
+            {
+                uDieLul = MathHelper.Clamp(uDieLul * 0.99f, 1f, 2f);
+            }
+
+            return base.PreAI(npc);
+        }
+
+        public bool DoBehaviour_BulletHell(NPC npc, Player player, int currentPhase, ref float frameType, ref float attackTimer)
+        {
+            if (!InfernalWorld.RagnarokModeEnabled) return true;
+
+            bool expertMode = Main.expertMode || BossRushEvent.BossRushActive;
+            bool revenge = CalamityWorld.revenge || BossRushEvent.BossRushActive;
+            bool death = CalamityWorld.death || BossRushEvent.BossRushActive;
+
+            bool zenithAI = Main.zenithWorld;
+
+            int bulletHellblast = zenithAI ? ModContent.ProjectileType<BrimstoneWave>() : ModContent.ProjectileType<BrimstoneHellblast2>();
+            int barrage = ModContent.ProjectileType<BrimstoneBarrage>();
+            int gigablast = zenithAI ? ModContent.ProjectileType<SCalBrimstoneFireblast>() : ModContent.ProjectileType<SCalBrimstoneGigablast>();
+            int fireblast = zenithAI ? ModContent.ProjectileType<SCalBrimstoneGigablast>() : ModContent.ProjectileType<SCalBrimstoneFireblast>();
+            int wave = zenithAI ? ModContent.ProjectileType<BrimstoneHellblast2>() : ModContent.ProjectileType<BrimstoneWave>();
+            int hellblast = zenithAI ? ModContent.ProjectileType<BrimstoneWave>() : ModContent.ProjectileType<BrimstoneHellblast>();
+
+            int baseBulletHellProjectileGateValue = revenge ? 8 : expertMode ? 9 : 10;
+
+            //Spawn BH (BH1) is skiped
+            if (false) //if (currentPhase == 1f && !FinishedBH1)
+            {
+                // Teleport above the player and delete all hostile projectiles on the first frame.
+                if (attackTimer == 1f && !hasTeleported)
+                    TeleportToCenter(npc);
+
+                despawnProj = true;
+                bulletHellCounter2++;
+                npc.damage = 0;
+                npc.chaseable = false;
+                npc.dontTakeDamage = true;
+
+                #region BulletHellEndTelegraphBH1
+                if (bulletHellCounter2 == (BulletHellDuration - 360))
+                    BulletHellRumbleSlot = SoundEngine.PlaySound(SupremeCalamitas.BulletHellSound, player.Center);
+                if (bulletHellCounter2 > (BulletHellDuration - 360))
+                {
+                    if (SoundEngine.TryGetActiveSound(BulletHellRumbleSlot, out var BHSound) && BHSound.IsPlaying)
+                    {
+                        BHSound.Position = player.MountedCenter;
+                    }
+                }
+                #endregion
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    bulletHellCounter++;
+                    if (bulletHellCounter >= baseBulletHellProjectileGateValue)
+                    {
+                        bulletHellCounter = 0;
+                        if (bulletHellCounter2 % (baseBulletHellProjectileGateValue * 6) == 0)
+                        {
+                            float distance = Main.rand.NextBool() ? -1000f : 1000f;
+                            float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        if (bulletHellCounter2 < 300 && !Main.zenithWorld) // Blasts from above
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else if (bulletHellCounter2 < 600) // Blasts from left and right
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else // Blasts from above, left, and right
+                        {
+                            if (!Main.zenithWorld)
+                                Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 3f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                    }
+                }
+
+                frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
+                return false;
+            }
+
+            //BH2
+            if (currentPhase == 1f && !FinishedBH2)
+            {
+                despawnProj = true;
+                bulletHellCounter2++;
+                npc.damage = 0;
+                npc.chaseable = false;
+                npc.dontTakeDamage = true;
+
+                if (attackTimer == 1f && !hasTeleported)
+                    TeleportToCenter(npc);
+
+                #region BulletHellEndTelegraphBH2
+                if (bulletHellCounter2 == (SecondBulletHellEndValue - 360))
+                    BulletHellRumbleSlot = SoundEngine.PlaySound(SupremeCalamitas.BulletHellSound, player.Center);
+                if (bulletHellCounter2 > (SecondBulletHellEndValue - 360))
+                {
+                    if (SoundEngine.TryGetActiveSound(BulletHellRumbleSlot, out var BHSound) && BHSound.IsPlaying)
+                    {
+                        BHSound.Position = player.MountedCenter;
+                    }
+                }
+                if (bulletHellCounter2 == SecondBulletHellEndValue)
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Vector2 dustVel = new Vector2(15, 15).RotatedByRandom(100);
+                        Dust failShotDust = Dust.NewDustPerfect(npc.Center + dustVel * 3, Main.rand.NextBool(3) ? 60 : 114);
+                        failShotDust.noGravity = true;
+                        failShotDust.velocity = dustVel * Main.rand.NextFloat(0.3f, 1.3f);
+                        failShotDust.scale = Main.rand.NextFloat(2f, 3.2f);
+                    }
+                    Particle pulse = new DirectionalPulseRing(npc.Center, Vector2.Zero, Color.Red, new Vector2(1f, 1f), 0, 0.1f, 5f, 15);
+                    GeneralParticleHandler.SpawnParticle(pulse);
+                    Particle pulse2 = new DirectionalPulseRing(npc.Center, Vector2.Zero, Color.Lerp(Color.Red, Color.Magenta, 0.3f), new Vector2(1f, 1f), 0, 0.05f, 4f, 18);
+                    GeneralParticleHandler.SpawnParticle(pulse2);
+
+                    SoundEngine.PlaySound(SupremeCalamitas.BulletHellEndSound, npc.Center);
+                }
+                #endregion
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    if (bulletHellCounter2 < 1200)
+                    {
+                        if (bulletHellCounter2 % 180 == 0) // Blasts from top
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                    }
+                    else if (bulletHellCounter2 < 1500 && bulletHellCounter2 > 1200)
+                    {
+                        if (bulletHellCounter2 % 180 == 0) // Blasts from right
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -5f * uDieLul, 0f, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                    }
+                    else if (bulletHellCounter2 > 1500)
+                    {
+                        if (bulletHellCounter2 % 180 == 0) // Blasts from top
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                    }
+
+                    bulletHellCounter++;
+                    if (bulletHellCounter >= baseBulletHellProjectileGateValue + 1)
+                    {
+                        bulletHellCounter = 0;
+                        if (bulletHellCounter2 % ((baseBulletHellProjectileGateValue + 1) * 6) == 0)
+                        {
+                            float distance = Main.rand.NextBool() ? -1000f : 1000f;
+                            float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+
+                        if (bulletHellCounter2 < 1200 && !Main.zenithWorld) // Blasts from below
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y + 1000f, 0f, -4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else if (bulletHellCounter2 < 1500) // Blasts from left
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else // Blasts from left and right
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                    }
+                }
+
+                frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
+                return false;
+            }
+
+
+            //BH3
+            if (currentPhase == 2f && !FinishedBH3)
+            {
+                despawnProj = true;
+                bulletHellCounter2++;
+                npc.damage = 0;
+                npc.chaseable = false;
+                npc.dontTakeDamage = true;
+
+                if (attackTimer == 1f && !hasTeleported)
+                    TeleportToCenter(npc);
+
+                #region BulletHellEndTelegraphBH3
+                if (bulletHellCounter2 == (ThirdBulletHellEndValue - 360))
+                    BulletHellRumbleSlot = SoundEngine.PlaySound(SupremeCalamitas.BulletHellSound, player.Center);
+                if (bulletHellCounter2 > (ThirdBulletHellEndValue - 360))
+                {
+                    if (SoundEngine.TryGetActiveSound(BulletHellRumbleSlot, out var BHSound) && BHSound.IsPlaying)
+                    {
+                        BHSound.Position = player.MountedCenter;
+                    }
+                }
+                if (bulletHellCounter2 == ThirdBulletHellEndValue)
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Vector2 dustVel = new Vector2(15, 15).RotatedByRandom(100);
+                        Dust failShotDust = Dust.NewDustPerfect(npc.Center + dustVel * 3, Main.rand.NextBool(3) ? 60 : 114);
+                        failShotDust.noGravity = true;
+                        failShotDust.velocity = dustVel * Main.rand.NextFloat(0.3f, 1.3f);
+                        failShotDust.scale = Main.rand.NextFloat(2f, 3.2f);
+                    }
+                    Particle pulse = new DirectionalPulseRing(npc.Center, Vector2.Zero, Color.Red, new Vector2(1f, 1f), 0, 0.1f, 5f, 15);
+                    GeneralParticleHandler.SpawnParticle(pulse);
+                    Particle pulse2 = new DirectionalPulseRing(npc.Center, Vector2.Zero, Color.Lerp(Color.Red, Color.Magenta, 0.3f), new Vector2(1f, 1f), 0, 0.05f, 4f, 18);
+                    GeneralParticleHandler.SpawnParticle(pulse2);
+
+                    SoundEngine.PlaySound(SupremeCalamitas.BulletHellEndSound, npc.Center);
+                }
+                #endregion
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    if (bulletHellCounter2 % 180 == 0) // Blasts from top
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+
+                    if (bulletHellCounter2 % 240 == 0) // Fireblasts from above
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, SupremeCalamitasBehaviorOverride.GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
+
+                    bulletHellCounter++;
+                    if (bulletHellCounter >= baseBulletHellProjectileGateValue + 4)
+                    {
+                        bulletHellCounter = 0;
+                        if (bulletHellCounter2 % ((baseBulletHellProjectileGateValue + 4) * 6) == 0)
+                        {
+                            float distance = Main.rand.NextBool() ? -1000f : 1000f;
+                            float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+
+                        if (bulletHellCounter2 < 2100 && !Main.zenithWorld) // Blasts from above
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else if (bulletHellCounter2 < 2400) // Blasts from right
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else // Blasts from left and right
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                    }
+                }
+
+                frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
+                return false;
+            }
+
+            //BH4
+            if (currentPhase == 3f && !FinishedBH4)
+            {
+                despawnProj = true;
+                bulletHellCounter2++;
+                npc.damage = 0;
+                npc.chaseable = false;
+                npc.dontTakeDamage = true;
+
+                if (attackTimer == 1f && !hasTeleported)
+                    TeleportToCenter(npc);
+
+                #region BulletHellEndTelegraphBH4
+                if (bulletHellCounter2 == (FourthBulletHellEndValue - 360))
+                    BulletHellRumbleSlot = SoundEngine.PlaySound(SupremeCalamitas.BulletHellSound, player.Center);
+                if (bulletHellCounter2 > (FourthBulletHellEndValue - 360))
+                {
+                    if (SoundEngine.TryGetActiveSound(BulletHellRumbleSlot, out var BHSound) && BHSound.IsPlaying)
+                    {
+                        BHSound.Position = player.MountedCenter;
+                    }
+                }
+                if (bulletHellCounter2 == FourthBulletHellEndValue)
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Vector2 dustVel = new Vector2(15, 15).RotatedByRandom(100);
+                        Dust failShotDust = Dust.NewDustPerfect(npc.Center + dustVel * 3, Main.rand.NextBool(3) ? 60 : 114);
+                        failShotDust.noGravity = true;
+                        failShotDust.velocity = dustVel * Main.rand.NextFloat(0.3f, 1.3f);
+                        failShotDust.scale = Main.rand.NextFloat(2f, 3.2f);
+                    }
+                    Particle pulse = new DirectionalPulseRing(npc.Center, Vector2.Zero, Color.Red, new Vector2(1f, 1f), 0, 0.1f, 5f, 15);
+                    GeneralParticleHandler.SpawnParticle(pulse);
+                    Particle pulse2 = new DirectionalPulseRing(npc.Center, Vector2.Zero, Color.Lerp(Color.Red, Color.Magenta, 0.3f), new Vector2(1f, 1f), 0, 0.05f, 4f, 18);
+                    GeneralParticleHandler.SpawnParticle(pulse2);
+
+                    SoundEngine.PlaySound(SupremeCalamitas.BulletHellEndSound, npc.Center);
+                }
+                #endregion
+
+                if (Main.netMode != NetmodeID.MultiplayerClient) // More clustered attack
+                {
+                    if (bulletHellCounter2 % 180 == 0) // Blasts from top
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+
+                    if (bulletHellCounter2 % 240 == 0) // Fireblasts from above
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, SupremeCalamitasBehaviorOverride.GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
+
+                    int divisor = revenge ? 225 : expertMode ? 450 : 675;
+
+                    Vector2 spawnSpot = npc.Infernum().Arena.Center.ToVector2();
+                    passedVar += 1f;
+                    if (passedVar == 180) // Giant homing fireballs
+                    {
+                        SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/SCalAltarSummon") with { Pitch = 0.3f }, player.Center);
+                        for (int i = 0; i < 2; i++)
+                        {
+                            Particle bloom = new BloomParticle(spawnSpot, Vector2.Zero, Color.Lerp(Color.Red, Color.Magenta, 0.3f), 0f, 1.45f, 240, false);
+                            GeneralParticleHandler.SpawnParticle(bloom);
+                        }
+                        Particle bloom2 = new BloomParticle(spawnSpot, Vector2.Zero, Color.White, 0f, 1.35f, 240, false);
+                        GeneralParticleHandler.SpawnParticle(bloom2);
+                    }
+                    if (passedVar == 420) // Giant homing fireballs
+                    {
+                        for (int i = 0; i < 90; i++)
+                        {
+                            Dust spawnDust = Dust.NewDustPerfect(npc.Infernum().Arena.Center.ToVector2(), (int)CalamityDusts.Brimstone, new Vector2(30, 30).RotatedByRandom(100) * Main.rand.NextFloat(0.05f, 1.2f));
+                            spawnDust.noGravity = true;
+                            spawnDust.scale = Main.rand.NextFloat(1.2f, 2.3f);
+                        }
+                        for (int i = 0; i < 40; i++)
+                        {
+                            Vector2 sparkVel = new Vector2(20, 20).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 1.1f);
+                            GlowOrbParticle orb = new GlowOrbParticle(npc.Infernum().Arena.Center.ToVector2() + sparkVel * 2, sparkVel, false, 120, Main.rand.NextFloat(1.55f, 2.75f), Color.Lerp(Color.Red, Color.Magenta, 0.3f), true, true);
+                            GeneralParticleHandler.SpawnParticle(orb);
+                        }
+
+                        // Whispering Maelstrom passes through normal CanHitPlayer hooks then overrides them. This needs it to have contact damage but the number itself doesn't matter.
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), spawnSpot, Vector2.Zero, ModContent.ProjectileType<BrimstoneMonster>(), 100, 0f, Main.myPlayer, 0f);
+                    }
+
+                    bulletHellCounter++;
+                    if (bulletHellCounter >= baseBulletHellProjectileGateValue + 6)
+                    {
+                        bulletHellCounter = 0;
+                        if (bulletHellCounter2 % ((baseBulletHellProjectileGateValue + 6) * 6) == 0)
+                        {
+                            float distance = Main.rand.NextBool() ? -1000f : 1000f;
+                            float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+
+                        if (bulletHellCounter2 < 3000 && !Main.zenithWorld) // Blasts from below
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y + 1000f, 0f, -4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else if (bulletHellCounter2 < 3300) // Blasts from left
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else // Blasts from left and right
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                    }
+                }
+
+                frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
+                return false;
+            }
+
+            //BH5
+            if (currentPhase == 4f && !FinishedBH5)
+            {
+                despawnProj = true;
+                bulletHellCounter2++;
+                npc.damage = 0;
+                npc.chaseable = false;
+                npc.dontTakeDamage = true;
+
+                if (attackTimer == 1f && !hasTeleported)
+                    TeleportToCenter(npc);
+
+                #region BulletHellEndTelegraphBH5
+                if (bulletHellCounter2 == (FifthBulletHellEndValue - 360))
+                    BulletHellRumbleSlot = SoundEngine.PlaySound(SupremeCalamitas.BulletHellSound, player.Center);
+                if (bulletHellCounter2 > (FifthBulletHellEndValue - 360))
+                {
+                    if (SoundEngine.TryGetActiveSound(BulletHellRumbleSlot, out var BHSound) && BHSound.IsPlaying)
+                    {
+                        BHSound.Position = player.MountedCenter;
+                    }
+                }
+                if (bulletHellCounter2 == FifthBulletHellEndValue)
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        Vector2 dustVel = new Vector2(15, 15).RotatedByRandom(100);
+                        Dust failShotDust = Dust.NewDustPerfect(npc.Center + dustVel * 3, Main.rand.NextBool(3) ? 60 : 114);
+                        failShotDust.noGravity = true;
+                        failShotDust.velocity = dustVel * Main.rand.NextFloat(0.3f, 1.3f);
+                        failShotDust.scale = Main.rand.NextFloat(2f, 3.2f);
+                    }
+                    Particle pulse = new DirectionalPulseRing(npc.Center, Vector2.Zero, Color.Red, new Vector2(1f, 1f), 0, 0.1f, 5f, 15);
+                    GeneralParticleHandler.SpawnParticle(pulse);
+                    Particle pulse2 = new DirectionalPulseRing(npc.Center, Vector2.Zero, Color.Lerp(Color.Red, Color.Magenta, 0.3f), new Vector2(1f, 1f), 0, 0.05f, 4f, 18);
+                    GeneralParticleHandler.SpawnParticle(pulse2);
+
+                    SoundEngine.PlaySound(SupremeCalamitas.BulletHellEndSound, npc.Center);
+                }
+                #endregion
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    if (bulletHellCounter2 % 240 == 0) // Blasts from top
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+
+                    if (bulletHellCounter2 % 360 == 0) // Fireblasts from above
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, SupremeCalamitasBehaviorOverride.GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
+
+                    if (bulletHellCounter2 % 30 == 0) // Projectiles that move in wave pattern
+                    {
+                        int random = Main.rand.Next(-500, 501);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + random, -5f * uDieLul, 0f, wave, SupremeCalamitasBehaviorOverride.LostSoulDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y - random, 5f * uDieLul, 0f, wave, SupremeCalamitasBehaviorOverride.LostSoulDamage, 0f, Main.myPlayer, 0f, 2f);
+                    }
+
+                    bulletHellCounter++;
+                    if (bulletHellCounter >= baseBulletHellProjectileGateValue + 8)
+                    {
+                        bulletHellCounter = 0;
+                        if (bulletHellCounter2 % ((baseBulletHellProjectileGateValue + 8) * 6) == 0)
+                        {
+                            float distance = Main.rand.NextBool() ? -1000f : 1000f;
+                            float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+
+                        if (bulletHellCounter2 < 3900 && !Main.zenithWorld) // Blasts from above
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else if (bulletHellCounter2 < 4200) // Blasts from left and right
+                        {
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                        else // Blasts from above, left, and right
+                        {
+                            if (!Main.zenithWorld)
+                                Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 3f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        }
+                    }
+                }
+
+                frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
+                return false;
+            }
+            else if (FinishedBH5)
+            {
+                Utilities.DeleteAllProjectiles(false, ModContent.ProjectileType<BrimstoneMonster>());
+            }
+
+            if (bulletHellCounter2 % BulletHellDuration == 0 && despawnProj)
+            {
+                for (int x = 0; x < Main.maxProjectiles; x++)
+                {
+                    Projectile projectile = Main.projectile[x];
+                    if (projectile.active)
+                    {
+                        if (projectile.type == bulletHellblast ||
+                            projectile.type == barrage ||
+                            projectile.type == wave)
+                        {
+                            if (projectile.timeLeft > 60)
+                                projectile.timeLeft = 60;
+                        }
+                        else if (projectile.type == fireblast || projectile.type == gigablast)
+                        {
+                            projectile.ai[2] = 1f;
+
+                            if (projectile.timeLeft > 15)
+                                projectile.timeLeft = 15;
+                        }
+                    }
+                }
+                despawnProj = false;
+            }
+
+            npc.chaseable = true;
+            hasTeleported = false;
+            return true;
+        }
+
+        private void TeleportToCenter(NPC npc)
+        {
+            SoundEngine.PlaySound(InfernumSoundRegistry.CalThunderStrikeSound, npc.Center);
+            SoundEngine.PlaySound(SupremeCalamitas.SpawnSound, npc.Center);
+
+            for (int i = 0; i < 4; i++)
+                SupremeCalamitasBehaviorOverride.ClearAllEntities();
+            npc.Center = npc.Infernum().Arena.Center.ToVector2();
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                ProjectileSpawnManagementSystem.PrepareProjectileForSpawning(explosion =>
+                {
+                    explosion.ModProjectile<DemonicExplosion>().MaxRadius = 600f;
+                });
+                Utilities.NewProjectileBetter(npc.Center, Vector2.Zero, ModContent.ProjectileType<DemonicExplosion>(), 0, 0f);
+
+                npc.Infernum().ExtraAI[5] = 0f;
+                npc.velocity = Vector2.Zero;
+                npc.netUpdate = true;
+            }
+
+            hasTeleported = true;
+        }
+    }
+
+    public class SCalPhaseTransitionHookSystem : ModSystem
+    {
+        private ILHook phaseTransitionHook;
+
+        private delegate bool BulletHellDelegate(NPC npc, Player target, int currentPhase, ref float frameType, ref float attackTimer);
+
+        public override void Load()
+        {
+            MethodInfo phaseTransitionMethod = typeof(SupremeCalamitasBehaviorOverride).GetMethod(nameof(SupremeCalamitasBehaviorOverride.DoBehavior_PhaseTransition), LumUtils.UniversalBindingFlags, null,
+                    new[]
+                    {
+                        typeof(NPC),
+                        typeof(Player),
+                        typeof(int),
+                        typeof(float).MakeByRefType(),
+                        typeof(float).MakeByRefType(),
+                        typeof(float).MakeByRefType()
+                    },
+                    null);
+
+            if (phaseTransitionMethod is null)
+                throw new MissingMethodException(typeof(SupremeCalamitasBehaviorOverride).FullName, nameof(SupremeCalamitasBehaviorOverride.DoBehavior_PhaseTransition));
+
+            phaseTransitionHook = new ILHook(phaseTransitionMethod, InsertBulletHell);
+        }
+
+        public override void Unload()
+        {
+            phaseTransitionHook?.Dispose();
+            phaseTransitionHook = null;
+        }
+
+        private static void InsertBulletHell(ILContext il)
+        {
+            ILCursor cursor = new(il);
+
+            ILLabel runNormalTransition = cursor.DefineLabel();
+
+            // arg0: NPC npc
+            cursor.Emit(OpCodes.Ldarg_0);
+
+            // arg1: Player target
+            cursor.Emit(OpCodes.Ldarg_1);
+
+            // arg2: int currentPhase
+            cursor.Emit(OpCodes.Ldarg_2);
+
+            // arg3: ref float frameType
+            cursor.Emit(OpCodes.Ldarg_3);
+
+            // arg5: ref float attackTimer
+            cursor.Emit(OpCodes.Ldarg_S, (byte)5);
+
+            cursor.EmitDelegate<BulletHellDelegate>(RunBulletHell);
+
+            // true: bullet hell has finished, so continue into Infernum's method.
+            cursor.Emit(OpCodes.Brtrue, runNormalTransition);
+
+            // false: bullet hell is still active, so skip the entire normal
+            // phase-transition method for this frame.
+            cursor.Emit(OpCodes.Ret);
+
+            cursor.MarkLabel(runNormalTransition);
+        }
+
+        private static bool RunBulletHell(NPC npc, Player target, int currentPhase, ref float frameType, ref float attackTimer)
+        {
+            SCalChanges changes = npc.GetGlobalNPC<SCalChanges>();
+
+            bool bulletHellFinished = changes.DoBehaviour_BulletHell(npc, target, currentPhase, ref frameType, ref attackTimer);
+
+            if (!bulletHellFinished)
+            {
+                /* SupremeCalamitasBehaviorOverride.PreAI increments attackTimer after DoBehavior_PhaseTransition returns. 
+                Keeping it at zero here means it becomes 1 at the end of every bullet-hell frame.
+                Once the bullet hell finishes, the original transition method receives attackTimer == 1 and performs its normal first-frame initialization. */
+
+                attackTimer = 0f;
+                return false;
+            }
+
+            return true;
+        }
+    }
+}
