@@ -9,6 +9,7 @@ using CalamityMod.Systems.Collections;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using InfernalEclipseAPI.Core.Systems;
+using InfernumMode.Content.Rarities.InfernumRarities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
@@ -41,7 +42,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword
             Item.useTurn = true;
             Item.knockBack = 15f;
             Item.value = CalamityGlobalItem.RarityHotPinkBuyPrice;
-            Item.rare = ModContent.RarityType<BurnishedAuric>(); Item.autoReuse = true;
+            Item.rare = ModContent.RarityType<InfernumVassalRarity>(); 
+            Item.autoReuse = true;
 
             Item.crit = 41;
 

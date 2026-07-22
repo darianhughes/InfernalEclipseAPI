@@ -16,6 +16,7 @@ using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Melee;
 using Terraria.DataStructures;
 using Terraria;
+using InfernumMode.Content.Rarities.InfernumRarities;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
 {
@@ -139,21 +140,27 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
             if (item.type == ModContent.ItemType<AmidiasTrident>())
             {
                 item.DamageType = ModContent.GetInstance<MythicMelee>();
+                item.rare = ModContent.RarityType<InfernumVassalRarity>();
             }
 
             if (item.type == ModContent.ItemType<Atlantis>())
             {
                 item.DamageType = ModContent.GetInstance<MythicMagic>();
+                item.rare = ModContent.RarityType<InfernumVassalRarity>();
             }
 
             if (item.type == ItemID.EmpressBlade)
+            {
                 item.DamageType = ModContent.GetInstance<MythicSummon>();
+                item.rare = ModContent.RarityType<InfernumVassalRarity>();
+            }
 
             if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
             {
                 if (item.type == thorium.Find<ModItem>("AncientLight").Type)
                 {
                     item.DamageType = ModContent.GetInstance<MythicMagic>();
+                    item.rare = ModContent.RarityType<InfernumVassalRarity>();
                 }
             }
 
@@ -165,6 +172,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.Tooltips
             if (item.type == ModContent.ItemType<PulseRifle>())
             {
                 item.DamageType = ModContent.GetInstance<MythicRanged>();
+                item.rare = ModContent.RarityType<InfernumVassalRarity>();
             }
         }
 

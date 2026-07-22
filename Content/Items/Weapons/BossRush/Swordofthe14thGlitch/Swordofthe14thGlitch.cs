@@ -15,6 +15,7 @@ using Terraria.Localization;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Content.Items.Materials;
 using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
 {
@@ -133,9 +134,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient<Swordofthe1stGlitch>();
             recipe.AddIngredient<Swordofthe13thGlitch>();
-            recipe.AddIngredient(ItemID.Zenith);
             if (ModLoader.TryGetMod("YouBoss", out Mod you)) recipe.AddIngredient(you.Find<ModItem>("FirstFractal").Type);
+            recipe.AddIngredient(ItemID.Zenith);
             recipe.AddIngredient<ArkoftheCosmos>();
+            recipe.AddIngredient<TyrantYharimsUltisword>();
             recipe.AddIngredient<AshesofAnnihilation>(3);
             recipe.AddIngredient<MiracleMatter>(3);
             if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))

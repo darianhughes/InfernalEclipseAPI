@@ -49,6 +49,8 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
     {
         public override void RightClick(int i, int j, int type)
         {
+            if (type != ModContent.TileType<BloodAltar>()) return;
+
             Player localPlayer = Main.LocalPlayer;
             if (!CanSpawnViscount(localPlayer))
                 base.RightClick(i, j, type);
@@ -65,6 +67,8 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
 
         public override void MouseOver(int i, int j, int type)
         {
+            if (type != ModContent.TileType<BloodAltar>()) return;
+
             Player localPlayer = Main.LocalPlayer;
 
             Dictionary<int, int> indexToConsumedStack = localPlayer.CountInventoryItemIdxWithStack(ModContent.ItemType<BloodHeart>(), 1);

@@ -62,7 +62,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
                     tooltip += ", ";
             }
 
-            TooltipLine line = tooltips.FirstOrDefault(t => t.Mod == "Terraria" && t.Name == "Tooltip2");
+            TooltipLine line = tooltips.FirstOrDefault(t => t.Mod == "Terraria" && t.Name == "Tooltip3");
             if (line != null)
                 line.Text = tooltip;
         }
@@ -131,6 +131,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Jillyfish",
             "Arkangel",
             "DaVids",
+            "Georgerrier",
 
             //Donors
             "bryce27",

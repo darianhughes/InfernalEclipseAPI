@@ -19,6 +19,7 @@ using CalamityMod.Rarities;
 using InfernalEclipseAPI.Core.Configs;
 using Terraria.GameInput;
 using System.Linq;
+using InfernumMode.Content.Rarities.InfernumRarities;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 {
@@ -173,7 +174,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 {
                     item.damage = 315;
                     item.DamageType = ModContent.GetInstance<MythicMelee>();
-                    item.rare = ModContent.RarityType<PureGreen>();
+                    item.rare = ModContent.RarityType<InfernumVassalRarity>();
                     item.value = CalamityGlobalItem.RarityPureGreenBuyPrice;
                 }
             }
