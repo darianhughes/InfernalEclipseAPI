@@ -11,7 +11,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {
     public class SummonerAccessoryChanges : GlobalItem
     {
-        private static Mod Thorium => InfernalCrossmod.Thorium.Mod;
+        private static Mod Thorium => InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod : null;
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
