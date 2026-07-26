@@ -350,7 +350,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
                     if (InfernalPlayer.PlayerHasPurity(player))
                     {
-                        sotsPlayer.typhonRange = 0;
+                        sotsPlayer.HomingRange = 0;
                     }
                 }
 
