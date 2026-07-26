@@ -896,6 +896,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.useAnimation = 44;
                     item.useTime = 44;
                 }
+
+                //Added in updates
                 if (UnsafeGetItem(simpleWhipAddon, "KingsMajesty", item))
                 {
                     item.damage = 18;
@@ -915,6 +917,10 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.damage = 130;
                     item.useAnimation = 40;
                     item.useTime = 40;
+                }
+                if (UnsafeGetItem(simpleWhipAddon, "MassofWailing", item))
+                {
+                    item.damage = 96;
                 }
 
                 int[] bleachedAcessories =
