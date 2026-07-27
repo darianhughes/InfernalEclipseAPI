@@ -2076,6 +2076,17 @@ Items: {
 		Major: Major
 	}
 
+	AuricBratwurst: {
+		DisplayName: Auric Bratwurst
+		Tooltip: ""
+		DynamicTooltip:
+			'''
+			{0}{1} improvements to all stats
+			'Ignore the fact it is pork... made out of chicken nuggets'
+			'''
+		VoidTooltip: Heals 75 void
+	}
+
 	SingularityCore: {
 		DisplayName: Singularity Core
 		Tooltip:
