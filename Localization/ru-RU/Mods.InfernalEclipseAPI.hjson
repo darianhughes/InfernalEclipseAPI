@@ -157,7 +157,7 @@ ItemBalance: {
 	// UseSpeedDownGeneric: "    Use speed decreased by [c/FF0000:{0}%]"
 	// PickUpGeneric: "    Pickaxe power increased by [c/FF0000:{0}%]"
 	// PickDownGeneric: "    Pickaxe power decreased by [c/FF0000:{0}%]"
-	// CritUpGeneric: "    Critical strike chance increased by [c/FF0000:{0}%]"
+	// CritUpGeneric: "    Critical strike chance increased by [c/00A36C:{0}%]"
 	// CritDownGeneric: "    Critical strike chance decreased by [c/FF0000:{0}%]"
 	// DefenseUpGeneric: "    Defense increased by {0}"
 	// DefenseDownGeneric: "    Defense decreased by {0}"
