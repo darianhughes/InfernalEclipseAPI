@@ -1,5 +1,8 @@
-﻿using CalamityMod.Projectiles.Melee.MaceFlails;
+﻿using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Projectiles.Melee.MaceFlails;
+using IL.CalamityMod.Buffs.DamageOverTime;
 using InfernalEclipseAPI.Content.Buffs.Tag;
+using InfernalEclipseAPI.Core.Systems;
 using ThoriumMod;
 
 namespace InfernalEclipseAPI.Common.GlobalProjectiles
@@ -7,21 +10,16 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
     //Wardrobe Hummus
     public class ProjectileDebuffs : GlobalProjectile
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return !ModLoader.TryGetMod("WHummusMultiModBalancing", out _);
-        }
-
         public override bool InstancePerEntity => true;
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (projectile.type == ProjectileID.HoundiusShootius)
+            if (projectile.type == ProjectileID.HoundiusShootius && !InfernalCrossmod.Hummus.Loaded)
             {
                 target.AddBuff(BuffID.Electrified, 120);
             }
 
-            if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
+            if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod) && !InfernalCrossmod.Hummus.Loaded)
             {
                 if (projectile.type == thoriumMod.Find<ModProjectile>("ThunderTalonPro").Type)
                 {
@@ -109,9 +107,15 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                     {
                         target.AddBuff(BuffID.Poisoned, 120);
                     }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("SandweaversTiaraPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("ArmorCrunch")?.Type ?? -1, 180);
+                    }
                 }
             }
 
+            /*
             // Check if all mods are loaded before continuing.
             if (ModLoader.TryGetMod("RagnarokMod", out Mod ragnarokMod) && ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) &&  ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod2))
             {
@@ -196,8 +200,9 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                         target.AddBuff(nightwither.Type, 180);
                 }
             }
+            */
 
-            if (ModLoader.TryGetMod("CalamityBardHealer", out Mod bardhealer) && ModLoader.TryGetMod("CalamityMod", out Mod calamity2))
+            if (ModLoader.TryGetMod("CalamityBardHealer", out Mod bardhealer) && ModLoader.TryGetMod("CalamityMod", out Mod calamity2) && !InfernalCrossmod.Hummus.Loaded)
             {
                 if (projectile.type == (bardhealer.Find<ModProjectile>("ExoSound")?.Type ?? -1))
                 {
@@ -233,7 +238,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                 }
             }
 
-            if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst))
+            if (ModLoader.TryGetMod("CatalystMod", out Mod catalyst) && !InfernalCrossmod.Hummus.Loaded)
             {
                 if (projectile.type == (catalyst.Find<ModProjectile>("CoralCrusherProjectile")?.Type ?? -1))
                 {
@@ -279,6 +284,24 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                     || projectile.type == (catalyst.Find<ModProjectile>("HighCatharsisUp")?.Type ?? -1))
                 {
                     target.AddBuff(ModContent.BuffType<CatharsisTag>(), 240);
+                }
+            }
+
+            if (ModLoader.TryGetMod("WulfrumExpansion", out Mod overdrive))
+            {
+                if (projectile.type == (overdrive.Find<ModProjectile>("ArcScepterBeam")?.Type ?? -1))
+                {
+                    target.AddBuff(ModContent.BuffType<StaticDischarge>(), 180);
+                }
+
+                if (projectile.type == (overdrive.Find<ModProjectile>("FriendlyWulfrumLaser")?.Type ?? -1))
+                {
+                    target.AddBuff(ModContent.BuffType<StaticDischarge>(), 60);
+                }
+
+                if (projectile.type == (overdrive.Find<ModProjectile>("WulfrumShrapnel")?.Type ?? -1))
+                {
+                    target.AddBuff(ModContent.BuffType<CalamityMod.Buffs.DamageOverTime.HeavyBleeding>(), 60);
                 }
             }
         }

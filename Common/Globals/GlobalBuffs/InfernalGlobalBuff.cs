@@ -1,5 +1,4 @@
-﻿using System.Security.Policy;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.Buffs.Alcohol;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
@@ -10,11 +9,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalBuffs
     {
         public override void Update(int type, Player player, ref int buffIndex)
         {
+            /*
             if ((type == ModContent.BuffType<GrapeBeerBuff>() || type == ModContent.BuffType<MoonshineBuff>()) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
                 player.Calamity().alcoholPoisonLevel++;
                 player.GetCritChance(DamageClass.Generic) -= 30f;
             }
+            */
 
             if (InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.CalamityBalanceChanges)
             {

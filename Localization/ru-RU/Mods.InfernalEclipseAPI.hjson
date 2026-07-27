@@ -41,7 +41,7 @@ UI: {
 	/* NoticeHomewardRagnarok:
 		'''
 		Thanks for playing Homeward Ragnarok, an official DLC mod to Infernal Eclipse of Ragnarok!
-		Please report and issues relating to Homeward Journey in the Homeward Ragnarok discord.
+		Please report any issues relating to Homeward Journey in the Homeward Ragnarok discord.
 		The main team does not directly work on this mod and can not provide help in the main discord.
 		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
 		''' */
@@ -53,6 +53,45 @@ UI: {
 		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
 		''' */
 	// DevNoticeCampsiteFix: Flag pole crash fix applied
+	/* WarningHelheim:
+		'''
+		NOTICE: It is detected you have the Thorium Mod enabled!
+		We highly recommend you to install the "Thorium Helheim" mod for the intended Thorium AI before proceeding!
+		You can turn off this popup in the Infernal Eclipse of Ragnarok config if you wish to proceed without it.
+		''' */
+	/* WarningRagnarok:
+		'''
+		NOTICE: It is detected you have the Thorium Mod enabled!
+		We highly recommend you to install the "Ragnarok" mod for compatibility between these mods before proceeding!
+		You can turn off this popup in the Infernal Eclipse of Ragnarok config if you wish to proceed without it.
+		''' */
+	/* WarningOverhaul:
+		'''
+		WARNING: It is detected that you have the Calamity Overhaul enabled!
+		This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
+		''' */
+	/* WarningRemnants:
+		'''
+		WARNING: It is detected that you have the Remnants mod enabled!
+		This mod is NOT compatible with Infernum and many other of the mods in the mod pack.
+		If this world was generated with the mod, please regenerate it with this mod off.
+		''' */
+	/* NoticeMasterPatch:
+		'''
+		NOTICE: It is detected that you have a Infernum Master Patch mod enabled!
+		This mod is redunant with Ragnarok Mode and can be disabled.
+		''' */
+	/* NoticeCalMinus:
+		'''
+		NOTICE: It is detected that you have the Calamity Minus Mod enabled!
+		This mod is redunant if you have the Calamity Recipe Changes config on and can be disabled.
+		''' */
+	/* NoticeCalBalance:
+		'''
+		NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled!
+		This mod adds a bunch of unlisted changes which might make your playthough worse than intended.
+		We heavily recommend you disable this mod.
+		''' */
 }
 
 DifficultyUI: {
@@ -76,15 +115,7 @@ DifficultyUI: {
 WelcomeMessage: {
 	Welcome: Добро пожаловать в модпак «Infernal Eclipse of Ragnarok»!
 	TBRNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Thorium Helheim»! Убедитесь, что множители здоровья, урона и скорости установлены на 1 в конфигурации совместимости (если только вы не хотите усложнить игру), так как этот мод автоматически настраивает боссов Thorium в зависимости от текущей сложности.
-	TBRWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас отключён «Thorium Helheim»! Настоятельно рекомендуется включить его, так как он перебалансирует боссов Thorium, добавляя им механики, более соответствующие режиму Инфернума и Calamity в целом.
-	RagWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас отключён «Ragnarok»! Без этого мода Thorium и Calamity могут плохо взаимодействовать. Настоятельно рекомендуется включить его для более полного и сбалансированного игрового опыта.
-	EventTrophyNotice: ВНИМАНИЕ: Обнаружено, что у вас отключён «More Trophies and Relics»! Без этого мода у боссов, не из ванильной игры, Calamity или Infernum, могут отсутствовать лор Calamity и вступительные анимации Инфернума. Настоятельно рекомендуется включить его для более полного и целостного опыта.
 	SoulsWarning: ПРЕДУПРЕЖДЕНИЕ: Fargo's Souls НЕ совместим с Infernal Eclipse of Ragnarok! Учтите, что режим Инфернум несовместим с режимом Вечность, и при одновременном включении обоих могут возникнуть серьёзные ошибки.
-	OverhaulWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Calamity Overhaul»! Этот мод очень багованный и вызовет множество проблем. Настоятельно рекомендуется отключить его.
-	RemnantsWarning: ПРЕДУПРЕЖДЕНИЕ: Обнаружено, что у вас включён «Remnants»! Этот мод НЕ совместим с Infernum. Если мир был сгенерирован с этим модом, пожалуйста, перегенерируйте его с отключённым модом, в противном случае не сообщайте об ошибках, связанных с генерацией мира
-	MasterPatchNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Infernum Master Patch». Этот мод излишен с этим модом и может быть отключён.
-	CalMinusNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Minus»! Данный модпак уже включает все функции этого мода, если у вас включены «Изменения баланса Calamity» в конфигурации «Infernal Eclipse of Ragnarok».
-	CalBalNotice: ВНИМАНИЕ: Обнаружено, что у вас включён «Calamity Balance Changes»! Данный модпак уже включает большинство функций этого мода, перечисленных на странице в мастерской Steam, если у вас включены «Изменения баланса Calamity» в конфигурации «Infernal Eclipse of Ragnarok». «Calamity Balance Changes» также вносит ряд неназванных изменений, которые могут сделать ваше прохождение хуже, чем задумывалось
 	InfernumActive: Избранный вернулся, чтобы встретить Инфернальное затмение...
 	MPConnect: Избранный вернулся, чтобы помочь встретить Инфернальное затмение...
 	InfernumForced: Инфернальная энергия проникла в этот мир...
@@ -109,6 +140,27 @@ BossCheesePrevention: {
 	TheDestroyer: Я не позволю так легко уничтожить мою машину.
 	Plantera: Древние силы не позволяют использовать этот предмет сейчас...
 	Yharon: Древние силы не позволяют использовать этот предмет сейчас...
+}
+
+ItemBalance: {
+	// Modified: Modified by Infernal Eclipse of Ragnarok
+	// Modified2: Hold {0} to see modifications
+	// DamageUpGeneric: "    Damage increased by [c/00A36C:{0}%]"
+	// DamageDownGeneric: "    Damage decreased by [c/FF0000:{0}%]"
+	// ShootSpeedUpGeneric: "    Shoot speed decreased by [c/FF0000:{0}%]"
+	// ShootSpeedDownGeneric: "    Shoot speed increased by [c/00A36C:{0}%]"
+	// UseTimeUpGeneric: "    Use time decreased by [c/00A36C:{0}%]"
+	// UseTimeDownGeneric: "    Use time increased by [c/FF0000:{0}%]"
+	// UseAnimationUpGeneric: "    Use animation decreased by [c/00A36C:{0}%]"
+	// UseAnimationDownGeneric: "    Use animation increased by [c/FF0000:{0}%]"
+	// UseSpeedUpGeneric: "    Use speed increased by [c/00A36C:{0}%]"
+	// UseSpeedDownGeneric: "    Use speed decreased by [c/FF0000:{0}%]"
+	// PickUpGeneric: "    Pickaxe power increased by [c/FF0000:{0}%]"
+	// PickDownGeneric: "    Pickaxe power decreased by [c/FF0000:{0}%]"
+	// CritUpGeneric: "    Critical strike chance increased by [c/00A36C:{0}%]"
+	// CritDownGeneric: "    Critical strike chance decreased by [c/FF0000:{0}%]"
+	// DefenseUpGeneric: "    Defense increased by {0}"
+	// DefenseDownGeneric: "    Defense decreased by {0}"
 }
 
 ItemTooltip: {
@@ -159,11 +211,7 @@ ItemTooltip: {
 		Player2: Якорь души установлен. У вас есть 20 секунд, чтобы вернуться.
 	}
 
-	WhiteDwarfSetBonus:
-		'''
-
-		Изумрудные вспышки имеют 2 секундную перезарядку
-		'''
+	WhiteDwarfSetBonus: Изумрудные вспышки имеют 2 секундную перезарядку
 	PhoenixStaff:
 		'''
 		Нажмите ПКМ, чтобы выпустить поток поток пламени, накладывающий дебафф [cbuff:ThoriumMod/HolyGlare]
@@ -186,12 +234,12 @@ ItemTooltip: {
 	BloodstainedCoin:
 		'''
 		Критические удары с 50% шансом нанесут на 20 ед. урона больше
-		При получении урона с 75% шансом вы получите дебафф [cbuff:Bleeding]
+		При получении урона есть 75% шанс получить дебафф [cbuff:Bleeding]
 		'''
 	PutridCoin:
 		'''
 		Критические удары с 50% шансом нанесут на 20 ед. урона больше
-		При получении урона с 75% шансом вы получите дебафф [cbuff:Poisoned]
+		При получении урона есть 75% шанс получить дебафф [cbuff:Poisoned]
 		'''
 
 	PolishedCoin: {
@@ -212,21 +260,21 @@ ItemTooltip: {
 	Dasuver: Увеличивает шанс критического удара на 3%
 	SubspaceLocket:
 		'''
-		Призывает подпространственного слугу
-		Слуга использует предмет из вашего последнего слота инвентаря за вас
+		Призывает субпространственного слугу помогать вам в бою
+		Он будет использовать предмет из последнего слота вашего инвентаря параллельно вам
 		Снижает итоговый наносимый урон в 1,33 раза
-		Снижает урон истинного ближнего боя на 15%
-		Увеличивает максимальный запас пустоты на 50, но снижает эффективность лечебных зелий на 40
+		Снижает истинный урон ближнего боя на 20% и вы больше не можете наносить скрытные удары
+		Увеличивает максимальный запас пустоты на 50, но снижает количество исцеления, получаемое от зелий, на 75
 		'''
-	/* SubspaceLocketThorium:
+	SubspaceLocketThorium:
 		'''
-		Summons a Subspace Servant to assist in combat
-		Uses the item in your last inventory slot for you
-		Decreases damage by 50% multiplicatively
-		Decreases true melee damage by 20% and you can no longer stealth strike
-		Decreases heal bonus and inspiration regeneration bonus by 50%
-		Increases max void by 50, but reduces healing received from potions by 75
-		''' */
+		Призывает субпространственного слугу помогать вам в бою
+		Он будет использовать предмет из последнего слота вашего инвентаря параллельно вам
+		Снижает итоговый наносимый урон в 1,33 раза
+		Снижает истинный урон ближнего боя на 20% и вы больше не можете наносить скрытные удары
+		Снижает дополнительное исцеление и скорость восстановления вдохновения на 50%
+		Увеличивает максимальный запас пустоты на 50, но снижает количество исцеления, получаемое от зелий, на 75
+		'''
 	EyeOfChaos: Увеличивает шанс критического удара на 12%, не складывается с предыдущими улучшениями
 	EyeOfChaosThorium: Критические удары наносят на 15 ед. урона больше
 	SnakeEyes: Увеличивает шанс критического удара на 3%
@@ -241,37 +289,37 @@ ItemTooltip: {
 		'''
 		Критические удары восстанавливают ману
 		Увеличивает максимальный запас маны на 40
-		Увеличивает шанс магического критического удара на 5%
+		Увеличивает магический шанс критического удара на 5%
 		'''
 	GlowSpores:
 		'''
-		Увеличивает количество маны, получаемое от зелий, на 40
-		Увеличивает шанс магического критического удара на 2%
+		Увеличивают количество маны, получаемое от зелий, на 40
+		Увеличивает магический шанс критического удара на 2%
 		'''
 	SwallowedPenny:
 		'''
 		Увеличивает шанс критического удара на 2%
-		Создаёт монеты, если вы получаете урон
-		'Глоть!'
+		Создаёт монеты при получении урона
+		«Глоть!»
 		'''
-	SpiritGlove: Увеличивает скорость восстановления пустоты на 5% и шанс критического удара ближнего боя на 4%
+	SpiritGlove: Увеличивает скорость восполнения пустоты на 5% и шанс критического удара ближнего боя на 4%
 	DiamondRingText: Увеличивает урон в зависимости от защиты, а затем снижает вашу защиту на две трети от полученного бонуса к урону
 	EarthDrive: Максимальное увеличение скорости ближнего боя — 10%
 	SyntheticLiver:
 		'''
 		Увеличивает количество пустоты, получаемое от еды, на 25%
-		Повторное получение того же баффа увеличивает его длительность вместо сброса таймера, вплоть до двойной длительности
+		Получение одного и того же баффа просуммирует его длительность, вместо того, чтобы сбросить его к базовому значению
 		'''
 	MutantSkeletron: "[IEoR]: Предмет нельзя использовать, пока Скелетрон не будет побеждён хотя бы один раз. Используйте для этого предмет призыва из Infernum."
 	VibePotion: Увеличивает скорость атаки на 10%, когда вы неподвижны, и на 5%, когда вы движетесь
 	BloodPotion: Увеличивает скорость копания на 15%
-	// FrenzyPotion: Increases all attack speeds by 5%
-	/* FlowerCrown:
+	FrenzyPotion: Увеличивает скорость всех атак на 5%
+	FlowerCrown:
 		'''
-		Reduces damage taken by 10%
-		Increases void gain by 4 and life regen by 2
-		When using void, 30% of the void used is converted into life
-		''' */
+		Увеличивает сопротивление урону на 10%
+		Увеличивает получаемое количество пустоты на 4 и скорость регенерации здоровья на 2
+		Конвертирует 30% от израсходованной пустоты в здоровье
+		'''
 	/* TravelBoot:
 		'''
 		5% increased movement speed
@@ -279,51 +327,51 @@ ItemTooltip: {
 		''' */
 
 	Nightmare: {
-		// Orig: Critical strikes unleash Nightmare Arms that do 10% damage and pull enemies together
-		/* Rework:
+		Orig: Критические удары будут призывать кошмарные руки, наносящие 10% урона от удара, призвавшего их, и стягивающие ближайших врагов
+		Rework:
 			'''
-			Critical strikes unleash Nightmare Arms that do 5% damage and pull enemies together
-			Damage improves to 10% in hardmode and bosses wont be pulled
-			''' */
+			Критические удары будут призывать кошмарные руки, наносящие 5% урона от удара, призвавшего их, и стягивающие ближайших врагов
+			Урон рук увеличивается до 10% в хардмоде, а боссов невозможно притянуть
+			'''
 	}
 
 	Helios: {
-		// Orig: Attacks scorch with each hit, increasing damage done by 3% permanently
-		// Nerf: Attacks scorch with each hit, increasing damage done by 1% permanently
+		Orig: Атаки накладывают бессрочное обжигающее проклятие, увеличивающее получаемый врагами урон на 3%
+		Nerf: Атаки накладывают бессрочное обжигающее проклятие, увеличивающее получаемый врагами урон на 1%
 	}
 
 	Icosahedron: {
 		Hellfire: {
-			// Orig: Critical strikes may cause a flaming explosion, dealing 100% damage
-			// Nerf: Critical strikes may cause a flaming explosion, dealing 50% damage
+			Orig: Критические удары с некоторым шансом будут вызывать взрыв пламени, наносящий 100% урона
+			Nerf: Критические удары с некоторым шансом будут вызывать взрыв пламени, наносящий 50% урона
 		}
 
 		Borealis: {
-			// Orig: Critical strikes may cause a frostburn explosion, dealing 200% damage
-			// Nerf: Critical strikes may cause a frostburn explosion, dealing 75% damage
+			Orig: Критические удары с некоторым шансом будут вызывать взрыв ледяного огня, наносящий 200% урона
+			Nerf: Критические удары с некоторым шансом будут вызывать взрыв ледяного огня, наносящий 75% урона
 		}
 
 		Cursed: {
-			// OrigCursed: Critical strikes may cause a release of cursed thunder, dealing 100% damage
-			// NerfCursed: Critical strikes may cause a release of cursed thunder, dealing 75% damage
-			// OrigOther: Critical strikes may also cause frostburn or flaming explosions, dealing 100% damage
-			// NerfOther: Critical strikes may also cause frostburn or flaming explosions, dealing 75% damage
+			OrigCursed: Критические удары с некоторым шансом будут вызывать взрыв проклятого пламени, наносящий 100% урона
+			NerfCursed: Критические удары с некоторым шансом будут вызывать взрыв проклятого пламени, наносящий 75% урона
+			OrigOther: Кроме того, критические удары будут иметь шанс вызвать взрывы пламени и ледяного огня, наносящие 100% урона
+			NerfOther: Кроме того, критические удары будут иметь шанс вызвать взрывы пламени и ледяного огня, наносящие 75% урона
 		}
 
 		Charms: {
-			// Orig: Critical strikes may detonate enemies for 100% damage
-			// Nerf: Critical strikes may detonate enemies for 75% damage
+			Orig: Критические удары могут взорвать врагов, нанося 100% урона
+			Nerf: Критические удары могут взорвать врагов, нанося 75% урона
 		}
 	}
 
 	DreadGreaves: {
-		// Orig: 20% increased movement speed
-		// Nerf: 9% increased movement speed
+		Orig: Увеличивает скорость передвижения на 20%
+		Nerf: Увеличивает скорость передвижения на 9%
 	}
 
 	PlasmaShrimp: {
-		// Orig: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 50% damage
-		// Nerf: When above 40% mana, magic weapons fire additional, hot, shrimpy plasma for 25% damage
+		Orig: Пока у вас более 40% маны, все магические оружия будут также запускать горячую креветочную плазму, наносящую 50% урона
+		Nerf: Пока у вас более 40% маны, все магические оружия будут также запускать горячую креветочную плазму, наносящую 25% урона
 	}
 
 	ShatteredDreams: {
@@ -335,50 +383,48 @@ ItemTooltip: {
 			''' */
 	}
 
-	/* OtherworldlyAmplifier:
+	OtherworldlyAmplifier:
 		'''
-		Critical strikes deal up to 8 more damage
-		The damage bonus starts at 2 and scales inversely with item use speed
-		Your current bonus is {0}
-		''' */
-	/* FocusCrystal:
+		Критические удары наносят до 8 ед. дополнительного урона
+		Бонус к урону начинается с 2 и увеличивается обратно пропорционально скорости использования предметов
+		Текущий бонус: {0}
 		'''
-		Critical strikes deal up to 30 more damage
-		The damage bonus starts at 8 and scales inversely with item use speed
-		Your current bonus is {0}
-		Increases critical strike chance by 4%
-		Immunity to Poison and Bleeding
-		''' */
+	FocusCrystal:
+		'''
+		Критические удары наносят до 30 ед. дополнительного урона
+		Бонус к урону начинается с 8 и увеличивается обратно пропорционально скорости использования предметов
+		Текущий бонус: {0}
+		Увеличивает шанс критического удара на 4%
+		Даёт невосприимчивость к дебаффам [cbuff:Poisoned] и [cbuffplr:Bleeding]
+		'''
 
 	AlchCharm: {
-		// AlchOrig: Increases healing and mana received from potions by 100
-		// JellyOrig: Increases healing and mana received from potions by 40
-		// SandwichOrig: Increases healing received from potions by 40
+		AlchOrig: Увеличивает количество исцеления и маны, получаемых от зелий, на 100
+		JellyOrig: Увеличивает количество исцеления и маны, получаемых от зелий, на 40
+		SandwichOrig: Увеличивает количество исцеления, получаемое от зелий, на 40
 	}
 
-	/* PlatformGenerator:
+	PlatformGenerator:
 		'''
-		Generates 2 platforms to the left and right of you
-		You can right click to drag the platforms, but they will always remain symmetrical
-		Sentries can be summoned on top of the platforms
-		'Bring your sentries with you!'
-		''' */
-	/* FortressGenerator:
+		Создаёт по платформе слева и справа от вас, на которых можно размещать стражей
+		Вы можете перемещать их с помощью ПКМ, но платформы всегда будут симметричны друг другу
+		«Забери стражей с собой!»
 		'''
-		Increases max minions and max sentries by 1
-		Generates 4 platforms to the left and right of you
-		You can right click to drag the platforms, but they will always remain symmetrical
-		Sentries can be summoned on top of the platforms
-		''' */
+	FortressGenerator:
+		'''
+		Увеличивает максимальное количество миньонов и стражей на 1
+		Создаёт по 2 платформы слева и справа от вас, на которых можно размещать стражей
+		Вы можете перемещать их с помощью ПКМ, но платформы всегда будут симметричны друг другу
+		'''
 
 	DissolvingElements: {
-		// NatureFlipped: Increases life regeneration by 0.25 HP/s while in the inventory, up to 1 HP/s total
-		// EarthFlipped: Increases defense by 1 while in the inventory, up to 4 total
-		// AuroraFlipped: Increases movement speed by 1% while in the inventory, up to 4% total
-		// DelugeFlipped: Increases ranged damage by 2% while in the inventory, up to 8% total
-		// AetherFlipped: Increases magic damage by 2% while in the inventory, up to 8% total
-		// NetherFlipped: Increases melee damage by 2% while in the inventory, up to 8% total
-		// BrillianceFlipped: Increases summon damage by 2% while in the inventory, up to 8% total
+		NatureFlipped: Увеличивает скорость регенерации здоровья на 0,25 ед./сек за каждый элемент в инвентаре, вплоть до 1 ед./сек
+		EarthFlipped: Увеличивает защиту на 1 ед. за каждый элемент в инвентаре, вплоть до 4 ед.
+		AuroraFlipped: Увеличивает скорость передвижения на 1% за каждый элемент в инвентаре, вплоть до 4%
+		DelugeFlipped: Увеличивает стрелковый урон на 2% за каждый элемент в инвентаре, вплоть до 8%
+		AetherFlipped: Увеличивает магический урон на 2% за каждый элемент в инвентаре, вплоть до 8%
+		NetherFlipped: Увеличивает урон ближнего боя на 2% за каждый элемент в инвентаре, вплоть до 8%
+		BrillianceFlipped: Увеличивает урон призывателя на 2% за каждый элемент в инвентаре, вплоть до 8%
 	}
 
 	RubyRing:
@@ -408,33 +454,33 @@ ItemTooltip: {
 	}
 
 	ChallengerInvertedRingHover: {
-		/* Orig:
+		Orig:
 			'''
-			> You can no longer critically strike
-			> Increases received to critical strike chance are converted into multiplicative increases to damage
-			''' */
-		/* Rework:
+			> Вы не сможете наносить критические удары
+			> Текущий бонус к шансу критического урона конвертируется в множитель итогового урона
 			'''
-			> Increase defense based on a third of damage, then decreases damage by defense buff
-			> Increases defense by {0}
-			> Decreases damage by {1}%
-			''' */
+		Rework:
+			'''
+			> Увеличивает защиту в зависимости от урона, а затем снижает ваш урон на треть от полученного бонуса к защите
+			> Увеличивает защиту на {0}
+			> Снижает урон на {1}%
+			'''
 	}
 
 	ChallengerInvertedDiamondHover: {
 	}
 
 	DemonBlood: {
-		/* Replace:
+		Replace:
 			'''
-			Enemies are more likely to target you
-			'Infused with everlasting Blood'
-			''' */
-		/* SetBonus:
+			Враги чаще выбирают вас в качестве цели
+			'Насыщен вечной кровью'
 			'''
-			20% chance to completely neutralize incoming damage
-			The damage neutralization has a cooldown of 20 seconds
-			''' */
+		SetBonus:
+			'''
+			20% шанс полностью предотвратить входящий урон
+			Этот эффект имеет 20 секунд перезарядки
+			'''
 	}
 
 	ShoeIce: {
@@ -445,32 +491,33 @@ ItemTooltip: {
 	// SteamkeeperWatch: Your sentries last forever and gain up to 15% damage over the course of 2 minutes
 
 	YumasPendant: {
-		// Orig: 10% increased summon damage
-		// Nerf: 5% increased summon damage
+		Orig: Увеличивает урон призывателя на 10%
+		Nerf: Увеличивает урон призывателя на 5%
 	}
 
 	Hyperdrive: {
-		// Orig: Increases attack speed by 25% and melee damage by 5%
-		// Nerf: Increases void attack speed by 25% and melee damage by 5%
+		Orig: Увеличивает скорость атаки на 25% и урон ближнего боя на 5%
+		Nerf: Увеличивает скорость пустотных атак на 25% и урон ближнего боя на 5%
 	}
 
 	// Oneirophobia: Turns into a sentient synthesizer minion when stowed, attacking enemies
-	/* PlagueLordFlask:
+	PlagueLordFlask:
 		'''
-		15% increased throwing damage
-		15% increased throwing velocity
-		Using a throwing item has a 20% chance to unleash two Blight Daggers
-		Blight Daggers home in on enemies and apply a highly contagious disease
-		''' */
+		Увеличивает метательный урон на 15%
+		Увеличивает скорость метательных снарядов на 15%
+		При использовании метательного предмета с 20% шансом высвобождаются два чумных кинжала
+		Чумные кинжалы автоматически нацеливаются на врагов и заражают их болезнью
+		'''
 
 	SpiritSurfer: {
-		// Orig: Increases void drain by 6 while active
-		// Replace: Increases void drain by 36 while active
+		Orig: Поглощает 6 ед. пустоты в секунду, пока активна
+		Replace: Поглощает 36 ед. пустоты в секунду, пока активна
 	}
 
 	DoesNotStack: Не суммируется с предыдущими улучшениями
-	// NoBoss: Does not work while a boss is alive
+	NoBoss: Не работает пока босс жив
 	Disabled: "[ОТКЛЮЧЕНО] "
+	// DisabledTooltip: This item is currently disabled and not intended to be used in the current version of Infernal Eclipse of Ragnarok.
 	// DauntlessBuff: +2% radiant damage
 	DedTo: - Посвящено: {0} -
 
@@ -604,7 +651,7 @@ ItemTooltip: {
 			Удерживайте ПКМ по платформе, чтобы переместить её. Платформа с другой стороны будут симметрично перемещена
 			На этих платформах можно призывать стражей
 			'''
-		// OneSentry: Increases max sentries by 1
+		OneSentry: Увеличивает максимальное количество стражей на 1
 		TwoSentry: Увеличивает максимальное количество стражей на 2
 		ThreeSentry: Увеличивает максимальное количество стражей на 3
 		Murky: Каждая шестая магическая атака не расходует ману и возвращает вам затраченную на неё ману
@@ -1233,7 +1280,7 @@ Items: {
 				Before the world was formed, there were only the Primordials.
 				Each of them represents an aspect of this world, and protect the world from Ragnarok.
 				During my war, I had wanted to slay them thinking they were merely sinners like the other gods,
-				however no matter what I did I could not get there attention.
+				however no matter what I did I could not get their attention.
 				Was I not worthy of their attention despite all I had done to the world?
 				Don't tell me they think I'm a spec in this worlds history compared to you...
 				''' */
@@ -1330,7 +1377,7 @@ Items: {
 				The youngest of the eternal siblings, and also the weakest.
 				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
 				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
-				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while weilding a living axe made of evil.
+				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while wielding a living axe made of evil.
 				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
 				''' */
 		}
@@ -2001,6 +2048,17 @@ Items: {
 		Major: Значительно
 	}
 
+	AuricBratwurst: {
+		// DisplayName: Auric Bratwurst
+		// Tooltip: ""
+		/* DynamicTooltip:
+			'''
+			{0}{1} improvements to all stats
+			'Ignore the fact it is pork... made out of chicken nuggets'
+			''' */
+		// VoidTooltip: Heals 75 void
+	}
+
 	SingularityCore: {
 		DisplayName: Ядро сингулярности
 		Tooltip:
@@ -2319,6 +2377,35 @@ Items: {
 			Not consumable
 			''' */
 		// Name: Chaos Construct
+	}
+
+	BloodHeart: {
+		// DisplayName: Blood Heart
+		/* Tooltip:
+			'''
+			Summons Viscount when used on the Blood Altar
+			Not consumable
+			''' */
+	}
+
+	EldritchBattleHorn: {
+		// DisplayName: Eldritch Battle Horn
+		/* Tooltip:
+			'''
+			Summons the Forgotten One when used in the Aquatic Depths
+			Not consumable
+			''' */
+	}
+
+	InfernalArsenalPainting: {
+		// DisplayName: Infernal Arsenal Painting
+		/* Tooltip:
+			'''
+			Congratulations to those who have either beat low% or Boss Rush!
+			The confines of this painting is not enough to fit every victor
+			Victors are listed in the order they beat said challenge
+			Hold SHIFT to see the full list of credits
+			''' */
 	}
 }
 
@@ -2661,6 +2748,11 @@ Configs: {
 			// Label: Cnidrion Music
 			// Tooltip: Toggles if 'Seahorse Scrutiny (Rebirth)' by Brimston Premium plays while a Cnidrion is alive.
 		}
+
+		DisableUnnecessaryContent: {
+			// Label: Disable Unnecessary Content
+			// Tooltip: ""
+		}
 	}
 
 	Difficulty: {
@@ -2787,8 +2879,8 @@ DamageClasses: {
 	MeleeWhip.DisplayName: ед. урона хлыстом
 	MythicSummon.DisplayName: ед. мифического урона призывателя
 	// CatlightDamage.DisplayName: Catlight Damage
-	// LegendarySummon.DisplayName: legendary summon damage
-	// LegendarySummonMeleeSpeed.DisplayName: legendary summon damage
+	LegendarySummon.DisplayName: ед. легендарного урона призывателя
+	LegendarySummonMeleeSpeed.DisplayName: ед. легендарного урона призывателя
 }
 
 InfernumIntegration: {

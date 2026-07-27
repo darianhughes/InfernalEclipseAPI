@@ -86,7 +86,7 @@ Items: {
 		5% increased radiant critical strike chance
 		Healing spells will heal an additional 2 life
 		Empowers certain radiant attacks with elemental energy
-		Increases the strength of damage over time effects by 66%
+		Increases the strength of damage over time effects by 200%
 		"When light and dark clash, they harmonize to a final shape"
 		'''
 	SymphonicFabrications.Tooltip:
@@ -99,9 +99,12 @@ Items: {
 		'''
 }
 
-ItemDescriptions.DemonshadeGreaves:
-	'''
-	Increases your maximum technique points by 2, maximum inspiration by 15, and bonus healing by 10 life
-	Increases wind instrument homing speed and range by 60% and string instruments bounce six additional times
-	Doubles the range of your empowerments effect radius and extends the duration of empowerments by 6 seconds
-	'''
+ItemDescriptions: {
+	DemonshadeGreaves:
+		'''
+		Increases your maximum technique points by 2, maximum inspiration by 15, and bonus healing by 10 life
+		Increases wind instrument homing speed and range by 60% and string instruments bounce six additional times
+		Doubles the range of your empowerments effect radius and extends the duration of empowerments by 6 seconds
+		'''
+	ChampionWing: ""
+}

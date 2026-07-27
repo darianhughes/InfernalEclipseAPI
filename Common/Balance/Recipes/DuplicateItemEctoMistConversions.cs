@@ -180,7 +180,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             #endregion
         }
 
-        private int GetItemID(string name, Mod mod)
+        private static int GetItemID(string name, Mod mod)
         {
             if (mod.TryFind(name, out ModItem item))
                 return item.Type;

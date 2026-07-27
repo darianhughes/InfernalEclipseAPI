@@ -62,7 +62,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
                     tooltip += ", ";
             }
 
-            TooltipLine line = tooltips.FirstOrDefault(t => t.Mod == "Terraria" && t.Name == "Tooltip2");
+            TooltipLine line = tooltips.FirstOrDefault(t => t.Mod == "Terraria" && t.Name == "Tooltip3");
             if (line != null)
                 line.Text = tooltip;
         }
@@ -114,7 +114,6 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "KainSett",
             "nicole",
             "KaiTheExaminer",
-            "konte1m",
             "LeEr206",
             "Pil",
             "Yelmut",
@@ -132,24 +131,21 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Jillyfish",
             "Arkangel",
             "DaVids",
+            "Georgerrier",
 
             //Donors
             "bryce27",
             "Bomberr",
             "Goldsockz2",
             "Minesky",
-            "rosé",
             "TechQueen22",
             "ProSigmaSoul",
             "Sir_Yeetus_III",
             "Samoh",
-            "darkwex",
             "Imagiknight Orpheus",
-            "un5",
             "rocket",
             "FlamingSock",
-            "ゴジータ",
-            "drastik",
+            "brxdyfrxmdxg",
 
             //Supporters
             "CuddlySnake",
@@ -158,22 +154,24 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Lucy",
             "Mando",
             "Romain TISSERAND",
-            "NICK",
             "Imagiknight_Parad0xical",
+            "Lance",
 
             //Helpers
             "fjiown",
             "Soopns",
+            "DuskMender",
 
             //Special Thanks
             "N0t_UNowen",
             "Blockaroz",
             "javyz",
             "habble",
-            "Eram",
             "Lucille Karma",
+            "Eram",
             "tomat",
             "Nycro",
+            "Blast",
             "Cataclysmic Armageddon",
             "Yardis",
         };

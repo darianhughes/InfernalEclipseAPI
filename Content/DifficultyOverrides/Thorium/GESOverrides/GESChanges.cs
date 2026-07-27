@@ -59,6 +59,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.GESOverrides
     [ExtendsFromMod(InfernalCrossmod.ThoriumRework.Name)]
     public class GESHelheimChanges : GlobalNPC
     {
+        public override bool InstancePerEntity => true;
+
+        private int spawnTimer;
+
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => entity.type == ModContent.NPCType<GraniteEnergyStorm>() || entity.type == ModContent.NPCType<CoalescedEnergy>() || entity.type == ModContent.NPCType<EncroachingEnergy>() || entity.type == ModContent.NPCType<EnergyConduit>();
 
         public override void SetDefaults(NPC entity)
@@ -93,6 +97,8 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.GESOverrides
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
+            spawnTimer = 60 * 3;
+
             if (WorldSaveSystem.InfernumModeEnabled)
             {
                 if (npc.type == ModContent.NPCType<GraniteEnergyStorm>())
@@ -111,6 +117,21 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.GESOverrides
                     }
                 }
             }
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if (spawnTimer > 0)
+            {
+                spawnTimer--;
+
+                if (spawnTimer <= 0)
+                    npc.dontTakeDamage = false;
+                else
+                    npc.dontTakeDamage = true;
+            }
+
+            return base.PreAI(npc);
         }
 
         public override void PostAI(NPC npc)

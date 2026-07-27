@@ -1,0 +1,14 @@
+Items: {
+	Metalash: {
+		DisplayName: Metalash
+		Tooltip:
+			'''
+			3 summon tag damage
+			Hitting an enemy lodges a Wulfrum Dagger into them
+			The dagger deals passive damage while lodged in an enemy
+			Only one dagger can be lodged in each enemy at a time
+			[c/83B87E:'The blade at the end of this whip was one of many standard-issue weapons created by the Wulfrum Rebellion.]
+			[c/83B87E:Cheaply made and flimsy to use, these old daggers find use by strengthening other weapons.']
+			'''
+	}
+}

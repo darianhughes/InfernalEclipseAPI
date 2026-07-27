@@ -5,37 +5,13 @@ using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
 using ThoriumMod.Items.SummonItems;
 using ThoriumMod.Projectiles.Minions;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 {
     public class SummonerAccessoryChanges : GlobalItem
     {
-        private Mod thorium
-        {
-            get
-            {
-                ModLoader.TryGetMod("ThoriumMod", out Mod thor);
-                return thor;
-            }
-        }
-
-        private Mod sots
-        {
-            get
-            {
-                ModLoader.TryGetMod("SOTS", out Mod sots);
-                return sots;
-            }
-        }
-
-        private Mod clamity
-        {
-            get
-            {
-                ModLoader.TryGetMod("Clamity", out Mod clam);
-                return clam;
-            }
-        }
+        private static Mod Thorium => InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod : null;
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -50,14 +26,14 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             //    --player.maxTurrets;
             //}
 
-            if (sots != null && thorium != null)
+            if (InfernalCrossmod.SOTS.Loaded && Thorium != null)
             {
-                ModItem scryingGlass = thorium.Find<ModItem>("ScryingGlass");
-                ModItem necroticSkull = thorium.Find<ModItem>("NecroticSkull");
-                ModItem cystralScorpion = thorium.Find<ModItem>("CrystalScorpion");
-                ModItem fortressGenerator = sots.Find<ModItem>("FortressGenerator");
-                ModItem steamkeeperWatch = thorium.Find<ModItem>("SteamkeeperWatch");
-                ModItem yumasPendant = thorium.Find<ModItem>("YumasPendant");
+                //ModItem scryingGlass = thorium.Find<ModItem>("ScryingGlass");
+                ModItem necroticSkull = Thorium.Find<ModItem>("NecroticSkull");
+                ModItem cystralScorpion = Thorium.Find<ModItem>("CrystalScorpion");
+                //ModItem fortressGenerator = sots.Find<ModItem>("FortressGenerator");
+                ModItem steamkeeperWatch = Thorium.Find<ModItem>("SteamkeeperWatch");
+                //ModItem yumasPendant = thorium.Find<ModItem>("YumasPendant");
 
                 if (item.ModItem != null &&
                     item.ModItem.Mod.Name == "SOTS" &&
@@ -73,13 +49,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                 {
                     //scryingGlass.UpdateAccessory(player, hideVisual);
                     //--player.maxTurrets;
-                    necroticSkull.UpdateAccessory(player, hideVisual);
-                    --player.maxMinions;
+                    //necroticSkull.UpdateAccessory(player, hideVisual);
+                    //--player.maxMinions;
                     //--player.maxTurrets;
 
-                    if (clamity != null)
+                    if (InfernalCrossmod.Clamity.Loaded)
                     {
-                        ModItem cyanPearl = clamity.Find<ModItem>("CyanPearl");
+                        ModItem cyanPearl = InfernalCrossmod.Clamity.Mod.Find<ModItem>("CyanPearl");
                         cyanPearl.UpdateAccessory(player, hideVisual);
                         ref StatModifier local = ref player.GetDamage(DamageClass.Summon);
                         local -= 0.07f;
@@ -87,8 +63,10 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                     player.lifeRegen -= 2;
                     player.hasPaladinShield = false;
-                    ref StatModifier local2 = ref player.GetDamage(DamageClass.Generic);
-                    local2 -= 0.1f;
+                    player.GetDamage(DamageClass.Generic) -= 0.1f;
+
+                    steamkeeperWatch.UpdateAccessory(player, hideVisual);
+                    //player.GetDamage(DamageClass.Summon) -= 0.1f;
                 }
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
@@ -135,9 +113,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StarTaintedGenerator>())
                 {
-                    steamkeeperWatch.UpdateAccessory(player, hideVisual);
-                    ref StatModifier local2 = ref player.GetDamage(DamageClass.Summon);
-                    local2 -= 0.1f;
+                    //steamkeeperWatch.UpdateAccessory(player, hideVisual);
+                    //player.GetDamage(DamageClass.Summon) -= 0.1f;
                 }
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
@@ -153,9 +130,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //--player.maxMinions;
                     //ref StatModifier local = ref player.GetDamage(DamageClass.Generic);
                     //local -= 0.1f;
-                    steamkeeperWatch.UpdateAccessory(player, hideVisual);
-                    ref StatModifier local2 = ref player.GetDamage(DamageClass.Summon);
-                    local2 -= 0.1f;
+                    //steamkeeperWatch.UpdateAccessory(player, hideVisual);
+                    //player.GetDamage(DamageClass.Summon) -= 0.1f;
                     //yumasPendant.UpdateAccessory(player, hideVisual);
                     //ref StatModifier local3 = ref player.GetDamage(DamageClass.Summon);
                     //local3 -= 0.1f;
@@ -174,13 +150,13 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     */
                 }
             }
-            else if (thorium != null)
+            else if (Thorium != null)
             {
-                ModItem scryingGlass = thorium.Find<ModItem>("ScryingGlass");
-                ModItem necroticSkull = thorium.Find<ModItem>("NecroticSkull");
-                ModItem cystralScorpion = thorium.Find<ModItem>("CrystalScorpion");
-                ModItem steamkeeperWatch = thorium.Find<ModItem>("SteamkeeperWatch");
-                ModItem yumasPendant = thorium.Find<ModItem>("YumasPendant");
+                //ModItem scryingGlass = thorium.Find<ModItem>("ScryingGlass");
+                ModItem necroticSkull = Thorium.Find<ModItem>("NecroticSkull");
+                ModItem cystralScorpion = Thorium.Find<ModItem>("CrystalScorpion");
+                ModItem steamkeeperWatch = Thorium.Find<ModItem>("SteamkeeperWatch");
+                //ModItem yumasPendant = thorium.Find<ModItem>("YumasPendant");
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {
@@ -213,9 +189,11 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
 
                 if (item.type == ModContent.ItemType<StarTaintedGenerator>())
                 {
+                    /*
                     steamkeeperWatch.UpdateAccessory(player, hideVisual);
                     ref StatModifier local2 = ref player.GetDamage(DamageClass.Summon);
                     local2 -= 0.1f;
+                    */
                 }
 
                 if (item.type == ModContent.ItemType<Nucleogenesis>())
@@ -225,9 +203,9 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     necroticSkull.UpdateAccessory(player, hideVisual);
                     --player.maxMinions;
                     cystralScorpion.UpdateAccessory(player, hideVisual);
-                    steamkeeperWatch.UpdateAccessory(player, hideVisual);
-                    ref StatModifier local2 = ref player.GetDamage(DamageClass.Summon);
-                    local2 -= 0.1f;
+                    //steamkeeperWatch.UpdateAccessory(player, hideVisual);
+                    //ref StatModifier local2 = ref player.GetDamage(DamageClass.Summon);
+                    //local2 -= 0.1f;
                     //yumasPendant.UpdateAccessory(player, hideVisual);
                     //ref StatModifier local3 = ref player.GetDamage(DamageClass.Summon);
                     //local3 -= 0.1f;
@@ -246,16 +224,18 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     */
                 }
             }
-            else if (sots != null)
+            else if (InfernalCrossmod.SOTS.Loaded)
             {
                 if (item.ModItem != null &&
                     item.ModItem.Mod.Name == "SOTS" &&
                     item.ModItem.Name == "FortressGenerator")
                 {
+                    player.lifeRegen -= 2;
                     player.hasPaladinShield = false;
+                    player.GetDamage(DamageClass.Generic) -= 0.1f;
                 }
 
-                ModItem fortressGenerator = sots.Find<ModItem>("FortressGenerator");
+                //ModItem fortressGenerator = sots.Find<ModItem>("FortressGenerator");
 
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {
@@ -313,7 +293,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             if (maxTooltipIndex != -1)
             {
                 int insertIndex = maxTooltipIndex + 1;
-                TooltipLine customLine = new TooltipLine(Mod, "MergedTreeTooltip", stealthTooltip);
+                TooltipLine customLine = new(Mod, "MergedTreeTooltip", stealthTooltip);
                 if (overrideColor != default)
                     customLine.OverrideColor = overrideColor;
 
@@ -362,7 +342,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
             //string fortessOrig2 = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressGenerator.OrigTooltip2");
             //string replaceInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.FortressGenerator.Replace");
 
-            if (sots != null & thorium != null)
+            if (InfernalCrossmod.SOTS.Loaded & Thorium != null)
             {
                 //if (item.type == sots.Find<ModItem>("PlatformGenerator").Type)
                 //{
@@ -432,7 +412,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.NucleogenesisTree
                     //AddTooltip(tooltips, cyanPearlInfo, InfernalRed);
                 }
             }
-            else if (thorium != null)
+            else if (Thorium != null)
             {
                 if (item.type == ModContent.ItemType<StatisBlessing>())
                 {

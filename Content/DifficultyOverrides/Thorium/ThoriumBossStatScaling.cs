@@ -411,7 +411,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 //Borean Strider
                 ModContent.ProjectileType<BlizzardFang>(),
                 ModContent.ProjectileType<BlizzardBoom>(),
-                ModContent.ProjectileType<IceAnomaly>(),
+                ModContent.ProjectileType<ThoriumMod.Projectiles.Enemy.IceAnomaly>(),
 
                 //Queen Jellyfish
                 ModContent.ProjectileType<BubblePulse>(),

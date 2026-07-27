@@ -10,12 +10,13 @@ using MonoMod.RuntimeDetour;
 using System.Reflection;
 using SOTS;
 using InfernalEclipseAPI.Core.Systems;
-using System.Security.Policy;
 using ThoriumMod.Items.ZRemoved;
 using Terraria.Localization;
+using ThoriumMod.Core.Handlers.HoverItemHandler;
 
 namespace InfernalEclipseAPI.Content.Items.SpawnItems
 {
+    [JITWhenModsEnabled("ThoriumMod")]
     [ExtendsFromMod("ThoriumMod")]
     public class SuspiciousLookingPumpkin : ModItem
     {
@@ -26,8 +27,8 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
 
         public override void SetDefaults()
         {
-            Item.width = 36;
-            Item.height = 40;
+            Item.width = 38;
+            Item.height = 42;
             Item.rare = ItemRarityID.LightPurple;
             Item.consumable = false;
         }
@@ -41,14 +42,15 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Pumpkin, 30)
-                .AddIngredient<EssenceofHavoc>(5)
                 .AddIngredient(ItemID.SoulofFright, 5)
                 .AddIngredient<SoulofPlight>(5)
+                .AddIngredient<EssenceofHavoc>(3)
                 .AddTile<SoulForge>()
                 .Register();
         }
     }
 
+    [JITWhenModsEnabled("ThoriumMod")]
     [ExtendsFromMod("ThoriumMod")]
     public class AncientPhylacteryAdjustments : GlobalTile
     {
@@ -102,7 +104,7 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
                                 for (int a = 0; a < dustCount; a++)
                                 {
                                     // Angle around the circle
-                                    double angle = i * (MathHelper.TwoPi / dustCount);
+                                    double angle = i * (TwoPi / dustCount);
 
                                     // Get rotated offset
                                     Vector2 offset = Utils.RotatedBy(Vector2.UnitY * -1f, angle) * new Vector2(30f, 30f);
@@ -131,11 +133,26 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
         {
             if (type == ModContent.TileType<AncientPhylactery>())
             {
+                if (!AncientPhylactery.DownedAllMechBosses)
+                {
+                    base.MouseOver(i, j, type);
+                    return;
+                }
+
+                if (Main.IsItDay())
+                {
+                    base.MouseOver(i, j, type);
+                    return;
+                }
+
+                Player localPlayer = Main.LocalPlayer;
+
                 if (InfernalCrossmod.SOTS.Loaded)
                 {
                     if (!AncientPhylacteryRightClickBlocker.DownedPolaris)
                     {
-                        Player localPlayer = Main.LocalPlayer;
+                        HoverItemSystem.QueueHoverItem(0, 0);
+
                         int cursorItemIconId1 = localPlayer.cursorItemIconID;
                         localPlayer.cursorItemIconID = ModContent.ItemType<LichRequirement3>();
                         int cursorItemIconId2 = localPlayer.cursorItemIconID;
@@ -144,7 +161,15 @@ namespace InfernalEclipseAPI.Content.Items.SpawnItems
                         localPlayer.noThrow = 2;
                         localPlayer.cursorItemIconText = "";
                         localPlayer.cursorItemIconEnabled = true;
+                        return;
                     }
+                }
+
+                Dictionary<int, int> hasSusPumpkin = localPlayer.CountInventoryItemIdxWithStack(ModContent.ItemType<SuspiciousLookingPumpkin>(), 1);
+                if (hasSusPumpkin.Count > 0)
+                {
+                    localPlayer.noThrow = 2;
+                    HoverItemSystem.QueueHoverItem(ModContent.ItemType<SuspiciousLookingPumpkin>(), 1);
                 }
             }
         }

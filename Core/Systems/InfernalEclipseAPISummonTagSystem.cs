@@ -28,19 +28,16 @@ namespace InfernalEclipseAPI.Core.Systems
 
             // API ENTRY
 
-            if (InfernalConfig.Instance.DeveloperMode && !InfernalConfig.Instance.DisableUnfinisedContent)
+            entries.Add(new SummonTagEntry
             {
-                entries.Add(new SummonTagEntry
+                ItemType = () => ModContent.ItemType<SplitFirebrand>(),
+                BuffType = () => ModContent.BuffType<SplitFirebrandTag>(),
+                Setup = delegate (SummonTag summonTag)
                 {
-                    ItemType = () => ModContent.ItemType<SplitFirebrand>(),
-                    BuffType = () => ModContent.BuffType<SplitFirebrandTag>(),
-                    Setup = delegate (SummonTag summonTag)
-                    {
-                        summonTag.AutoDrawTooltip = false;
-                        summonTag.TagTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand", (AssetRequestMode)1);
-                    }
-                });
-            }
+                    summonTag.AutoDrawTooltip = false;
+                    summonTag.TagTexture = ModContent.Request<Texture2D>("InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand", (AssetRequestMode)1);
+                }
+            });
 
             //Checking for my mod so this can go to live on my end straight away
             //Also you can't register multiple tag entrys to the same item so we'll roll with mine for now
@@ -279,6 +276,25 @@ namespace InfernalEclipseAPI.Core.Systems
                 }
             }
 
+            //Ones not also covered by WHummus'
+            if (ModLoader.TryGetMod("WulfrumExpansion", out Mod overdrive))
+            {
+                if (overdrive.TryFind("Metalash", out ModItem item) && overdrive.TryFind("MetalashTagBuff", out ModBuff buff))
+                {
+                    entries.Add(new SummonTagEntry
+                    {
+                        ItemType = () => item.Type,
+                        BuffType = () => buff.Type,
+                        Setup = delegate (SummonTag summonTag)
+                        {
+                            summonTag.AutoDrawTooltip = false;
+                            summonTag.TagTexture = ModContent.Request<Texture2D>("WulfrumExpansion/Content/Items/Weapons/Metalash", AssetRequestMode.ImmediateLoad);
+                            summonTag.FlatTagDamage = -1;
+                        }
+                    });
+                }
+            }
+
             foreach (SummonTagEntry summonTagEntry in entries)
             {
                 SummonTag tag =
@@ -299,26 +315,49 @@ namespace InfernalEclipseAPI.Core.Systems
     public class SplitFirebrandSystem : ModSystem
     {
         private bool lastMoonlordState;
+        private bool pendingWorldInitUpdate;
 
         public override void OnWorldLoad()
         {
             lastMoonlordState = NPC.downedMoonlord;
+            pendingWorldInitUpdate = true;
         }
 
         public override void PostUpdateWorld()
         {
+            // Run once after world is fully active
+            if (pendingWorldInitUpdate)
+            {
+                pendingWorldInitUpdate = false;
+                lastMoonlordState = NPC.downedMoonlord;
+                ApplyTexture();
+                return;
+            }
+
+            // Normal runtime updates
             if (lastMoonlordState == NPC.downedMoonlord)
                 return;
 
             lastMoonlordState = NPC.downedMoonlord;
+            ApplyTexture();
+        }
 
+        private void ApplyTexture()
+        {
             if (CalamityBuffSets.SummonTagDebuff == null)
                 return;
 
-            if (CalamityBuffSets.SummonTagDebuff[ModContent.BuffType<SplitFirebrandTag>()] == null)
+            int buffType = ModContent.BuffType<SplitFirebrandTag>();
+
+            if (buffType < 0 || buffType >= CalamityBuffSets.SummonTagDebuff.Length)
                 return;
 
-            CalamityBuffSets.SummonTagDebuff[ModContent.BuffType<SplitFirebrandTag>()].TagTexture = ModContent.Request<Texture2D>(
+            SummonTag tag = CalamityBuffSets.SummonTagDebuff[buffType];
+
+            if (tag == null)
+                return;
+
+            tag.TagTexture = ModContent.Request<Texture2D>(
                 NPC.downedMoonlord
                     ? "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrandCrescendo"
                     : "InfernalEclipseAPI/Content/Items/Weapons/Legendary/SplitFirebrand/SplitFirebrand"

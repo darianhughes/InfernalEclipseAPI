@@ -51,7 +51,7 @@ namespace InfernalEclipseAPI.Content.Items.Consumables
         {
             bool sotsCanUse = true;
             if (InfernalCrossmod.SOTS.Loaded)
-                sotsCanUse = SOTSPuddingHelpers.CanUse(player);
+                sotsCanUse = VoidFoodHelper.CanUse(player);
 
             return sotsCanUse && player.Calamity().rage != player.Calamity().rageMax && !player.HasBuff<RageMode>() && !player.HasBuff(BuffID.PotionSickness);
         }
@@ -88,7 +88,7 @@ namespace InfernalEclipseAPI.Content.Items.Consumables
         {
             if (InfernalCrossmod.SOTS.Loaded)
             {
-                SOTSPuddingHelpers.RefillEffect(player, GetVoidAmt());
+                VoidFoodHelper.RefillEffect(player, GetVoidAmt());
             }
             player.Calamity().rage = player.Calamity().rageMax;
             player.AddBuff(ModContent.BuffType<RageMode>(), 2);
@@ -149,7 +149,7 @@ namespace InfernalEclipseAPI.Content.Items.Consumables
 
     [JITWhenModsEnabled("SOTS")]
     [ExtendsFromMod("SOTS")]
-    public static class SOTSPuddingHelpers
+    public static class VoidFoodHelper
     {
         public static bool CanUse(Player player)
         {

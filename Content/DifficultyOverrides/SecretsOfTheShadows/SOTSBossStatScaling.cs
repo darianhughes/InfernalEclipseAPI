@@ -21,6 +21,7 @@ using SOTS.Projectiles.AbandonedVillage;
 using SOTS.NPCs.Boss.Lux;
 using System.Security.Policy;
 using SOTS.Projectiles.Celestial;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.DoG;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 {
@@ -139,6 +140,16 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                     modifiers.SourceDamage *= 1.1f;
                 }
             }
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.ModNPC.Name.Contains("Excavator") && InfernumActive.InfernumActive)
+            {
+                DoGPhase1BodyBehaviorOverride.KillUnbalancedDebuffs(npc);
+            }
+
+            return base.PreAI(npc);
         }
 
         public override void PostAI(NPC npc)

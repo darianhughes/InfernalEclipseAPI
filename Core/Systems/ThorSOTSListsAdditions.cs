@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using SOTS;
 using ThoriumMod.Projectiles;
 
@@ -9,20 +9,27 @@ namespace InfernalEclipseAPI.Core.Systems
     [ExtendsFromMod("SOTS", "ThoriumMod")]
     public class ThorSOTSListsAdditions : ModSystem
     {
+        private static readonly FieldInfo blacklistField =
+            typeof(SOTSPlayer).GetField(
+                nameof(SOTSPlayer.HomingProjectileBlacklist),
+                BindingFlags.Public | BindingFlags.Static);
+
+        private static void AddToBlacklist(IEnumerable<int> additions)
+        {
+            HashSet<int> current = (HashSet<int>)blacklistField.GetValue(null);
+
+            current.UnionWith(additions);
+        }
+
         public override void Load()
         {
-            int[] additions =
+            AddToBlacklist(new[]
             {
                 ModContent.ProjectileType<DragonPulse>(),
                 ModContent.ProjectileType<OmniBoom>(),
                 ModContent.ProjectileType<OmniBurst>(),
                 ModContent.ProjectileType<OmniBurstDamage>(),
-            };
-
-            SOTSPlayer.typhonBlacklist = SOTSPlayer.typhonBlacklist
-                .Concat(additions)
-                .Distinct()
-                .ToArray();
+            });
 
             if (InfernalCrossmod.ThoriumRework.Loaded)
             {
@@ -35,10 +42,7 @@ namespace InfernalEclipseAPI.Core.Systems
                     reworkAdditions.Add(pulseRay.Type);
                 }
 
-                SOTSPlayer.typhonBlacklist = SOTSPlayer.typhonBlacklist
-                    .Concat(reworkAdditions)
-                    .Distinct()
-                    .ToArray();
+                AddToBlacklist(reworkAdditions);
             }
         }
     }
@@ -51,15 +55,14 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))
             {
-                int[] additions =
-                {
-                    calAmmo.Find<ModProjectile>("seaPrismShard").Type
-                };
+                FieldInfo blacklistField =
+                    typeof(SOTSPlayer).GetField(
+                        nameof(SOTSPlayer.HomingProjectileBlacklist),
+                        BindingFlags.Public | BindingFlags.Static);
 
-                SOTSPlayer.typhonBlacklist = SOTSPlayer.typhonBlacklist
-                    .Concat(additions)
-                    .Distinct()
-                    .ToArray();
+                HashSet<int> current = (HashSet<int>)blacklistField.GetValue(null);
+
+                current.Add(calAmmo.Find<ModProjectile>("seaPrismShard").Type);
             }
         }
     }

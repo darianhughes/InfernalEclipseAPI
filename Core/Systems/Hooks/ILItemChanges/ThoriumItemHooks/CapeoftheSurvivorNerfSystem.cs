@@ -36,13 +36,13 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges
         {
             if (InfernalCrossmod.SOTS.Loaded)
             {
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<SmoothCoal>(), 1240, 0.275);
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<ThoriumOre>(), 1500, 0.4);
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<LifeQuartz>(), 1550, 0.45);
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<Aquaite>(), 2000, 0.5, () => NPC.downedBoss2);
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<LodeStone>(), 2750, 0.55, () => ThoriumWorld.downedFallenBeholder);
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<ValadiumChunk>(), 2750, 0.55, () => ThoriumWorld.downedFallenBeholder);
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<IllumiteChunk>(), 4100, 1.25, () => NPC.downedPlantBoss);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<SmoothCoal>(), 1240, 0.275);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<ThoriumOre>(), 1500, 0.4);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<LifeQuartz>(), 1550, 0.45);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<Aquaite>(), 2000, 0.5, NPC.downedBoss2);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<LodeStone>(), 2750, 0.55, ThoriumWorld.downedFallenBeholder);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<ValadiumChunk>(), 2750, 0.55, ThoriumWorld.downedFallenBeholder);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<IllumiteChunk>(), 4100, 1.25, NPC.downedPlantBoss);
             }
         }
 

@@ -6,6 +6,7 @@ using ReLogic.Content;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.TyrantYharimsUltisword
 {
+    [Obsolete("Projectile is no longer in use in base IEoR")]
     public class TyrantYharimsUltiswordThrownBlade : DevilsDevastationThrownBlade
     {
         public override string Texture => "InfernalEclipseAPI/Content/Items/Weapons/Melee/TyrantYharimsUltisword/TyrantYharimsUltisword";

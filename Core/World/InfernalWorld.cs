@@ -64,11 +64,11 @@ namespace InfernalEclipseAPI.Core.World
 
             if (SubworldSystem.AnyActive())
             {
-                if (InfernalConfig.Instance.ForceRagnarokInfernumModeInSubworlds && !WorldSaveSystem.InfernumModeEnabled)
+                if (InfernalConfig.Instance.ForceRagnarokInfernumModeInSubworlds)
                 {
-                    if (Main.masterMode)
+                    if (Main.masterMode && !RagnarokModeEnabled)
                         RagnarokModeEnabled = true;
-                    else if (Main.expertMode)
+                    else if (Main.expertMode && !WorldSaveSystem.InfernumModeEnabled)
                         WorldSaveSystem.InfernumModeEnabled = true;
                 }
 

@@ -24,6 +24,9 @@
 		<PackageReference Include="MonoMod" Version="22.7.31.1" />
 	</ItemGroup>
 	<ItemGroup>
+		<Reference Include="CalamityBardHealer">
+		  <HintPath>lib\Assemblies\CalamityBardHealer.dll</HintPath>
+		</Reference>
 		<Reference Include="CalamityHunt">
 		  <HintPath>..\ModAssemblies\CalamityHunt_v1.1.9.dll</HintPath>
 		</Reference>
@@ -72,11 +75,11 @@
 		<Reference Include="RevengeancePlus">
 			<HintPath>..\ModAssemblies\RevengeancePlus_v0.5.dll</HintPath>
 		</Reference>
+		<Reference Include="SOTS">
+		  <HintPath>lib\Assemblies\SOTS.dll</HintPath>
+		</Reference>
 		<Reference Include="SOTSBardHealer">
 			<HintPath>..\ModAssemblies\SOTSBardHealer_v0.3.0.dll</HintPath>
-		</Reference>
-		<Reference Include="SOTS">
-		  <HintPath>..\ModAssemblies\SOTS_v0.25.1.6.dll</HintPath>
 		</Reference>
 		<Reference Include="SubworldLibrary">
 			<HintPath>..\ModAssemblies\SubworldLibrary_v2.2.3.3.dll</HintPath>

@@ -174,6 +174,11 @@ namespace InfernalEclipseAPI.Core.Configs
         [ReloadRequired]
         public bool DisableDuplicateContent { get; set; }
 
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool DisableUnnecessaryContent { get; set; }
+
         //[DefaultValue(true)]
         //public bool PlayInfernumExoMechThemeWithWoTM {  get; set; }
 

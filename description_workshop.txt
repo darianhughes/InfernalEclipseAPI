@@ -61,7 +61,7 @@ Designers: Wardrobe Hummus, Yob, Tyr, ma3allim
 Story: Akira, Yob
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan, Arkangel
 Contributors: cheesenuggets, Pudd1ng, Pixus, Nicole, Dandel, Ropro, JalapenoDance,
-Spriters: Prime, Pixus, Yelmut, ma3allim, konte1m, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel, Uncle Sciz
+Spriters: Prime, Pixus, Yelmut, ma3allim, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel, Uncle Sciz
 Composers: Peter Fung, Techhy
 Localization: Pudd1ng (Simplified Chinese), Aizen522 (Russian)
 

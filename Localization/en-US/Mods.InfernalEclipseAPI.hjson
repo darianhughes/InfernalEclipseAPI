@@ -16,7 +16,7 @@ UI: {
 	Expert: Expert Mode
 	Master: Master Mode
 	Legendary: Legendary Mode
-	Revengence: Revengence Mode
+	Revengence: Revengeance Mode
 	Death: Death Mode
 	LDeath: Malice Mode
 	Infernum: Infernum Mode
@@ -24,7 +24,7 @@ UI: {
 	WarningSouls:
 		'''
 		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok!
-		Enabling Infernum Mode or Ragnarok mode will disable Eternity mode as they are incompatible!
+		Enabling Infernum Mode or Ragnarok Mode will disable Eternity Mode as they are incompatible!
 		Please do not report any balance issues or bugs while playing with Fargo's Souls.
 		'''
 	WarningForTheWorthyON:
@@ -41,7 +41,7 @@ UI: {
 	NoticeHomewardRagnarok:
 		'''
 		Thanks for playing Homeward Ragnarok, an official DLC mod to Infernal Eclipse of Ragnarok!
-		Please report and issues relating to Homeward Journey in the Homeward Ragnarok discord.
+		Please report any issues relating to Homeward Journey in the Homeward Ragnarok discord.
 		The main team does not directly work on this mod and can not provide help in the main discord.
 		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
 		'''
@@ -53,6 +53,45 @@ UI: {
 		You can turn off this popup in the Homeward Config in the Infernal Eclipse of Ragnarok config.
 		'''
 	DevNoticeCampsiteFix: Flag pole crash fix applied
+	WarningHelheim:
+		'''
+		NOTICE: It is detected you have the Thorium Mod enabled!
+		We highly recommend you to install the "Thorium Helheim" mod for the intended Thorium AI before proceeding!
+		You can turn off this popup in the Infernal Eclipse of Ragnarok config if you wish to proceed without it.
+		'''
+	WarningRagnarok:
+		'''
+		NOTICE: It is detected you have the Thorium Mod enabled!
+		We highly recommend you to install the "Ragnarok" mod for compatibility between these mods before proceeding!
+		You can turn off this popup in the Infernal Eclipse of Ragnarok config if you wish to proceed without it.
+		'''
+	WarningOverhaul:
+		'''
+		WARNING: It is detected that you have the Calamity Overhaul enabled!
+		This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
+		'''
+	WarningRemnants:
+		'''
+		WARNING: It is detected that you have the Remnants mod enabled!
+		This mod is NOT compatible with Infernum and many other of the mods in the mod pack.
+		If this world was generated with the mod, please regenerate it with this mod off.
+		'''
+	NoticeMasterPatch:
+		'''
+		NOTICE: It is detected that you have a Infernum Master Patch mod enabled!
+		This mod is redunant with Ragnarok Mode and can be disabled.
+		'''
+	NoticeCalMinus:
+		'''
+		NOTICE: It is detected that you have the Calamity Minus Mod enabled!
+		This mod is redunant if you have the Calamity Recipe Changes config on and can be disabled.
+		'''
+	NoticeCalBalance:
+		'''
+		NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled!
+		This mod adds a bunch of unlisted changes which might make your playthough worse than intended.
+		We heavily recommend you disable this mod.
+		'''
 }
 
 DifficultyUI: {
@@ -64,32 +103,24 @@ DifficultyUI: {
 		'''
 	ExpandedDescription:
 		'''
-		[c/B32E81:Seemlessly merges both Death and Infernum mode, combining many of their changes.]
+		[c/B32E81:Seamlessly merges both Death and Infernum Mode, combining many of their changes.]
 		[c/B32E81:Many major foes will have unique behavior patterns on top of their Infernum AI.]
-		[c/B32E81:Foes will have very high base stats and scale more agressively in multiplayer.]
+		[c/B32E81:Foes will have very high base stats and scale more aggressively in multiplayer.]
 		[c/FF0055:Can you master the Infernal Eclipse of Ragnarok?]
 		'''
 	Activation: The Infernal Eclipse has risen...
 	Deactivation: Another unworthy challenger has walked away.
-	MasterToggle: Master mode is now enabled!
+	MasterToggle: Master Mode is now enabled!
 }
 
 WelcomeMessage: {
 	Welcome: Welcome to the Infernal Eclipse of Ragnarok Mod Pack!
 	TBRNotice: NOTICE: It is detected that you have Thorium Helheim enabled! Make sure the Health, Damage, & Speed multipliers are set to 1 in the compatibility config (unless you want a harder experience) as this mod automatically adjusts the Thorium bosses depending on the current difficulty.
-	TBRWarning: WARNING: It is detected that you do not have Thorium Helheim enabled! This mod is heavily recommended as it rebalances Thorium Bosses to have mechanics more in-line with Infernum mode and Calamity in general.
-	RagWarning: WARNING: It is detected that you do not have Ragnarok enabled! Without this mod, Thorium & Calamity may not work well together. It is heavily recommended you enable this mod for a more complete & balanced experience
-	EventTrophyNotice: NOTICE: It is detected that you do not have More Trophies and Relics enabled! Without this mod, any bosses that aren't from Vanilla, Calamity, or Infernum may not have Calamity lore or Infernum intros. It is heavily recommended you enable this mod for a more complete & balanced experience.
 	SoulsWarning:
 		'''
 		WARNING: Fargo's Souls Mod is NOT compatible with Infernal Eclipse of Ragnarok! 
-		Please note that Infernum Mode is not compatiable with Eternity Mode and you may expirence major bugs if you have both enabled.
+		Please note that Infernum Mode is not compatible with Eternity Mode and you may experience major bugs if you have both enabled.
 		'''
-	OverhaulWarning: WARNING: It is detected that you have the Calamity Overhaul enabled! This mod is very buggy and will cause a lot of issues. We heavily recommend you disable this mod.
-	RemnantsWarning: WARNING: It is detected that you have the Remnants mod enabled! This mod is NOT compatible with Infernum If this world was generated with the mod, please regenerate it with this mod off, or otherwise do not report bugs about world generation.
-	MasterPatchNotice: NOTICE: It is detected that you have the Infernum Master Patch mod enabled. This mod is redunant with this mod and can be disabled.
-	CalMinusNotice: NOTICE: It is detected that you have the Calamity Minus Mod enabled! This mod already includes all of the mods features while you have Calamaity Balance Changes on in the Infernal Eclipse of Raganrok config.
-	CalBalNotice: NOTICE: It is detected that you have the Calamity Balance Changes Mod enabled! This mod already includes most of the mods features that are listed on their Steam Workshop page, while you have Calamaity Balance Changes on in the Infernal Eclipse of Ragnarok config. Calamity Balance Changes also adds a bunch of unlisted changes which might make your playthough worse than intended.
 	InfernumActive: The prodigy has returned to face the Infernal Eclipse...
 	MPConnect: A prodigy has returned to help face the Infernal Eclipse...
 	InfernumForced: Infernal energy has been infused into this world...
@@ -103,17 +134,38 @@ TimeFreezePrevention: {
 	AuricSoul: The beings auric soul prevents the incubator from activating...
 	ExoMech: Draedon's machine prevents the incubator from activating!
 	Terminus: The Terminus' light prevents the incubator's effects!
-	SCal: The witch dispells the incubator's effects!
+	SCal: The witch dispels the incubator's effects!
 	Primoridal: Primordial forces prevent the incubator's effects!
 	HolyFlame: The holy flame protects the world from the incubator's effects!
 	TerraBlade: Your reflection is immune to the incubator's effects!
-	Other: The incubator's effects was prevented!
+	Other: The incubator's effects were prevented!
 }
 
 BossCheesePrevention: {
 	TheDestroyer: I shall not let you destroy my machine so easily.
 	Plantera: Ancient forces prevent you from using this item right now...
 	Yharon: Ancient forces prevent you from using this item right now...
+}
+
+ItemBalance: {
+	Modified: Modified by Infernal Eclipse of Ragnarok
+	Modified2: Hold {0} to see modifications
+	DamageUpGeneric: "    Damage increased by [c/00A36C:{0}%]"
+	DamageDownGeneric: "    Damage decreased by [c/FF0000:{0}%]"
+	ShootSpeedUpGeneric: "    Shoot speed decreased by [c/FF0000:{0}%]"
+	ShootSpeedDownGeneric: "    Shoot speed increased by [c/00A36C:{0}%]"
+	UseTimeUpGeneric: "    Use time decreased by [c/00A36C:{0}%]"
+	UseTimeDownGeneric: "    Use time increased by [c/FF0000:{0}%]"
+	UseAnimationUpGeneric: "    Use animation decreased by [c/00A36C:{0}%]"
+	UseAnimationDownGeneric: "    Use animation increased by [c/FF0000:{0}%]"
+	UseSpeedUpGeneric: "    Use speed increased by [c/00A36C:{0}%]"
+	UseSpeedDownGeneric: "    Use speed decreased by [c/FF0000:{0}%]"
+	PickUpGeneric: "    Pickaxe power increased by [c/FF0000:{0}%]"
+	PickDownGeneric: "    Pickaxe power decreased by [c/FF0000:{0}%]"
+	CritUpGeneric: "    Critical strike chance increased by [c/00A36C:{0}%]"
+	CritDownGeneric: "    Critical strike chance decreased by [c/FF0000:{0}%]"
+	DefenseUpGeneric: "    Defense increased by {0}"
+	DefenseDownGeneric: "    Defense decreased by {0}"
 }
 
 ItemTooltip: {
@@ -124,14 +176,14 @@ ItemTooltip: {
 	NamelessDowned: You must pass the test
 	DisabledBossRush: The effects will not work in Boss Rush
 	SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
-	NBeamUsage: Hold Left-Click to release a Nebula Gigabam that deals mythic magic damage
+	NBeamUsage: Hold Left-Click to release a Nebula Gigabeam that deals mythic magic damage
 	MBeamUsage: Hold Left-Click to release a Exo Disintegrator beam that deals mythic ranged damage
 	SFlight: Holding right click grants fast, unlimited flight
 	StarlitForgeExtra: Even more curiously, it can even duplicate some items
 	BladecrestNerf: An evil force is sapping part of its power...
 	EclipseFang: "[IEoR]: Weapon empowerment always active."
 	ScytheThrow: Right Click to throw the scythe, which will curve on its way back
-	ThorsHammerPro: Inflcts electrified for 3 seconds on hits.
+	ThorsHammerPro: Inflicts electrified for 3 seconds on hits.
 	BountifulHarvest: Fires piercing stingers in an alternating pattern
 	TwoAlchs: Counts as 2 alcohols for {$Mods.CalamityMod.Buffs.AlcoholPoisoning.DisplayName}
 	HornScale: Heal amount scales with progression
@@ -477,6 +529,7 @@ ItemTooltip: {
 	DoesNotStack: Does not stack with downgrades
 	NoBoss: Does not work while a boss is alive
 	Disabled: "[DISABLED] "
+	DisabledTooltip: This item is currently disabled and not intended to be used in the current version of Infernal Eclipse of Ragnarok.
 	DauntlessBuff: +2% radiant damage
 	DedTo: - Dedicated to {0} -
 
@@ -1259,7 +1312,7 @@ Items: {
 				Before the world was formed, there were only the Primordials.
 				Each of them represents an aspect of this world, and protect the world from Ragnarok.
 				During my war, I had wanted to slay them thinking they were merely sinners like the other gods,
-				however no matter what I did I could not get there attention.
+				however no matter what I did I could not get their attention.
 				Was I not worthy of their attention despite all I had done to the world?
 				Don't tell me they think I'm a spec in this worlds history compared to you...
 				'''
@@ -1356,7 +1409,7 @@ Items: {
 				The youngest of the eternal siblings, and also the weakest.
 				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
 				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
-				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while weilding a living axe made of evil.
+				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while wielding a living axe made of evil.
 				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
 				'''
 		}
@@ -1474,7 +1527,7 @@ Items: {
 	}
 
 	SuspiciousLookingPumpkin: {
-		DisplayName: Suspicious Looking Pumpkin
+		DisplayName: Cursed Jack-o'-lantern
 		Tooltip:
 			'''
 			Summons the Lich when used on the Ancient Phylactery
@@ -1976,7 +2029,7 @@ Items: {
 		DisplayName: Tinkerers Repair Blueprints
 		Tooltip:
 			'''
-			When I was tied up the other goblins seem to have lost my workshop, 
+			When I was tied up, the other goblins seem to have lost my workshop, 
 			and I now fear that one of the beasts of Cthulhu has it...
 			If you manage to slay one and get my ruined workshop, this will help you repair it!
 			'''
@@ -2021,6 +2074,17 @@ Items: {
 		VoidTooltip: Heals 100 void
 		Stellar: Stellar
 		Major: Major
+	}
+
+	AuricBratwurst: {
+		DisplayName: Auric Bratwurst
+		Tooltip: ""
+		DynamicTooltip:
+			'''
+			{0}{1} improvements to all stats
+			'Ignore the fact it is pork... made out of chicken nuggets'
+			'''
+		VoidTooltip: Heals 75 void
 	}
 
 	SingularityCore: {
@@ -2075,18 +2139,14 @@ Items: {
 	}
 
 	TyrantYharimsUltisword: {
-		DisplayName: Tyrant's Penetrator
+		DisplayName: Deicide
 		Tooltip:
 			'''
-			Throw a auric greatsword that impales, immolates, and slows enemies
-			Up to five blades can impale an enemy at a time, with further hits launching the previous impaled blades
-			Press <right> to enter a stance where you can use <left> to perform a colossal, devastating slash
-			While in the stance, you gain life and flight time regeneration and your dashes have a shorter cooldown
-			The devastating slash must recharge after being used
-			Striking an impaled enemy with the devastating slash launches all blades and readies another slash
-			The final enemy hit with a devastating slash has a death mark applied to them
-			When you exit the stance, the death mark explodes for massive damage
-			'The reward of becoming a godseeker...'
+			Swings a slow and heavy blade with powerful knockback which fires blazing, hyper, and sunlight blades
+			Holding <right> will begin charging a strengthened swing
+			Releasing <right> while fully charged will unleash a devastating slash that always critically strikes
+			Hitting an enemy inflicts [cbuff:CalamityMod/AuricRebuke]
+			'May fortune favor you. For nothing else will.'
 			'''
 	}
 
@@ -2097,7 +2157,7 @@ Items: {
 			'''
 			{0} improvements to all stats
 			Instantly activates adrenaline mode & inflicts [cbuff:PotionSickness]
-			Can not be consumed when a boss is alive
+			Cannot be consumed when a boss is alive
 			'Happy Birthday!'
 			'''
 		Stellar: Stellar
@@ -2341,6 +2401,35 @@ Items: {
 			'''
 		Name: Chaos Construct
 	}
+
+	BloodHeart: {
+		DisplayName: Blood Heart
+		Tooltip:
+			'''
+			Summons Viscount when used on the Blood Altar
+			Not consumable
+			'''
+	}
+
+	EldritchBattleHorn: {
+		DisplayName: Eldritch Battle Horn
+		Tooltip:
+			'''
+			Summons the Forgotten One when used in the Aquatic Depths
+			Not consumable
+			'''
+	}
+
+	InfernalArsenalPainting: {
+		DisplayName: Infernal Arsenal Painting
+		Tooltip:
+			'''
+			Congratulations to those who have either beat low% or Boss Rush!
+			The confines of this painting is not enough to fit every victor
+			Victors are listed in the order they beat said challenge
+			Hold SHIFT to see the full list of credits
+			'''
+	}
 }
 
 Projectiles: {
@@ -2431,7 +2520,7 @@ Configs: {
 			Miscellaneous: Miscellaneous
 			MultiplayerAdjustments: Multiplayer Adjustments & Utilities
 			Main: Main
-			Secret: Expiremental Adjustments & Secret Settings
+			Secret: Experimental Adjustments & Secret Settings
 			Music: Music Toggles
 			CompatibilityChanges: Compatibility Changes
 		}
@@ -2731,6 +2820,11 @@ Configs: {
 			Label: Cnidrion Music
 			Tooltip: Toggles if 'Seahorse Scrutiny (Rebirth)' by Brimston Premium plays while a Cnidrion is alive.
 		}
+
+		DisableUnnecessaryContent: {
+			Label: Disable Unnecessary Content
+			Tooltip: ""
+		}
 	}
 
 	Difficulty: {
@@ -2762,8 +2856,8 @@ Configs: {
 		}
 
 		Revengence: {
-			Label: Revengence
-			Tooltip: Respawns will be prevented in Revengence+ difficulty
+			Label: Revengeance
+			Tooltip: Respawns will be prevented in Revengeance+ difficulty
 		}
 
 		Death: {

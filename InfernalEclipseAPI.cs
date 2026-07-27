@@ -68,6 +68,19 @@ namespace InfernalEclipseAPI
 
             TrackedMusicLoader();
 
+            if (InfernalConfig.Instance.ThoriumBalanceChangess)
+            {
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    ThoriumHelheimConfigSetup.DisableItemReworks();
+                }
+
+                if (InfernalCrossmod.CalBardHealer.Loaded)
+                {
+                    CalBardHealerConfigSetup.DisableGenItemBalance();
+                }
+            }
+            
             if (InfernalConfig.Instance.AutomatedConfigSetup)
             {
                 string cfgDir = Path.Combine(Main.SavePath, "ModConfigs");

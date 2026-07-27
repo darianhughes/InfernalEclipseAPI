@@ -70,6 +70,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
 
                                 if (otherNPC.ModNPC.Name.Contains("Draedon") && otherNPC.ModNPC.Mod.Name == "HypnosMod")
                                 {
+                                    //Main.NewText("Despawned d");
                                     otherNPC.active = false;
                                 }
                             }

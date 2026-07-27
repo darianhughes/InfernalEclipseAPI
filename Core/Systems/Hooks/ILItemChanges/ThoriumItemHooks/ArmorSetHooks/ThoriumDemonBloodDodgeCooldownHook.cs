@@ -55,8 +55,8 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges.ThoriumItemHooks.A
             // Run original effect
             orig(self, broadcast);
 
-            // Start 20 second cooldown (60 ticks/sec * 20)
-            cooldowns.demonBloodDodgeCooldown = 60 * 20;
+            // Start cooldown
+            cooldowns.demonBloodDodgeCooldown = 60 * 15;
         }
     }
 }

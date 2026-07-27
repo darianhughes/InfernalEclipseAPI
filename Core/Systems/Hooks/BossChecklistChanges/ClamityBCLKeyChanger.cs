@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Clamity;
 using Clamity.Content.Biomes.FrozenHell.Items;
-using InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 
@@ -39,7 +38,7 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.BossChecklistChanges
         {
             if (InfernalCrossmod.SOTS.Loaded)
             {
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<FrozenHellstoneTile>(), 11350, 1.35, () => ClamitySystem.downedWallOfBronze);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<FrozenHellstoneTile>(), 11350, 1.35, ClamitySystem.downedWallOfBronze);
             }
         }
 

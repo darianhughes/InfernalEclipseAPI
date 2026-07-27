@@ -548,34 +548,34 @@ Items: {
 		Увеличивает максимальное количество миньонов и стражей на 2
 		Увеличивает отбрасывание призывателя
 		'''
-	/* CursedFlailCore.Tooltip:
+	CursedFlailCore.Tooltip:
 		'''
-		Flail weapons on first hit release a cursed spike ball
-		Further hits have a chance to release more cursed spike balls
-		Cursed spike balls apply cursed flames to damaged enemies
-		''' */
-	/* VileFlailCore.Tooltip:
+		Цепное оружие может выпустить проклятый шипастый шар при первом ударе
+		При последующих ударах может выпустить ещё больше проклятых шипастых шаров
+		Проклятый шипастый шар накладывает дебафф [cbuff:CursedInferno]
 		'''
-		Flail weapons on first hit release a vile spike ball
-		Further hits have a chance to release more vile spike balls
-		Vile spike balls apply ichor to damaged enemies
-		''' */
-	/* IronFlailCore.Tooltip:
+	VileFlailCore.Tooltip:
 		'''
-		Flail weapons on first hit release a rolling spike ball
-		Further hits have a chance to release more rolling spike balls
-		''' */
-	/* BloomingShield.Tooltip:
+		Цепное оружие может выпустить мерзкий шипастый шар при первом ударе
+		При последующих ударах может выпустить ещё больше мерзких шипастых шаров
+		Мерзкий шипастый шар накладывает дебафф [cbuff:Ichor]
 		'''
-		You constantly generate a 20 life shield
+	IronFlailCore.Tooltip:
+		'''
+		Цепное оружие может выпустить катящийся шипастый шар при первом ударе
+		При последующих ударах может выпустить ещё больше катящихся шипастых шаров
+		'''
+	BloomingShield.Tooltip:
+		'''
+		Постепенно генерирует до 20 единиц жизненного щита
 		Healing spells will heal an additional 1 life, 2 if at max shield
-		When out of combat, your life recovery will increase up to 5 over time
-		''' */
-	/* AstroBeetleHusk.Tooltip:
+		Вне боя восполнение здоровья постепенно увеличивается до 5
 		'''
-		Damage taken reduced by 5%
-		You constantly generate a 50 life shield
-		''' */
+	AstroBeetleHusk.Tooltip:
+		'''
+		Увеличивает сопротивление урону на 5%
+		Постепенно генерирует до 50 единиц жизненного щита
+		'''
 }
 
 ThrowerTechniques: {
