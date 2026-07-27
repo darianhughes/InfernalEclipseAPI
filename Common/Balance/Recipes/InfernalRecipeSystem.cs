@@ -698,6 +698,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient(thorium.Find<ModItem>("BloodCell"));
                     }
 
+                    if (recipe.HasResult<AuricBar>())
+                    {
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("InfernoEssence").Type);
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("OceanEssence").Type);
+                        recipe.RemoveIngredient(thorium.Find<ModItem>("DeathEssence").Type);
+                    }
+
                     if (InfernalConfig.Instance.ThoriumBalanceChangess)
                     {
                         if (recipe.HasResult<UnholyCore>())

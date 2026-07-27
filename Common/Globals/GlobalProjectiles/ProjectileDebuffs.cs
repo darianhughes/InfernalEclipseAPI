@@ -107,6 +107,11 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                     {
                         target.AddBuff(BuffID.Poisoned, 120);
                     }
+
+                    if (projectile.type == (thoriumMod.Find<ModProjectile>("SandweaversTiaraPro")?.Type ?? -1))
+                    {
+                        target.AddBuff(calamity1.Find<ModBuff>("ArmorCrunch")?.Type ?? -1, 180);
+                    }
                 }
             }
 

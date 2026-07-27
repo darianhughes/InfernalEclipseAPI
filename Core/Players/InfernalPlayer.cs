@@ -33,6 +33,7 @@ using InfernumMode.Common.DataStructures;
 using InfernumMode;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Content.UI.Notificatons;
+using CalamityMod.Items.Weapons.Melee;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -372,6 +373,11 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PostUpdate()
         {
+            if (PlayerHasPurity(Player) && Player.HeldItem.type == ModContent.ItemType<PrismaticBreaker>())
+            {
+                Player.GetDamage<GenericDamageClass>() /= 1.4f;
+            }
+
             if (Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
             {
                 horrifiedTimer++;

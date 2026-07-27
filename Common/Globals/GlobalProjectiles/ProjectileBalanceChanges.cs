@@ -67,6 +67,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
         private static int sarsType = -1;
         private static int palmType = -1;
         private static int paperType = -1;
+        private static int icyType1 = -1;
+        private static int icyType2 = -1;
+        private static int icyType3 = -1;
 
         public override void SetStaticDefaults()
         {
@@ -140,6 +143,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
             kinetoType = FindProjectileType(thorium, "KinetoscythePro2");
             palmType = FindProjectileType(thorium, "StonePalmPro");
             paperType = FindProjectileType(thorium, "PaperExplosivePro2");
+            icyType1 = thorium.Find<ModProjectile>("IcyArmorEffect1")?.Type ?? -1;
+            icyType2 = thorium.Find<ModProjectile>("IcyArmorEffect2")?.Type ?? -1;
+            icyType3 = thorium.Find<ModProjectile>("IcyArmorEffect3")?.Type ?? -1;
 
             if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calBardHeal))
             {
@@ -168,6 +174,9 @@ namespace InfernalEclipseAPI.Common.Projectiles
             AddScale(sarsType, 1.5f);
             AddScale(paperType, 3f);
             AddScale(palmType, 2f);
+            AddScale(icyType1, 2f);
+            AddScale(icyType2, 2f);
+            AddScale(icyType3, 2f);
 
             if (moltenThresherType > 0)
                 Glowmasks[moltenThresherType] = ModContent.Request<Texture2D>("ThoriumMod/Projectiles/Scythe/MoltenThresherPro_Glowmask");
@@ -209,6 +218,12 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
+            if (projectile.type == icyType1 || projectile.type == icyType2 || projectile.type == icyType3)
+            {
+                DrawIcyProjectiles(projectile);
+                return false;
+            }
+
             if (!CustomDrawProjectiles.Contains(projectile.type))
                 return true;
 
@@ -237,6 +252,50 @@ namespace InfernalEclipseAPI.Common.Projectiles
             }
 
             return false;
+        }
+
+        private static void DrawIcyProjectiles(Projectile projectile)
+        {
+            Texture2D blur = ModContent.Request<Texture2D>(ModContent.GetModProjectile(projectile.type).Texture + "_Blur", AssetRequestMode.ImmediateLoad).Value;
+
+            Vector2 pos = projectile.Center +
+                          new Vector2(0, projectile.gfxOffY) -
+                          Main.screenPosition;
+
+            Rectangle frame = Utils.Frame(
+                blur,
+                1,
+                Main.projFrames[projectile.type],
+                0,
+                projectile.frame);
+
+            Vector2 origin = frame.Size() / 2f;
+
+            // Draw blur
+            Main.EntitySpriteDraw(
+                blur,
+                pos,
+                frame,
+                Color.White * 0.25f,
+                projectile.rotation,
+                origin,
+                projectile.scale,
+                SpriteEffects.None,
+                0);
+
+            // Draw main texture
+            Texture2D tex = TextureAssets.Projectile[projectile.type].Value;
+
+            Main.EntitySpriteDraw(
+                tex,
+                pos,
+                frame,
+                Color.White * 0.5f,
+                projectile.rotation,
+                origin,
+                projectile.scale,
+                SpriteEffects.None,
+                0);
         }
 
         public override void PostDraw(Projectile projectile, Color lightColor) { }

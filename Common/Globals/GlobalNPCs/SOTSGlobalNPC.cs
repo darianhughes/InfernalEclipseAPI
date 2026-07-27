@@ -49,6 +49,10 @@ using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
 using SOTS.Projectiles.Permafrost;
 using CalamityMod.Systems.Collections;
+using InfernumMode.Content.BehaviorOverrides.BossAIs.SlimeGod;
+using CalamityMod.NPCs.Ravager;
+using CalamityMod.NPCs.ProfanedGuardians;
+using CalamityMod.NPCs.NormalNPCs.HorribleHog;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 {
@@ -96,6 +100,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 ModContent.NPCType<CrimulanPaladin>(),
                 ModContent.NPCType<EbonianPaladin>(),
                 ModContent.NPCType<SlimeGodCore>(),
+                ModContent.NPCType<RavagerHead>(),
+                ModContent.NPCType<ProfanedGuardianCommander>(),
+                ModContent.NPCType<ProfanedGuardianDefender>(),
+                ModContent.NPCType<ProfanedGuardianHealer>(),
+                NPCID.DD2Betsy,
+                ModContent.NPCType<HorribleHog>()
             };
 
             EvilArmTexture = ModContent.Request<Texture2D>("SOTS/Projectiles/Evil/EvilArm");
@@ -189,6 +199,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
             if (dealsVoidDamge.Contains(entity.type))
             {
                 canDoVoidDamage = true;
+            }
+
+            if (entity.type == NPCID.Golem || entity.type == NPCID.GolemHead || entity.type == NPCID.GolemHeadFree)
+            {
+                entity.buffImmune[ModContent.BuffType<Assassination>()] = true;
             }
 
             if (InfernalCrossmod.Thorium.Loaded)
@@ -626,6 +641,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 ModContent.ProjectileType<ShadeFire>(),
 
                 //Slime God
+                ModContent.ProjectileType<DeceleratingCrimulanGlob>(),
+                ModContent.ProjectileType<GroundSlimeGlob>(),
+                ModContent.ProjectileType<DeceleratingEbonianGlob>(),
 
                 //SCal
                 ModContent.ProjectileType<SupremeCataclysmFist>(),

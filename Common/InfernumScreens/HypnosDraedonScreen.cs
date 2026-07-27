@@ -6,6 +6,12 @@ namespace InfernalEclipseAPI.Common.InfernumScreens
     [ExtendsFromMod("HypnosMod")]
     public class HypnosDraedonScreen : DraedonIntroScreen
     {
-        public override bool ShouldBeActive() => NPC.AnyNPCs(ModLoader.GetMod("HypnosMod").Find<ModNPC>("Draedon").Type) && InfernumMode.InfernumMode.CanUseCustomAIs;
+        public override bool ShouldBeActive()
+        {
+            if (NPC.AnyNPCs(ModLoader.GetMod("HypnosMod").Find<ModNPC>("Draedon").Type))
+                return InfernumMode.InfernumMode.CanUseCustomAIs;
+
+            return false;
+        }
     }
 }

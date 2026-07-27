@@ -250,6 +250,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 }
                 #endregion
 
+                if (item.type == ModContent.ItemType<PrismaticBreaker>())
+                {
+                    item.damage = 300;
+                }
+
                 #region Ranged
                 if (item.type == ModContent.ItemType<ShortCircuit>())
                 {
@@ -1300,13 +1305,19 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 if (InfernalConfig.Instance.ThoriumBalanceChangess)
                 {
+                    if (UnsafeGetItem(thorium, "WaterwickCandle", item))
+                    {
+                        item.useTime = 15;
+                        item.useAnimation = 15;
+                    }
+
                     #region Melee
                     #region Pre-Hardmode
                     //The Snowball
                     if (item.type == thorium.Find<ModItem>("TheSnowball").Type)
                     {
                         item.knockBack = 6;
-                        item.damage = 20;
+                        item.damage = 10;
                     }
 
                     //Ice Breaker
@@ -1866,12 +1877,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 264;
                     }
 
+                    /*
                     if (GetItem(thorium, "EclipseFang", item))
                     {
                         item.damage = 175;
 
                         item.scale *= 1.15f;
                     }
+                    */
 
                     if (GetItem(thorium, "TerrariumSaber", item))
                     {
@@ -2136,16 +2149,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 26;
                     }
 
+                    /*
                     if (GetItem(thorium, "BulletStorm", item))
                     {
                         item.useTime = 7;
                         item.useAnimation = 7;
                     }
+                    */
 
+                    /*
                     if (GetItem(thorium, "ArmorBane", item))
                     {
                         item.damage = 40;
                     }
+                    */
 
                     if (GetItem(thorium, "ShusWrath", item))
                     {
@@ -2590,12 +2607,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 90;
                     }
 
+                    /*
                     if (GetItem(thorium, "DynastyWarFan", item))
                     {
                         item.shootSpeed = 15;
                         item.useTime = 18;
                         item.useAnimation = 18;
                     }
+                    */
 
                     if (GetItem(thorium, "KineticKnife", item))
                     {
@@ -4182,6 +4201,14 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.useAnimation = 16;
                     }
 
+                    if (UnsafeGetItem(thorium, "CallofCthulhu", item))
+                    {
+                        TrySetInspirationCost(item, 1);
+                        item.damage = 204;
+                        item.useTime = 28;
+                        item.useAnimation = 28;
+                    }
+
                     if (UnsafeGetItem(thorium, "TheTriangle", item))
                     {
                         item.damage = 114;
@@ -4835,7 +4862,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 #region Bard
                 if (GetItem(calBardHeal, "BigBangCymbals", item))
                 {
-                    item.damage = 222;
+                    item.damage = 252;
                 }
 
                 if (GetItem(calBardHeal, "TreeWhisperersHarp", item))
@@ -4905,6 +4932,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 if (GetItem(calBardHeal, "SongoftheElements", item))
                 {
                     item.damage = 77;
+                }
+
+                if (GetItem(calBardHeal, "DustDevilDrrums", item))
+                {
+                    item.damage = 87;
                 }
 
                 //Supercluster

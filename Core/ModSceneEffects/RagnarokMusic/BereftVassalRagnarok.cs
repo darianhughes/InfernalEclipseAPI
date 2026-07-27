@@ -7,7 +7,7 @@ namespace InfernalEclipseAPI.Core.ModSceneEffects.RagnarokMusic
 {
     public class BereftVassalRagnarok : ModSceneEffect
     {
-        public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh + 1;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh + 5;
 
         public override int Music
         {

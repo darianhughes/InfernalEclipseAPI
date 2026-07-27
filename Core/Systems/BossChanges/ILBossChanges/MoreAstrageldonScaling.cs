@@ -52,7 +52,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossChanges.ILBossChanges
         public override void PostSetupContent()
         {
             if (InfernalCrossmod.SOTS.Loaded)
-                SOTSMineralariumHooks.ParseNewOre(ModContent.TileType<MetanovaOre>(), 11100, 1.5, () => WorldDefeats.downedAstrageldon);
+                InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<MetanovaOre>(), 11100, 1.5, WorldDefeats.downedAstrageldon);
         }
 
         private void ApplyAstrageldonScaling(ILContext il)

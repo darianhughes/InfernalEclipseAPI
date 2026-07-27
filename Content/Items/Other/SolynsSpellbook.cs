@@ -27,6 +27,13 @@ using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
 using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
 using InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam;
 using InfernalEclipseAPI.Content.Items.Weapons.Ranged.ExoDisintegrator;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
+using NoxusBoss.Content.Tiles;
+using System.Reflection;
+using NoxusBoss.Content.Items.Placeable;
+using Mono.Cecil.Cil;
+using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Content.Items.Other
 {
@@ -252,6 +259,84 @@ namespace InfernalEclipseAPI.Content.Items.Other
 
                 PacketManager.SendPacket<SpellbookPacket>();
             }
+        }
+    }
+
+    [JITWhenModsEnabled("NoxusBoss")]
+    [ExtendsFromMod("NoxusBoss")]
+    public class StarlitForgeMapNameEdit : ModSystem
+    {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return InfernalConfig.Instance.DeveloperMode;
+        }
+
+        private ILHook? starlitForgeSetStaticDefaultsHook;
+
+        public override void Load()
+        {
+            MethodInfo? setStaticDefaultsMethod = typeof(StarlitForgeTile).GetMethod(nameof(StarlitForgeTile.SetStaticDefaults), LumUtils.UniversalBindingFlags);
+
+            if (setStaticDefaultsMethod is null)
+            {
+                Mod.Logger.Error("Could not find StarlitForgeTile.SetStaticDefaults for the map-name IL edit.");
+
+                return;
+            }
+
+            starlitForgeSetStaticDefaultsHook = new ILHook(setStaticDefaultsMethod, EditStarlitForgeMapEntry);
+        }
+
+        private void EditStarlitForgeMapEntry(ILContext context)
+        {
+            ILCursor cursor = new(context);
+
+            MethodInfo? addMapEntryWithoutName = typeof(ModTile).GetMethod(
+                nameof(ModTile.AddMapEntry),
+                BindingFlags.Instance | BindingFlags.Public,
+                binder: null,
+                types: [typeof(Microsoft.Xna.Framework.Color)],
+                modifiers: null);
+
+            MethodInfo? addMapEntryWithName = typeof(ModTile).GetMethod(
+                nameof(ModTile.AddMapEntry),
+                BindingFlags.Instance | BindingFlags.Public,
+                binder: null,
+                types:
+                [
+                    typeof(Microsoft.Xna.Framework.Color),
+                    typeof(LocalizedText)
+                ],
+                modifiers: null);
+
+            if (addMapEntryWithoutName is null || addMapEntryWithName is null)
+            {
+                Mod.Logger.Error("Could not locate the required ModTile.AddMapEntry overloads.");
+
+                return;
+            }
+
+            if (!cursor.TryGotoNext(MoveType.Before, instruction => instruction.MatchCallOrCallvirt(addMapEntryWithoutName)))
+            {
+                Mod.Logger.Error("Could not locate StarlitForgeTile's AddMapEntry(Color) call.");
+
+                return;
+            }
+
+            cursor.EmitDelegate<Func<LocalizedText>>(static () => CalamityUtils.GetItemName<StarlitForge>());
+
+            // Replace AddMapEntry(Color) with AddMapEntry(Color, LocalizedText).
+            Instruction originalCall = cursor.Next;
+            originalCall.OpCode = OpCodes.Call;
+            originalCall.Operand = context.Import(addMapEntryWithName);
+
+            Mod.Logger.Info("[IEoR]: Successfully added the Starlit Forge map entry name.");
+        }
+
+        public override void Unload()
+        {
+            starlitForgeSetStaticDefaultsHook?.Dispose();
+            starlitForgeSetStaticDefaultsHook = null;
         }
     }
 

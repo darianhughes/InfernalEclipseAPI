@@ -138,16 +138,13 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Bomberr",
             "Goldsockz2",
             "Minesky",
-            "rosé",
             "TechQueen22",
             "ProSigmaSoul",
             "Sir_Yeetus_III",
             "Samoh",
             "Imagiknight Orpheus",
-            "un5",
             "rocket",
             "FlamingSock",
-            "drastik",
             "brxdyfrxmdxg",
 
             //Supporters
@@ -157,13 +154,13 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Lucy",
             "Mando",
             "Romain TISSERAND",
-            "NICK",
             "Imagiknight_Parad0xical",
-            "skylar!",
+            "Lance",
 
             //Helpers
             "fjiown",
             "Soopns",
+            "DuskMender",
 
             //Special Thanks
             "N0t_UNowen",
