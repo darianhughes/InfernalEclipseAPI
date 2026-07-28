@@ -22,6 +22,8 @@ using SOTS.NPCs.Boss.Lux;
 using System.Security.Policy;
 using SOTS.Projectiles.Celestial;
 using InfernumMode.Content.BehaviorOverrides.BossAIs.DoG;
+using Microsoft.Xna.Framework;
+using SOTS;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
 {
@@ -182,6 +184,13 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
         // This issue has been fixed in main Revengence+ - ..nevermind
         private bool scaledBossRushHP = false;
 
+        private const int DespawnDelay = 600;
+
+        private const float PlayerCheckRange = 3200f;
+        private const float PlayerCheckRangeSQ = PlayerCheckRange * PlayerCheckRange;
+
+        private int ticksWithoutValidPlayer;
+
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
         {
             return entity.type == ModContent.NPCType<TheAdvisorHead>();
@@ -193,6 +202,40 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 BossHealthBarManager.BossExclusionList.Add(npc.type);
             else if (npc.boss && BossHealthBarManager.BossExclusionList.Contains(npc.type))
                 BossHealthBarManager.BossExclusionList.Remove(npc.type);
+
+            if (Main.gameMenu || !npc.active || !npc.boss)
+                return base.PreAI(npc);
+
+            bool validPlayerFound = false;
+
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+
+                if (player is null || !player.active || player.dead)
+                    continue;
+
+                if (Vector2.DistanceSquared(player.Center, npc.Center) > PlayerCheckRangeSQ)
+                    continue;
+
+                if (player.SOTSPlayer().PlanetariumBiome || BossRushEvent.BossRushActive)
+                {
+                    validPlayerFound = true;
+                    break;
+                }
+            }
+
+            if (validPlayerFound)
+            {
+                ticksWithoutValidPlayer = 0;
+                return base.PreAI(npc);
+            }
+
+            ticksWithoutValidPlayer++;
+
+            if (ticksWithoutValidPlayer >= DespawnDelay)
+                ForceDespawn(npc);
+
             return base.PreAI(npc);
         }
 
@@ -235,6 +278,18 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
         {
             if (InfernumSaveSystem.InfernumModeEnabled)
                 modifiers.SourceDamage *= 1.35f;
+        }
+
+        private static void ForceDespawn(NPC npc)
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient || BossRushEvent.BossRushActive)
+                return;
+
+            npc.active = false;
+            npc.netUpdate = true;
+
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendData(MessageID.SyncNPC, number: npc.whoAmI);
         }
     }
 

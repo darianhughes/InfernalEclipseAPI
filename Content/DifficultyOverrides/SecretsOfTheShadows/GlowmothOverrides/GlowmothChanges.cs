@@ -34,7 +34,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows.Glo
                 if (Vector2.DistanceSquared(player.Center, npc.Center) > PlayerCheckRangeSQ)
                     continue;
 
-                if (player.ZoneGlowshroom)
+                if (player.ZoneGlowshroom || BossRushEvent.BossRushActive)
                 {
                     validPlayerFound = true;
                     break;

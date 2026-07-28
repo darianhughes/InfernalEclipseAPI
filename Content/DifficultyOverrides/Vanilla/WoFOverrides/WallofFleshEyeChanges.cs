@@ -69,6 +69,25 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Vanilla.WoFOverrides
                     }
                 }
             }
+            else
+            {
+                int circleHoverCount = 0; 
+                for (int i = 0; i < Main.maxNPCs; i++) 
+                { 
+                    if (!Main.npc[i].active || Main.npc[i].type != npc.type || Main.npc[i].Infernum().ExtraAI[WallOfFleshEyeBehaviorOverride.IsDetachedFlagIndex] == 0f) 
+                        continue; 
+                    
+                    circleHoverCount++; 
+                }
+
+                int beamShootRate = 1600 - circleHoverCount * 270; 
+                int normalShootTime = (beamShootRate + npc.whoAmI * 300) % beamShootRate; 
+                int extraShootTime = (normalShootTime + beamShootRate / 2) % beamShootRate; 
+                
+                // Fire halfway between Infernum's normal attached-eye beam attacks.
+                if (npc.ai[1] % beamShootRate == extraShootTime) 
+                    WallOfFleshMouthBehaviorOverride.PrepareFireBeam(npc, target); 
+            }
         }
     }
 }

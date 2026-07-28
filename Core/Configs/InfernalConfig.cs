@@ -43,6 +43,9 @@ namespace InfernalEclipseAPI.Core.Configs
         public DoGSong DoGRagnarok { get; set; }
 
         [DefaultValue(true)]
+        public bool EnableCodebreakerInterlude { get; set; }
+
+        [DefaultValue(true)]
         public bool EnableInterlude4 { get; set; }
         #endregion
 

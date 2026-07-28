@@ -2825,6 +2825,15 @@ Configs: {
 			Label: Disable Unnecessary Content
 			Tooltip: ""
 		}
+
+		EnableCodebreakerInterlude: {
+			Label: Enable Codebreaker Interlude
+			Tooltip:
+				'''
+				Togggles the Codebreaker Interlude theme. 
+				This interlude will play once you place the final component of the Codebreaker for the first time.
+				'''
+		}
 	}
 
 	Difficulty: {

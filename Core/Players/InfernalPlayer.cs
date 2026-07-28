@@ -34,6 +34,10 @@ using InfernumMode;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Content.UI.Notificatons;
 using CalamityMod.Items.Weapons.Melee;
+using CalamityMod.NPCs;
+using SOTS.Common.ModPlayers;
+using CalamityMod.World;
+using Terraria.GameContent.Events;
 
 namespace InfernalEclipseAPI.Core.Players
 {
@@ -480,6 +484,40 @@ namespace InfernalEclipseAPI.Core.Players
 
         public override void PostUpdateMiscEffects()
         {
+            CalamityPlayer calPlayer = Player.Calamity();
+
+            int wyrm = CalamityGlobalNPC.adultEidolonWyrmHead;
+            if (InfernalWorld.RagnarokModeEnabled && wyrm >= 0 && wyrm < Main.maxNPCs)
+            {
+                NPC Wyrm = Main.npc[wyrm];
+                if (Wyrm != null && Wyrm.active && Wyrm.type == ModContent.NPCType<PrimordialWyrmHead>() && Wyrm.WithinRange(Player.Center, 40000f))
+                {
+                    Player.SetAbyssLightLevels();
+
+                    if (calPlayer.ZoneAbyss && Player.whoAmI == Main.myPlayer)
+                    {
+                        Point tilePosition = Player.Center.ToTileCoordinates();
+
+                        double abyssSurface = Main.remixWorld ? SulphurousSea.YStart : Main.rockLayer - Main.maxTilesY * 0.05;
+
+                        double totalAbyssDepth = Main.remixWorld ? SulphurousSea.YStart : Main.maxTilesY - 250D - abyssSurface;
+
+                        double playerAbyssDepth = Main.remixWorld ? totalAbyssDepth - tilePosition.Y : tilePosition.Y - abyssSurface;
+
+                        double depthRatio = playerAbyssDepth / totalAbyssDepth;
+
+                        calPlayer.darknessIntensity = calPlayer.abyssDarkness + (float)depthRatio * 3f;
+
+                        if (!Player.headcovered)
+                        {
+                            float screenObstructionAmt = MathHelper.Clamp(calPlayer.caveDarkness, 0f, 0.95f);
+                            float targetValue = MathHelper.Clamp(screenObstructionAmt * 0.7f, 0.1f, 0.3f);
+                            ScreenObstruction.screenObstruction = MathHelper.Lerp(ScreenObstruction.screenObstruction, screenObstructionAmt, targetValue);
+                        }
+                    }
+                }
+            }
+
             CheckIfMouseItemIsSpellbook();
 
             if (soltanBullying)

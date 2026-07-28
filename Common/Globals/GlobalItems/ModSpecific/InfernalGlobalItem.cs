@@ -22,6 +22,10 @@ using InfernalEclipseAPI.Content.Items.Weapons.Catlight;
 using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Content.Items.Accessories;
 using InfernalEclipseAPI.Core.Configs;
+using CalamityMod.Items.DraedonMisc;
+using Terraria.Audio;
+using CalamityMod.Tiles.DraedonSummoner;
+using CalamityMod.TileEntities;
 
 namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 {
@@ -74,6 +78,32 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             }
 
             return base.UseItem(item, player);
+        }
+
+        public override bool ConsumeItem(Item item, Player player)
+        {
+            bool isConsumed = base.ConsumeItem(item, player);
+
+            if (isConsumed)
+            {
+                if (item.type == ModContent.ItemType<AuricQuantumCoolingCell>() || item.type == ModContent.ItemType<AdvancedDisplay>() || item.type == ModContent.ItemType<DecryptionComputer>() || item.type == ModContent.ItemType<VoltageRegulationSystem>() || item.type == ModContent.ItemType<LongRangedSensorArray>())
+                {
+                    Point placeTileCoords = Main.MouseWorld.ToTileCoordinates();
+                    Tile tile = CalamityUtils.ParanoidTileRetrieval(placeTileCoords.X, placeTileCoords.Y);
+                    float checkDistance = ((Player.tileRangeX + Player.tileRangeY) / 2f + player.blockRange) * 16f;
+
+                    if (Main.myPlayer == player.whoAmI && player.WithinRange(Main.MouseWorld, checkDistance) && tile.HasTile && tile.TileType == ModContent.TileType<CodebreakerTile>())
+                    {
+                        TECodebreaker codebreakerTileEntity = CalamityUtils.FindTileEntity<TECodebreaker>(placeTileCoords.X, placeTileCoords.Y, CodebreakerTile.Width, CodebreakerTile.Height, CodebreakerTile.SheetSquare);
+                        if (codebreakerTileEntity.ContainsAdvancedDisplay && codebreakerTileEntity.ContainsCoolingCell && codebreakerTileEntity.ContainsVoltageRegulationSystem && codebreakerTileEntity.ContainsDecryptionComputer && codebreakerTileEntity.ContainsSensorArray)
+                        {
+                            InfernalWorld.codebreakerCompleted = true;
+                        }
+                    }
+                }
+            }
+
+            return isConsumed;
         }
 
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)

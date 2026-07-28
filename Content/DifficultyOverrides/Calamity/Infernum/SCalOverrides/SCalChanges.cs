@@ -56,6 +56,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
 
         public SlotId BulletHellRumbleSlot;
 
+        public static int HellblastDamage = 105;
+        public static int GigablastDamage = 115;
+
         public bool hasTeleported = false;
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter writer)
@@ -209,17 +212,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                     if (bulletHellCounter2 < 1200)
                     {
                         if (bulletHellCounter2 % 180 == 0) // Blasts from top
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                     }
                     else if (bulletHellCounter2 < 1500 && bulletHellCounter2 > 1200)
                     {
                         if (bulletHellCounter2 % 180 == 0) // Blasts from right
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -5f * uDieLul, 0f, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -5f * uDieLul, 0f, fireblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                     }
                     else if (bulletHellCounter2 > 1500)
                     {
                         if (bulletHellCounter2 % 180 == 0) // Blasts from top
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                     }
 
                     bulletHellCounter++;
@@ -230,21 +233,21 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                         {
                             float distance = Main.rand.NextBool() ? -1000f : 1000f;
                             float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
 
                         if (bulletHellCounter2 < 1200 && !Main.zenithWorld) // Blasts from below
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y + 1000f, 0f, -4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y + 1000f, 0f, -4f * uDieLul, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else if (bulletHellCounter2 < 1500) // Blasts from left
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else // Blasts from left and right
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                     }
                 }
@@ -298,10 +301,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     if (bulletHellCounter2 % 180 == 0) // Blasts from top
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
 
                     if (bulletHellCounter2 % 240 == 0) // Fireblasts from above
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, SupremeCalamitasBehaviorOverride.GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
 
                     bulletHellCounter++;
                     if (bulletHellCounter >= baseBulletHellProjectileGateValue + 4)
@@ -311,21 +314,21 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                         {
                             float distance = Main.rand.NextBool() ? -1000f : 1000f;
                             float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
 
                         if (bulletHellCounter2 < 2100 && !Main.zenithWorld) // Blasts from above
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else if (bulletHellCounter2 < 2400) // Blasts from right
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else // Blasts from left and right
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                     }
                 }
@@ -378,10 +381,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 if (Main.netMode != NetmodeID.MultiplayerClient) // More clustered attack
                 {
                     if (bulletHellCounter2 % 180 == 0) // Blasts from top
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
 
                     if (bulletHellCounter2 % 240 == 0) // Fireblasts from above
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, SupremeCalamitasBehaviorOverride.GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
 
                     int divisor = revenge ? 225 : expertMode ? 450 : 675;
 
@@ -425,21 +428,21 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                         {
                             float distance = Main.rand.NextBool() ? -1000f : 1000f;
                             float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
 
                         if (bulletHellCounter2 < 3000 && !Main.zenithWorld) // Blasts from below
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y + 1000f, 0f, -4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y + 1000f, 0f, -4f * uDieLul, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else if (bulletHellCounter2 < 3300) // Blasts from left
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else // Blasts from left and right
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                     }
                 }
@@ -492,16 +495,16 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     if (bulletHellCounter2 % 240 == 0) // Blasts from top
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 5f * uDieLul, fireblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
 
                     if (bulletHellCounter2 % 360 == 0) // Fireblasts from above
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, SupremeCalamitasBehaviorOverride.GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 10f * uDieLul, gigablast, GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
 
                     if (bulletHellCounter2 % 30 == 0) // Projectiles that move in wave pattern
                     {
                         int random = Main.rand.Next(-500, 501);
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + random, -5f * uDieLul, 0f, wave, SupremeCalamitasBehaviorOverride.LostSoulDamage, 0f, Main.myPlayer, 0f, 2f);
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y - random, 5f * uDieLul, 0f, wave, SupremeCalamitasBehaviorOverride.LostSoulDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + random, -5f * uDieLul, 0f, wave, GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y - random, 5f * uDieLul, 0f, wave, GigablastDamage, 0f, Main.myPlayer, 0f, 2f);
                     }
 
                     bulletHellCounter++;
@@ -512,25 +515,25 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                         {
                             float distance = Main.rand.NextBool() ? -1000f : 1000f;
                             float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
 
                         if (bulletHellCounter2 < 3900 && !Main.zenithWorld) // Blasts from above
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else if (bulletHellCounter2 < 4200) // Blasts from left and right
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else // Blasts from above, left, and right
                         {
                             if (!Main.zenithWorld)
-                                Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 3f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                                Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 3f * uDieLul, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
 
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                     }
                 }
