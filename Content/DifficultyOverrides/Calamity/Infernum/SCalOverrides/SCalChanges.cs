@@ -105,12 +105,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
 
             int baseBulletHellProjectileGateValue = revenge ? 8 : expertMode ? 9 : 10;
 
-            //Spawn BH (BH1) is skiped
-            if (false) //if (currentPhase == 1f && !FinishedBH1)
+            //Spawn BH (BH1)
+            if (currentPhase == 0f && !FinishedBH1)
             {
-                // Teleport above the player and delete all hostile projectiles on the first frame.
-                if (attackTimer == 1f && !hasTeleported)
-                    TeleportToCenter(npc);
+                ref float frameChangeSpeed = ref npc.localAI[1];
 
                 despawnProj = true;
                 bulletHellCounter2++;
@@ -140,28 +138,29 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                         {
                             float distance = Main.rand.NextBool() ? -1000f : 1000f;
                             float velocity = (distance == -1000f ? 4f : -4f) * uDieLul;
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + distance, player.position.Y, velocity, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         if (bulletHellCounter2 < 300 && !Main.zenithWorld) // Blasts from above
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 4f * uDieLul, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else if (bulletHellCounter2 < 600) // Blasts from left and right
                         {
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3.5f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                         else // Blasts from above, left, and right
                         {
                             if (!Main.zenithWorld)
-                                Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 3f * uDieLul, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                                Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + Main.rand.Next(-1000, 1001), player.position.Y - 1000f, 0f, 3f * uDieLul, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
 
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
-                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, SupremeCalamitasBehaviorOverride.BrimstoneHellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X + 1000f, player.position.Y + Main.rand.Next(-1000, 1001), -3f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), player.position.X - 1000f, player.position.Y + Main.rand.Next(-1000, 1001), 3f * uDieLul, 0f, bulletHellblast, HellblastDamage, 0f, Main.myPlayer, 0f, 2f);
                         }
                     }
                 }
 
+                frameChangeSpeed = 0.2f;
                 frameType = (int)SupremeCalamitasBehaviorOverride.SCalFrameType.MagicCircle;
                 return false;
             }
@@ -605,12 +604,30 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
 
     public class SCalPhaseTransitionHookSystem : ModSystem
     {
+        private ILHook summonSepulcherHook;
         private ILHook phaseTransitionHook;
 
-        private delegate bool BulletHellDelegate(NPC npc, Player target, int currentPhase, ref float frameType, ref float attackTimer);
+        private delegate bool SpawnBulletHellDelegate(NPC npc, Player target, ref float frameType, ref float attackTimer);
+        private delegate bool BulletHellDelegate(NPC npc, Player target, ref float frameType, ref float attackTimer, int currentPhase = 0);
 
         public override void Load()
         {
+            MethodInfo summonSepulcherMethod = typeof(SupremeCalamitasBehaviorOverride).GetMethod(nameof(SupremeCalamitasBehaviorOverride.DoBehavior_SummonSepulcher), LumUtils.UniversalBindingFlags, null,
+            new[]
+            {
+                            typeof(NPC),
+                            typeof(Player),
+                            typeof(float).MakeByRefType(),
+                            typeof(float).MakeByRefType(),
+                            typeof(float).MakeByRefType()
+            },
+            null);
+
+            if (summonSepulcherMethod is null)
+                throw new MissingMethodException(typeof(SupremeCalamitasBehaviorOverride).FullName, nameof(SupremeCalamitasBehaviorOverride.DoBehavior_SummonSepulcher));
+
+            summonSepulcherHook = new ILHook(summonSepulcherMethod, InsertSpawnBulletHell);
+
             MethodInfo phaseTransitionMethod = typeof(SupremeCalamitasBehaviorOverride).GetMethod(nameof(SupremeCalamitasBehaviorOverride.DoBehavior_PhaseTransition), LumUtils.UniversalBindingFlags, null,
                     new[]
                     {
@@ -631,8 +648,40 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
 
         public override void Unload()
         {
+            summonSepulcherHook?.Dispose();
+            summonSepulcherHook = null;
+
             phaseTransitionHook?.Dispose();
             phaseTransitionHook = null;
+        }
+
+        private static void InsertSpawnBulletHell(ILContext il)
+        {
+            ILCursor cursor = new(il);
+
+            ILLabel runNormalSepulcher = cursor.DefineLabel();
+
+            cursor.EmitLdarg(0);
+            cursor.EmitLdarg(1);
+            cursor.EmitLdarg(2);
+            cursor.EmitLdarg(4);
+
+            cursor.EmitDelegate<SpawnBulletHellDelegate>
+            (
+                static (NPC npc, Player target,ref float frameType, ref float attackTimer) =>
+                {
+                    return RunBulletHell(npc, target, ref frameType, ref attackTimer, 0);
+                }
+            );
+
+            // true: bullet hell has finished, so continue into Infernum's method.
+            cursor.Emit(OpCodes.Brtrue, runNormalSepulcher);
+
+            // false: bullet hell is still active, so skip the entire normal
+            // phase-transition method for this frame.
+            cursor.Emit(OpCodes.Ret);
+
+            cursor.MarkLabel(runNormalSepulcher);
         }
 
         private static void InsertBulletHell(ILContext il)
@@ -647,14 +696,14 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
             // arg1: Player target
             cursor.Emit(OpCodes.Ldarg_1);
 
-            // arg2: int currentPhase
-            cursor.Emit(OpCodes.Ldarg_2);
-
             // arg3: ref float frameType
             cursor.Emit(OpCodes.Ldarg_3);
 
             // arg5: ref float attackTimer
             cursor.Emit(OpCodes.Ldarg_S, (byte)5);
+
+            // arg2: int currentPhase
+            cursor.Emit(OpCodes.Ldarg_2);
 
             cursor.EmitDelegate<BulletHellDelegate>(RunBulletHell);
 
@@ -668,7 +717,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
             cursor.MarkLabel(runNormalTransition);
         }
 
-        private static bool RunBulletHell(NPC npc, Player target, int currentPhase, ref float frameType, ref float attackTimer)
+        private static bool RunBulletHell(NPC npc, Player target, ref float frameType, ref float attackTimer, int currentPhase = 0)
         {
             SCalChanges changes = npc.GetGlobalNPC<SCalChanges>();
 
