@@ -1,614 +1,625 @@
 Items: {
 	OrangePhaseWhip: {
-		// DisplayName: Orange Phase Whip
-		/* Tooltip:
+		DisplayName: 橙陨石光鞭
+		Tooltip:
 			'''
-			1.08x summon tag damage multiplier
+			1.08 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	GreenPhaseWhip: {
-		// DisplayName: Green Phase Whip
-		/* Tooltip:
+		DisplayName: 绿陨石光鞭
+		Tooltip:
 			'''
-			1.08x summon tag damage multiplier
+			1.08 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	BluePhaseWhip: {
-		// DisplayName: Blue Phase Whip
-		/* Tooltip:
+		DisplayName: 蓝陨石光鞭
+		Tooltip:
 			'''
-			1.08x summon tag damage multiplier
+			1.08 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	PurplePhaseWhip: {
-		// DisplayName: Purple Phase Whip
-		/* Tooltip:
+		DisplayName: 紫陨石光鞭
+		Tooltip:
 			'''
-			1.08x summon tag damage multiplier
+			1.08 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	RedPhaseWhip: {
-		// DisplayName: Red Phase Whip
-		/* Tooltip:
+		DisplayName: 红陨石光鞭
+		Tooltip:
 			'''
-			1.08x summon tag damage multiplier
+			1.08 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	WhitePhaseWhip: {
-		// DisplayName: White Phase Whip
-		/* Tooltip:
+		DisplayName: 白陨石光鞭
+		Tooltip:
 			'''
-			1.08x summon tag damage multiplier
+			1.08 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	YellowPhaseWhip: {
-		// DisplayName: Yellow Phase Whip
-		/* Tooltip:
+		DisplayName: 黄陨石光鞭
+		Tooltip:
 			'''
-			1.08x summon tag damage multiplier
+			1.08 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	OrangePhaseScourge: {
-		// DisplayName: Orange Phase Scourge
-		/* Tooltip:
+		DisplayName: 橙晶光鞭
+		Tooltip:
 			'''
-			1.09x summon tag damage multiplier
+			1.09 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	GreenPhaseScourge: {
-		// DisplayName: Green Phase Scourge
-		/* Tooltip:
+		DisplayName: 绿晶光鞭
+		Tooltip:
 			'''
-			1.09x summon tag damage multiplier
+			1.09 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	BluePhaseScourge: {
-		// DisplayName: Blue Phase Scourge
-		/* Tooltip:
+		DisplayName: 蓝晶光鞭
+		Tooltip:
 			'''
-			1.09x summon tag damage multiplier
+			1.09 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	PurplePhaseScourge: {
-		// DisplayName: Purple Phase Scourge
-		/* Tooltip:
+		DisplayName: 紫晶光鞭
+		Tooltip:
 			'''
-			1.09x summon tag damage multiplier
+			1.09 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	RedPhaseScourge: {
-		// DisplayName: Red Phase Scourge
-		/* Tooltip:
+		DisplayName: 红晶光鞭
+		Tooltip:
 			'''
-			1.09x summon tag damage multiplier
+			1.09 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	WhitePhaseScourge: {
-		// DisplayName: White Phase Scourge
-		/* Tooltip:
+		DisplayName: 白晶光鞭
+		Tooltip:
 			'''
-			1.09x summon tag damage multiplier
+			1.09 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	YellowPhaseScourge: {
-		// DisplayName: Yellow Phase Scourge
-		/* Tooltip:
+		DisplayName: 黄晶光鞭
+		Tooltip:
 			'''
-			1.09x summon tag damage multiplier
+			1.09 倍召唤标记伤害倍率
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	GlitterGutter: {
-		// DisplayName: Glitter Gutter
-		/* Tooltip:
+		DisplayName: 寒光之渠
+		Tooltip:
 			'''
-			10% summon tag critical strike chance
-			Enemies struck by this whip cause the next minion attack to release tracking crystal shards
-			''' */
+			10% 召唤标记暴击率
+			被此鞭击中的敌怪在下次被仆从攻击时会释放追踪的水晶碎片
+			'''
 	}
 
 	DestructionChain: {
-		// DisplayName: Destruction Chain
-		/* Tooltip:
+		DisplayName: 地震波
+		Tooltip:
 			'''
-			Enemies struck by this whip cause the next minion attack to trigger an explosion
-			Enemies killed by this explosion trigger another explosion, which can continue to chain
-			''' */
+			被此鞭击中的敌怪在下次被仆从攻击时会猛烈爆炸
+			被爆炸击杀的敌怪会再次触发爆炸，并依此类推
+			'''
 	}
 
 	GloamshardConduit: {
-		// DisplayName: Gloamshard Conduit
-		/* Tooltip:
+		DisplayName: 暮影鞭索
+		Tooltip:
 			'''
-			1.1x summon tag damage multiplier
-			10% summon tag critical strike chance
+			1.1 倍召唤标记伤害倍率
+			10% 召唤标记暴击率
 
-			   Enemies struck by this whip take 1.25x damage from the next minion attack and explode
-			''' */
+			被此鞭击中的敌怪在下次被仆从攻击时受到1.25倍伤害，并猛烈爆炸
+			'''
 	}
 
 	Satellite: {
-		// DisplayName: Satellite
-		// Tooltip: "   Enemies struck by this whip take one guaranteed critical hit from a minion."
+		DisplayName: 地卫一
+		Tooltip: "被此鞭击中的敌怪在下次被仆从攻击时必定受到暴击"
 	}
 
 	ResonantVoid: {
-		// DisplayName: Resonant Void
-		/* Tooltip:
+		DisplayName: 大宇宙谐音
+		Tooltip:
 			'''
-			1.12x summon tag damage multiplier
-			12% summon tag critical strike chance
+			1.12 倍召唤标记伤害倍率
+			12% 召唤标记暴击率
 
-			Enemies struck by this whip take 1.25x damage from the next minion attack and explode
+			被此鞭击中的敌怪在下次被仆从攻击时受到1.25倍伤害，并猛烈爆炸
 
-			Ignores part of the enemies armor
-			''' */
+			无视敌怪一部分防御
+			'''
 	}
 
 	SkybreakerCoil: {
-		// DisplayName: Skybreaker Coil
-		/* Tooltip:
+		DisplayName: 猎神线圈
+		Tooltip:
 			'''
-			All enemies struck by this whiptake 1.30x damage from the next minion attack and unleash an electrical burst
-			The burst rapidly shocks nearby enemies for a short time and has armor penetration
-			''' */
+			被此鞭击中的敌怪在下次被仆从攻击时受到1.3倍伤害，并产生电能爆炸
+			电能爆炸会在敌人间迅速传递且无视部分防御
+			'''
 	}
 
 	Milkyway: {
-		// DisplayName: Milkyway
-		/* Tooltip:
+		DisplayName: 碎宇倾光
+		Tooltip:
 			'''
-			+10 summon tag damage per stack
-			Enemies struck by this whip take one guaranteed 4x damage critical hit from a minion
-			This whip's tag stacks with itself
-			Comets equal to the stacks count orbit around the enemy
-			''' */
+			每层提供+10召唤标记伤害
+			使敌人下次被仆从击中时必定受到4倍的暴击伤害
+			此鞭的标记伤害可自我叠加
+			彗星将环绕敌人飞行为你昭示层数
+			'''
 	}
 
 	Loadout: {
-		// DisplayName: Loadout
-		/* Tooltip:
+		DisplayName: 实验室装载爪
+		Tooltip:
 			'''
-			1.07x summon tag damage multiplier
-			7% summon tag critical strike chance
-			Enemies struck by this whip are hit by a laser on the next minion attack
-			Ignores part of the enemies armor
-			''' */
+			1.07 倍召唤标记伤害倍率
+			7% 召唤标记暴击率
+			被此鞭击中的敌怪在下次被仆从攻击时产生额外激光攻击
+			无视敌怪一部分防御
+			'''
 	}
 
 	AncientBonds: {
-		// DisplayName: Ancient Bonds
-		/* Tooltip:
+		DisplayName: 魂之缚
+		Tooltip:
 			'''
-			Enemies struck by this whip are impaled by a spectral blade on the next minion attack
-			The spectral blade deals 20% of the minion’s damage 3 times in succession
-			The impaling damage has 5 armor penetration
-			''' */
+			被此鞭击中的敌怪在下次被仆从攻击时会被一柄灵体剑刃穿刺
+			连续造成3次20%的召唤物伤害
+			此穿刺伤害无视5点防御
+			'''
 	}
 
 	PrimalBonds: {
-		// DisplayName: Primal Bonds
-		/* Tooltip:
+		DisplayName: 魂之约
+		Tooltip:
 			'''
-			Enemies struck by this whip are impaled by a spectral blade on the next minion attack
-			The spectral blade deals 20% of the minion’s damage 5 times in succession
-			The impaling damage has 10 armor penetration
-			''' */
+			被此鞭击中的敌怪在下次被仆从攻击时会被一柄灵体剑刃穿刺
+			连续造成5次20%的召唤物伤害
+			此穿刺伤害无视10点防御
+			'''
 	}
 
 	ExistenceBonds: {
-		// DisplayName: Existence Bonds
-		/* Tooltip:
+		DisplayName: 魂之契
+		Tooltip:
 			'''
-			Enemies struck by this whip are impaled by a spectral blade on the next minion attack
-			The spectral blade deals 20% of the minion’s damage 6 times in succession
-			The impaling damage has 15 armor penetration
-			''' */
+			被此鞭击中的敌怪在下次被仆从攻击时会被一柄灵体剑刃穿刺
+			连续造成6次20%的召唤物伤害
+			此穿刺伤害无视15点防御
+			'''
 	}
 
 	MermaidsTear: {
-		// DisplayName: Mermaid's Tear
-		/* Tooltip:
+		DisplayName: 塞壬之泪
+		Tooltip:
 			'''
-			Enemies struck by this whip are impaled by a spectral blade on the next minion attack
-			The spectral blade deals 25% of the minion’s damage 8 times in succession
-			The impaling damage has 50 armor penetration
-			''' */
+			被此鞭击中的敌怪在下次被仆从攻击时会被一柄灵体枪矛穿刺
+			连续造成8次25%的召唤物伤害
+			此穿刺伤害无视50点防御
+			'''
 	}
 
 	MandibleLash: {
-		// DisplayName: Mandible Lash
-		/* Tooltip:
+		DisplayName: 颚骨鞭
+		Tooltip:
 			'''
-			1 summon tag damage
-			Enemies struck by this whip cause the next minion attack to launch a sandball
-			The sandball is effected by gravity and deals 40% of the minion's damage
-			The sandball explodes on block impact, damaging nearby enemies
-			''' */
+			1 召唤标记伤害
+			被此鞭击中的敌怪在下次被仆从攻击时发射一个沙球
+			沙球受重力下落并造成40%伤害
+			它会在方块上撞击时爆炸，伤害附近的敌人
+			'''
 	}
 
 	DarkMandibleLash: {
-		// DisplayName: Dark Mandible Lash
-		/* Tooltip:
+		DisplayName: 暗黑颚骨鞭
+		Tooltip:
 			'''
-			2 summon tag damage
-			Enemies struck by this whip cause the next minion attack to launch a sandball
-			The sandball is effected by gravity and deals 40% of the minion's damage
-			The sandball explodes on block impact, damaging nearby enemies
-			''' */
+			2 召唤标记伤害
+			被此鞭击中的敌怪在下次被仆从攻击时发射一个沙球
+			沙球受重力下落并造成40%伤害
+			它会在方块上撞击时爆炸，伤害附近的敌人
+			'''
 	}
 
 	ShieldConduit: {
-		// DisplayName: Shield Conduit
-		/* Tooltip:
+		DisplayName: 护盾传导器
+		Tooltip:
 			'''
-			2 summon tag damage
-			Automatically switches between two modes.
-			''' */
-		/* HoldShiftTooltip:
+			2 召唤标记伤害
+			自动在两种模式间切换
+			'''
+		HoldShiftTooltip:
 			'''
 			-----------------------------
-			Defense Mode:
-			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
-			Collecting shards builds shield charge
-			At 50 charge, you gain a 50 HP shield
+			防御模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的蓝色护盾碎片
+			收集碎片为护盾充能
+			达到50点充能值后，激活50点HP的护盾
 			-----------------------------
-			Attack Mode:
-			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
-			Red shards home in on enemies, dealing 10% of the minion's damage +3 flat damage.
+			攻击模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的红色护盾碎片
+			其会追踪敌怪，造成仆从面板10%+3伤害
 			-----------------------------
-			Shield shard release has a very short cooldown
-			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
-			If the shield is fully broken, the recharge cooldown becomes 60 seconds
-			During cooldown, switches to Attack Mode
-			When the cooldown ends, switches to Defense Mode
-			If any shield remains, collecting shards restores shield durability.
-			''' */
+			护盾碎片的释放有短暂内置CD
+			当护盾承受伤害时，会根据剩余护盾进入5-50秒的CD；
+			若护盾完全碎裂，CD会变为60秒
+			护盾冷却时，转到攻击模式；冷却结束，转到防御模式
+			护盾存在时，收集护盾碎片可修复护盾耐久值
+			'''
 	}
 
 	ShieldConduitMkII: {
-		// DisplayName: Shield Conduit Mk-II
-		/* Tooltip:
+		DisplayName: 护盾传导器Mk-II
+		Tooltip:
 			'''
-			4 summon tag damage
-			Switches automatically between two modes.
-			''' */
-		/* HoldShiftTooltip:
+			4 召唤标记伤害
+			自动在两种模式间切换
+			'''
+		HoldShiftTooltip:
 			'''
 			-----------------------------
-			Defense Mode:
-			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
-			Collecting shards builds shield charge
-			At 100 charge, you gain a 100 HP shield
+			防御模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的蓝色护盾碎片
+			收集碎片为护盾充能
+			达到100点充能值后，激活100点HP的护盾
 			-----------------------------
-			Attack Mode:
-			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
-			Red shards home in on enemies, dealing 10% of the minion's damage +5 flat damage.
+			攻击模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的红色护盾碎片
+			其会追踪敌怪，造成仆从面板10%+5伤害
 			-----------------------------
-			Shield shard release has a very short cooldown
-			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
-			If the shield is fully broken, the recharge cooldown becomes 60 seconds
-			During cooldown, switches to Attack Mode
-			When the cooldown ends, switches to Defense Mode
-			If any shield remains, collecting shards restores shield durability.
-			''' */
+			护盾碎片的释放有短暂内置CD
+			当护盾承受伤害时，会根据剩余护盾进入5-50秒的CD；
+			若护盾完全碎裂，CD会变为60秒
+			护盾冷却时，转到攻击模式；冷却结束，转到防御模式
+			护盾存在时，收集护盾碎片可修复护盾耐久值
+			'''
 	}
 
 	ShieldConduitMkIII: {
-		// DisplayName: Shield Conduit Mk-III
-		/* Tooltip:
+		DisplayName: 护盾传导器Mk-III
+		Tooltip:
 			'''
-			7 summon tag damage
-			Switches automatically between two modes.
-			''' */
-		/* HoldShiftTooltip:
+			7 召唤标记伤害
+			自动在两种模式间切换
+			'''
+		HoldShiftTooltip:
 			'''
 			-----------------------------
-			Defense Mode:
-			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
-			Collecting shards builds shield charge
-			At 150 charge, you gain a 150 HP shield
+			防御模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的蓝色护盾碎片
+			收集碎片为护盾充能
+			达到150点充能值后，激活150点HP的护盾
 			-----------------------------
-			Attack Mode:
-			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
-			Red shards home in on enemies, dealing 10% of the minion's damage +25 flat damage.
+			攻击模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的红色护盾碎片
+			其会追踪敌怪，造成仆从面板10%+25伤害
 			-----------------------------
-			Shield shard release has a very short cooldown
-			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
-			If the shield is fully broken, the recharge cooldown becomes 60 seconds
-			During cooldown, switches to Attack Mode
-			When the cooldown ends, switches to Defense Mode
-			If any shield remains, collecting shards restores shield durability.
-			''' */
+			护盾碎片的释放有短暂内置CD
+			当护盾承受伤害时，会根据剩余护盾进入5-50秒的CD；
+			若护盾完全碎裂，CD会变为60秒
+			护盾冷却时，转到攻击模式；冷却结束，转到防御模式
+			护盾存在时，收集护盾碎片可修复护盾耐久值
+			'''
 	}
 
 	ShieldConduitMkIV: {
-		// DisplayName: Shield Conduit Mk-IV
-		/* Tooltip:
+		DisplayName: 护盾传导器Mk-IV
+		Tooltip:
 			'''
-			12 summon tag damage
-			Switches automatically between two modes.
-			''' */
-		/* HoldShiftTooltip:
+			12 召唤标记伤害
+			自动在两种模式间切换
+			'''
+		HoldShiftTooltip:
 			'''
 			-----------------------------
-			Defense Mode:
-			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
-			Collecting shards builds shield charge
-			At 200 charge, you gain a 200 HP shield
+			防御模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的蓝色护盾碎片
+			收集碎片为护盾充能
+			达到200点充能值后，激活200点HP的护盾
 			-----------------------------
-			Attack Mode:
-			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
-			Red shards home in on enemies, dealing 10% of the minion's damage +50 flat damage.
+			攻击模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的红色护盾碎片
+			其会追踪敌怪，造成仆从面板10%+50伤害
 			-----------------------------
-			Shield shard release has a very short cooldown
-			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
-			If the shield is fully broken, the recharge cooldown becomes 60 seconds
-			During cooldown, switches to Attack Mode
-			When the cooldown ends, switches to Defense Mode
-			If any shield remains, collecting shards restores shield durability.
-			''' */
+			护盾碎片的释放有短暂内置CD
+			当护盾承受伤害时，会根据剩余护盾进入5-50秒的CD；
+			若护盾完全碎裂，CD会变为60秒
+			护盾冷却时，转到攻击模式；冷却结束，转到防御模式
+			护盾存在时，收集护盾碎片可修复护盾耐久值
+			'''
 	}
 
 	ShieldConduitMkV: {
-		// DisplayName: Shield Conduit Mk-V
-		/* Tooltip:
+		DisplayName: 护盾传导器Mk-V
+		Tooltip:
 			'''
-			20 summon tag damage
-			Switches automatically between two modes.
-			''' */
-		/* HoldShiftTooltip:
+			20 召唤标记伤害
+			自动在两种模式间切换
+			'''
+		HoldShiftTooltip:
 			'''
 			-----------------------------
-			Defense Mode:
-			Striking an enemy with the whip causes minion attacks to release blue shield shards for a short time
-			Collecting shards builds shield charge
-			At 250 charge, you gain a 250 HP shield
+			防御模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的蓝色护盾碎片
+			收集碎片为护盾充能
+			达到250点充能值后，激活250点HP的护盾
 			-----------------------------
-			Attack Mode:
-			Striking an enemy with the whip causes minion attacks to release red shield shards for a short time.
-			Red shards home in on enemies, dealing 10% of the minion's damage +150 flat damage.
+			攻击模式：
+			鞭子击中的敌人，
+			仆从攻击其会释放短暂存在的红色护盾碎片
+			其会追踪敌怪，造成仆从面板10%+150伤害
 			-----------------------------
-			Shield shard release has a very short cooldown
-			When the shield takes damage, it enters a recharge cooldown lasting 5–50 seconds based on your remaining shield
-			If the shield is fully broken, the recharge cooldown becomes 60 seconds
-			During cooldown, switches to Attack Mode
-			When the cooldown ends, switches to Defense Mode
-			If any shield remains, collecting shards restores shield durability.
-			''' */
+			护盾碎片的释放有短暂内置CD
+			当护盾承受伤害时，会根据剩余护盾进入5-50秒的CD；
+			若护盾完全碎裂，CD会变为60秒
+			护盾冷却时，转到攻击模式；冷却结束，转到防御模式
+			护盾存在时，收集护盾碎片可修复护盾耐久值
+			'''
 	}
 
 	LayeredPain: {
-		// DisplayName: Layered Pain
-		/* Tooltip:
+		DisplayName: 痛蜂病
+		Tooltip:
 			'''
-			+1 summon tag damage per stack
-			This whip's tag damage stacks with itself, with older stacks expiring first
-			''' */
+			每层提供+1召唤标记伤害
+			此鞭的标记伤害可自我叠加
+			旧的叠加标记会优先消退
+			'''
 	}
 
 	NightButterfly: {
-		// DisplayName: Night Butterfly
-		/* Tooltip:
+		DisplayName: 朽蝶
+		Tooltip:
 			'''
-			+2 summon tag damage per stack
-			This whip's tag damage stacks with itself, with older stacks expiring first
-			A number of moths equal to the number of stacks attach themselves to the enemy
-			''' */
+			每层提供+2召唤标记伤害
+			此鞭的标记伤害可自我叠加
+			旧的叠加标记会优先消退
+			蝴蝶将附着在敌人身上为你昭示层数
+			'''
 	}
 
 	ActiasAliena: {
-		// DisplayName: Actias Aliena
-		/* Tooltip:
+		DisplayName: 天蚕蛾
+		Tooltip:
 			'''
-			+3 summon tag damage per stack
-			This whip's tag damage stacks with itself, with older stacks expiring first
-			A number of moths equal to the number of stacks attach themselves to the enemy
-			''' */
+			每层提供+3召唤标记伤害
+			此鞭的标记伤害可自我叠加
+			旧的叠加标记会优先消退
+			蝴蝶将附着在敌人身上为你昭示层数
+			'''
 	}
 
 	ButterflyEffect: {
-		// DisplayName: Butterfly Effect
-		/* Tooltip:
+		DisplayName: 蝴蝶效应
+		Tooltip:
 			'''
-			+6 summon tag damage per stack
-			This whip's tag damage stacks with itself, with older stacks expiring first
-			A number of moths equal to the number of stacks attach themselves to the enemy
-			''' */
+			每层提供+6召唤标记伤害
+			此鞭的标记伤害可自我叠加
+			旧的叠加标记会优先消退
+			蝴蝶将附着在敌人身上为你昭示层数
+			'''
 	}
 
 	EtaCarinae: {
-		// DisplayName: Eta Carinae
-		/* Tooltip:
+		DisplayName: 海山二
+		Tooltip:
 			'''
-			+10 summon tag damage per stack
-			This whip's tag damage stacks with itself, with older stacks expiring first
-			A number of comets equal to the number of stacks attach themselves to the enemy
-			''' */
+			每层提供+10召唤标记伤害
+			此鞭的标记伤害可自我叠加
+			旧的叠加标记会优先消退
+			彗星将环绕敌人飞行为你昭示层数
+			'''
 	}
 
 	GoldRush: {
-		// DisplayName: Gold Rush
-		/* Tooltip:
+		DisplayName: 淘金热
+		Tooltip:
 			'''
-			8 summon tag damage
-			Striking enemies regularly summons physical weapons dealing 100% of your minion's damage.
-			''' */
+			8 召唤标记伤害
+			持续打击敌人召唤武器实体，造成100%仆从伤害
+			'''
 	}
 
 	GildedReliquary: {
-		// DisplayName: Gilded Reliquary
-		/* Tooltip:
+		DisplayName: 覆金圣龛
+		Tooltip:
 			'''
-			20 summon tag damage
-			Striking enemies rapidly summons a swift arsenal dealing 120% of your minion's damage
-			''' */
+			20 召唤标记伤害
+			持续打击敌人召唤武器实体，造成120%仆从伤害
+			'''
 	}
 
 	AurelianSanctum: {
-		// DisplayName: Aurelian Sanctum
-		/* Tooltip:
+		DisplayName: 鎏金圣堂
+		Tooltip:
 			'''
-			80 summon tag damage
-			Striking enemies unleashes a relentless barrage of weapons dealing 200% of your minion's damage
-			''' */
+			80 召唤标记伤害
+			持续打击敌人召唤武器实体，造成200%仆从伤害
+			'''
 	}
 
 	LeatherGrip: {
-		// DisplayName: Leather Grip
-		/* Tooltip:
+		DisplayName: 皮制缠手
+		Tooltip:
 			'''
-			Increases whip range by 10% 
-			Whips gain 1.05x summon tag damage multiplier
-			Only one Grip accessory can be equipped at a time
-			''' */
+			增加10%鞭子范围
+			鞭子额外获得5%召唤标记伤害
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	SilkGrip: {
-		// DisplayName: Silk Grip
-		/* Tooltip:
+		DisplayName: 丝制缠手
+		Tooltip:
 			'''
-			Increases whip range by 10% 
-			Whips gain 5% summon tag critical strike chance
-			Only one Grip accessory can be equipped at a time
-			''' */
+			增加10%鞭子范围
+			鞭子额外获得5%召唤标记暴击率
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	RubberGrip: {
-		// DisplayName: Rubber Grip
-		/* Tooltip:
+		DisplayName: 橡胶缠手
+		Tooltip:
 			'''
-			Increases whip range by 15% 
-			Whips gain 1.03x summon tag damage multiplier and 3% summon tag critical strike chance
-			Only one Grip accessory can be equipped at a time
-			''' */
+			增加15%鞭子范围
+			鞭子额外获得3%召唤标记伤害和5%召唤标记暴击率
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	NecromanticGrip: {
-		// DisplayName: Necromantic Grip
-		/* Tooltip:
+		DisplayName: 死灵缠手
+		Tooltip:
 			'''
-			Increases max minions by 1
-			Increases whip range by 15% 
-			Whips gain 1.05x summon tag damage multiplier and 5% summon tag critical strike chance
-			Allows whips to hit enemies through walls
-			Only one Grip accessory can be equipped at a time
-			''' */
+			增加1格最大仆从栏位
+			增加15%鞭子范围
+			鞭子额外获得5%召唤标记伤害和5%召唤标记暴击率
+			允许鞭子穿透墙壁攻击敌人
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	EmperorsGrip: {
-		// DisplayName: Emperors Grip
-		/* Tooltip:
+		DisplayName: 帝皇缠手
+		Tooltip:
 			'''
-			Increases max minions by 2
-			Increases whip range by 30% 
-			Whips gain 1.07x summon tag damage multiplier and 7% summon tag critical strike chance
-			Allows whips to hit enemies through walls
-			Only one Grip accessory can be equipped at a time
-			''' */
+			增加2格最大仆从栏位
+			增加30%鞭子范围 
+			鞭子额外获得7%召唤标记伤害和7%召唤标记暴击率
+			允许鞭子穿透墙壁攻击敌人
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	LightSpiritGrip: {
-		// DisplayName: Light Spirit Grip
-		/* Tooltip:
+		DisplayName: 荧光缠手
+		Tooltip:
 			'''
-			Allows whips to hit enemies through walls
-			Only one Grip accessory can be equipped at a time
-			''' */
+			允许鞭子穿透墙壁攻击敌人
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	AirflowGrip: {
-		// DisplayName: Airflow Grip
-		/* Tooltip:
+		DisplayName: 流风缠手
+		Tooltip:
 			'''
-			Reduces whip range by 15%
-			Allows whips to hit enemies through walls
-			Only one Grip accessory can be equipped at a time
-			''' */
+			减少15%鞭子范围
+			允许鞭子穿透墙壁攻击敌人
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	CommanderGrip: {
-		// DisplayName: Commander Grip
-		/* Tooltip:
+		DisplayName: 指挥官缠手
+		Tooltip:
 			'''
-			Minion projectiles deal less damage but now home in on the taged enemy for a short duration
-			Only one Grip accessory can be equipped at a time
-			''' */
+			短时间内，仆从弹幕伤害降低，但会自动追踪被鞭子击中的敌人
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	MagneticGrip: {
-		// DisplayName: Magnetic Grip
-		/* Tooltip:
+		DisplayName: 磁力缠手
+		Tooltip:
 			'''
-			Reduces whip range by 15% but minion projectiles home in on the taged enemy for a short duration
-			Only one Grip accessory can be equipped at a time
-			''' */
+			减少15%鞭子范围
+			短时间内，仆从弹幕伤害降低，但会自动追踪被鞭子击中的敌人
+			同时只能装备一个缠手饰品
+			'''
 	}
 
 	BuddyEmblem: {
-		// DisplayName: Buddy Emblem
-		/* Tooltip:
+		DisplayName: 羁绊徽章
+		Tooltip:
 			'''
-			Significantly increases damage when only one Minion is present
-			The minion's damage increases based on the number of unused minion slots
-			The more this effect enhances a minion, the slightly larger it becomes
-			Some minions cannot benefit from this effect
-			Some whip tag effects are reduced
-			'I choose you!'
-			''' */
+			当仅有一个仆从在场时，大幅提高其伤害
+			该仆从的伤害会根据未使用的召唤栏位数量进一步增加
+			此效果增强越多，仆从体型会略微变大
+			部分仆从无法受益于体型效果
+			削弱部分召唤标记效果
+			“就决定是你了！”
+			'''
 	}
 
 	StrikerEmblem: {
-		// DisplayName: Striker Emblem
-		/* Tooltip:
+		DisplayName: 鞭宗徽章
+		Tooltip:
 			'''
-			You can no longer summon minions or sentries
-			Whips strike enemies three additional times for 33% damage
-			These strikes benefit from summon tag effects
-			Increases whip range by 10% 
-			10% increased summon damage for each unused minion slot
-			'Die, monster!'
-			''' */
+			无法再召唤仆从或哨兵
+			鞭子命中敌人时会额外攻击三次，每次造成33%伤害
+			额外攻击可受召唤标记伤害及效果加成
+			增加10%鞭子范围
+			每个空闲仆从栏位都会使召唤伤害提升10%
+			"去死吧，怪物！"
+			'''
 	}
 }
