@@ -634,12 +634,13 @@ ItemTooltip: {
 			'''
 		HypersonicTooltip: '''"引导听觉上限之外的音波之力！"'''
 		4DTooltip: '''"声波的力量足以创造通往异世的虫洞"'''
-		CrystalScorpian:
+		CrystalScorpian: 仆从攻击有15%概率产生一只水晶蝎并在水晶蝎存在时仆从攻击多造成3点伤害
+		Skull:
 			'''
-			仆从和哨兵攻击有15%概率产生一只水晶蝎
-			水晶蝎存在时仆从和哨兵攻击多造成3点伤害
-			'''
-		Skull: 仆从和哨兵在击杀敌人后短暂地多造成2点伤害
+			被召唤师鞭尖端命中的敌怪会受到{0}%额外伤害并被诅咒，生成至多[c/{1}:{2}]个微粒
+			手持鞭时<right>将微粒送向你的光标处，伤害附近的敌怪
+			击杀被诅咒的敌怪或持续伤害Boss会释放一只造成40点伤害的爆炸鬼魂，也会诅咒敌怪
+			''' 
 		CyanPearl: 减半哨兵受到的召唤伤害惩罚
 		Watch: 你的哨兵会永久存在，并在两分钟内增加最多15%伤害
 
@@ -1520,7 +1521,7 @@ Items: {
 	}
 
 	SuspiciousLookingPumpkin: {
-		DisplayName: 可疑南瓜
+		DisplayName: 诅咒南瓜灯笼
 		Tooltip:
 			'''
 			在自然墓地的万魂匣使用以召唤巫妖
@@ -2252,7 +2253,7 @@ Items: {
 			施加敌怪[cbuff:Oiled]减益
 			你吃得越饱，它就越强大
 			击败敌怪暂时获得[cbuff:HeartyMeal]
-			“并不是你以为的那一部分”
+			“并不是你认为的那一部分”
 			'''
 	}
 
@@ -3372,7 +3373,7 @@ Cooldowns.FireWave: 火浪正在冷却！
 HeadphonesText.1: 正在播放 {0}！
 
 BossName: {
-	DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
+	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
 	TitleScreen: Teardrops of Dragonfire - Infernal Eclipse of Ragnarok Title
 	BereftVassal: Dead Kingdom's Champion - Bereft Vassal (Ragnarok Mode)
 	DoG: Last Battle (Ballos Mix) - Devourer of Gods (Phase 3)
