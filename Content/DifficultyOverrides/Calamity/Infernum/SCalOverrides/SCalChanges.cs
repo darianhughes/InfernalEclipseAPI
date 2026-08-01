@@ -22,6 +22,9 @@ using Terraria;
 using CalamityMod.Particles;
 using System.Security.Policy;
 using CalamityMod.Dusts;
+using InfernalEclipseAPI.Content.Buffs;
+using InfernalEclipseAPI.Core.Systems;
+using InfernalEclipseAPI.Common.GlobalItems;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalOverrides
 {
@@ -128,6 +131,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 }
                 #endregion
 
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    AntiHealerMulticlassCheck.ZeroHealBonus(npc);
+                }
+
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     bulletHellCounter++;
@@ -205,6 +213,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                     SoundEngine.PlaySound(SupremeCalamitas.BulletHellEndSound, npc.Center);
                 }
                 #endregion
+
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    AntiHealerMulticlassCheck.ZeroHealBonus(npc);
+                }
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
@@ -297,6 +310,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                 }
                 #endregion
 
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    AntiHealerMulticlassCheck.ZeroHealBonus(npc);
+                }
+
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     if (bulletHellCounter2 % 180 == 0) // Blasts from top
@@ -376,6 +394,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                     SoundEngine.PlaySound(SupremeCalamitas.BulletHellEndSound, npc.Center);
                 }
                 #endregion
+
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    AntiHealerMulticlassCheck.ZeroHealBonus(npc);
+                }
 
                 if (Main.netMode != NetmodeID.MultiplayerClient) // More clustered attack
                 {
@@ -490,6 +513,11 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity.Infernum.SCalO
                     SoundEngine.PlaySound(SupremeCalamitas.BulletHellEndSound, npc.Center);
                 }
                 #endregion
+
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    AntiHealerMulticlassCheck.ZeroHealBonus(npc);
+                }
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {

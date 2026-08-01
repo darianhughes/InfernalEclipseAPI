@@ -733,7 +733,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             if (recipe.HasResult(kinetic))
                                 recipe.DisableRecipe();
 
-                        if (recipe.HasResult(ItemID.JungleHat) || recipe.HasResult(ItemID.JungleShirt) || recipe.HasResult(ItemID.JunglePants) || recipe.HasResult(thorium.Find<ModItem>("BountifulHarvest")) || recipe.HasResult(thorium.Find<ModItem>("MagickStaff")) || recipe.HasResult(thorium.Find<ModItem>("JunglesWrath")))
+                        if (recipe.HasResult(ItemID.JungleHat) || recipe.HasResult(ItemID.JungleShirt) || recipe.HasResult(ItemID.JunglePants) || recipe.HasResult(thorium.Find<ModItem>("BountifulHarvest")) || recipe.HasResult(thorium.Find<ModItem>("JunglesWrath")))
                         {
                             recipe.RemoveTile(TileID.Anvils);
                             recipe.RemoveTile(TileID.WorkBenches);
@@ -787,10 +787,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
 
                         if (!ModLoader.HasMod("WHummusMultiModBalancing"))
                         {
+                            /*
                             if (recipe.HasResult(thorium.Find<ModItem>("Nocturnal")) || recipe.HasResult(thorium.Find<ModItem>("Sanguine")))
                             {
                                 recipe.AddIngredient<PurifiedGel>(5);
                             }
+                            */
 
                             if (thorium.TryFind("ThrowingGuideVolume2", out ModItem rogue101v2))
                             {

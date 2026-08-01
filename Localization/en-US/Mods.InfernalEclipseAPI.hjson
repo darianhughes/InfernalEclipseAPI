@@ -552,6 +552,7 @@ ItemTooltip: {
 		Puzzles: Mr. Puzzles
 		cat: StarlightCat
 		Arkangel: Arkangel
+		Minesky: Mineskye
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -2430,6 +2431,29 @@ Items: {
 			Hold SHIFT to see the full list of credits
 			'''
 	}
+
+	BlixerCore: {
+		DisplayName: Blixer Core
+		Tooltip:
+			'''
+			Summons Blixer arms to protect you
+			Occupies 4 minion slots and there can only be one set
+			Has two modes that can be toggled on <right>
+			'''
+		DefaultMode:
+			'''
+			Default Mode:
+			A set of two hands and two cannons will be attached to the arms
+			Hands automatically attack nearby enemies within range
+			Cannons will fire towards your mouse cursor while using any item
+			'''
+		LaserMode:
+			'''
+			Laser Mode:
+			A set of four cannons will be attached to the arms
+			Cannons will fire precise lasers towards the curson while using any item
+			'''
+	}
 }
 
 Projectiles: {
@@ -2480,6 +2504,9 @@ Projectiles: {
 	SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
 	SplitFirebrandFlailProjectile.DisplayName: Split Firebrand Flail Projectile
 	SplitFirebrandExplosion.DisplayName: Split Firebrand Explosion
+	BlixerArm.DisplayName: Blixer Arm
+	BlixerHand.DisplayName: Blixer Hand
+	BlixerCannonPro.DisplayName: Blixer Bullet
 }
 
 DiaryTooltip:
@@ -3334,6 +3361,11 @@ Buffs: {
 	PrismBreakTag: {
 		DisplayName: Prism Break Tag
 		Description: Mods.InfernalEclipseAPI.Buffs.PrismBreakTag.Description
+	}
+
+	BlixerBuff: {
+		DisplayName: Blixer
+		Description: "'I didn't design THIS! :('"
 	}
 }
 

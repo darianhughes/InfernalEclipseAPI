@@ -1,7 +1,6 @@
 ﻿using CalamityMod.Events;
 using CalamityMod.Systems.Mechanic;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 using Terraria.ObjectData;
 using ThoriumMod.NPCs.BossViscount;
 using ThoriumMod.Tiles;
@@ -14,24 +13,63 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.ViscountOverrid
     {
         public override bool InstancePerEntity => true;
 
-        private ArenaWallSystem.Box arenaBox;
-        private bool arenaCreated;
+        public ArenaWallSystem.Box? ArenaBox = null;
+        private bool arenaCreated = false;
 
         private const int ArenaWidthTiles = 25;
         private const int ArenaHeightTiles = 77;
-        private float ArenaVerticalOffset = -170f;
+        private const float ArenaVerticalOffset = -170f;
 
         private const float ArenaWidth = ArenaWidthTiles * 16f;
         private const float ArenaHeight = ArenaHeightTiles * 16f;
 
-        private static readonly Vector4 ArenaDimensions = new(
+        private static readonly Vector4 ArenaDimensions = new
+        (
             ArenaWidth * 0.5f,
             ArenaHeight * 0.5f,
             ArenaWidth * 0.5f,
             ArenaHeight * 0.5f
         );
 
-        private const float BossRangeToEnforceArena = 2200f;
+        void UpdateArena(ArenaWallSystem.Box box)
+        {
+            if (box.borderColor == Color.Gray || box.oldData.borderColor == Color.Gray)
+                return;
+            for (var i2 = 0; i2 < box.Size.Y / 400f; i2++)
+            {
+                var p = Vector2.Lerp(box.BottomRight, box.TopRight, Main.rand.NextFloat());
+                Dust.NewDustPerfect(p, DustID.Clentaminator_Red, p.DirectionFrom(box.Center) * Main.rand.NextFloat(0, 5), Scale: Main.rand.NextFloat(0.1f, 1f), newColor: box.borderColor);
+
+                p = Vector2.Lerp(box.TopLeft, box.BottomLeft, Main.rand.NextFloat());
+                Dust.NewDustPerfect(p, DustID.Clentaminator_Red, p.DirectionFrom(box.Center) * Main.rand.NextFloat(0, 5), Scale: Main.rand.NextFloat(0.1f, 1f), newColor: box.borderColor);
+
+            }
+            for (var i2 = 0; i2 < box.Size.X / 400f; i2++)
+            {
+                var p = Vector2.Lerp(box.TopLeft, box.TopRight, Main.rand.NextFloat());
+                Dust.NewDustPerfect(p, DustID.Clentaminator_Red, p.DirectionFrom(box.Center) * Main.rand.NextFloat(0, 5), Scale: Main.rand.NextFloat(0.1f, 1f), newColor: box.borderColor);
+                p = Vector2.Lerp(box.BottomRight, box.BottomLeft, Main.rand.NextFloat());
+                Dust.NewDustPerfect(p, DustID.Clentaminator_Red, p.DirectionFrom(box.Center) * Main.rand.NextFloat(0, 5), Scale: Main.rand.NextFloat(0.1f, 1f), newColor: box.borderColor);
+            }
+        }
+
+        void DrawArena(ArenaWallSystem.Box box)
+        {
+            var color = Color.Black * 0.75f;
+            //Inside Fill
+            box.DrawBoxWithOffset(box.borderThickness * 0.5f, box.borderThickness, Color.Black * 0.75f);
+            //Inner Border
+            box.DrawBoxWithOffset(4, 8, box.borderColor);
+            //Inner Border Clones
+            float amount = 4;
+            float totalDistance = 64f;
+            for (var i = Main.GlobalTimeWrappedHourly % 1; i < amount; i++)
+            {
+                box.DrawBoxWithOffset(totalDistance * (i / amount) + 4, 4, box.borderColor * (1 - i / amount));
+            }
+            //Outer Border
+            box.DrawBoxWithOffset(box.borderThickness - 4, 4, box.borderColor);
+        }
 
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
         {
@@ -43,15 +81,55 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.ViscountOverrid
             return applies;
         }
 
-        public override void OnSpawn(NPC npc, IEntitySource source)
+        public override bool PreAI(NPC npc)
         {
-            //Main.NewText("ViscountArenaGlobalNPC OnSpawn fired");
+            #region Arena Box
+            if (!arenaCreated)
+            {
+                if (ArenaBox is not null)
+                    ArenaBox = null;
 
-            if (arenaCreated)
-                return;
+                arenaCreated = true;
+            }
 
-            CreateArena(npc);
-            arenaCreated = true;
+            if (ArenaBox is null)
+            {
+                int npcIndex = npc.whoAmI;
+                int npcType = npc.type;
+
+                Vector2 anchor = npc.Center;
+
+                if (TryFindNearestBloodAltarAnchor(npc.Center, out Vector2 altarAnchor))
+                {
+                    // Move arena up.
+                    altarAnchor.Y += ArenaVerticalOffset;
+                    anchor = altarAnchor;
+                }
+
+                ArenaBox = new ArenaWallSystem.Box
+                {
+                    position = anchor,
+                    boxDimensions = ArenaDimensions * 2f,
+                    borderThickness = 2000f,
+                    borderColor = Color.DarkRed,
+                    RemovalCondition = () => !Main.npc.IndexInRange(npcIndex) || !Main.npc[npcIndex].active || Main.npc[npcIndex].type != npcType,
+                    UpdateBox = UpdateArena,
+                    DrawBox = DrawArena,
+                    DespawnAction = (box) =>
+                    {
+                        box.boxDimensions += new Vector4(64);
+                        if (box.Size.X > 5000)
+                            return true;
+                        return false;
+                    }
+                };
+                ArenaWallSystem.ActiveBoxes.Add(ArenaBox);
+            }
+
+            ArenaBox.NewDimensions = Vector4.Lerp(ArenaBox.boxDimensions, ArenaDimensions, 0.1f);
+            #endregion
+
+            return base.PreAI(npc);
         }
 
         public override void AI(NPC npc)
@@ -59,122 +137,19 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium.ViscountOverrid
             if (!npc.active)
             {
                 arenaCreated = false;
-                arenaBox = null;
+                ArenaBox = null;
                 return;
-            }
-
-            if (arenaBox is not null)
-                PushPlayersIntoArena(npc, arenaBox);
-        }
-
-        private void CreateArena(NPC npc)
-        {
-            //skip arena in boss rush
-            if (BossRushEvent.BossRushActive)
-                return;
-
-            Vector2 anchor = npc.Center;
-
-            if (TryFindNearestBloodAltarAnchor(npc.Center, out Vector2 altarAnchor))
-                anchor = altarAnchor;
-
-            // Move arena up.
-            anchor.Y += ArenaVerticalOffset;
-
-            arenaBox = new ArenaWallSystem.Box
-            {
-                position = anchor,
-                boxDimensions = ArenaDimensions,
-                NewDimensions = ArenaDimensions,
-                borderThickness = 2000f,
-                RemovalCondition = () => !npc.active || Main.npc[npc.whoAmI].type != npc.type,
-                UpdateBox = UpdateArena,
-                DrawBox = DrawArena,
-                DespawnAction = (box) => true
-            };
-
-            arenaBox.borderColor = Color.DarkRed;
-            ArenaWallSystem.ActiveBoxes.Add(arenaBox);
-        }
-
-        private static void UpdateArena(ArenaWallSystem.Box box)
-        {
-            box.NewDimensions = ArenaDimensions;
-
-            if (box.oldData is not null)
-                box.oldData.borderColor = box.borderColor;
-        }
-
-        private static void DrawArena(ArenaWallSystem.Box box)
-        {
-            box.DrawBoxWithOffset(box.borderThickness * 0.5f, box.borderThickness, Color.Black * 0.72f);
-            box.DrawBoxWithOffset(4f, 8f, box.borderColor);
-
-            float amount = 4f;
-            float totalDistance = 64f;
-            for (float i = Main.GlobalTimeWrappedHourly % 1f; i < amount; i++)
-                box.DrawBoxWithOffset(totalDistance * (i / amount) + 4f, 4f, box.borderColor * (1f - i / amount));
-
-            box.DrawBoxWithOffset(box.borderThickness - 4f, 4f, box.borderColor);
-        }
-
-        private static void PushPlayersIntoArena(NPC boss, ArenaWallSystem.Box box)
-        {
-            Rectangle arenaRect = new(
-                (int)box.TopLeft.X,
-                (int)box.TopLeft.Y,
-                (int)box.Size.X,
-                (int)box.Size.Y
-            );
-
-            const float pushStrength = 1.15f;
-            const float maxPushSpeed = 16f;
-            const float snapMargin = 12f;
-
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                Player player = Main.player[i];
-                if (!player.active || player.dead)
-                    continue;
-
-                if (Vector2.Distance(player.Center, boss.Center) > BossRangeToEnforceArena)
-                    continue;
-
-                if (arenaRect.Intersects(player.Hitbox))
-                    continue;
-
-                float clampedX = MathHelper.Clamp(player.Center.X, arenaRect.Left + 16f, arenaRect.Right - 16f);
-                float clampedY = MathHelper.Clamp(player.Center.Y, arenaRect.Top + 16f, arenaRect.Bottom - 16f);
-
-                Vector2 targetPoint = new(clampedX, clampedY);
-                Vector2 pushDirection = targetPoint - player.Center;
-
-                if (pushDirection.LengthSquared() <= 0.001f)
-                    continue;
-
-                pushDirection.Normalize();
-                player.velocity += pushDirection * pushStrength;
-
-                if (player.velocity.Length() > maxPushSpeed)
-                    player.velocity = Vector2.Normalize(player.velocity) * maxPushSpeed;
-
-                if (Vector2.Distance(player.Center, targetPoint) <= snapMargin)
-                    player.position = targetPoint - player.Size * 0.5f;
-
-                if (player.Center.X < arenaRect.Left)
-                    player.velocity.X = Math.Max(player.velocity.X, 0f);
-                else if (player.Center.X > arenaRect.Right)
-                    player.velocity.X = Math.Min(player.velocity.X, 0f);
-
-                if (player.Center.Y < arenaRect.Top)
-                    player.velocity.Y = Math.Max(player.velocity.Y, 0f);
-                else if (player.Center.Y > arenaRect.Bottom)
-                    player.velocity.Y = Math.Min(player.velocity.Y, 0f);
             }
         }
 
         private static bool TryFindNearestBloodAltarAnchor(Vector2 searchFromWorld, out Vector2 altarAnchor)
         {
+            if (BossRushEvent.BossRushActive)
+            {
+                altarAnchor = searchFromWorld;
+                return false;
+            }
+
             altarAnchor = Vector2.Zero;
 
             int altarTileType = ModContent.TileType<BloodAltar>();

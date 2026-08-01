@@ -22,6 +22,7 @@ using ThoriumMod.Buffs;
 using CalamityMod.Buffs.DamageOverTime;
 using InfernalEclipseAPI.Core.World;
 using ThoriumMod.NPCs.BossGraniteEnergyStorm;
+using CalamityMod.Events;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
@@ -268,6 +269,9 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 }
                 return;
             }
+
+            if (BossRushEvent.BossRushActive)
+                return;
 
             if (npc.ModNPC.Name.Contains("FallenBeholder") || npc.ModNPC.Name.Contains("BoreanStrider"))
                 return;

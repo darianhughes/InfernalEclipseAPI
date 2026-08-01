@@ -90,7 +90,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     RegisterExternalBuff(entropy, "ThoriumMod", "Corrosion");
                     RegisterExternalBuff(entropy, "ThoriumMod", "DarkContagionDebuff");
                     RegisterExternalBuff(entropy, "ThoriumMod", "DecayingFlesh");
-                    RegisterExternalBuff(entropy, "ThoriumMod", "MagickStaffDebuff");
+                    //RegisterExternalBuff(entropy, "ThoriumMod", "MagickStaffDebuff");
                     RegisterExternalBuff(entropy, "ThoriumMod", "Enfeeble");
                     RegisterExternalBuff(entropy, "ThoriumMod", "Freezing");
                     RegisterExternalBuff(entropy, "ThoriumMod", "FungalGrowth");
@@ -251,7 +251,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "Corrosion");
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "DarkContagionDebuff");
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "DecayingFlesh");
-                        AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "MagickStaffDebuff");
+                        //AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "MagickStaffDebuff");
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "Enfeeble");
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "Freezing");
                         AddExternalBuff(currentDebuffs, npc, "ThoriumMod", "FungalGrowth");

@@ -166,6 +166,8 @@ namespace InfernalEclipseAPI.Core.Players
 
         public bool singularityCore;
         public int ruinousPlasmaInjection;
+        public bool blixerCoreSummon;
+        public bool blixerLaserMode;
 
         public bool aniversaryYearOneLoreObtained = false;
 
@@ -337,6 +339,7 @@ namespace InfernalEclipseAPI.Core.Players
             CritNightmare = false;
             gutWrench = false;
             bagOfCharms = false;
+            blixerCoreSummon = false;
         }
 
         public override void PreUpdate()
