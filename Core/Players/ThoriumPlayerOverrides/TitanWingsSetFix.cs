@@ -90,7 +90,7 @@ namespace InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides
             {
                 // +15% generic damage
                 Player.GetDamage(DamageClass.Generic) += 0.15f;
-                Player.endurance += 0.15f;
+                Player.GetThoriumPlayer().thoriumEndurance += 0.15f;
             }
         }
     }

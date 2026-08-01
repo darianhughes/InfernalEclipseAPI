@@ -1,4 +1,6 @@
 displayName = Infernal Eclipse of Ragnarok
+displayName.ru-RU = Infernal Eclipse of Ragnarok
+displayName.zh-Hans = Infernal Eclipse of Ragnarok
 author = Akira & the Infernal Eclipse of Ragnarok Team
 version = 0.10.7
 dllReferences = MMHOOK_InfernumMode_v2.0.1.19, MMHOOK_CalamityMod_v2.0.5
