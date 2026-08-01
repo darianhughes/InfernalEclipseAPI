@@ -83,13 +83,13 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
                 line6.OverrideColor = new(196, 35, 44);
                 tooltips.Add(line6);
 
-                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseWeaponsDLC.ItemTooltip.Donor"));
+                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Donor"));
                 line5.OverrideColor = new Color(196, 35, 44);
                 tooltips.Add(line5);
             }
             else
             {
-                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseWeaponsDLC.ItemTooltip.Donor"));
+                TooltipLine line5 = new(Mod, "DedicatedItem", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.Donor"));
                 line5.OverrideColor = new Color(196, 35, 44);
                 tooltips.Add(line5);
             }

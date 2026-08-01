@@ -171,6 +171,7 @@ ItemBalance: {
 ItemTooltip: {
 	BasicDamage: basic damage
 	OmniShield: -Omni Shield-
+	Donor: - Donor Item -
 	Playtester: - Playtester Item -
 	Contributor: - Contributor Item -
 	NamelessDowned: You must pass the test
