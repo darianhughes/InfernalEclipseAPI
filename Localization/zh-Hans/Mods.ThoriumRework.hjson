@@ -17,7 +17,7 @@ Items: {
 	LunateCharm.Tooltip:
 		'''
 		取消牧师盔甲带来的非光辉伤害削减
-		移除[cbuff:InfernalEclipseAPI/BrokenOath]减益的光辉伤害惩罚
+		移除[cbuff:InfernalEclipseAPI/BrokenOath]减益的50%伤害惩罚
 		'''
 	SealedContract.Tooltip:
 		'''
