@@ -39,7 +39,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
             Item.shoot = ModContent.ProjectileType<BlixerHand>();
         }
 
-        public override bool CanUseItem(Player player) => player.ownedProjectileCounts[Item.shoot] <= 0 || player.altFunctionUse == 2;
+        public override bool CanUseItem(Player player) => (player.ownedProjectileCounts[Item.shoot] <= 0 || player.altFunctionUse == 2);
 
         public override bool AltFunctionUse(Player player) => true;
 
@@ -125,7 +125,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.MinionSacrificable[Type] = false;
+            ProjectileID.Sets.MinionSacrificable[Type] = true;
         }
 
         public override void SetDefaults()
@@ -620,7 +620,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
         public override void Update(Player player, ref int buffIndex)
         {
             InfernalPlayer modPlayer = player.GetModPlayer<InfernalPlayer>();
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<BlixerHand>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<BlixerHand>()] >= 4)
                 modPlayer.blixerCoreSummon = true;
             if (!modPlayer.blixerCoreSummon)
             {

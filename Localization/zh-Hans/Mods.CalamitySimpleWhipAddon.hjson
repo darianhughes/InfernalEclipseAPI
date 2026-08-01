@@ -170,7 +170,7 @@ Items: {
 
 	Satellite: {
 		DisplayName: 地卫一
-		Tooltip: "被此鞭击中的敌怪在下次被仆从攻击时必定受到暴击"
+		Tooltip: 被此鞭击中的敌怪在下次被仆从攻击时必定受到暴击
 	}
 
 	ResonantVoid: {

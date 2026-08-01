@@ -115,7 +115,7 @@ DifficultyUI: {
 
 WelcomeMessage: {
 	Welcome: 感谢游玩《诸神黄昏：炼狱蚀光》模组包！
-	TBRNotice:注意：检测到已启用瑟银冥界，请在兼容性配置中将生命、伤害与速度倍率均设为 1（除非你想要更高难度），该模组会根据当前难度自动调整瑟银 Boss 属性。
+	TBRNotice: 注意：检测到已启用瑟银冥界，请在兼容性配置中将生命、伤害与速度倍率均设为 1（除非你想要更高难度），该模组会根据当前难度自动调整瑟银 Boss 属性。
 	SoulsWarning:
 		'''
 		警告：检测到您已启用 Fargo魂石模组！
@@ -171,6 +171,7 @@ ItemBalance: {
 ItemTooltip: {
 	BasicDamage: 基本伤害
 	OmniShield: -至高神盾-
+	// Donor: - Donor Item -
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
 	NamelessDowned: 你必须通过考验
@@ -642,7 +643,7 @@ ItemTooltip: {
 			被召唤师鞭尖端命中的敌怪会受到{0}%额外伤害并被诅咒，生成至多[c/{1}:{2}]个微粒
 			手持鞭时<right>将微粒送向你的光标处，伤害附近的敌怪
 			击杀被诅咒的敌怪或持续伤害Boss会释放一只造成40点伤害的爆炸鬼魂，也会诅咒敌怪
-			''' 
+			'''
 		CyanPearl: 减半哨兵受到的召唤伤害惩罚
 		Watch: 你的哨兵会永久存在，并在两分钟内增加最多15%伤害
 

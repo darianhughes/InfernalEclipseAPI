@@ -166,6 +166,7 @@ ItemBalance: {
 ItemTooltip: {
 	BasicDamage: ед. базового урона
 	OmniShield: -Омни щит-
+	// Donor: - Donor Item -
 	Playtester: - Предмет тестировщика -
 	Contributor: - Предмет участника -
 	NamelessDowned: Вы должны пройти испытание
