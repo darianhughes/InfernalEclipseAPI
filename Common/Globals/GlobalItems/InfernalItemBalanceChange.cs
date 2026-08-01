@@ -1465,8 +1465,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     //Bellerose
                     if (item.type == FindItem(thorium, "Bellerose"))
                     {
-                        item.useTime = 13;
-                        item.useAnimation = 13;
+                        item.useTime = 17;
+                        item.useAnimation = 17;
                     }
 
                     //Blooming BLade
@@ -1854,7 +1854,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                     if (GetItem(thorium, "WyvernSlayer", item))
                     {
-                        item.damage = 254;
+                        //item.damage = 254;
+                        ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
                     }
 
                     if (GetItem(thorium, "GolemsGaze", item))
@@ -2206,7 +2207,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                     if (GetItem(thorium, "LodeStoneQuickDraw", item))
                     {
-                        item.damage = 15;
+                        //item.damage = 15;
                     }
 
                     if (GetItem(thorium, "ValadiumBow", item))
@@ -2217,8 +2218,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                     if (GetItem(thorium, "ValadiumFoeBlaster", item))
                     {
-                        item.damage = 26;
-                        item.crit = 0;
+                        //item.damage = 26;
+                        //item.crit = 0;
                     }
 
                     if (GetItem(thorium, "OrichalcumPelter", item))
@@ -2591,7 +2592,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                     if (GetItem(thorium, "Cyclone", item))
                     {
-                        item.damage = 100;
+                        item.damage = 70;
                     }
 
                     if (GetItem(thorium, "DevilDagger", item))
