@@ -31,7 +31,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
             Item.noMelee = true;
             Item.autoReuse = true;
 
-            Item.damage = 100;
+            Item.damage = 125;
             Item.DamageType = DamageClass.Summon;
             Item.knockBack = 2f;
             Item.mana = 12;
@@ -509,11 +509,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
         {
             if (laserActive)
             {
-                modifiers.SourceDamage /= 4f;
+                modifiers.SourceDamage /= 1.0f;
             }
             else
             {
-                modifiers.SourceDamage *= 2.5f; // only effects the hand bashing
+                modifiers.SourceDamage *= 4.25f; // only effects the hand bashing
             }
         }
 
