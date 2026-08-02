@@ -171,7 +171,7 @@ ItemBalance: {
 ItemTooltip: {
 	BasicDamage: 基本伤害
 	OmniShield: -至高神盾-
-	// Donor: - Donor Item -
+	Donor: -捐赠者物品-
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
 	NamelessDowned: 你必须通过考验
@@ -553,7 +553,7 @@ ItemTooltip: {
 		Puzzles: Mr. Puzzles
 		cat: StarlightCat
 		Arkangel: Arkangel
-		// Minesky: Mineskye
+		Minesky: Mineskye
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -1495,7 +1495,7 @@ Items: {
 
 	GolemMusicBox: {
 		DisplayName: 音乐盒 (石巨人 - 炼狱模式)
-		Tooltip: 播放“Icon of the Sun“ 作者：PinpinNeon
+		Tooltip: 播放“Icon of the Sun” 作者：PinpinNeon
 	}
 
 	GrandThunderBirdRelic: {
@@ -2429,46 +2429,46 @@ Items: {
 	}
 
 	BlixerCore: {
-		// DisplayName: Blixer Core
-		/* Tooltip:
+		DisplayName: Blixer核心
+		Tooltip:
 			'''
-			Summons Blixer arms to protect you
-			Occupies 4 minion slots and there can only be one set
-			Has two modes that can be toggled on <right>
-			''' */
-		/* DefaultMode:
+			召唤Blixer手臂保护你
+			使用4个仆从栏并且只能召唤一个
+			<right>切换两种模式
 			'''
-			Default Mode:
-			A set of two hands and two cannons will be attached to the arms
-			Hands automatically attack nearby enemies within range
-			Cannons will fire towards your mouse cursor while using any item
-			''' */
-		/* LaserMode:
+		DefaultMode:
 			'''
-			Laser Mode:
-			A set of four cannons will be attached to the arms
-			Cannons will fire precise lasers towards the curson while using any item
-			''' */
+			默认模式：
+			两只手和两个加农炮会附着在手臂上
+			手会自动攻击附近距离内的敌怪
+			加农炮会在使用任意物品时朝你的光标方向射击
+			'''
+		LaserMode:
+			'''
+			激光模式：
+			四个加农炮会附着在手臂上
+			加农炮在使用任意物品时朝你的光标方向精准发射激光
+			'''
 	}
 
 	InterludeFourMusicBox: {
-		// DisplayName: Music Box (Interlude 4)
-		// Tooltip: Plays 'Calamity before the cynosure' by theforge129
+		DisplayName: 音乐盒 (插曲4)
+		Tooltip: 播放“Calamity before the cynosure” 作者：theforge129
 	}
 
 	LastBattleMusicBox: {
-		// DisplayName: Music Box (Devourer of Gods - Final Phase)
-		// Tooltip: Plays 'Last Battle (Ballos Mix)' by DM DOKURO
+		DisplayName: 音乐盒 (神明吞噬者 - 最终阶段)
+		Tooltip: 播放“Last Battle (Ballos Mix)” 作者：DM DOKURO
 	}
 
 	PlanteraMusicBox: {
-		// DisplayName: Music Box (Plantera - Infernum Mode)
-		// Tooltip: Plays 'Floral Animosity' by PinpinNeon
+		DisplayName: 音乐盒 (世纪之花 - 炼狱模式)
+		Tooltip: 播放“Floral Animosity” 作者：PinpinNeon
 	}
 
 	QueenSlimeMusicBox: {
-		// DisplayName: Music Box (Queen Slime - Infernum Mode)
-		// Tooltip: Plays 'Crowned Before One's End' by PinpinNeon
+		DisplayName: 音乐盒 (史莱姆皇后 - 炼狱模式)
+		Tooltip: 播放“Crowned Before One's End” 作者：PinpinNeon
 	}
 }
 
@@ -2520,9 +2520,9 @@ Projectiles: {
 	SplitFirebrandProjectile.DisplayName: 分裂火印弹幕
 	SplitFirebrandFlailProjectile.DisplayName: 分裂火印链枷弹幕
 	SplitFirebrandExplosion.DisplayName: 分裂火印爆炸
-	// BlixerArm.DisplayName: Blixer Arm
-	// BlixerHand.DisplayName: Blixer Hand
-	// BlixerCannonPro.DisplayName: Blixer Bullet
+	BlixerArm.DisplayName: Blixer手臂
+	BlixerHand.DisplayName: Blixer手
+	BlixerCannonPro.DisplayName: Blixer子弹
 }
 
 DiaryTooltip:
@@ -2870,12 +2870,12 @@ Configs: {
 		}
 
 		EnableCodebreakerInterlude: {
-			// Label: Codebreaker Interlude
-			/* Tooltip:
+			Label: 密码破译器插曲
+			Tooltip:
 				'''
-				Togggles the Codebreaker Interlude theme. 
-				This interlude will play once you place the final component of the Codebreaker for the first time.
-				''' */
+				切换密码破译器插曲
+				插曲会在你第一次安装密码破译器的最终组件时播放
+				'''
 		}
 	}
 
@@ -3380,8 +3380,8 @@ Buffs: {
 	}
 
 	BlixerBuff: {
-		// DisplayName: Blixer
-		// Description: "'I didn't design THIS! :('"
+		DisplayName: Blixer
+		Description: “我没设计这个！:(”
 	}
 }
 
@@ -3394,10 +3394,10 @@ Tiles: {
 	ProphecyMusicBoxTile.MapEntry: 音乐盒
 	MenuMusicBoxTile.MapEntry: 音乐盒
 	FinalFractalMusicBoxTile.MapEntry: 音乐盒
-	// InterludeFourMusicBoxTile.MapEntry: Music Box
-	// LastBattleMusicBoxTile.MapEntry: Music Box
-	// PlanteraMusicBoxTile.MapEntry: Music Box
-	// QueenSlimeMusicBoxTile.MapEntry: Music Box
+	InterludeFourMusicBoxTile.MapEntry: 音乐盒
+	LastBattleMusicBoxTile.MapEntry: 音乐盒
+	PlanteraMusicBoxTile.MapEntry: 音乐盒
+	QueenSlimeMusicBoxTile.MapEntry: 音乐盒
 }
 
 NPCs: {
@@ -3454,7 +3454,7 @@ BossName: {
 	LittleCat: Coming Soon... - ???
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
-	// Arsenal: Arsenal - Codebreaker Interlude
+	Arsenal: Arsenal - Codebreaker Interlude
 }
 
 PetDialog.DoGDSPTip: 激光网格会在他冲刺的同时生成！优先冲撞神吞，然后移动到安全位置——但别忘了那些火球！

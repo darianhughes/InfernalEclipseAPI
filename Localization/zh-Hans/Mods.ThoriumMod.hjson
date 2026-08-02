@@ -93,8 +93,8 @@ Items: {
 	}
 
 	ShroomachineGun: {
-		// DisplayName: Shroomachine Gun
-		// Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
+		DisplayName: 蘑菇机枪
+		Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 	}
 
 	CrystalHoney: {
