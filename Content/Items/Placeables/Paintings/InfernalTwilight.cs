@@ -126,6 +126,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "IceSpider",
             "Uncle Sciz",
             "cleo.",
+            "ABrickToTheHead",
 
             //Playtesters
             "Tencvin",

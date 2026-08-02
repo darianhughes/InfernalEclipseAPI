@@ -112,7 +112,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.SecretsOfTheShadows
                 }
                 else if (npc.ModNPC.Name.Contains("SubspaceSerpent"))
                 {
-                    npc.lifeMax += (int)(0.25f * npc.lifeMax);
+                    npc.lifeMax += (int)(0.15f * npc.lifeMax);
                 }
                 else if (npc.ModNPC.Name.Contains("Excavator"))
                 {

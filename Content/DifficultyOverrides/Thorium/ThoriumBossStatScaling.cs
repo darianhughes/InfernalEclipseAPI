@@ -23,6 +23,8 @@ using CalamityMod.Buffs.DamageOverTime;
 using InfernalEclipseAPI.Core.World;
 using ThoriumMod.NPCs.BossGraniteEnergyStorm;
 using CalamityMod.Events;
+using ThoriumMod.NPCs.BossTheGrandThunderBird;
+using ThoriumMod.NPCs.BossBuriedChampion;
 
 namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
 {
@@ -160,7 +162,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                if (npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish") )
+                if (npc.ModNPC.Name.Contains("QueenJellyfish") )
                 {
                     npc.lifeMax += npc.lifeMax;
                 }
@@ -168,6 +170,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                     npc.type == ModContent.NPCType<BoreanStrider>() || npc.type == ModContent.NPCType<BoreanStriderPopped>())
                 {
                     npc.lifeMax += (int)(npc.lifeMax * 0.5f);
+                }
+                if (npc.type == ModContent.NPCType<BuriedChampion>())
+                {
+                    npc.lifeMax += (int)(npc.lifeMax * 0.4f);
                 }
                 if (npc.type == ModContent.NPCType<ForgottenOne>() || npc.type == ModContent.NPCType<ForgottenOneCracked>() || npc.type == ModContent.NPCType<ForgottenOneReleased>())
                 {
@@ -191,7 +197,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                     {
                         npc.lifeMax += (int)(npc.lifeMax * 0.25f);
                     }
-                    if (npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
+                    if (npc.ModNPC.Name.Contains("QueenJellyfish"))
                     {
                         npc.lifeMax += (int)(0.5 * npc.lifeMax);
                     }
@@ -200,7 +206,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
                 }
                 else if (GetCalDifficulty("revengeance"))
                 {
-                    if (npc.ModNPC?.Name?.Contains("BuriedChampion") == true || npc.ModNPC.Name.Contains("QueenJellyfish"))
+                    if (npc.ModNPC.Name.Contains("QueenJellyfish"))
                     {
                         npc.lifeMax += (int)(0.25 * npc.lifeMax);
                     }
@@ -273,7 +279,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             if (BossRushEvent.BossRushActive)
                 return;
 
-            if (npc.ModNPC.Name.Contains("FallenBeholder") || npc.ModNPC.Name.Contains("BoreanStrider"))
+            if (npc.ModNPC.Name.Contains("FallenBeholder") || npc.ModNPC.Name.Contains("BoreanStrider") || npc.type == ModContent.NPCType<TheGrandThunderBird>() || npc.type == ModContent.NPCType<BuriedChampion>())
                 return;
 
             if (IsWorldLegendary())
@@ -282,24 +288,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Thorium
             }
             if (IsInfernumActive() || GetFargoDifficullty("MasochistMode"))
             {
-                if (npc.ModNPC.Name.Contains("TheGrandThunderBird"))
-                    npc.position += npc.velocity * 0.15f;
-                else
-                    npc.position += npc.velocity * 0.20f;
+                npc.position += npc.velocity * 0.20f;
             }
             else
             {
                 if (GetFargoDifficullty("EternityMode"))
                 {
-                    if (npc.ModNPC.Name.Contains("TheGrandThunderBird"))
-                        npc.position += npc.velocity * 0.05f;
-                    else
-                        npc.position += npc.velocity * 0.10f;
+                    npc.position += npc.velocity * 0.10f;
                 }
                 else if (GetCalDifficulty("death"))
                 {
-                    if (!npc.ModNPC.Name.Contains("TheGrandThunderBird"))
-                        npc.position += npc.velocity * 0.05f;
+                    npc.position += npc.velocity * 0.05f;
                 }
             }
         }

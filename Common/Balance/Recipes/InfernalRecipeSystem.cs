@@ -471,6 +471,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient(thorium.Find<ModItem>("Opal"), 3);
                     }
+
+                    if (recipe.HasResult<Portabulb>())
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("Petal"), 5);
+                    }
                 }
 
                 if (InfernalCrossmod.SOTS.Loaded)
@@ -1160,6 +1165,12 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         {
                             if (recipe.HasResult(bulb))
                                 recipe.DisableRecipe();
+
+                            if (recipe.HasIngredient(bulb))
+                            {
+                                recipe.RemoveIngredient(bulb.Type);
+                                recipe.AddIngredient<Portabulb>();
+                            }
                         }
 
                         string[] coatings =

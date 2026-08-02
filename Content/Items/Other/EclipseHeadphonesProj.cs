@@ -239,6 +239,15 @@ namespace InfernalEclipseAPI.Content.Items.Other
 
             new()
             {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.Arsenal"),
+                TrackName = "Arsenal",
+                HoverTextColor = () => new(155, 255, 255),
+                UnlockCondition = () => InfernalWorld.codebreakerCompleted,
+                BossIconTexture = ModContent.Request<Texture2D>("CalamityMod/Items/Armor/Vanity/DraedonMask")
+            },
+
+            new()
+            {
                 HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.Interlude4"),
                 TrackName = "Interlude04",
                 HoverTextColor = () => Color.DarkRed,

@@ -23,6 +23,7 @@ using CalamityMod.Events;
 using Terraria.GameContent.Events;
 using InfernalEclipseAPI.Content.Items.Consumables;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs
 {
@@ -62,6 +63,18 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     if (items[i] == null || items[i].IsAir)
                     {
                         items[i] = new Item(ModContent.ItemType<BirthdayCake>());
+                        break;
+                    }
+                }
+            }
+
+            if (npc.type == NPCID.Princess && DownedBossSystem.downedCalamitas && DownedBossSystem.downedExoMechs)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i] == null || items[i].IsAir)
+                    {
+                        items[i] = new Item(ModContent.ItemType<InterludeFourMusicBox>());
                         break;
                     }
                 }

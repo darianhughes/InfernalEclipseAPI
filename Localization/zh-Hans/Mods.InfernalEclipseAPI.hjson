@@ -2450,6 +2450,26 @@ Items: {
 			Cannons will fire precise lasers towards the curson while using any item
 			''' */
 	}
+
+	InterludeFourMusicBox: {
+		// DisplayName: Music Box (Interlude 4)
+		// Tooltip: Plays 'Calamity before the cynosure' by theforge129
+	}
+
+	LastBattleMusicBox: {
+		// DisplayName: Music Box (Devourer of Gods - Final Phase)
+		// Tooltip: Plays 'Last Battle (Ballos Mix)' by DM DOKURO
+	}
+
+	PlanteraMusicBox: {
+		// DisplayName: Music Box (Plantera - Infernum Mode)
+		// Tooltip: Plays 'Floral Animosity' by PinpinNeon
+	}
+
+	QueenSlimeMusicBox: {
+		// DisplayName: Music Box (Queen Slime - Infernum Mode)
+		// Tooltip: Plays 'Crowned Before One's End' by PinpinNeon
+	}
 }
 
 Projectiles: {
@@ -2850,7 +2870,7 @@ Configs: {
 		}
 
 		EnableCodebreakerInterlude: {
-			// Label: Enable Codebreaker Interlude
+			// Label: Codebreaker Interlude
 			/* Tooltip:
 				'''
 				Togggles the Codebreaker Interlude theme. 
@@ -3374,6 +3394,10 @@ Tiles: {
 	ProphecyMusicBoxTile.MapEntry: 音乐盒
 	MenuMusicBoxTile.MapEntry: 音乐盒
 	FinalFractalMusicBoxTile.MapEntry: 音乐盒
+	// InterludeFourMusicBoxTile.MapEntry: Music Box
+	// LastBattleMusicBoxTile.MapEntry: Music Box
+	// PlanteraMusicBoxTile.MapEntry: Music Box
+	// QueenSlimeMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3430,6 +3454,7 @@ BossName: {
 	LittleCat: Coming Soon... - ???
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
+	// Arsenal: Arsenal - Codebreaker Interlude
 }
 
 PetDialog.DoGDSPTip: 激光网格会在他冲刺的同时生成！优先冲撞神吞，然后移动到安全位置——但别忘了那些火球！
