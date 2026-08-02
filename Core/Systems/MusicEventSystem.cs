@@ -6,6 +6,7 @@ using CalamityMod.Events;
 using Terraria.ModLoader.IO;
 using InfernalEclipseAPI.Core.Netcode;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.World;
 
 namespace InfernalEclipseAPI.Core.Systems
 {
@@ -47,6 +48,9 @@ namespace InfernalEclipseAPI.Core.Systems
                 MusicEventEntry entry = new(eventId, MusicLoader.GetMusicSlot(songName), length, introSilence ?? TimeSpan.Zero, outroSilence ?? TimeSpan.Zero, shouldPlay, enabled);
                 EventCollection.Add(entry);
             }
+
+            // Codebreaker Interlude
+            AddEntry("CodebreakerInterlude", "InfernalEclipseAPI/Assets/Music/Arsenal", TimeSpan.FromSeconds(84.07945578231292), () => InfernalWorld.codebreakerCompleted, () => InfernalConfig.Instance.EnableCodebreakerInterlude);
 
             // Interlude 4
             AddEntry("Interlude4", "InfernalEclipseAPI/Assets/Music/Interlude04", TimeSpan.FromSeconds(300.434), () => DownedBossSystem.downedExoMechs && DownedBossSystem.downedCalamitas, () => ModContent.GetInstance<InfernalConfig>().EnableInterlude4);

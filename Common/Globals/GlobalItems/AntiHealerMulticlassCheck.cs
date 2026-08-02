@@ -4,9 +4,11 @@ using InfernalEclipseAPI.Core.Players.ThoriumPlayerOverrides.ThoriumMulticlassNe
 using InfernalEclipseAPI.Core.DamageClasses;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.Configs;
+using ThoriumMod.Utilities;
 
 namespace InfernalEclipseAPI.Common.GlobalItems
 {
+    [JITWhenModsEnabled("ThoriumMod")]
     [ExtendsFromMod("ThoriumMod")]
     public class AntiHealerMulticlassCheck : GlobalItem
     {
@@ -27,6 +29,20 @@ namespace InfernalEclipseAPI.Common.GlobalItems
                 anti.switchToHealerPenaltyTimer = ThoriumMulticlassPlayerNerfs.PenaltyDuration;
 
             return base.UseItem(item, player);
+        }
+
+        public static void ZeroHealBonus(NPC npc)
+        {
+            foreach (Player player in Main.ActivePlayers)
+            {
+                if (!player.active || player.dead || player.ghost)
+                    continue;
+
+                if (!npc.WithinRange(player.Center, 10000f))
+                    continue;
+
+                player.GetThoriumPlayer().healBonus = -25;
+            }
         }
 
         private static bool IsHealerWeaponOrTool(Item item)

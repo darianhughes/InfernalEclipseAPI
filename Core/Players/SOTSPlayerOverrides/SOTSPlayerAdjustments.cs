@@ -1,9 +1,14 @@
 ﻿using CalamityMod;
+using CalamityMod.CalPlayer;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.Systems;
+using Microsoft.Xna.Framework;
 using SOTS;
+using SOTS.Common.ModPlayers;
 using SOTS.Items.Wings;
+using SOTS.NPCs.Boss;
 using SOTS.Void;
+using Terraria.GameContent.Events;
 using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides

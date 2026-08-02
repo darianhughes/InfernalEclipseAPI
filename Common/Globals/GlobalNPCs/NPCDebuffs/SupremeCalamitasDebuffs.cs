@@ -1,4 +1,5 @@
 ﻿using CalamityMod.NPCs.SupremeCalamitas;
+using InfernalEclipseAPI.Common.GlobalItems;
 using InfernalEclipseAPI.Content.Buffs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
@@ -44,6 +45,11 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs
                         continue;
 
                     player.AddBuff(ModContent.BuffType<BrimstoneDesperation>(), 2);
+
+                    if (InfernalCrossmod.Thorium.Loaded)
+                    {
+                        AntiHealerMulticlassCheck.ZeroHealBonus(npc);
+                    }
                 }
             }
 

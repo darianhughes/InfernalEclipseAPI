@@ -92,6 +92,11 @@ Items: {
 		Tooltip: Steals 3 life
 	}
 
+	ShroomachineGun: {
+		DisplayName: Shroomachine Gun
+		Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
+	}
+
 	CrystalHoney: {
 		DisplayName: Crystal Honey
 		Tooltip:
@@ -386,42 +391,6 @@ Items: {
 			12% decreased non-radiant damage
 			12% increased radiant damage
 			15% decreased mana cost
-			Healing spells will heal an additional 1 life
-			'''
-	}
-
-	FallenPaladinFaceguard: {
-		DisplayName: Fallen Paladin's Faceguard
-		Tooltip:
-			'''
-			10% decreased non-radiant damage
-			10% increased radiant damage
-			3% increased radiant critical strike chance
-			Life regeneration rate increased
-			'''
-	}
-
-	FallenPaladinCuirass: {
-		DisplayName: Fallen Paladin's Cuirass
-		Tooltip:
-			'''
-			20% decreased non-radiant damage
-			20% increased radiant damage
-			8% increased radiant critical strike chance
-			15% increased damage reduction
-			Healing spells will heal an additional 2 life
-			'''
-	}
-
-	FallenPaladinGreaves: {
-		DisplayName: Fallen Paladin's Greaves
-		Tooltip:
-			'''
-			15% decreased non-radiant damage
-			15% increased radiant damage
-			4% increased radiant critical strike chance
-			15% decreased mana cost
-			20% increased movement speed
 			Healing spells will heal an additional 1 life
 			'''
 	}

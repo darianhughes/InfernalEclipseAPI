@@ -59,7 +59,7 @@ Items: {
 
 	ElementalBreastplate: {
 		DisplayName: 元素胸甲
-		Tooltip: 
+		Tooltip:
 			'''
 			增加10%近战和召唤伤害
 			增加4点生命恢复速度

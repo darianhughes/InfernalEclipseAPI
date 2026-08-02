@@ -115,7 +115,7 @@ DifficultyUI: {
 
 WelcomeMessage: {
 	Welcome: 感谢游玩《诸神黄昏：炼狱蚀光》模组包！
-	TBRNotice:注意：检测到已启用瑟银冥界，请在兼容性配置中将生命、伤害与速度倍率均设为 1（除非你想要更高难度），该模组会根据当前难度自动调整瑟银 Boss 属性。
+	TBRNotice: 注意：检测到已启用瑟银冥界，请在兼容性配置中将生命、伤害与速度倍率均设为 1（除非你想要更高难度），该模组会根据当前难度自动调整瑟银 Boss 属性。
 	SoulsWarning:
 		'''
 		警告：检测到您已启用 Fargo魂石模组！
@@ -171,6 +171,7 @@ ItemBalance: {
 ItemTooltip: {
 	BasicDamage: 基本伤害
 	OmniShield: -至高神盾-
+	// Donor: - Donor Item -
 	Playtester: -测试者物品-
 	Contributor: -贡献者物品-
 	NamelessDowned: 你必须通过考验
@@ -552,6 +553,7 @@ ItemTooltip: {
 		Puzzles: Mr. Puzzles
 		cat: StarlightCat
 		Arkangel: Arkangel
+		// Minesky: Mineskye
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -641,7 +643,7 @@ ItemTooltip: {
 			被召唤师鞭尖端命中的敌怪会受到{0}%额外伤害并被诅咒，生成至多[c/{1}:{2}]个微粒
 			手持鞭时<right>将微粒送向你的光标处，伤害附近的敌怪
 			击杀被诅咒的敌怪或持续伤害Boss会释放一只造成40点伤害的爆炸鬼魂，也会诅咒敌怪
-			''' 
+			'''
 		CyanPearl: 减半哨兵受到的召唤伤害惩罚
 		Watch: 你的哨兵会永久存在，并在两分钟内增加最多15%伤害
 
@@ -2425,6 +2427,49 @@ Items: {
 			长按SHIFT键以查看完整致谢名单
 			'''
 	}
+
+	BlixerCore: {
+		// DisplayName: Blixer Core
+		/* Tooltip:
+			'''
+			Summons Blixer arms to protect you
+			Occupies 4 minion slots and there can only be one set
+			Has two modes that can be toggled on <right>
+			''' */
+		/* DefaultMode:
+			'''
+			Default Mode:
+			A set of two hands and two cannons will be attached to the arms
+			Hands automatically attack nearby enemies within range
+			Cannons will fire towards your mouse cursor while using any item
+			''' */
+		/* LaserMode:
+			'''
+			Laser Mode:
+			A set of four cannons will be attached to the arms
+			Cannons will fire precise lasers towards the curson while using any item
+			''' */
+	}
+
+	InterludeFourMusicBox: {
+		// DisplayName: Music Box (Interlude 4)
+		// Tooltip: Plays 'Calamity before the cynosure' by theforge129
+	}
+
+	LastBattleMusicBox: {
+		// DisplayName: Music Box (Devourer of Gods - Final Phase)
+		// Tooltip: Plays 'Last Battle (Ballos Mix)' by DM DOKURO
+	}
+
+	PlanteraMusicBox: {
+		// DisplayName: Music Box (Plantera - Infernum Mode)
+		// Tooltip: Plays 'Floral Animosity' by PinpinNeon
+	}
+
+	QueenSlimeMusicBox: {
+		// DisplayName: Music Box (Queen Slime - Infernum Mode)
+		// Tooltip: Plays 'Crowned Before One's End' by PinpinNeon
+	}
 }
 
 Projectiles: {
@@ -2475,6 +2520,9 @@ Projectiles: {
 	SplitFirebrandProjectile.DisplayName: 分裂火印弹幕
 	SplitFirebrandFlailProjectile.DisplayName: 分裂火印链枷弹幕
 	SplitFirebrandExplosion.DisplayName: 分裂火印爆炸
+	// BlixerArm.DisplayName: Blixer Arm
+	// BlixerHand.DisplayName: Blixer Hand
+	// BlixerCannonPro.DisplayName: Blixer Bullet
 }
 
 DiaryTooltip:
@@ -2819,6 +2867,15 @@ Configs: {
 		DisableUnnecessaryContent: {
 			Label: 禁用不必要的物品
 			Tooltip: ""
+		}
+
+		EnableCodebreakerInterlude: {
+			// Label: Codebreaker Interlude
+			/* Tooltip:
+				'''
+				Togggles the Codebreaker Interlude theme. 
+				This interlude will play once you place the final component of the Codebreaker for the first time.
+				''' */
 		}
 	}
 
@@ -3321,6 +3378,11 @@ Buffs: {
 		DisplayName: 碎晶鞭标记
 		Description: Mods.InfernalEclipseAPI.Buffs.PrismBreakTag.Description
 	}
+
+	BlixerBuff: {
+		// DisplayName: Blixer
+		// Description: "'I didn't design THIS! :('"
+	}
 }
 
 Tiles: {
@@ -3332,6 +3394,10 @@ Tiles: {
 	ProphecyMusicBoxTile.MapEntry: 音乐盒
 	MenuMusicBoxTile.MapEntry: 音乐盒
 	FinalFractalMusicBoxTile.MapEntry: 音乐盒
+	// InterludeFourMusicBoxTile.MapEntry: Music Box
+	// LastBattleMusicBoxTile.MapEntry: Music Box
+	// PlanteraMusicBoxTile.MapEntry: Music Box
+	// QueenSlimeMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3388,6 +3454,7 @@ BossName: {
 	LittleCat: Coming Soon... - ???
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
+	// Arsenal: Arsenal - Codebreaker Interlude
 }
 
 PetDialog.DoGDSPTip: 激光网格会在他冲刺的同时生成！优先冲撞神吞，然后移动到安全位置——但别忘了那些火球！

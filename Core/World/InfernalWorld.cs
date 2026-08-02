@@ -23,6 +23,7 @@ namespace InfernalEclipseAPI.Core.World
         public static bool tier6Downed = false;
         public static bool providenceNightDowned = false;
         public static bool cnidrionDowned = false;
+        public static bool codebreakerCompleted = false;
 
         public static int dreamEaterAttempts = 0;
 
@@ -38,6 +39,7 @@ namespace InfernalEclipseAPI.Core.World
             tier6Downed = false;
             providenceNightDowned = false;
             cnidrionDowned = false;
+            codebreakerCompleted = false;
 
             dreamEaterAttempts = 0;
         }
@@ -124,6 +126,8 @@ namespace InfernalEclipseAPI.Core.World
             tag["tier6Downed"] = tier6Downed;
             tag["providenceNightDowned"] = providenceNightDowned;
             tag["cnidrionDowned"] = cnidrionDowned;
+            tag["codebreakerCompleted"] = codebreakerCompleted;
+
             tag["dreamEaterAttempts"] = dreamEaterAttempts;
         }
 
@@ -142,6 +146,7 @@ namespace InfernalEclipseAPI.Core.World
             GetData(ref tier6Downed, "tier6Downed", tag);
             GetData(ref providenceNightDowned, "providenceNightDowned", tag);
             GetData(ref cnidrionDowned, "cnidrionDowned", tag);
+            GetData(ref codebreakerCompleted, "codebreakerCompleted", tag);
 
             if (tag.TryGet("RagnarokModeEnabled", out bool value))
                 RagnarokModeEnabled = value;
@@ -173,6 +178,8 @@ namespace InfernalEclipseAPI.Core.World
             writer.Write(tier6Downed);
             writer.Write(providenceNightDowned);
             writer.Write(cnidrionDowned);
+            writer.Write(codebreakerCompleted);
+
             writer.Write(dreamEaterAttempts);
         }
 
@@ -190,6 +197,8 @@ namespace InfernalEclipseAPI.Core.World
             tier6Downed = reader.ReadBoolean();
             providenceNightDowned = reader.ReadBoolean();
             cnidrionDowned = reader.ReadBoolean();
+            codebreakerCompleted = reader.ReadBoolean();
+
             dreamEaterAttempts = reader.ReadInt32();
         }
     }

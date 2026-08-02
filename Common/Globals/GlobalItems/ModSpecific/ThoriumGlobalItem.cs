@@ -215,17 +215,21 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     item.defense = 6;
                 }
 
-                if (item.type == ItemType<FallenPaladinFaceguard>())
+                //remove if helhiem ever removes thier fallen paladins nerf as this brings it back to Thorium vanilla
+                if (InfernalCrossmod.ThoriumRework.Loaded)
                 {
-                    item.defense = 20;
-                }
-                if (item.type == ItemType<FallenPaladinCuirass>())
-                {
-                    item.defense = 28;
-                }
-                if (item.type == ItemType<FallenPaladinGreaves>())
-                {
-                    item.defense = 22;
+                    if (item.type == ItemType<FallenPaladinFaceguard>())
+                    {
+                        item.defense = 18;
+                    }
+                    if (item.type == ItemType<FallenPaladinCuirass>())
+                    {
+                        item.defense = 24;
+                    }
+                    if (item.type == ItemType<FallenPaladinGreaves>())
+                    {
+                        item.defense = 20;
+                    }
                 }
 
                 if (item.type == ItemType<WhisperingHood>())
@@ -525,22 +529,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.1f;
                 }
 
-                if (item.type == ItemType<FallenPaladinFaceguard>())
-                {
-                    player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) -= 0.2f;
-                    player.GetDamage(DamageClass.Generic) += 0.1f;
-                }
-                if (item.type == ItemType<FallenPaladinCuirass>())
-                {
-                    player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) -= 0.2f;
-                    player.GetDamage(DamageClass.Generic) += 0.1f;
-                }
-                if (item.type == ItemType<FallenPaladinGreaves>())
-                {
-                    player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) -= 0.2f;
-                    player.GetDamage(DamageClass.Generic) += 0.1f;
-                }
-
                 if (item.type == ItemType<WhisperingHood>())
                 {
                     player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) -= 0.1f;
@@ -620,8 +608,24 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                             player.wingTime -= 1f;
                         }
                     }
+
+                    //remove if helhiem ever removes thier fallen paladins nerf as this brings it back to Thorium vanilla
+                    if (item.type == ItemType<FallenPaladinFaceguard>())
+                    {
+                        player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.1f;
+                        player.GetDamage(DamageClass.Generic) -= 0.05f;
+                    }
+                    if (item.type == ItemType<FallenPaladinCuirass>())
+                    {
+                        player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.1f;
+                        player.GetDamage(DamageClass.Generic) -= 0.05f;
+                    }
+                    if (item.type == ItemType<FallenPaladinGreaves>())
+                    {
+                        player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.05f;
+                    }
                 }
-                
+
                 /*
                 if (InfernalCrossmod.RagnarokMod.Loaded)
                 {

@@ -92,6 +92,11 @@ Items: {
 		Tooltip: 吸取3生命值
 	}
 
+	ShroomachineGun: {
+		// DisplayName: Shroomachine Gun
+		// Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
+	}
+
 	CrystalHoney: {
 		DisplayName: 蜂蜜水晶
 		Tooltip:
@@ -392,42 +397,6 @@ Items: {
 			降低12%非光辉伤害
 			增加12%光辉伤害
 			降低15%魔力消耗
-			治疗法术会额外治疗1点生命值
-			'''
-	}
-
-	FallenPaladinFaceguard: {
-		DisplayName: 堕落圣骑士面盔
-		Tooltip:
-			'''
-			降低10%非光辉伤害
-			增加10%光辉伤害
-			增加3%光辉暴击率
-			生命再生速率增加
-			'''
-	}
-
-	FallenPaladinCuirass: {
-		DisplayName: 堕落圣骑士胸甲
-		Tooltip:
-			'''
-			降低20%非光辉伤害
-			增加20%光辉伤害
-			增加8%光辉暴击率
-			增加15%伤害减免
-			治疗法术会额外治疗2点生命值
-			'''
-	}
-
-	FallenPaladinGreaves: {
-		DisplayName: 堕落圣骑士护胫
-		Tooltip:
-			'''
-			降低15%非光辉伤害
-			增加15%光辉伤害
-			增加4%光辉暴击率
-			降低15%魔力消耗
-			增加20%移动速度
 			治疗法术会额外治疗1点生命值
 			'''
 	}

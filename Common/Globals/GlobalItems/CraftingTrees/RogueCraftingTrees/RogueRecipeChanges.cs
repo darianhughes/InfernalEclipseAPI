@@ -128,6 +128,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     electriciansGlove.AddIngredient(ItemID.HallowedBar, 5);
                     electriciansGlove.AddIngredient(thorium.Find<ModItem>("StrangeAlienTech"));
                 }
+                electriciansGlove.AddTile(TileID.MythrilAnvil);
                 electriciansGlove.Register();
             }
         }

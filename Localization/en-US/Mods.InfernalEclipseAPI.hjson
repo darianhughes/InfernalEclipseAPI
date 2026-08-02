@@ -171,6 +171,7 @@ ItemBalance: {
 ItemTooltip: {
 	BasicDamage: basic damage
 	OmniShield: -Omni Shield-
+	Donor: - Donor Item -
 	Playtester: - Playtester Item -
 	Contributor: - Contributor Item -
 	NamelessDowned: You must pass the test
@@ -552,6 +553,7 @@ ItemTooltip: {
 		Puzzles: Mr. Puzzles
 		cat: StarlightCat
 		Arkangel: Arkangel
+		Minesky: Mineskye
 	}
 
 	MergedCraftingTreeTooltip: {
@@ -2430,6 +2432,49 @@ Items: {
 			Hold SHIFT to see the full list of credits
 			'''
 	}
+
+	BlixerCore: {
+		DisplayName: Blixer Core
+		Tooltip:
+			'''
+			Summons Blixer arms to protect you
+			Occupies 4 minion slots and there can only be one set
+			Has two modes that can be toggled on <right>
+			'''
+		DefaultMode:
+			'''
+			Default Mode:
+			A set of two hands and two cannons will be attached to the arms
+			Hands automatically attack nearby enemies within range
+			Cannons will fire towards your mouse cursor while using any item
+			'''
+		LaserMode:
+			'''
+			Laser Mode:
+			A set of four cannons will be attached to the arms
+			Cannons will fire precise lasers towards the curson while using any item
+			'''
+	}
+
+	InterludeFourMusicBox: {
+		DisplayName: Music Box (Interlude 4)
+		Tooltip: Plays 'Calamity before the cynosure' by theforge129
+	}
+
+	LastBattleMusicBox: {
+		DisplayName: Music Box (Devourer of Gods - Final Phase)
+		Tooltip: Plays 'Last Battle (Ballos Mix)' by DM DOKURO
+	}
+
+	PlanteraMusicBox: {
+		DisplayName: Music Box (Plantera - Infernum Mode)
+		Tooltip: Plays 'Floral Animosity' by PinpinNeon
+	}
+
+	QueenSlimeMusicBox: {
+		DisplayName: Music Box (Queen Slime - Infernum Mode)
+		Tooltip: Plays 'Crowned Before One's End' by PinpinNeon
+	}
 }
 
 Projectiles: {
@@ -2480,6 +2525,9 @@ Projectiles: {
 	SplitFirebrandProjectile.DisplayName: Split Firebrand Projectile
 	SplitFirebrandFlailProjectile.DisplayName: Split Firebrand Flail Projectile
 	SplitFirebrandExplosion.DisplayName: Split Firebrand Explosion
+	BlixerArm.DisplayName: Blixer Arm
+	BlixerHand.DisplayName: Blixer Hand
+	BlixerCannonPro.DisplayName: Blixer Bullet
 }
 
 DiaryTooltip:
@@ -2824,6 +2872,15 @@ Configs: {
 		DisableUnnecessaryContent: {
 			Label: Disable Unnecessary Content
 			Tooltip: ""
+		}
+
+		EnableCodebreakerInterlude: {
+			Label: Codebreaker Interlude
+			Tooltip:
+				'''
+				Togggles the Codebreaker Interlude theme. 
+				This interlude will play once you place the final component of the Codebreaker for the first time.
+				'''
 		}
 	}
 
@@ -3326,6 +3383,11 @@ Buffs: {
 		DisplayName: Prism Break Tag
 		Description: Mods.InfernalEclipseAPI.Buffs.PrismBreakTag.Description
 	}
+
+	BlixerBuff: {
+		DisplayName: Blixer
+		Description: "'I didn't design THIS! :('"
+	}
 }
 
 Tiles: {
@@ -3337,6 +3399,10 @@ Tiles: {
 	ProphecyMusicBoxTile.MapEntry: Music Box
 	MenuMusicBoxTile.MapEntry: Music Box
 	FinalFractalMusicBoxTile.MapEntry: Music Box
+	InterludeFourMusicBoxTile.MapEntry: Music Box
+	LastBattleMusicBoxTile.MapEntry: Music Box
+	PlanteraMusicBoxTile.MapEntry: Music Box
+	QueenSlimeMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3393,6 +3459,7 @@ BossName: {
 	LittleCat: Coming Soon... - ???
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
+	Arsenal: Arsenal - Codebreaker Interlude
 }
 
 PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!

@@ -54,7 +54,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
             string modName = item.ModItem?.Mod.Name;
             string itemName = item.ModItem?.Name;
 
-            if (modName == "ThoriumMod" && itemName == "MyceliumGattlingGun")
+            if (modName == "ThoriumMod" && itemName == "ShroomachineGun")
             {
                 int itemId = item.type;
 
@@ -89,7 +89,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
 
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (item.ModItem?.Mod?.Name == "ThoriumMod" && item.ModItem.Name == "MyceliumGattlingGun")
+            if (item.ModItem?.Mod?.Name == "ThoriumMod" && item.ModItem.Name == "ShroomachineGun")
             {
                 int itemId = item.type;
 
@@ -120,7 +120,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
                 {
                     // Play normal shot sound immediately
                     if (ModLoader.TryGetMod("ThoriumMod", out Mod thorium) &&
-                        thorium.TryFind("MyceliumGattlingGun", out ModItem thoriumItem) &&
+                        thorium.TryFind("ShroomachineGun", out ModItem thoriumItem) &&
                         thoriumItem.Item.UseSound is SoundStyle thoriumSound)
                     {
                         SoundEngine.PlaySound(thoriumSound, player.position);
@@ -189,7 +189,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.ItemReworks
                 });
             }
 
-            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.ModItem.Name == "MyceliumGattlingGun")
+            if (item.ModItem != null && item.ModItem.Mod.Name == "ThoriumMod" && item.ModItem.Name == "ShroomachineGun")
             {
                 tooltips.Add(new TooltipLine(Mod, "AmmoChange", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.AmmoConversion.Mycelium"))
                 {

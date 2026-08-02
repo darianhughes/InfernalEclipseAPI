@@ -11,6 +11,7 @@ using static InfernalEclipseAPI.Core.Systems.InfernalCrossmod;
 using ReLogic.Content;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
+using Terraria;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -406,6 +407,14 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     //    entity.idStaticNPCHitCooldown = 1;
                     //}
                 }
+
+                if (entity.type == thorium.Find<ModProjectile>("WyvernSlayerPro2").Type)
+                {
+                    entity.usesLocalNPCImmunity = true;
+                    entity.localNPCHitCooldown = 40;
+
+                    entity.usesIDStaticNPCImmunity = false;
+                }
             }
             #endregion
 
@@ -644,6 +653,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
                         else
                             projectile.damage /= 3;
                     }
+
+                    if (projectile.ModProjectile.Name == "WyvernSlayerPro2")
+                    {
+                        projectile.damage /= 2;
+                    }
                 }
 
                 if (projectile.ModProjectile.Mod.Name == "CalamityAmmo" && InfernalConfig.Instance.CalamityBalanceChanges) 
@@ -746,6 +760,24 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 else if (type == evilSpearType)
                     target.AddBuff(ModContent.BuffType<BrainRot>(), 60);
             }
+            #endregion
+
+            #region Thorium
+            if (!ModLoader.TryGetMod("ThoriumMod", out var thorium))
+                return;
+
+            if (!thorium.TryFind<ModProjectile>("WyvernSlayerPro2", out var shockwaveProj)) return;
+
+
+            // Kill Thorium's forced global iframes
+            target.immune[projectile.owner] = 0;
+
+            // Force local NPC immunity
+            projectile.usesLocalNPCImmunity = true;
+            projectile.usesIDStaticNPCImmunity = false;
+
+            // Adjust this to taste
+            projectile.localNPCHitCooldown = 40;
             #endregion
         }
 
