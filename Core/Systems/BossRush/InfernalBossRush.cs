@@ -110,7 +110,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                         DownedBossSystem.startedBossRushAtLeastOnce = true;
                 }, permittedNPCs: [SoulsNPC("TrojanSquirrelArms"), SoulsNPC("TrojanSquirrelHead")]));
 
-                if (InfernalCrossmod.Thorium.Loaded)
+                if (InfernalCrossmod.Thorium.Loaded && (!InfernalCrossmod.ThoriumRework.Loaded || InfernalCrossmod.ThoriumRework.Mod?.Version > Version.Parse("1.6.1")))
                 {
                     Bosses.Add(new Boss(ThoriumNPC("TheGrandThunderBird"), TimeChangeContext.Day, permittedNPCs: new int[] { ThoriumNPC("StormHatchling"), ThoriumNPC("TheGrandThunderBird") }));
                 }
@@ -119,7 +119,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                     permittedNPCs: new int[] { NPCID.BlueSlime, NPCID.YellowSlime, NPCID.PurpleSlime, NPCID.RedSlime, NPCID.GreenSlime, NPCID.RedSlime, NPCID.IceSlime, NPCID.UmbrellaSlime, NPCID.Pinky, NPCID.SlimeSpiked, NPCID.RainbowSlime,
                                                 NPCType<KingSlimeJewelRuby>(), NPCType<Ninja>() }));
             }
-            else if (InfernalCrossmod.Thorium.Loaded)
+            else if (InfernalCrossmod.Thorium.Loaded && (!InfernalCrossmod.ThoriumRework.Loaded || InfernalCrossmod.ThoriumRework.Mod?.Version > Version.Parse("1.6.1")))
             {
                 Bosses.Add(new Boss(ThoriumNPC("TheGrandThunderBird"), TimeChangeContext.Day, spawnContext: type => 
                 { 
@@ -148,7 +148,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
 
             if (ModLoader.TryGetMod("CalamityAddon", out Mod warMachine) && InfernalConfig.Instance.WarMachineBossInBossRush)
             {
-                Bosses.Add(new Boss(warMachine.Find<ModNPC>("WulfrumMothership").Type,
+                Bosses.Add(new Boss(warMachine.Find<ModNPC>("WulfrumMothership").Type, TimeChangeContext.Day,
                     permittedNPCs: new int[] { NPCType<WulfrumDrone>(), NPCType<WulfrumHovercraft>(), NPCType<WulfrumRover>(), NPCType<WulfrumGyrator>(),
                         warMachine.Find<ModNPC>("WulfrumTank").Type, warMachine.Find<ModNPC>("WulfrumWormBody").Type, warMachine.Find<ModNPC>("WulfrumWormHead").Type, warMachine.Find<ModNPC>("WulfrumWormTail").Type}));
             }
@@ -387,7 +387,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 Bosses.Add(new Boss(HomewardNPC("MarquisMoonsquid"), permittedNPCs: [HomewardNPC("MarquisMoonsquid_Minion")]));
             }
 
-            if (InfernalCrossmod.Thorium.Loaded)
+            if (InfernalCrossmod.Thorium.Loaded && (!InfernalCrossmod.ThoriumRework.Loaded || InfernalCrossmod.ThoriumRework.Mod?.Version > Version.Parse("1.6.1")))
             {
                 Bosses.Add(new Boss(ThoriumNPC("BuriedChampion"), permittedNPCs: [ThoriumNPC("FallenChampion2")]));
 

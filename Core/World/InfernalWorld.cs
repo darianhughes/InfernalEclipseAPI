@@ -90,7 +90,15 @@ namespace InfernalEclipseAPI.Core.World
             }
 
             if (BossRushEvent.BossRushActive)
+            {
                 CustomBossRushDialogue.Tick();
+
+                if (InfernalCrossmod.FargosSouls.Loaded || InfernalCrossmod.Thorium.Loaded) 
+                {
+                    if (BossRushEvent.BossRushSpawnCountdown == 179 && BossRushEvent.EndTimer == 0 && (BossRushEvent.CurrentlyFoughtBoss == (InfernalCrossmod.FargosSouls.Loaded ? InfernalBossRush.SoulsNPC("TrojanSquirrel") : (InfernalCrossmod.Thorium.Loaded ? InfernalBossRush.ThoriumNPC("TheGrandThunderBird") : NPCID.KingSlime))))
+                        BossRushEvent.CreateTierAnimation(1);
+                }
+            }
         }
 
         public override void OnWorldLoad()

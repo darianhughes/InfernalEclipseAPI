@@ -215,23 +215,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     item.defense = 6;
                 }
 
-                //remove if helhiem ever removes thier fallen paladins nerf as this brings it back to Thorium vanilla
-                if (InfernalCrossmod.ThoriumRework.Loaded)
-                {
-                    if (item.type == ItemType<FallenPaladinFaceguard>())
-                    {
-                        item.defense = 18;
-                    }
-                    if (item.type == ItemType<FallenPaladinCuirass>())
-                    {
-                        item.defense = 24;
-                    }
-                    if (item.type == ItemType<FallenPaladinGreaves>())
-                    {
-                        item.defense = 20;
-                    }
-                }
-
                 if (item.type == ItemType<WhisperingHood>())
                 {
                     item.defense = 10;
