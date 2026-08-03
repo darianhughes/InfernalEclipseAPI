@@ -2,8 +2,10 @@
 using System.IO;
 using CalamityMod;
 using CalamityMod.Items;
+using CalamityMod.Items.Materials;
 using CalamityMod.NPCs;
 using InfernalEclipseAPI.Core.Players;
+using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -97,7 +99,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
 
         public override void AddRecipes()
         {
-            Recipe recipe = CreateRecipe();
+            CreateRecipe()
+                .AddIngredient<UnholyCore>(8)
+                .AddIngredient<AshesofCalamity>(5)
+                .AddIngredient<EssenceofHavoc>(3)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 
@@ -609,8 +616,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
 
     public class BlixerBuff : ModBuff
     {
-        public override string Texture => "CalamityMod/Buffs/DamageOverTime/VulnerabilityHex";
-
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = true;
