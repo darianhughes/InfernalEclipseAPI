@@ -12,6 +12,7 @@ using ReLogic.Content;
 using System.Collections.Generic;
 using InfernalEclipseAPI.Core.Configs;
 using Terraria;
+using static ThrowerUnification.ModCompatibility;
 
 namespace InfernalEclipseAPI.Common.Projectiles
 {
@@ -738,21 +739,21 @@ namespace InfernalEclipseAPI.Common.Projectiles
             #endregion
 
             #region Thorium
-            if (!ModLoader.TryGetMod("ThoriumMod", out var thorium))
-                return;
+            if (InfernalCrossmod.Thorium.Loaded && InfernalConfig.Instance.ThoriumBalanceChangess)
+            {
+                if (type == InfernalCrossmod.Thorium.Mod.Find<ModProjectile>("WyvernSlayerPro2").Type)
+                {
+                    // Kill Thorium's forced global iframes
+                    target.immune[projectile.owner] = 0;
 
-            if (thorium.TryFind<ModProjectile>("WyvernSlayerPro2", out var shockwaveProj)) return;
+                    // Force local NPC immunity
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.usesIDStaticNPCImmunity = false;
 
-
-            // Kill Thorium's forced global iframes
-            target.immune[projectile.owner] = 0;
-
-            // Force local NPC immunity
-            projectile.usesLocalNPCImmunity = true;
-            projectile.usesIDStaticNPCImmunity = false;
-
-            // Adjust this to taste
-            projectile.localNPCHitCooldown = 40;
+                    // Adjust this to taste
+                    projectile.localNPCHitCooldown = 40;
+                }
+            }
             #endregion
         }
 
