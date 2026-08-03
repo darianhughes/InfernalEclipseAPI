@@ -741,7 +741,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
             if (!ModLoader.TryGetMod("ThoriumMod", out var thorium))
                 return;
 
-            if (!thorium.TryFind<ModProjectile>("WyvernSlayerPro2", out var shockwaveProj)) return;
+            if (thorium.TryFind<ModProjectile>("WyvernSlayerPro2", out var shockwaveProj)) return;
 
 
             // Kill Thorium's forced global iframes
