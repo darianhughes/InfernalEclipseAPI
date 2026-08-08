@@ -116,6 +116,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.Destinary
 
         public override bool PreDraw(ref Color lightColor)
         {
+            /*
             if (Time <= 5f)
                 return true;
 
@@ -130,6 +131,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.Destinary
             var positionsToUse = Projectile.oldPos.Take(numPointsProvided).ToArray();
             PrimitiveRenderer.RenderTrail(positionsToUse, new(WidthFunction, ColorFunction, (_, _) => Projectile.Size * 0.5f + generalOffset, shader: GameShaders.Misc["CalamityMod:PrismaticStreak"], smoothen: false), numPointsRendered);
             Main.spriteBatch.ExitShaderRegion();
+            */
             return true;
         }
 
