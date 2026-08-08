@@ -6196,17 +6196,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 if (thorium != null)
                 {
-                    if (UnsafeGetItem(console, "ScytheFantasma", item))
+                    if (GetItem(console, "ScytheFantasma", item))
                     {
                         item.damage = 140;
                     }
 
-                    if (UnsafeGetItem(console, "Omunikodo", item))
+                    if (GetItem(console, "Omunikodo", item))
                     {
                         item.damage = 70;
                     }
 
-                    if (UnsafeGetItem(console, "UtensilPoker", item))
+                    if (GetItem(console, "UtensilPoker", item))
                     {
                         ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
                     }

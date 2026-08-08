@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria.Localization;
 using InfernalEclipseAPI.Core.Configs;
 using ThrowerUnification;
+using InfernalEclipseAPI.Core.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 {
@@ -18,15 +19,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
             }
         }
 
-        private Mod calamity
-        {
-            get
-            {
-                ModLoader.TryGetMod("CalamityMod", out Mod cal);
-                return cal;
-            }
-        }
-
         private Mod clamity
         {
             get
@@ -35,24 +27,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                 return clam;
             }
         }
-        private Mod fargo
-        {
-            get
-            {
-                ModLoader.TryGetMod("FargowiltasSouls", out Mod farg);
-                return farg;
-            }
-        }
-
-        private Mod fargocross
-        {
-            get
-            {
-                ModLoader.TryGetMod("FargowiltasCrossmod", out Mod fargc);
-                return fargc;
-            }
-        }
-
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -62,7 +36,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
             if (thorium != null)
             {
                 //Vampiric Talisman
-                if (item.type == ModContent.ItemType<VampiricTalisman>())
+                if (item.type == ModContent.ItemType<VampiricTalisman>() || item.type == ModContent.ItemType<Nanotech>())
                 {
                     ModItem shinobiSigil = thorium.Find<ModItem>("ShinobiSigil");
                     shinobiSigil.UpdateAccessory(player, hideVisual);
@@ -78,7 +52,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                 }
 
                 //Nanotech
-                ModItem scutterGem = calamity.Find<ModItem>("ScuttlersJewel");
+                ModItem scutterGem = InfernalCrossmod.Calamity.Mod.Find<ModItem>("ScuttlersJewel");
 
                 if (item.type == thorium.Find<ModItem>("BoneGrip").Type)
                 {
@@ -97,25 +71,25 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     magnetoGrip.UpdateAccessory(player, hideVisual);
                 }
 
-                if (fargo != null)
+                if (InfernalCrossmod.FargosSouls.Loaded)
                 {
-                    if (item.type == fargo.Find<ModItem>("UniverseSoul").Type)
+                    if (item.type == InfernalCrossmod.FargosSouls.Mod.Find<ModItem>("UniverseSoul").Type)
                     {
                         scutterGem.UpdateAccessory(player, hideVisual);
                         ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
                         magnetoGrip.UpdateAccessory(player, hideVisual);
                     }
 
-                    if (item.type == fargo.Find<ModItem>("EternitySoul").Type)
+                    if (item.type == InfernalCrossmod.FargosSouls.Mod.Find<ModItem>("EternitySoul").Type)
                     {
                         scutterGem.UpdateAccessory(player, hideVisual);
                         ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
                         magnetoGrip.UpdateAccessory(player, hideVisual);
                     }
 
-                    if (fargocross != null)
+                    if (InfernalCrossmod.FargosDLC.Loaded)
                     {
-                        if (item.type == fargocross.Find<ModItem>("VagabondsSoul").Type)
+                        if (item.type == InfernalCrossmod.FargosDLC.Mod.Find<ModItem>("VagabondsSoul").Type)
                         {
                             scutterGem.UpdateAccessory(player, hideVisual);
                             ModItem magnetoGrip = thorium.Find<ModItem>("MagnetoGrip");
@@ -170,8 +144,8 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
             string scuttlerInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Scuttler");
             string boneInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Bone");
             string boneInfoNew = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Bone2");
-            string bloodyfilthyInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.BloodyFilthy");
-            string magnetoInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Magneto");
+            //string bloodyfilthyInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.BloodyFilthy");
+            //string magnetoInfo = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.Magneto");
 
             string shinobiSigil = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ShinobiEffect");
 
@@ -182,7 +156,7 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
                     AddTooltip(tooltips, Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.MergedCraftingTreeTooltip.ShinobiNerf"), true);
                 }
 
-                if (item.type == ModContent.ItemType<VampiricTalisman>())
+                if (item.type == ModContent.ItemType<VampiricTalisman>() || item.type == ModContent.ItemType<Nanotech>())
                 {
                     AddTooltip(tooltips, shinobiSigil, true);
                 }
