@@ -512,11 +512,7 @@ namespace InfernalEclipseAPI.Core.Players
                         calPlayer.darknessIntensity = calPlayer.abyssDarkness + (float)depthRatio * 3f;
 
                         if (!Player.headcovered)
-                        {
-                            float screenObstructionAmt = MathHelper.Clamp(calPlayer.caveDarkness, 0f, 0.95f);
-                            float targetValue = MathHelper.Clamp(screenObstructionAmt * 0.7f, 0.1f, 0.3f);
-                            ScreenObstruction.screenObstruction = MathHelper.Lerp(ScreenObstruction.screenObstruction, screenObstructionAmt, targetValue);
-                        }
+                            ScreenObstruction.screenObstruction = Lerp(ScreenObstruction.screenObstruction, 0f, 0.1f);
                     }
                 }
             }

@@ -116,20 +116,37 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.RogueCraftingTrees
 
             if (thorium != null)
             {
-                Recipe electriciansGlove = Recipe.Create(ModContent.ItemType<ElectriciansGlove>());
-                electriciansGlove.AddIngredient(thorium.Find<ModItem>("MagnetoGrip"));
+                Recipe electriciansGloveFilthy = Recipe.Create(ModContent.ItemType<ElectriciansGlove>());
+                electriciansGloveFilthy.AddIngredient(thorium.Find<ModItem>("MagnetoGrip"));
+                electriciansGloveFilthy.AddIngredient<FilthyGlove>();
                 if (sots != null)
                 {
-                    electriciansGlove.AddIngredient(sots.Find<ModItem>("AbsoluteBar"), 5);
-                    electriciansGlove.AddIngredient(sots.Find<ModItem>("TwilightShard"), 12);
+                    electriciansGloveFilthy.AddIngredient(sots.Find<ModItem>("AbsoluteBar"), 5);
+                    electriciansGloveFilthy.AddIngredient(sots.Find<ModItem>("TwilightShard"), 12);
                 }
                 else
                 {
-                    electriciansGlove.AddIngredient(ItemID.HallowedBar, 5);
-                    electriciansGlove.AddIngredient(thorium.Find<ModItem>("StrangeAlienTech"));
+                    electriciansGloveFilthy.AddIngredient(ItemID.HallowedBar, 5);
+                    electriciansGloveFilthy.AddIngredient(thorium.Find<ModItem>("StrangeAlienTech"));
                 }
-                electriciansGlove.AddTile(TileID.MythrilAnvil);
-                electriciansGlove.Register();
+                electriciansGloveFilthy.AddTile(TileID.MythrilAnvil);
+                electriciansGloveFilthy.Register();
+
+                Recipe electriciansGloveBloodstained = Recipe.Create(ModContent.ItemType<ElectriciansGlove>());
+                electriciansGloveBloodstained.AddIngredient(thorium.Find<ModItem>("MagnetoGrip"));
+                electriciansGloveBloodstained.AddIngredient<BloodstainedGlove>();
+                if (sots != null)
+                {
+                    electriciansGloveBloodstained.AddIngredient(sots.Find<ModItem>("AbsoluteBar"), 5);
+                    electriciansGloveBloodstained.AddIngredient(sots.Find<ModItem>("TwilightShard"), 12);
+                }
+                else
+                {
+                    electriciansGloveBloodstained.AddIngredient(ItemID.HallowedBar, 5);
+                    electriciansGloveBloodstained.AddIngredient(thorium.Find<ModItem>("StrangeAlienTech"));
+                }
+                electriciansGloveBloodstained.AddTile(TileID.MythrilAnvil);
+                electriciansGloveBloodstained.Register();
             }
         }
     }

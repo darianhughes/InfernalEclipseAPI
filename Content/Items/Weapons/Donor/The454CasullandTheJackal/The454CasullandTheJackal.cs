@@ -209,7 +209,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.The454CasullandTheJacka
                 .AddIngredient<Auralis>()
                 .AddIngredient(ItemID.Handgun)
                 .AddIngredient<CosmiliteBar>(8)
-                .AddIngredient<BloodstoneCore>(3)
+                .AddIngredient<Bloodstone>(10)
                 .AddIngredient<RuinousSoul>(3)
                 .AddTile<CosmicAnvil>()
                 .Register();
