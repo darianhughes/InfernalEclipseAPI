@@ -15,12 +15,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.Destinary
 {
     public class Destinary : ModItem
     {
-        // TODO: fix projectile glowmask
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
-
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
@@ -28,9 +22,9 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.Destinary
 
         public override void SetDefaults()
         {
-            Item.width = 197;
-            Item.height = 108;
-            Item.damage = 5160;
+            Item.width = 196;
+            Item.height = 102;
+            Item.damage = 4250;
             Item.knockBack = 36f;
             Item.useTime = 5;
             Item.useAnimation = 25;

@@ -1,37 +1,38 @@
-﻿using CalamityMod.Items.SummonItems;
-using CalamityMod.Items.Tools.ClimateChange;
-using CalamityMod.Items.Materials;
-using CalamityMod.Tiles.Furniture.CraftingStations;
-using InfernumMode.Content.Items.Weapons.Magic;
-using CalamityMod.Items.Mounts;
+﻿using CalamityMod;
 using CalamityMod.Items.Accessories;
-using CalamityMod;
-using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Accessories.Wings;
+using CalamityMod.Items.DraedonMisc;
+using CalamityMod.Items.LabFinders;
+using CalamityMod.Items.Materials;
+using CalamityMod.Items.Mounts;
 using CalamityMod.Items.PermanentBoosters;
+using CalamityMod.Items.Placeables;
+using CalamityMod.Items.Placeables.SunkenSea;
+using CalamityMod.Items.Potions;
+using CalamityMod.Items.SummonItems;
+using CalamityMod.Items.Tools.ClimateChange;
+using CalamityMod.Items.Weapons.Magic;
+using CalamityMod.Items.Weapons.Melee;
+using CalamityMod.Items.Weapons.Ranged;
+using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 using InfernalEclipseAPI.Content.Items.Accessories.ChromaticMassInABottle;
+using InfernalEclipseAPI.Content.Items.Consumables;
+using InfernalEclipseAPI.Content.Items.Materials;
+using InfernalEclipseAPI.Content.Items.Other;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb;
 using InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch;
-using CalamityMod.Items.DraedonMisc;
-using CalamityMod.Items.Placeables;
-using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
-using InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam;
 using InfernalEclipseAPI.Content.Items.Weapons.Legendary.Lycanroc;
 using InfernalEclipseAPI.Content.Items.Weapons.Legendary.StellarSabre;
-using InfernalEclipseAPI.Core.Systems;
-using CalamityMod.Items.Potions;
-using InfernalEclipseAPI.Content.Items.Materials;
-using Terraria.Localization;
-using InfernalEclipseAPI.Content.Items.Consumables;
-using SOTS;
-using CalamityMod.Items.Placeables.SunkenSea;
-using CalamityMod.Items.LabFinders;
-using CalamityMod.Items.Weapons.Ranged;
-using InfernalEclipseAPI.Content.Items.Other;
+using InfernalEclipseAPI.Content.Items.Weapons.Magic.ChaosBlaster;
+using InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam;
 using InfernalEclipseAPI.Core.Configs;
+using InfernalEclipseAPI.Core.Systems;
+using InfernumMode.Content.Items.Weapons.Magic;
+using SOTS;
+using System.Linq;
+using Terraria.Localization;
 
 namespace InfernalEclipseAPI.Common.Balance.Recipes
 {
@@ -698,9 +699,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient<SeaPrism>(5);
                     }
 
-                    if (recipe.HasResult<BloodstoneCore>())
+                    if (recipe.HasIngredient<Bloodstone>())
                     {
-                        recipe.AddIngredient(thorium.Find<ModItem>("BloodCell"));
+                        int count = recipe.requiredItem.Where(i => i.type == ModContent.ItemType<Bloodstone>()).Sum(i => i.stack);
+                        int stackSize = count / 2;
+
+                        if (stackSize > 0)
+                            recipe.AddIngredient(thorium.Find<ModItem>("BloodCell"), stackSize);
                     }
 
                     if (recipe.HasResult<AuricBar>())

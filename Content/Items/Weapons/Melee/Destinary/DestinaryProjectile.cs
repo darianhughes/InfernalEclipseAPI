@@ -11,7 +11,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.Destinary
     [PierceResistException]
     public class DestinaryProjectile : ModProjectile
     {
-        //TODO: fix glowmask
         public Player Owner => Main.player[Projectile.owner];
         public const float ZeroChargeDamageRatio = 0.36f;
         public const float ToothDamageRatio = 0.3f;
@@ -20,12 +19,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Melee.Destinary
         public ref float Time => ref Projectile.ai[0];
 
         public ref float ToothDamage => ref Projectile.ai[1];
-        public float ChargeUpPower => MathHelper.Clamp((float)Math.Pow(Time / ChargeUpTime, 1.6D), 0f, 1f);
+        public float ChargeUpPower => Clamp((float)Math.Pow(Time / ChargeUpTime, 1.6D), 0f, 1f);
 
         public override void SetDefaults()
         {
-            Projectile.width = 197;
-            Projectile.height = 108;
+            Projectile.width = 198;
+            Projectile.height = 102;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
