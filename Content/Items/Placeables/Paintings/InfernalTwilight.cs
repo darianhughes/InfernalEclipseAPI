@@ -148,6 +148,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "rocket",
             "FlamingSock",
             "brxdyfrxmdxg",
+            "Alextricle",
 
             //Supporters
             "CuddlySnake",
