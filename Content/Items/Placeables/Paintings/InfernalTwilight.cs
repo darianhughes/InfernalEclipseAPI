@@ -162,7 +162,6 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
 
             //Helpers
             "fjiown",
-            "Soopns",
             "DuskMender",
 
             //Special Thanks
