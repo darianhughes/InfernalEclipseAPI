@@ -291,15 +291,6 @@ namespace InfernalEclipseAPI.Content.Items.Other
                 UnlockCondition = () => DownedBossSystem.downedBossRush,
                 BossIconTexture = ModContent.Request<Texture2D>("CalamityMod/UI/MiscTextures/BossRushIcon"),
             },
-
-            new()
-            {
-                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.LittleCat"),
-                TrackName = "LittleCatTheme",
-                HoverTextColor = () => Color.LightGray,
-                UnlockCondition = () => false,
-                BossIconTexture = TextureAssets.NpcHead[27],
-            },
         };
 
         public ref float Time => ref Projectile.ai[0];

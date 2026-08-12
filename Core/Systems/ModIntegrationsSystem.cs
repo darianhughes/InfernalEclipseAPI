@@ -72,7 +72,6 @@ namespace InfernalEclipseAPI.Core.Systems
 
             // Currently unused
             //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LittleCatTheme"), "Demonic Little Grey Cat Theme Song", "by vivivivivi", "Infernal Eclipse of Ragnarok");
             
 
             if (ModLoader.TryGetMod("YouBoss", out _))
