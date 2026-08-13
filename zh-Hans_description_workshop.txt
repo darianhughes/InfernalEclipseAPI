@@ -16,11 +16,12 @@
 
 本API当前新增功能包括：
 [list]
-	[*] 超过500+项可选用的跨模组平衡性调整，使不同模组内容更好地协同
+	[*] 超过1000+项可选用的跨模组平衡性调整，使不同模组内容更好地协同
 	[*] 合并多种饰品的制作树
 	[*] 为整合包内的所有 Boss 添加炼狱风格的出场介绍文字
 	[*] 为炼狱模式下的 Boss 调整属性，以保持一致的挑战难度
-	[*] 支持所有已包含 Boss 的 Boss Rush 模式，并新增自定义的“第六阶段”
+	[*] 新的难度：诸神黄昏模式
+	[*] 支持所有已包含 Boss 的 Boss Rush 模式，并新增自制的“第六阶段”
 	[*] 为游戏特定场景引入全新音乐
 	[*] 优化世界生成，防止不同模组的内容相互覆盖
 	[*] 针对炼狱模式的多人游戏兼容性进行若干修复
@@ -33,7 +34,6 @@
 	[*] 一个全新且高度可配置的多人重生系统，可在 Boss 战中设定每位玩家的重生次数（在炼狱模式下默认为 1 次重生）
 	[*] 一个可锁定灾厄难度的系统
 	[*] 一个允许在击败月亮领主后依然可以召唤末世星史莱姆的系统
-	[*] 一个允许在大师和传奇难度世界中开启炼狱模式的系统
 [/list]
 
 未来，本扩展将升级为一款拥有独立剧情的内容模组，届时会完整整合关联模组包中的所有模组，并配备基于[b] QuestBookUI [/b]和[b] tPackBuilder [/b]的 Boss 进程系统
@@ -52,7 +52,7 @@
 [list]
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010]诸神黄昏：炼狱蚀光武器DLC[/url]，一个为本模组添加大量额外物品的DLC扩展
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnarok]旅人黄昏[/url]，一个为本模组添加旅人归途兼容的DLC
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡[/url]，本扩展中大部分物品平衡调整出自该模组并由其作者设计！
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder]WHummus的灾厄/瑟银平衡[/url]，本扩展中大部分物品平衡调整出自该模组并由其作者设计！（已内置在炼狱蚀光中无需再次安装）
 [/list]
 
 特别感谢[b]灾厄[/b]、[b]Fargo魂[/b]、[b]Bereft Souls[/b]以及[b]社区魂石拓展[/b]团队，以及所有捐助者，还有整合包中每一个模组的开发者们，正是你们让这一切成为可能。
@@ -62,21 +62,24 @@
 诸神黄昏：炼狱蚀光团队成员
 [list]
 	[*]开发者：Akira，Wardrobe Hummus，Advantaje
-	[*]设计师：Wardrobe Hummus，Yob，trembler
+	[*]设计师：Wardrobe Hummus，Yob，Tyr，ma3allim
 	[*]背景故事：Akira，Yob
-	[*]协调员：ZaKami，TheRogueX
-	[*]Wiki编写：Akira，Wardrobe Hummus，Soltan
-	[*]贡献者：cheesenuggets，ma3allium，Yelmut，StarlightCat，Suu，Pudd1ng
-	[*]美术：Prime，Pixus，Yelmut，ma3allium，konte1m，Pil，trembler
-	[*]作曲：Peter Fung
+	[*]Wiki编写：Akira，Wardrobe Hummus，Soltan，Arkangel
+	[*]贡献者：cheesenuggets，Pudd1ng，Pixus，Nicole，Dandel，Ropro，JalapenoDance,
+	[*]美术：Prime，Pixus，Yelmut，ma3allim，pil，Tyr，JuJiao，Leo，IceSpider，yfn，Dandel，Uncle Sciz，ABrickToTheHead
+	[*]作曲：Peter Fung，Techhy
 	[*]本地化：Pudd1ng（简体中文），Aizen522（俄语）
 [/list]
 
 感谢以下作者的音乐
 [list]
+	[*]Brimston Premium：《Seahorse Scrutiny (Rebirth)》和《Unholy Finality》
 	[*]CDMusic：《Ensemble of Fools (Encore Mix)》
+	[*]DM DOKURO：《Last Battle (Ballos Mix)》
 	[*]Kuudray：《TWISTED GARDEN [Remix]》
+	[*]Peter Fung：《Teardrops of Dragonfire》
 	[*]psykomatic：《Descent Of Divinities》
-	[*]TheForge：《Calamity Before the Cynosure》及一首未命名曲目
-	[*]TheTrester：《Omiscience Of Gods》
+	[*]Techhy：《Dead Kingdom's Champion》
+	[*]TheTrester：《Omiscience Of Gods》和《Arsenal》
+	[*]theforge128：《Calamity before the Cynosure》
 [/list]
