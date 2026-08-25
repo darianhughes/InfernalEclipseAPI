@@ -34,7 +34,6 @@ namespace InfernalEclipseAPI.Content.Items.Materials
             Recipe recipe = CreateRecipe();
 
             recipe.AddIngredient<ShadowspecBar>();
-            if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type);
             recipe.AddIngredient<MetallicChunk>();
             recipe.AddIngredient<PrimordialOrchid>();
             recipe.AddCondition(SpellbookGatedRecipe.ConstructRecipeCondition(out Func<bool> condition), condition);

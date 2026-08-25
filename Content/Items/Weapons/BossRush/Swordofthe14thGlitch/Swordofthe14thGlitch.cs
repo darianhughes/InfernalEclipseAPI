@@ -148,7 +148,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             else
             {
                 if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt)) recipe.AddIngredient(calamityHunt.Find<ModItem>("ChromaticMass").Type, 3);
-                if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
             }
             recipe.AddIngredient<Rock>();
             recipe.AddTile<SCalAltar>();

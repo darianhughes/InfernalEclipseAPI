@@ -101,12 +101,6 @@ namespace InfernalEclipseAPI.Core.Systems
             public static bool Loaded => ModLoader.HasMod(Name);
             public static Mod Mod => ModLoader.GetMod(Name);
         }
-        public static class NoxusPort
-        {
-            public const string Name = "NoxusPort";
-            public static bool Loaded => ModLoader.HasMod(Name);
-            public static Mod Mod => ModLoader.GetMod(Name);
-        }
 
         public static class RagnarokMod
         {

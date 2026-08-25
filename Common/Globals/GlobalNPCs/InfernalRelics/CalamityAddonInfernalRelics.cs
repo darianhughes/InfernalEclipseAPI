@@ -194,21 +194,6 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
         }
     }
 
-    public class NoxusInfernalRelic : GlobalNPC
-    {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
-            bool isInfernum() => InfernumSaveSystem.InfernumModeEnabled;
-            if (ModLoader.TryGetMod("NoxusPort", out Mod port))
-            {
-                if (npc.type == port.Find<ModNPC>("EntropicGod").Type)
-                {
-                    npcLoot.AddIf(isInfernum, ModContent.ItemType<NoxusRelic>());
-                }
-            }
-        }
-    }
-
     [ExtendsFromMod("Clamity")]
     public class ClamityInfernalRelic : GlobalNPC
     {

@@ -1263,14 +1263,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.maxStack = Item.CommonMaxStack;
                 }
             }
-            
-            if (ModLoader.TryGetMod("NoxusPort", out Mod noxusPort))
-            {
-                if (UnsafeGetItem(noxusPort, "EntropicBar", item))
-                {
-                    item.value = CalamityGlobalItem.RarityVioletBuyPrice;
-                }
-            }
 
             if (ModLoader.TryGetMod("CalValEX", out Mod calVal))
             {

@@ -48,11 +48,6 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 {
                     namelessId = wotg.Find<ModNPC>("NamelessDeityBoss").Type;
                 }
-                bool noxusOn = ModLoader.TryGetMod("NoxusPort", out Mod noxusPort);
-                if (noxusOn)
-                {
-                    noxusID = noxusPort.Find<ModNPC>("NoxusEgg").Type;
-                }
                 bool huntOn = ModLoader.TryGetMod("CalamityHunt", out Mod calHunt);
                 if (huntOn)
                 {
@@ -92,8 +87,6 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 else if (BossRushEvent.BossRushStage > calamitasId)
                 {
                     if (fargoDLCOn && BossRushEvent.BossRushStage > mutantID)
-                        tier = 100;
-                    else if (noxusOn && BossRushEvent.BossRushStage > noxusID)
                         tier = 100;
                     else if (huntOn && BossRushEvent.BossRushStage > goozmaID)
                         tier = 100;

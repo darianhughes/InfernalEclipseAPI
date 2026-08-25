@@ -71,11 +71,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs.NPCDebuffs
                 if (npc.type == calHunt.Find<ModNPC>("Goozma").Type)
                     PreventTimeFreezeEffects("AuricSoul");
             }
-            if (NoxusPort.Loaded)
-            {
-                if (npc.type == NoxusPort.Mod.Find<ModNPC>("EntropicGod").Type)
-                    PreventTimeFreezeEffects("AuricSoul");
-            }
             if (InfernalCrossmod.NoxusBoss.Loaded)
             {
                 Mod wotg = InfernalCrossmod.NoxusBoss.Mod;
