@@ -60,8 +60,8 @@ Developers: Akira, Wardrobe Hummus, Advantaje
 Designers: Wardrobe Hummus, Yob, Tyr, ma3allim
 Story: Akira, Yob
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan, Arkangel
-Contributors: cheesenuggets, Pudd1ng, Pixus, Nicole, Dandel, Ropro, JalapenoDance,
-Spriters: Prime, Pixus, Yelmut, ma3allim, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel, Uncle Sciz, ABrickToTheHead
+Contributors: cheesenuggets, Pudd1ng, Pixus, Nicole, Dandel, Ropro, JalapenoDance, Mr. Puzzles, Arkangel
+Spriters: Prime, Pixus, Yelmut, ma3allim, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel, Uncle Sciz, ABrickToTheHead, Mr. Puzzles
 Composers: Peter Fung, Techhy
 Localization: Pudd1ng (Simplified Chinese), Kraken (Russian)
 
