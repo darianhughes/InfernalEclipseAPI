@@ -17,20 +17,18 @@ namespace InfernalEclipseAPI.Core.Systems
         internal static Mod Infernum;
         internal static Mod SOTS;
         internal static Mod Fargos;
-        internal static Mod Starlight;
+
         public override void Load()
         {
             ModLoader.TryGetMod("InfernumMode", out Infernum);
             ModLoader.TryGetMod("SOTS", out SOTS);
             ModLoader.TryGetMod("FargowiltasSouls", out Fargos);
-            ModLoader.TryGetMod("ssm", out Starlight);
         }
         public override void Unload()
         {
             Infernum = null;
             SOTS = null;
             Fargos = null;
-            Starlight = null;
         }
 
         public override void PostSetupContent()
@@ -39,6 +37,7 @@ namespace InfernalEclipseAPI.Core.Systems
             BossChecklistSetup();
             AddInfernumCards();
             ColoredDamageTypesSupport();
+
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
@@ -139,39 +138,6 @@ namespace InfernalEclipseAPI.Core.Systems
                 MakeCard(Fargos.Find<ModNPC>("CosmosChampion").Type, (horz, anim) => Color.Lerp(Color.DeepPink, Color.LightGoldenrodYellow, anim), "Eridanus", SoundID.MenuTick, SoundID.Item14);
                 MakeCard(Fargos.Find<ModNPC>("AbomBoss").Type, (horz, anim) => Color.Lerp(Color.Purple, Color.Orange, anim), "AbomBoss", SoundID.MenuTick, InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh);
                 MakeCard(Fargos.Find<ModNPC>("MutantBoss").Type, (horz, anim) => Color.Lerp(Color.LightBlue, Color.Cyan, anim), "Mutant", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
-            }
-            if (Starlight != null && InfernalConfig.Instance.DontEnableThis)
-            {
-                if (Starlight.Version <= Version.Parse("1.1.4.2"))
-                {
-                    if (Starlight.TryFind("MutantEX", out ModNPC monster))
-                    {
-                        MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
-                    }
-                }
-                else
-                {
-                    if (Starlight.TryFind("RealMutantEX", out ModNPC mutantEX))
-                    {
-                        MakeCard(mutantEX.Type, (horz, anim) => Color.Lerp(Color.LightBlue, Color.Cyan, anim), "RealMutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream); ;
-                    }
-                    if (Starlight.TryFind("MonstrosityBoss", out ModNPC monster))
-                    {
-                        MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
-                    }
-                }
-                if (Starlight.TryFind("Guntera", out ModNPC guntera))
-                {
-                    MakeCard(guntera.Type, (horz, anim) => Color.Lerp(new(96, 148, 14), Color.LightSlateGray, anim), "Guntera", SoundID.Item17, SoundID.Item36);
-                }
-                if (Starlight.TryFind("Echdeath", out ModNPC echdeath))
-                {
-                    MakeCard(echdeath.Type, (horz, anim) => Color.Lerp(Color.White, Color.Tan, anim), "Echdeath", SoundID.NPCHit4, SoundID.Item14);
-                }
-                if (Starlight.TryFind("CeilingOfMoonlord", out ModNPC moonRoof))
-                {
-                    MakeCard(moonRoof.Type, (horz, anim) => Color.Lerp(Color.Turquoise, Color.Gray, anim), "CeilingOfMoonlord", SoundID.MenuTick, new SoundStyle("InfernumMode/Assets/Sounds/Custom/MoonLord/MoonLordIntro"));
-                }
             }
 
             if (ModLoader.TryGetMod("YouBoss", out Mod you))
@@ -407,6 +373,35 @@ namespace InfernalEclipseAPI.Core.Systems
                 coloredDamageTypes.Call("AddDamageType", MythicMagic.Instance, mythicColor, mythicColor, mythicCritColor);
                 coloredDamageTypes.Call("AddDamageType", MythicRanged.Instance, mythicColor, mythicColor, mythicCritColor);
                 coloredDamageTypes.Call("AddDamageType", MythicSummon.Instance, mythicColor, mythicColor, mythicCritColor);
+            }
+        }
+
+        public static void Project_tRUSupport()
+        {
+            if (ModLoader.TryGetMod("CalamityRuTranslate", out Mod tru))
+            {
+                Mod eclipse = ModLoader.GetMod("InfernalEclipseAPI");
+
+                tru.Call("AddFeminineItems", eclipse, new string[]
+                {
+                    "NovaBomb",
+                    "StellarSabre",
+                    "SplitFirebrand"
+                });
+
+                tru.Call("AddNeuterItems", eclipse, new string[]
+                {
+                    "CelestialIllumination",
+                    "RingofTix",
+                    "TheChickenWing",
+                    "ShatteredSubcommunity",
+                    "BlixerCore"
+                });
+
+                tru.Call("AddPluralItems", eclipse, new string[]
+                {
+                    "The454CasullandTheJackal"
+                });
             }
         }
     }

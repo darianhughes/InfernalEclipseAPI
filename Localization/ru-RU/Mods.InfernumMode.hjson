@@ -1,25 +1,25 @@
 IntroScreen: {
-	/* AEWIntroScreen.TextToDisplay:
+	AEWIntroScreen.TextToDisplay:
 		'''
-		Abyssal Warden
-		The Primordial Wyrm
-		''' */
-	/* BossRushIntroText1.TextToDisplay:
+		ХРАНИТЕЛЬ БЕЗДНЫ
+		ПЕРВОЗДАННЫЙ ЗМИЙ
 		'''
-		Xeroc's Challenge
-		Ensemble of Fools
-		''' */
-	/* HypnosDraedonScreen.TextToDisplay:
+	BossRushIntroText1.TextToDisplay:
 		'''
-		The Cosmic Engineer
-		Draedon
-		''' */
+		ИСПЫТАНИЕ КСЕРОКА
+		АНСАМБЛЬ ШУТОВ
+		'''
+	HypnosDraedonScreen.TextToDisplay:
+		'''
+		КОСМИЧЕСКИЙ ИНЖЕНЕР
+		ДРЭЙДОН
+		'''
 }
 
 Status: {
-	MultiplayerWarning: Infernal Eclipse of Ragnarrok: Мультиплеер официально поддерживается в «Infernum Mode», но, поскольку этот мод призван сделать игру совместимой с мультиплеером, в ней могут возникать баги. Сообщайте о багах в мультиплеере не команде Infernum Mode, а команде Infernal Eclipse of Ragnarok на нашем дискорд сервере (https://discord.gg/ieor).
-	// TwinsForcefieldSummonSpazmatism: HSy-01: DEFENSES PENETRATED. INITIATING PROCEDURE FFLD-17ECF9.
-	// TwinsForcefieldSummonRetinazer: HSx-00: DEFENSES PENETRATED. INITIATING PROCEDURE FFLD-17ECF9.
-	// TwinsFinalPhaseSpazmatism: HSy-01: ERROR DETECTING SECONDARY UNIT. BURNING EXCESS FUEL RESERVES.
-	// TwinsFinalPhaseRetinazer: HSx-00: ERROR DETECTING SECONDARY UNIT. BURNING EXCESS FUEL RESERVES.
+	MultiplayerWarning: Infernal Eclipse of Ragnarok: Официально, Infernum Mode НЕ поддерживает мультиплеер, и из-за этого в нём есть довольно много различных ошибок, связанных с этим. Хоть этот мод старается исправлять разные ошибки при игре в мультиплеере, вы всё ещё можете их встретить. Пожалуйста, не сообщайте о найденных ошибках команде Infernum Mode, лучше напишите о них на нашем Discord-сервере (https:discord.gg/ieor).
+	TwinsForcefieldSummonSpazmatism: СПА-МК4: ЗАЩИТА ПРОРВАНА. ИНИЦИИРУЮ ПРОЦЕДУРУ ФФЛД-17ЕЦФ9.
+	TwinsForcefieldSummonRetinazer: РЕТ-МК7: ЗАЩИТА ПРОРВАНА. ИНИЦИИРУЮ ПРОЦЕДУРУ ФФЛД-17ЕЦФ9.
+	TwinsFinalPhaseSpazmatism: ПА-МК4: ВТОРИЧНАЯ ЕДИНИЦА НЕ ОБНАРУЖЕНА. СЖИГАНИЕ ИЗБЫТОЧНЫХ ЗАПАСОВ ТОПЛИВА.
+	TwinsFinalPhaseRetinazer: РЕТ-МК7: ВТОРИЧНАЯ ЕДИНИЦА НЕ ОБНАРУЖЕНА. СЖИГАНИЕ ИЗБЫТОЧНЫХ ЗАПАСОВ ТОПЛИВА.
 }
