@@ -15,6 +15,13 @@ Items: {
 			'''
 	}
 
+	/*
+	ScryingGlass: {
+	DisplayName: Scrying Glass
+	Tooltip: Pressing the '{$Keybinds.AccessoryAbility.DisplayName}' key will toggle an increased range of view
+	}
+	*/
+	
 	ShootingStarHat.SetBonus:
 		'''
 		Симфонические усиления длятся на 6 секунд дольше
@@ -82,6 +89,11 @@ Items: {
 	HereticBreaker: {
 		DisplayName: Сокрушитель еретиков
 		Tooltip: Крадёт 3 ед. здоровья
+	}
+
+	ShroomachineGun: {
+		// DisplayName: Shroomachine Gun
+		// Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 	}
 
 	CrystalHoney: {
@@ -383,42 +395,6 @@ Items: {
 			'''
 	}
 
-	FallenPaladinFaceguard: {
-		DisplayName: Большой шлем павшего паладина
-		Tooltip:
-			'''
-			Снижает весь урон, кроме лучезарного, на 10%
-			Увеличивает лучезарный урон на 10%
-			Увеличивает шанс лучезарного критического удара на 3%
-			Увеличивает скорость регенерации здоровья
-			'''
-	}
-
-	FallenPaladinCuirass: {
-		DisplayName: Кираса павшего паладина
-		Tooltip:
-			'''
-			Снижает весь урон, кроме лучезарного, на 20%
-			Увеличивает лучезарный урон на 20%
-			Увеличивает шанс лучезарного критического удара на 8%
-			Увеличивает сопротивление урону на 15%
-			Исцеляющие заклинания восстанавливают дополнительно 2 ед. здоровья
-			'''
-	}
-
-	FallenPaladinGreaves: {
-		DisplayName: Поножи павшего паладина
-		Tooltip:
-			'''
-			Снижает весь урон, кроме лучезарного, на 15%
-			Увеличивает лучезарный урон на 15%
-			Увеличивает шанс лучезарного критического удара на 4%
-			Снижает расход маны на 15%
-			Увеличивает скорость передвижения на 20%
-			Исцеляющие заклинания восстанавливают дополнительно 1 ед. здоровья
-			'''
-	}
-
 	WhisperingHood: {
 		DisplayName: Шепчущий капюшон
 		Tooltip:
@@ -536,6 +512,34 @@ Items: {
 		Увеличивает максимальное количество миньонов и стражей на 2
 		Увеличивает отбрасывание миньонов
 		'''
+	/* CursedFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a cursed spike ball
+		Further hits have a chance to release more cursed spike balls
+		Cursed spike balls apply cursed flames to damaged enemies
+		''' */
+	/* VileFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a vile spike ball
+		Further hits have a chance to release more vile spike balls
+		Vile spike balls apply ichor to damaged enemies
+		''' */
+	/* IronFlailCore.Tooltip:
+		'''
+		Flail weapons on first hit release a rolling spike ball
+		Further hits have a chance to release more rolling spike balls
+		''' */
+	/* BloomingShield.Tooltip:
+		'''
+		You constantly generate a 20 life shield
+		Healing spells will heal an additional 1 life, 2 if at max shield
+		When out of combat, your life recovery will increase up to 5 over time
+		''' */
+	/* AstroBeetleHusk.Tooltip:
+		'''
+		Damage taken reduced by 5%
+		You constantly generate a 50 life shield
+		''' */
 }
 
 ThrowerTechniques: {

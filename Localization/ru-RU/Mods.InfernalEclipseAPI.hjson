@@ -108,8 +108,8 @@ DifficultyUI: {
 		[c/B32E81:Враги и боссы будут обладать повышенными характеристиками, а также усиленным их масштабированием в мультиплеере.]
 		[c/FF0055:Сможете ли вы осилить «Infernal Eclipse of Ragnarok»?]
 		'''
-	InfernumText: Восходит инфернальное затмение...
-	InfernumText2: Ещё один недостойный сходит с пути героя.
+	// Activation: The Infernal Eclipse has risen...
+	// Deactivation: Another unworthy challenger has walked away.
 	MasterToggle: Режим Мастер включён!
 }
 
@@ -968,6 +968,30 @@ ItemTooltip: {
 		'''
 	NamelessRelic: Ты прошёл испытание.
 	NoxusRelic: То есть, ты решил считерить и достать этот предмет, ИЛИ же у тебя был установлен мой сверхдревний мод, возвращающий Ноксуса в Wrath of the Gods, которого даже нет в мастерской? Если это так... поздравляю, что ли.
+	/* DeviRelic:
+		'''
+		The youngest of the three siblings.
+		Quite chaotic, especially this early in the game, however, you overcame her with confidence.
+		Enjoy the loot upgrades and power boost while you can...
+		''' */
+	/* AbomRelic:
+		'''
+		The second of the three siblings.
+		It has been a while since you fought their sister, but this battle was extreme step up from that.
+		Are you brave enough to challenge the oldest sibling?
+		''' */
+	/* MutantRelic:
+		'''
+		The oldest of the three siblings, as well as the strongest.
+		You have beat what is known as one of the hardest modded bosses, and with all of eternity in your hands surely nothing will stop you now.
+		What will you seek out now?
+		''' */
+	/* EridanusRelic:
+		'''
+		Your almost to the finish line.
+		The godseeker's army is all that stands in between you and eternity.
+		Make the fullest of your new crafting station...
+		''' */
 	AstralCommunicatorInfernum1: Призывает Астрагельдона при использовании в астральной инфекции
 	AstralCommunicatorInfernum2: Голод космического слизня не утолился...
 }
@@ -1006,8 +1030,8 @@ Items: {
 	}
 
 	ChromaticMassInABottle: {
-		DisplayName: Хроматическая масса в банке
 		Tooltip: "'Даже когда КрогНар что-то замышлял, Аарон просто не мог игнорировать присутствие этой массы.'"
+		DisplayName: Хроматическая масса в банке
 	}
 
 	Swordofthe14thGlitch: {
@@ -1020,8 +1044,8 @@ Items: {
 	}
 
 	BossRushTier6MusicBox: {
-		DisplayName: Музыкальная шкатулка (Босс-раш - 6 ранг)
 		Tooltip: Проигрывает «Descent Of Divinities» за авторством psykomatic
+		DisplayName: Музыкальная шкатулка (Босс-раш - 6 ранг)
 	}
 
 	NovaBomb: {
@@ -1035,13 +1059,13 @@ Items: {
 	}
 
 	BossRushTierNamelessMusicBox: {
-		DisplayName: Музыкальная шкатулка (Босс-раш - ??? ранг)
 		Tooltip: Проигрывает «TWISTED GARDEN [REMIX]» за авторством Kuudray
+		DisplayName: Музыкальная шкатулка (Босс-раш - ??? ранг)
 	}
 
 	BossRushEncoreMusicBox: {
-		DisplayName: Музыкальная шкатулка (Босс-раш - Бис)
 		Tooltip: Проигрывает «Ensemble of Fools (ENCORE)» за авторством CDMusic
+		DisplayName: Музыкальная шкатулка (Босс-раш - Бис)
 	}
 
 	StellarSabre: {
@@ -1357,6 +1381,46 @@ Items: {
 				'''
 		}
 
+		LoreAbominationn: {
+			// DisplayName: Abominationn
+			// Tooltip: ""
+			/* Lore:
+				'''
+				The middle child of the eternal siblings, and one of the laziest beings I've ever seen.
+				While the Abominationn has the ability to fully control the weather and fully turn away invaders, 
+				he truly is super lazy, going to the point of even fusing his weapons to his hands.
+				He weilds a weapon that has the ability to divide the soul itself, on top of being able to use all supernatural phenomena. 
+				Good thing for you he choose not to use any celestial attacks out of respect of the Mutant, or else your victory might have not been possible.
+				''' */
+		}
+
+		LoreDeviantt: {
+			// DisplayName: Deviantt
+			// Tooltip: ""
+			/* Lore:
+				'''
+				The youngest of the eternal siblings, and also the weakest.
+				She has collected a bunch of rare monster items throughout her journey and when in a helping mood, she will sell them to others.
+				However, when she isn't in a helping mood, she fully expresses her lovestruck sadism.
+				The Deviantt has the ability to cast spells using the both the primordial light and pure love, all while wielding a living axe made of evil.
+				Even though you bested her in combat, she seems to not fear death, and this is the first time I have ever seen her go all out in a fight.
+				''' */
+		}
+
+		LoreMutant: {
+			// DisplayName: Mutant
+			// Tooltip: ""
+			/* Lore:
+				'''
+				The oldest and strongest of the eternal siblings.
+				While the other siblings calls the Mutant their brother, he personally refuses to confirm his gender.
+				He is the keeper of eternity, with ultimate power incarnate, and is believed to have come from another world beyond that dimensional rift.
+				Other than you, he is the strongest being to ever grace the land of Terraria, with master of dominion over every aspect to combat.
+				Even though he had all this power, he always was more interested in watching other battles in the world than partake in any himself. 
+				He always told people that he was looking for someone strong and it looks like he found the person he was looking for.
+				''' */
+		}
+
 		LoreLepus: {
 			DisplayName: История (Лепус)
 			Tooltip: ""
@@ -1630,11 +1694,6 @@ Items: {
 				С победой над Лунным лордом книга начала стрелять большим количеством звёзд
 				Одолейте хранителей осквернённого пламени, чтобы обрести больше силы...
 				'''
-			ProfanedGuardians:
-				'''
-				С победой над Осквернёнными стражами книга начала стрелять мощным небесным лучом
-				Одолейте богиню осквернённого пламени, обитающую в осквернённом саду, чтобы обрести больше силы...
-				'''
 			Providence:
 				'''
 				С победой над Провиденс небесный сила небесного луча увеличилась
@@ -1645,17 +1704,22 @@ Items: {
 				С победой над Полтергастом книга начала стрелять небесным лучом
 				Чтобы обрести больше силы, одолейте того, чья сила настолько велика, что тот способен пожирать настоящих богов...
 				'''
-			Sentinels:
-				'''
-				С победой над слугами небесный луч начал атаковать дольше
-				Чтобы обрести больше силы, одолейте того, чья сила настолько велика, что тот способен пожирать настоящих богов...
-				'''
 			DoG:
 				'''
 				С победой над Пожирателем богов ваши звёзды начали самонаводиться на врагов
 				Одолейте пылкого феникса эпохи драконов, чтобы обрести больше силы...
 				'''
 			Full: Внеземное озарение полностью пробудилось, а его истинная сила была полностью раскрыта!
+			ProfanedGuardians:
+				'''
+				С победой над Осквернёнными стражами книга начала стрелять мощным небесным лучом
+				Одолейте богиню осквернённого пламени, обитающую в осквернённом саду, чтобы обрести больше силы...
+				'''
+			Sentinels:
+				'''
+				С победой над слугами небесный луч начал атаковать дольше
+				Чтобы обрести больше силы, одолейте того, чья сила настолько велика, что тот способен пожирать настоящих богов...
+				'''
 		}
 
 		Lore: Последняя книга, написанная тем, кто носит клеймо Астры...
@@ -1807,14 +1871,18 @@ Items: {
 			'''
 	}
 
-	Weapons.Rogue.NovaBomb: {
-		DisplayName: Бомба «НОВА»
-		Tooltip:
-			'''
-			Запускает искрящуюся фиолетовую сверхновую абсолютного испепеления
-			'Не волнуйся, Уиллоу, я и в одиночку силён.'
-			- В разработке: На данный момент использует ИИ Сверхновой из Calamity. -
-			'''
+	Weapons: {
+		Rogue: {
+			NovaBomb: {
+				Tooltip:
+					'''
+					Запускает искрящуюся фиолетовую сверхновую абсолютного испепеления
+					'Не волнуйся, Уиллоу, я и в одиночку силён.'
+					- В разработке: На данный момент использует ИИ Сверхновой из Calamity. -
+					'''
+				DisplayName: Бомба «НОВА»
+			}
+		}
 	}
 
 	DreadnautilusRelic: {
@@ -2035,9 +2103,11 @@ Items: {
 		Tooltip: ""
 	}
 
-	Materials.EssenceOfFlame: {
-		DisplayName: Эссенция пламени
-		Tooltip: "'Эссенция серной печи'"
+	Materials: {
+		EssenceOfFlame: {
+			DisplayName: Эссенция пламени
+			Tooltip: "'Эссенция серной печи'"
+		}
 	}
 
 	Destinary: {
@@ -2422,7 +2492,6 @@ Projectiles: {
 	FirstSwordHoldoutCombo.DisplayName: Меч первого
 	_13thGltichCombo.DisplayName: Комбо-атака 13-го глитча
 	CelestialBeam.DisplayName: Небесный луч
-	CelestialIlluminationStar.DisplayName: Космическая освящённая звезда
 	DemonicRune.DisplayName: Руна мелкого демонического серого кота
 	ThoriumHeavyScytheSpark.DisplayName: Искра ториевой косы
 	NebulaBeam.DisplayName: Туманный гигалуч
@@ -2437,7 +2506,7 @@ Projectiles: {
 	CelestialIlluminationBeam.DisplayName: Луч внеземного озарения
 	CelestialIlluminationStar.DisplayName: Звезда внеземного озарения
 	Melee.TyrantYharimsUltiswordThrownBlade.DisplayName: Tyrant Yharims Ultisword Thrown Blade
-	CasullandJackalProj.DisplayName: ".454 Кассул и Шакал"
+	CasullandJackalProj.DisplayName: .454 Кассул и Шакал
 	CatlightDeathray.DisplayName: Луч смерти Catlight
 	CatlightDeathrayJR.DisplayName: Луч смерти Catlight джуниор
 	CatlightDeathrayJRR.DisplayName: Луч смерти Catlight джуниор джуниор
@@ -2469,18 +2538,18 @@ BullyingTooltip:
 Configs: {
 	InfernalConfig: {
 		WrathoftheGodsBossesInBossRush: {
-			Label: Боссы мода Wrath of the Gods в Босс-раше
 			Tooltip: Добавляет ВГ-07 Марса, Воплощение пустоты и Безымянное божество в Босс-раш.
+			Label: Боссы мода Wrath of the Gods в Босс-раше
 		}
 
 		BetsyInBossRush: {
-			Label: Бэтси в Босс-раше
 			Tooltip: Добавляет Бэтси в Босс-раш. (КРАЙНЕ ЗАБАГОВАННО)
+			Label: Бэтси в Босс-раше
 		}
 
 		DreadnautillusInBossRush: {
-			Label: Дреднаутилус в Босс-раше
 			Tooltip: Добавляет Дреднаутилуса в Босс-раш.
+			Label: Дреднаутилус в Босс-раше
 		}
 
 		Headers: {
@@ -2495,90 +2564,90 @@ Configs: {
 		}
 
 		ThoriumBalanceChangess: {
-			Label: Изменения баланса Thorium
 			Tooltip:
 				'''
 				Модифицирует множество предметов из Thorium и его аддонов для соответствия баланса с Calamity.
 				[c/FFFF00:Балансировка модпака Infernal Eclipse of Ragnarok рассчитана исключительно на то, что эта настройка включена.]
 				'''
+			Label: Изменения баланса Thorium
 		}
 
 		CalamityRecipeTweaks: {
-			Label: Улучшения рецептов Calamity
 			Tooltip: Меняет пару рецептов из Calamity и удаляет большинство облегчающих игру рецептов.
+			Label: Улучшения рецептов Calamity
 		}
 
 		CalamityBalanceChanges: {
-			Label: Изменения баланса Calamity
 			Tooltip:
 				'''
 				Модифицирует пару предметов из Calamity, которые были слишком слабыми/сильными.
 				Также изменяет парочку кросс-модовых рецептов для лучшего баланса между модами.
 				[c/FFFF00:Балансировка модпака Infernal Eclipse of Ragnarok рассчитана исключительно на то, что эта настройка включена.]
 				'''
+			Label: Изменения баланса Calamity
 		}
 
 		BossKillCheckOnOres: {
-			Label: Сохранение уровневой прогрессии Calamity
 			Tooltip:
 				'''
 				Делает некоторые предметы невозможными к получению до прохождения до определённого этапа игры.
 				Некоторые руды и блоки теперь недоступны к добыче до победы над определёнными боссами.
 				[c/FFFF00:Балансировка модпака Infernal Eclipse of Ragnarok рассчитана исключительно на то, что эта настройка включена.]
 				'''
+			Label: Сохранение уровневой прогрессии Calamity
 		}
 
 		VanillaBalanceChanges: {
-			Label: Изменения баланса ваниллы
 			Tooltip:
 				'''
 				Изменяет пару ванильных предметов так, чтобы они соответствовали балансу Calamity.
 				[c/FFFF00:Балансировка модпака Infernal Eclipse of Ragnarok рассчитана исключительно на то, что эта настройка включена.]
 				'''
+			Label: Изменения баланса ваниллы
 		}
 
 		DisplayName: Конфигурация
 
 		TerraBladeBossInBossRush: {
-			Label: Терра-клинок в Босс-раше
 			Tooltip: Добавляет Терра-клинок в Босс-раш.
+			Label: Терра-клинок в Босс-раше
 		}
 
 		InfernumModeForced: {
-			Label: Блокировка меню выбора сложностей Calamity
 			Tooltip:
 				'''
 				Блокирует доступ к меню выбора сложностей Calamity, даже вне битв с боссами.
 				Перед включением обязательно убедитесь, что включили нужную сложность.
 				Полезно на серверах, если вам не хочется, чтобы другие меняли сложность игры.
 				'''
+			Label: Блокировка меню выбора сложностей Calamity
 		}
 
 		SOTSBalanceChanges: {
-			Label: Изменения баланса Secrets of the Shadows
 			Tooltip:
 				'''
 				Изменяет пару предметов Secrets of the Shadows так, чтобы они соответствовали балансу Calamity.
 				[c/FFFF00:Балансировка модпака Infernal Eclipse of Ragnarok рассчитана исключительно на то, что эта настройка включена.]
 				'''
+			Label: Изменения баланса Secrets of the Shadows
 		}
 
 		ConsolariaBalanceChanges: {
-			Label: Изменения баланса Consolaria
 			Tooltip:
 				'''
 				Изменяет пару предметов Consolaria так, чтобы они соответствовали балансу Calamity.
 				[c/FFFF00:Балансировка модпака Infernal Eclipse of Ragnarok рассчитана исключительно на то, что эта настройка включена.]
 				'''
+			Label: Изменения баланса Consolaria
 		}
 
 		InfernumRecipeTweaks: {
-			Label: Изменения рецептов Infernum
 			Tooltip:
 				'''
 				Изменяет пару рецептов, добавляемых Infernum Mode.
 				[c/FFFF00:Балансировка модпака Infernal Eclipse of Ragnarok рассчитана исключительно на то, что эта настройка включена.]
 				'''
+			Label: Изменения рецептов Infernum
 		}
 
 		ForceFullXerocDialogue: {
@@ -2587,18 +2656,18 @@ Configs: {
 		}
 
 		SOTSThrowerToRogue: {
-			Label: Смена класса пустотного метателя на пустотного разбойника
 			Tooltip: Предметы, наносящие пустотный и метательный урон из Unofficial SOTS Bard, Thrower, and Healer станут наносить пустотный и разбойный урон.
+			Label: Смена класса пустотного метателя на пустотного разбойника
 		}
 
 		DisableBloodOrbPotions: {
-			Label: Отключение создания зелий из кровавых сфер
 			Tooltip: Отключает создание зелий с использованием кровавых сфер.
+			Label: Отключение создания зелий из кровавых сфер
 		}
 
 		PreventBossCheese: {
-			Label: Предотвращение чизинга боссов
 			Tooltip: Добавляет несколько механик в игру для предотвращения использования некоторых способов, облегчающих убийство босса.
+			Label: Предотвращение чизинга боссов
 		}
 
 		DisableUnfinisedContent: {
@@ -2774,8 +2843,8 @@ Configs: {
 		}
 
 		MaxVoidOnRespawn: {
-			Label: Возрождения с максимальным количеством пустоты
 			Tooltip: Включает/Выключает увеличение количества пустоты, которое вы получаете при возрождении, до вашего лимита.
+			Label: Возрождения с максимальным количеством пустоты
 		}
 
 		SolynCampsiteFixes: {
@@ -3092,13 +3161,13 @@ InfernumIntegration: {
 
 Buffs: {
 	StarboundHorrification: {
-		DisplayName: Звёздный ужас
 		Description: Вам не сбежать от Астрагельдона...
+		DisplayName: Звёздный ужас
 	}
 
 	WarpJammed: {
-		DisplayName: Заблокированное искривление
 		Description: Дрэйдон наблюдает за вашими телепортациями...
+		DisplayName: Заблокированное искривление
 	}
 
 	AnchoredSoul: {
@@ -3279,6 +3348,16 @@ Buffs: {
 		Description: ""
 	}
 
+	SandstoneReignsTag: {
+		DisplayName: Метка песчаниковой узды
+		Description: ""
+	}
+
+	UnderBiteTag: {
+		DisplayName: Метка подкуса
+		Description: ""
+	}
+
 	UnrelentingTormentTag: {
 		DisplayName: Метка неумолимой тоски
 		Description: ""
@@ -3289,14 +3368,9 @@ Buffs: {
 		Description: ""
 	}
 
-	SandstoneReignsTag: {
-		DisplayName: Метка песчаниковой узды
-		Description: ""
-	}
-
-	UnderBiteTag: {
-		DisplayName: Метка подкуса
-		Description: ""
+	BlixerBuff: {
+		// DisplayName: Blixer
+		// Description: "'I didn't design THIS! :('"
 	}
 }
 
@@ -3309,6 +3383,10 @@ Tiles: {
 	ProphecyMusicBoxTile.MapEntry: Музыкальная шкатулка
 	MenuMusicBoxTile.MapEntry: Музыкальная шкатулка
 	FinalFractalMusicBoxTile.MapEntry: Музыкальная шкатулка
+	// InterludeFourMusicBoxTile.MapEntry: Music Box
+	// LastBattleMusicBoxTile.MapEntry: Music Box
+	// PlanteraMusicBoxTile.MapEntry: Music Box
+	// QueenSlimeMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3320,13 +3398,19 @@ NPCs: {
 }
 
 KeyBindName: {
-	SubspaceBoostHotkey.DisplayName: Субпространственный рывок
-	ItemAbility.DisplayName: Способность предмета
+	// SubspaceBoostHotkey: Subspace Boost Hotkey
+	// ItemAbility: Item Ability
 }
 
-Keybinds.Mods.InfernalEclipseAPI.KeyBindName: {
-	SubspaceBoostHotkey.DisplayName: Субпространственный рывок
-	ItemAbility.DisplayName: Способность предмета
+Keybinds: {
+	Mods: {
+		InfernalEclipseAPI: {
+			KeyBindName: {
+				SubspaceBoostHotkey.DisplayName: Субпространственный рывок
+				ItemAbility.DisplayName: Способность предмета
+			}
+		}
+	}
 }
 
 Events: {
@@ -3345,7 +3429,7 @@ Cooldowns.FireWave: Волна пламени на перезарядке!
 HeadphonesText.1: Сейчас играет: {0}!
 
 BossName: {
-	//DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
+	// DO NOT change the - to any other symbol or the code that displays "Now playing X" won't work
 	TitleScreen: Teardrops of Dragonfire - Заглавная тема Infernal Eclipse of Ragnarok
 	BereftVassal: Dead Kingdom's Champion - Обездоленный вассал (Рагнарёк)
 	DoG: Last Battle (Ballos Mix) - Пожиратель богов (3 фаза)
@@ -3359,6 +3443,7 @@ BossName: {
 	LittleCat: Coming Soon... - ???
 	ProvidenceNight: Unholy Finality - Провиденс (Ночь)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Стекарь
+	// Arsenal: Arsenal - Codebreaker Interlude
 }
 
 PetDialog.DoGDSPTip: Сетка из лазеров появится в тот же момент, как он начинает совершать рывки! В первую очередь сфокусируйся на таране Пожирателя и только затем ищи безопасное место. А ещё не забывай об его фаерболах!

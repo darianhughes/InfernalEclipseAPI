@@ -64,13 +64,17 @@ Items: {
 		'''
 	FrostArtifactHelmet.Tooltip: Увеличивает урон ближнего боя и стрелковый урон на 15%
 	FrostArtifactChestplate.Tooltip: Увеличивает шанс критического удара ближнего боя и шанс стрелкового критического удара на 15%
-	ElementalBreastplate.TooltipExt:
-		'''
-		Увеличивает урон ближнего боя и урон призывателя на 10%
-		Увеличивает скорость регенерации здоровья на 4
-		Нажмите {0}, чтобы телепортироваться в место курсора, нанеся им урон, равный 200% от вашей защиты
-		Телепортация имеет 15 секунд перезарядки, во время которой скорость ближнего боя увеличивается на 40%
-		'''
+
+	ElementalBreastplate: {
+		// DisplayName: Elemental Breastplate
+		/* Tooltip:
+			'''
+			Increases melee and summon damage by 10%
+			Increases life regeneration by 4
+			Press '{0}' to teleport to your cursor, dealing 200% of your defense as damage to all enemies in your path
+			Has a 15 second cooldown, but increases melee speed by 40% during the cooldown
+			''' */
+	}
 }
 
 ArmorSetBonus.Earthen:
