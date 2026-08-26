@@ -37,7 +37,7 @@ namespace InfernalEclipseAPI.Core.Systems
             BossChecklistSetup();
             AddInfernumCards();
             ColoredDamageTypesSupport();
-
+            Project_tRUSupport();
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
