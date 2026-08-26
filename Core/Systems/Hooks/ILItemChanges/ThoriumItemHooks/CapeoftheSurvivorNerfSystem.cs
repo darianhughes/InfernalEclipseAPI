@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using InfernalEclipseAPI.Core.Systems.Hooks.ILTileChanges;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using ThoriumMod;
@@ -43,6 +42,8 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges
                 InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<LodeStone>(), 2750, 0.55, ThoriumWorld.downedFallenBeholder);
                 InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<ValadiumChunk>(), 2750, 0.55, ThoriumWorld.downedFallenBeholder);
                 InfernalCrossmod.SOTS.Mod.Call("AddMineralariumOre", ModContent.TileType<IllumiteChunk>(), 4100, 1.25, NPC.downedPlantBoss);
+
+                InfernalCrossmod.SOTS.Mod?.Call("AddHydroponicsHerb", ModContent.ItemType<ThoriumMod.Items.Depths.MarineKelp>(), ModContent.TileType<MarineKelp>(), 0, DustID.GrassBlades, 0f, 0f, 0f);
             }
         }
 
