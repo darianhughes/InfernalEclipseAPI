@@ -477,6 +477,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient(thorium.Find<ModItem>("Petal"), 5);
                     }
+
+                    if (recipe.HasResult<SunSpiritStaff>())
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 8);
+                    }
                 }
 
                 if (InfernalCrossmod.SOTS.Loaded)
