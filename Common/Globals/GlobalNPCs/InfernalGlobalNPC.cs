@@ -140,6 +140,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 int hydroBullet = calamityAmmo.Find<ModItem>("HydrothermicBullet").Type;
                 int divineArrow = calamityAmmo.Find<ModItem>("DivineArrow").Type;
                 int divineBullet = calamityAmmo.Find<ModItem>("DivineBullet").Type;
+                int weakAstralBullet = calamityAmmo.Find<ModItem>("WeakAstralBullet").Type;
+                int astralBullet = calamityAmmo.Find<ModItem>("AstralBullet").Type;
+                int dazzlingAstralBullet = calamityAmmo.Find<ModItem>("DazzlingAstralBullet").Type;
 
                 // Remove matching entries
                 for (int i = 0; i < items.Length; i++)
@@ -149,7 +152,8 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     if (item == null || item.IsAir)
                         continue;
 
-                    if (item.type == hydroArrow || item.type == hydroBullet || item.type == divineArrow || item.type == divineBullet)
+                    if (item.type == hydroArrow || item.type == hydroBullet || item.type == divineArrow || item.type == divineBullet
+                        || item.type == weakAstralBullet || item.type == astralBullet || item.type == dazzlingAstralBullet)
                         item.TurnToAir();
                 }
             }

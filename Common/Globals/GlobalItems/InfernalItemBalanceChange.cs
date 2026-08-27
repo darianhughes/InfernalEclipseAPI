@@ -5779,6 +5779,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 #endregion
 
                 #region Summon
+                if (GetItem(sots, "BrassWhip", item))
+                {
+                    item.damage = 14;
+                }
+
                 if (GetItem(sots, "JarOfPineapple", item))
                 {
                     item.damage = 13;

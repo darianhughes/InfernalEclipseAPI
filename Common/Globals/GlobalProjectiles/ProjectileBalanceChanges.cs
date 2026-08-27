@@ -662,6 +662,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                 if (projectile.ModProjectile.Mod.Name == "CalamitySimpleWhipAddon" && InfernalConfig.Instance.CalamityBalanceChanges)
                 {
+                    if (projectile.ModProjectile.Name == "AncientBondsProj")
+                    {
+                        projectile.WhipSettings.RangeMultiplier = 0.6f;
+                    }
+
                     if (projectile.ModProjectile.Name == "MilkywayProj")
                     {
                         projectile.WhipSettings.RangeMultiplier = 2.7f;
