@@ -1012,18 +1012,6 @@ Lore: {
 		I have only made two of these, and gave them to the two most powerful beings I could find.
 		If you are one of those people, or someone else, use this device wisely...
 		'''
-	MysteriousDiary:
-		'''
-		Turning to page one, you see nothing except a few words.
-
-		“Who the hell am I, that I still get to live a life?”
-
-		The rest of the pages are blank...
-
-		[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]
-
-		–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
-		'''
 }
 
 LegendaryTooltip.Base: This weapon may grow in power as you defeat difficult foes
@@ -1248,19 +1236,6 @@ Items: {
 				'''
 		}
 
-		LoreProvi: {
-			DisplayName: The Radiant One
-			Tooltip: ""
-			Lore:
-				'''
-				I dreamt of peace once. I don't know why I did.
-				Ever since I received word that there was something beyond this world,
-				I've have felt that womans presence in our world every now and again.
-				Now what Thorne wanted from her? Who knows.
-				But all the power is in your hands now, Terrarian.
-				'''
-		}
-
 		LoreMirror: {
 			DisplayName: The Mirror
 			Tooltip: ""
@@ -1288,8 +1263,6 @@ Items: {
 				with one of the key ingredients appering to be a "Dark Sun Ring."
 				Perhaps that "Guide" could help you further decipher this note.
 				Regardless, I'm sure you'll figure out how to make it.
-
-				–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
 				'''
 		}
 

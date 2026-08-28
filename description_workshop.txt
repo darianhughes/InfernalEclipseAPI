@@ -48,23 +48,23 @@ Check out some of our other offical DLC & commpatability mods:
 [list]
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3485175010] Infernal Arsenal[/url], an official DLC that adds new weapons and accessories to the mod.
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3557455275&searchtext=Homeward+Ragnarok] Homeward Ragnarok[/url], an official DLC that adds support for Homeward Journey.
-	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754984294] Ragnarok of Redemption[/url] - an official DLC that adds support for Mod of Redemption.
+	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754984294] Ragnarok of Redemption[/url], an official DLC that adds support for Mod of Redemption.
 	[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3452171528&searchtext=tpackbuilder] WHummus' Calamity/Thorium Balancing[/url], a Calamity/Thorium balancing mod that this mod gets most of its balance changes from.
 [/list]
 
-Very special thanks to the Calamity Mod, Fargo's Souls, Bereft Souls, our donors, as well as each of the individual mod developers of each mod in the mod pack for making this possible.
-
-Scythe throwing code provided by [url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen[/url]
+Very special thanks to each of the individual mod developers of each mod in the mod pack & our donors for making this possible.
 
 Created by the Infernal Eclipse of Ragnarok Team:
 Developers: Akira, Wardrobe Hummus, Advantaje
 Designers: Wardrobe Hummus, Yob, Tyr, ma3allim
 Story: Akira, Yob
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan, Arkangel
-Contributors: cheesenuggets, Pudd1ng, Pixus, Nicole, Dandel, Ropro, JalapenoDance, Mr. Puzzles, Arkangel
+Contributors: cheesenuggets, Pudd1ng, Pixus, Dandel, Ropro, JalapenoDance, Mr. Puzzles, Arkangel
 Spriters: Prime, Pixus, Yelmut, ma3allim, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel, Uncle Sciz, ABrickToTheHead, Mr. Puzzles
 Composers: Peter Fung, Techhy
 Localization: Pudd1ng (Simplified Chinese), Kraken (Russian)
+
+Certain pieces of code provided by [url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen[/url] & Nicole
 
 Music Credits:
 "Teardrops of Dragonfire" by Peter Fung

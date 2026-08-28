@@ -43,10 +43,7 @@
 			<HintPath>..\ModAssemblies\Consolaria_v2.1.3.5.dll</HintPath>
 		</Reference>
 		<Reference Include="Daybreak">
-			<HintPath>..\ModAssemblies\Daybreak_v2.3.1.dll</HintPath>
-		</Reference>
-		<Reference Include="Daybreak">
-		  <HintPath>..\ModAssemblies\Daybreak_v2.4.0.dll</HintPath>
+		  <HintPath>lib\Assemblies\Daybreak.dll</HintPath>
 		</Reference>
 		<Reference Include="FargowiltasSouls">
 			<HintPath>..\ModAssemblies\FargowiltasSouls_v1.7.3.6.dll</HintPath>
@@ -61,10 +58,7 @@
 		  <HintPath>..\ModAssemblies\InfernumMode_v2.0.1.26.dll</HintPath>
 		</Reference>
 		<Reference Include="Luminance">
-			<HintPath>..\ModAssemblies\Luminance_v1.0.13.dll</HintPath>
-		</Reference>
-		<Reference Include="Luminance">
-		  <HintPath>..\ModAssemblies\Luminance_v1.0.14.dll</HintPath>
+		  <HintPath>lib\Assemblies\Luminance.dll</HintPath>
 		</Reference>
 		<Reference Include="MMHOOK_CalamityMod_v2.0.5">
 			<HintPath>lib\MMHOOK_CalamityMod_v2.0.5.dll</HintPath>
@@ -88,7 +82,7 @@
 			<HintPath>..\ModAssemblies\SOTSBardHealer_v0.3.0.dll</HintPath>
 		</Reference>
 		<Reference Include="SubworldLibrary">
-		  <HintPath>..\..\..\..\..\..\Downloads\SubworldLibrary.dll</HintPath>
+		  <HintPath>lib\Assemblies\SubworldLibrary.dll</HintPath>
 		</Reference>
 		<Reference Include="ThoriumMod">
 		  <HintPath>lib\Assemblies\ThoriumMod.dll</HintPath>

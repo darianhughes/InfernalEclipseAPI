@@ -3,7 +3,6 @@ using System.Linq;
 using InfernalEclipseAPI.Core.Utils;
 using Luminance.Common.Easings;
 using Microsoft.Xna.Framework;
-using static Microsoft.Xna.Framework.MathHelper;
 
 namespace InfernalEclipseAPI.Common.Tools.Easings
 {
