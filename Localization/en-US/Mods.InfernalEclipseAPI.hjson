@@ -176,6 +176,7 @@ ItemTooltip: {
 	Contributor: - Contributor Item -
 	NamelessDowned: You must pass the test
 	DisabledBossRush: The effects will not work in Boss Rush
+	JungleCurse: It has been cursed by a powerful Jungle creature
 	SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
 	NBeamUsage: Hold Left-Click to release a Nebula Gigabeam that deals mythic magic damage
 	MBeamUsage: Hold Left-Click to release a Exo Disintegrator beam that deals mythic ranged damage

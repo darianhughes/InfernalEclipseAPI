@@ -741,7 +741,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             if (item.type == ItemType<LihzahrdKukri>() && !NPC.downedPlantBoss) // -Arkangel
                 return false;
 
-                return base.CanUseItem(item, player);
+            return base.CanUseItem(item, player);
         }
 
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
@@ -781,7 +781,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
 
             if (item.type == ItemType<LihzahrdKukri>() && !NPC.downedPlantBoss)
             {
-                TooltipLine curseWarning = new TooltipLine(Mod, "PlanteraCurse", "It has been cursed by a powerful Jungle creature"); //Easiest way I found to give the jungle curse tooltip -Arkangel
+                TooltipLine curseWarning = new TooltipLine(Mod, "PlanteraCurse", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.JungleCurse")); //Easiest way I found to give the jungle curse tooltip -Arkangel
                 int insertIndex = tooltips.FindLastIndex(t => t.Name.StartsWith("Tooltip"));
                 if (insertIndex != -1)
                 {
