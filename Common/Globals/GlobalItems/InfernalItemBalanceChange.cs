@@ -918,8 +918,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 }
                 if (UnsafeGetItem(simpleWhipAddon, "Milkyway", item))
                 {
-                    item.useAnimation = 44;
-                    item.useTime = 44;
+                    item.useAnimation = 36;
+                    item.useTime = 36;
                 }
 
                 //Added in updates

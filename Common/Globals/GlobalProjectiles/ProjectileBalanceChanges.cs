@@ -671,6 +671,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     {
                         projectile.WhipSettings.RangeMultiplier = 2.7f;
                     }
+
+                    if (projectile.ModProjectile.Name == "ChorusofExecrationProj")
+                    {
+                        projectile.WhipSettings.RangeMultiplier = 2.8f;
+                    }
                 }
 
                 if (InfernalConfig.Instance.SOTSBalanceChanges) 
