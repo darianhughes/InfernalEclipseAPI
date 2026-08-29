@@ -7,6 +7,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
     {
         public override bool PreKill(Projectile projectile, int timeLeft)
         {
+            /*
             if (projectile.type == ModContent.ProjectileType<BossRushEndEffectThing>())
             {
                 for (int i = Main.maxPlayers - 1; i >= 0; i--)
@@ -26,6 +27,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
                     }
                 }
             }
+            */
             return base.PreKill(projectile, timeLeft);
         }
     }

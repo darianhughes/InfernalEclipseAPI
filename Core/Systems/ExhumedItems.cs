@@ -12,7 +12,7 @@ public class ExhumedItems : ModSystem
     {
         var dict = EnchantmentManager.ItemUpgradeRelationship;
 
-        dict[ModContent.ItemType<LoreProvi>()] = ModContent.ItemType<MysteriousDiary>();
+        //dict[ModContent.ItemType<LoreProvi>()] = ModContent.ItemType<MysteriousDiary>();
         dict[ModContent.ItemType<EmptyDemonicTome>()] = ModContent.ItemType<DemonicTome>();
         dict[ItemID.Sign] = ModContent.ItemType<Streetsign>();
 
