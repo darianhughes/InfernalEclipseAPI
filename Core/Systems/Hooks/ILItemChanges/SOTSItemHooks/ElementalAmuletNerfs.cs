@@ -53,13 +53,13 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges
                     ++player.maxTurrets;
                     break;
                 case 2:
-                    sotsPlayer.attackSpeedMod += 0.12f;
+                    sotsPlayer.attackSpeedMod += 0.08f;
                     break;
                 case 3:
-                    player.GetCritChance(DamageClass.Generic) += 10f;
+                    player.GetCritChance(DamageClass.Generic) += Main.hardMode ? 8f : 4f;
                     break;
                 case 4:
-                    sotsPlayer.CritBonusMultiplier += Main.hardMode ? 0.1f : 0.05f;
+                    sotsPlayer.CritBonusMultiplier += Main.hardMode ? 0.12f : 0.08f;
                     break;
                 case 5:
                     sotsPlayer.additionalHeal += 40;
@@ -80,12 +80,12 @@ namespace InfernalEclipseAPI.Core.Systems.Hooks.ILItemChanges
                     player.discountAvailable = true;
                     break;
                 case 1:
-                    player.manaCost -= 0.2f;
+                    player.manaCost -= Main.hardMode ? 0.2f : 0.15f;
                     break;
                 case 2:
                     player.jumpSpeedBoost += 2f;
-                    player.moveSpeed += 0.1f;
-                    player.GetAttackSpeed(DamageClass.Melee) += 0.1f;
+                    player.moveSpeed += 0.08f;
+                    player.GetAttackSpeed(DamageClass.Melee) += 0.08f;
                     break;
                 case 3:
                     if (Main.hardMode)

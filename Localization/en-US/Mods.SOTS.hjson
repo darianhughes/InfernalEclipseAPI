@@ -1,9 +1,11 @@
 VisionAmuletTextList: {
-	4: Increases critical strike damage by 5%, and is improved to 10% in hardmode
+	2: Increases attack speed by 8%
+	3: Increases critical strike chance by 4%, and is improved to 8% after beating the guardian of the underworld
+	4: Increases critical strike damage by 8%, and is improved to 12% after beating the guardian of the underworld
 	6:
 		'''
 		Increases max life by 20
-		Increases damage by 5%, and is improved to 10% in hardmode
+		Increases damage by 5%, and is improved to 10% after beating the guardian of the underworld
 		'''
 }
 
@@ -11,13 +13,19 @@ VisionAmuletTextList2: {
 	1:
 		'''
 
-		Decreases mana cost by 20%, and is improved to 25% in hardmode
+		Decreases mana cost by 15%, and is improved to 20% after beating the guardian of the underworld
+		'''
+	2:
+		'''
+
+		Increases melee speed and movement speed by 8%
+		Increases jump speed
 		'''
 	3:
 		'''
 
 		Provides access to Work Bench, Furnace, and Anvil crafting stations
-		Provides access to the Alchemy Table crafting station as well in hardmode
+		Provides access to the Alchemy Table crafting station as well after beating the guardian of the underworld
 		Increases max mana and mana received from potions by 40
 		'''
 	4:
@@ -28,7 +36,7 @@ VisionAmuletTextList2: {
 	5:
 		'''
 
-		Efficacy of enemy defense is reduced by 5%, and is improved to 10% in hardmode
+		Efficacy of enemy defense is reduced by 5%, and is improved to 10% after beating the guardian of the underworld
 		'''
 }
 
