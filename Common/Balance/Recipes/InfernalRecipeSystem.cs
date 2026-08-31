@@ -1674,11 +1674,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
                         }
 
-                        if (ModLoader.TryGetMod("Clamity", out Mod clam))
-                        {
-                            if(recipe.HasResult(clam.Find<ModItem>("SoulBaguette")))
-                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
-                        }
+                        //if (ModLoader.TryGetMod("Clamity", out Mod clam))
+                        //{
+                        //    if(recipe.HasResult(clam.Find<ModItem>("SoulBaguette")))
+                        //        recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1); //not needed anymore i believe -Arkangel
+                        //}
 
                         if (ModLoader.TryGetMod("FishGunsPlus", out Mod fishGun))
                         {

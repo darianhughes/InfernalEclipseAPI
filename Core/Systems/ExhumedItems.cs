@@ -16,9 +16,9 @@ public class ExhumedItems : ModSystem
         dict[ModContent.ItemType<EmptyDemonicTome>()] = ModContent.ItemType<DemonicTome>();
         dict[ItemID.Sign] = ModContent.ItemType<Streetsign>();
 
-        if (InfernalCrossmod.Clamity.Loaded)
-        {
-            dict[InfernalCrossmod.Clamity.Mod.Find<ModItem>("TheSubcommunity").Type] = ModContent.ItemType<ShatteredSubcommunity>();
-        }
+        //if (InfernalCrossmod.Clamity.Loaded)
+        //{
+        //    dict[InfernalCrossmod.Clamity.Mod.Find<ModItem>("TheSubcommunity").Type] = ModContent.ItemType<ShatteredSubcommunity>(); // cataclysm mod loads if commented out not sure if we need to remove this or their hotfix fixes this -Arkangel
+        //}
     }
 }
