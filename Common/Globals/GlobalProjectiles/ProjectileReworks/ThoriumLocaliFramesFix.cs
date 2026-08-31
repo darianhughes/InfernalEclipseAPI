@@ -35,6 +35,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             int pro21type = thorium.Find<ModProjectile>("OmenPro")?.Type ?? -1;
             int pro22type = thorium.Find<ModProjectile>("PaperExplosivePro")?.Type ?? -1;
             int pro23type = thorium.Find<ModProjectile>("PaperExplosivePro2")?.Type ?? -1;
+            int pro25type = thorium.Find<ModProjectile>("CorruptlingStaffPro")?.Type ?? -1;
 
             if (projectile.type == pro1Type || projectile.type == pro13type || projectile.type == pro3type || projectile.type == pro4type || projectile.type == pro5type || projectile.type == pro21type)
             {
@@ -51,7 +52,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
             }
 
             if (projectile.type == pro6type || projectile.type == pro7type || projectile.type == pro8type || projectile.type == pro9type || projectile.type == pro10type || projectile.type == pro11type || projectile.type == pro12type || projectile.type == pro14type || 
-                projectile.type == pro15type || projectile.type == pro17type || projectile.type == pro18type || projectile.type == pro22type)
+                projectile.type == pro15type || projectile.type == pro17type || projectile.type == pro18type || projectile.type == pro22type || projectile.type == pro25type)
             {
                 projectile.usesLocalNPCImmunity = true;
                 projectile.localNPCHitCooldown = 40;
@@ -64,6 +65,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
 
                 int rework1Type = thoriumRework.Find<ModProjectile>("ValadiumHeavyScytheWave")?.Type ?? -1;
                 int rework2Type = thoriumRework.Find<ModProjectile>("ValadiumHeavyScythe")?.Type ?? -1;
+                int rework3Type = thorium.Find<ModProjectile>("GraniteCharge")?.Type ?? -1;
 
                 if (projectile.type == rework1Type)
                 {
@@ -74,7 +76,7 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles.ProjectileReworks
                     projectile.usesIDStaticNPCImmunity = false;
                 }
 
-                if (projectile.type == rework2Type)
+                if (projectile.type == rework2Type || projectile.type == rework3Type)
                 {
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 60;

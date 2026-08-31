@@ -594,6 +594,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     }
 
                     //remove if helhiem ever removes thier fallen paladins nerf as this brings it back to Thorium vanilla
+                    /*
                     if (item.type == ItemType<FallenPaladinFaceguard>())
                     {
                         player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.1f;
@@ -608,6 +609,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     {
                         player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.05f;
                     }
+                    */
                 }
 
                 /*

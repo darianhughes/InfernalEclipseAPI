@@ -477,6 +477,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient(thorium.Find<ModItem>("Petal"), 5);
                     }
+
+                    if (recipe.HasResult<SunSpiritStaff>())
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 8);
+                    }
                 }
 
                 if (InfernalCrossmod.SOTS.Loaded)
@@ -521,7 +526,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.DisableRecipe();
                     }
 
-                    if (recipe.HasResult(calAmmo.Find<ModItem>("DivineArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("DivineBullet")))
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("DivineArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("DivineBullet")) || recipe.HasResult(calAmmo.Find<ModItem>("WeakAstralBullet")))
                     {
                         if (InfernalConfig.Instance.CalamityBalanceChanges)
                             recipe.DisableRecipe();

@@ -45,6 +45,29 @@ namespace InfernalEclipseAPI.Core.Systems
                 AddToBlacklist(reworkAdditions);
             }
         }
+
+        public override void PostSetupContent()
+        {
+            AddSpear("ThoriumMod", "RifleSpear");
+            AddSpear("SOTS", "GoldGlaive");
+            AddSpear("SOTS", "Riptide");
+            AddSpear("SOTS", "AncientSteelHalberd");
+            AddSpear("SOTS", "ImperialPike");
+            AddSpear("SOTS", "CursedImpale");
+            AddSpear("SOTS", "HardlightGlaive");
+            AddSpear("SOTS", "Helios");
+        }
+
+        private void AddSpear(string modName, string itemName)
+        {
+            if (!ModLoader.TryGetMod(modName, out Mod mod))
+                return;
+
+            if (!mod.TryFind<ModItem>(itemName, out ModItem spear))
+                return;
+
+            ItemID.Sets.Spears[spear.Type] = true;
+        }
     }
 
     [JITWhenModsEnabled("SOTS", "CalamityAmmo")]

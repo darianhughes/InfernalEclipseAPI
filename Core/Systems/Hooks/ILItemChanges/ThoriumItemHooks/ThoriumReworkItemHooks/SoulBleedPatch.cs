@@ -40,11 +40,11 @@ public class SoulBleedPatch : ModSystem
         {
             if (c.Prev.OpCode == OpCodes.Ldc_R8)
             {
-                c.Prev.Operand = 0.005;
+                c.Prev.Operand = 0.01;
             }
             else if (c.Prev.OpCode == OpCodes.Ldc_R4)
             {
-                c.Prev.Operand = 0.005f;
+                c.Prev.Operand = 0.01f;
             }
         }
     }

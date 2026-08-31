@@ -85,8 +85,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
                 else
                     targetPos = player.Center;
 
-                float speed = 6f;
-                float inertia = 10f;
+                float speed = 14f;
+                float inertia = 6f;
 
                 Vector2 desiredVelocity = projectile.DirectionTo(targetPos) * speed;
 
@@ -95,6 +95,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
 
                 // CRITICAL: actually apply movement
                 projectile.Center += projectile.velocity;
+
+                if (player.HeldItem.type != KinetoScytheID)
+                {
+                    projectile.ai[2] = 0;
+                    return;
+                }
             }
 
             private NPC FindClosestTarget(Projectile proj, float maxDistance)

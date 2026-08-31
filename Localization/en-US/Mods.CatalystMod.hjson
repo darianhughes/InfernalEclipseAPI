@@ -23,7 +23,7 @@ Items: {
 		'''
 	UnrelentingTorment.Tooltip:
 		'''
-		10% summon tag damage
+		12% summon tag damage
 		{$Mods.CatalystMod.Tooltips.WhipTooltip}
 		Releases a cascade of otherworldly claws to tear at foes
 		'''
