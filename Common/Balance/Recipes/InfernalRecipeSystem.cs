@@ -332,6 +332,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             #endregion
 
             #region Calamity Simple Whip Addon
+            /*
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
             {
                 Recipe.Create(simpleWhipAddon.Find<ModItem>("StrikerEmblem").Type)
@@ -340,6 +341,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     .AddTile(TileID.Anvils)
                     .Register();
             }
+            */
             #endregion
         }
 
@@ -630,7 +632,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             GetItem(simpleWhipAddon, "BleachedJellyChargedBattery"),
                             GetItem(simpleWhipAddon, "BleachedVoltaicJelly"),
 
-                            GetItem(simpleWhipAddon, "BuddyEmblem")
+                            //GetItem(simpleWhipAddon, "BuddyEmblem")
                         };
 
                         foreach (ModItem item in bleachedAcessories)
