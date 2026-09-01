@@ -1,7 +1,7 @@
 VisionAmuletTextList: {
-	2: [s:InfernalEclipseAPI/IEoRIcon] Increases attack speed by 8%
-	3: [s:InfernalEclipseAPI/IEoRIcon] Increases critical strike chance by 4%, and is improved to 8% after beating the guardian of the underworld
-	4: [s:InfernalEclipseAPI/IEoRIcon] Increases critical strike damage by 8%, and is improved to 12% after beating the guardian of the underworld
+	2: "[s:InfernalEclipseAPI/IEoRIcon] Increases attack speed by 8%"
+	3: "[s:InfernalEclipseAPI/IEoRIcon] Increases critical strike chance by 4%, and is improved to 8% after beating the guardian of the underworld"
+	4: "[s:InfernalEclipseAPI/IEoRIcon] Increases critical strike damage by 8%, and is improved to 12% after beating the guardian of the underworld"
 	6:
 		'''
 		Increases max life by 20
@@ -62,8 +62,8 @@ Items: {
 		Use hydrokinesis to extend the effective range of melee weapons and other low-reach items, such as whips
 		[s:InfernalEclipseAPI/IEoRIcon] Decreases true melee damage by 15%
 		'''
-	FrostArtifactHelmet.Tooltip: [s:InfernalEclipseAPI/IEoRIcon] 15% increased melee and ranged damage
-	FrostArtifactChestplate.Tooltip: [s:InfernalEclipseAPI/IEoRIcon] 15% increased melee and ranged critical strike chance
+	FrostArtifactHelmet.Tooltip: "[s:InfernalEclipseAPI/IEoRIcon] 15% increased melee and ranged damage"
+	FrostArtifactChestplate.Tooltip: "[s:InfernalEclipseAPI/IEoRIcon] 15% increased melee and ranged critical strike chance"
 
 	ElementalBreastplate: {
 		DisplayName: Elemental Breastplate
@@ -87,7 +87,7 @@ Items: {
 		Costs 6 void to launch
 		Holo Eye remains active in the inventory when favorited or while worn in vanity slots, but cannot attack
 		'''
-	ChallengerRing.I6: [s:InfernalEclipseAPI/IEoRIcon] Weapons will inflict a random debuff on hit
+	ChallengerRing.I6: "[s:InfernalEclipseAPI/IEoRIcon] Weapons will inflict a random debuff on hit"
 }
 
 ArmorSetBonus.Earthen:

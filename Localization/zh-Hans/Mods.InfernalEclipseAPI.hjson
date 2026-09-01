@@ -141,12 +141,6 @@ TimeFreezePrevention: {
 	Other: 虚空魔法孵化器的效果被阻拦！
 }
 
-BossCheesePrevention: {
-	TheDestroyer: 我不会让你轻易摧毁我的造物。
-	Plantera: 远古力量正阻止你使用该物品……
-	Yharon: 远古力量正阻止你使用该物品……
-}
-
 ItemBalance: {
 	Modified: 已被诸神黄昏：炼狱蚀光修改
 	Modified2: 按住{0}以查看修改

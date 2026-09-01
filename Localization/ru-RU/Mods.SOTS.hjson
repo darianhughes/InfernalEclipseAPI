@@ -1,4 +1,6 @@
 VisionAmuletTextList: {
+	// 2: "[s:InfernalEclipseAPI/IEoRIcon] Increases attack speed by 8%"
+	// 3: "[s:InfernalEclipseAPI/IEoRIcon] Increases critical strike chance by 4%, and is improved to 8% after beating the guardian of the underworld"
 	4:
 		'''
 		Увеличивает урон критических ударов на 5%
@@ -19,6 +21,12 @@ VisionAmuletTextList2: {
 		Снижает расход маны на 20%
 		Этот шанс увеличивается до 25% в Хардмоде
 		'''
+	/* 2:
+		'''
+
+		[s:InfernalEclipseAPI/IEoRIcon] Increases melee speed and movement speed by 8%
+		Increases jump speed
+		''' */
 	3:
 		'''
 
@@ -75,32 +83,23 @@ Items: {
 			Has a 15 second cooldown, but increases melee speed by 40% during the cooldown
 			''' */
 	}
+
+	/* TwilightAssassinsCirclet.Tooltip:
+		'''
+		[s:InfernalEclipseAPI/IEoRIcon] Increases max sentries by 1
+		Increases minion and melee damage by 7%
+		Increases max void by 50
+		Provides a Holo Eye minion to assist in combat
+		Press '{0}' to make it launch a destabilizing beam that applies 4 levels of destabilized, but only once per enemy
+		Destabilized enemies gain a 5% flat chance to be critically striked
+		Costs 6 void to launch
+		Holo Eye remains active in the inventory when favorited or while worn in vanity slots, but cannot attack
+		''' */
+	// ChallengerRing.I6: "[s:InfernalEclipseAPI/IEoRIcon] Weapons will inflict a random debuff on hit"
 }
 
 ArmorSetBonus.Earthen:
 	'''
 	Попадание оружием ближнего боя имеет шанс наложить на врага бессрочное суммирующееся проклятие искромсания, увеличивающее наносимый урон по поражённым этим проклятием врагам
 	Увеличивает скорость атаки на 10%
-	'''
-TwilightAssassinsCircletText:
-	'''
-	Увеличивает максимальное количество миньонов и стражей на 1
-	Увеличивает урон призывателя и ближнего боя на 7%
-	Увеличивает максимальный запас пустоты на 50 ед.
-	Призывает голографический глаз помогать вам в бою
-	Нажмите {0}, чтобы выпустить дестабилизирующий луч, накладывающий 4 уровня бессрочного дестабилизирующего проклятия, но только один раз на каждого поражённого врага
-	Это проклятие увеличивает шанс критического удара по врагу на 5% за уровень, но не суммируется с шансом критического удара игрока
-	Выпуск дестабилизирующего луча стоит 6 ед. пустоты
-	Голографический глаз продолжит летать с вами, если добавить его в избранное в инвентаре или поместить его в слот украшений, но тогда он не сможет атаковать
-	'''
-TwilightAssassinsCircletText2:
-	'''
-	Увеличивает максимальное количество миньонов и стражей на 1
-	Увеличивает урон призывателя и ближнего боя на 7%
-	Увеличивает максимальный запас пустоты на 50 ед.
-	Призывает голографический глаз помогать вам в бою
-	Нажмите {0}, чтобы выпустить дестабилизирующий луч, накладывающий 4 уровня бессрочного дестабилизирующего проклятия, но только один раз на каждого поражённого врага
-	Это проклятие увеличивает шанс критического удара по врагу на 5% за уровень, но не суммируется с шансом критического удара игрока
-	Выпуск дестабилизирующего луча стоит 6 ед. пустоты
-	Голографический глаз продолжит летать с вами, если добавить его в избранное в инвентаре или поместить его в слот украшений, но тогда он не сможет атаковать
 	'''

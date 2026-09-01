@@ -142,7 +142,7 @@ TimeFreezePrevention: {
 }
 
 ItemBalance: {
-	Modified: [s:InfernalEclipseAPI/IEoRIcon] Modified by Infernal Eclipse of Ragnarok
+	Modified: "[s:InfernalEclipseAPI/IEoRIcon] Modified by Infernal Eclipse of Ragnarok"
 	Modified2: Hold {0} to see modifications
 	DamageUpGeneric: "    Damage increased by [c/00A36C:{0}%]"
 	DamageDownGeneric: "    Damage decreased by [c/FF0000:{0}%]"
@@ -309,14 +309,14 @@ ItemTooltip: {
 		'Gulp!'
 		'''
 	SpiritGlove: Increases void regeneration speed by 5% and melee critical strike chance by 4%
-	DiamondRingText: [s:InfernalEclipseAPI/IEoRIcon] Increase damage based on defense, then decreases defense by two-thirds of the damage buff
+	DiamondRingText: "[s:InfernalEclipseAPI/IEoRIcon] Increase damage based on defense, then decreases defense by two-thirds of the damage buff"
 	EarthDrive: Max boost to melee speed is 10%
 	SyntheticLiver:
 		'''
 		Increases void received from food by 25%
 		Receiving the same buff multiple times will increase buff duration instead of resetting it, up to double the original duration
 		'''
-	MutantSkeletron: "[IEoR] Item is unusable until Skeletron has been defeated at least once. Use the Infernum spawn item instead."
+	MutantSkeletron: "[s:InfernalEclipseAPI/IEoRIcon] Item is unusable until Skeletron has been defeated at least once. Use the Infernum spawn item instead."
 	VibePotion: Increases attack speed by 10% while not moving and by 5% while moving
 	BloodPotion: Increases mining speed by 15%
 	FrenzyPotion: Increases all attack speeds by 5%
@@ -1933,10 +1933,7 @@ Items: {
 			Decreases damage by {1}%
 			'''
 		# Opposite of Lust, Chastity
-		I6:
-			'''
-			Weapons will inflict a random debuff on hit
-			'''
+		I6: Weapons will inflict a random debuff on hit
 		NormalTooltip:
 			'''
 			18% increased damage and 5% increased arrow damaage

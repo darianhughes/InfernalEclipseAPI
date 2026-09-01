@@ -38,7 +38,7 @@ ItemDescriptions: {
 		25% increased whip range
 		Increases your max number of minions by 1
 		'''
-	MagmaSeersMask: [s:InfernalEclipseAPI/IEoRIcon] 20% increased whip speed
+	MagmaSeersMask: "[s:InfernalEclipseAPI/IEoRIcon] 20% increased whip speed"
 	MasterMarksmansScouter: ""
 	AssassinsGuard: ""
 }
