@@ -803,7 +803,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
             #region Calamity Simple Whip Addon
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon) && InfernalConfig.Instance.CalamityBalanceChanges)
             {
-                /*
                 //Pre-Hardmode
                 if (UnsafeGetItem(simpleWhipAddon, "RapierWhip", item))
                 {
@@ -953,7 +952,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 {
                     item.damage = 96;
                 }
-                */
 
                 int[] bleachedAcessories =
                 {
