@@ -309,7 +309,12 @@ ItemTooltip: {
 		'Gulp!'
 		'''
 	SpiritGlove: Increases void regeneration speed by 5% and melee critical strike chance by 4%
-	DiamondRingText: "[s:InfernalEclipseAPI/IEoRIcon] Increase damage based on defense, then decreases defense by two-thirds of the damage buff"
+	DiamondRingText:
+		'''
+		Increase damage based on defense, then decreases defense by two-thirds of the damage buff
+		Increases damage by {0}%
+		Decreases defense by {1}
+		'''
 	EarthDrive: Max boost to melee speed is 10%
 	SyntheticLiver:
 		'''

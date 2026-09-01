@@ -140,6 +140,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                                 if (!npc.buffImmune[ModContent.BuffType<Enraged>()])
                                     npc.buffImmune[ModContent.BuffType<Enraged>()] = true;
 
+                                player.buffImmune[ModContent.BuffType<Enraged>()] = true;
                                 player.Calamity().enraged = false;
                             }
                             else
