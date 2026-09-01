@@ -3,6 +3,7 @@ using System.Reflection;
 using CalamityMod;
 using CalamityMod.Items;
 using CalamityMod.Rarities;
+using CalamityMod.UI.CalamitasEnchants;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,6 +20,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.Steetsign
     {
         private static bool VanillaShoot;
         private static readonly MethodInfo MiItemCheckShoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+        public override void SetStaticDefaults()
+        {
+            EnchantmentManager.ItemUpgradeRelationship.Add(ItemID.Sign, Type);
+        }
 
         public override void SetDefaults()
         {
