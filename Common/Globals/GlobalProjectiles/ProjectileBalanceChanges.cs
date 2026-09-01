@@ -488,6 +488,18 @@ namespace InfernalEclipseAPI.Common.Projectiles
                         //entity.scale *= 0.3f;
                     }
                 }
+
+                if (InfernalCrossmod.Hunt.Loaded)
+                {
+                    if (entity.type == calBardHeal.Find<ModProjectile>("TimesOldTrail").Type)
+                    {
+                        entity.usesLocalNPCImmunity = false;
+
+                        entity.usesIDStaticNPCImmunity = true;
+                        entity.idStaticNPCHitCooldown = 4;
+                        entity.timeLeft = 300;
+                    }
+                }
             }
             #endregion
 
@@ -662,6 +674,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                 if (projectile.ModProjectile.Mod.Name == "CalamitySimpleWhipAddon" && InfernalConfig.Instance.CalamityBalanceChanges)
                 {
+                    /*
                     if (projectile.ModProjectile.Name == "AncientBondsProj")
                     {
                         projectile.WhipSettings.RangeMultiplier = 0.6f;
@@ -676,6 +689,7 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     {
                         projectile.WhipSettings.RangeMultiplier = 2.8f;
                     }
+                    */
                 }
 
                 if (InfernalConfig.Instance.SOTSBalanceChanges) 

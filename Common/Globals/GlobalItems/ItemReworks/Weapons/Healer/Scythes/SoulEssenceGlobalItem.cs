@@ -8,8 +8,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
     {
         private static int woodenBatonType = -1;
         private static int iceShaverType = -1;
+        private static int timesOldRomanType = -1;
 
-        // Reflection helpers
+        // Reflection helpers for Thorium's ScytheItem
         private static FieldInfo scytheSoulChargeFieldOnScytheBase;
         private static PropertyInfo scytheSoulChargePropOnScytheBase;
         private static Type thoriumScytheBaseType;
@@ -19,35 +20,80 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             if (!ModLoader.TryGetMod("ThoriumMod", out Mod thorium))
                 return;
 
-            // use the exact Thorium item names you wanted
+            // Thorium items
             woodenBatonType = thorium.Find<ModItem>("WoodenBaton")?.Type ?? -1;
             iceShaverType = thorium.Find<ModItem>("IceShaver")?.Type ?? -1;
 
-            // Try to find a ModItem-derived type in Thorium that defines scytheSoulCharge
-            var asm = thorium.Code;
+            // CalamityBardHealer Cal Hunt item
+            if (ModLoader.TryGetMod("CalamityBardHealer", out Mod calamityBardHealer) && ModLoader.TryGetMod("CalamityHunt", out Mod calHunt))
+            {
+                timesOldRomanType = calamityBardHealer.Find<ModItem>("TimesOldRoman")?.Type ?? -1;
+            }
+
+            // Find Thorium's ScytheItem / base type containing scytheSoulCharge
             try
             {
+                var asm = thorium.Code;
+
                 thoriumScytheBaseType = asm.GetTypes()
                     .FirstOrDefault(t =>
                         typeof(ModItem).IsAssignableFrom(t) &&
-                        (t.GetField("scytheSoulCharge", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) != null
-                         || t.GetProperty("scytheSoulCharge", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic) != null)
+                        (
+                            t.GetField(
+                                "scytheSoulCharge",
+                                BindingFlags.Instance |
+                                BindingFlags.Public |
+                                BindingFlags.NonPublic
+                            ) != null
+                            ||
+                            t.GetProperty(
+                                "scytheSoulCharge",
+                                BindingFlags.Instance |
+                                BindingFlags.Public |
+                                BindingFlags.NonPublic
+                            ) != null
+                        )
                     );
 
                 if (thoriumScytheBaseType != null)
                 {
-                    scytheSoulChargeFieldOnScytheBase = thoriumScytheBaseType.GetField("scytheSoulCharge", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                    scytheSoulChargePropOnScytheBase = thoriumScytheBaseType.GetProperty("scytheSoulCharge", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                    Mod.Logger.Info($"[SoulEssenceGlobalItem] Found Thorium scythe base type: {thoriumScytheBaseType.FullName}. Field: {scytheSoulChargeFieldOnScytheBase?.Name ?? "null"}, Prop: {scytheSoulChargePropOnScytheBase?.Name ?? "null"}");
+                    scytheSoulChargeFieldOnScytheBase =
+                        thoriumScytheBaseType.GetField(
+                            "scytheSoulCharge",
+                            BindingFlags.Instance |
+                            BindingFlags.Public |
+                            BindingFlags.NonPublic
+                        );
+
+                    scytheSoulChargePropOnScytheBase =
+                        thoriumScytheBaseType.GetProperty(
+                            "scytheSoulCharge",
+                            BindingFlags.Instance |
+                            BindingFlags.Public |
+                            BindingFlags.NonPublic
+                        );
+
+                    Mod.Logger.Info(
+                        $"[SoulEssenceGlobalItem] Found Thorium scythe base type: " +
+                        $"{thoriumScytheBaseType.FullName}. " +
+                        $"Field: {scytheSoulChargeFieldOnScytheBase?.Name ?? "null"}, " +
+                        $"Prop: {scytheSoulChargePropOnScytheBase?.Name ?? "null"}"
+                    );
                 }
                 else
                 {
-                    Mod.Logger.Info("[SoulEssenceGlobalItem] Could not find a Thorium ModItem-derived type declaring 'scytheSoulCharge'. Will fallback to instance reflection.");
+                    Mod.Logger.Info(
+                        "[SoulEssenceGlobalItem] Could not find a Thorium ModItem-derived " +
+                        "type declaring 'scytheSoulCharge'. Will fallback to instance reflection."
+                    );
                 }
             }
             catch (Exception ex)
             {
-                Mod.Logger.Warn($"[SoulEssenceGlobalItem] Reflection search failed: {ex}");
+                Mod.Logger.Warn(
+                    $"[SoulEssenceGlobalItem] Reflection search failed: {ex}"
+                );
+
                 thoriumScytheBaseType = null;
                 scytheSoulChargeFieldOnScytheBase = null;
                 scytheSoulChargePropOnScytheBase = null;
@@ -59,61 +105,129 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ItemReworks.Weapons.Heal
             if (item == null)
                 return;
 
-            // Only operate for the two items you asked about
-            if (item.type != woodenBatonType && item.type != iceShaverType)
-                return;
-
-            // Ensure it's actually a Thorium item instance
-            if (item.ModItem == null || item.ModItem.Mod?.Name != "ThoriumMod")
+            if (item.type != woodenBatonType &&
+                item.type != iceShaverType &&
+                item.type != timesOldRomanType)
             {
-                Mod.Logger.Info($"[SoulEssenceGlobalItem] Item {item.Name} is not a Thorium ModItem; skipping.");
                 return;
             }
 
-            // 1) If we found a base type that declares the field/property, try to set via the cached FieldInfo/PropertyInfo
+            if (item.ModItem == null)
+                return;
+
+            // CalamityBardHealer
+            if (item.type == timesOldRomanType)
+            {
+                SetSoulEssence(item.ModItem, 1);
+                return;
+            }
+
+            // Thorium
+
+            if (item.ModItem.Mod?.Name != "ThoriumMod")
+            {
+                Mod.Logger.Info(
+                    $"[SoulEssenceGlobalItem] Item {item.Name} is not a Thorium ModItem; skipping."
+                );
+
+                return;
+            }
+
+            SetSoulEssence(item.ModItem, 1);
+        }
+
+        private void SetSoulEssence(ModItem modItem, int amount)
+        {
+            if (modItem == null)
+                return;
+
+            // 1. Cached base-class field
+
             if (scytheSoulChargeFieldOnScytheBase != null)
             {
                 try
                 {
-                    scytheSoulChargeFieldOnScytheBase.SetValue(item.ModItem, 1);
+                    scytheSoulChargeFieldOnScytheBase.SetValue(modItem, amount);
                     return;
                 }
                 catch (Exception ex)
                 {
-                    Mod.Logger.Warn($"[SoulEssenceGlobalItem] Failed to set field on base type: {ex}");
+                    Mod.Logger.Warn(
+                        $"[SoulEssenceGlobalItem] Failed to set field on base type: {ex}"
+                    );
                 }
             }
-            if (scytheSoulChargePropOnScytheBase != null && scytheSoulChargePropOnScytheBase.CanWrite)
+
+            // 2. Cached base-class property
+
+            if (scytheSoulChargePropOnScytheBase != null &&
+                scytheSoulChargePropOnScytheBase.CanWrite)
             {
                 try
                 {
-                    scytheSoulChargePropOnScytheBase.SetValue(item.ModItem, 1);
+                    scytheSoulChargePropOnScytheBase.SetValue(modItem, amount);
                     return;
                 }
                 catch (Exception ex)
                 {
-                    Mod.Logger.Warn($"[SoulEssenceGlobalItem] Failed to set property on base type: {ex}");
+                    Mod.Logger.Warn(
+                        $"[SoulEssenceGlobalItem] Failed to set property on base type: {ex}"
+                    );
                 }
             }
 
-            // 2) Fallback: look directly on the concrete ModItem instance's type (covers odd layouts)
-            var concreteType = item.ModItem.GetType();
-            var field = concreteType.GetField("scytheSoulCharge", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            // 3. Fallback: concrete item type
+
+            var concreteType = modItem.GetType();
+
+            var field = concreteType.GetField(
+                "scytheSoulCharge",
+                BindingFlags.Instance |
+                BindingFlags.Public |
+                BindingFlags.NonPublic
+            );
+
             if (field != null)
             {
-                field.SetValue(item.ModItem, 1);
-                return;
+                try
+                {
+                    field.SetValue(modItem, amount);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Mod.Logger.Warn(
+                        $"[SoulEssenceGlobalItem] Failed to set concrete field: {ex}"
+                    );
+                }
             }
 
-            var prop = concreteType.GetProperty("scytheSoulCharge", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var prop = concreteType.GetProperty(
+                "scytheSoulCharge",
+                BindingFlags.Instance |
+                BindingFlags.Public |
+                BindingFlags.NonPublic
+            );
+
             if (prop != null && prop.CanWrite)
             {
-                prop.SetValue(item.ModItem, 1);
-                return;
+                try
+                {
+                    prop.SetValue(modItem, amount);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Mod.Logger.Warn(
+                        $"[SoulEssenceGlobalItem] Failed to set concrete property: {ex}"
+                    );
+                }
             }
 
-            // If we reach here nothing was found/set — log for debugging
-            Mod.Logger.Warn($"[SoulEssenceGlobalItem] Couldn't find 'scytheSoulCharge' on Thorium item instance {item.Name} (concrete type {concreteType.FullName}).");
+            Mod.Logger.Warn(
+                $"[SoulEssenceGlobalItem] Couldn't find 'scytheSoulCharge' " +
+                $"on {concreteType.FullName}."
+            );
         }
     }
 }
