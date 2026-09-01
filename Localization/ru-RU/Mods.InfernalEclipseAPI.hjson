@@ -5,6 +5,11 @@ UI: {
 		LucidRetaliation: Возмещающее ясновидение
 	}
 
+	TitleLinks: {
+		// Patreon: Patreon
+		// Github: Github
+	}
+
 	NoVoidConsumable: Подобная еда уже не вызывает у вас аппетит!
 	RagnarokIconText: Сложность Рагнарёк включена
 	NoRespawn: Возрождение предотвращено: Доступно только 1 возрождение в битве с боссом в {0} мультиплеере!
