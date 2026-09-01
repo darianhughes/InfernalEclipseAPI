@@ -995,20 +995,17 @@ ItemTooltip: {
 	AstralCommunicatorInfernum2: The interdimentional slime still hungers...
 }
 
-Lore: {
-	DylanSoltan:
-		'''
-		Whoever is reading this note, be aware:
-		I foresee a person who goes by the name of Soltan to emerge in the future.
-		Many will think he is annoying, so I designed this chipnote to be of use to you.
-		To combat his annoying nature, the mircochip attached to this note will convert all
-		local summoning power into power for other sources.
-		In addition, it gives you full permission to bully Soltan.
-		I have only made two of these, and gave them to the two most powerful beings I could find.
-		If you are one of those people, or someone else, use this device wisely...
-		'''
-}
-
+Lore.DylanSoltan:
+	'''
+	Whoever is reading this note, be aware:
+	I foresee a person who goes by the name of Soltan to emerge in the future.
+	Many will think he is annoying, so I designed this chipnote to be of use to you.
+	To combat his annoying nature, the mircochip attached to this note will convert all
+	local summoning power into power for other sources.
+	In addition, it gives you full permission to bully Soltan.
+	I have only made two of these, and gave them to the two most powerful beings I could find.
+	If you are one of those people, or someone else, use this device wisely...
+	'''
 LegendaryTooltip.Base: This weapon may grow in power as you defeat difficult foes
 
 Items: {

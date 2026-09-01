@@ -23,7 +23,7 @@ Items: {
 		'''
 	UnrelentingTorment.Tooltip:
 		'''
-		10% урона от метки призывателя
+		12% урона от метки призывателя
 		{$Mods.CatalystMod.Tooltips.WhipTooltip}
 		Выпускает каскад потусторонних когтей, разрывающих врагов
 		'''

@@ -40,3 +40,20 @@ Items: {
 			'''
 	}
 }
+
+Buffs: {
+	LunarEmpowermentBuff: {
+		// DisplayName: Lunar Empowerment
+		// Description: The moon bestows some of it's luck onto you.
+	}
+
+	MintyFreshnessBuff: {
+		// DisplayName: Minty Freshness
+		// Description: The Mint Moon's sparkling light enhances your abilities. You deal more damage and move faster.
+	}
+
+	MoonsRingBuff: {
+		// DisplayName: Moonlight Harmony
+		// Description: You are blessed by the power of all enchanted moons.
+	}
+}

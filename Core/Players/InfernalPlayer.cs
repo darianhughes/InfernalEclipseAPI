@@ -38,6 +38,7 @@ using CalamityMod.NPCs;
 using SOTS.Common.ModPlayers;
 using CalamityMod.World;
 using Terraria.GameContent.Events;
+using CalamityMod.NPCs.DesertScourge;
 using CalamityMod.Items.Potions;
 using CalamityMod.Buffs.Potions;
 using CalamityMod.Buffs.DamageOverTime;
@@ -1076,6 +1077,18 @@ namespace InfernalEclipseAPI.Core.Players
                 if (InfernalCrossmod.SOTS.Loaded)
                 {
                     if ((target.type == InfernalCrossmod.SOTS.Mod.Find<ModNPC>("Lux").Type))
+                    {
+                        modifiers.FinalDamage *= 0.5f;
+                    }
+                }
+            }
+
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                //Desert Scourge DR
+                if ((target.type == ModContent.NPCType<DesertScourgeBody>() || target.type == ModContent.NPCType<DesertScourgeHead>() || target.type == ModContent.NPCType<DesertScourgeTail>()))
+                {
+                    if (proj.type == InfernalCrossmod.Thorium.Mod.Find<ModProjectile>("ButterflyStaffPro").Type)
                     {
                         modifiers.FinalDamage *= 0.5f;
                     }

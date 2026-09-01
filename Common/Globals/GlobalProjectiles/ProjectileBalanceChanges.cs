@@ -503,7 +503,8 @@ namespace InfernalEclipseAPI.Common.Projectiles
                     GetProj(entity, thorRework, "TerrariumSaber") ||
                     GetProj(entity, thorRework, "TitanSword") ||
                     GetProj(entity, thorRework, "ToothOfTheConsumer") ||
-                    GetProj(entity, thorRework, "BeholderBlade"))
+                    GetProj(entity, thorRework, "BeholderBlade") ||
+                    GetProj(entity, thorRework, "GraniteCharge"))
                 {
                     if (entity.usesLocalNPCImmunity)
                     {
@@ -532,6 +533,11 @@ namespace InfernalEclipseAPI.Common.Projectiles
                 if (GetProj(entity, thorRework, "ValadiumHeavyScytheWave"))
                 {
                     entity.penetrate = 5;
+                }
+
+                if (GetProj(entity, thorRework, "GraniteCharge"))
+                {
+                    entity.penetrate = 1;
                 }
             }
             #endregion
@@ -656,9 +662,19 @@ namespace InfernalEclipseAPI.Common.Projectiles
 
                 if (projectile.ModProjectile.Mod.Name == "CalamitySimpleWhipAddon" && InfernalConfig.Instance.CalamityBalanceChanges)
                 {
+                    if (projectile.ModProjectile.Name == "AncientBondsProj")
+                    {
+                        projectile.WhipSettings.RangeMultiplier = 0.6f;
+                    }
+
                     if (projectile.ModProjectile.Name == "MilkywayProj")
                     {
                         projectile.WhipSettings.RangeMultiplier = 2.7f;
+                    }
+
+                    if (projectile.ModProjectile.Name == "ChorusofExecrationProj")
+                    {
+                        projectile.WhipSettings.RangeMultiplier = 2.8f;
                     }
                 }
 
