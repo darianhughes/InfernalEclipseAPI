@@ -27,6 +27,7 @@ using InfernumSaveSystem = InfernumMode.Core.GlobalInstances.Systems.WorldSaveSy
 using CalamityMod.Events;
 using Microsoft.Xna.Framework;
 using InfernalEclipseAPI.Core.Configs;
+using CalamityMod.Buffs.StatDebuffs;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
 {
@@ -135,7 +136,14 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                             {
                                 if (!player.ghost)
                                     player.AddBuff(ModContent.BuffType<BrimstoneDesperation>(), 2);
+
+                                if (!npc.buffImmune[ModContent.BuffType<Enraged>()])
+                                    npc.buffImmune[ModContent.BuffType<Enraged>()] = true;
+
+                                player.Calamity().enraged = false;
                             }
+                            else
+                                npc.buffImmune[ModContent.BuffType<Enraged>()] = false;
                         }
                     }
 
@@ -177,6 +185,8 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
                 npcLoot.AddIf(isInfernum, ModContent.ItemType<NamelessDeityRelic>());
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoltanBullyingSlip>(), 1));
                 npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<PrimordialOrchid>(), 1, 10, 15));
+
+                npcLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<CheatPermissionSlip>());
             }
         }
     }
@@ -190,7 +200,11 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.InfernalRelics
             if (item.type == noxusBoss.Find<ModItem>("AvatarTreasureBag").Type)
                 itemLoot.Add(ModContent.ItemType<MetallicChunk>(), 1, 4, 9);
             if (item.type == noxusBoss.Find<ModItem>("NamelessDeityTreasureBag").Type)
+            {
                 itemLoot.Add(ModContent.ItemType<PrimordialOrchid>(), 1, 10, 15);
+
+                itemLoot.RemoveWhere(rule => rule is CommonDrop drop && drop.itemId == ModContent.ItemType<CheatPermissionSlip>());
+            }
         }
     }
 

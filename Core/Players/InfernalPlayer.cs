@@ -38,18 +38,72 @@ using CalamityMod.NPCs;
 using SOTS.Common.ModPlayers;
 using CalamityMod.World;
 using Terraria.GameContent.Events;
+using CalamityMod.Items.Potions;
+using CalamityMod.Buffs.Potions;
+using CalamityMod.Buffs.DamageOverTime;
 
 namespace InfernalEclipseAPI.Core.Players
 {
     public class InfernalPlayer : ModPlayer
     {
+        public int resonatorTimer = 0;
+        public int incubatorTextTime = 0;
+        public int namelessDialogueCooldown;
+        public int voidMagePrevention;
+
+        public int CloverCharmCooldown;
+        public bool workshopHasBeenOwned;
+        public bool batPoop;
+        public bool tixThumbRing;
+        public bool bloodstainedCoin;
+        public bool putridCoin;
+        public bool eyeOfChaos;
+        public bool snakeEyes;
+        public bool chaosBadge;
+        public bool focusReticle;
+        public bool exoSights;
+        public int BoostPressTimer;
+        public int BoostDirection;
+        public int boostCooldownTime;
+        public int RingofRestCooldown;
+        public bool CritNightmare;
+        public bool bagOfCharms;
+        public int voidSicknessTextCooldown;
+        public int teleportRespawnKilldown;
+
         public bool LazyCrafterAmulet;
         public bool statShareAll;
         public bool scalingArmorPenetration;
         public bool flightArmor;
         public bool Earthdrive;
         public bool InverseDiamondRing;
+        public bool InverseAmberRing;
         public bool gutWrench;
+
+        public bool singularityCore;
+        public int ruinousPlasmaInjection;
+        public bool blixerCoreSummon;
+        public bool blixerLaserMode;
+
+        public float manaSteal = Main.expertMode ? 40f : 50f;
+        public float voidSteal = Main.expertMode ? 45f : 55f;
+        public float inspirationSteal = Main.expertMode ? 5f : 10f;
+
+        public bool aniversaryYearOneLoreObtained = false;
+
+        private Vector2 previousPos;
+        private bool wasUsingItem;
+        private int horrifiedTimer = 0;
+        private int jamTimer = 0;
+        private int batCoinTimer = 0;
+        private int nightmareArmCD;
+
+        public override void Initialize()
+        {
+            workshopHasBeenOwned = false;
+            singularityCore = false;
+            ruinousPlasmaInjection = 0;
+        }
 
         public override void OnEnterWorld()
         {
@@ -71,7 +125,7 @@ namespace InfernalEclipseAPI.Core.Players
 
             if (ModLoader.HasMod("FargowiltasSouls"))
                 InGameNotificationsTracker.AddNotification(new FargosSoulsNotification());
-            
+
             if (Main.getGoodWorld)
                 InGameNotificationsTracker.AddNotification(new ForTheWorthyNotification());
 
@@ -109,7 +163,7 @@ namespace InfernalEclipseAPI.Core.Players
             {
                 if (!InfernalCrossmod.ThoriumRework.Loaded)
                 {
-                   InGameNotificationsTracker.AddNotification(new HelheimNotification());
+                    InGameNotificationsTracker.AddNotification(new HelheimNotification());
                 }
 
                 if (!InfernalCrossmod.RagnarokMod.Loaded)
@@ -126,56 +180,6 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
-        }
-
-        private Vector2 previousPos;
-        private bool wasUsingItem;
-        private int horrifiedTimer = 0;
-        private int jamTimer = 0;
-        private int batCoinTimer = 0;
-        private int nightmareArmCD;
-
-        public int resonatorTimer = 0;
-        public int incubatorTextTime = 0;
-        public int namelessDialogueCooldown;
-        public int voidMagePrevention;
-
-        public int CloverCharmCooldown;
-        public bool workshopHasBeenOwned;
-        public bool batPoop;
-        public bool tixThumbRing;
-        public bool bloodstainedCoin;
-        public bool putridCoin;
-        public bool eyeOfChaos;
-        public bool snakeEyes;
-        public bool chaosBadge;
-        public bool focusReticle;
-        public bool exoSights;
-        public int BoostPressTimer;
-        public int BoostDirection;
-        public int boostCooldownTime;
-        public int RingofRestCooldown;
-        public bool CritNightmare;
-        public bool bagOfCharms;
-        public int voidSicknessTextCooldown;
-        public int teleportRespawnKilldown;
-
-        public float manaSteal = Main.expertMode ? 40f : 50f;
-        public float voidSteal = Main.expertMode ? 45f : 55f;
-        public float inspirationSteal = Main.expertMode ? 5f : 10f;
-
-        public bool singularityCore;
-        public int ruinousPlasmaInjection;
-        public bool blixerCoreSummon;
-        public bool blixerLaserMode;
-
-        public bool aniversaryYearOneLoreObtained = false;
-
-        public override void Initialize()
-        {
-            workshopHasBeenOwned = false;
-            singularityCore = false;
-            ruinousPlasmaInjection = 0;
         }
 
         public override void PlayerConnect()
@@ -340,6 +344,7 @@ namespace InfernalEclipseAPI.Core.Players
             gutWrench = false;
             bagOfCharms = false;
             blixerCoreSummon = false;
+            InverseAmberRing = false;
         }
 
         public override void PreUpdate()
@@ -383,6 +388,17 @@ namespace InfernalEclipseAPI.Core.Players
             if (PlayerHasPurity(Player) && Player.HeldItem.type == ModContent.ItemType<PrismaticBreaker>())
             {
                 Player.GetDamage<GenericDamageClass>() /= 1.4f;
+            }
+
+            if (Player.GetModPlayer<TheConcoctionPlayer>().swinesWrathCounter > 0)
+                Player.GetModPlayer<TheConcoctionPlayer>().swinesWrathCounter--;
+
+            if (Player.HasBuff(ModContent.BuffType<SwinesWrathBuff>()))
+            {
+                if (InfernalCrossmod.Thorium.Loaded)
+                {
+                    ThoriumEffectHandler.DisableThoriumEffects(Player, false);
+                }
             }
 
             if (Player.HasBuff(ModContent.BuffType<StarboundHorrification>()))
@@ -1067,6 +1083,14 @@ namespace InfernalEclipseAPI.Core.Players
             }
         }
 
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (InverseAmberRing)
+            {
+                InflictRandomDebuff(target);
+            }
+        }
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Player.whoAmI != Main.myPlayer) return;
@@ -1088,11 +1112,132 @@ namespace InfernalEclipseAPI.Core.Players
             if (tixThumbRing && proj.arrow && hit.Crit)
                 target.AddBuff(BuffID.ShadowFlame, 60, false);
 
+            if (InverseAmberRing)
+            {
+                InflictRandomDebuff(target);
+            }
+
             if (hit.Crit && CritNightmare && proj != null && proj.type != ModContent.ProjectileType<EvilGrowth>() && proj.type != ModContent.ProjectileType<EvilStrike>() && nightmareArmCD <= 0)
             {
                 nightmareArmCD = 360;
                 if (Main.myPlayer == Player.whoAmI)
                     Projectile.NewProjectile(new EntitySource_OnHit(Player, target), target.Center, Vector2.Zero, ModContent.ProjectileType<EvilGrowth>(), (int)(Main.hardMode ? hit.SourceDamage * 0.1 : hit.SourceDamage * 0.05), 0f, Player.whoAmI, 0f, target.whoAmI);
+            }
+        }
+
+        private static void InflictRandomDebuff(NPC target)
+        {
+            int debuffRarity = Main.rand.Next(21);
+
+            if (debuffRarity < 5)
+            {
+                int debuff = Main.rand.Next(8);
+
+                switch (debuff)
+                {
+                    case 0:
+                        target.AddBuff(BuffID.Poisoned, 180, false);
+                        break;
+                    case 2:
+                        target.AddBuff(BuffID.Frostburn, 180, false);
+                        break;
+                    case 3:
+                        goto default;
+                    case 4:
+                        target.AddBuff(BuffID.Confused, 90, false);
+                        break;
+                    case 5:
+                        target.AddBuff(BuffID.Ichor, 120, false);
+                        break;
+                    case 6:
+                        if (InfernalCrossmod.Thorium.Loaded)
+                        {
+                            target.AddBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Charmed").Type, 180, false);
+                            break;
+                        }
+                        else goto default;
+                    case 7:
+                        if (InfernalCrossmod.Thorium.Loaded)
+                        {
+                            if (!target.boss)
+                            {
+                                target.AddBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("Stunned").Type, 30, false);
+                                break;
+                            }
+                            else goto default;
+                        }
+                        else goto default;
+                    default:
+                        target.AddBuff(BuffID.OnFire3, 180, false);
+                        break;
+                }
+            }
+            else if (debuffRarity >= 5 && debuffRarity < 20)
+            {
+                int debuff = Main.rand.Next(8);
+
+                switch (debuff)
+                {
+                    case 0:
+                        target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 180, false);
+                        break;
+                    case 2:
+                        target.AddBuff(BuffID.ShadowFlame, 180, false);
+                        break;
+                    case 3:
+                        target.AddBuff(ModContent.BuffType<Plague>(), 180, false);
+                        break;
+                    case 4:
+                        target.AddBuff(ModContent.BuffType<AstralInfectionDebuff>(), 180, false);
+                        break;
+                    case 5:
+                        target.AddBuff(ModContent.BuffType<CrushDepth>(), 180, false);
+                        break;
+                    case 6:
+                        target.AddBuff(ModContent.BuffType<Crumbling>(), 120, false);
+                        break;
+                    case 7:
+                        target.AddBuff(BuffID.CursedInferno, 180, false);
+                        break;
+                }
+            }
+            else
+            {
+                int debuff = Main.rand.Next(11);
+
+                switch (debuff)
+                {
+                    case 0:
+                        target.AddBuff(ModContent.BuffType<MiracleBlight>(), 120, false);
+                        break;
+                    case 2:
+                        target.AddBuff(ModContent.BuffType<VulnerabilityHex>(), 120, false);
+                        break;
+                    case 3:
+                        target.AddBuff(ModContent.BuffType<WhisperingDeath>(), 120, false);
+                        break;
+                    case 4:
+                        target.AddBuff(ModContent.BuffType<MarkedforDeath>(), 120, false);
+                        break;
+                    case 5:
+                        target.AddBuff(ModContent.BuffType<Laceration>(), 180, false);
+                        break;
+                    case 6:
+                        target.AddBuff(ModContent.BuffType<ElementalMix>(), 60, false);
+                        break;
+                    case 7:
+                        target.AddBuff(ModContent.BuffType<HolyFlames>(), 180, false);
+                        break;
+                    case 8:
+                        target.AddBuff(ModContent.BuffType<GodSlayerInferno>(), 180, false);
+                        break;
+                    case 9:
+                        target.AddBuff(ModContent.BuffType<Dragonfire>(), 180, false);
+                        break;
+                    case 10:
+                        target.AddBuff(ModContent.BuffType<Voidfrost>(), 180, false);
+                        break;
+                }
             }
         }
 

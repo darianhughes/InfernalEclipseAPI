@@ -64,6 +64,11 @@ namespace InfernalEclipseAPI.Core.Players.SOTSPlayerOverrides
                 mp.InverseDiamondRing = Player.SOTSPlayer().InverseDiamondRing;
                 Player.SOTSPlayer().InverseDiamondRing = false;
             }
+            if (Player.SOTSPlayer().InverseAmberRing)
+            {
+                mp.InverseAmberRing = Player.SOTSPlayer().InverseAmberRing;
+                Player.SOTSPlayer().InverseAmberRing = false;
+            }
 
             Player player = this.Player;
 

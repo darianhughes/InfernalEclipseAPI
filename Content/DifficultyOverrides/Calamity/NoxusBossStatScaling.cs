@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using CalamityMod;
+using CalamityMod.Buffs.StatDebuffs;
 using InfernalEclipseAPI.Common.Globals.GlobalNPCs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
@@ -71,6 +73,10 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
                 {
                     npc.lifeMax += (int)(0.20 * npc.lifeMax);
                 }
+                else if (npc.type == ModContent.NPCType<NamelessDeityBoss>())
+                {
+                    npc.lifeMax += (int)(0.4 * npc.lifeMax);
+                }
                 else
                     npc.lifeMax += (int)((double).35 * npc.lifeMax);
             }
@@ -80,7 +86,7 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
         {
             if (InfernumActive.InfernumActive)
             {
-                modifiers.SourceDamage *= 1.35f;
+                modifiers.SourceDamage *= (npc.type == ModContent.NPCType<NamelessDeityBoss>() ? 1.4f : 1.35f);
             }
         }
 
@@ -255,11 +261,17 @@ namespace InfernalEclipseAPI.Content.DifficultyOverrides.Calamity
 
             if (InfernalWorld.RagnarokModeEnabled)
             {
-                damageMod *= 1.35f;
+                if (NDTypes.Contains(projectile.type))
+                    damageMod *= 1.4f;
+                else
+                    damageMod *= 1.35f;
             }
             else if (IsInfernumActive())
             {
-                damageMod *= 1.25f;
+                if (NDTypes.Contains(projectile.type))
+                    damageMod *= 1.3f;
+                else
+                    damageMod *= 1.25f;
             }
 
             modifiers.SourceDamage *= damageMod;
