@@ -67,7 +67,7 @@
 	[*]Wiki编写：Akira，Wardrobe Hummus，Soltan，Arkangel
 	[*]贡献者：cheesenuggets，Pudd1ng，Pixus，Nicole，Dandel，Ropro，JalapenoDance,
 	[*]美术：Prime，Pixus，Yelmut，ma3allim，pil，Tyr，JuJiao，Leo，IceSpider，yfn，Dandel，Uncle Sciz，ABrickToTheHead
-	[*]作曲：Peter Fung，Techhy
+	[*]作曲：PFungi，Techhy
 	[*]本地化：Pudd1ng（简体中文），Kraken（俄语）
 [/list]
 
@@ -77,7 +77,7 @@
 	[*]CDMusic：《Ensemble of Fools (Encore Mix)》
 	[*]DM DOKURO：《Last Battle (Ballos Mix)》
 	[*]Kuudray：《TWISTED GARDEN [Remix]》
-	[*]Peter Fung：《Teardrops of Dragonfire》
+	[*]PFungi：《Teardrops of Dragonfire》
 	[*]psykomatic：《Descent Of Divinities》
 	[*]Techhy：《Dead Kingdom's Champion》
 	[*]TheTrester：《Omiscience Of Gods》和《Arsenal》

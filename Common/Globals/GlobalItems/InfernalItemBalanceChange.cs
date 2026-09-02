@@ -1677,6 +1677,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.useTime = 16;
                         item.useAnimation = 16;
                         item.shootSpeed = 12;
+                        ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
                     }
 
                     if (GetItem(thorium, "DragonTalon", item))

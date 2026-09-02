@@ -3,6 +3,7 @@ using InfernalEclipseAPI.Core.Configs;
 
 namespace InfernalEclipseAPI.Core.ModSceneEffects.RagnarokMusic
 {
+    /*
     internal class WulfrumMothershipRagnarok : ModSceneEffect
     {
         public override SceneEffectPriority Priority => SceneEffectPriority.BossMedium;
@@ -49,4 +50,5 @@ namespace InfernalEclipseAPI.Core.ModSceneEffects.RagnarokMusic
             return false;
         }
     }
+    */
 }

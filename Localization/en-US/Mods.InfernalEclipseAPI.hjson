@@ -2015,7 +2015,7 @@ Items: {
 
 	MenuMusicBox: {
 		DisplayName: Music Box (Infernal Eclipse of Ragnarok Title)
-		Tooltip: Plays 'Teardrops of Dragonfire' by Peter Fung
+		Tooltip: Plays 'Teardrops of Dragonfire' by PFungi
 	}
 
 	Streetsign: {
@@ -2441,6 +2441,31 @@ Items: {
 		DisplayName: Music Box (Queen Slime - Infernum Mode)
 		Tooltip: Plays 'Crowned Before One's End' by PinpinNeon
 	}
+
+	CnidrionMusicBox: {
+		DisplayName: Music Box (Cnidrion)
+		Tooltip: Plays 'Seahorse Scrutiny (Rebirth)' by Brimston Premium
+	}
+
+	CodebreakerMusicBox: {
+		DisplayName: Music Box (Codebreaker Interlude)
+		Tooltip: Plays 'Arsenal' by TheTrester
+	}
+
+	ProvidenceNightMusicBox: {
+		DisplayName: Music Box (Providence - Night)
+		Tooltip: Plays 'Unholy Finality' by Brimston Premium
+	}
+
+	ThunderBirdMusicBox: {
+		DisplayName: Music Box (The Grand Thunder Bird - Ragnarok Mode)
+		Tooltip: Plays 'Infernal Thunder Bird' by Techhy
+	}
+
+	VassalMusicBox: {
+		DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
+		Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
+	}
 }
 
 Projectiles: {
@@ -2847,6 +2872,16 @@ Configs: {
 				Togggles the Codebreaker Interlude theme. 
 				This interlude will play once you place the final component of the Codebreaker for the first time.
 				'''
+		}
+
+		GrandThunderBirdRagnarok: {
+			Label: Ragnarok Grand Thunder Bird Theme
+			Tooltip: Toggles if 'Infernal Thunder Bird' by Techhy plays during the Grand Thunder Bird boss fight in Ragnarok Mode.
+		}
+
+		QueenJellyfishRagnarok: {
+			Label: Ragnarok Queen Jellyfish Theme
+			Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 
@@ -3369,6 +3404,11 @@ Tiles: {
 	LastBattleMusicBoxTile.MapEntry: Music Box
 	PlanteraMusicBoxTile.MapEntry: Music Box
 	QueenSlimeMusicBoxTile.MapEntry: Music Box
+	CnidrionMusicBoxTile.MapEntry: Music Box
+	CodebreakerMusicBoxTile.MapEntry: Music Box
+	ProvidenceNightMusicBoxTile.MapEntry: Music Box
+	ThunderBirdMusicBoxTile.MapEntry: Music Box
+	VassalMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3426,6 +3466,8 @@ BossName: {
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 	Arsenal: Arsenal - Codebreaker Interlude
+	ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
+	QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!

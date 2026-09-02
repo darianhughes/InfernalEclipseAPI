@@ -1,4 +1,5 @@
 ﻿using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
+using InfernalEclipseAPI.Content.Items.Weapons.Donor.Steetsign;
 using InfernalEclipseAPI.Content.NPCs.LittleCat;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
@@ -24,6 +25,7 @@ namespace InfernalEclipseAPI.Core.Systems
             ModLoader.TryGetMod("SOTS", out SOTS);
             ModLoader.TryGetMod("FargowiltasSouls", out Fargos);
         }
+
         public override void Unload()
         {
             Infernum = null;
@@ -44,7 +46,8 @@ namespace InfernalEclipseAPI.Core.Systems
                 AddThoriumMiniBoss.AddMiniBosses();
             }
         }
-        private void MusicDisplaySetup()
+
+        private static void MusicDisplaySetup()
         {
             ModLoader.TryGetMod("MusicDisplay", out Mod musicDisplay);
             if (musicDisplay is null)
@@ -53,8 +56,10 @@ namespace InfernalEclipseAPI.Core.Systems
             }
 
             //IEoR Original Music
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by PFungi", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Seahorse"), "Seahorse Scrutiny (Rebirth)", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by Peter Fung", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/InfernalThunderBird"), "Infernal Thunder Bird", "by Techhy", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/MutantMajesty"), "Mutant Majesty", "by Techhy", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/BereftVassal"), "Dead Kingdom's Champion", "by Techhy", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(InfernalEclipseAPI.ProvidenceNightPath), "Unholy Finality", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LastBattle"), "Last Battle (Ballos Mix)", "by DM DOKURO", "Infernal Eclipse of Ragnarok");
@@ -87,7 +92,7 @@ namespace InfernalEclipseAPI.Core.Systems
             }
         }
 
-        private void BossChecklistSetup()
+        private static void BossChecklistSetup()
         {
             Mod mod1;
             Mod CalamityMod;

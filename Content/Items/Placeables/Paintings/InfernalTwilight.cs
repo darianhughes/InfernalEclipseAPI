@@ -98,7 +98,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "IceSpider",
 
             //Composers
-            "Peter Fung",
+            "PFungi",
             "Techhy",
 
             //Partners

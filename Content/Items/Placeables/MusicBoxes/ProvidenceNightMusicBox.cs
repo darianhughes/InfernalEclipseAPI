@@ -3,7 +3,7 @@ using InfernalEclipseAPI.Content.Items.Placeables.Paintings;
 
 namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
 {
-    public class MenuMusicBox : ModItem
+    public class ProvidenceNightMusicBox : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -12,7 +12,7 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.CanGetPrefixes[Type] = false;
             ItemID.Sets.ShimmerTransformToItem[Type] = 576;
-            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), ModContent.ItemType<MenuMusicBox>(), ModContent.TileType<MenuMusicBoxTile>(), 0);
+            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/ProvidenceNight"), ModContent.ItemType<ProvidenceNightMusicBox>(), ModContent.TileType<ProvidenceNightMusicBoxTile>(), 0);
         }
 
         public override void SetDefaults()
@@ -23,21 +23,12 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             Item.useTime = 10;
             Item.autoReuse = true;
             Item.consumable = true;
-            Item.createTile = ModContent.TileType<MenuMusicBoxTile>();
+            Item.createTile = ModContent.TileType<ProvidenceNightMusicBoxTile>();
             Item.width = 32;
             Item.height = 32;
             Item.rare = ItemRarityID.LightRed;
             Item.value = Terraria.Item.sellPrice(silver: 20);
             Item.accessory = true;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.MusicBox)
-                .AddIngredient<InfernalTwilight>()
-                .AddTile(TileID.HeavyWorkBench)
-                .Register();
         }
     }
 }

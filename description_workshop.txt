@@ -61,14 +61,16 @@ Story: Akira, Yob
 Wiki Moderators: Akira, Wardrobe Hummus, Soltan, Arkangel
 Contributors: cheesenuggets, Pudd1ng, Pixus, Dandel, Ropro, JalapenoDance, Mr. Puzzles, Arkangel
 Spriters: Prime, Pixus, Yelmut, ma3allim, pil, Tyr, JuJiao, Leo, IceSpider, yfn, Dandel, Uncle Sciz, ABrickToTheHead, Mr. Puzzles
-Composers: Peter Fung, Techhy
+Composers: PFungi, Techhy
 Localization: Pudd1ng (Simplified Chinese), Kraken (Russian)
 
 Certain pieces of code provided by [url=https://steamcommunity.com/profiles/76561199125907379] N0t_UNowen[/url] & Nicole
 
 Music Credits:
-"Teardrops of Dragonfire" by Peter Fung
+"Teardrops of Dragonfire" by PFungi
 "Seahorse Scrutiny (Rebirth)" by Brimston Premium
+"Infernal Thunder Bird" by Techhy
+"Mutant Majesty" by Techhy
 "Dead Kingdom's Champion" by Techhy
 "Unholy Finality" by Brimston Premium
 "Last Battle (Ballos Mix)" by DM DOKURO

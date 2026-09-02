@@ -88,8 +88,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient<AshesofAnnihilation>(3);
-            recipe.AddIngredient<MiracleMatter>(3);
+            recipe.AddIngredient<MiracleMatter>();
             if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))
             {
                 recipe.AddIngredient<AlloyofEden>();

@@ -138,8 +138,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             recipe.AddIngredient(ItemID.Zenith);
             recipe.AddIngredient<ArkoftheCosmos>();
             recipe.AddIngredient<TyrantYharimsUltisword>();
-            recipe.AddIngredient<AshesofAnnihilation>(3);
-            recipe.AddIngredient<MiracleMatter>(3);
+            recipe.AddIngredient<MiracleMatter>();
             if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))
             {
                 recipe.AddIngredient<AlloyofEden>();

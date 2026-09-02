@@ -10,8 +10,6 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
             return ModLoader.TryGetMod("InfernumModeMusic", out _);
         }
 
-        public override string Texture => "InfernalEclipseAPI/Assets/Textures/Items/PlaceholderInfernumMusicBox";
-
         public override void SetStaticDefaults()
         {
             if (Main.dedServ)

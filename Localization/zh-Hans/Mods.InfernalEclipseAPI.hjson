@@ -2011,7 +2011,7 @@ Items: {
 
 	MenuMusicBox: {
 		DisplayName: 音乐盒 (诸神黄昏：炼狱蚀光主题曲)
-		Tooltip: 播放“Teardrops of Dragonfire” 作者：Peter Fung
+		Tooltip: 播放“Teardrops of Dragonfire” 作者：PFungi
 	}
 
 	Streetsign: {
@@ -2437,6 +2437,31 @@ Items: {
 		DisplayName: 音乐盒 (史莱姆皇后 - 炼狱模式)
 		Tooltip: 播放“Crowned Before One's End” 作者：PinpinNeon
 	}
+
+	CnidrionMusicBox: {
+		// DisplayName: Music Box (Cnidrion)
+		// Tooltip: Plays 'Seahorse Scrutiny (Rebirth)' by Brimston Premium
+	}
+
+	CodebreakerMusicBox: {
+		// DisplayName: Music Box (Codebreaker Interlude)
+		// Tooltip: Plays 'Arsenal' by TheTrester
+	}
+
+	ProvidenceNightMusicBox: {
+		// DisplayName: Music Box (Providence - Night)
+		// Tooltip: Plays 'Unholy Finality' by Brimston Premium
+	}
+
+	ThunderBirdMusicBox: {
+		// DisplayName: Music Box (The Grand Thunder Bird - Ragnarok Mode)
+		// Tooltip: Plays 'Infernal Thunder Bird' by Techhy
+	}
+
+	VassalMusicBox: {
+		// DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
+		// Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
+	}
 }
 
 Projectiles: {
@@ -2843,6 +2868,16 @@ Configs: {
 				切换密码破译器插曲
 				插曲会在你第一次安装密码破译器的最终组件时播放
 				'''
+		}
+
+		GrandThunderBirdRagnarok: {
+			// Label: Ragnarok Grand Thunder Bird Theme
+			// Tooltip: Toggles if 'Infernal Thunder Bird' by Techhy plays during the Grand Thunder Bird boss fight in Ragnarok Mode.
+		}
+
+		QueenJellyfishRagnarok: {
+			// Label: Ragnarok Queen Jellyfish Theme
+			// Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 
@@ -3365,6 +3400,11 @@ Tiles: {
 	LastBattleMusicBoxTile.MapEntry: 音乐盒
 	PlanteraMusicBoxTile.MapEntry: 音乐盒
 	QueenSlimeMusicBoxTile.MapEntry: 音乐盒
+	// CnidrionMusicBoxTile.MapEntry: Music Box
+	// CodebreakerMusicBoxTile.MapEntry: Music Box
+	// ProvidenceNightMusicBoxTile.MapEntry: Music Box
+	// ThunderBirdMusicBoxTile.MapEntry: Music Box
+	// VassalMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3422,6 +3462,8 @@ BossName: {
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 	Arsenal: Arsenal - Codebreaker Interlude
+	// ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
+	// QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: 激光网格会在他冲刺的同时生成！优先冲撞神吞，然后移动到安全位置——但别忘了那些火球！

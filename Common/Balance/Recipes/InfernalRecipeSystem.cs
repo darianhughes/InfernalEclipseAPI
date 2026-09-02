@@ -482,6 +482,13 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 8);
                     }
+
+                    if (recipe.HasResult<Earth>())
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence"));
+                        recipe.AddIngredient(thorium.Find<ModItem>("DeathEssence"));
+                        recipe.AddIngredient(thorium.Find<ModItem>("OceanEssence"));
+                    }
                 }
 
                 if (InfernalCrossmod.SOTS.Loaded)
@@ -489,6 +496,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult<ThePointer>() && recipe.HasIngredient(ItemID.Glass))
                     {
                         recipe.DisableRecipe();
+                    }
+
+                    if (recipe.HasResult<OntologicalDespoiler>())
+                    {
+                        recipe.AddIngredient(InfernalCrossmod.SOTS.Mod.Find<ModItem>("DissolvingNihility"));
                     }
                 }
 

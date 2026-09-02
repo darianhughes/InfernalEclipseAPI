@@ -2006,7 +2006,7 @@ Items: {
 
 	MenuMusicBox: {
 		DisplayName: Музыкальная шкатулка (Заглавная тема Infernal Eclipse of Ragnarok)
-		Tooltip: Проигрывает «Teardrops of Dragonfire» за авторством Peter Fung
+		Tooltip: Проигрывает «Teardrops of Dragonfire» за авторством PFungi
 	}
 
 	Streetsign: {
@@ -2432,6 +2432,31 @@ Items: {
 		DisplayName: Музыкальная шкатулка (Королева слизней - Инфернум)
 		Tooltip: Проигрывает «Crowned Before One's End» за авторством PinpinNeon
 	}
+
+	CnidrionMusicBox: {
+		// DisplayName: Music Box (Cnidrion)
+		// Tooltip: Plays 'Seahorse Scrutiny (Rebirth)' by Brimston Premium
+	}
+
+	CodebreakerMusicBox: {
+		// DisplayName: Music Box (Codebreaker Interlude)
+		// Tooltip: Plays 'Arsenal' by TheTrester
+	}
+
+	ProvidenceNightMusicBox: {
+		// DisplayName: Music Box (Providence - Night)
+		// Tooltip: Plays 'Unholy Finality' by Brimston Premium
+	}
+
+	ThunderBirdMusicBox: {
+		// DisplayName: Music Box (The Grand Thunder Bird - Ragnarok Mode)
+		// Tooltip: Plays 'Infernal Thunder Bird' by Techhy
+	}
+
+	VassalMusicBox: {
+		// DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
+		// Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
+	}
 }
 
 Projectiles: {
@@ -2832,6 +2857,16 @@ Configs: {
 		EnableCodebreakerInterlude: {
 			Label: Интерлюдия после сборки Дешифратора
 			Tooltip: Включает/Выключает проигрывание особых интерлюдий после установки последней части Дешифратора в первый раз.
+		}
+
+		GrandThunderBirdRagnarok: {
+			// Label: Ragnarok Grand Thunder Bird Theme
+			// Tooltip: Toggles if 'Infernal Thunder Bird' by Techhy plays during the Grand Thunder Bird boss fight in Ragnarok Mode.
+		}
+
+		QueenJellyfishRagnarok: {
+			// Label: Ragnarok Queen Jellyfish Theme
+			// Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 
@@ -3354,6 +3389,11 @@ Tiles: {
 	// LastBattleMusicBoxTile.MapEntry: Music Box
 	// PlanteraMusicBoxTile.MapEntry: Music Box
 	// QueenSlimeMusicBoxTile.MapEntry: Music Box
+	// CnidrionMusicBoxTile.MapEntry: Music Box
+	// CodebreakerMusicBoxTile.MapEntry: Music Box
+	// ProvidenceNightMusicBoxTile.MapEntry: Music Box
+	// ThunderBirdMusicBoxTile.MapEntry: Music Box
+	// VassalMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3411,6 +3451,8 @@ BossName: {
 	ProvidenceNight: Unholy Finality - Провиденс (Ночь)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Стекарь
 	// Arsenal: Arsenal - Codebreaker Interlude
+	// ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
+	// QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: Сетка из лазеров появится в тот же момент, как он начинает совершать рывки! В первую очередь сфокусируйся на таране Пожирателя и только затем ищи безопасное место. А ещё не забывай об его фаерболах!

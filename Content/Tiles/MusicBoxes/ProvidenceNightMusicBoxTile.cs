@@ -6,7 +6,7 @@ using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
 
 namespace InfernalEclipseAPI.Content.Tiles.MusicBoxes
 {
-    public class CultistMusicBoxTile : ModTile
+    public class ProvidenceNightMusicBoxTile : ModTile
     {
         public override void SetStaticDefaults()
         {
@@ -28,7 +28,7 @@ namespace InfernalEclipseAPI.Content.Tiles.MusicBoxes
             Player localPlayer = Main.LocalPlayer;
             localPlayer.noThrow = 2;
             localPlayer.cursorItemIconEnabled = true;
-            localPlayer.cursorItemIconID = ModContent.ItemType<CultistMusicBox>();
+            localPlayer.cursorItemIconID = ModContent.ItemType<ProvidenceNightMusicBox>();
         }
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
