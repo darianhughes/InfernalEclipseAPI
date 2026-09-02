@@ -95,7 +95,7 @@ Items: {
 		Costs 6 void to launch
 		Holo Eye remains active in the inventory when favorited or while worn in vanity slots, but cannot attack
 		''' */
-	// ChallengerRing.I6: "[s:InfernalEclipseAPI/IEoRIcon] Weapons will inflict a random debuff on hit"
+	// ChallengerRing.I6: Weapons will inflict a random debuff on hit
 }
 
 ArmorSetBonus.Earthen:
