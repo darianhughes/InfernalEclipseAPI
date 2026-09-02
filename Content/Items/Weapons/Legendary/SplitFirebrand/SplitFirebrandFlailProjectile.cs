@@ -308,10 +308,11 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Legendary.SplitFirebrand
 
             return ropePoints[ropePoints.Count - 2];
         }
+
         public override bool? CanHitNPC(NPC target)
         {
-            //if (Projectile.Hitbox.Intersects(target.Hitbox))
-              //  Main.NewText($"Can hit {target.FullName}");
+            if (target.friendly)
+                return false;
 
             return true;
         }

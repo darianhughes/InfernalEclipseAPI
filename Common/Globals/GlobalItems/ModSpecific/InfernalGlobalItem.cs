@@ -314,7 +314,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     findWhipItem("BleachedJellyChargedBattery"),
                     findWhipItem("BleachedVoltaicJelly"),
 
-                    findWhipItem("BuddyEmblem")
+                    //findWhipItem("BuddyEmblem")
                 };
 
                 foreach (int bleachedItem in bleachedAcessories)

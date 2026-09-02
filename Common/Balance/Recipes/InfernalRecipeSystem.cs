@@ -332,6 +332,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             #endregion
 
             #region Calamity Simple Whip Addon
+            /*
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
             {
                 Recipe.Create(simpleWhipAddon.Find<ModItem>("StrikerEmblem").Type)
@@ -340,6 +341,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     .AddTile(TileID.Anvils)
                     .Register();
             }
+            */
             #endregion
         }
 
@@ -478,7 +480,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         recipe.AddIngredient(thorium.Find<ModItem>("Petal"), 5);
                     }
 
-                    if (recipe.HasResult<SunSpiritStaff>())
+                    if (recipe.HasResult<SunSpiritStaff>() && !InfernalCrossmod.Hummus.Loaded)
                     {
                         recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 8);
                     }
@@ -624,7 +626,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             GetItem(simpleWhipAddon, "BleachedJellyChargedBattery"),
                             GetItem(simpleWhipAddon, "BleachedVoltaicJelly"),
 
-                            GetItem(simpleWhipAddon, "BuddyEmblem")
+                            //GetItem(simpleWhipAddon, "BuddyEmblem")
                         };
 
                         foreach (ModItem item in bleachedAcessories)
@@ -634,8 +636,10 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         }
                     }
 
+                    /*
                     if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("StrikerEmblem")) && recipe.HasIngredient(ItemID.Daybloom))
                         recipe.DisableRecipe();
+                    */
                 }
                 #endregion
 
