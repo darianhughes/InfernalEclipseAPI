@@ -316,6 +316,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                 }
             }
 
+            // Gives polaris the cryogen shader
+            if (npc.type == ModContent.NPCType<Polaris>() || npc.type == ModContent.NPCType<NewPolaris>())
+            {
+                foreach (Player p in Main.ActivePlayers)
+                {
+                    p.Calamity().monolithCryogenShader = 30;
+                }
+            }
+
             if (npc.immortal || npc.realLife != -1)
                 return;
 

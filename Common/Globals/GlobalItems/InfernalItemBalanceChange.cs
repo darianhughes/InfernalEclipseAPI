@@ -359,6 +359,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.useAnimation = 30;
                 }
 
+                if (item.type == ModContent.ItemType<NightsRay>())
+                {
+                    item.damage = 17;
+                }
+
                 /*
                 if (item.type == ModContent.ItemType<VividClarity>())
                 {
@@ -966,6 +971,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.accessory = false;
                 }
 
+                /*
                 if (UnsafeGetItem(simpleWhipAddon, "BuddyEmblem", item))
                 {
                     item.rare = ItemRarityID.LightRed;
@@ -979,6 +985,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.rare = ItemRarityID.LightRed;
                     item.expert = false;
                 }
+                */
             }
             #endregion
 
@@ -5785,6 +5792,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.damage = 14;
                 }
 
+                if (GetItem(sots, "KelpWhip", item))
+                {
+                    item.useTime = 34;
+                    item.useAnimation = 34;
+                }
+
                 if (GetItem(sots, "JarOfPineapple", item))
                 {
                     item.damage = 13;
@@ -5792,7 +5805,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 if (GetItem(sots, "NightIlluminator", item))
                 {
-                    item.damage = 14;
+                    item.damage = 13;
                 }
 
                 if (GetItem(sots, "CursedBlade", item))

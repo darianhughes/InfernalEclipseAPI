@@ -5,6 +5,11 @@ UI: {
 		LucidRetaliation: Lucid Retaliation
 	}
 
+	TitleLinks: {
+		Patreon: Patreon
+		Github: Github
+	}
+
 	NoVoidConsumable: You don't have the appetite for that!
 	RagnarokIconText: Ragnarok Mode is enabled
 	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!

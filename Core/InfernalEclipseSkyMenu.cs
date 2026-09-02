@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -132,6 +133,12 @@ namespace InfernalEclipseAPI.Core
 
             // Restart spritebatch with normal blend mode
             spriteBatch.End();
+
+            // Creates final spritebatch to draw the title links - Ropro
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+            TitleLinksSystem.DrawMenu();
+            spriteBatch.End();
+
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
 
             return false;
