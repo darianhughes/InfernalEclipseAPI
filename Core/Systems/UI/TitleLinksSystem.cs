@@ -6,7 +6,7 @@ using ReLogic.Graphics;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.UI
 {
     public class TitleLinksSystem : ModSystem
     {

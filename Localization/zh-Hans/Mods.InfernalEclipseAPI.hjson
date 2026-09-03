@@ -3390,6 +3390,11 @@ Buffs: {
 		DisplayName: Blixer
 		Description: “我没设计这个！:(”
 	}
+
+	HormonalBlockade: {
+		// DisplayName: Hormonal Blockade
+		// Description: Mods.InfernalEclipseAPI.Buffs.HormonalBlockade.Description
+	}
 }
 
 Tiles: {

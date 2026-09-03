@@ -9,7 +9,7 @@ using InfernumMode.Content.Items.Weapons.Summoner;
 using InfernumMode.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.UI
 {
     public class InfernalEclipseAPISummonTagSystem : ModSystem
     {
