@@ -3393,7 +3393,7 @@ Buffs: {
 
 	HormonalBlockade: {
 		// DisplayName: Hormonal Blockade
-		// Description: Mods.InfernalEclipseAPI.Buffs.HormonalBlockade.Description
+		// Description: You can't access your Rage or Adrenaline!
 	}
 }
 
