@@ -64,13 +64,11 @@ namespace InfernalEclipseAPI.Content.Buffs
     [ExtendsFromMod("ThoriumMod")]
     public static class ThoriumEffectHandler
     {
-        public static void DisableThoriumEffects(Player player)
+        public static void DisableThoriumEffects(Player player, bool disableChaosState = true)
         {
             ThoriumPlayer mp = player.GetThoriumPlayer();
 
             player.AddBuff(ModContent.BuffType<RevivalExhaustion>(), 2);
-
-            GrantThoriumChaosState(player);
 
             mp.debuffRevivalExhaustion = true;
 
@@ -78,6 +76,11 @@ namespace InfernalEclipseAPI.Content.Buffs
             mp.accFlawlessChrysalis = false;
 
             player.ClearBuff(ModContent.BuffType<PhylacteryBuff>());
+
+            if (disableChaosState)
+            {
+                GrantThoriumChaosState(player);
+            }
         }
 
         public static void GrantThoriumChaosState(Player player)

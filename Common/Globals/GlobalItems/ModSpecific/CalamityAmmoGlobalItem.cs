@@ -16,7 +16,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         {
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))
             {
-                if (item.type == calAmmo.Find<ModItem>("HydrothermicArrow").Type || item.type == calAmmo.Find<ModItem>("HydrothermicBullet").Type || item.type == calAmmo.Find<ModItem>("DivineArrow").Type || item.type == calAmmo.Find<ModItem>("DivineBullet").Type)
+                if (item.type == calAmmo.Find<ModItem>("HydrothermicArrow").Type || item.type == calAmmo.Find<ModItem>("HydrothermicBullet").Type || item.type == calAmmo.Find<ModItem>("DivineArrow").Type || item.type == calAmmo.Find<ModItem>("DivineBullet").Type
+                    || item.type == calAmmo.Find<ModItem>("WeakAstralBullet").Type || item.type == calAmmo.Find<ModItem>("AstralBullet").Type || item.type == calAmmo.Find<ModItem>("DazzlingAstralBullet").Type)
                 {
                     item.ammo = AmmoID.None;
                 }
@@ -38,7 +39,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
         {
             if (ModLoader.TryGetMod("CalamityAmmo", out Mod calAmmo))
             {
-                if (item.type == calAmmo.Find<ModItem>("HydrothermicArrow").Type || item.type == calAmmo.Find<ModItem>("HydrothermicBullet").Type || item.type == calAmmo.Find<ModItem>("DivineArrow").Type || item.type == calAmmo.Find<ModItem>("DivineBullet").Type)
+                if (item.type == calAmmo.Find<ModItem>("HydrothermicArrow").Type || item.type == calAmmo.Find<ModItem>("HydrothermicBullet").Type || item.type == calAmmo.Find<ModItem>("DivineArrow").Type || item.type == calAmmo.Find<ModItem>("DivineBullet").Type
+                    || item.type == calAmmo.Find<ModItem>("WeakAstralBullet").Type || item.type == calAmmo.Find<ModItem>("AstralBullet").Type || item.type == calAmmo.Find<ModItem>("DazzlingAstralBullet").Type)
                 {
                     InfernalUtilities.AddDisabledItemTag(tooltips);
                 }

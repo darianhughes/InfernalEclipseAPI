@@ -2,7 +2,6 @@
 using InfernalEclipseAPI.Common.GlobalNPCs.NPCDebuffs;
 using InfernalEclipseAPI.Core.Systems;
 using InfernalEclipseAPI.Core.World;
-using InfernumMode.Core.GlobalInstances.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -194,6 +193,26 @@ namespace InfernalEclipseAPI.Content.Items.Other
 
             new()
             {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.ThunderBird"),
+                TrackName = "InfernalThunderBird",
+                HoverTextColor = () => new(205, 150, 255),
+                UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "TheGrandThunderBird") : false,
+                BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossTheGrandThunderBird/TheGrandThunderBird_Head_Boss") : TextureAssets.MagicPixel,
+                RequiresThorium = true
+            },
+
+            new()
+            {
+                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.QueenJellyfish"),
+                TrackName = "MutantMajesty",
+                HoverTextColor = () => new(205, 150, 255),
+                UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "QueenJellyfish") : false,
+                BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossQueenJellyfish/QueenJellyfish_Head_Boss") : TextureAssets.MagicPixel,
+                RequiresThorium = true
+            },
+
+            new()
+            {
                 HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.BereftVassal"),
                 TrackName = "BereftVassal",
                 HoverTextColor = () => Color.Lerp(Color.Cyan, Color.Yellow, (float)Math.Sin(Main.GlobalTimeWrappedHourly) * 0.3f + 0.35f),
@@ -235,6 +254,7 @@ namespace InfernalEclipseAPI.Content.Items.Other
                 HoverTextColor = () => new(205, 150, 255),
                 UnlockCondition = () => InfernalCrossmod.Thorium.Loaded ? (bool)InfernalCrossmod.Thorium.Mod.Call("GetDownedBoss", "ThePrimordials") : false,
                 BossIconTexture = InfernalCrossmod.Thorium.Loaded ? InfernalCrossmod.Thorium.Mod.Assets.Request<Texture2D>("NPCs/BossThePrimordials/DreamEater_Head_Boss") : TextureAssets.MagicPixel,
+                RequiresThorium = true
             },
 
             new()
@@ -290,15 +310,6 @@ namespace InfernalEclipseAPI.Content.Items.Other
                 HoverTextColor = () => Color.YellowGreen,
                 UnlockCondition = () => DownedBossSystem.downedBossRush,
                 BossIconTexture = ModContent.Request<Texture2D>("CalamityMod/UI/MiscTextures/BossRushIcon"),
-            },
-
-            new()
-            {
-                HoverText = Language.GetTextValue($"Mods.InfernalEclipseAPI.BossName.LittleCat"),
-                TrackName = "LittleCatTheme",
-                HoverTextColor = () => Color.LightGray,
-                UnlockCondition = () => false,
-                BossIconTexture = TextureAssets.NpcHead[27],
             },
         };
 

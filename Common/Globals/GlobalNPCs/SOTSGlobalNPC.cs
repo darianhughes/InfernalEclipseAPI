@@ -275,6 +275,22 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
 
             DebuffNPC debuffNPC = npc.GetGlobalNPC<DebuffNPC>();
 
+            if (InfernalCrossmod.NoxusBoss.Loaded)
+            {
+                if (npc.type == InfernalCrossmod.NoxusBoss.Mod.Find<ModNPC>("NamelessDeityBoss").Type)
+                {
+                    debuffNPC.PlatinumCurse = 0;
+                    debuffNPC.HarvestCurse = 0;
+                    debuffNPC.DestableCurse = 0;
+                    debuffNPC.BlazingCurse = 0;
+                    debuffNPC.AnomalyCurse = 0;
+                    debuffNPC.BlightCurse = 0;
+                    debuffNPC.CrystalCurse = 0;
+                    debuffNPC.DamageCurse = 0;
+                    debuffNPC.VoidspaceCurse = 0;
+                }
+            }
+
             if (debuffNPC.AnomalyCurse > MaxAnomalyCurseStacks)
                 debuffNPC.AnomalyCurse = MaxAnomalyCurseStacks;
 
@@ -297,6 +313,15 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalNPCs
                     {
                         player.AddBuff(ModContent.BuffType<StarboundHorrification>(), 60);
                     }
+                }
+            }
+
+            // Gives polaris the cryogen shader
+            if (npc.type == ModContent.NPCType<Polaris>() || npc.type == ModContent.NPCType<NewPolaris>())
+            {
+                foreach (Player p in Main.ActivePlayers)
+                {
+                    p.Calamity().monolithCryogenShader = 30;
                 }
             }
 

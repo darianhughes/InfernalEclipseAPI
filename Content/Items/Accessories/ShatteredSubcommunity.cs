@@ -15,6 +15,8 @@ namespace InfernalEclipseAPI.Content.Items.Accessories
     [ExtendsFromMod(InfernalCrossmod.Clamity.Name)]
     public class ShatteredSubcommunity : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
+
         private static readonly Color rarityColorOne = new Color(128, 62, 128);
         private static readonly Color rarityColorTwo = new Color(245, 105, 245);
 

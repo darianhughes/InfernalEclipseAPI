@@ -714,11 +714,6 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 Bosses.Add(new Boss(WrathNPC("MarsBody"), TimeChangeContext.Night, permittedNPCs: [WrathNPC("BattleSolyn"), WrathNPC("TrappingHolographicForcefield")]));
             }
 
-            if (InfernalCrossmod.NoxusPort.Loaded)
-            {
-                Bosses.Add(new Boss(InfernalCrossmod.NoxusPort.Mod.Find<ModNPC>("EntropicGod").Type, specialSpawnCountdown: 270));
-            }
-
             if (InfernalCrossmod.FargosSouls.Loaded)
             {
                 Bosses.Add(new Boss(SoulsNPC("MutantBoss"), permittedNPCs: [SoulsNPC("MutantIllusion")]));
@@ -825,7 +820,7 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 });
             }
 
-            if ((InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.WrathoftheGodsBossesInBossRush)|| InfernalCrossmod.NoxusPort.Loaded || calHunt != null || HomewardLoaded() || InfernalCrossmod.FargosSouls.Loaded)
+            if ((InfernalCrossmod.NoxusBoss.Loaded && InfernalConfig.Instance.WrathoftheGodsBossesInBossRush)|| calHunt != null || HomewardLoaded() || InfernalCrossmod.FargosSouls.Loaded)
             {
                 BossDeathEffects.Add(NPCType<SupremeCalamitas>(), npc =>
                 {
@@ -865,24 +860,6 @@ namespace InfernalEclipseAPI.Core.Systems.BossRush
                 else if (InfernalCrossmod.FargosSouls.Loaded)
                 {
                     BossDeathEffects.Add(SoulsNPC("MutantBoss"), npc =>
-                    {
-                        InfernalWorld.tier6Downed = true;
-                        if (InfernalConfig.Instance.ForceFullXerocDialogue)
-                        {
-                            //Always play end dialgoue
-                            BossRushDialogueSystem.StartDialogue(BossRushDialoguePhase.End);
-                        }
-                        else
-                        {
-                            BossRushDialogueSystem.StartDialogue(DownedBossSystem.downedBossRush ? BossRushDialoguePhase.EndRepeat : BossRushDialoguePhase.End);
-                        }
-                        CalamityUtils.KillAllHostileProjectiles();
-                        HostileProjectileKillCounter = 3;
-                    });
-                }
-                else if (InfernalCrossmod.NoxusPort.Loaded)
-                {
-                    BossDeathEffects.Add(InfernalCrossmod.NoxusPort.Mod.Find<ModNPC>("EntropicGod").Type, npc =>
                     {
                         InfernalWorld.tier6Downed = true;
                         if (InfernalConfig.Instance.ForceFullXerocDialogue)

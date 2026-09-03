@@ -80,9 +80,6 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Yob",
             "Soltan",
 
-            //Management
-            "TheRogueX",
-
             //Major Contributors
             "StarlightCat",
             "MajOfMyth",
@@ -96,9 +93,12 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Pudd1ng",
             "Eduarrdo",
             "JalapenoDance",
+            "Arkangel",
+            "Eram",
+            "IceSpider",
 
             //Composers
-            "Peter Fung",
+            "PFungi",
             "Techhy",
 
             //Partners
@@ -123,46 +123,53 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "Suu",
             "fiend",
             "JuJiao",
-            "IceSpider",
             "Uncle Sciz",
             "cleo.",
             "ABrickToTheHead",
+            "Ino",
 
             //Playtesters
             "Tencvin",
             "Jillyfish",
-            "Arkangel",
             "DaVids",
             "Georgerrier",
+            "rose",
+
+            //Management
+            "TheRogueX",
 
             //Donors
-            "bryce27",
+            "bryce27", 
             "Bomberr",
             "Goldsockz2",
             "Minesky",
             "TechQueen22",
-            "ProSigmaSoul",
             "Sir_Yeetus_III",
-            "Samoh",
-            "Imagiknight Orpheus",
             "rocket",
             "FlamingSock",
             "brxdyfrxmdxg",
+            "Alextricle",
+            "StormUprising",
+            "Shanakor",
+            "Cherie",
+            "Yardis",
+            "Heatstroke",
+            "Dylanomeneer",
+            "Redwort",
 
             //Supporters
             "CuddlySnake",
-            "Louhii",
             "joshuwham",
             "Lucy",
             "Mando",
             "Romain TISSERAND",
             "Imagiknight_Parad0xical",
-            "Lance",
+            "Soopns",
 
             //Helpers
             "fjiown",
-            "Soopns",
             "DuskMender",
+            "Coof",
 
             //Special Thanks
             "N0t_UNowen",
@@ -170,10 +177,10 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.Paintings
             "javyz",
             "habble",
             "Lucille Karma",
-            "Eram",
             "tomat",
             "Nycro",
             "Blast",
+            "Vortex",
             "Cataclysmic Armageddon",
             "Yardis",
         };

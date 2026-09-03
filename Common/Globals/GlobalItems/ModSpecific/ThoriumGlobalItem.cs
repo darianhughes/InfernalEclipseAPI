@@ -138,6 +138,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
     [ExtendsFromMod(InfernalCrossmod.Thorium.Name)]
     public class ThoriumGlobalItem : GlobalItem
     {
+
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemType<IceLance>() ||
@@ -593,6 +594,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     }
 
                     //remove if helhiem ever removes thier fallen paladins nerf as this brings it back to Thorium vanilla
+                    /*
                     if (item.type == ItemType<FallenPaladinFaceguard>())
                     {
                         player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.1f;
@@ -607,6 +609,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     {
                         player.GetDamage(ThoriumDamageBase<HealerDamage>.Instance) += 0.05f;
                     }
+                    */
                 }
 
                 /*
@@ -737,6 +740,9 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
             if (item.type == ItemType<GatewayGlass>() && player.Calamity().ZoneAbyss && !DownedBossSystem.downedYharon)
                 return false;
 
+            if (item.type == ItemType<LihzahrdKukri>() && !NPC.downedPlantBoss) // -Arkangel
+                return false;
+
             return base.CanUseItem(item, player);
         }
 
@@ -772,6 +778,20 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         line.Text = Language.GetTextValue("ItemTooltip.EyeoftheGolem");
                         break;
                     }
+                }
+            }
+
+            if (item.type == ItemType<LihzahrdKukri>() && !NPC.downedPlantBoss)
+            {
+                TooltipLine curseWarning = new TooltipLine(Mod, "PlanteraCurse", Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.JungleCurse")); //Easiest way I found to give the jungle curse tooltip -Arkangel
+                int insertIndex = tooltips.FindLastIndex(t => t.Name.StartsWith("Tooltip"));
+                if (insertIndex != -1)
+                {
+                    tooltips.Insert(insertIndex + 1, curseWarning);
+                }
+                else
+                {
+                    tooltips.Add(curseWarning); // not sure this is needed? -Arkangel
                 }
             }
 

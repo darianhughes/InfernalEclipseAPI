@@ -135,7 +135,7 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
             if (item.type == ModContent.ItemType<DiamondRing>())
             {
                 int previousDefense = SOTSPlayer.ModPlayer(Main.LocalPlayer).previousDefense;
-                FullTooltipOveride(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DiamondRingText") + Language.GetTextValue("Mods.SOTS.DiamondRingText2", Convert.ToString(previousDefense), Convert.ToString((int)(previousDefense * 0.66)))}");
+                FullTooltipOveride(tooltips, $"{Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DiamondRingText", Convert.ToString(previousDefense), Convert.ToString((int)(previousDefense * 0.66)))}");
             }
             if (item.type == ModContent.ItemType<ChallengerRing>())
             {
@@ -144,7 +144,7 @@ namespace InfernalEclipseAPI.Core.Systems.ILItemChanges
                     if (tooltip.Text.Contains("Increase damage based on defense, then decreases defense by a third of the damage buff")) // im sorry localizers there was no other way...
                     {
                         int previousDefense = SOTSPlayer.ModPlayer(Main.LocalPlayer).previousDefense;
-                        tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DiamondRingText") + Language.GetTextValue("Mods.SOTS.DiamondRingText2", Convert.ToString(previousDefense), Convert.ToString((int)(previousDefense * 0.66)));
+                        tooltip.Text = Language.GetTextValue("Mods.InfernalEclipseAPI.ItemTooltip.DiamondRingText", Convert.ToString(previousDefense), Convert.ToString((int)(previousDefense * 0.66)));
                     }
                 }
             }

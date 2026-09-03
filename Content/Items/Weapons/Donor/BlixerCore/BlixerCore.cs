@@ -196,6 +196,12 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
                     segment[i] = Projectile.Center;
                 }
             }
+
+            if (!Projectile.active || Main.player[Projectile.owner].dead)
+            {
+                ClearLaserCycle();
+            }
+
             return true;
         }
 
@@ -275,18 +281,10 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
                         Projectile.netUpdate = true;
                     }
 
-                    if (!holdingAttack)
+                    if (!holdingAttack || Main.player[Projectile.owner].dead)
                     {
                         // Releasing the button cancels the current cycle.
-                        laserTimer = (int)(-LaserChargeTime - (Projectile.ai[1] * 10));
-                        laserActive = false;
-                        laserVisualStrength = MathHelper.Lerp(
-                            laserVisualStrength,
-                            0f,
-                            0.2f
-                        );
-
-                        StopLaserSound();
+                        ClearLaserCycle();
                     }
                     else
                     {
@@ -476,6 +474,19 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
             );
         }
 
+        private void ClearLaserCycle()
+        {
+            laserTimer = (int)(-LaserChargeTime - (Projectile.ai[1] * 10));
+            laserActive = false;
+            laserVisualStrength = MathHelper.Lerp(
+                laserVisualStrength,
+                0f,
+                0.2f
+            );
+
+            StopLaserSound();
+        }
+
         private void StopLaserSound()
         {
             if (SoundEngine.TryGetActiveSound(
@@ -516,7 +527,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.BlixerCore
         {
             if (laserActive)
             {
-                modifiers.SourceDamage /= 1.0f;
+                modifiers.SourceDamage /= 3f;
             }
             else
             {

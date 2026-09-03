@@ -138,8 +138,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             recipe.AddIngredient(ItemID.Zenith);
             recipe.AddIngredient<ArkoftheCosmos>();
             recipe.AddIngredient<TyrantYharimsUltisword>();
-            recipe.AddIngredient<AshesofAnnihilation>(3);
-            recipe.AddIngredient<MiracleMatter>(3);
+            recipe.AddIngredient<MiracleMatter>();
             if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))
             {
                 recipe.AddIngredient<AlloyofEden>();
@@ -148,7 +147,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.Swordofthe14thGlitch
             else
             {
                 if (ModLoader.TryGetMod("CalamityHunt", out Mod calamityHunt)) recipe.AddIngredient(calamityHunt.Find<ModItem>("ChromaticMass").Type, 3);
-                if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
             }
             recipe.AddIngredient<Rock>();
             recipe.AddTile<SCalAltar>();

@@ -1,4 +1,5 @@
 ﻿using InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes;
+using InfernalEclipseAPI.Content.Items.Weapons.Donor.Steetsign;
 using InfernalEclipseAPI.Content.NPCs.LittleCat;
 using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
@@ -17,20 +18,19 @@ namespace InfernalEclipseAPI.Core.Systems
         internal static Mod Infernum;
         internal static Mod SOTS;
         internal static Mod Fargos;
-        internal static Mod Starlight;
+
         public override void Load()
         {
             ModLoader.TryGetMod("InfernumMode", out Infernum);
             ModLoader.TryGetMod("SOTS", out SOTS);
             ModLoader.TryGetMod("FargowiltasSouls", out Fargos);
-            ModLoader.TryGetMod("ssm", out Starlight);
         }
+
         public override void Unload()
         {
             Infernum = null;
             SOTS = null;
             Fargos = null;
-            Starlight = null;
         }
 
         public override void PostSetupContent()
@@ -39,13 +39,15 @@ namespace InfernalEclipseAPI.Core.Systems
             BossChecklistSetup();
             AddInfernumCards();
             ColoredDamageTypesSupport();
+            Project_tRUSupport();
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
                 AddThoriumMiniBoss.AddMiniBosses();
             }
         }
-        private void MusicDisplaySetup()
+
+        private static void MusicDisplaySetup()
         {
             ModLoader.TryGetMod("MusicDisplay", out Mod musicDisplay);
             if (musicDisplay is null)
@@ -54,8 +56,10 @@ namespace InfernalEclipseAPI.Core.Systems
             }
 
             //IEoR Original Music
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by PFungi", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/Seahorse"), "Seahorse Scrutiny (Rebirth)", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TeardropsofDragonfire"), "Teardrops of Dragonfire", "by Peter Fung", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/InfernalThunderBird"), "Infernal Thunder Bird", "by Techhy", "Infernal Eclipse of Ragnarok");
+            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/MutantMajesty"), "Mutant Majesty", "by Techhy", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/BereftVassal"), "Dead Kingdom's Champion", "by Techhy", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot(InfernalEclipseAPI.ProvidenceNightPath), "Unholy Finality", "by Brimston Premium", "Infernal Eclipse of Ragnarok");
             musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LastBattle"), "Last Battle (Ballos Mix)", "by DM DOKURO", "Infernal Eclipse of Ragnarok");
@@ -72,7 +76,6 @@ namespace InfernalEclipseAPI.Core.Systems
 
             // Currently unused
             //musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/TheRealityoftheProphey"), "The Reality of the Prophecy", "theforge129", "Infernal Eclipse of Ragnarok");
-            musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("InfernalEclipseAPI/Assets/Music/LittleCatTheme"), "Demonic Little Grey Cat Theme Song", "by vivivivivi", "Infernal Eclipse of Ragnarok");
             
 
             if (ModLoader.TryGetMod("YouBoss", out _))
@@ -89,7 +92,7 @@ namespace InfernalEclipseAPI.Core.Systems
             }
         }
 
-        private void BossChecklistSetup()
+        private static void BossChecklistSetup()
         {
             Mod mod1;
             Mod CalamityMod;
@@ -140,39 +143,6 @@ namespace InfernalEclipseAPI.Core.Systems
                 MakeCard(Fargos.Find<ModNPC>("CosmosChampion").Type, (horz, anim) => Color.Lerp(Color.DeepPink, Color.LightGoldenrodYellow, anim), "Eridanus", SoundID.MenuTick, SoundID.Item14);
                 MakeCard(Fargos.Find<ModNPC>("AbomBoss").Type, (horz, anim) => Color.Lerp(Color.Purple, Color.Orange, anim), "AbomBoss", SoundID.MenuTick, InfernumMode.Assets.Sounds.InfernumSoundRegistry.ModeToggleLaugh);
                 MakeCard(Fargos.Find<ModNPC>("MutantBoss").Type, (horz, anim) => Color.Lerp(Color.LightBlue, Color.Cyan, anim), "Mutant", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
-            }
-            if (Starlight != null && InfernalConfig.Instance.DontEnableThis)
-            {
-                if (Starlight.Version <= Version.Parse("1.1.4.2"))
-                {
-                    if (Starlight.TryFind("MutantEX", out ModNPC monster))
-                    {
-                        MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
-                    }
-                }
-                else
-                {
-                    if (Starlight.TryFind("RealMutantEX", out ModNPC mutantEX))
-                    {
-                        MakeCard(mutantEX.Type, (horz, anim) => Color.Lerp(Color.LightBlue, Color.Cyan, anim), "RealMutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream); ;
-                    }
-                    if (Starlight.TryFind("MonstrosityBoss", out ModNPC monster))
-                    {
-                        MakeCard(monster.Type, (horz, anim) => Color.Lerp(Color.Red, Color.Gold, anim), "MutantEX", SoundID.DD2_BetsyFireballShot, SoundID.ScaryScream);
-                    }
-                }
-                if (Starlight.TryFind("Guntera", out ModNPC guntera))
-                {
-                    MakeCard(guntera.Type, (horz, anim) => Color.Lerp(new(96, 148, 14), Color.LightSlateGray, anim), "Guntera", SoundID.Item17, SoundID.Item36);
-                }
-                if (Starlight.TryFind("Echdeath", out ModNPC echdeath))
-                {
-                    MakeCard(echdeath.Type, (horz, anim) => Color.Lerp(Color.White, Color.Tan, anim), "Echdeath", SoundID.NPCHit4, SoundID.Item14);
-                }
-                if (Starlight.TryFind("CeilingOfMoonlord", out ModNPC moonRoof))
-                {
-                    MakeCard(moonRoof.Type, (horz, anim) => Color.Lerp(Color.Turquoise, Color.Gray, anim), "CeilingOfMoonlord", SoundID.MenuTick, new SoundStyle("InfernumMode/Assets/Sounds/Custom/MoonLord/MoonLordIntro"));
-                }
             }
 
             if (ModLoader.TryGetMod("YouBoss", out Mod you))
@@ -408,6 +378,35 @@ namespace InfernalEclipseAPI.Core.Systems
                 coloredDamageTypes.Call("AddDamageType", MythicMagic.Instance, mythicColor, mythicColor, mythicCritColor);
                 coloredDamageTypes.Call("AddDamageType", MythicRanged.Instance, mythicColor, mythicColor, mythicCritColor);
                 coloredDamageTypes.Call("AddDamageType", MythicSummon.Instance, mythicColor, mythicColor, mythicCritColor);
+            }
+        }
+
+        public static void Project_tRUSupport()
+        {
+            if (ModLoader.TryGetMod("CalamityRuTranslate", out Mod tru))
+            {
+                Mod eclipse = ModLoader.GetMod("InfernalEclipseAPI");
+
+                tru.Call("AddFeminineItems", eclipse, new string[]
+                {
+                    "NovaBomb",
+                    "StellarSabre",
+                    "SplitFirebrand"
+                });
+
+                tru.Call("AddNeuterItems", eclipse, new string[]
+                {
+                    "CelestialIllumination",
+                    "RingofTix",
+                    "TheChickenWing",
+                    "ShatteredSubcommunity",
+                    "BlixerCore"
+                });
+
+                tru.Call("AddPluralItems", eclipse, new string[]
+                {
+                    "The454CasullandTheJackal"
+                });
             }
         }
     }

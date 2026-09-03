@@ -5,6 +5,11 @@ UI: {
 		LucidRetaliation: 恢复的现实
 	}
 
+	TitleLinks: {
+		// Patreon: Patreon
+		// Github: Github
+	}
+
 	NoVoidConsumable: 你现在可吃不下那个！
 	RagnarokIconText: 诸神黄昏模式已启用
 	NoRespawn: 复活受限：在 {0} 人联机时，每场 Boss 战中每位玩家只有一次重生机会！
@@ -141,12 +146,6 @@ TimeFreezePrevention: {
 	Other: 虚空魔法孵化器的效果被阻拦！
 }
 
-BossCheesePrevention: {
-	TheDestroyer: 我不会让你轻易摧毁我的造物。
-	Plantera: 远古力量正阻止你使用该物品……
-	Yharon: 远古力量正阻止你使用该物品……
-}
-
 ItemBalance: {
 	Modified: 已被诸神黄昏：炼狱蚀光修改
 	Modified2: 按住{0}以查看修改
@@ -176,6 +175,7 @@ ItemTooltip: {
 	Contributor: -贡献者物品-
 	NamelessDowned: 你必须通过考验
 	DisabledBossRush: 该效果在Boss Rush中不生效
+	// JungleCurse: It has been cursed by a powerful Jungle creature
 	SBeamUsage: 长按左键，发射神话魔法伤害的光束
 	NBeamUsage: 长按左键，发射寰宇死光，造成神话魔法伤害
 	MBeamUsage: 长按左键，发射星流解离炮，造成神话远程伤害
@@ -1000,32 +1000,17 @@ ItemTooltip: {
 	AstralCommunicatorInfernum2: 来自异界的史莱姆依旧饥渴不止……
 }
 
-Lore: {
-	DylanSoltan:
-		'''
-		无论是谁读到这张便笺，请务必谨记——
-		我预见到未来会出现一个名为索坦的存在。
-		他强大却顽劣不驯，所以我特意制作了这张便笺来助你一臂之力。
-		便笺上附带的芯片，会将周围的召唤力量转化为其他能量，
-		从而削弱他的优势。
-		此外，它还授予你完全的权限去欺负索坦。
-		我只做了两张这样的便笺，并将它们交给了我所能找到的两位最强存在。
-		如果你正是其中之一，或者只是意外得到它的人，请谨慎使用这枚装置……
-		'''
-	MysteriousDiary:
-		'''
-		翻开首页，你只看到几行文字：
-
-		“我究竟是谁，我为何还活着？”
-
-		余下的页面一片空白……
-
-		[c/E3AF40:此书洋溢着异界气息……或许在亚利姆甚至诸神之外，还潜藏着更宏伟的存在。]
-
-		–敬请期待《诸神黄昏：炼狱蚀光》的未来篇章！–
-		'''
-}
-
+Lore.DylanSoltan:
+	'''
+	无论是谁读到这张便笺，请务必谨记——
+	我预见到未来会出现一个名为索坦的存在。
+	他强大却顽劣不驯，所以我特意制作了这张便笺来助你一臂之力。
+	便笺上附带的芯片，会将周围的召唤力量转化为其他能量，
+	从而削弱他的优势。
+	此外，它还授予你完全的权限去欺负索坦。
+	我只做了两张这样的便笺，并将它们交给了我所能找到的两位最强存在。
+	如果你正是其中之一，或者只是意外得到它的人，请谨慎使用这枚装置……
+	'''
 LegendaryTooltip.Base: 随着你击败强敌，此武器的力量可能不断增强。
 
 Items: {
@@ -1247,19 +1232,6 @@ Items: {
 				人们都说，若非结伴而行，其恐怖无人能及
 				它们只凭虚空能量就可以瞬间取走任何人的性命。
 				然而这一只……显然只是幼体。
-				'''
-		}
-
-		LoreProvi: {
-			DisplayName: 星河
-			Tooltip: ""
-			Lore:
-				'''
-				我曾一度梦见和平……至于为何，我不得而知。
-				自从我得知天地之外另有天地，
-				我便时常感受到那名女子的气息，若隐若现地徘徊在我们的世界。
-				仁想从她那里获得什么？无人知晓。
-				但我相信，你会做出正确的抉择，泰拉人。
 				'''
 		}
 
@@ -2044,7 +2016,7 @@ Items: {
 
 	MenuMusicBox: {
 		DisplayName: 音乐盒 (诸神黄昏：炼狱蚀光主题曲)
-		Tooltip: 播放“Teardrops of Dragonfire” 作者：Peter Fung
+		Tooltip: 播放“Teardrops of Dragonfire” 作者：PFungi
 	}
 
 	Streetsign: {
@@ -2470,6 +2442,31 @@ Items: {
 		DisplayName: 音乐盒 (史莱姆皇后 - 炼狱模式)
 		Tooltip: 播放“Crowned Before One's End” 作者：PinpinNeon
 	}
+
+	CnidrionMusicBox: {
+		// DisplayName: Music Box (Cnidrion)
+		// Tooltip: Plays 'Seahorse Scrutiny (Rebirth)' by Brimston Premium
+	}
+
+	CodebreakerMusicBox: {
+		// DisplayName: Music Box (Codebreaker Interlude)
+		// Tooltip: Plays 'Arsenal' by TheTrester
+	}
+
+	ProvidenceNightMusicBox: {
+		// DisplayName: Music Box (Providence - Night)
+		// Tooltip: Plays 'Unholy Finality' by Brimston Premium
+	}
+
+	ThunderBirdMusicBox: {
+		// DisplayName: Music Box (The Grand Thunder Bird - Ragnarok Mode)
+		// Tooltip: Plays 'Infernal Thunder Bird' by Techhy
+	}
+
+	VassalMusicBox: {
+		// DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
+		// Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
+	}
 }
 
 Projectiles: {
@@ -2876,6 +2873,16 @@ Configs: {
 				切换密码破译器插曲
 				插曲会在你第一次安装密码破译器的最终组件时播放
 				'''
+		}
+
+		GrandThunderBirdRagnarok: {
+			// Label: Ragnarok Grand Thunder Bird Theme
+			// Tooltip: Toggles if 'Infernal Thunder Bird' by Techhy plays during the Grand Thunder Bird boss fight in Ragnarok Mode.
+		}
+
+		QueenJellyfishRagnarok: {
+			// Label: Ragnarok Queen Jellyfish Theme
+			// Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 
@@ -3383,6 +3390,11 @@ Buffs: {
 		DisplayName: Blixer
 		Description: “我没设计这个！:(”
 	}
+
+	HormonalBlockade: {
+		// DisplayName: Hormonal Blockade
+		// Description: Mods.InfernalEclipseAPI.Buffs.HormonalBlockade.Description
+	}
 }
 
 Tiles: {
@@ -3398,6 +3410,11 @@ Tiles: {
 	LastBattleMusicBoxTile.MapEntry: 音乐盒
 	PlanteraMusicBoxTile.MapEntry: 音乐盒
 	QueenSlimeMusicBoxTile.MapEntry: 音乐盒
+	// CnidrionMusicBoxTile.MapEntry: Music Box
+	// CodebreakerMusicBoxTile.MapEntry: Music Box
+	// ProvidenceNightMusicBoxTile.MapEntry: Music Box
+	// ThunderBirdMusicBoxTile.MapEntry: Music Box
+	// VassalMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3455,6 +3472,8 @@ BossName: {
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 	Arsenal: Arsenal - Codebreaker Interlude
+	// ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
+	// QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: 激光网格会在他冲刺的同时生成！优先冲撞神吞，然后移动到安全位置——但别忘了那些火球！

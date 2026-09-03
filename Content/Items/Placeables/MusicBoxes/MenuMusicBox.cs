@@ -5,8 +5,6 @@ namespace InfernalEclipseAPI.Content.Items.Placeables.MusicBoxes
 {
     public class MenuMusicBox : ModItem
     {
-        public override string Texture => "InfernalEclipseAPI/Assets/Textures/Items/PlaceholderInfernumMusicBox";
-
         public override void SetStaticDefaults()
         {
             if (Main.dedServ)

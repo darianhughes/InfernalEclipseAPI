@@ -23,7 +23,7 @@ Items: {
 		'''
 	UnrelentingTorment.Tooltip:
 		'''
-		施加10%召唤标记伤害
+		施加12%召唤标记伤害
 		{$Mods.CatalystMod.Tooltips.WhipTooltip}
 		释放出一连串异世鬼爪撕裂敌人
 		'''

@@ -136,9 +136,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                 itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MenuMusicBox>()));
                 itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulDrivenHeadphonesEclipse>()));
 
-                itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<LoreProvi>()));
-                itemLoot.Add(ItemDropRule.ByCondition(new ProviPlayerCondition(), ModContent.ItemType<MysteriousDiary>()));
-
                 itemLoot.Add(ItemDropRule.ByCondition(new SoltanPlayerCondition(), ModContent.ItemType<LoreDylan>()));
 
                 itemLoot.Add(ItemDropRule.ByCondition(new DylanPlayerCondition(), ModContent.ItemType<SoltanBullyingSlip>()));
@@ -317,7 +314,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                     findWhipItem("BleachedJellyChargedBattery"),
                     findWhipItem("BleachedVoltaicJelly"),
 
-                    findWhipItem("BuddyEmblem")
+                    //findWhipItem("BuddyEmblem")
                 };
 
                 foreach (int bleachedItem in bleachedAcessories)
@@ -343,24 +340,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems.ModSpecific
                         return true;
                 }
                 if (player.active && (player.name.ToLower().Contains("nuggets") || player.name.ToLower().Contains("hummus")))
-                    return true;
-            }
-            return false;
-        }
-
-        public bool CanShowItemDropInUI() => false;
-        public string GetConditionDescription() => "A certain person must be present...";
-    }
-
-    public class ProviPlayerCondition : IItemDropRuleCondition
-    {
-        public bool CanDrop(DropAttemptInfo info)
-        {
-            // Loop through all players in the world
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                Player player = Main.player[i];
-                if (player.active && (player.name == "Galactica" || player.name.ToLower().Contains("radiant")))
                     return true;
             }
             return false;

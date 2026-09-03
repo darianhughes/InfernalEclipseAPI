@@ -87,7 +87,7 @@ namespace InfernalEclipseAPI.Content.NPCs.LittleCat
             NPC.lavaImmune = true;
             NPC.netAlways = true;
             NPC.BossBar = ModContent.GetInstance<LittleCatBossBar>();
-            Music = MusicLoader.GetMusicSlot(Mod, "Assets/Music/LittleCatTheme");
+            Music = MusicID.Boss1;
             SceneEffectPriority = SceneEffectPriority.BossHigh;
         }
         public override bool CheckDead()

@@ -8,7 +8,6 @@ namespace InfernalEclipseAPI.Content.Tiles.MusicBoxes
 {
     public class CultistMusicBoxTile : ModTile
     {
-        public override string Texture => "InfernalEclipseAPI/Assets/Textures/Tiles/PlaceholderInfernumMusicBoxTile";
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;

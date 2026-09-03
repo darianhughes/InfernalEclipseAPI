@@ -9,7 +9,7 @@ using InfernumMode.Content.Items.Weapons.Summoner;
 using InfernumMode.Content.Buffs;
 using InfernalEclipseAPI.Core.Configs;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.UI
 {
     public class InfernalEclipseAPISummonTagSystem : ModSystem
     {
@@ -195,7 +195,7 @@ namespace InfernalEclipseAPI.Core.Systems
                             {
                                 summonTag.AutoDrawTooltip = false;
                                 summonTag.TagTexture = ModContent.Request<Texture2D>("CatalystMod/Items/Weapons/Summon/Whips/UnrelentingTorment", AssetRequestMode.ImmediateLoad);
-                                summonTag.MultiplicativeTagDamage = 0.10f;
+                                summonTag.MultiplicativeTagDamage = 0.12f;
                             }
                         });
                     }

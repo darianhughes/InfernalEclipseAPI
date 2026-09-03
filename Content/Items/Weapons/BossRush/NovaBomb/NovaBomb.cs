@@ -88,8 +88,7 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient<AshesofAnnihilation>(3);
-            recipe.AddIngredient<MiracleMatter>(3);
+            recipe.AddIngredient<MiracleMatter>();
             if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg))
             {
                 recipe.AddIngredient<AlloyofEden>();
@@ -102,7 +101,6 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.BossRush.NovaBomb
                     recipe.AddIngredient(ChormaticMass.Type, 3);
                 }
                 else recipe.AddIngredient<ShadowspecBar>(3);
-                if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
             }
             recipe.AddIngredient<DarkPlasma>(10);
             recipe.AddIngredient<MeldBlob>(15);

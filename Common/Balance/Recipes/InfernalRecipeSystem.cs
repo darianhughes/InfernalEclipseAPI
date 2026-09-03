@@ -332,6 +332,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
             #endregion
 
             #region Calamity Simple Whip Addon
+            /*
             if (ModLoader.TryGetMod("CalamitySimpleWhipAddon", out Mod simpleWhipAddon))
             {
                 Recipe.Create(simpleWhipAddon.Find<ModItem>("StrikerEmblem").Type)
@@ -340,6 +341,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     .AddTile(TileID.Anvils)
                     .Register();
             }
+            */
             #endregion
         }
 
@@ -477,6 +479,18 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     {
                         recipe.AddIngredient(thorium.Find<ModItem>("Petal"), 5);
                     }
+
+                    if (recipe.HasResult<SunSpiritStaff>() && !InfernalCrossmod.Hummus.Loaded)
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("SandstoneIngot"), 8);
+                    }
+
+                    if (recipe.HasResult<Earth>())
+                    {
+                        recipe.AddIngredient(thorium.Find<ModItem>("InfernoEssence"));
+                        recipe.AddIngredient(thorium.Find<ModItem>("DeathEssence"));
+                        recipe.AddIngredient(thorium.Find<ModItem>("OceanEssence"));
+                    }
                 }
 
                 if (InfernalCrossmod.SOTS.Loaded)
@@ -484,6 +498,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                     if (recipe.HasResult<ThePointer>() && recipe.HasIngredient(ItemID.Glass))
                     {
                         recipe.DisableRecipe();
+                    }
+
+                    if (recipe.HasResult<OntologicalDespoiler>())
+                    {
+                        recipe.AddIngredient(InfernalCrossmod.SOTS.Mod.Find<ModItem>("DissolvingNihility"));
                     }
                 }
 
@@ -521,7 +540,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             recipe.DisableRecipe();
                     }
 
-                    if (recipe.HasResult(calAmmo.Find<ModItem>("DivineArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("DivineBullet")))
+                    if (recipe.HasResult(calAmmo.Find<ModItem>("DivineArrow")) || recipe.HasResult(calAmmo.Find<ModItem>("DivineBullet")) || recipe.HasResult(calAmmo.Find<ModItem>("WeakAstralBullet")))
                     {
                         if (InfernalConfig.Instance.CalamityBalanceChanges)
                             recipe.DisableRecipe();
@@ -619,7 +638,7 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                             GetItem(simpleWhipAddon, "BleachedJellyChargedBattery"),
                             GetItem(simpleWhipAddon, "BleachedVoltaicJelly"),
 
-                            GetItem(simpleWhipAddon, "BuddyEmblem")
+                            //GetItem(simpleWhipAddon, "BuddyEmblem")
                         };
 
                         foreach (ModItem item in bleachedAcessories)
@@ -629,8 +648,10 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                         }
                     }
 
+                    /*
                     if (recipe.HasResult(simpleWhipAddon.Find<ModItem>("StrikerEmblem")) && recipe.HasIngredient(ItemID.Daybloom))
                         recipe.DisableRecipe();
+                    */
                 }
                 #endregion
 
@@ -1674,11 +1695,11 @@ namespace InfernalEclipseAPI.Common.Balance.Recipes
                                 recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
                         }
 
-                        if (ModLoader.TryGetMod("Clamity", out Mod clam))
-                        {
-                            if(recipe.HasResult(clam.Find<ModItem>("SoulBaguette")))
-                                recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1);
-                        }
+                        //if (ModLoader.TryGetMod("Clamity", out Mod clam))
+                        //{
+                        //    if(recipe.HasResult(clam.Find<ModItem>("SoulBaguette")))
+                        //        recipe.AddIngredient(sots.Find<ModItem>("SoulOfPlight"), 1); //not needed anymore i believe -Arkangel
+                        //}
 
                         if (ModLoader.TryGetMod("FishGunsPlus", out Mod fishGun))
                         {

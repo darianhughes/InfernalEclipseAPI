@@ -31,9 +31,18 @@ namespace InfernalEclipseAPI.Core.Configs
         [DefaultValue(true)]
         public bool CnidrionMusic { get; set; }
 
+        /*
         [DrawTicks]
         [DefaultValue(MothershipSong.Infernum)]
         public MothershipSong MothershipMusic { get; set; }
+        */
+
+        [DefaultValue(true)]
+
+        public bool GrandThunderBirdRagnarok { get; set; }
+
+        [DefaultValue(true)]
+        public bool QueenJellyfishRagnarok { get; set; }
 
         [DefaultValue(true)]
         public bool BereftVassalRagnarok { get; set; }

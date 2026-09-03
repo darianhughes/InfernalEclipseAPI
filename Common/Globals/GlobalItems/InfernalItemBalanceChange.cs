@@ -119,7 +119,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 if (item.type == ItemID.HoundiusShootius)
                 {
-                    item.damage = 60;
+                    item.damage = 40;
                 }
 
                 if (item.type == ItemID.ButchersChainsaw)
@@ -145,6 +145,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 if (item.type == ItemID.MolotovCocktail)
                 {
                     item.damage = 14;
+                }
+
+                if (item.type == ItemID.RainbowCrystalStaff)
+                {
+                    item.damage = 70;
                 }
             }
             #endregion
@@ -354,6 +359,11 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.useAnimation = 30;
                 }
 
+                if (item.type == ModContent.ItemType<NightsRay>())
+                {
+                    item.damage = 17;
+                }
+
                 /*
                 if (item.type == ModContent.ItemType<VividClarity>())
                 {
@@ -405,6 +415,21 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 if (item.type == ModContent.ItemType<CosmicImmaterializer>())
                 {
                     item.damage = 1020;
+                }
+
+                if (item.type == ModContent.ItemType<CadaverousCarrion>())
+                {
+                    item.damage = 244;
+                }
+
+                if (item.type == ModContent.ItemType<StarspawnHelixStaff>())
+                {
+                    item.damage = 125;
+                }
+
+                if (item.type == ModContent.ItemType<PolypLauncher>())
+                {
+                    item.damage = 30;
                 }
                 #endregion
 
@@ -898,8 +923,8 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 }
                 if (UnsafeGetItem(simpleWhipAddon, "Milkyway", item))
                 {
-                    item.useAnimation = 44;
-                    item.useTime = 44;
+                    item.useAnimation = 36;
+                    item.useTime = 36;
                 }
 
                 //Added in updates
@@ -946,6 +971,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.accessory = false;
                 }
 
+                /*
                 if (UnsafeGetItem(simpleWhipAddon, "BuddyEmblem", item))
                 {
                     item.rare = ItemRarityID.LightRed;
@@ -959,6 +985,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     item.rare = ItemRarityID.LightRed;
                     item.expert = false;
                 }
+                */
             }
             #endregion
 
@@ -1261,14 +1288,6 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 if (UnsafeGetItem(wrath, "MetallicChunk", item))
                 {
                     item.maxStack = Item.CommonMaxStack;
-                }
-            }
-            
-            if (ModLoader.TryGetMod("NoxusPort", out Mod noxusPort))
-            {
-                if (UnsafeGetItem(noxusPort, "EntropicBar", item))
-                {
-                    item.value = CalamityGlobalItem.RarityVioletBuyPrice;
                 }
             }
 
@@ -1665,6 +1684,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.useTime = 16;
                         item.useAnimation = 16;
                         item.shootSpeed = 12;
+                        ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
                     }
 
                     if (GetItem(thorium, "DragonTalon", item))
@@ -2079,6 +2099,13 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                         item.damage = 30;
                         item.useAnimation = 16;
                         item.useTime = 16;
+                    }
+
+                    if (item.type == thorium.Find<ModItem>("BuccaneerBlunderBuss").Type)
+                    {
+                        item.damage = 26;
+                        item.useAnimation = 30;
+                        item.useTime = 30;
                     }
                     #endregion
 
@@ -2881,6 +2908,21 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                     {
                         item.damage = 35;
                     }
+
+                    if (item.type == thorium.Find<ModItem>("ButterflyStaff").Type)
+                    {
+                        item.damage = 9;
+                    }
+
+                    if (item.type == thorium.Find<ModItem>("PrehistoricAmberStaff").Type)
+                    {
+                        item.damage = 14;
+                    }
+
+                    if (item.type == thorium.Find<ModItem>("ViscountCane").Type)
+                    {
+                        item.damage = 22;
+                    }
                     #endregion
 
                     #region Hardmode
@@ -2906,12 +2948,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                     if (GetItem(thorium, "MortarStaff", item))
                     {
-                        item.damage = 122;
+                        item.damage = 111;
                     }
 
                     if (GetItem(thorium, "BeholderStaff", item))
                     {
-                        item.damage = 33;
+                        item.damage = 43;
                     }
 
                     if (GetItem(thorium, "AeonStaff", item))
@@ -2926,12 +2968,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                     if (GetItem(thorium, "ValkyrieBlade", item))
                     {
-                        item.damage = 53;
+                        item.damage = 57;
                     }
 
                     if (GetItem(thorium, "CorrodlingStaff", item))
                     {
-                        item.damage = 72;
+                        item.damage = 80;
                     }
 
                     if (GetItem(thorium, "EyeofOdin", item))
@@ -2956,7 +2998,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                     if (GetItem(thorium, "TerrariumEnigmaStaff", item))
                     {
-                        item.damage = 55;
+                        item.damage = 50;
                     }
 
                     if (GetItem(thorium, "EmberStaff", item))
@@ -2966,7 +3008,12 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                     if (GetItem(thorium, "PrometheanStaff", item))
                     {
-                        item.damage = 600;
+                        item.damage = 200;
+                    }
+
+                    if (GetItem(thorium, "TheBlackCane", item))
+                    {
+                        item.damage = 40;
                     }
                     #endregion
                     #endregion
@@ -5740,6 +5787,17 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
                 #endregion
 
                 #region Summon
+                if (GetItem(sots, "BrassWhip", item))
+                {
+                    item.damage = 14;
+                }
+
+                if (GetItem(sots, "KelpWhip", item))
+                {
+                    item.useTime = 34;
+                    item.useAnimation = 34;
+                }
+
                 if (GetItem(sots, "JarOfPineapple", item))
                 {
                     item.damage = 13;
@@ -5747,7 +5805,7 @@ namespace InfernalEclipseAPI.Common.Globals.GlobalItems
 
                 if (GetItem(sots, "NightIlluminator", item))
                 {
-                    item.damage = 14;
+                    item.damage = 13;
                 }
 
                 if (GetItem(sots, "CursedBlade", item))

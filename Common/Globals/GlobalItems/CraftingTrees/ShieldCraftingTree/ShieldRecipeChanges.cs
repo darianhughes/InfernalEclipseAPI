@@ -38,7 +38,6 @@ namespace InfernalEclipseAPI.Common.GlobalItems.CraftingTrees.ShieldCraftingTree
                         if ((ModLoader.TryGetMod("FargowiltasCrossmod", out _) || ModLoader.TryGetMod("ssm", out _)))
                             recipe.DisableRecipe();
 
-                        if (ModLoader.TryGetMod("NoxusPort", out Mod noxus)) recipe.AddIngredient(noxus.Find<ModItem>("EntropicBar").Type, 3);
                         if (ModLoader.TryGetMod("NoxusBoss", out Mod wotg)) recipe.AddIngredient(wotg.Find<ModItem>("MetallicChunk").Type);
                     }
                 }

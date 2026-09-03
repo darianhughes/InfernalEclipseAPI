@@ -5,6 +5,11 @@ UI: {
 		LucidRetaliation: Lucid Retaliation
 	}
 
+	TitleLinks: {
+		Patreon: Patreon
+		Github: Github
+	}
+
 	NoVoidConsumable: You don't have the appetite for that!
 	RagnarokIconText: Ragnarok Mode is enabled
 	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
@@ -141,14 +146,8 @@ TimeFreezePrevention: {
 	Other: The incubator's effects were prevented!
 }
 
-BossCheesePrevention: {
-	TheDestroyer: I shall not let you destroy my machine so easily.
-	Plantera: Ancient forces prevent you from using this item right now...
-	Yharon: Ancient forces prevent you from using this item right now...
-}
-
 ItemBalance: {
-	Modified: Modified by Infernal Eclipse of Ragnarok
+	Modified: "[s:InfernalEclipseAPI/IEoRIcon] Modified by Infernal Eclipse of Ragnarok"
 	Modified2: Hold {0} to see modifications
 	DamageUpGeneric: "    Damage increased by [c/00A36C:{0}%]"
 	DamageDownGeneric: "    Damage decreased by [c/FF0000:{0}%]"
@@ -176,6 +175,7 @@ ItemTooltip: {
 	Contributor: - Contributor Item -
 	NamelessDowned: You must pass the test
 	DisabledBossRush: The effects will not work in Boss Rush
+	JungleCurse: It has been cursed by a powerful Jungle creature
 	SBeamUsage: Hold left click to charge a beam that deals mythic magic damage
 	NBeamUsage: Hold Left-Click to release a Nebula Gigabeam that deals mythic magic damage
 	MBeamUsage: Hold Left-Click to release a Exo Disintegrator beam that deals mythic ranged damage
@@ -314,14 +314,19 @@ ItemTooltip: {
 		'Gulp!'
 		'''
 	SpiritGlove: Increases void regeneration speed by 5% and melee critical strike chance by 4%
-	DiamondRingText: Increase damage based on defense, then decreases defense by two-thirds of the damage buff
+	DiamondRingText:
+		'''
+		Increase damage based on defense, then decreases defense by two-thirds of the damage buff
+		Increases damage by {0}%
+		Decreases defense by {1}
+		'''
 	EarthDrive: Max boost to melee speed is 10%
 	SyntheticLiver:
 		'''
 		Increases void received from food by 25%
 		Receiving the same buff multiple times will increase buff duration instead of resetting it, up to double the original duration
 		'''
-	MutantSkeletron: "[IEoR] Item is unusable until Skeletron has been defeated at least once. Use the Infernum spawn item instead."
+	MutantSkeletron: "[s:InfernalEclipseAPI/IEoRIcon] Item is unusable until Skeletron has been defeated at least once. Use the Infernum spawn item instead."
 	VibePotion: Increases attack speed by 10% while not moving and by 5% while moving
 	BloodPotion: Increases mining speed by 15%
 	FrenzyPotion: Increases all attack speeds by 5%
@@ -971,7 +976,7 @@ ItemTooltip: {
 		One day this luck will run out.
 		'''
 	NamelessRelic: You have passed the test.
-	NoxusRelic: So did you cheat this item in or do you actually have my super obscure mod that is not on the workshop anymore installed? Either way, congrats I guess.
+	NoxusRelic: Uhh... your not meant to see this.
 	DeviRelic:
 		'''
 		The youngest of the three siblings.
@@ -1000,32 +1005,17 @@ ItemTooltip: {
 	AstralCommunicatorInfernum2: The interdimentional slime still hungers...
 }
 
-Lore: {
-	DylanSoltan:
-		'''
-		Whoever is reading this note, be aware:
-		I foresee a person who goes by the name of Soltan to emerge in the future.
-		Many will think he is annoying, so I designed this chipnote to be of use to you.
-		To combat his annoying nature, the mircochip attached to this note will convert all
-		local summoning power into power for other sources.
-		In addition, it gives you full permission to bully Soltan.
-		I have only made two of these, and gave them to the two most powerful beings I could find.
-		If you are one of those people, or someone else, use this device wisely...
-		'''
-	MysteriousDiary:
-		'''
-		Turning to page one, you see nothing except a few words.
-
-		“Who the hell am I, that I still get to live a life?”
-
-		The rest of the pages are blank...
-
-		[c/E3AF40:The book feels otherworldly... perhaps there is something greater than Yharim or even the deity out there.]
-
-		–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
-		'''
-}
-
+Lore.DylanSoltan:
+	'''
+	Whoever is reading this note, be aware:
+	I foresee a person who goes by the name of Soltan to emerge in the future.
+	Many will think he is annoying, so I designed this chipnote to be of use to you.
+	To combat his annoying nature, the mircochip attached to this note will convert all
+	local summoning power into power for other sources.
+	In addition, it gives you full permission to bully Soltan.
+	I have only made two of these, and gave them to the two most powerful beings I could find.
+	If you are one of those people, or someone else, use this device wisely...
+	'''
 LegendaryTooltip.Base: This weapon may grow in power as you defeat difficult foes
 
 Items: {
@@ -1228,7 +1218,7 @@ Items: {
 			Lore:
 				'''
 				One of Draedon's experiments. 
-				This creature is one of his attempts to understand the inherent divinity that is present is all slimes, 
+				This creature is one of his attempts to understand the inherent divinity that is present in all slimes, 
 				no matter how minuscule it might be.
 				He did manage to successfully draw out the latent energy, but somehow in the process, 
 				gave the creature an endless hunger for peanuts of all things, and it provoked rapid and uncontrollable growth.
@@ -1245,19 +1235,6 @@ Items: {
 				Many say that they are too dangerous to face alone,
 				and that they could kill anyone within an instant with the void energy they possess.
 				This one, however... is clearly juvenile.
-				'''
-		}
-
-		LoreProvi: {
-			DisplayName: The Radiant One
-			Tooltip: ""
-			Lore:
-				'''
-				I dreamt of peace once. I don't know why I did.
-				Ever since I received word that there was something beyond this world,
-				I've have felt that womans presence in our world every now and again.
-				Now what Thorne wanted from her? Who knows.
-				But all the power is in your hands now, Terrarian.
 				'''
 		}
 
@@ -1288,8 +1265,6 @@ Items: {
 				with one of the key ingredients appering to be a "Dark Sun Ring."
 				Perhaps that "Guide" could help you further decipher this note.
 				Regardless, I'm sure you'll figure out how to make it.
-
-				–Stay tuned for the future of Infernal Eclipse of Ragnarok!–
 				'''
 		}
 
@@ -1968,11 +1943,7 @@ Items: {
 			Decreases damage by {1}%
 			'''
 		# Opposite of Lust, Chastity
-		I6:
-			'''
-			Buffs do not decay while above 90% life
-			Getting hit while below 90% life causes all buff durations to halve
-			'''
+		I6: Weapons will inflict a random debuff on hit
 		NormalTooltip:
 			'''
 			18% increased damage and 5% increased arrow damaage
@@ -2049,7 +2020,7 @@ Items: {
 
 	MenuMusicBox: {
 		DisplayName: Music Box (Infernal Eclipse of Ragnarok Title)
-		Tooltip: Plays 'Teardrops of Dragonfire' by Peter Fung
+		Tooltip: Plays 'Teardrops of Dragonfire' by PFungi
 	}
 
 	Streetsign: {
@@ -2475,6 +2446,31 @@ Items: {
 		DisplayName: Music Box (Queen Slime - Infernum Mode)
 		Tooltip: Plays 'Crowned Before One's End' by PinpinNeon
 	}
+
+	CnidrionMusicBox: {
+		DisplayName: Music Box (Cnidrion)
+		Tooltip: Plays 'Seahorse Scrutiny (Rebirth)' by Brimston Premium
+	}
+
+	CodebreakerMusicBox: {
+		DisplayName: Music Box (Codebreaker Interlude)
+		Tooltip: Plays 'Arsenal' by TheTrester
+	}
+
+	ProvidenceNightMusicBox: {
+		DisplayName: Music Box (Providence - Night)
+		Tooltip: Plays 'Unholy Finality' by Brimston Premium
+	}
+
+	ThunderBirdMusicBox: {
+		DisplayName: Music Box (The Grand Thunder Bird - Ragnarok Mode)
+		Tooltip: Plays 'Infernal Thunder Bird' by Techhy
+	}
+
+	VassalMusicBox: {
+		DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
+		Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
+	}
 }
 
 Projectiles: {
@@ -2881,6 +2877,16 @@ Configs: {
 				Togggles the Codebreaker Interlude theme. 
 				This interlude will play once you place the final component of the Codebreaker for the first time.
 				'''
+		}
+
+		GrandThunderBirdRagnarok: {
+			Label: Ragnarok Grand Thunder Bird Theme
+			Tooltip: Toggles if 'Infernal Thunder Bird' by Techhy plays during the Grand Thunder Bird boss fight in Ragnarok Mode.
+		}
+
+		QueenJellyfishRagnarok: {
+			Label: Ragnarok Queen Jellyfish Theme
+			Tooltip: Toggles if 'Mutant Majesty' by Techhy plays during the Queen Jellyfish boss fight in Ragnarok Mode.
 		}
 	}
 
@@ -3388,6 +3394,11 @@ Buffs: {
 		DisplayName: Blixer
 		Description: "'I didn't design THIS! :('"
 	}
+
+	HormonalBlockade: {
+		DisplayName: Hormonal Blockade
+		Description: You can't access your Rage or Adrenaline!
+	}
 }
 
 Tiles: {
@@ -3403,6 +3414,11 @@ Tiles: {
 	LastBattleMusicBoxTile.MapEntry: Music Box
 	PlanteraMusicBoxTile.MapEntry: Music Box
 	QueenSlimeMusicBoxTile.MapEntry: Music Box
+	CnidrionMusicBoxTile.MapEntry: Music Box
+	CodebreakerMusicBoxTile.MapEntry: Music Box
+	ProvidenceNightMusicBoxTile.MapEntry: Music Box
+	ThunderBirdMusicBoxTile.MapEntry: Music Box
+	VassalMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
@@ -3460,6 +3476,8 @@ BossName: {
 	ProvidenceNight: Unholy Finality - Providence (Night)
 	Seahorse: Seahorse Scrutiny (Rebirth) - Cnidrion
 	Arsenal: Arsenal - Codebreaker Interlude
+	ThunderBird: Infernal Thunder Bird - The Grand Thunder Bird (Ragnarok Mode)
+	QueenJellyfish: Mutant Majesty - Queen Jellyfish (Ragnarok Mode)
 }
 
 PetDialog.DoGDSPTip: The laser grid spawns at the same time as he dashes! Focus on ramming the Devourer first then move to a safe spot - but don't forget about those fireballs!

@@ -4,7 +4,7 @@ using InfernalEclipseAPI.Core.Configs;
 using InfernumMasterPatch;
 using InfernumMode.Content.UI;
 
-namespace InfernalEclipseAPI.Core.Systems
+namespace InfernalEclipseAPI.Core.Systems.UI
 {
     internal sealed class CalamityDifficultyListEdits : ModSystem
     {

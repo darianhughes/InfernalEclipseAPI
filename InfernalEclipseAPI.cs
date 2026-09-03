@@ -51,6 +51,8 @@ namespace InfernalEclipseAPI
 
     public partial class InfernalEclipseAPI : Mod
 	{
+        internal static SymbolTracker symbolTracker;
+
         public static ModKeybind SubpaceBoostHotkey;
         public static ModKeybind ItemAbility;
 
@@ -65,6 +67,8 @@ namespace InfernalEclipseAPI
         public override void Load()
         {
             DifficultyManagementSystem.DisableDifficultyModes = false;
+
+            symbolTracker = new SymbolTracker();
 
             TrackedMusicLoader();
 

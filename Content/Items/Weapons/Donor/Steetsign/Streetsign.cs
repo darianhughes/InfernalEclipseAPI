@@ -2,7 +2,11 @@
 using System.Reflection;
 using CalamityMod;
 using CalamityMod.Items;
+using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
+using CalamityMod.Tiles.Furniture.CraftingStations;
+using CalamityMod.UI.CalamitasEnchants;
+using InfernalEclipseAPI.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -121,6 +125,16 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Donor.Steetsign
             var modPlayer = player.GetModPlayer<StreetsignPlayer>();
 
             StreetsignDrawHelper.DrawChargeBarInInventory(spriteBatch, position, frame, modPlayer.improbabilityCharge, scale);
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.Sign)
+                .AddIngredient(InfernalCrossmod.Clamity.Loaded ? InfernalCrossmod.Clamity.Mod.Find<ModItem>("EndobsidianBar").Type : ModContent.ItemType<AuricBar>(), 5)
+                .AddIngredient<AshesofAnnihilation>(3)
+                .AddTile<SCalAltar>()
+                .Register();
         }
     }
 

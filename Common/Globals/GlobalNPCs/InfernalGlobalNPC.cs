@@ -140,6 +140,9 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 int hydroBullet = calamityAmmo.Find<ModItem>("HydrothermicBullet").Type;
                 int divineArrow = calamityAmmo.Find<ModItem>("DivineArrow").Type;
                 int divineBullet = calamityAmmo.Find<ModItem>("DivineBullet").Type;
+                int weakAstralBullet = calamityAmmo.Find<ModItem>("WeakAstralBullet").Type;
+                int astralBullet = calamityAmmo.Find<ModItem>("AstralBullet").Type;
+                int dazzlingAstralBullet = calamityAmmo.Find<ModItem>("DazzlingAstralBullet").Type;
 
                 // Remove matching entries
                 for (int i = 0; i < items.Length; i++)
@@ -149,7 +152,8 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                     if (item == null || item.IsAir)
                         continue;
 
-                    if (item.type == hydroArrow || item.type == hydroBullet || item.type == divineArrow || item.type == divineBullet)
+                    if (item.type == hydroArrow || item.type == hydroBullet || item.type == divineArrow || item.type == divineBullet
+                        || item.type == weakAstralBullet || item.type == astralBullet || item.type == dazzlingAstralBullet)
                         item.TurnToAir();
                 }
             }
@@ -199,14 +203,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
             {
                 if (player.active && !player.dead)
                 {
-                    player.ClearBuff(ModContent.BuffType<RageMode>());
-                    player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
-
-                    CalamityPlayer mp = player.Calamity();
-                    mp.rage = 0;
-                    mp.rageModeActive = false;
-                    mp.adrenaline = 0;
-                    mp.adrenalineModeActive = false;
+                    ClearRageAndAdrenaline(player);
                 }
             }
         }
@@ -228,40 +225,31 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
         {
             if (!npc.active) return base.PreAI(npc);
 
-            for (int i = 0; i < Main.maxPlayers; i++)
+            if (InfernalWorld.RagnarokModeEnabled && npc.type == NPCID.Golem)
             {
-                Player player = Main.player[i];
-                if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
-                    continue;
-
-                if (InfernalConfig.Instance.VanillaBalanceChanges && npc.type == NPCID.HallowBoss)
+                for (int i = 0; i < Main.maxPlayers; i++)
                 {
-                    if (InfernalCrossmod.Clamity.Loaded)
-                    {
-                        if (player.mount?.Type == InfernalCrossmod.Clamity.Mod.Find<ModMount>("PlagueChairMount").Type)
-                            player.mount.Dismount(player);
-                    }
-                }
+                    Player player = Main.player[i];
+                    if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
+                        continue;
 
-                if (InfernalWorld.RagnarokModeEnabled && npc.type == NPCID.Golem)
-                {
                     player.AddBuff(ModContent.BuffType<WeakPetrification>(), 2);
                 }
+            }
 
-                if (npc.type == ModContent.NPCType<HealerShieldCrystal>())
+            if (npc.type == ModContent.NPCType<HealerShieldCrystal>())
+            {
+                ClearRageAndAdrenaline();
+            }
+
+            if (InfernalCrossmod.Thorium.Loaded)
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
                 {
-                    player.ClearBuff(ModContent.BuffType<RageMode>());
-                    player.ClearBuff(ModContent.BuffType<AdrenalineMode>());
+                    Player player = Main.player[i];
+                    if (player.dead || !player.active || !npc.WithinRange(player.Center, 10000f))
+                        continue;
 
-                    CalamityPlayer mp = player.Calamity();
-                    mp.rage = 0;
-                    mp.rageModeActive = false;
-                    mp.adrenaline = 0;
-                    mp.adrenalineModeActive = false;
-                }
-
-                if (InfernalCrossmod.Thorium.Loaded)
-                {
                     if (npc.ModNPC?.Mod.Name != "ThoriumMod" && npc.boss)
                     {
                         player.ClearBuff(InfernalCrossmod.Thorium.Mod.Find<ModBuff>("SpiritualistBuff").Type);

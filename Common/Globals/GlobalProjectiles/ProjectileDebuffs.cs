@@ -112,6 +112,11 @@ namespace InfernalEclipseAPI.Common.GlobalProjectiles
                     {
                         target.AddBuff(calamity1.Find<ModBuff>("ArmorCrunch")?.Type ?? -1, 180);
                     }
+
+                    if (projectile.type == (calamity1.Find<ModProjectile>("PolypLauncherProjectile")?.Type ?? -1))
+                    {
+                        target.AddBuff(thoriumMod.Find<ModBuff>("Stunned")?.Type ?? -1, 60);
+                    }
                 }
             }
 

@@ -1,4 +1,6 @@
 VisionAmuletTextList: {
+	// 2: "[s:InfernalEclipseAPI/IEoRIcon] Increases attack speed by 8%"
+	// 3: "[s:InfernalEclipseAPI/IEoRIcon] Increases critical strike chance by 4%, and is improved to 8% after beating the guardian of the underworld"
 	4: 增加5%暴击伤害，进入困难模式时则增加10%暴击伤害
 	6:
 		'''
@@ -13,6 +15,12 @@ VisionAmuletTextList2: {
 
 		降低20%魔力消耗，进入困难模式时则降低25%魔力消耗
 		'''
+	/* 2:
+		'''
+
+		[s:InfernalEclipseAPI/IEoRIcon] Increases melee speed and movement speed by 8%
+		Increases jump speed
+		''' */
 	3:
 		'''
 
@@ -67,34 +75,23 @@ Items: {
 			有15秒冷却时间，但在冷却期间会增加40%近战攻速
 			'''
 	}
+
+	/* TwilightAssassinsCirclet.Tooltip:
+		'''
+		[s:InfernalEclipseAPI/IEoRIcon] Increases max sentries by 1
+		Increases minion and melee damage by 7%
+		Increases max void by 50
+		Provides a Holo Eye minion to assist in combat
+		Press '{0}' to make it launch a destabilizing beam that applies 4 levels of destabilized, but only once per enemy
+		Destabilized enemies gain a 5% flat chance to be critically striked
+		Costs 6 void to launch
+		Holo Eye remains active in the inventory when favorited or while worn in vanity slots, but cannot attack
+		''' */
+	// ChallengerRing.I6: Weapons will inflict a random debuff on hit
 }
 
 ArmorSetBonus.Earthen:
 	'''
 	近战攻击有概率对敌人施加一种可叠加的永久损伤，使敌人在所有攻击中受到额外的伤害
 	增加10%攻击速度
-	'''
-TwilightAssassinsCircletText:
-	'''
-	+1哨兵栏
-	增加7%召唤和近战伤害
-	增加50点最大虚空值
-	获得一只全息之眼协助战斗
-	按下'{0}'键会使其射出一道会施加4级不稳定化的不稳定光束，但每个敌人只会被施加一次
-	有5%的概率对不稳定化的敌人造成暴击
-	这是在正常攻击之后计算的，能使某些攻击双倍暴击
-	发射会消耗6点虚空值
-	全息之眼在被收藏或穿戴至装饰栏中时仍会在物品栏中被激活，但不会攻击
-	'''
-TwilightAssassinsCircletText2:
-	'''
-	+1哨兵栏
-	增加7%召唤和近战伤害
-	增加50点最大虚空值
-	获得一只全息之眼协助战斗
-	按下'{0}'键会使其射出一道会施加4级不稳定化的不稳定光束，但每个敌人只会被施加一次
-	有5%的概率对不稳定化的敌人造成暴击
-	这是在正常攻击之后计算的，能使某些攻击双倍暴击
-	发射会消耗6点虚空值
-	全息之眼在被收藏或穿戴至装饰栏中时仍会在物品栏中被激活，但不会攻击
 	'''

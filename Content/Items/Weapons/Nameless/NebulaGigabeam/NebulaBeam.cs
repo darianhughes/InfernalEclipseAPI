@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using NoxusBoss.Core.BaseEntities;
 using Luminance.Core.Graphics;
 using InfernalEclipseAPI.Core.Graphics.Automators;
+using CalamityMod;
+using Terraria.DataStructures;
 
 namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
 {
@@ -41,6 +43,8 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
             Projectile.MaxUpdates = 2;
         }
 
+        int highScreenShake = 45;
+
         public override bool PreAI()
         {
             Player player = Main.player[Projectile.owner];
@@ -49,6 +53,13 @@ namespace InfernalEclipseAPI.Content.Items.Weapons.Nameless.NebulaGigabeam
                 Projectile.Kill();
                 return false;
             }
+
+            if (highScreenShake-- > 0)
+            {
+                player.SetScreenshake(10f);
+            }
+            else player.SetScreenshake(2.5f);
+
 
             Projectile.Center = player.Center + Projectile.velocity * 165f;
             Projectile.scale = Utils.GetLerpValue(0f, 12f, Time, clamped: true);
