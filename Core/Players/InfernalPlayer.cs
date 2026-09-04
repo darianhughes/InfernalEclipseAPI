@@ -181,6 +181,7 @@ namespace InfernalEclipseAPI.Core.Players
                     }
                 }
             }
+            BossChecklistEntryEdits.SCalImages();
         }
 
         public override void PlayerConnect()
