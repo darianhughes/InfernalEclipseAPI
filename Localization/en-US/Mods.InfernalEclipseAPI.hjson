@@ -2486,6 +2486,11 @@ Items: {
 		DisplayName: Astrageldon Relic
 		Tooltip: ""
 	}
+
+	QueenJellyfishMusicBox: {
+		DisplayName: Music Box (Queen Jellyfish - Ragnarok Mode)
+		Tooltip: Plays 'Mutant Majesty' by Techhy
+	}
 }
 
 Projectiles: {
@@ -3434,6 +3439,7 @@ Tiles: {
 	ProvidenceNightMusicBoxTile.MapEntry: Music Box
 	ThunderBirdMusicBoxTile.MapEntry: Music Box
 	VassalMusicBoxTile.MapEntry: Music Box
+	QueenJellyfishMusicBoxTile.MapEntry: Music Box
 }
 
 NPCs: {
