@@ -2467,6 +2467,21 @@ Items: {
 		// DisplayName: Music Box (Bereft Vassal - Ragnarok Mode)
 		// Tooltip: Plays 'Dead Kingdom's Champion' by Techhy
 	}
+
+	SubspaceSerpentRelicPlatinum: {
+		// DisplayName: Platinum Subspace Serpent Relic
+		// Tooltip: ""
+	}
+
+	TerraBladeRelicPlatinum: {
+		// DisplayName: Platinum Terra Blade Relic
+		// Tooltip: ""
+	}
+
+	AstrageldonRelicGold: {
+		// DisplayName: Gold Astrageldon Relic
+		// Tooltip: ""
+	}
 }
 
 Projectiles: {
