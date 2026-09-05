@@ -10,6 +10,11 @@ UI: {
 		// Github: Github
 	}
 
+	RecipeBrowserCategories: {
+		// Legendary: Legendary
+		// Mythical: Mythical
+	}
+
 	NoVoidConsumable: Подобная еда уже не вызывает у вас аппетит!
 	RagnarokIconText: Сложность Рагнарёк включена
 	NoRespawn: Возрождение предотвращено: Доступно только 1 возрождение в битве с боссом в {0} мультиплеере!
@@ -2481,6 +2486,11 @@ Items: {
 	QueenJellyfishMusicBox: {
 		// DisplayName: Music Box (Queen Jellyfish - Ragnarok Mode)
 		// Tooltip: Plays 'Mutant Majesty' by Techhy
+	}
+
+	InfernalHypnosRelic: {
+		// DisplayName: Infernal Hypnos Relic
+		// Tooltip: "{0}"
 	}
 }
 

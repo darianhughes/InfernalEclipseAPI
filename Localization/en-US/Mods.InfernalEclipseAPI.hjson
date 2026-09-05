@@ -10,6 +10,11 @@ UI: {
 		Github: Github
 	}
 
+	RecipeBrowserCategories: {
+		Legendary: Legendary
+		Mythical: Mythical
+	}
+
 	NoVoidConsumable: You don't have the appetite for that!
 	RagnarokIconText: Ragnarok Mode is enabled
 	NoRespawn: Respawn prevented: Only one respawn per boss in {0} multiplayer!
@@ -2490,6 +2495,11 @@ Items: {
 	QueenJellyfishMusicBox: {
 		DisplayName: Music Box (Queen Jellyfish - Ragnarok Mode)
 		Tooltip: Plays 'Mutant Majesty' by Techhy
+	}
+
+	InfernalHypnosRelic: {
+		DisplayName: Infernal Hypnos Relic
+		Tooltip: "{0}"
 	}
 }
 

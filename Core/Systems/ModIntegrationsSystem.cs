@@ -5,6 +5,7 @@ using InfernalEclipseAPI.Core.Configs;
 using InfernalEclipseAPI.Core.DamageClasses.LegendaryClass;
 using InfernalEclipseAPI.Core.DamageClasses.MythicClass;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SOTS.Void;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -40,6 +41,7 @@ namespace InfernalEclipseAPI.Core.Systems
             AddInfernumCards();
             ColoredDamageTypesSupport();
             Project_tRUSupport();
+        //  Wait until I actually know what textures to put...    RecipeBrowserSetup();
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
@@ -91,7 +93,14 @@ namespace InfernalEclipseAPI.Core.Systems
                 musicDisplay.Call("AddMusic", (short)MusicLoader.GetMusicSlot("NoxusBoss/Assets/Sounds/Music/NamelessDeity"), "TWISTED GARDEN", "by ENNWAY & HeartPlusUp!", "Calamity: Wrath of the Gods");
             }
         }
-
+        private static void RecipeBrowserSetup()
+        {
+            if (ModLoader.TryGetMod("RecipeBrowser", out Mod mod))
+            {
+                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Legendary"), "Weapons", ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/ExtraTextures/UI/RagnarokIcon"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<LegendaryMagic>() || item.DamageType == ModContent.GetInstance<LegendaryMelee>() || item.DamageType == ModContent.GetInstance<LegendaryRanged>() || item.DamageType == ModContent.GetInstance<LegendarySummonMeleeSpeed>()));
+                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Mythical"), "Weapons", ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/ExtraTextures/UI/RagnarokIcon"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<MythicMagic>() || item.DamageType == ModContent.GetInstance<MythicMelee>() || item.DamageType == ModContent.GetInstance<MythicRanged>() || item.DamageType == ModContent.GetInstance<MythicSummon>()));
+            }
+        }
         private static void BossChecklistSetup()
         {
             Mod mod1;

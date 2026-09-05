@@ -4,6 +4,8 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 using Terraria.ID;
 using Terraria.ModLoader;
+using CalamityMod;
+using InfernumMode.Core.GlobalInstances.Systems;
 
 namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
 {
@@ -29,6 +31,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs.LootAdjustments
                         new RevengenceMode(),
                         ModContent.ItemType<HypnosRelic>(),
                         1, 1, 1, 1));
+                    npcLoot.AddIf(() => WorldSaveSystem.InfernumModeEnabled, ModContent.ItemType<InfernalHypnosRelic>());
                 }
             }
 
