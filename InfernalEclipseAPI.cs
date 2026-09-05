@@ -94,6 +94,10 @@ namespace InfernalEclipseAPI
                 {
                     RagnarokModConfigSetup.SetupConfigs(cfgDir);
                 }
+                if (InfernalCrossmod.ThoriumRework.Loaded)
+                {
+                    ThoriumHelheimConfigSetup.SetupConfigs(cfgDir);
+                }
             }
 
             // Cache the WhiteFlare projectile type from Thorium

@@ -7,6 +7,6 @@ namespace InfernalEclipseAPI.Content.Tiles.Relics.Platinum
     {
         public override string RelicTextureName => "InfernalEclipseAPI/Content/Tiles/Relics/Platinum/SubspaceSerpentRelicTilePlatinum";
         public override int AssociatedItem => ModContent.ItemType<SubspaceSerpentRelicPlatinum>();
-        public override string Texture => "CatalystMod/Tiles/Furniture/BossRelics";
+        public override string Texture => "InfernalEclipseAPI/Content/Tiles/Relics/Platinum/PlatinumRelicBase";
     }
 }
