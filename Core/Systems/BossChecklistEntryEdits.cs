@@ -43,7 +43,7 @@ namespace InfernalEclipseAPI.Core.Systems
         }
         public static List<int> BossSpawnList(this object bossEntry) => EntryInfo?.GetField("spawnItem", LumUtils.UniversalBindingFlags)?.GetValue(bossEntry) as List<int>;
         public static void ModifyBossProgression(this object bossEntry, float progression) => EntryInfo?.GetField("progression", LumUtils.UniversalBindingFlags)?.SetValue(bossEntry, progression);
-
+        public static float GetProgression(this object bossEntry) => (float)EntryInfo?.GetField("progression", LumUtils.UniversalBindingFlags)?.GetValue(bossEntry);
 
         // Old code shoved here so it doesn't fill up main file
 
@@ -115,6 +115,7 @@ if (DeerclopsEntry == List_EntryInfo_GetMethod?.Invoke(SortedEntries, [6])) // C
     //    [JITWhenModsEnabled("BossChecklist")]
     public class BossChecklistEntryEdits : ModSystem
     {
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.HasMod("BossChecklist");
         private static Hook CalShadowHook = null;
         private static MethodInfo SwitchToDifficulty_Method;
         const string path = "InfernalEclipseAPI/Assets/Images/UI/BossChecklist";
@@ -132,6 +133,9 @@ if (DeerclopsEntry == List_EntryInfo_GetMethod?.Invoke(SortedEntries, [6])) // C
 
             BossEntry("CalamityMod HiveMind").ModifyBossImage($"{path}/HiveMind");
             BossEntry("CalamityMod Calamitas").ModifyBossImage($"{path}/Calamitas");
+
+            if (InfernalCrossmod.Consolaria.Loaded)
+                BossEntry("Consolaria Turkor").ModifyBossProgression(6.5f + 0.1f);
         }
         public static void SCalImages()
         {
