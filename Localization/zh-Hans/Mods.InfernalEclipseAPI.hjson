@@ -2497,6 +2497,11 @@ Items: {
 		// DisplayName: Infernal Hypnos Relic
 		// Tooltip: "{0}"
 	}
+
+	TerraBladeTreasureBag: {
+		// DisplayName: Treasure Bag (Terra Blade)
+		// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+	}
 }
 
 Projectiles: {
