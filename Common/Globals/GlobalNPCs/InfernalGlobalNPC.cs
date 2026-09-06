@@ -312,7 +312,7 @@ namespace InfernalEclipseAPI.Common.GlobalNPCs
                 PruneFromChains(chain.RuleToChain, itemId);
         }
 
-        private sealed class EvilBossDownedCondition : IItemDropRuleCondition
+        internal sealed class EvilBossDownedCondition : IItemDropRuleCondition
         {
             public bool CanDrop(DropAttemptInfo info) => NPC.downedBoss2;
             public bool CanShowItemDropInUI() => true;
