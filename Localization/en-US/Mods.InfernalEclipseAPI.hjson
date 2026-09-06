@@ -102,6 +102,8 @@ UI: {
 		This mod adds a bunch of unlisted changes which might make your playthough worse than intended.
 		We heavily recommend you disable this mod.
 		'''
+	MediumWorldWarning: "[c/FF0000:Medium Worlds will likely have problems with Infernal Eclipse]"
+	WorldWarningRemnants: "[c/FF0000:INFERNAL ECLIPSE DOES NOT SUPPORT REMNANTS]"
 }
 
 DifficultyUI: {

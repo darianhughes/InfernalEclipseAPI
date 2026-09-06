@@ -41,7 +41,7 @@ namespace InfernalEclipseAPI.Core.Systems
             AddInfernumCards();
             ColoredDamageTypesSupport();
             Project_tRUSupport();
-        //  Wait until I actually know what textures to put...    RecipeBrowserSetup();
+            RecipeBrowserSetup();
 
             if (InfernalCrossmod.Thorium.Loaded)
             {
@@ -97,8 +97,9 @@ namespace InfernalEclipseAPI.Core.Systems
         {
             if (ModLoader.TryGetMod("RecipeBrowser", out Mod mod))
             {
-                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Legendary"), "Weapons", ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/ExtraTextures/UI/RagnarokIcon"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<LegendaryMagic>() || item.DamageType == ModContent.GetInstance<LegendaryMelee>() || item.DamageType == ModContent.GetInstance<LegendaryRanged>() || item.DamageType == ModContent.GetInstance<LegendarySummonMeleeSpeed>()));
-                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Mythical"), "Weapons", ModContent.Request<Texture2D>("InfernalEclipseAPI/Assets/ExtraTextures/UI/RagnarokIcon"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<MythicMagic>() || item.DamageType == ModContent.GetInstance<MythicMelee>() || item.DamageType == ModContent.GetInstance<MythicRanged>() || item.DamageType == ModContent.GetInstance<MythicSummon>()));
+                const string path = "InfernalEclipseAPI/Assets/Images/UI/RecipeBrowser/ClassIcon";
+                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Legendary"), "Weapons", ModContent.Request<Texture2D>(path + "Legendary"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<LegendaryMagic>() || item.DamageType == ModContent.GetInstance<LegendaryMelee>() || item.DamageType == ModContent.GetInstance<LegendaryRanged>() || item.DamageType == ModContent.GetInstance<LegendarySummonMeleeSpeed>()));
+                mod.Call("AddItemCategory", Language.GetTextValue("Mods.InfernalEclipseAPI.UI.RecipeBrowserCategories.Mythical"), "Weapons", ModContent.Request<Texture2D>(path + "Mythic"), (Predicate<Item>)(item => item.DamageType == ModContent.GetInstance<MythicMagic>() || item.DamageType == ModContent.GetInstance<MythicMelee>() || item.DamageType == ModContent.GetInstance<MythicRanged>() || item.DamageType == ModContent.GetInstance<MythicSummon>()));
             }
         }
         private static void BossChecklistSetup()
